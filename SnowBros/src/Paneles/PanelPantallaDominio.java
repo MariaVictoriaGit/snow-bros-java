@@ -2,10 +2,11 @@ package SnowBros.src.Paneles;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import SnowBros.src.Grafica.ControladorGrafico;
 
-public class PanelPantallaDominio {
+public class PanelPantallaDominio extends JPanel {
     protected JLabel imagenFondo;
     protected JButton botonOriginal;
     protected JButton botonAlternativo;

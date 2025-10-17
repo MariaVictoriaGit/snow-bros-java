@@ -7,10 +7,12 @@ import javax.swing.JFrame;
 
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
+import SnowBros.src.Juego.Entidad;
 import SnowBros.src.Juego.Juego;
+import SnowBros.src.Jugador.Jugador;
 import SnowBros.src.Paneles.*;
 
-public class ControladorGrafico implements ControladoraGrafica, ControladorDeVista {
+public class ControladorGrafico implements ControladorGrafica, ControladorDeVista {
     protected JFrame ventana;
     protected PanelPantallaPrincipal panelPantallaPrincipal;
     protected PanelPantallaRanking panelPantallaRanking;
@@ -48,7 +50,7 @@ public class ControladorGrafico implements ControladoraGrafica, ControladorDeVis
         addWindowKeyListener();
     }
 
-      private void addWindowKeyListener() {
+    private void addWindowKeyListener() {
         ventana.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent event) {
@@ -89,6 +91,99 @@ public class ControladorGrafico implements ControladoraGrafica, ControladorDeVis
                 }
             }
         );
+    }
+     public void mostrarPantallaInicial() {
+        ventana.setContentPane(panelPantallaPrincipal);
+        refrescar();
+    }
+
+    public void mostrarPantallaJuego() {
+        ventana.setContentPane(panelPantallaJuego);
+        ventana.requestFocusInWindow();
+        refrescar();
+    }
+
+    public void mostrarPantallaFinJuego() {
+        ventana.setContentPane(panelPantallaFinDeJuego);
+        ventana.requestFocusInWindow();
+        refrescar();
+    }
+    
+    public void accionarInicioJuego() {
+        this.panelPantallaJuego = new PanelPantallaJuego(this);
+        miJuego.iniciar();
+        //controladorDeSonido.reproducirSonidoDeFondo();
+    }
+    
+    public void accionarPantallaModoJuego() {
+       this.panelPantallaModo = new PanelPantallaModo(this);
+       ventana.setContentPane(panelPantallaModo);
+       ventana.requestFocusInWindow();
+       refrescar();
+    }
+
+    public void accionarPantallaDominio(){
+        this.panelPantallaDominio= new PanelPantallaDominio(this);
+        ventana.setContentPane(panelPantallaDominio);
+        ventana.requestFocusInWindow();
+        refrescar();
+    }
+    
+    public void accionarPantallaRanking(){
+        //despues
+    }
+
+    public void cambiarModoJuego(int modo) {
+        // To Do
+        mostrarPantallaInicial();
+    }
+
+    public void pasarNivel(){
+        miJuego.superarNivel();
+    }
+
+    public void reiniciarNivel(){
+        miJuego.reiniciarNivel();
+    }
+
+    public Observer registrarEntidad(Entidad entidad) {
+        Observer observerEntidad = panelPantallaJuego.incorporarEntidad(entidad);
+        refrescar();
+        return observerEntidad;
+    }
+
+    public Observer registrarEntidad(Jugador jugador) {
+        Observer observerJugador = panelPantallaJuego.incorporarEntidadJugador(jugador);
+        refrescar();
+        return observerJugador;
+    }
+
+    public Observer registrarSilueta(Entidad silueta) {
+        Observer observer_silueta = panelPantallaJuego.incorporarSilueta(silueta);
+        refrescar();
+        return observer_silueta;
+    }
+    
+    public void registrarControladorJuego(Juego juego){
+        this.miJuego=juego;
+    }
+
+   /* public Observer registrarSprite(Entidad e){
+        return null;
+        
+    }*/
+
+    public void refrescar() {
+        ventana.revalidate();
+        ventana.repaint();
+    }
+
+   /* public ControladorDeSonido getControladorDeSonido() {
+        return controladorDeSonido;
+    }*/
+
+    public Juego getJuego() {
+        return miJuego;
     }
 
 }

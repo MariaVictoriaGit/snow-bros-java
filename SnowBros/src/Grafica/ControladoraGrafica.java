@@ -4,7 +4,7 @@ import SnowBros.src.Juego.Entidad;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Jugador.Jugador;
 
-interface ControladorGrafico {
+interface ControladorGrafica {
     public void registrarControladorJuego(Juego j);
 
     public void mostrarPantallaInicial();
@@ -17,7 +17,7 @@ interface ControladorGrafico {
 
     public Observer registrarEntidad(Jugador j);
 
-    public Observer registrarSprite(Entidad e);
+    //public Observer registrarSprite(Entidad e);
 
     public void accionarInicioJuego();
 }
