@@ -1,7 +1,9 @@
-package SnowBro.src.Grafica;
+package SnowBro.src.Paneles;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
+import SnowBro.src.Grafica.ControladorGrafico;
 
 public class PanelPantallaModo {
     protected JLabel imagenFondo;
@@ -10,6 +12,7 @@ public class PanelPantallaModo {
     protected JButton botonContraTimer;
     protected ControladorGrafico miControladorGrafico;
 
+    public PanelPantallaModo(ControladorGrafico miControladorGrafico){}
     public void agregarImagenFondo(){
 
     }
