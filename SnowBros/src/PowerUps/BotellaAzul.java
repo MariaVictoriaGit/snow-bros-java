@@ -1,4 +1,4 @@
-package SnowBro.src.PowerUps;
+package SnowBros.src.PowerUps;
 
 public class BotellaAzul extends PowerUp{
     //TODO implementar

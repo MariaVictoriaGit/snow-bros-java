@@ -1,4 +1,4 @@
-package SnowBro.src.PowerUps;
+package SnowBros.src.PowerUps;
 
 public class Fruta  extends PowerUp{
     private final int puntos = 500;

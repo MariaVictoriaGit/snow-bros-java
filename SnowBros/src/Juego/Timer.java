@@ -1,4 +1,4 @@
-package SnowBro.src.Juego;
+package SnowBros.src.Juego;
 
 public class Timer {
     private int tiempoActual;

@@ -1,4 +1,4 @@
-package SnowBro.src.Juego;
+package SnowBros.src.Juego;
 
 public abstract class EntidadEstatica extends Entidad {
     
