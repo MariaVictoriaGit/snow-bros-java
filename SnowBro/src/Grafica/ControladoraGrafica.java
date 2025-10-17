@@ -1,6 +1,6 @@
 package SnowBro.src.Grafica;
 
-interface ControladoraGrafica {
+interface ControladorGrafico {
     public void registrarControladorJuego(Juego j);
 
     public void mostrarPantallaInicial();
