@@ -1,5 +1,8 @@
 package SnowBros.src.PowerUps;
 
 public class BotellaVerde extends PowerUp{
-    //TODO implementar
+    private Nivel nivel;
+    public BotellaVerde(){
+        //TODO implementar
+    }
 }

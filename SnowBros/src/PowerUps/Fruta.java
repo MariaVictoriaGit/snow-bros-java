@@ -1,7 +1,8 @@
 package SnowBros.src.PowerUps;
 
 public class Fruta  extends PowerUp{
-    private final int puntos = 500;
-    //Mateo estuvo aqui 
-    //TODO implementar
+    private final int puntaje = 500;
+    public Fruta(){
+        //TODO implementar
+    }
 }
