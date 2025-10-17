@@ -1,5 +1,7 @@
 package SnowBros.src.Juego;
 
+import SnowBros.src.Grafica.Sprite;
+
 public abstract class Entidad {
     protected Sprite sprite;
     protected int posX;

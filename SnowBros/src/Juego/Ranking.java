@@ -1,9 +1,10 @@
 package SnowBros.src.Juego;
+import java.util.HashMap;
 
 public class Ranking{
-    protected Map<String, int> topClasico;
-    protected Map<String, int> topSupervivencia;
-    protected Map<String, int> topContratiempo;
+    protected HashMap<String, int> topClasico;
+    protected HashMap<String, int> topSupervivencia;
+    protected HashMap<String, int> topContratiempo;
 
     public Ranking(){
         //TODO implementar

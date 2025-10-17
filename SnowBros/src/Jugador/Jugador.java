@@ -2,7 +2,6 @@ package SnowBros.src.Jugador;
 import SnowBros.src.Juego.EntidadDinamica;
 import SnowBros.src.Juego.Juego;
 
-
 public class Jugador extends EntidadDinamica {
     private static final int vidaDeInicio = 3;
     protected Juego miJuego;
@@ -76,9 +75,4 @@ public class Jugador extends EntidadDinamica {
     public void efectoBotellaVerde(){
         //TODO implementar
     }
-
-
-
-
-
 }
