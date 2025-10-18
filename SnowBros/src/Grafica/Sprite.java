@@ -6,6 +6,6 @@ public class Sprite {
     public HashMap<String, String> mapeoDeSprites;
 
     public String getRutaImagen(String clave){
-        //TODO implementar
+        return mapeoDeSprites.get(clave);
     }
 }
