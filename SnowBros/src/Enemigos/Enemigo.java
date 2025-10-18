@@ -1,6 +1,7 @@
 package SnowBros.src.Enemigos;
 
 import SnowBros.src.Juego.EntidadDinamica;
+import SnowBros.src.Juego.Timer;
 
 public class Enemigo extends EntidadDinamica {
     protected int salud;

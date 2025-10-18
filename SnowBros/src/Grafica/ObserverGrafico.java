@@ -1,8 +1,9 @@
-package Grafica;
+package SnowBros.src.Grafica;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import Juego.Entidad;
+import SnowBros.src.Juego.Entidad;
+
 
 public class ObserverGrafico extends JLabel implements Observer{
     protected Entidad entidadObservada;
@@ -31,4 +32,9 @@ public class ObserverGrafico extends JLabel implements Observer{
     private int adaptarY(int y){
         return PANEL_ALTO - PADDING - y;
     }
+	@Override
+	public void actualizar(int direccion, int estadoAereo) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'actualizar'");
+	}
 }

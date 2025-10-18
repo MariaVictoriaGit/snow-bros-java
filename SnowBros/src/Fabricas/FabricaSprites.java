@@ -1,5 +1,10 @@
-public abstract class FabricaSprites {
+package SnowBros.src.Fabricas;
 
+import java.util.HashMap;
+
+import SnowBros.src.Grafica.Sprite;
+
+public abstract class FabricaSprites {
     private Sprite rutaACarpeta;
     protected FabricaSprites(String ruta) {
         		this.rutaACarpeta = ruta;
@@ -14,37 +19,36 @@ public abstract class FabricaSprites {
     }
     public Sprite getSpriteJugador(){
         HashMap<String, String> mapeo = new HashMap<>();
-        mapeo.put("idleIzquierda", ruta_a_carpeta+ "/Jugador/JugadorIzquierda.png");
-        mapeo.put("idleDerecha", ruta_a_carpeta+ "/Jugador/JugadorDerecha.png");
-        mapeo.put("moverIzquierda", ruta_a_carpeta+ "/Jugador/JugadorMoverIzquierda.png");
-        mapeo.put("moverDerecha", ruta_a_carpeta+ "/Jugador/JugadorMoverDerecha.png");
-        mapeo.put("saltandoDerecha", ruta_a_carpeta+ "/Jugador/JugadorSaltandoDerecha.png");
-        mapeo.put("saltandoIzquierda", ruta_a_carpeta+ "/Jugador/JugadorSaltandoIzquierda.png");
+        mapeo.put("idleIzquierda", rutaACarpeta+ "/Jugador/JugadorIzquierda.png");
+        mapeo.put("idleDerecha", rutaACarpeta+ "/Jugador/JugadorDerecha.png");
+        mapeo.put("moverIzquierda", rutaACarpeta+ "/Jugador/JugadorMoverIzquierda.png");
+        mapeo.put("moverDerecha", rutaACarpeta+ "/Jugador/JugadorMoverDerecha.png");
+        mapeo.put("saltandoDerecha", rutaACarpeta+ "/Jugador/JugadorSaltandoDerecha.png");
+        mapeo.put("saltandoIzquierda", rutaACarpeta+ "/Jugador/JugadorSaltandoIzquierda.png");
         return new Sprite(mapeo);
     	}
     }
     abstract public Sprite getSpriteDemonioRojo();
     abstract public Sprite getSpriteTrollAmarillo();
-    abstract public Sprite getSpriteRana();
+    abstract public Sprite getSpriteRanaDeFuego();
     abstract public Sprite getSpriteCalabaza();
     abstract public Sprite getSpriteFantasma();
     abstract public Sprite getSpriteMoghera();
-    abstract public Sprite getSpriteKamakiprite();
-    abstract public Sprite getSpritePlataforma();
+    abstract public Sprite getSpriteKamakichi();
     abstract public Sprite getSpriteTrampaPinchos();
     abstract public Sprite getSpriteSueloResbaladizo();
     abstract public Sprite getSpriteParedDestuctible();
-    abstract public Sprite getSpritePlataformaDestructible();
-    abstract public Sprite getSpriteEscaleras();
+    abstract public Sprite getSpritePlataforma();
+    abstract public Sprite getSpritePlataformaMovil();
+    abstract public Sprite getSpritePlataformaQuebradiza();
+    abstract public Sprite getSpritePared();
+    abstract public Sprite getSpriteEscalera();
     abstract public Sprite getSpriteBotellaAzul();
-    abstract public Sprite getSpriteFruta();
     abstract public Sprite getSpriteBotellaRoja();
     abstract public Sprite getSpriteBotellaVerde();
+    abstract public Sprite getSpriteFruta();
     abstract public Sprite getSpriteVidaExtra();
     abstract public Sprite getSpriteBolaNieve();
     abstract public Sprite getSpriteBolaFuego();
     abstract public Sprite getSpriteDisparoJugador(); 
-
-
-
 }
