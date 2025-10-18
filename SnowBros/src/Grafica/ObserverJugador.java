@@ -30,16 +30,10 @@ public class ObserverJugador extends ObserverGrafico{
                         estado=SPRITEIZQUIERDA;
                     else 
                         estado=SPRITEDERECHA;
-                default:
-                    estado= SPRITEDERECHA;
+                case DERECHA:
+                    estado= SPRITECAMINADERECHA;
             }
-        else {
-            if (direccion == ARRIBA)
-                estado=SPRITESALTAR;
-            else if( jugadorObservado.getDirAnterior()==IZQUIERDA)
-                estado=SPRITECAYENDOIZQUIERDA;
-                    else estado=SPRITECAYENDODERECHA;
-        }
+        
 		String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
 		setIcon(icono);

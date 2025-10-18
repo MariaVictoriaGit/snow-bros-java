@@ -18,11 +18,12 @@ public class ConstantesEntidades {
     public static final String SPRITESESTATICO= "estatico";
     public static final String SPRITEDERECHA= "derecha";
     public static final String SPRITEIZQUIERDA= "izquierda";
-    public static final String SPRITECAMINADERECHA= "avanzar_derecha";
-    public static final String SPRITECAMINAIZQUIERDA= "avanzar_izquierda";
-    public static final String SPRITECAYENDODERECHA= "caer_derecha";
+    public static final String SPRITECAMINADERECHA= "avanzarDerecha";
+    public static final String SPRITECAMINAIZQUIERDA= "avanzarIzquierda";
+    public static final String SPRITECAYENDODERECHA= "caerDerecha";
     public static final String SPRITECAYENDOIZQUIERDA= "caer_izquierda";
-    public static final String SPRITESALTAR= "saltando";
+    public static final String SPRITESALTARDERECHA= "saltandoDerecha"
+    public static final String SPRITESALTARIZQUIERDA= "saltandoIzquierda";
     public static final String SPRITEARRIBA= "subiendo";
     //Constante ZIndex
     public static final int PRIORIDAD = 1;
