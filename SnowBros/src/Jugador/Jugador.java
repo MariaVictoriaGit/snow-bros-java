@@ -26,7 +26,7 @@ public class Jugador extends EntidadDinamica {
         //TODO implementar
     } 
     public int actualizarPuntaje(){
-        //TODO implementar
+        
     }
     public String generarClaveEstado(){
         //TODO implementar
@@ -67,10 +67,11 @@ public class Jugador extends EntidadDinamica {
         //TODO implementar
     }
     public void efectoBotellaAzul(){
-        //TODO implementar
+        this.velocidad+=5; // suponiendo que ese es el incremento final, cambiar dsp
     }
     public void efectoBotellaRoja(){
-        //TODO implementar
+        this.disparoAumentado=true;
+        
     }
     public void efectoBotellaVerde(){
         //TODO implementar

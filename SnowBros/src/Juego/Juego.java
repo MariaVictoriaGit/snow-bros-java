@@ -11,7 +11,7 @@ public class Juego {
     protected Jugador jugador;
     protected Sonido sonido;
     protected Ranking ranking;
-    protected ControladorGrafico/a controladorGrafica; 
+    protected ControladorGrafico controladorGrafica; 
     //controladorgraficoooooo o controladorgraficaaaaaaaaaa??
     protected FabricaSprite dominio;
 
@@ -22,54 +22,40 @@ public class Juego {
         //TODO implementar
     }
     public void reiniciarNivel(){
-        //TODO implimentar
+        reiniciarJugador=true;
+        puntajeJugador=0;
+        timer.setTiempoActual(0);
+        //TODO terminar de implementar
     }
     public void superarNivel(){
         //TODO implimentar
     }
     public void actualizarVida(){
-        //TODO implimentar
+        //TODO implementar
     }
     public void actualizarPuntaje(int puntajeASumar){
-        //TODO implimentar
+        puntajeJugador+=puntajeASumar;
     }
     public int getVidasJugador(){
-        //TODO implimentar
+        return jugador.getVidas();
     }
     public int getPuntaje(){
-        //TODO implimentar
+        return puntajeJugador;
     }
     public Nivel getNivelActual(){
-        //TODO implimentar
+        return nivel;
     }
     public int getTiempoActual(){
-        //TODO implimentar
+        return timer.getTiempoActual();
     }
     public Ranking getRanking(){
-        //TODO implimentar
+        return ranking;
     }
     public int getModoDeJuego(){
-        //TODO implimentar
+        //TODO implementar;
     }
     public ControladorGrafica/o getControladorGrafico(){
         //observar que tenemos que mejorar los nombres
-        //TODO implimentar
-    }
-
-
-    
-    public Object getNivel() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNivel'");
-    }
-
-    public void setDirection(int abajo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setDirection'");
-    }
-
-    public void shootJugador() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'shootJugador'");
+        return controladorGrafica;
     }
 }
