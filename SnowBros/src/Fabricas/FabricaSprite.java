@@ -18,15 +18,20 @@ public abstract class FabricaSprite {
                                 	}
     }
     public Sprite getSpriteJugador(){
-        HashMap<String, String> mapeo = new HashMap<>();
-        mapeo.put("idleIzquierda", rutaACarpeta+ "/Jugador/JugadorIzquierda.png");
-        mapeo.put("idleDerecha", rutaACarpeta+ "/Jugador/JugadorDerecha.png");
-        mapeo.put("moverIzquierda", rutaACarpeta+ "/Jugador/JugadorMoverIzquierda.png");
-        mapeo.put("moverDerecha", rutaACarpeta+ "/Jugador/JugadorMoverDerecha.png");
+        HashMap<String, String> mapeo = new HashMap<String,String>();
+        mapeo.put("idleIzquierda", rutaACarpeta+ "/Jugador/izquierda.png");
+        mapeo.put("idleDerecha", rutaACarpeta+ "/Jugador/derecha.png");
+        mapeo.put("moverIzquierda", rutaACarpeta+ "/Jugador/avanzarIzquierda.png");
+        mapeo.put("moverDerecha", rutaACarpeta+ "/Jugador/avanzarDerecha.png");
         mapeo.put("saltandoDerecha", rutaACarpeta+ "/Jugador/JugadorSaltandoDerecha.png");
         mapeo.put("saltandoIzquierda", rutaACarpeta+ "/Jugador/JugadorSaltandoIzquierda.png");
         return new Sprite(mapeo);
     	}
+    }
+    abstract public Sprite getSpritePlataforma(){
+         HashMap<String, String> mapeo = new HashMap<>();
+         mapeo.put("estatico", rutaACarpeta+ "/Plataforma/estatico.png");
+         return new Sprite(mapeo);
     }
     abstract public Sprite getSpriteDemonioRojo();
     abstract public Sprite getSpriteTrollAmarillo();
@@ -38,7 +43,6 @@ public abstract class FabricaSprite {
     abstract public Sprite getSpriteTrampaPinchos();
     abstract public Sprite getSpriteSueloResbaladizo();
     abstract public Sprite getSpriteParedDestuctible();
-    abstract public Sprite getSpritePlataforma();
     abstract public Sprite getSpritePlataformaMovil();
     abstract public Sprite getSpritePlataformaQuebradiza();
     abstract public Sprite getSpritePared();
