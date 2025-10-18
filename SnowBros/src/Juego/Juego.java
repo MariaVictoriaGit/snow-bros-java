@@ -2,6 +2,7 @@ package SnowBros.src.Juego;
 
 import SnowBros.src.Grafica.ControladorGrafico;
 import SnowBros.src.Jugador.Jugador;
+import SnowBros.src.Fabricas.FabricaSprite;
 
 public class Juego {
     protected Nivel nivel;
@@ -15,11 +16,27 @@ public class Juego {
     //controladorgraficoooooo o controladorgraficaaaaaaaaaa??
     protected FabricaSprite dominio;
 
-    public Juego(){
-        //TODO implementar
+    public Juego(ControladorGrafico controlador){
+        //dominio se define?
+        ranking=new Ranking();
+        controladorGrafica= controlador; 
     }
     public void iniciar(){
-        //TODO implementar
+        if(nivel==null){
+            nivel= new Nivel();
+        }
+        jugador= new Jugador();
+        nivel.agregarJugador(jugador);
+        puntajeJugador=0;
+        reiniciarJugador=false;
+        if(timer==null){
+            timer= new Timer();
+        }
+        if(controladorGrafica!=null){
+            controladorGrafica.accionarInicioJuego();
+            // tambien controladorGrafica.mostrarPantallaJuego(); ?
+        }
+
     }
     public void reiniciarNivel(){
         reiniciarJugador=true;
@@ -29,6 +46,8 @@ public class Juego {
     }
     public void superarNivel(){
         //TODO implimentar
+        //como se maneja el signivel, por numeros? y se lo pasa al constructor?
+        
     }
     public void actualizarVida(){
         //TODO implementar

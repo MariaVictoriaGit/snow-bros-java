@@ -4,9 +4,9 @@ import java.util.HashMap;
 
 import SnowBros.src.Grafica.Sprite;
 
-public abstract class FabricaSprites {
+public abstract class FabricaSprite {
     private Sprite rutaACarpeta;
-    protected FabricaSprites(String ruta) {
+    protected FabricaSprite(String ruta) {
         		this.rutaACarpeta = ruta;
                 	}
     }
