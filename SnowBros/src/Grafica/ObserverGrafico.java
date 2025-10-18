@@ -3,6 +3,7 @@ package Grafica;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import Juego.Entidad;
+import Datos.*;
 
 public class ObserverGrafico extends JLabel implements Observer{
     protected Entidad entidadObservada;
@@ -17,7 +18,8 @@ public class ObserverGrafico extends JLabel implements Observer{
 		actualizarPosicionTamano();
 	}
     protected void actualizarImagen() {
-		String rutaImagen = entidadObservada.getSprite().getRutaImagen();
+        //No todas las entidades tienen mas de un sprite, como hacemos con las estaticas?
+		String rutaImagen = entidadObservada.getSprite().getRutaImagen(SPRITESESTATICO);
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
 		setIcon(icono);
 	}
