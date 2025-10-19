@@ -4,16 +4,17 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import SnowBros.src.Grafica.ControladorGrafico;
+import SnowBros.src.Grafica.ControladorGrafica;
+
 
 public class PanelPantallaModo extends JPanel{
     protected JLabel imagenFondo;
     protected JButton botonClasico;
     protected JButton botonSupervivencia;
     protected JButton botonContraTimer;
-    protected ControladorGrafico miControladorGrafico;
+    protected ControladorGrafica miControladorGrafico;
 
-    public PanelPantallaModo(ControladorGrafico miControladorGrafico){}
+    public PanelPantallaModo(ControladorGrafica miControladorGrafico){}
     public void agregarImagenFondo(){
         //TODO implementar
     }

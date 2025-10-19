@@ -4,14 +4,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import SnowBros.src.Grafica.ControladorGrafico;
+import SnowBros.src.Grafica.ControladorGrafica;
+
 
 public class PanelPantallaRanking extends JPanel {
     protected JLabel imagenFondo;
     protected JButton botonSalir;
-    protected ControladorGrafico miControladotGrafico;
+    protected ControladorGrafica miControladotGrafico;
 
-    public PanelPantallaRanking(ControladorGrafico mControladorGrafico){
+    public PanelPantallaRanking(ControladorGrafica mControladorGrafico){
         //TODO implementar
     }
     public void agregarImagenFondo(){
