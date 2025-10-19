@@ -7,7 +7,7 @@ import SnowBros.src.Grafica.ControladorGrafica;
 public class Juego {
     protected Nivel nivel;
     protected int puntajeJugador;
-    protected Timer timer;
+    protected Timer tiempo;
     protected boolean reiniciarJugador;
     protected Jugador jugador;
     protected Sonido sonido;
@@ -28,19 +28,18 @@ public class Juego {
         nivel.agregarJugador(jugador);
         puntajeJugador=0;
         reiniciarJugador=false;
-        if(timer==null){
-            timer= new Timer();
+        if(tiempo==null){
+            tiempo= new Timer();
         }
         if(controladorGrafica!=null){
             controladorGrafica.accionarInicioJuego();
             // tambien controladorGrafica.mostrarPantallaJuego(); ?
         }
-
     }
     public void reiniciarNivel(){
         reiniciarJugador=true;
         puntajeJugador=0;
-        timer.setTiempoActual(0);
+        tiempo.setTiempoActual(0);
         //TODO terminar de implementar
     }
     public void superarNivel(){
@@ -64,7 +63,7 @@ public class Juego {
         return nivel;
     }
     public int getTiempoActual(){
-        return timer.getTiempoActual();
+        return tiempo.getTiempoActual();
     }
     public Ranking getRanking(){
         return ranking;
@@ -73,12 +72,16 @@ public class Juego {
         return puntajeJugador;
         //TODO implementar;
     }
-    public ControladorGrafica getControladorGrafico(){
+    public ControladorGrafica getControladorGrafica(){
         //observar que tenemos que mejorar los nombres
         return controladorGrafica;
     }
     public void setControladorGrafica(ControladorGrafica miControlador) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setControladorGrafica'");
+    }
+    public void setDirection(int abajo) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setDirection'");
     }
 }

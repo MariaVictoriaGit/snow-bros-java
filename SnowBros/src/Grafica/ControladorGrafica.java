@@ -74,7 +74,6 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
                 	miJuego.reiniciarNivel();
                 }
             }
-
             @Override
             public void keyReleased(KeyEvent event) {
                 int keyCode = event.getKeyCode();
@@ -95,7 +94,7 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
         ventana.requestFocusInWindow();
         refrescar();
     }
-    public void mostrarPantallaFinJuego() {
+    public void mostrarPantallaFinDelJuego() {
         ventana.setContentPane(panelPantallaFinDelJuego);
         ventana.requestFocusInWindow();
         refrescar();
@@ -105,7 +104,7 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
         miJuego.iniciar();
         //controladorDeSonido.reproducirSonidoDeFondo();
     }
-    public void accionarPantallaModoJuego() {
+    public void accionarPantallaModoDeJuego() {
        this.panelPantallaModo = new PanelPantallaModo(this);
        ventana.setContentPane(panelPantallaModo);
        ventana.requestFocusInWindow();
@@ -120,7 +119,7 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
     public void accionarPantallaRanking(){
         //despues
     }
-    public void cambiarModoJuego(int modo) {
+    public void cambiarModoDeJuego(int modo) {
         // ToDo
         mostrarPantallaInicial();
     }
@@ -161,5 +160,20 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
     }*/
     public Juego getJuego() {
         return miJuego;
+    }
+    @Override
+    public void accionarPantallaModoJuego() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'accionarPantallaModoJuego'");
+    }
+    @Override
+    public void cambiarModoJuego(int modo) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'cambiarModoJuego'");
+    }
+    @Override
+    public void mostrarPantallaFinJuego() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'mostrarPantallaFinJuego'");
     }
 }

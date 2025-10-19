@@ -72,7 +72,6 @@ public class PanelPantallaJuego extends JPanel{
 
         this.add(panelInformacion,BorderLayout.NORTH);
     }
-
     protected void agregarPanelJuego() {
        imagenFondoJuego= new JLabel();
        imagenFondoJuego.setLayout(null); //null para posicionar sprites manualmente
@@ -98,5 +97,40 @@ public class PanelPantallaJuego extends JPanel{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'incorporarSilueta'");
     }
-
+    public void actualizarInformacionJugador(Jugador jugador) {
+        //TODO implementar
+    }
+    public void actualizarLabelsVidas(Jugador jugador) {
+        //TODO implementar
+    }   
+    public void actualizarLabelsPuntaje(Jugador jugador) {
+        //TODO implementar
+    }
+    public void actualizarLabelsTiempo(Jugador jugador) {
+        //TODO implementar
+    }   
+    public void actualizarScrollHaciaJugador(Jugador jugador) {
+        //TODO implementar
+    }   
+    public void centrarEnJugador(int posXJugador) {
+        //TODO implementar
+    }   
+    public void agregarLabelsEditablesTiempo(int posXJugador) {
+        //TODO implementar
+    }
+    public void agregarLabelsEditablesPuntaje(){
+        //TODO implementar
+    }
+    public void agregarLabelsEditablesVidas(){
+        //TODO implementar
+    }
+    public void decorarLabelsTiempo(){
+        //TODO implementar
+    }
+    public void decorarLabelsPuntaje(){
+        //TODO implementar
+    }
+    public void decorarLabelsVidas(){
+        //TODO implementar
+    }
 }

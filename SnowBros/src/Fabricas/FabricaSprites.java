@@ -7,10 +7,8 @@ import SnowBros.src.Grafica.Sprite;
 public abstract class FabricaSprites {
     private String rutaACarpeta;
     public FabricaSprites(String ruta) {
-        		this.rutaACarpeta = ruta;
-                	}
+        this.rutaACarpeta = ruta;
     }
-
     public Sprite get_silueta() {
         		HashMap<String, String> mapeo = new HashMap<>();
                 		mapeo.put("normal", rutaACarpeta+ "/Fondo.png");
@@ -28,7 +26,7 @@ public abstract class FabricaSprites {
         return new Sprite(mapeo);
     	}
     }
-    abstract public Sprite getSpritePlataforma(){
+    abstract public Sprite getSpritePlataforma(){  //TODO lo hacemos abstracto o lo dejamos implementado?
          HashMap<String, String> mapeo = new HashMap<>();
          mapeo.put("estatico", rutaACarpeta+ "/Plataforma/estatico.png");
          return new Sprite(mapeo);

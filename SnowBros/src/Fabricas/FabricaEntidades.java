@@ -30,69 +30,91 @@ public class FabricaEntidades {
         //TODO implementar
     }
     public Sprite getSilueta(){
+        return null;
         //TODO implementar
     }
     public Jugador getJugador(int x, int y){
+        return null;
         //TODO implementar
     }
     public DemonioRojo getDemonioRojo(int x, int y){
+        return null;
         //TODO implementar
     }
-    public TrollAmarillo geTrollAmarillo(int x, int y){
+    public TrollAmarillo getTrollAmarillo(int x, int y){
+        return null;
         //TODO implementar
     }
     public RanaDeFuego getRanaDeFuego(int x, int y){
+        return null;
         //TODO implementar
     }
     public Calabaza getCalabaza(int x, int y){
+        return null;
         //TODO implementar
     }
     public Fantasma getFantasma(int x, int y){
+        return null;
         //TODO implementar
     }
     public Kamakichi getKamakichi(int x, int y){
+        return null;
         //TODO implementar
     }
     public Moghera getMoghera(int x, int y){
+        return null;
         //TODO implementar
     }
     public BotellaAzul getBotellaAzul(int x, int y){
+        return null;
         //TODO implementar
     }
     public BotellaRoja getBotellaRoja(int x, int y){
+        return null;
         //TODO implementar
     }
     public BotellaVerde getBotellaVerde(int x, int y){
+        return null;
         //TODO implementar
     }
     public Fruta getFruta(int x, int y){
+        return null;
         //TODO implementar
     }
     public VidaExtra getVidaExtra(int x, int y){
+        return null;
         //TODO implementar
     }
     public Escalera getEscalera(int x, int y){
+        return null;
         //TODO implementar
     }
     public Pared getPared(int x, int y){
+        return null;
         //TODO implementar
     }
     public ParedDestructible getParedDestructible(int x, int y){
+        return null;
         //TODO implementar
     }
     public SueloResbaladizo getSueloResbaladizo(int x, int y){
+        return null;
         //TODO implementar
     }
-    public TrampaPinchos geTrampaPinchos(int x, int y){
+    public TrampaPinchos getTrampaPinchos(int x, int y){
+        return null;
         //TODO implementar
     }
     public Plataforma getPlataforma(int x, int y){
+        return null;
         //TODO implementar
     }
     public PlataformaMovil getPlataformaMovil(int x, int y){
+        return null;
         //TODO implementar
     }
     public PlataformaQuebradiza getPlataformaQuebradiza(int x, int y){
+        return null;
         //TODO implementar
     }
 }
