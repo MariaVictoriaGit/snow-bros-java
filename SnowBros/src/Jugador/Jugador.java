@@ -24,7 +24,7 @@ public class Jugador extends EntidadDinamica {
     }
     public void disparar(){
         DisparoJugador disparo=new DisparoJugador(this,disparoAumentado);
-        miJuego.getNivelActual().agregarBolaDeNieve(disparo);
+        miJuego.getNivel().agregarBolaDeNieve(disparo);
 
     } 
     public int actualizarPuntaje(){
