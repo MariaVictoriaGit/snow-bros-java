@@ -6,6 +6,7 @@ import java.io.FileReader;
 import SnowBros.src.Juego.Entidad;
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Juego.Nivel;
+import SnowBros.src.Datos.ConstantesVistas;
 
 public class ParserNivel {
     private FabricaEntidades fabrica;
@@ -30,14 +31,14 @@ public class ParserNivel {
                 case "Jugador":
                     int xJugador = Integer.parseInt(partes[1]);
                     int yArchivo = Integer.parseInt(partes[2]);
-                    int yJugador = PANEL_ALTO - yArchivo;
+                    int yJugador = ConstantesVistas.PANEL_ALTO - yArchivo;
                     Entidad jugador = fabrica.getJugador(xJugador, yJugador);
                     nivel.agregarJugador(jugador);
                     break;
 
                 case "Plataforma":
                     int x = Integer.parseInt(partes[1]);
-                    int y = PANEL_ALTO - Integer.parseInt(partes[2]);
+                    int y = ConstantesVistas.PANEL_ALTO - Integer.parseInt(partes[2]);
                     Entidad plataforma = fabrica.getPlataforma(x, y);
                     nivel.agregarPlataforma(plataforma);
                     break;
