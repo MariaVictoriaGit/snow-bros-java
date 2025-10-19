@@ -3,8 +3,8 @@ package SnowBros.src.Enemigos;
 import SnowBros.src.Juego.EntidadDinamica;
 import SnowBros.src.Juego.Timer;
 
-public class BolaFuego extends EntidadDinamica{
-    public BolaFuego(){
+public class BolaDeFuego extends EntidadDinamica{
+    public BolaDeFuego(){
         //TODO implementar
     }
     public Timer duracion(){

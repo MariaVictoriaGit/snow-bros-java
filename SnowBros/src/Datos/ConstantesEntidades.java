@@ -22,7 +22,7 @@ public class ConstantesEntidades {
     public static final String SPRITECAMINAIZQUIERDA= "avanzarIzquierda";
     public static final String SPRITECAYENDODERECHA= "caerDerecha";
     public static final String SPRITECAYENDOIZQUIERDA= "caer_izquierda";
-    public static final String SPRITESALTARDERECHA= "saltandoDerecha"
+    public static final String SPRITESALTARDERECHA= "saltandoDerecha";
     public static final String SPRITESALTARIZQUIERDA= "saltandoIzquierda";
     public static final String SPRITEARRIBA= "subiendo";
     //Constante ZIndex

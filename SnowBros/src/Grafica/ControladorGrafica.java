@@ -12,7 +12,7 @@ import SnowBros.src.Juego.Juego;
 import SnowBros.src.Jugador.Jugador;
 import SnowBros.src.Paneles.*;
 
-public class ControladorGrafico implements ControladorGrafica, ControladorDeVista {
+public class ControladorGrafica implements ControladorGrafico, ControladorDeVista {
     protected JFrame ventana;
     protected PanelPantallaPrincipal panelPantallaPrincipal;
     protected PanelPantallaRanking panelPantallaRanking;
@@ -23,7 +23,7 @@ public class ControladorGrafico implements ControladorGrafica, ControladorDeVist
     protected Juego miJuego;
 
 
-    public ControladorGrafico(Juego miJuego){
+    public ControladorGrafica(Juego miJuego){
         this.miJuego=miJuego;
         panelPantallaPrincipal = new PanelPantallaPrincipal(this);
         panelPantallaDominio= new PanelPantallaDominio(this);

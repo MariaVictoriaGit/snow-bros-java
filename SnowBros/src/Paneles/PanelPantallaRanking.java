@@ -6,5 +6,7 @@ import SnowBros.src.Grafica.ControladorGrafico;
 
 public class PanelPantallaRanking extends JPanel {
 
-    public PanelPantallaRanking(ControladorGrafico mControladorGrafico){}
+    public PanelPantallaRanking(ControladorGrafico mControladorGrafico){
+        //TODO implementar
+    }
 }

@@ -15,28 +15,28 @@ public class PanelPantallaModo extends JPanel{
 
     public PanelPantallaModo(ControladorGrafico miControladorGrafico){}
     public void agregarImagenFondo(){
-
+        //TODO implementar
     }
     public void agregarBotonClasico(){
-
+        //TODO implementar
     }
     public void agregarBotonSupervivencia(){
-
+        //TODO implementar
     }
     public void agregarBotonContraTimer(){
-
+        //TODO implementar
     }
     public void registrarOyenteBotonClasico(){
-
+        //TODO implementar
     }
     public void registrarOyenteBotonContraTimer(){
-
+        //TODO implementar
     }
     public void registrarOyenteBotonSupervivencia(){
-
+        //TODO implementar
     }
     public void transparentarBoton(JButton boton){
-
+        //TODO implementar
     }
 }
 

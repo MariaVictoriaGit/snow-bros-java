@@ -1,6 +1,5 @@
 package SnowBros.src.Juego;
 
-import SnowBros.src.Grafica.ControladorGrafico;
 import SnowBros.src.Jugador.Jugador;
 import SnowBros.src.Fabricas.FabricaSprite;
 
@@ -12,11 +11,11 @@ public class Juego {
     protected Jugador jugador;
     protected Sonido sonido;
     protected Ranking ranking;
-    protected ControladorGrafico controladorGrafica; 
+    protected ControladorGrafica controladorGrafica; 
     //controladorgraficoooooo o controladorgraficaaaaaaaaaa??
     protected FabricaSprite dominio;
 
-    public Juego(ControladorGrafico controlador){
+    public Juego(ControladorGrafica controlador){
         //dominio se define?
         ranking=new Ranking();
         controladorGrafica= controlador; 
@@ -73,7 +72,7 @@ public class Juego {
     public int getModoDeJuego(){
         //TODO implementar;
     }
-    public ControladorGrafica/o getControladorGrafico(){
+    public ControladorGrafica getControladorGrafico(){
         //observar que tenemos que mejorar los nombres
         return controladorGrafica;
     }

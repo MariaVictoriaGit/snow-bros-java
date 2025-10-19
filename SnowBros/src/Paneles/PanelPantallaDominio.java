@@ -13,26 +13,25 @@ public class PanelPantallaDominio extends JPanel {
     protected ControladorGrafico miControladorGrafico;
 
     public PanelPantallaDominio(ControladorGrafico miControladorGrafico){
-
+        //TODO implementar
     }
-
     public void agregarImagenFondo(){
-
+        //TODO implementar
     }
     public void agregarBotonOriginal(){
-
+        //TODO implementar
     }
     public void agregarBotonAlternativo(){
-
+        //TODO implementar
     }
     public void registrarOyenteBotonOriginal(){
-
+        //TODO implementar
     }
     public void registrarOyenteBotonAlternativo(){
-
+        //TODO implementar
     }
-    public void transparentarBoton(JButton boton){
-
+    public void transparentarBoton(JButton boton){  
+        //TODO implementar
     }
 }
 
