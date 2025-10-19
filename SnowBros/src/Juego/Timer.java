@@ -3,7 +3,10 @@ package SnowBros.src.Juego;
 public class Timer {
     private int tiempoActual;
     private int tiempoMaximo;
-
+    public Timer(){
+        this.tiempoMaximo=Integer.MAX_VALUE;
+        this.tiempoActual=0;
+    }
     public Timer(int tiempoMaximo){
         this.tiempoMaximo=tiempoMaximo;
         this.tiempoActual=0;

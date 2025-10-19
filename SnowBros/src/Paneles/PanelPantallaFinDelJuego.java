@@ -5,8 +5,8 @@ import javax.swing.JPanel;
 import SnowBros.src.Grafica.ControladorGrafica;
 
 
-public class PanelPantallaFinDeJuego extends JPanel {
-    public PanelPantallaFinDeJuego(ControladorGrafica miControladorGrafico){
+public class PanelPantallaFinDelJuego extends JPanel {
+    public PanelPantallaFinDelJuego(ControladorGrafica miControladorGrafico){
         //TODO implementar
     }
 }

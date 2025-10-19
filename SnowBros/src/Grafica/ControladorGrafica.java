@@ -19,23 +19,20 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
     protected PanelPantallaDominio panelPantallaDominio;
     protected PanelPantallaModo panelPantallaModo;
     protected PanelPantallaJuego panelPantallaJuego;
-    protected PanelPantallaFinDeJuego panelPantallaFinDeJuego;
+    protected PanelPantallaFinDelJuego panelPantallaFinDelJuego;
     protected Juego miJuego;
-
-
+    
     public ControladorGrafica(Juego miJuego){
         this.miJuego=miJuego;
         panelPantallaPrincipal = new PanelPantallaPrincipal(this);
         panelPantallaDominio= new PanelPantallaDominio(this);
         panelPantallaJuego = new PanelPantallaJuego(this);
         panelPantallaModo = new PanelPantallaModo(this);
-        panelPantallaFinDeJuego= new PanelPantallaFinDeJuego(this);
+        panelPantallaFinDelJuego= new PanelPantallaFinDelJuego(this);
        // controladorDeSonido = new ControladorDeSonido();
         configurarVentana();
         registrarOyenteVentana();
     }
-
-
     private void configurarVentana() {
         ventana = new JFrame("SnowBros TDP 14");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,12 +41,9 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
     }
-
-
     protected void registrarOyenteVentana() {
         addWindowKeyListener();
     }
-
     private void addWindowKeyListener() {
         ventana.addKeyListener(new KeyAdapter() {
             @Override
@@ -96,94 +90,76 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
         ventana.setContentPane(panelPantallaPrincipal);
         refrescar();
     }
-
     public void mostrarPantallaJuego() {
         ventana.setContentPane(panelPantallaJuego);
         ventana.requestFocusInWindow();
         refrescar();
     }
-
     public void mostrarPantallaFinJuego() {
-        ventana.setContentPane(panelPantallaFinDeJuego);
+        ventana.setContentPane(panelPantallaFinDelJuego);
         ventana.requestFocusInWindow();
         refrescar();
     }
-    
     public void accionarInicioJuego() {
         this.panelPantallaJuego = new PanelPantallaJuego(this);
         miJuego.iniciar();
         //controladorDeSonido.reproducirSonidoDeFondo();
     }
-    
     public void accionarPantallaModoJuego() {
        this.panelPantallaModo = new PanelPantallaModo(this);
        ventana.setContentPane(panelPantallaModo);
        ventana.requestFocusInWindow();
        refrescar();
     }
-
     public void accionarPantallaDominio(){
         this.panelPantallaDominio= new PanelPantallaDominio(this);
         ventana.setContentPane(panelPantallaDominio);
         ventana.requestFocusInWindow();
         refrescar();
-    }
-    
+    } 
     public void accionarPantallaRanking(){
         //despues
     }
-
     public void cambiarModoJuego(int modo) {
-        // To Do
+        // ToDo
         mostrarPantallaInicial();
     }
-
     public void pasarNivel(){
         miJuego.superarNivel();
     }
-
     public void reiniciarNivel(){
         miJuego.reiniciarNivel();
     }
-
     public Observer registrarEntidad(Entidad entidad) {
         Observer observerEntidad = panelPantallaJuego.incorporarEntidad(entidad);
         refrescar();
         return observerEntidad;
     }
-
     public Observer registrarEntidad(Jugador jugador) {
         Observer observerJugador = panelPantallaJuego.incorporarEntidadJugador(jugador);
         refrescar();
         return observerJugador;
     }
-
     public Observer registrarSilueta(Entidad silueta) {
         Observer observer_silueta = panelPantallaJuego.incorporarSilueta(silueta);
         refrescar();
         return observer_silueta;
     }
-    
     public void registrarControladorJuego(Juego juego){
         this.miJuego=juego;
     }
-
    /* public Observer registrarSprite(Entidad e){
         return null;
         
     }*/
-
     public void refrescar() {
         ventana.revalidate();
         ventana.repaint();
     }
-
    /* public ControladorDeSonido getControladorDeSonido() {
         return controladorDeSonido;
     }*/
-
     public Juego getJuego() {
         return miJuego;
     }
-
 }

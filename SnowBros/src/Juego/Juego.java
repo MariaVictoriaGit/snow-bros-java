@@ -1,7 +1,7 @@
 package SnowBros.src.Juego;
 
 import SnowBros.src.Jugador.Jugador;
-import SnowBros.src.Fabricas.FabricaSprite;
+import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Grafica.ControladorGrafica;
 
 public class Juego {
@@ -13,8 +13,7 @@ public class Juego {
     protected Sonido sonido;
     protected Ranking ranking;
     protected ControladorGrafica controladorGrafica; 
-    //controladorgraficoooooo o controladorgraficaaaaaaaaaa??
-    protected FabricaSprite dominio;
+    protected FabricaSprites dominio;
 
     public Juego(ControladorGrafica controlador){
         //dominio se define?
@@ -77,5 +76,9 @@ public class Juego {
     public ControladorGrafica getControladorGrafico(){
         //observar que tenemos que mejorar los nombres
         return controladorGrafica;
+    }
+    public void setControladorGrafica(ControladorGrafica miControlador) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setControladorGrafica'");
     }
 }

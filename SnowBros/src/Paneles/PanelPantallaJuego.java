@@ -37,7 +37,6 @@ public class PanelPantallaJuego extends JPanel{
          //agrega el panel donde estara el juego
          agregarPanelJuego();
     }
-
     protected void agregarPanelInformacion() {
         panelInformacion= new JPanel();
         panelInformacion.setOpaque(false); //Esto hace que sea transparente
@@ -87,19 +86,17 @@ public class PanelPantallaJuego extends JPanel{
     
     }
     //tengo que agregar metodos actualizar
-
     public Observer incorporarEntidad(Entidad entidad) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'incorporarEntidad'");
     }
-
     public Observer incorporarEntidadJugador(Jugador jugador) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'incorporarEntidadJugador'");
     }
-
     public Observer incorporarSilueta(Entidad silueta) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'incorporarSilueta'");
     }
+
 }

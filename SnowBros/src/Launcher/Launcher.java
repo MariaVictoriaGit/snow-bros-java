@@ -7,6 +7,7 @@ public class Launcher {	public static void main(String [] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					//TODO corregir Juego o ControladorGrafica contstructores
 					Juego juego = new Juego();
 					ControladorGrafica miControlador = new ControladorGrafica(juego);
 					juego.setControladorGrafica(miControlador);

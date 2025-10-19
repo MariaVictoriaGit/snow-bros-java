@@ -2,9 +2,9 @@ package SnowBros.src.Grafica;
 
 import SnowBros.src.Juego.Entidad;
 
-public class ObserverEntidades extends ObserverGrafico {
+public class ObserverEntidad extends ObserverGrafico {
 
-    public ObserverEntidades(Entidad entidad) {
+    public ObserverEntidad(Entidad entidad) {
         super(entidad);
         //TODO Auto-generated constructor stub
     }
