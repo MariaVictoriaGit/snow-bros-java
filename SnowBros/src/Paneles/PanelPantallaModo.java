@@ -14,7 +14,9 @@ public class PanelPantallaModo extends JPanel{
     protected JButton botonContraTimer;
     protected ControladorGrafica miControladorGrafico;
 
-    public PanelPantallaModo(ControladorGrafica miControladorGrafico){}
+    public PanelPantallaModo(ControladorGrafica miControladorGrafico){
+        //TODO implementar
+    }
     public void agregarImagenFondo(){
         //TODO implementar
     }
@@ -24,13 +26,13 @@ public class PanelPantallaModo extends JPanel{
     public void agregarBotonSupervivencia(){
         //TODO implementar
     }
-    public void agregarBotonContraTimer(){
+    public void agregarBotonContraTiempo(){
         //TODO implementar
     }
     public void registrarOyenteBotonClasico(){
         //TODO implementar
     }
-    public void registrarOyenteBotonContraTimer(){
+    public void registrarOyenteBotonContraTiempo(){
         //TODO implementar
     }
     public void registrarOyenteBotonSupervivencia(){

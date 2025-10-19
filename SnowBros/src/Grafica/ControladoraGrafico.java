@@ -1,3 +1,5 @@
+package SnowBros.src.Grafica;
+
 import SnowBros.src.Juego.Entidad;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Jugador.Jugador;

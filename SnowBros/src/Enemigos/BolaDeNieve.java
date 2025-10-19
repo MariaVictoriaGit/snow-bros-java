@@ -9,6 +9,7 @@ public class BolaDeNieve extends EntidadDinamica{
         //TODO implementar
     }
     public boolean getEstado(){
-        //TODO implementar
+        return estaActiva;
+        //TODO implementar, return  predefinido por el compilador
     }
 }

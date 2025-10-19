@@ -1,5 +1,5 @@
 package SnowBros.src.Obstaculos;
 
-public class Obstaculo {
+public abstract class Obstaculo {
 
 }

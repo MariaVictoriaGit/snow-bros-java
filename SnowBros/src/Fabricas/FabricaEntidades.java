@@ -26,7 +26,7 @@ import SnowBros.src.PowerUps.VidaExtra;
 public class FabricaEntidades {
     private FabricaSprites fabrica;
     
-    protected FabricaEntidades(){
+    public FabricaEntidades(){
         //TODO implementar
     }
     public Sprite getSilueta(){

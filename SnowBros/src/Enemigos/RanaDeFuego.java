@@ -7,7 +7,8 @@ public class RanaDeFuego extends Enemigo{
     public RanaDeFuego(){
         //TODO implementar
     }
-    public BolaFuego lanzarFuego(){
-        //TODO implementar
+    public BolaDeFuego lanzarFuego(){
+        return null;
+        //TODO implementar, return predefinido por el compilador
     }
 }

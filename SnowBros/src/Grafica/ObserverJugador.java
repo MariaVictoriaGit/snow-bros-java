@@ -1,9 +1,9 @@
-package Grafica;
+package SnowBros.src.Grafica;
 
 import Juego.EntidadJugador;
+//TODO crear entidad jugador 
 
 public class ObserverJugador extends ObserverGrafico{
-
     private EntidadJugador jugadorObservado;
 
     public ObserverJugador(Jugador j){

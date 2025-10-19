@@ -1,5 +1,7 @@
 package SnowBros.src.Parser;
 
+import java.io.IOException;
+
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Juego.Nivel;
 

@@ -6,7 +6,7 @@ public class Jugador extends EntidadDinamica {
     private static final int vidaDeInicio = 3;
     protected Juego miJuego;
     protected int vidas;
-    protected int tiempo;
+    protected int tiempo;//TODO revisar control tiempos
     protected int puntaje;
     protected boolean tocandoSuelo;
     protected String nombre;

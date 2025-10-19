@@ -11,7 +11,8 @@ public class Enemigo extends EntidadDinamica {
        //TODO implementar
     }
     public boolean estaCongelado(){
-       //TODO implementar
+      return estadoAereo;
+       //TODO implementar, return predefinido por el compilador
     }
     public void convertirEnBola(){
        //TODO implementar

@@ -26,7 +26,6 @@ public class PanelPantallaPrincipal extends JPanel{
         agregarBotonIniciar();
         agregarBotonRanking();
     }
-
     protected void agregarImagenFondo() {
         imagenFondo = new JLabel();
         ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/Imagenes/PantallaPrincipal.jpg"));
@@ -36,7 +35,6 @@ public class PanelPantallaPrincipal extends JPanel{
         imagenFondo.setBounds(0,0,ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO);
         add(imagenFondo);
     }
-
     protected void agregarBotonIniciar() {
         botonIniciar = new JButton();
 		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/Imagenes/botonJugar.png"));
@@ -46,7 +44,6 @@ public class PanelPantallaPrincipal extends JPanel{
         registrarOyenteBotonIniciar();
         add(botonIniciar,0);
     }
-
     private void agregarBotonRanking() {
         botonRanking= new JButton();
 		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/Imagenes/Botones/botonRanking.png"));
@@ -56,7 +53,6 @@ public class PanelPantallaPrincipal extends JPanel{
         registrarOyenteBotonRanking();
         add(botonRanking,0);
     }
-
     private void registrarOyenteBotonIniciar() {
         botonIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -64,7 +60,6 @@ public class PanelPantallaPrincipal extends JPanel{
 			}
 		});
     }
-
     private void registrarOyenteBotonRanking() {
         botonRanking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -72,11 +67,9 @@ public class PanelPantallaPrincipal extends JPanel{
 			}
 		});
     }
-
     private void transparentarBoton(JButton boton) {
         boton.setOpaque(false);
 		boton.setContentAreaFilled(false);
 		boton.setBorderPainted(false);
     }
-
 }

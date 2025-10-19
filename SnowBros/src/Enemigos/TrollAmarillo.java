@@ -7,4 +7,7 @@ public class TrollAmarillo extends Enemigo{
     public TrollAmarillo(){
         //TODO implementar
     }
+    public void saltar(){
+        //TODO implementar
+    }
 }

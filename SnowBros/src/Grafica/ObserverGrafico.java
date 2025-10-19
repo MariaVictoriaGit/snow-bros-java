@@ -2,11 +2,13 @@ package SnowBros.src.Grafica;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import Juego.Entidad;
-import Datos.*;
+import SnowBros.src.Juego.Entidad;
+import SnowBros.src.Paneles.PanelPantallaJuego;
+import SnowBros.src.Datos.*;
 
 public class ObserverGrafico extends JLabel implements Observer{
     protected Entidad entidadObservada;
+	protected PanelPantallaJuego panelPantallaJuego;
 
     public ObserverGrafico(Entidad entidad) {
 		super();

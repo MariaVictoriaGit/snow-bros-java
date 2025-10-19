@@ -8,6 +8,7 @@ public class BolaDeFuego extends EntidadDinamica{
         //TODO implementar
     }
     public Timer duracion(){
-        //TODO implementar
+        return null;
+        //TODO implementar, return predefinido por el compilador
     }
 }

@@ -4,6 +4,10 @@ public class Timer {
     private int tiempoActual;
     private int tiempoMaximo;
 
+    public Timer(int tiempoMaximo){
+        this.tiempoMaximo=tiempoMaximo;
+        this.tiempoActual=0;
+    }
     public void incrementar(){
         tiempoActual++;
     }

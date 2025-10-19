@@ -26,4 +26,7 @@ public abstract class Entidad {
     public Sprite getSprite(){
         return sprite;
     }
+    public void eliminar(){
+        //TODO implementar
+    }
 }
