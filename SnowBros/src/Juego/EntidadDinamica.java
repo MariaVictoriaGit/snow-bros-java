@@ -5,7 +5,6 @@ import SnowBros.src.Grafica.Observer;
 
 public abstract class EntidadDinamica extends Entidad{
     protected int direccion;
-    protected
     protected Observer observer;
     protected boolean estadoAereo;
     protected int velocidad;

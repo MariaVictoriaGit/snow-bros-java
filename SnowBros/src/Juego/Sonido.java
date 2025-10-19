@@ -12,12 +12,15 @@ public class Sonido {
         //TODO implementar
     }
     public Sonido getInstancia(){
-        //TODO implimentar
+        return instancia;
+        //TODO implimentar, es el retrun para que no de error
     }
     public void reproducir(String s){
         //TODO implimentar
     }
     private Clip cargarSonido(String r){
-        //TODO implimentar
+        return null;
+        //TODO implimentar, es el retrun para que no de error
+        //TODO implimentar 
     }
 }

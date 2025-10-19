@@ -2,6 +2,7 @@ package SnowBros.src.Juego;
 
 import SnowBros.src.Jugador.Jugador;
 import SnowBros.src.Fabricas.FabricaSprite;
+import SnowBros.src.Grafica.ControladorGrafica;
 
 public class Juego {
     protected Nivel nivel;
@@ -70,6 +71,7 @@ public class Juego {
         return ranking;
     }
     public int getModoDeJuego(){
+        return puntajeJugador;
         //TODO implementar;
     }
     public ControladorGrafica getControladorGrafico(){

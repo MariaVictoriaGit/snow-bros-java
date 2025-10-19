@@ -28,10 +28,12 @@ public class Jugador extends EntidadDinamica {
 
     } 
     public int actualizarPuntaje(){
-        
+        return dirAnterior;
+        //TODO implementar      es return definido por el compilador
     }
     public String generarClaveEstado(){
-        //TODO implementar
+        return nombre;
+        //TODO implementar      es return definido por el compilador
     }
     public int getVidas(){
         return vidas;

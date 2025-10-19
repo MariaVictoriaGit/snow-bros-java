@@ -10,15 +10,19 @@ public class HitBox {
         //TODO implementar
     }
     public Rectangle getTopHitBox(){
+        return hitBox;
         //TODO implementar
     }
     public Rectangle getBottomHitBox(){
+        return hitBox;
         //TODO implementar
     }
     public Rectangle getLeftHitBox(){
+        return hitBox;
         //TODO implementar
     }
     public Rectangle getRightHitBox(){
+        return hitBox;
         //TODO implementar
     }
 }
