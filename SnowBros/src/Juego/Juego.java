@@ -84,4 +84,8 @@ public class Juego {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setDirection'");
     }
+    public void shootJugador() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'shootJugador'");
+    }
 }

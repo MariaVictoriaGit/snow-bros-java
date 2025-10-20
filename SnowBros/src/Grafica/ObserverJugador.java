@@ -1,11 +1,15 @@
 package SnowBros.src.Grafica;
 
-import Juego.EntidadJugador;
+import javax.swing.ImageIcon;
+
+//import Juego.EntidadJugador;
+import SnowBros.src.Datos.ConstantesEntidades;
 //TODO crear entidad jugador 
+import SnowBros.src.Jugador.Jugador;
 
 public class ObserverJugador extends ObserverGrafico{
-    private EntidadJugador jugadorObservado;
-
+    //protected EntidadJugador jugadorObservado;
+    protected Jugador jugadorObservado;
     public ObserverJugador(Jugador j){
         super(j);
         jugadorObservado= j;
@@ -23,15 +27,15 @@ public class ObserverJugador extends ObserverGrafico{
         String estado= null;
         if (!estadoAereo)
             switch(direccion){
-                case IZQUIERDA:
-                    estado=SPRITECAMINAIZQUIERDA;
-                case QUIETO:
-                    if (jugadorObservado.getDirAnterior() == IZQUIERDA)
-                        estado=SPRITEIZQUIERDA;
+                case ConstantesEntidades.IZQUIERDA:
+                    estado="SPRITECAMINAIZQUIERDA";
+                case ConstantesEntidades.QUIETO:
+                    if (jugadorObservado.getDirAnterior() == ConstantesEntidades.IZQUIERDA)
+                        estado="SPRITEIZQUIERDA";
                     else 
-                        estado=SPRITEDERECHA;
-                case DERECHA:
-                    estado= SPRITECAMINADERECHA;
+                        estado="SPRITEDERECHA";
+                case ConstantesEntidades.DERECHA:
+                    estado= "SPRITECAMINADERECHA";
             }
         
 		String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);

@@ -14,6 +14,8 @@ import javax.swing.SwingConstants;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Grafica.ControladorGrafica;
 import SnowBros.src.Grafica.Observer;
+import SnowBros.src.Grafica.ObserverEntidad;
+import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Juego.Entidad;
 import SnowBros.src.Jugador.Jugador;
 
@@ -81,24 +83,30 @@ public class PanelPantallaJuego extends JPanel{
        panelPantallaJuego.setPreferredSize(new Dimension(ConstantesVistas.PANEL_JUEGO_ANCHO,ConstantesVistas.PANEL_ALTO));
        panelPantallaJuego.add(imagenFondoJuego);
        //voy a agregar el panel de juevo al PanelPantallaJuego
-       add(panelPantallaJuego,BorderLayout.CENTER);
+       this.add(panelPantallaJuego,BorderLayout.CENTER);
     
     }
     //tengo que agregar metodos actualizar
     public Observer incorporarEntidad(Entidad entidad) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'incorporarEntidad'");
+        ObserverEntidad observerEntidad= new ObserverEntidad(entidad);
+        imagenFondoJuego.add(observerEntidad);
+        return observerEntidad;
     }
     public Observer incorporarEntidadJugador(Jugador jugador) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'incorporarEntidadJugador'");
+        ObserverJugador observerJugador= new ObserverJugador((jugador));
+        imagenFondoJuego.add(observerJugador);
+        actualizarInformacionJugador(jugador);
+        return observerJugador;
     }
     public Observer incorporarSilueta(Entidad silueta) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'incorporarSilueta'");
+        ObserverEntidad observerEntidad= new ObserverEntidad(silueta);
+        imagenFondoJuego.setIcon(new ImageIcon(getClass().getClassLoader().getResource(silueta.getSprite().getRutaImagen("normal"))));
+        imagenFondoJuego.setBounds(0, 0, imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight());
+        panelPantallaJuego.setPreferredSize(new Dimension(imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight()));
+        return observerEntidad;
     }
     public void actualizarInformacionJugador(Jugador jugador) {
-        //TODO implementar
+        //DESPUES
     }
     public void actualizarLabelsVidas(Jugador jugador) {
         //TODO implementar
@@ -108,10 +116,7 @@ public class PanelPantallaJuego extends JPanel{
     }
     public void actualizarLabelsTiempo(Jugador jugador) {
         //TODO implementar
-    }   
-    public void actualizarScrollHaciaJugador(Jugador jugador) {
-        //TODO implementar
-    }   
+    }    
     public void centrarEnJugador(int posXJugador) {
         //TODO implementar
     }   

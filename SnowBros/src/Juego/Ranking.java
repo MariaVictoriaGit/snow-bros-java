@@ -1,4 +1,5 @@
 package SnowBros.src.Juego;
+import java.security.KeyStore.Entry;
 import java.util.HashMap;
 
 public class Ranking{
@@ -15,7 +16,7 @@ public class Ranking{
     protected void ordenarTop(){
         //TODO implementar
     }
-    public Entrada<String, Integer> getTop(){
+   /* public Entry<String, Integer> getTop(){
         //TODO implementar
-    }
+    }*/
 }

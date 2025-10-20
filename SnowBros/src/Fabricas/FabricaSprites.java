@@ -5,15 +5,15 @@ import java.util.HashMap;
 import SnowBros.src.Grafica.Sprite;
 
 public abstract class FabricaSprites {
-    private String rutaACarpeta;
+    protected String rutaACarpeta;
     public FabricaSprites(String ruta) {
         this.rutaACarpeta = ruta;
     }
     public Sprite get_silueta() {
         		HashMap<String, String> mapeo = new HashMap<>();
-                		mapeo.put("normal", rutaACarpeta+ "/Fondo.png");
+                		mapeo.put("normal", rutaACarpeta+ "/FondoNivel1.png");
                         		return new Sprite(mapeo);	
-                                	}
+                                	
     }
     public Sprite getSpriteJugador(){
         HashMap<String, String> mapeo = new HashMap<String,String>();
@@ -24,9 +24,9 @@ public abstract class FabricaSprites {
         mapeo.put("saltandoDerecha", rutaACarpeta+ "/Jugador/JugadorSaltandoDerecha.png");
         mapeo.put("saltandoIzquierda", rutaACarpeta+ "/Jugador/JugadorSaltandoIzquierda.png");
         return new Sprite(mapeo);
-    	}
+    	
     }
-    abstract public Sprite getSpritePlataforma(){  //TODO lo hacemos abstracto o lo dejamos implementado?
+    public Sprite getSpritePlataforma(){  //TODO lo hacemos abstracto o lo dejamos implementado?
          HashMap<String, String> mapeo = new HashMap<>();
          mapeo.put("estatico", rutaACarpeta+ "/Plataforma/estatico.png");
          return new Sprite(mapeo);
