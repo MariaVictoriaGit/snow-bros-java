@@ -1,6 +1,6 @@
 package SnowBros.src.Grafica;
 
-import SnowBros.src.Juego.Entidad;
+import SnowBros.src.Entidades.Entidad;
 
 public class ObserverEntidad extends ObserverGrafico {
 

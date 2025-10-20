@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
-import SnowBros.src.Juego.Entidad;
+import SnowBros.src.Entidades.Entidad;
+import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
 import SnowBros.src.Juego.Juego;
-import SnowBros.src.Jugador.Jugador;
 import SnowBros.src.Paneles.*;
 
 public class ControladorGrafica implements ControladorGrafico, ControladorDeVista {

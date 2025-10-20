@@ -3,10 +3,11 @@ package SnowBros.src.Parser;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import SnowBros.src.Juego.Entidad;
+
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Datos.ConstantesVistas;
+import SnowBros.src.Entidades.Entidad;
 
 public class ParserNivel {
     private FabricaEntidades fabrica;

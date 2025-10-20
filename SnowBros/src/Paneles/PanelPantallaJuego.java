@@ -12,12 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import SnowBros.src.Datos.ConstantesVistas;
+import SnowBros.src.Entidades.Entidad;
+import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
 import SnowBros.src.Grafica.ControladorGrafica;
 import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.ObserverJugador;
-import SnowBros.src.Juego.Entidad;
-import SnowBros.src.Jugador.Jugador;
 
 public class PanelPantallaJuego extends JPanel{
     protected JPanel panelPantallaJuego;

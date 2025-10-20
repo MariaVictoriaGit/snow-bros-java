@@ -1,8 +1,8 @@
 package SnowBros.src.Grafica;
 
-import SnowBros.src.Juego.Entidad;
+import SnowBros.src.Entidades.Entidad;
+import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
 import SnowBros.src.Juego.Juego;
-import SnowBros.src.Jugador.Jugador;
 
 interface ControladorGrafico {
     

@@ -1,6 +1,6 @@
 package SnowBros.src.Juego;
 
-import SnowBros.src.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
 import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Grafica.ControladorGrafica;
 import SnowBros.src.Grafica.ObserverJugador;
