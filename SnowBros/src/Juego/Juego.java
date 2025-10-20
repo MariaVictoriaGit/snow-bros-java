@@ -3,6 +3,7 @@ package SnowBros.src.Juego;
 import SnowBros.src.Jugador.Jugador;
 import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Grafica.ControladorGrafica;
+import SnowBros.src.Grafica.ObserverJugador;
 
 public class Juego {
     protected Nivel nivel;
@@ -25,6 +26,8 @@ public class Juego {
         }
         jugador= new Jugador();
         nivel.agregarJugador(jugador);
+        ObserverJugador jugadorObserver= new ObserverJugador(jugador);
+        jugador.registrarObserver(jugadorObserver);
         puntajeJugador=0;
         reiniciarJugador=false;
         if(tiempo==null){
