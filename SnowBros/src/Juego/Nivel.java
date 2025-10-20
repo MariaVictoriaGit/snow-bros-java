@@ -1,7 +1,12 @@
 package SnowBros.src.Juego;
 import java.util.LinkedList;
+
+import SnowBros.src.Enemigos.BolaDeFuego;
+import SnowBros.src.Enemigos.Enemigo;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Jugador.DisparoJugador;
 import SnowBros.src.Jugador.Jugador;
+
 public class Nivel {
     protected Sprite sprite;
     protected Jugador jugador;
@@ -13,37 +18,48 @@ public class Nivel {
     protected LinkedList<Entidad> listaDisparoJugador;
 
     public void eliminarPlataforma(Entidad p){
-        //TODO implementar
+        listaPlataformas.remove(p);
     }
     public void eliminarJugador(Entidad j){
         //TODO implementar
     }
     public void eliminarEnemigo(Entidad e){
-        //TODO implementar
+        listaEnemigos.remove(e);
+        Enemigo enemigo=(Enemigo) e;
+        enemigo.getObserver().actualizar();
     }
     public void eliminarPowerUp(Entidad p){
-        //TODO implementar
+        listaPowerUps.remove(p);
     }
     public void eliminarBolaDeFuego(Entidad b){
-        //TODO implementar
+        listaEnemigos.remove(b);  //asumiendo que guardamos la bola de fuego en enemigos
+        BolaDeFuego fuego=(BolaDeFuego) b;
+        fuego.getObserver().actualizar();
     }
     public void eliminarBolaDeNieve(Entidad b){
-        //TODO implementar
+        listaDisparoJugador.remove(b);
+        DisparoJugador tiro=(DisparoJugador) b;
+        tiro.getObserver().actualizar();
     }
     public void agregarJugador(Entidad j){
-        //TODO implementar
+        jugador=(Jugador)j;
+        jugador.getObserver().actualizar(jugador.getDireccion(), jugador.getEstadoAereo());
     }
     public void agregarPlataforma(Entidad p){
-        //TODO impleemntar
+        listaPlataformas.addLast(p);
     }
     public void agregarPowerUp(Entidad p){
-        //TODO implementar
+        listaPowerUps.addLast(p);
     }
     public void agregarEnemigo(Entidad e){
-        //TODO implementar
+        listaEnemigos.addLast(e);
+        Enemigo enemigo=(Enemigo) e;
+        enemigo.getObserver().actualizar();
     }
     public void agregarBolaDeNieve(Entidad b){
-        //TODO implementar
+        listaDisparoJugador.addLast(b);
+        DisparoJugador tiro=(DisparoJugador) b;
+        tiro.getObserver().actualizar();
     }
     public void efectoBotellaVerde(){
         //TODO implemetar

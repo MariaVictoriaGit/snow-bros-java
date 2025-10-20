@@ -40,5 +40,8 @@ public abstract class EntidadDinamica extends Entidad{
         }
         return state;
     }
+    public Observer getObserver(){
+        return observer;
+    }
 
 }
