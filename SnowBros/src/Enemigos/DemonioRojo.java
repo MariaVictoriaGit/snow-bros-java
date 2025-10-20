@@ -7,6 +7,6 @@ public class DemonioRojo extends Enemigo{
     protected static final int puntajeEmpujado = 300;
 
     public DemonioRojo(int posX, int posY, Sprite miSprite){
-        //TODO implementar
+        super(posX, posY, miSprite);
     }
 }
