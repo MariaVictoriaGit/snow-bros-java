@@ -39,10 +39,10 @@ public class Jugador extends EntidadDinamica {
         //TODO implementar      es return definido por el compilador
     }
     public int getVidas(){
-        return vidas;
+        return miJuego.getVidasJugador();
     }
     public int getTiempo(){
-        return tiempo;
+        return miJuego.getTiempoActual();
     }
     public int getDireccion(){
         return direccion;
@@ -54,7 +54,7 @@ public class Jugador extends EntidadDinamica {
         return dirAnterior;
     }
     public int getPuntaje(){
-        return puntaje;
+        return miJuego.getPuntaje();
     }
     public void setEnElAire(Boolean b){
         // TODO preguntar borrar
@@ -62,13 +62,13 @@ public class Jugador extends EntidadDinamica {
     public void setTocandoSuelo(Boolean b){
         tocandoSuelo=b;
     }
-    public void setTiempo(int t){
+   /* public void setTiempo(int t){
+        int tiempo;
         if(t>=0){
             tiempo=t;
         }
-    }
+    }*/ //ver si es necesario el set aca y no en juego
     public void perderVida(){
-        vidas--;
     }
     public void setVidas(){
         //TODO implementar
