@@ -1,17 +1,20 @@
 package SnowBros.src.Jugador;
+import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.EntidadDinamica;
 import SnowBros.src.Juego.Juego;
 
 public class Jugador extends EntidadDinamica {
     private static final int vidaDeInicio = 3;
     protected Juego miJuego;
-    protected int vidas;
-    protected int tiempo;//TODO revisar control tiempos
-    protected int puntaje;
     protected boolean tocandoSuelo;
     protected String nombre;
     protected int dirAnterior;
     protected boolean disparoAumentado;
+
+    public Jugador(int x,int y, Sprite mISprite){
+        super(x,y,mISprite);
+        tocandoSuelo=true;
+    }
 
     public void mover(){
         //TODO implementar

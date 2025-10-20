@@ -15,10 +15,9 @@ public class Juego {
     protected ControladorGrafica controladorGrafica; 
     protected FabricaSprites dominio;
 
-    public Juego(ControladorGrafica controlador){
+    public Juego(){
         //dominio se define?
         ranking=new Ranking();
-        controladorGrafica= controlador; 
     }
     public void iniciar(){
         if(nivel==null){
@@ -77,8 +76,7 @@ public class Juego {
         return controladorGrafica;
     }
     public void setControladorGrafica(ControladorGrafica miControlador) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setControladorGrafica'");
+        controladorGrafica=miControlador;
     }
     public void setDirection(int abajo) {
         // TODO Auto-generated method stub

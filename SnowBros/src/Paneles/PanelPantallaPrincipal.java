@@ -57,6 +57,7 @@ public class PanelPantallaPrincipal extends JPanel{
         botonIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//miControlador.accionarPantallaDominio();
+                miControlador.mostrarPantallaJuego();
 			}
 		});
     }

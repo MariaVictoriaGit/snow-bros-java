@@ -104,7 +104,7 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
         miJuego.iniciar();
         //controladorDeSonido.reproducirSonidoDeFondo();
     }
-    public void accionarPantallaModoDeJuego() {
+    public void accionarPantallaModoJuego() {
        this.panelPantallaModo = new PanelPantallaModo(this);
        ventana.setContentPane(panelPantallaModo);
        ventana.requestFocusInWindow();
@@ -119,7 +119,7 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
     public void accionarPantallaRanking(){
         //despues
     }
-    public void cambiarModoDeJuego(int modo) {
+    public void cambiarModoJuego(int modo) {
         // ToDo
         mostrarPantallaInicial();
     }
@@ -160,16 +160,6 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
     }*/
     public Juego getJuego() {
         return miJuego;
-    }
-    @Override
-    public void accionarPantallaModoJuego() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'accionarPantallaModoJuego'");
-    }
-    @Override
-    public void cambiarModoJuego(int modo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cambiarModoJuego'");
     }
     @Override
     public void mostrarPantallaFinJuego() {

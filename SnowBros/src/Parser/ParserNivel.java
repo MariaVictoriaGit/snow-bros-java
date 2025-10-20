@@ -54,10 +54,11 @@ public class ParserNivel {
 }
 
     public String obtenerArchivoNivel(int modo) {
-        switch (modo) {
+       /* switch (modo) {
             case 1:
                 return "niveles/clasico1.txt";
             
-        }
+        }*/
+        return "niveles/clasico1.txt";
     }
 }

@@ -2,12 +2,17 @@ package SnowBros.src.Juego;
 
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Grafica.Observer;
+import SnowBros.src.Grafica.Sprite;
 
 public abstract class EntidadDinamica extends Entidad{
     protected int direccion;
     protected Observer observer;
     protected boolean estadoAereo;
     protected int velocidad;
+
+    public EntidadDinamica(int posX, int posY, Sprite mSprite){
+        super(posX, posY, mSprite);
+    }
 
     public void mover(){
         //TODO implementar o dejar abstract¿

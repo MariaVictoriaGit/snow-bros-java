@@ -26,24 +26,28 @@ import SnowBros.src.PowerUps.VidaExtra;
 public class FabricaEntidades {
     private FabricaSprites fabrica;
     
-    public FabricaEntidades(){
-        //TODO implementar
+    public FabricaEntidades(FabricaSprites fabricaSprite){
+        fabrica=fabricaSprite;
     }
-    public Sprite getSilueta(){
-        return null;
-        //TODO implementar
-    }
+   /* public Silueta getSilueta(){
+        Sprite spriteSilueta= fabrica.get_silueta();
+        Silueta silueta=new Silueta(spriteSilueta);
+    }*/
     public Jugador getJugador(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spritesJugador=fabrica.getSpriteJugador();
+        Jugador jugador= new Jugador(x,y,spritesJugador);
+        return jugador;
+        }
     }
     public DemonioRojo getDemonioRojo(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spritesDemonioRojo=fabrica.getSpriteDemonioRojo();
+        DemonioRojo demonio= new DemonioRojo(x,y,spritesDemonioRojo);
+        return demonio;
     }
     public TrollAmarillo getTrollAmarillo(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spritesTrollAmarillo=fabrica.getSpriteTrollAmarillo();
+        TrollAmarillo troll= new TrollAmarillo(x,y,spritesTrollAmarillo);
+        return troll;
     }
     public RanaDeFuego getRanaDeFuego(int x, int y){
         return null;
