@@ -28,7 +28,8 @@ public class PanelPantallaModo extends JPanel{
         agregarImagenFondo();
         agregarBotonClasico();
         agregarBotonSupervivencia();
-        agregarBotonContrarreloj();    }
+        agregarBotonContrarreloj();    
+    }
     public void agregarImagenFondo(){
         imagenFondo = new JLabel();
         ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/PantallaPrincipal.jpg"));
@@ -72,14 +73,24 @@ public class PanelPantallaModo extends JPanel{
 			}
 		});
     }
-    public void registrarOyenteBotonContraTiempo(){
-        //TODO implementar
+    public void registrarOyenteBotonContrarreloj(){
+        botonContrarreloj.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+            miControladorGrafico.mostrarPantallaJuego();
+		}
+		});
     }
     public void registrarOyenteBotonSupervivencia(){
-        //TODO implementar
+        botonSupervivencia.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+                miControladorGrafico.mostrarPantallaJuego();
+			}
+		});
     }
     public void transparentarBoton(JButton boton){
-        //TODO implementar
+        boton.setOpaque(false);
+		boton.setContentAreaFilled(false);
+		boton.setBorderPainted(false);
     }
 }
 
