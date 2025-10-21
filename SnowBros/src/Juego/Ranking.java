@@ -1,5 +1,5 @@
 package SnowBros.src.Juego;
-import java.security.KeyStore.Entry;
+//import java.security.KeyStore.Entry;
 import java.util.HashMap;
 
 public class Ranking{
