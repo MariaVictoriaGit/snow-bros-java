@@ -2,10 +2,10 @@ package SnowBros.src.Juego;
 
 import java.util.LinkedList;
 import SnowBros.src.Entidades.Entidad;
-import SnowBros.src.Entidades.EntidadDinamica.Enemigos.BolaDeFuego;
-import SnowBros.src.Entidades.EntidadDinamica.Enemigos.Enemigo;
-import SnowBros.src.Entidades.EntidadDinamica.Jugador.DisparoJugador;
-import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Grafica.Sprite;
 
 public class Nivel {

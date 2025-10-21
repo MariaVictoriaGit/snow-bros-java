@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 //import Juego.EntidadJugador;
 import SnowBros.src.Datos.ConstantesEntidades;
-import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 
 public class ObserverJugador extends ObserverGrafico{
     //protected EntidadJugador jugadorObservado;

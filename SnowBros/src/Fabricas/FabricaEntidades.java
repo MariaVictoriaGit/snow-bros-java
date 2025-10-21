@@ -1,9 +1,26 @@
 package SnowBros.src.Fabricas;
-import SnowBros.src.Entidades.EntidadDinamica.Enemigos.*;
-import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
-import SnowBros.src.Entidades.EntidadEstatica.Obstaculos.*;
-import SnowBros.src.Entidades.EntidadEstatica.Plataformas.*;
-import SnowBros.src.Entidades.EntidadEstatica.PowerUps.*;
+
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Calabaza;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.DemonioRojo;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Fantasma;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Kamakichi;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Moghera;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.RanaDeFuego;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.TrollAmarillo;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Escalera;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.TrampaPinchos;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaQuebradiza;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaAzul;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaRoja;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaVerde;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.Fruta;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.VidaExtra;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Silueta;
 

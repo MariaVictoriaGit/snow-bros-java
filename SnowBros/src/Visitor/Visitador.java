@@ -1,14 +1,14 @@
 package SnowBros.src.Visitor;
 
-import SnowBros.src.Entidades.EntidadDinamica.Enemigos.Enemigo;
-import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
-import SnowBros.src.Entidades.EntidadEstatica.Obstaculos.Escalera;
-import SnowBros.src.Entidades.EntidadEstatica.Obstaculos.Pared;
-import SnowBros.src.Entidades.EntidadEstatica.Obstaculos.ParedDestructible;
-import SnowBros.src.Entidades.EntidadEstatica.Obstaculos.SueloResbaladizo;
-import SnowBros.src.Entidades.EntidadEstatica.Obstaculos.TrampaPinchos;
-import SnowBros.src.Entidades.EntidadEstatica.Plataformas.Plataforma;
-import SnowBros.src.Entidades.EntidadEstatica.PowerUps.PowerUp;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Escalera;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.TrampaPinchos;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 
 interface Visitador {
     

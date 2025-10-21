@@ -1,5 +1,5 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
-import SnowBros.src.Entidades.EntidadDinamica.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Juego;
 
@@ -7,6 +7,8 @@ public class Jugador extends EntidadDinamica {
     private static final int vidaDeInicio = 3;
     protected Juego miJuego;
     protected boolean tocandoSuelo;
+    protected int direccion;
+    protected int velocidad;
     protected String nombre;
     protected int dirAnterior;
     protected boolean disparoAumentado;
@@ -15,7 +17,6 @@ public class Jugador extends EntidadDinamica {
         super(x,y,mISprite);
         tocandoSuelo=true;
     }
-
     public void mover(){
         //TODO implementar
     }
@@ -26,8 +27,9 @@ public class Jugador extends EntidadDinamica {
         return !tocandoSuelo;
     }
     public void disparar(){
-        Sprite miDisparo;  // ponermos getfabrica()
-        DisparoJugador disparo=new DisparoJugador(posX,posY,);
+        Sprite miDisparo=null;  // ponermos getfabrica()
+        //TODO corregir
+        DisparoJugador disparo=new DisparoJugador(posX,posY,miDisparo);
         miJuego.getNivelActual().agregarBolaDeNieve(disparo);
 
     } 
