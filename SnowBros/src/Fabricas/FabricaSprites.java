@@ -92,6 +92,12 @@ public abstract class FabricaSprites {
     abstract public Sprite getSpritePlataformaQuebradiza();
     abstract public Sprite getSpritePared();
     abstract public Sprite getSpriteEscalera();
+    public Sprite getSpriteObstaculo(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("escalera", rutaACarpeta + "/Obstaculos/escalera.png");
+        mapeo.put("trampaPinchos", rutaACarpeta + "/Obstaculos/trampaPinchos.png");
+        return new Sprite(mapeo);
+    }
     public Sprite getSpritePowerUp(){
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("botellaAzul", rutaACarpeta + "/PowerUps/botellaAzul.png");
@@ -106,7 +112,12 @@ public abstract class FabricaSprites {
     abstract public Sprite getSpriteBotellaVerde();
     abstract public Sprite getSpriteFruta();
     abstract public Sprite getSpriteVidaExtra();
-    abstract public Sprite getSpriteBolaNieve();
+    public Sprite getSpriteBolaNieve(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("completa", rutaACarpeta + "/BolaDeNieve/bolaDeNieve.png");
+        mapeo.put("derretida", rutaACarpeta + "/BolaDeNieve/bolaDeNieveDerretida.png");
+        return new Sprite(mapeo);
+    }
     public Sprite getSpriteBolaFuego(){
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("izquierda", rutaACarpeta + "/BolaDeFuego/boladefuegoizq.png");
