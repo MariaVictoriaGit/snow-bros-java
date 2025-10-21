@@ -36,7 +36,7 @@ public class Juego {
         if(vidas==0)
             reiniciarJugador=false;
             if(reiniciarJugador){
-               // int nivelActual= nivel.get
+                int nivelActual= nivel.getNivelActual();
             }
     }
 

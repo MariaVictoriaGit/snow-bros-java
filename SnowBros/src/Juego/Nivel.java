@@ -6,22 +6,52 @@ import SnowBros.src.Entidades.EntidadDinamica.Enemigos.BolaDeFuego;
 import SnowBros.src.Entidades.EntidadDinamica.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadDinamica.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadEstatica.Obstaculos.Obstaculo;
+import SnowBros.src.Entidades.EntidadEstatica.Plataformas.Plataforma;
+import SnowBros.src.Entidades.EntidadEstatica.PowerUps.PowerUp;
 import SnowBros.src.Grafica.Sprite;
 
 public class Nivel {
     protected Sprite sprite;
     protected Jugador jugador;
     protected int numeroNivel;
+    protected Silueta silueta;
+    protected LinkedList<Enemigo> listaEnemigos;
+    protected LinkedList<PowerUp> listaPowerUps;
+    protected LinkedList<Obstaculo> listaObstaculos;
+    protected LinkedList<Plataforma> listaPlataformas;
+    protected LinkedList<DisparoJugador> listaDisparoJugador;
 
-    protected LinkedList<Entidad> listaEnemigos;
-    protected LinkedList<Entidad> listaPowerUps;
-    protected LinkedList<Entidad> listaObstaculos;
-    protected LinkedList<Entidad> listaPlataformas;
-    protected LinkedList<Entidad> listaDisparoJugador;
-
-    public Nivel(){
-        
+    public Nivel(Silueta silueta, int numero){
+        this.silueta=silueta;
+        numeroNivel=numero;
+        listaEnemigos= new LinkedList<>();
+        listaPowerUps= new LinkedList<>();
+        listaObstaculos= new LinkedList<>();
+        listaPlataformas= new LinkedList<>();
+        listaDisparoJugador= new LinkedList<>();
     }
+
+    //metodos getters
+    public LinkedList<Enemigo> getEnemigos(){
+        return listaEnemigos;
+    }
+    public LinkedList<PowerUp> getPowerUps(){
+        return listaPowerUps;
+    }
+    public LinkedList<Obstaculo> getObstaculos(){
+        return listaObstaculos;
+    }
+    public LinkedList<Plataforma> getPlataformas(){
+        return listaPlataformas;
+    }
+    public LinkedList<DisparoJugador> getDisparos(){
+        return listaDisparoJugador;
+    }
+    public int getNivelActual(){
+        return numeroNivel;
+    }
+    //metodos de eliminar
     public void eliminarPlataforma(Entidad p){
         listaPlataformas.remove(p);
     }
