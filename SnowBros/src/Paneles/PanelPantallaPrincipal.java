@@ -28,7 +28,7 @@ public class PanelPantallaPrincipal extends JPanel{
     }
     protected void agregarImagenFondo() {
         imagenFondo = new JLabel();
-        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/Imagenes/PantallaPrincipal.jpg"));
+        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/PantallaPrincipal.jpg"));
         Image imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO,Image.SCALE_SMOOTH);
         Icon iconoImagenEscalada = new ImageIcon(imagenEscalada);
         imagenFondo.setIcon(iconoImagenEscalada);
@@ -37,7 +37,7 @@ public class PanelPantallaPrincipal extends JPanel{
     }
     protected void agregarBotonIniciar() {
         botonIniciar = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/Imagenes/botonJugar.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonJugar.png"));
         botonIniciar.setIcon(iconoBoton);
         botonIniciar.setBounds(100, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonIniciar);
@@ -46,7 +46,7 @@ public class PanelPantallaPrincipal extends JPanel{
     }
     private void agregarBotonRanking() {
         botonRanking= new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/Imagenes/Botones/botonRanking.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonRanking.png"));
         botonRanking.setIcon(iconoBoton);
         botonRanking.setBounds(85, 450, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonRanking);

@@ -21,7 +21,7 @@ public class Juego {
 
     public Juego(){
         reiniciarJugador=false;
-        ranking=new Ranking();
+        //ranking=new Ranking();
     }
 
     //metodos de configuracion
