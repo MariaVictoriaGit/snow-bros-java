@@ -5,17 +5,18 @@ import SnowBros.src.Juego.Juego;
 
 public class Jugador extends EntidadDinamica {
     private static final int vidaDeInicio = 3;
+    protected int vidas;
     protected Juego miJuego;
     protected boolean tocandoSuelo;
     protected String nombre;
     protected int dirAnterior;
     protected boolean disparoAumentado;
 
-    public Jugador(int x,int y, Sprite mISprite){
-        super(x,y,mISprite);
+    public Jugador(int x,int y, Sprite miSprite){
+        super(x,y,miSprite);
+        vidas=vidaDeInicio;
         tocandoSuelo=true;
     }
-
     public void mover(){
         //TODO implementar
     }
@@ -26,9 +27,10 @@ public class Jugador extends EntidadDinamica {
         return !tocandoSuelo;
     }
     public void disparar(){
-        DisparoJugador disparo=new DisparoJugador(this,disparoAumentado);
+        //TODO implementar
+        /*DisparoJugador disparo=new DisparoJugador(this.disparoAumentado);
         miJuego.getNivelActual().agregarBolaDeNieve(disparo);
-
+        */
     } 
     public int actualizarPuntaje(){
         return dirAnterior;
@@ -39,7 +41,7 @@ public class Jugador extends EntidadDinamica {
         //TODO implementar      es return definido por el compilador
     }
     public int getVidas(){
-        return miJuego.getVidasJugador();
+        return vidas;
     }
     public int getTiempo(){
         return miJuego.getTiempoActual();

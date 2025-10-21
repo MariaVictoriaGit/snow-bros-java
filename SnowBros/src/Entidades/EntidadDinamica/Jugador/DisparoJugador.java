@@ -15,11 +15,11 @@ public class DisparoJugador extends EntidadDinamica {
         potenciaDisparo=10; //a definir
     }
 
-    public void setEfectoBotella(boolean efecto){
+    public void setEfectoBotellaAzul(boolean efecto){
         efectoBotella=true;
     }
 
-    public void activarDisparo(){
+    public void activarDisparo(){ //TODO para?
         if(efectoBotella){
             potenciaDisparo=potenciaDisparo*2;
         }

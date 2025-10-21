@@ -1,7 +1,9 @@
 package SnowBros.src.Entidades.EntidadEstatica.Obstaculos;
 
+import SnowBros.src.Grafica.Sprite;
+
 public class Pared extends Obstaculo{
-    public Pared(){
-        //TODO implementar
+    public Obstaculo(int x, int y, Sprite sprite ){
+        super(x,y,sprite);
     }
 }
