@@ -9,12 +9,14 @@ public class Jugador extends EntidadDinamica {
     protected boolean tocandoSuelo;
     protected int direccion;
     protected int velocidad;
+    protected int vidas;
     protected String nombre;
     protected int dirAnterior;
     protected boolean disparoAumentado;
 
     public Jugador(int x,int y, Sprite mISprite){
         super(x,y,mISprite);
+        vidas=vidaDeInicio;
         tocandoSuelo=true;
     }
     public void mover(){
@@ -42,7 +44,7 @@ public class Jugador extends EntidadDinamica {
         //TODO implementar      es return definido por el compilador
     }
     public int getVidas(){
-        return vidaDeInicio;
+        return vidas;
     }
     public int getTiempo(){
         return miJuego.getTiempoActual();
