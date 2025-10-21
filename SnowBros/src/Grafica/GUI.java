@@ -23,7 +23,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     protected Juego miJuego;
     
     public GUI(Juego juego){
-        this.miJuego=miJuego;
+        this.miJuego=juego;
         panelPantallaPrincipal = new PanelPantallaPrincipal(this);
         panelPantallaDominio= new PanelPantallaDominio(this);
         panelPantallaJuego = new PanelPantallaJuego(this);

@@ -60,7 +60,7 @@ public class PanelPantallaJuego extends JPanel{
         panelVidas= new JPanel();
         panelVidas.setOpaque(false);//transparente
         panelVidas.setLayout(new FlowLayout(FlowLayout.CENTER,5,5));// espacio de 5 pixeles horiz y vert entre cada componente
-        ImageIcon iconoCorazon= new ImageIcon("imagenes/VidasCorazon.png");
+        ImageIcon iconoCorazon= new ImageIcon("/SnowBros/src/Imagenes/PowerUps/vidaJugador.png");
         int vidas= miControladorGrafico.getJuego().getJugador().getVidas();
         for(int i=0;i<vidas;i++){
             JLabel vidaLabel=new JLabel(iconoCorazon);
