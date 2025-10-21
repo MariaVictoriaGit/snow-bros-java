@@ -17,7 +17,7 @@ public class ParserNivel {
 
     public ParserNivel(boolean dominioOriginal) {
         //que desde la llamada para crear el parser se defina el dominio de aplicacion
-        this.fabrica = new FabricaEntidades(new Original("/SnowBros/src/Niveles/clasico 1.txt"));
+        this.fabrica = new FabricaEntidades(new Original("SnowBros/src/Niveles/clasico 1.txt"));
     }
     public Nivel generarNivel(int modo){
         return cargarNivel(obtenerArchivoNivel(modo), modo);
@@ -63,7 +63,7 @@ public class ParserNivel {
     public String obtenerArchivoNivel(int modo) {
         switch (modo) {
             case 1:
-                return "/SnowBros/src/Niveles/clasico 1.txt";
+                return "SnowBros/src/Niveles/clasico 1.txt";
             case 2:
                 return "niveles/clasico 2.txt";
             case 3:
