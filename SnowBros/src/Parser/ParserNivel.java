@@ -17,53 +17,53 @@ public class ParserNivel {
 
     public ParserNivel(boolean dominioOriginal) {
         //que desde la llamada para crear el parser se defina el dominio de aplicacion
-        this.fabrica = new FabricaEntidades(new Original("niveles/"));//coregir ruta a fabrica
+        this.fabrica = new FabricaEntidades(new Original("/SnowBros/src/Niveles/clasico 1.txt"));
     }
     public Nivel generarNivel(int modo){
         return cargarNivel(obtenerArchivoNivel(modo), modo);
     }
     private Nivel cargarNivel(String archivo, int modo) {
-    Silueta silueta= fabrica.getSilueta();
+        Silueta silueta= fabrica.getSilueta();
 
-    Nivel nivel = new Nivel(silueta,1);
+        Nivel nivel = new Nivel(silueta,1);
 
-    try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-        String linea;
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
 
-        while ((linea = br.readLine()) != null) {
-            String[] partes = linea.split("\\s+"); // divide por espacios
-            String tipo = partes[0];
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split("\\s+"); // divide por espacios
+                String tipo = partes[0];
 
-            switch (tipo) {
-                case "Jugador":
-                    int xJugador = Integer.parseInt(partes[1]);
-                    int yArchivo = Integer.parseInt(partes[2]);
-                    int yJugador = ConstantesVistas.PANEL_ALTO - yArchivo;
-                    Entidad jugador = fabrica.getJugador(xJugador, yJugador);
-                    nivel.agregarJugador(jugador);
-                    break;
+                switch (tipo) {
+                    case "Jugador":
+                        int xJugador = Integer.parseInt(partes[1]);
+                        int yArchivo = Integer.parseInt(partes[2]);
+                        int yJugador = ConstantesVistas.PANEL_ALTO - yArchivo;
+                        Entidad jugador = fabrica.getJugador(xJugador, yJugador);
+                        nivel.agregarJugador(jugador);
+                        break;
 
-                case "Plataforma":
-                    int x = Integer.parseInt(partes[1]);
-                    int y = ConstantesVistas.PANEL_ALTO - Integer.parseInt(partes[2]);
-                    Entidad plataforma = fabrica.getPlataforma(x, y);
-                    nivel.agregarPlataforma(plataforma);
-                    break;
+                    case "Plataforma":
+                        int x = Integer.parseInt(partes[1]);
+                        int y = ConstantesVistas.PANEL_ALTO - Integer.parseInt(partes[2]);
+                        Entidad plataforma = fabrica.getPlataforma(x, y);
+                        nivel.agregarPlataforma(plataforma);
+                        break;
 
+                }
             }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-    } catch (IOException e) {
-        e.printStackTrace();
+        return nivel;
     }
-
-    return nivel;
-}
 
     public String obtenerArchivoNivel(int modo) {
         switch (modo) {
             case 1:
-                return "niveles/clasico 1.txt";
+                return "/SnowBros/src/Niveles/clasico 1.txt";
             case 2:
                 return "niveles/clasico 2.txt";
             case 3:

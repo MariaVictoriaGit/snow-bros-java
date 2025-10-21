@@ -30,7 +30,9 @@ public class Juego {
     }
 
     public void iniciar(){
-        //TODO implementar
+        ParserNivel parseActual= new ParserNivel(true);
+        nivel= parseActual.generarNivel(1);
+        this.jugador=nivel.getJugador();
     }
 
     public void reiniciarNivel(){

@@ -96,4 +96,7 @@ public class Nivel {
     public void efectoBotellaVerde(){
         //TODO implemetar
     }
+    public Jugador getJugador(){
+        return jugador;
+    }
 }
