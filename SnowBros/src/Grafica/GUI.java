@@ -23,7 +23,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     protected Juego miJuego;
     
     public GUI(Juego juego){
-        this.miJuego=juego;
+        this.miJuego=miJuego;
         panelPantallaPrincipal = new PanelPantallaPrincipal(this);
         panelPantallaDominio= new PanelPantallaDominio(this);
         panelPantallaJuego = new PanelPantallaJuego(this);
@@ -159,10 +159,5 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }*/
     public Juego getJuego() {
         return miJuego;
-    }
-    @Override
-    public void mostrarPantallaFinJuego() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarPantallaFinJuego'");
     }
 }

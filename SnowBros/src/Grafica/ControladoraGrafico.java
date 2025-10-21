@@ -7,7 +7,7 @@ interface ControladorGrafico {
     
     public void mostrarPantallaInicial();
     public void mostrarPantallaJuego();
-    public void mostrarPantallaFinJuego();
+    public void mostrarPantallaFinDelJuego();
     public Observer registrarEntidad(Entidad e);
     public Observer registrarEntidad(Jugador j);
     //TODO public Observer registrarSprite(Entidad e);
