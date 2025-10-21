@@ -1,13 +1,11 @@
 package SnowBros.src.Juego;
 
+import java.util.LinkedList;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadDinamica.Enemigos.BolaDeFuego;
 import SnowBros.src.Entidades.EntidadDinamica.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadDinamica.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
-import SnowBros.src.Entidades.EntidadEstatica.Obstaculos.Obstaculo;
-import SnowBros.src.Entidades.EntidadEstatica.Plataformas.Plataforma;
-import SnowBros.src.Entidades.EntidadEstatica.PowerUps.PowerUp;
 import SnowBros.src.Grafica.Sprite;
 
 public class Nivel {
@@ -15,11 +13,11 @@ public class Nivel {
     protected Jugador jugador;
     protected int numeroNivel;
     protected Silueta silueta;
-    protected LinkedList<Enemigo> listaEnemigos;
-    protected LinkedList<PowerUp> listaPowerUps;
-    protected LinkedList<Obstaculo> listaObstaculos;
-    protected LinkedList<Plataforma> listaPlataformas;
-    protected LinkedList<DisparoJugador> listaDisparoJugador;
+    protected LinkedList<Entidad> listaEnemigos;
+    protected LinkedList<Entidad> listaPowerUps;
+    protected LinkedList<Entidad> listaObstaculos;
+    protected LinkedList<Entidad> listaPlataformas;
+    protected LinkedList<Entidad> listaDisparoJugador;
 
     public Nivel(Silueta silueta, int numero){
         this.silueta=silueta;
@@ -32,19 +30,19 @@ public class Nivel {
     }
 
     //metodos getters
-    public LinkedList<Enemigo> getEnemigos(){
+    public LinkedList<Entidad> getEnemigos(){
         return listaEnemigos;
     }
-    public LinkedList<PowerUp> getPowerUps(){
+    public LinkedList<Entidad> getPowerUps(){
         return listaPowerUps;
     }
-    public LinkedList<Obstaculo> getObstaculos(){
+    public LinkedList<Entidad> getObstaculos(){
         return listaObstaculos;
     }
-    public LinkedList<Plataforma> getPlataformas(){
+    public LinkedList<Entidad> getPlataformas(){
         return listaPlataformas;
     }
-    public LinkedList<DisparoJugador> getDisparos(){
+    public LinkedList<Entidad> getDisparos(){
         return listaDisparoJugador;
     }
     public int getNivelActual(){
@@ -80,7 +78,7 @@ public class Nivel {
         jugador.getObserver().actualizar(jugador.getDireccion(), jugador.getEstadoAereo());
     }
     public void agregarPlataforma(Entidad p){
-        listaPlataformas.linkLast(p);
+        listaPlataformas.addLast(p);
     }
     public void agregarPowerUp(Entidad p){
         listaPowerUps.addLast(p);
