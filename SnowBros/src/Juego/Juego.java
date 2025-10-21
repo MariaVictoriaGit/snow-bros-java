@@ -1,43 +1,45 @@
 package SnowBros.src.Juego;
 
 import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
+import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Grafica.ControladorGrafica;
 import SnowBros.src.Grafica.ObserverJugador;
+import SnowBros.src.Parser.ParserNivel;
 
 public class Juego {
     protected Nivel nivel;
     protected int puntajeJugador;
+    protected int vidas;
     protected Timer tiempo;
     protected boolean reiniciarJugador;
-    protected Jugador jugador;
     protected Sonido sonido;
     protected Ranking ranking;
     protected ControladorGrafica controladorGrafica; 
-    protected FabricaSprites dominio;
+    protected FabricaSprites fabricaSprites;
+    protected FabricaEntidades fabricaEntidades;
+    protected ParserNivel parser;
 
     public Juego(){
-        //dominio se define?
+        vidas=3;
+        reiniciarJugador=false;
         ranking=new Ranking();
     }
-    public void iniciar(){
-        if(nivel==null){
-            nivel= new Nivel();
-        }
-        jugador= new Jugador();
-        nivel.agregarJugador(jugador);
-        ObserverJugador jugadorObserver= new ObserverJugador(jugador);
-        jugador.registrarObserver(jugadorObserver);
-        puntajeJugador=0;
-        reiniciarJugador=false;
-        if(tiempo==null){
-            tiempo= new Timer();
-        }
-        if(controladorGrafica!=null){
-            controladorGrafica.accionarInicioJuego();
-            // tambien controladorGrafica.mostrarPantallaJuego(); ?
-        }
+
+    //metodos de configuracion
+     public void setControladorGrafica(ControladorGrafica miControlador) {
+        controladorGrafica=miControlador;
     }
+
+
+    public void iniciar(){
+        if(vidas==0)
+            reiniciarJugador=false;
+            if(reiniciarJugador){
+               // int nivelActual= nivel.get
+            }
+    }
+
     public void reiniciarNivel(){
         reiniciarJugador=true;
         puntajeJugador=0;
@@ -49,14 +51,16 @@ public class Juego {
         //como se maneja el signivel, por numeros? y se lo pasa al constructor?
         
     }
+    //metodos de actualizacion
     public void actualizarVida(){
         //TODO implementar
     }
     public void actualizarPuntaje(int puntajeASumar){
         puntajeJugador+=puntajeASumar;
     }
+    //metodos de obtencion(getters)
     public int getVidasJugador(){
-        return jugador.getVidas();
+        return vidas;
     }
     public int getPuntaje(){
         return puntajeJugador;
@@ -78,9 +82,7 @@ public class Juego {
         //observar que tenemos que mejorar los nombres
         return controladorGrafica;
     }
-    public void setControladorGrafica(ControladorGrafica miControlador) {
-        controladorGrafica=miControlador;
-    }
+   
     public void setDirection(int abajo) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setDirection'");

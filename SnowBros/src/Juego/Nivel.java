@@ -11,13 +11,17 @@ import SnowBros.src.Grafica.Sprite;
 public class Nivel {
     protected Sprite sprite;
     protected Jugador jugador;
-    protected int piso;
+    protected int numeroNivel;
+
     protected LinkedList<Entidad> listaEnemigos;
     protected LinkedList<Entidad> listaPowerUps;
     protected LinkedList<Entidad> listaObstaculos;
     protected LinkedList<Entidad> listaPlataformas;
     protected LinkedList<Entidad> listaDisparoJugador;
 
+    public Nivel(){
+        
+    }
     public void eliminarPlataforma(Entidad p){
         listaPlataformas.remove(p);
     }

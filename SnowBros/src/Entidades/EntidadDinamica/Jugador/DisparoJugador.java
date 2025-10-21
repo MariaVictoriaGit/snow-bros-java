@@ -1,17 +1,29 @@
 package SnowBros.src.Entidades.EntidadDinamica.Jugador;
 import SnowBros.src.Entidades.EntidadDinamica.EntidadDinamica;
+import SnowBros.src.Grafica.Sprite;
 public class DisparoJugador extends EntidadDinamica {
     protected int potenciaDisparo;
+    protected int velocidad;
+    protected boolean efectoBotella;
     
-    public DisparoJugador(Jugador jugador, boolean efectoBotella){
+    public DisparoJugador(int x, int y, Sprite sprite){
+        super(x,y,sprite);
         //TODO: ajustar posicion inicial del disparo segun direccion del jugador
-        posX= jugador.getPosX(); //ajustar pos inicial para que no salga desde el pj
-        posY= jugador.getPosY();
-        direccion= jugador.getDireccion();
+         //ajustar pos inicial para que no salga desde el pj
+        //direccion= jugador.getDireccion();--->que tan necesaria es la direcion;
         velocidad= 15; // a definir
         potenciaDisparo=10; //a definir
+    }
+
+    public void setEfectoBotella(boolean efecto){
+        efectoBotella=true;
+    }
+
+    public void activarDisparo(){
         if(efectoBotella){
-            potenciaDisparo= potenciaDisparo*2;
+            potenciaDisparo=potenciaDisparo*2;
         }
     }
+
+
 }

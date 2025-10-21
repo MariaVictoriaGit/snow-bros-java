@@ -1,27 +1,11 @@
 package SnowBros.src.Fabricas;
-
-import SnowBros.src.Enemigos.Calabaza;
-import SnowBros.src.Enemigos.DemonioRojo;
-import SnowBros.src.Enemigos.Fantasma;
-import SnowBros.src.Enemigos.Kamakichi;
-import SnowBros.src.Enemigos.Moghera;
-import SnowBros.src.Enemigos.RanaDeFuego;
-import SnowBros.src.Enemigos.TrollAmarillo;
+import SnowBros.src.Entidades.EntidadDinamica.Enemigos.*;
+import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadEstatica.Obstaculos.*;
+import SnowBros.src.Entidades.EntidadEstatica.Plataformas.*;
+import SnowBros.src.Entidades.EntidadEstatica.PowerUps.*;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Jugador.Jugador;
-import SnowBros.src.Obstaculos.Escalera;
-import SnowBros.src.Obstaculos.Pared;
-import SnowBros.src.Obstaculos.ParedDestructible;
-import SnowBros.src.Obstaculos.SueloResbaladizo;
-import SnowBros.src.Obstaculos.TrampaPinchos;
-import SnowBros.src.Plataformas.Plataforma;
-import SnowBros.src.Plataformas.PlataformaMovil;
-import SnowBros.src.Plataformas.PlataformaQuebradiza;
-import SnowBros.src.PowerUps.BotellaAzul;
-import SnowBros.src.PowerUps.BotellaRoja;
-import SnowBros.src.PowerUps.BotellaVerde;
-import SnowBros.src.PowerUps.Fruta;
-import SnowBros.src.PowerUps.VidaExtra;
+
 
 public class FabricaEntidades {
     private FabricaSprites fabrica;
