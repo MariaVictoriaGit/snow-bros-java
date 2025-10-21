@@ -5,7 +5,7 @@ import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 
 interface ControladorGrafico {
     
-    public void mostrarPantallaInicial();
+    public void mostrarPantallaPrincipal();
     public void mostrarPantallaJuego();
     public void mostrarPantallaFinDelJuego();
     public Observer registrarEntidad(Entidad e);

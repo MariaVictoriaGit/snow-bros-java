@@ -61,7 +61,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                     }*/
                     //controladorDeSonido.reproducirSonidoDeSalto();
                     
-                } else if (keyCode== KeyEvent.VK_S) {
+                } else if (keyCode== KeyEvent.VK_S) {//podria ser para bajar la escalera
                     miJuego.setDirection(ConstantesEntidades.ABAJO);
                     
                 }else if (keyCode == KeyEvent.VK_SPACE) {
@@ -84,7 +84,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
             }
         );
     }
-     public void mostrarPantallaInicial() {
+     public void mostrarPantallaPrincipal() {
         ventana.setContentPane(panelPantallaPrincipal);
         refrescar();
     }
@@ -123,7 +123,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     public void cambiarModoJuego(int modo) {
         // ToDo
-        mostrarPantallaInicial();
+        mostrarPantallaPrincipal();
     }
     public void pasarNivel(){
         miJuego.superarNivel();
