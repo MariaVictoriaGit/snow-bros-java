@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
-import SnowBros.src.Grafica.ControladorGrafica;
+import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.ObserverJugador;
@@ -27,9 +27,9 @@ public class PanelPantallaJuego extends JPanel{
     protected JLabel labelPuntaje;
     protected JLabel labelTiempo;
     protected JPanel panelVidas;
-    protected ControladorGrafica miControladorGrafico;
+    protected GUI miControladorGrafico;
 
-    public PanelPantallaJuego(ControladorGrafica miControladorGrafico){
+    public PanelPantallaJuego(GUI miControladorGrafico){
          this.miControladorGrafico=miControladorGrafico;
          //tamaño fijo de la pantalla
          setPreferredSize(new Dimension(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO));
@@ -61,7 +61,7 @@ public class PanelPantallaJuego extends JPanel{
         panelVidas.setOpaque(false);//transparente
         panelVidas.setLayout(new FlowLayout(FlowLayout.CENTER,5,5));// espacio de 5 pixeles horiz y vert entre cada componente
         ImageIcon iconoCorazon= new ImageIcon("imagenes/VidasCorazon.png");
-        int vidas= miControladorGrafico.getJuego().getVidasJugador();
+        int vidas= miControladorGrafico.getJuego().getJugador().getVidas();
         for(int i=0;i<vidas;i++){
             JLabel vidaLabel=new JLabel(iconoCorazon);
             panelVidas.add(vidaLabel);

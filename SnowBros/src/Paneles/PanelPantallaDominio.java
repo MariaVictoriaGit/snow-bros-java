@@ -4,16 +4,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import SnowBros.src.Grafica.ControladorGrafica;
+import SnowBros.src.Grafica.GUI;
 
 
 public class PanelPantallaDominio extends JPanel {
     protected JLabel imagenFondo;
     protected JButton botonOriginal;
     protected JButton botonAlternativo;
-    protected ControladorGrafica miControladorGrafico;
+    protected GUI miControladorGrafico;
 
-    public PanelPantallaDominio(ControladorGrafica miControladorGrafico){
+    public PanelPantallaDominio(GUI miControladorGrafico){
         //TODO implementar
     }
     public void agregarImagenFondo(){

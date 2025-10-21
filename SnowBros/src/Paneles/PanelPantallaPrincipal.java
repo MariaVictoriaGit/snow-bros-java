@@ -10,15 +10,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import SnowBros.src.Datos.ConstantesVistas;
-import SnowBros.src.Grafica.ControladorGrafica;
+import SnowBros.src.Grafica.GUI;
 
 public class PanelPantallaPrincipal extends JPanel{
-    protected ControladorGrafica miControlador;
+    protected GUI miControlador;
     protected JLabel imagenFondo;
     protected JButton botonIniciar;
     protected JButton botonRanking;
 
-    public PanelPantallaPrincipal(ControladorGrafica controlador){
+    public PanelPantallaPrincipal(GUI controlador){
         this.miControlador=controlador;
         setSize(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO);
         setLayout(null);

@@ -4,16 +4,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import SnowBros.src.Grafica.ControladorGrafica;
+import SnowBros.src.Grafica.GUI;
 
 public class PanelPantallaFinDelJuego extends JPanel {
     protected JLabel imagenFondo;
     protected JButton botonReinicio;
     protected JButton botonSalir;
     protected JButton botonNuevaPartida;
-    protected ControladorGrafica miControladorGrafico;
+    protected GUI miControladorGrafico;
     
-    public PanelPantallaFinDelJuego(ControladorGrafica miControladorGrafico){
+    public PanelPantallaFinDelJuego(GUI miControladorGrafico){
         //TODO implementar
     }
     public void agregarImagenFondo(){

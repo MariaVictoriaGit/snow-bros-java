@@ -1,5 +1,4 @@
 package SnowBros.src.Juego;
-import java.util.LinkedList;
 
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadDinamica.Enemigos.BolaDeFuego;
@@ -81,7 +80,7 @@ public class Nivel {
         jugador.getObserver().actualizar(jugador.getDireccion(), jugador.getEstadoAereo());
     }
     public void agregarPlataforma(Entidad p){
-        listaPlataformas.addLast(p);
+        listaPlataformas.linkLast(p);
     }
     public void agregarPowerUp(Entidad p){
         listaPowerUps.addLast(p);

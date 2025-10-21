@@ -10,6 +10,6 @@ public class ConstantesVistas {
 	//para que las entidades no esten metidas dentro del suelo
 	public static final int PADDING = 24;
 	
-	public static final int PANEL_JUEGO_ANCHO = 625;
+	public static final int PANEL_JUEGO_ANCHO = 625;//todo 800?
 	public static final int PANEL_INFORMACION_ANCHO = 180;
 }

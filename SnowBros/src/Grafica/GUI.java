@@ -12,7 +12,7 @@ import SnowBros.src.Entidades.EntidadDinamica.Jugador.Jugador;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Paneles.*;
 
-public class ControladorGrafica implements ControladorGrafico, ControladorDeVista {
+public class GUI implements ControladorGrafico, ControladorDeVista {
     protected JFrame ventana;
     protected PanelPantallaPrincipal panelPantallaPrincipal;
     protected PanelPantallaRanking panelPantallaRanking;
@@ -22,7 +22,7 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
     protected PanelPantallaFinDelJuego panelPantallaFinDelJuego;
     protected Juego miJuego;
     
-    public ControladorGrafica(Juego miJuego){
+    public GUI(Juego juego){
         this.miJuego=miJuego;
         panelPantallaPrincipal = new PanelPantallaPrincipal(this);
         panelPantallaDominio= new PanelPantallaDominio(this);
@@ -48,7 +48,6 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
         ventana.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent event) {
-
                 int keyCode = event.getKeyCode();
                 if (keyCode == KeyEvent.VK_A) {
                     miJuego.setDirection(ConstantesEntidades.IZQUIERDA);
@@ -117,7 +116,10 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
         refrescar();
     } 
     public void accionarPantallaRanking(){
-        //despues
+        this.panelPantallaRanking= new PanelPantallaRanking(this);
+        ventana.setContentPane(panelPantallaRanking);
+        ventana.requestFocusInWindow();
+        refrescar();
     }
     public void cambiarModoJuego(int modo) {
         // ToDo
@@ -143,9 +145,6 @@ public class ControladorGrafica implements ControladorGrafico, ControladorDeVist
         Observer observer_silueta = panelPantallaJuego.incorporarSilueta(silueta);
         refrescar();
         return observer_silueta;
-    }
-    public void registrarControladorJuego(Juego juego){
-        this.miJuego=juego;
     }
    /* public Observer registrarSprite(Entidad e){
         return null;

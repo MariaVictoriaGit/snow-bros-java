@@ -1,15 +1,14 @@
 import java.awt.EventQueue;
 
-import SnowBros.src.Grafica.ControladorGrafica;
+import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Juego.Juego;
 
 public class Launcher {	public static void main(String [] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//TODO corregir Juego o ControladorGrafica contstructores
 					Juego juego = new Juego();
-					ControladorGrafica miControlador = new ControladorGrafica(juego);
+					GUI miControlador = new GUI(juego);
 					juego.setControladorGrafica(miControlador);
 					miControlador.mostrarPantallaInicial();
 				} catch (Exception e) {
