@@ -46,7 +46,7 @@ public class PanelPantallaPrincipal extends JPanel{
     }
     private void agregarBotonRanking(){
         botonRanking= new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonRanking.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonJugar.png"));
         botonRanking.setIcon(iconoBoton);
         botonRanking.setBounds(85, 450, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonRanking);
