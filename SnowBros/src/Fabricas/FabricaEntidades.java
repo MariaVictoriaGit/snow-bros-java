@@ -5,6 +5,7 @@ import SnowBros.src.Entidades.EntidadEstatica.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadEstatica.Plataformas.*;
 import SnowBros.src.Entidades.EntidadEstatica.PowerUps.*;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.Silueta;
 
 
 public class FabricaEntidades {
@@ -13,10 +14,11 @@ public class FabricaEntidades {
     public FabricaEntidades(FabricaSprites fabricaSprite){
         fabrica=fabricaSprite;
     }
-   /* public Silueta getSilueta(){
+    public Silueta getSilueta(){
         Sprite spriteSilueta= fabrica.get_silueta();
         Silueta silueta=new Silueta(spriteSilueta);
-    }*/
+        return silueta;
+    }
     public Jugador getJugador(int x, int y){
         Sprite spritesJugador=fabrica.getSpriteJugador();
         Jugador jugador= new Jugador(x,y,spritesJugador);
@@ -34,48 +36,59 @@ public class FabricaEntidades {
         return troll;
     }
     public RanaDeFuego getRanaDeFuego(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite RanaDeFuego= fabrica.getSpriteRanaDeFuego();
+        RanaDeFuego rana= new RanaDeFuego(x, y, RanaDeFuego);
+        return rana;
     }
     public Calabaza getCalabaza(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spriteCalabaza= fabrica.getSpriteCalabaza();
+        Calabaza calabaza= new Calabaza(x, y, spriteCalabaza);
+        return calabaza;
     }
     public Fantasma getFantasma(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spriteFantasma= fabrica.getSpriteFantasma();
+        Fantasma fantasma= new Fantasma(x, y, spriteFantasma);
+        return fantasma;
     }
     public Kamakichi getKamakichi(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spriteKamakichi= fabrica.getSpriteKamakichi();
+        Kamakichi kamakichi= new Kamakichi(x, y, spriteKamakichi);
+        return kamakichi;
     }
     public Moghera getMoghera(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spriteMoghera= fabrica.getSpriteMoghera();
+        Moghera moghera=new Moghera(x, y, spriteMoghera);
+        return moghera;
     }
     public BotellaAzul getBotellaAzul(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite botellaAzul= fabrica.getSpriteBotellaAzul();
+        BotellaAzul azul= new BotellaAzul(x, y, botellaAzul);
+        return azul;
     }
     public BotellaRoja getBotellaRoja(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite botellaRoja= fabrica.getSpriteBotellaRoja();
+        BotellaRoja roja= new BotellaRoja(x, y, botellaRoja);
+        return roja;
     }
     public BotellaVerde getBotellaVerde(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite botellaVerde= fabrica.getSpriteBotellaVerde();
+        BotellaVerde verde= new BotellaVerde(x, y, botellaVerde);
+        return verde;
     }
     public Fruta getFruta(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spriteFruta= fabrica.getSpriteFruta();
+        Fruta fruta= new Fruta(x, y, spriteFruta);
+        return fruta;
     }
     public VidaExtra getVidaExtra(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite vidaExtra= fabrica.getSpriteVidaExtra();
+        VidaExtra vida= new VidaExtra(x, y, vidaExtra);
+        return vida;
     }
     public Escalera getEscalera(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spriteEscalera= fabrica.getSpriteEscalera();
+        Escalera escalera= new Escalera(x,y,spriteEscalera);
+        return escalera;
     }
     public Pared getPared(int x, int y){
         return null;

@@ -6,6 +6,7 @@ import java.io.FileReader;
 
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Juego.Nivel;
+import SnowBros.src.Juego.Silueta;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 
@@ -19,6 +20,7 @@ public class ParserNivel {
         return cargarNivel(obtenerArchivoNivel(modo), modo);
     }
     private Nivel cargarNivel(String archivo, int modo) {
+    Silueta silueta= fabrica.getSilueta();
     Nivel nivel = new Nivel();
 
     try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
