@@ -1,0 +1,123 @@
+Plataforma 768 0
+Plataforma 736 0
+Plataforma 704 0
+Plataforma 672 0
+Plataforma 640 0
+Plataforma 608 0
+Plataforma 576 0
+Plataforma 544 0
+Plataforma 512 0
+Plataforma 480 0
+Plataforma 448 0
+Plataforma 416 0
+Plataforma 384 0
+Plataforma 352 0
+Plataforma 320 0
+Plataforma 288 0
+Plataforma 256 0
+Plataforma 224 0
+Plataforma 192 0
+Plataforma 160 0
+Plataforma 128 0
+Plataforma 98 0
+Plataforma 64 0
+Plataforma 32 0
+Plataforma 0 0
+
+Jugador 400 32
+
+Plataforma 96 64
+Plataforma 128 64
+Plataforma 160 64
+Plataforma 192 64
+Plataforma 224 64
+Plataforma 256 64
+
+Plataforma 512 64
+Plataforma 544 64
+Plataforma 576 64
+Plataforma 608 64
+Plataforma 640 64
+Plataforma 672 64
+
+Plataforma 288 96
+Plataforma 320 96
+Plataforma 352 96
+Plataforma 384 96
+Plataforma 416 96
+Plataforma 448 96
+Plataforma 480 96
+
+PlataformaQuebradiza 64 160
+PlataformaQuebradiza 96 160
+
+Plataforma 320 160
+Plataforma 352 160
+Plataforma 384 160
+Plataforma 416 160
+
+PlataformaQuebradiza 672 160
+PlataformaQuebradiza 704 160
+
+Escalera 384 192
+
+Plataforma 160 224
+Plataforma 192 224
+Plataforma 224 224
+Plataforma 256 224
+Plataforma 288 224
+Plataforma 320 224
+Plataforma 352 224
+Plataforma 384 224
+Plataforma 416 224
+Plataforma 448 224
+Plataforma 480 224
+Plataforma 512 224
+Plataforma 544 224
+Plataforma 576 224
+Plataforma 608 224
+
+Plataforma 224 288
+Plataforma 256 288
+Plataforma 288 288
+Plataforma 320 288
+
+Plataforma 448 288
+Plataforma 480 288
+Plataforma 512 288
+Plataforma 544 288
+
+Plataforma 64 320
+Plataforma 96 320
+Plataforma 128 320
+
+Plataforma 352 320
+Plataforma 384 320
+Plataforma 416 320
+
+Plataforma 640 320
+Plataforma 672 320
+Plataforma 704 320
+
+Pared 128 352
+
+Escalera 384 352
+
+Pared 640 352
+
+Plataforma 160 384
+Plataforma 192 384
+Plataforma 224 384
+Plataforma 256 384
+Plataforma 288 384
+Plataforma 320 384
+Plataforma 352 384
+Plataforma 384 384
+Plataforma 416 384
+Plataforma 448 384
+Plataforma 480 384
+Plataforma 512 384
+Plataforma 544 384
+Plataforma 576 384
+Plataforma 608 384
+
