@@ -69,6 +69,7 @@ public class PanelPantallaDominio extends JPanel {
     public void transparentarBoton(JButton boton){  
         boton.setOpaque(false);
 		boton.setContentAreaFilled(false);
-		boton.setBorderPainted(false);    }
+		boton.setBorderPainted(false);    
+    }
 }
 
