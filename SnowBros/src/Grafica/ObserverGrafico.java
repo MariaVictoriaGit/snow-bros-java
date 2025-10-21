@@ -22,7 +22,7 @@ public class ObserverGrafico extends JLabel implements Observer{
 	}
     protected void actualizarImagen() {
         //No todas las entidades tienen mas de un sprite, como hacemos con las estaticas?
-		String rutaImagen = entidadObservada.getSprite().getRutaImagen("SPRITESESTATICO");
+		String rutaImagen = entidadObservada.getSprite().getRutaImagen("idleIzquierda");
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
 		setIcon(icono);
 	}

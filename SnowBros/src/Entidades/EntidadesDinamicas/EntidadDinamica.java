@@ -3,6 +3,7 @@ package SnowBros.src.Entidades.EntidadesDinamicas;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Grafica.Observer;
+import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.Sprite;
 
 public abstract class EntidadDinamica extends Entidad{
@@ -13,6 +14,7 @@ public abstract class EntidadDinamica extends Entidad{
 
     public EntidadDinamica(int posX, int posY, Sprite mSprite){
         super(posX, posY, mSprite);
+        registrarObserver(new ObserverEntidad(this));
     }
 
     public void mover(){
