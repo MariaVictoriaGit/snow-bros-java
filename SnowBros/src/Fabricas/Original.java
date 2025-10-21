@@ -4,7 +4,7 @@ import SnowBros.src.Grafica.Sprite;
 
 public class Original extends FabricaSprites{
 
-    protected Original(String ruta) {
+    public Original(String ruta) {
         super(ruta);
         //TODO implementar
     }

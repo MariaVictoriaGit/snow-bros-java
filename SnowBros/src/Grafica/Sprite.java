@@ -8,7 +8,6 @@ public class Sprite {
     public Sprite(HashMap<String,String> mapeo){
         mapeoDeSprites=mapeo;
     }
-
     public String getRutaImagen(String clave){
         return mapeoDeSprites.get(clave);
     }
