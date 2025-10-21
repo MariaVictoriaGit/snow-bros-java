@@ -21,6 +21,7 @@ public class Juego {
 
     public Juego(){
         reiniciarJugador=false;
+        
         //ranking=new Ranking();
     }
 

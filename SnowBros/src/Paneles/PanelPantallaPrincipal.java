@@ -13,20 +13,20 @@ import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Grafica.GUI;
 
 public class PanelPantallaPrincipal extends JPanel{
-    protected GUI miControlador;
+    protected GUI miControladorGrafico;
     protected JLabel imagenFondo;
     protected JButton botonIniciar;
     protected JButton botonRanking;
 
     public PanelPantallaPrincipal(GUI controlador){
-        this.miControlador=controlador;
+        this.miControladorGrafico=controlador;
         setSize(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO);
         setLayout(null);
         agregarImagenFondo();
         agregarBotonIniciar();
         agregarBotonRanking();
     }
-    protected void agregarImagenFondo() {
+    protected void agregarImagenFondo(){
         imagenFondo = new JLabel();
         ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/PantallaPrincipal.jpg"));
         Image imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO,Image.SCALE_SMOOTH);
@@ -35,7 +35,7 @@ public class PanelPantallaPrincipal extends JPanel{
         imagenFondo.setBounds(0,0,ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO);
         add(imagenFondo);
     }
-    protected void agregarBotonIniciar() {
+    protected void agregarBotonIniciar(){
         botonIniciar = new JButton();
 		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonJugar.png"));
         botonIniciar.setIcon(iconoBoton);
@@ -44,7 +44,7 @@ public class PanelPantallaPrincipal extends JPanel{
         registrarOyenteBotonIniciar();
         add(botonIniciar,0);
     }
-    private void agregarBotonRanking() {
+    private void agregarBotonRanking(){
         botonRanking= new JButton();
 		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonRanking.png"));
         botonRanking.setIcon(iconoBoton);
@@ -53,22 +53,21 @@ public class PanelPantallaPrincipal extends JPanel{
         registrarOyenteBotonRanking();
         add(botonRanking,0);
     }
-    private void registrarOyenteBotonIniciar() {
-        botonIniciar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//miControlador.accionarPantallaDominio();
-                miControlador.mostrarPantallaJuego();
-			}
-		});
+    private void registrarOyenteBotonIniciar(){
+        botonIniciar.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                miControladorGrafico.accionarInicioJuego();
+            }
+        });
     }
-    private void registrarOyenteBotonRanking() {
-        botonRanking.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.accionarPantallaRanking();
-			}
-		});
+    private void registrarOyenteBotonRanking(){
+        botonRanking.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                miControladorGrafico.accionarPantallaRanking();
+            }
+        });
     }
-    private void transparentarBoton(JButton boton) {
+    private void transparentarBoton(JButton boton){
         boton.setOpaque(false);
 		boton.setContentAreaFilled(false);
 		boton.setBorderPainted(false);
