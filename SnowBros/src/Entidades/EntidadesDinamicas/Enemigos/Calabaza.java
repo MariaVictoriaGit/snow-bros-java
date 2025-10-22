@@ -9,9 +9,20 @@ public class Calabaza extends Enemigo{
     public void invocarFantasma(){
         //TODO implementar
     }
-    @Override
-    public int getPuntaje() {
+    public int getPuntaje(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
+    }
+    public void convertirEnBola(){
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
+    }
+    public void patronMovimiento(){
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'patronMovimiento'");
+    }
+    public void agregarPowerUp(Boolean agregar){
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
     }
 }

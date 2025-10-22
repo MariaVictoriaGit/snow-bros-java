@@ -5,27 +5,26 @@ import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Timer;
 
 public abstract class Enemigo extends EntidadDinamica {
+   private static final int tiempoCongelado=10000;
    protected int salud;
-   protected Timer temporizador;
+   protected Timer temporizado;
+   protected boolean congelado;
 
    public Enemigo(int x, int y, Sprite sprites) {
+      //la dificultad va a verse definida por lsa salud
+      //de c/u y los tiempos congelado, desp cambiar
       super(x, y, sprites);
-      temporizador = new Timer();
+      temporizado=new Timer(tiempoCongelado);
+      congelado=false;
    }
    public void recibirDaño(){
       salud--;
    }
    public boolean estaCongelado(){
-      return false; //TODO implementar
+      return congelado;
    }
-    public void convertirEnBola(){
-      //TODO implementar
-   }
-   public void patronMovimiento(){
-      //TODO implementar
-   }
-   public void agregarPowerUp(Boolean b){
-      //TODO implementar
-   }
+   public abstract void convertirEnBola();
+   public abstract void patronMovimiento();
+   public abstract void agregarPowerUp(Boolean b);
    public abstract int getPuntaje();
 }

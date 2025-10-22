@@ -10,7 +10,7 @@ public class BolaDeFuego extends EntidadDinamica{
         super(posX, posY, miSprite);
         tiempo=new Timer(10000);//10s
     }
-    public Timer duracion(){
+    public Timer getTimer(){
         return tiempo;
     }
 }

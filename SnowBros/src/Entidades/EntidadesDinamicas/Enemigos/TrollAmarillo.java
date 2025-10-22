@@ -12,9 +12,20 @@ public class TrollAmarillo extends Enemigo{
     public void saltar(){
         //TODO implementar
     }
-    @Override
-    public int getPuntaje() {
+    public int getPuntaje(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
+    }
+    public void convertirEnBola(){
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
+    }
+    public void patronMovimiento(){
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'patronMovimiento'");
+    }
+    public void agregarPowerUp(Boolean b){
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
     }
 }

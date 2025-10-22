@@ -19,11 +19,11 @@ public class Timer {
     public void iniciar(){
         if(enMarcha) return;
         enMarcha=true;
-        hilo=new Thread(() ->{
+        hilo=new Thread(() ->{//implementa Runnable
             while (enMarcha && tiempoActual<tope){
-                try {
+                try{
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {
+                }catch(InterruptedException e){
                     Thread.currentThread().interrupt();
                     break;
                 }
