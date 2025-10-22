@@ -85,7 +85,7 @@ public abstract class FabricaSprites {
         mapeo.put("congelado", rutaACarpeta + "/Kamakichi/kamakichiCongelado.png");
         return new Sprite(mapeo);
     }
-   /* abstract public Sprite getSpriteTrampaPinchos();
+  /*abstract public Sprite getSpriteTrampaPinchos();
     abstract public Sprite getSpriteSueloResbaladizo();
     abstract public Sprite getSpriteParedDestuctible();
     abstract public Sprite getSpritePlataformaMovil();
@@ -107,7 +107,7 @@ public abstract class FabricaSprites {
         mapeo.put("vidaExtra", rutaACarpeta + "/PowerUps/VidaJugador.png");
         return new Sprite(mapeo);
     }
- /*    abstract public Sprite getSpriteBotellaAzul();
+  /*abstract public Sprite getSpriteBotellaAzul();
     abstract public Sprite getSpriteBotellaRoja();
     abstract public Sprite getSpriteBotellaVerde();
     abstract public Sprite getSpriteFruta();

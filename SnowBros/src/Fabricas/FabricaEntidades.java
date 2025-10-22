@@ -85,6 +85,12 @@ public class FabricaEntidades {
         VidaExtra vida= new VidaExtra(x, y, vidaExtra);
         return vida;
     }
+    public Plataforma getPlataforma(int x, int y){
+        Sprite spritePlataforma= fabrica.getSpritePlataforma();
+        Plataforma plataforma= new Plataforma(x, y,spritePlataforma);
+        return plataforma;
+    }
+/*
     public Escalera getEscalera(int x, int y){
         Sprite spriteEscalera= fabrica.getSpriteEscalera();
         Escalera escalera= new Escalera(x,y,spriteEscalera);
@@ -110,11 +116,6 @@ public class FabricaEntidades {
         TrampaPinchos trampaPinchos= new TrampaPinchos(x, y,spriteTrampaPinchos);
         return trampaPinchos;
     }
-    public Plataforma getPlataforma(int x, int y){
-        Sprite spritePlataforma= fabrica.getSpritePlataforma();
-        Plataforma plataforma= new Plataforma(x, y,spritePlataforma);
-        return plataforma;
-    }
     public PlataformaMovil getPlataformaMovil(int x, int y){
         Sprite spritePlataformaMovil=fabrica.getSpritePlataformaMovil();
         PlataformaMovil plataformaMovil= new PlataformaMovil(x, y, spritePlataformaMovil);
@@ -124,5 +125,5 @@ public class FabricaEntidades {
         Sprite spritePlataformaQuebradiza=fabrica.getSpritePlataformaQuebradiza();
         PlataformaQuebradiza plataformaQuebradiza= new PlataformaQuebradiza(x, y, spritePlataformaQuebradiza);
         return plataformaQuebradiza;
-    }
+    }*/
 }
