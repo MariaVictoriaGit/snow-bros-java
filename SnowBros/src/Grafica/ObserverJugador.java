@@ -27,14 +27,14 @@ public class ObserverJugador extends ObserverGrafico{
         if (!estadoAereo)
             switch(direccion){
                 case ConstantesEntidades.IZQUIERDA:
-                    estado="SPRITECAMINAIZQUIERDA";
+                    estado="moverIzquierda";
                 case ConstantesEntidades.QUIETO:
                     if (jugadorObservado.getDirAnterior() == ConstantesEntidades.IZQUIERDA)
-                        estado="SPRITEIZQUIERDA";
+                        estado="idleIzquierda";
                     else 
-                        estado="SPRITEDERECHA";
+                        estado="idleDerecha";
                 case ConstantesEntidades.DERECHA:
-                    estado= "SPRITECAMINADERECHA";
+                    estado= "moverDerecha";
             }
         
 		String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);

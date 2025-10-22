@@ -1,6 +1,8 @@
 package SnowBros.src.Paneles;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -64,14 +66,26 @@ public class PanelPantallaFinDelJuego extends JPanel {
         add(botonNuevaPartida,0);
     }
     public void registrarOyenteBotonReinicio(){
-        //TODO implementar
+        botonReinicio.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                miControladorGrafico.accionarInicioJuego();
+            }
+        });
     }
     public void registrarOyenteBotonSalir(){
-        //TODO implementar
+        botonSalir.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                miControladorGrafico.mostrarPantallaPrincipal();
+            }
+        });
     }
-    public void registrarOyenteBotonNuevaPartida(){
-        //TODO implementar
-    }
+    private void registrarOyenteBotonNuevaPartida(){
+        botonNuevaPartida.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                miControladorGrafico.accionarInicioJuego();
+            }
+        });
+    }    
     private void transparentarBoton(JButton boton){
         boton.setOpaque(false);
 		boton.setContentAreaFilled(false);
