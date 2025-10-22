@@ -13,4 +13,9 @@ public class RanaDeFuego extends Enemigo{
         return null;
         //TODO implementar, return predefinido por el compilador
     }
+    @Override
+    public int getPuntaje() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
+    }
 }

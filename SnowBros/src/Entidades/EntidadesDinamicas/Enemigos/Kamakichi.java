@@ -12,4 +12,9 @@ public class Kamakichi extends Enemigo{
     public void dispararBomba(){
         //TODO implementar
     }
+    @Override
+    public int getPuntaje() {//TODO mismo moghera   
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
+    }
 }

@@ -12,4 +12,9 @@ public class TrollAmarillo extends Enemigo{
     public void saltar(){
         //TODO implementar
     }
+    @Override
+    public int getPuntaje() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
+    }
 }

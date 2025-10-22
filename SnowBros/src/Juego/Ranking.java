@@ -8,7 +8,9 @@ public class Ranking{
     protected HashMap<String, Integer> topContratiempo;
 
     public Ranking(){
-        //TODO implementar
+        topClasico= new HashMap<>();
+        topSupervivencia= new HashMap<>();  
+        topContratiempo= new HashMap<>();
     }
     public void setNivel(String s, int i){
         //TODO implementar

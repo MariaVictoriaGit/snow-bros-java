@@ -9,4 +9,9 @@ public class Calabaza extends Enemigo{
     public void invocarFantasma(){
         //TODO implementar
     }
+    @Override
+    public int getPuntaje() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
+    }
 }

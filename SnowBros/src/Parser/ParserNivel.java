@@ -75,15 +75,15 @@ public class ParserNivel {
             case 1:
                 return "SnowBros/src/Niveles/clasico 1.txt";
             case 2:
-                return "niveles/clasico 2.txt";
+                return "SnowBros/src/Niveles/clasico 2.txt";
             case 3:
-                return "niveles/supervivencia 1.txt";
+                return "SnowBros/src/Niveles/supervivencia 1.txt";
             case 4:
-                return "niveles/supervivencia 2.txt";
+                return "SnowBros/src/Niveles/supervivencia 2.txt";
             case 5:
-                return "niveles/contrarreloj 1.txt";
+                return "SnowBros/src/Niveles/contrarreloj 1.txt";
             default:
-                return "niveles/contrarreloj 2.txt";
+                return "SnowBros/src/Niveles/contrarreloj 2.txt";
         }
        }
 

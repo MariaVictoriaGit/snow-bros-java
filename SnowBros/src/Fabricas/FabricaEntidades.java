@@ -24,7 +24,6 @@ public class FabricaEntidades {
         Sprite spritesJugador=fabrica.getSpriteJugador();
         Jugador jugador= new Jugador(x,y,spritesJugador);
         return jugador;
-        
     }
     public DemonioRojo getDemonioRojo(int x, int y){
         Sprite spritesDemonioRojo=fabrica.getSpriteDemonioRojo();
@@ -86,27 +85,30 @@ public class FabricaEntidades {
         VidaExtra vida= new VidaExtra(x, y, vidaExtra);
         return vida;
     }
-    /*public Escalera getEscalera(int x, int y){
+    public Escalera getEscalera(int x, int y){
         Sprite spriteEscalera= fabrica.getSpriteEscalera();
         Escalera escalera= new Escalera(x,y,spriteEscalera);
         return escalera;
     }
-        */
     public Pared getPared(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spritePared= fabrica.getSpritePared();
+        Pared pared= new Pared(x, y,spritePared);
+        return pared;
     }
     public ParedDestructible getParedDestructible(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spriteParedDestructible= fabrica.getSpriteParedDestuctible();
+        ParedDestructible paredDestructible= new ParedDestructible(x, y,spriteParedDestructible);
+        return paredDestructible;
     }
     public SueloResbaladizo getSueloResbaladizo(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spriteSueloResbaladizo= fabrica.getSpriteSueloResbaladizo();
+        SueloResbaladizo sueloResbaladizo= new SueloResbaladizo(x, y,spriteSueloResbaladizo);
+        return sueloResbaladizo;
     }
     public TrampaPinchos getTrampaPinchos(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spriteTrampaPinchos= fabrica.getSpriteTrampaPinchos();   
+        TrampaPinchos trampaPinchos= new TrampaPinchos(x, y,spriteTrampaPinchos);
+        return trampaPinchos;
     }
     public Plataforma getPlataforma(int x, int y){
         Sprite spritePlataforma= fabrica.getSpritePlataforma();
@@ -114,11 +116,13 @@ public class FabricaEntidades {
         return plataforma;
     }
     public PlataformaMovil getPlataformaMovil(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spritePlataformaMovil=fabrica.getSpritePlataformaMovil();
+        PlataformaMovil plataformaMovil= new PlataformaMovil(x, y, spritePlataformaMovil);
+        return plataformaMovil;
     }
     public PlataformaQuebradiza getPlataformaQuebradiza(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spritePlataformaQuebradiza=fabrica.getSpritePlataformaQuebradiza();
+        PlataformaQuebradiza plataformaQuebradiza= new PlataformaQuebradiza(x, y, spritePlataformaQuebradiza);
+        return plataformaQuebradiza;
     }
 }

@@ -15,4 +15,9 @@ public class Moghera extends Enemigo{
     public void esDerrotado(){
         //TODO implementar
     }
+    @Override
+    public int getPuntaje() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
+    }
 }

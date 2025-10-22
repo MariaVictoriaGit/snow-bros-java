@@ -7,6 +7,7 @@ public class Jugador extends EntidadDinamica {
     private static final int vidaDeInicio = 3;
     protected Juego miJuego;
     protected boolean tocandoSuelo;
+    protected int puntajeJugador;
     protected int direccion;
     protected int velocidad;
     protected int vidas;
@@ -35,8 +36,8 @@ public class Jugador extends EntidadDinamica {
         miJuego.getNivelActual().agregarBolaDeNieve(disparo);
 
     } 
-    public int actualizarPuntaje(){
-        return dirAnterior;
+    public void actualizarPuntaje(int puntaje){
+        puntajeJugador+=puntaje;
         //TODO implementar      es return definido por el compilador
     }
     public String generarClaveEstado(){
@@ -59,7 +60,10 @@ public class Jugador extends EntidadDinamica {
         return dirAnterior;
     }
     public int getPuntaje(){
-        return miJuego.getPuntaje();
+        return puntajeJugador;
+    }
+    public int getVelocidad(){
+        return velocidad;
     }
     public void setEnElAire(Boolean b){
         // TODO preguntar borrar
@@ -67,23 +71,27 @@ public class Jugador extends EntidadDinamica {
     public void setTocandoSuelo(Boolean b){
         tocandoSuelo=b;
     }
-   /* public void setTiempo(int t){
+    public boolean getTocandoSuelo(){
+        return tocandoSuelo;
+    }   
+   /* public void setTiempo(int t){ //tendriamos que hacerlo con el timer
         int tiempo;
         if(t>=0){
             tiempo=t;
         }
     }*/ //ver si es necesario el set aca y no en juego
     public void perderVida(){
+        vidas--;
     }
     public void setVidas(){
-        //TODO implementar
-    }
+        vidas=vidaDeInicio;
+ }
     public void efectoBotellaAzul(){
         this.velocidad+=5; // suponiendo que ese es el incremento final, cambiar dsp
     }
     public void efectoBotellaRoja(){
         this.disparoAumentado=true;
-        
+        //TODO implementar
     }
     public void efectoBotellaVerde(){
         //TODO implementar
