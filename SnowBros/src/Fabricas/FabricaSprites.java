@@ -85,13 +85,13 @@ public abstract class FabricaSprites {
         mapeo.put("congelado", rutaACarpeta + "/Kamakichi/kamakichiCongelado.png");
         return new Sprite(mapeo);
     }
-  /*abstract public Sprite getSpriteTrampaPinchos();
-    abstract public Sprite getSpriteSueloResbaladizo();
-    abstract public Sprite getSpriteParedDestuctible();
-    abstract public Sprite getSpritePlataformaMovil();
-    abstract public Sprite getSpritePlataformaQuebradiza();
-    abstract public Sprite getSpritePared();
-    abstract public Sprite getSpriteEscalera();*/
+     public Sprite getSpriteTrampaPinchos(){}
+     public Sprite getSpriteSueloResbaladizo(){}
+     public Sprite getSpriteParedDestuctible(){}
+     public Sprite getSpritePlataformaMovil(){}
+     public Sprite getSpritePlataformaQuebradiza(){}
+     public Sprite getSpritePared(){}
+     public Sprite getSpriteEscalera(){}
     public Sprite getSpriteObstaculo(){
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("escalera", rutaACarpeta + "/Obstaculos/escalera.png");
@@ -107,11 +107,15 @@ public abstract class FabricaSprites {
         mapeo.put("vidaExtra", rutaACarpeta + "/PowerUps/VidaJugador.png");
         return new Sprite(mapeo);
     }
-  /*abstract public Sprite getSpriteBotellaAzul();
-    abstract public Sprite getSpriteBotellaRoja();
-    abstract public Sprite getSpriteBotellaVerde();
-    abstract public Sprite getSpriteFruta();
-    abstract public Sprite getSpriteVidaExtra();*/
+     public Sprite getSpriteBotellaAzul(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("botellaAzul", rutaACarpeta+"/PowerUps/botellaAzul.png");
+        return mapeo;
+     }
+     public Sprite getSpriteBotellaRoja(){}
+     public Sprite getSpriteBotellaVerde(){}
+     public Sprite getSpriteFruta(){}
+     public Sprite getSpriteVidaExtra(){}
     public Sprite getSpriteBolaNieve(){
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("completa", rutaACarpeta + "/BolaDeNieve/bolaDeNieve.png");
