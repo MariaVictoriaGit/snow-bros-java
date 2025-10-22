@@ -76,6 +76,8 @@ public class PanelPantallaJuego extends JPanel{
     }
     protected void agregarPanelJuego() {
        imagenFondoJuego= new JLabel();
+       ImageIcon imagen= new ImageIcon("SnowBros/src/Imagenes/FondoNivel1.png");
+       imagenFondoJuego.setIcon(imagen);
        imagenFondoJuego.setLayout(null); //null para posicionar sprites manualmente
        imagenFondoJuego.setBounds(0,0, ConstantesVistas.PANEL_JUEGO_ANCHO, ConstantesVistas.PANEL_ALTO);
        //Panel del Juego donde se van a agregar los objetos
@@ -101,7 +103,7 @@ public class PanelPantallaJuego extends JPanel{
     public Observer incorporarSilueta(Entidad silueta) {
         ObserverEntidad observerEntidad= new ObserverEntidad(silueta);
         imagenFondoJuego.setIcon(new ImageIcon(getClass().getClassLoader().getResource(silueta.getSprite().getRutaImagen("normal"))));
-        imagenFondoJuego.setBounds(0, 0, imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight());
+        imagenFondoJuego.setBounds(30, 30, imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight());
         panelPantallaJuego.setPreferredSize(new Dimension(imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight()));
         return observerEntidad;
     }

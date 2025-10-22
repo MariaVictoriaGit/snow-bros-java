@@ -29,7 +29,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         panelPantallaJuego = new PanelPantallaJuego(this);
         panelPantallaModo = new PanelPantallaModo(this);
         panelPantallaFinDelJuego= new PanelPantallaFinDelJuego(this);
-       // controladorDeSonido = new ControladorDeSonido();
+       // controladorDeSonido = new ControladorDeSonido()
         configurarVentana();
         registrarOyenteVentana();
     }
@@ -159,5 +159,8 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }*/
     public Juego getJuego() {
         return miJuego;
+    }
+    public PanelPantallaJuego getPantalla(){
+        return panelPantallaJuego;
     }
 }

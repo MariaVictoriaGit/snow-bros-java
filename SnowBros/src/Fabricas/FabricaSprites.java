@@ -17,7 +17,7 @@ public abstract class FabricaSprites {
     }
     public Sprite getSpriteJugador(){
         HashMap<String, String> mapeo = new HashMap<String,String>();
-        mapeo.put("idleIzquierda", rutaACarpeta+ "/Jugador/izquierda.png");
+        mapeo.put("idleIzquierda", rutaACarpeta+ "/Jugador/nickAvanzarizquierda.png");
         mapeo.put("idleDerecha", rutaACarpeta+ "/Jugador/derecha.png");
         mapeo.put("moverIzquierda", rutaACarpeta+ "/Jugador/avanzarIzquierda.png");
         mapeo.put("moverDerecha", rutaACarpeta+ "/Jugador/avanzarDerecha.png");
@@ -85,13 +85,13 @@ public abstract class FabricaSprites {
         mapeo.put("congelado", rutaACarpeta + "/Kamakichi/kamakichiCongelado.png");
         return new Sprite(mapeo);
     }
-    abstract public Sprite getSpriteTrampaPinchos();
+   /* abstract public Sprite getSpriteTrampaPinchos();
     abstract public Sprite getSpriteSueloResbaladizo();
     abstract public Sprite getSpriteParedDestuctible();
     abstract public Sprite getSpritePlataformaMovil();
     abstract public Sprite getSpritePlataformaQuebradiza();
     abstract public Sprite getSpritePared();
-    abstract public Sprite getSpriteEscalera();
+    abstract public Sprite getSpriteEscalera();*/
     public Sprite getSpriteObstaculo(){
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("escalera", rutaACarpeta + "/Obstaculos/escalera.png");
@@ -107,11 +107,11 @@ public abstract class FabricaSprites {
         mapeo.put("vidaExtra", rutaACarpeta + "/PowerUps/VidaJugador.png");
         return new Sprite(mapeo);
     }
-    abstract public Sprite getSpriteBotellaAzul();
+ /*    abstract public Sprite getSpriteBotellaAzul();
     abstract public Sprite getSpriteBotellaRoja();
     abstract public Sprite getSpriteBotellaVerde();
     abstract public Sprite getSpriteFruta();
-    abstract public Sprite getSpriteVidaExtra();
+    abstract public Sprite getSpriteVidaExtra();*/
     public Sprite getSpriteBolaNieve(){
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("completa", rutaACarpeta + "/BolaDeNieve/bolaDeNieve.png");

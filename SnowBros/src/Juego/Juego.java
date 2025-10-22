@@ -1,9 +1,14 @@
 package SnowBros.src.Juego;
 
+import javax.swing.ImageIcon;
+
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Grafica.GUI;
+import SnowBros.src.Grafica.Observer;
+import SnowBros.src.Grafica.ObserverGrafico;
+import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Parser.ParserNivel;
 
 public class Juego {
@@ -34,6 +39,7 @@ public class Juego {
         ParserNivel parseActual= new ParserNivel(true);
         nivel= parseActual.generarNivel(1);
         this.jugador=nivel.getJugador();
+
         
     }
 

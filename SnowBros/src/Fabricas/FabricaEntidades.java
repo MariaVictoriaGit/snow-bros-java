@@ -108,8 +108,9 @@ public class FabricaEntidades {
         //TODO implementar
     }
     public Plataforma getPlataforma(int x, int y){
-        return null;
-        //TODO implementar
+        Sprite spritePlataforma= fabrica.getSpritePlataforma();
+        Plataforma plataforma= new Plataforma(x, y,spritePlataforma);
+        return plataforma;
     }
     public PlataformaMovil getPlataformaMovil(int x, int y){
         return null;

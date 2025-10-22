@@ -12,7 +12,6 @@ public class ObserverGrafico extends JLabel implements Observer{
 	protected PanelPantallaJuego panelPantallaJuego;
 
     public ObserverGrafico(Entidad entidad) {
-		super();
 		entidadObservada = entidad;
 		actualizar();
 	}
@@ -22,9 +21,10 @@ public class ObserverGrafico extends JLabel implements Observer{
 	}
     protected void actualizarImagen() {
         //No todas las entidades tienen mas de un sprite, como hacemos con las estaticas?
-		String rutaImagen = entidadObservada.getSprite().getRutaImagen("SPRITESESTATICO");
+		String rutaImagen = entidadObservada.getSprite().getRutaImagen("idleIzquierda");
+		System.out.println(rutaImagen);
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
-		setIcon(icono);
+	    setIcon(icono);
 	}
     protected void actualizarPosicionTamano(){
         int x = entidadObservada.getPosX();

@@ -1,23 +1,31 @@
 package SnowBros.src.Parser;
 
 import java.io.IOException;
+
+import javax.swing.ImageIcon;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.Original;
+import SnowBros.src.Grafica.Observer;
+import SnowBros.src.Grafica.ObserverGrafico;
+import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Fabricas.Alternativo;
 import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Juego.Silueta;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
+import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 
 public class ParserNivel {
     private FabricaEntidades fabrica;
 
     public ParserNivel(boolean dominioOriginal) {
         //que desde la llamada para crear el parser se defina el dominio de aplicacion
-        this.fabrica = new FabricaEntidades(new Original("SnowBros/src/Niveles/clasico 1.txt"));
+        this.fabrica = new FabricaEntidades(new Original("SnowBros/src/Imagenes"));
     }
     public Nivel generarNivel(int modo){
         return cargarNivel(obtenerArchivoNivel(modo), modo);
@@ -39,7 +47,7 @@ public class ParserNivel {
                         int xJugador = Integer.parseInt(partes[1]);
                         int yArchivo = Integer.parseInt(partes[2]);
                         int yJugador = ConstantesVistas.PANEL_ALTO - yArchivo;
-                        Entidad jugador = fabrica.getJugador(xJugador, yJugador);
+                        EntidadDinamica jugador = fabrica.getJugador(xJugador, yJugador);
                         nivel.agregarJugador(jugador);
                         break;
 
@@ -48,6 +56,7 @@ public class ParserNivel {
                         int y = ConstantesVistas.PANEL_ALTO - Integer.parseInt(partes[2]);
                         Entidad plataforma = fabrica.getPlataforma(x, y);
                         nivel.agregarPlataforma(plataforma);
+
                         break;
 
                 }

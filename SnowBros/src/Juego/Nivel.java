@@ -99,4 +99,7 @@ public class Nivel {
     public Jugador getJugador(){
         return jugador;
     }
+    public Silueta getSilueta(){
+        return silueta;
+    }
 }

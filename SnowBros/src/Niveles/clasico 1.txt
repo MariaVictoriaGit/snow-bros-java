@@ -1,5 +1,3 @@
-//niveles sin enemigos
-
 Plataforma 768 0
 Plataforma 736 0
 Plataforma 704 0
