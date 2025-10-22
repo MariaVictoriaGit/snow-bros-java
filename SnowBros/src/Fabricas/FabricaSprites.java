@@ -10,9 +10,9 @@ public abstract class FabricaSprites {
         this.rutaACarpeta = ruta;
     }
     public Sprite get_silueta() {
-        		HashMap<String, String> mapeo = new HashMap<>();
-                		mapeo.put("normal", rutaACarpeta+ "/FondoNivel1.png");
-                        		return new Sprite(mapeo);	
+        HashMap<String, String> mapeo = new HashMap<>();
+        mapeo.put("normal", rutaACarpeta+ "/FondoNivel1.png");
+        return new Sprite(mapeo);	
                                 	
     }
     public Sprite getSpriteJugador(){
@@ -85,17 +85,49 @@ public abstract class FabricaSprites {
         mapeo.put("congelado", rutaACarpeta + "/Kamakichi/kamakichiCongelado.png");
         return new Sprite(mapeo);
     }
-     public Sprite getSpriteTrampaPinchos(){}
-     public Sprite getSpriteSueloResbaladizo(){}
-     public Sprite getSpriteParedDestuctible(){}
-     public Sprite getSpritePlataformaMovil(){}
-     public Sprite getSpritePlataformaQuebradiza(){}
-     public Sprite getSpritePared(){}
-     public Sprite getSpriteEscalera(){}
+    public Sprite getSpriteTrampaPinchos(){    
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("trampaPinchos", rutaACarpeta + "/Obstaculos/trampaPinchos.png");
+        return new Sprite(mapeo);
+    }
+    public Sprite getSpriteSueloResbaladizo(){
+        HashMap<String, String> mapeo= new HashMap<>(); 
+        mapeo.put("sueloResbaladizo", rutaACarpeta + "/Obstaculos/sueloResbaladizo.png");
+        return new Sprite(mapeo);
+    }
+    public Sprite getSpriteParedDestuctible(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("paredDestructible", rutaACarpeta + "/Obstaculos/paredDestructible.png");
+        return new Sprite(mapeo);   
+    }
+    public Sprite getSpritePlataformaMovil(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("plataformaMovil", rutaACarpeta + "/Obstaculos/plataformaMovil.png");
+        return new Sprite(mapeo);
+    }
+    public Sprite getSpritePlataformaQuebradiza(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("plataformaQuebradiza", rutaACarpeta + "/Obstaculos/plataformaQuebradiza.png");
+        return new Sprite(mapeo);
+    }
+    public Sprite getSpritePared(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("pared", rutaACarpeta + "/Obstaculos/pared.png");
+        return new Sprite(mapeo);
+    }
+    public Sprite getSpriteEscalera(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("escalera", rutaACarpeta + "/Obstaculos/escalera.png");
+        return new Sprite(mapeo);
+    }
     public Sprite getSpriteObstaculo(){
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("escalera", rutaACarpeta + "/Obstaculos/escalera.png");
         mapeo.put("trampaPinchos", rutaACarpeta + "/Obstaculos/trampaPinchos.png");
+        //TODO cuando se agreguen los sprites respetar los nombres
+        mapeo.put("sueloResbaladizo", rutaACarpeta + "/Obstaculos/sueloResbaladizo.png");
+        mapeo.put("paredDestructible", rutaACarpeta + "/Obstaculos/paredDestructible.png");
+        mapeo.put("pared", rutaACarpeta + "/Obstaculos/pared.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpritePowerUp(){
@@ -107,15 +139,31 @@ public abstract class FabricaSprites {
         mapeo.put("vidaExtra", rutaACarpeta + "/PowerUps/VidaJugador.png");
         return new Sprite(mapeo);
     }
-     public Sprite getSpriteBotellaAzul(){
+    public Sprite getSpriteBotellaAzul(){
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("botellaAzul", rutaACarpeta+"/PowerUps/botellaAzul.png");
-        return mapeo;
-     }
-     public Sprite getSpriteBotellaRoja(){}
-     public Sprite getSpriteBotellaVerde(){}
-     public Sprite getSpriteFruta(){}
-     public Sprite getSpriteVidaExtra(){}
+        return new Sprite(mapeo);
+    }
+    public Sprite getSpriteBotellaRoja(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("botellaRoja", rutaACarpeta+"/PowerUps/botellaRoja.png");
+        return new Sprite(mapeo);
+    }
+    public Sprite getSpriteBotellaVerde(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("botellaVerde", rutaACarpeta+"/PowerUps/botellaVerde.png");
+        return new Sprite(mapeo);
+    }
+    public Sprite getSpriteFruta(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("fruta", rutaACarpeta+"/PowerUps/fruta.png");
+        return new Sprite(mapeo);
+    }
+    public Sprite getSpriteVidaExtra(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("vidaExtra", rutaACarpeta+"/PowerUps/vidaJugador.png");
+        return new Sprite(mapeo);
+    }
     public Sprite getSpriteBolaNieve(){
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("completa", rutaACarpeta + "/BolaDeNieve/bolaDeNieve.png");
