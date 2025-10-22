@@ -98,13 +98,11 @@ public class PanelPantallaJuego extends JPanel{
         actualizarInformacionJugador(jugador);
         return observerJugador;
     }
-    public Observer incorporarSilueta(Entidad silueta) {
-        ObserverEntidad observerEntidad= new ObserverEntidad(silueta);
+    public void incorporarSilueta(Entidad silueta) {
         imagenFondoJuego.setIcon(new ImageIcon(getClass().getClassLoader().getResource(silueta.getSprite().getRutaImagen("normal"))));
-        imagenFondoJuego.setBounds(10, 10, imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight());
+        imagenFondoJuego.setBounds(0, 0, imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight());
         panelPantallaJuego.setPreferredSize(new Dimension(imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight()));
         this.add(imagenFondoJuego);
-        return observerEntidad;
     }
     public void actualizarInformacionJugador(Jugador jugador) {
         //DESPUES

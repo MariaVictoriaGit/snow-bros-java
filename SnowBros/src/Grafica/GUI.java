@@ -101,6 +101,8 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public void accionarInicioJuego() {
         this.panelPantallaJuego = new PanelPantallaJuego(this);
         miJuego.iniciar();
+        this.getPantalla().incorporarSilueta(miJuego.getNivelActual().getSilueta());
+        refrescar();
         //controladorDeSonido.reproducirSonidoDeFondo();
     }
     public void accionarPantallaModoJuego() {
@@ -141,11 +143,11 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         refrescar();
         return observerJugador;
     }
-    public Observer registrarSilueta(Entidad silueta) {
-        Observer observer_silueta = panelPantallaJuego.incorporarSilueta(silueta);
-        refrescar();
-        return observer_silueta;
-    }
+   // public Observer registrarSilueta(Entidad silueta) {
+        //Observer observer_silueta = panelPantallaJuego.incorporarSilueta(silueta);
+    //    refrescar();
+     //   return observer_silueta;
+    //}
    /* public Observer registrarSprite(Entidad e){
         return null;
         

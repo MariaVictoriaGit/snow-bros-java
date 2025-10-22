@@ -44,6 +44,7 @@ public class Juego {
         nivel= parseActual.generarNivel(1);
         this.jugador=nivel.getJugador();
         this.registrarObservers();
+        jugador.getObserver().actualizar();
         
 
         

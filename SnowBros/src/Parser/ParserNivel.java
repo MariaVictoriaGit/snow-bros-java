@@ -47,9 +47,8 @@ public class ParserNivel {
                         int xJugador = Integer.parseInt(partes[1]);
                         int yArchivo = Integer.parseInt(partes[2]);
                         int yJugador = ConstantesVistas.PANEL_ALTO - yArchivo;
-                        EntidadDinamica jugador = fabrica.getJugador(xJugador, yJugador);
+                        EntidadDinamica jugador = fabrica.getJugador(xJugador, yJugador-500);
                         nivel.agregarJugador(jugador);
-                        jugador.notificarObserver();
                         break;
 
                     case "Plataforma":
@@ -59,6 +58,13 @@ public class ParserNivel {
                         nivel.agregarPlataforma(plataforma);
 
                         break;
+                    /*  case "DemonioRojo":
+                        int xDemRojo = Integer.parseInt(partes[1]);
+                        yArchivo = Integer.parseInt(partes[2]);
+                        int yDemRojo = ConstantesVistas.PANEL_ALTO - yArchivo;
+                        EntidadDinamica demonioRojo = fabrica.getJugador(xDemRojo, yDemRojo-500);
+                        nivel.agregarEnemigo(demonioRojo);
+                        break; */
 
                 }
             }
