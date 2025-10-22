@@ -2,23 +2,17 @@ package SnowBros.src.Parser;
 
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.Original;
-import SnowBros.src.Grafica.Observer;
-import SnowBros.src.Grafica.ObserverGrafico;
-import SnowBros.src.Grafica.ObserverJugador;
-import SnowBros.src.Fabricas.Alternativo;
 import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Juego.Silueta;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
-import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 
 public class ParserNivel {
     private FabricaEntidades fabrica;
@@ -58,13 +52,30 @@ public class ParserNivel {
                         nivel.agregarPlataforma(plataforma);
 
                         break;
-                    /*  case "DemonioRojo":
+
+                    case "DemonioRojo":
                         int xDemRojo = Integer.parseInt(partes[1]);
                         yArchivo = Integer.parseInt(partes[2]);
                         int yDemRojo = ConstantesVistas.PANEL_ALTO - yArchivo;
-                        EntidadDinamica demonioRojo = fabrica.getJugador(xDemRojo, yDemRojo-500);
+                        EntidadDinamica demonioRojo = fabrica.getDemonioRojo(xDemRojo, yDemRojo-500);
                         nivel.agregarEnemigo(demonioRojo);
-                        break; */
+                        break;
+
+                    case "TrollAmarillo":
+                        int xTrollAmarillo = Integer.parseInt(partes[1]);
+                        yArchivo = Integer.parseInt(partes[2]);
+                        int yTrollAmarillo = ConstantesVistas.PANEL_ALTO - yArchivo;
+                        EntidadDinamica trollAmarillo = fabrica.getTrollAmarillo(xTrollAmarillo, yTrollAmarillo-500);
+                        nivel.agregarEnemigo(trollAmarillo);
+                        break;
+
+                    case "RanaDeFuego":
+                        int xRanaFuego = Integer.parseInt(partes[1]);
+                        yArchivo = Integer.parseInt(partes[2]);
+                        int yRanafuego = ConstantesVistas.PANEL_ALTO - yArchivo;
+                        EntidadDinamica ranaFuego = fabrica.getRanaDeFuego(xRanaFuego, yRanafuego-500);
+                        nivel.agregarEnemigo(ranaFuego);
+                        break;
 
                 }
             }
