@@ -49,6 +49,7 @@ public class ParserNivel {
                         int yJugador = ConstantesVistas.PANEL_ALTO - yArchivo;
                         EntidadDinamica jugador = fabrica.getJugador(xJugador, yJugador);
                         nivel.agregarJugador(jugador);
+                        jugador.notificarObserver();
                         break;
 
                     case "Plataforma":

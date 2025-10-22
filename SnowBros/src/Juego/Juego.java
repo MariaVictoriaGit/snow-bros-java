@@ -1,7 +1,11 @@
 package SnowBros.src.Juego;
 
+import java.util.List;
+
 import javax.swing.ImageIcon;
 
+import SnowBros.src.Entidades.Entidad;
+import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.FabricaSprites;
@@ -39,6 +43,8 @@ public class Juego {
         ParserNivel parseActual= new ParserNivel(true);
         nivel= parseActual.generarNivel(1);
         this.jugador=nivel.getJugador();
+        this.registrarObservers();
+        
 
         
     }
@@ -74,6 +80,26 @@ public class Juego {
     public Jugador getJugador(){
         return jugador;
     }
+    public void registrarObservers(){
+        registrarObserverJugador();
+        registrarObserversEntidades(nivel.getEnemigos());
+        registrarObserversEntidades(nivel.getDisparos());
+
+    }
+    public void registrarObserverJugador(){
+    	Observer observerJugador = controladorGrafica.registrarEntidad(jugador);
+		jugador.registrarObserver(observerJugador);
+	}
+	
+	
+	protected void registrarObserversEntidades(List<? extends Entidad> entidades) {
+		for(Entidad entidad : entidades) {
+			Observer observer = controladorGrafica.registrarEntidad(entidad);
+            EntidadDinamica e=(EntidadDinamica) entidad;
+			e.registrarObserver(observer);
+		}
+    }
+    
     public int getModoDeJuego(){
         return puntajeJugador;
         //TODO implementar;

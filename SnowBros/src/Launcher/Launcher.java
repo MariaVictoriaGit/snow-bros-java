@@ -8,9 +8,9 @@ public class Launcher {	public static void main(String [] args) {
 			public void run() {
 				try {
 					Juego juego = new Juego();
-					juego.iniciar();
 					GUI miControlador = new GUI(juego);
 					juego.setControladorGrafica(miControlador);
+					juego.iniciar();
 					miControlador.mostrarPantallaJuego();
 					
 				} catch (Exception e) {

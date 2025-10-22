@@ -62,35 +62,36 @@ public class FabricaEntidades {
         return moghera;
     }
     public BotellaAzul getBotellaAzul(int x, int y){
-        Sprite botellaAzul= fabrica.getSpriteBotellaAzul();
+        Sprite botellaAzul= fabrica.getSpritePowerUp();
         BotellaAzul azul= new BotellaAzul(x, y, botellaAzul);
         return azul;
     }
     public BotellaRoja getBotellaRoja(int x, int y){
-        Sprite botellaRoja= fabrica.getSpriteBotellaRoja();
+        Sprite botellaRoja= fabrica.getSpritePowerUp();
         BotellaRoja roja= new BotellaRoja(x, y, botellaRoja);
         return roja;
     }
     public BotellaVerde getBotellaVerde(int x, int y){
-        Sprite botellaVerde= fabrica.getSpriteBotellaVerde();
+        Sprite botellaVerde= fabrica.getSpritePowerUp();
         BotellaVerde verde= new BotellaVerde(x, y, botellaVerde);
         return verde;
     }
     public Fruta getFruta(int x, int y){
-        Sprite spriteFruta= fabrica.getSpriteFruta();
+        Sprite spriteFruta= fabrica.getSpritePowerUp();
         Fruta fruta= new Fruta(x, y, spriteFruta);
         return fruta;
     }
     public VidaExtra getVidaExtra(int x, int y){
-        Sprite vidaExtra= fabrica.getSpriteVidaExtra();
+        Sprite vidaExtra= fabrica.getSpritePowerUp();
         VidaExtra vida= new VidaExtra(x, y, vidaExtra);
         return vida;
     }
-    public Escalera getEscalera(int x, int y){
+    /*public Escalera getEscalera(int x, int y){
         Sprite spriteEscalera= fabrica.getSpriteEscalera();
         Escalera escalera= new Escalera(x,y,spriteEscalera);
         return escalera;
     }
+        */
     public Pared getPared(int x, int y){
         return null;
         //TODO implementar

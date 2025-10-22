@@ -16,7 +16,6 @@ public abstract class EntidadDinamica extends Entidad{
         super(posX, posY, mSprite);
         registrarObserver(new ObserverEntidad(this));
     }
-
     public void mover(){
         //TODO implementar o dejar abstract¿
     }
@@ -50,6 +49,9 @@ public abstract class EntidadDinamica extends Entidad{
     }
     public Observer getObserver(){
         return observer;
+    }
+    public void notificarObserver(){
+        observer.actualizar();
     }
 
 }

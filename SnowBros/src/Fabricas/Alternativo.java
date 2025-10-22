@@ -8,7 +8,7 @@ public class Alternativo extends FabricaSprites{
         super(ruta);
         //TODO implementar
     }
-    @Override
+    /*@Override
     public Sprite getSpriteDemonioRojo() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getSpriteDemonioRojo'");
@@ -123,5 +123,6 @@ public class Alternativo extends FabricaSprites{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getSpriteDisparoJugador'");
     }
+        */
 }
 

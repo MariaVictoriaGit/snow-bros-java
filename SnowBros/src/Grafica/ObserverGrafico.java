@@ -3,13 +3,11 @@ package SnowBros.src.Grafica;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import SnowBros.src.Paneles.PanelPantallaJuego;
 import SnowBros.src.Datos.*;
 import SnowBros.src.Entidades.Entidad;
 
 public class ObserverGrafico extends JLabel implements Observer{
     protected Entidad entidadObservada;
-	protected PanelPantallaJuego panelPantallaJuego;
 
     public ObserverGrafico(Entidad entidad) {
 		entidadObservada = entidad;
@@ -22,10 +20,6 @@ public class ObserverGrafico extends JLabel implements Observer{
     protected void actualizarImagen() {
         //No todas las entidades tienen mas de un sprite, como hacemos con las estaticas?
 		String rutaImagen = entidadObservada.getSprite().getRutaImagen("idleIzquierda");
-<<<<<<< HEAD
-		System.out.println(rutaImagen);
-=======
->>>>>>> d9319e18b72d08ab6cdd4c6a87b27c841bd51aa1
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
 	    setIcon(icono);
 	}
