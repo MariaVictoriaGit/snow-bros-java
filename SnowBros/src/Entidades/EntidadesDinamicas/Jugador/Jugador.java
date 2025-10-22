@@ -1,4 +1,7 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
+import java.util.HashMap;
+
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Juego;
@@ -19,9 +22,23 @@ public class Jugador extends EntidadDinamica {
         super(x,y,mISprite);
         vidas=vidaDeInicio;
         tocandoSuelo=true;
+        velocidad=8;
     }
-    public void mover(){
-        //TODO implementar
+    public void mover(int direccionAMover){
+        if(direccionAMover==ConstantesEntidades.QUIETO){
+            this.direccion=direccionAMover;
+            observer.actualizar(direccionAMover, direccionAMover);
+        }
+        else if(direccionAMover==ConstantesEntidades.DERECHA){
+            this.direccion=direccionAMover;
+            posX=posX+this.velocidad;
+            observer.actualizar(direccion,getEstadoAereo());
+        }
+        else if(direccionAMover==ConstantesEntidades.IZQUIERDA){
+            this.direccion=direccionAMover; //toma la velocidad de entidad? ver como solucionar
+            posX=posX-this.velocidad;
+            observer.actualizar(direccion,getEstadoAereo());
+        }
     }
     public void actualizarSalto(){
         //TODO implementar
@@ -40,9 +57,24 @@ public class Jugador extends EntidadDinamica {
         puntajeJugador+=puntaje;
         //TODO implementar      es return definido por el compilador
     }
-    public String generarClaveEstado(){
-        return nombre;
-        //TODO implementar      es return definido por el compilador
+    public String generarClaveEstado(int dirAnterior){
+        String claveADevolver=null;
+        if (!estadoAereo)
+            switch(direccion){
+                case ConstantesEntidades.IZQUIERDA:
+                    claveADevolver="moverIzquierda";
+                case ConstantesEntidades.QUIETO:
+                    if (dirAnterior == ConstantesEntidades.IZQUIERDA)
+                        claveADevolver="idleIzquierda";
+                    else 
+                        claveADevolver="idleDerecha";
+                case ConstantesEntidades.DERECHA:
+                    claveADevolver= "moverDerecha";
+            }
+        
+        //TODO faltan estas dos claves "saltandoDerecha" ---- JugadorSaltandoDerecha.png
+        //                             "saltandoIzquierda" --- JugadorSaltandoIzquierda.png
+        return claveADevolver;
     }
     public int getVidas(){
         return vidas;
@@ -74,6 +106,10 @@ public class Jugador extends EntidadDinamica {
     public boolean getTocandoSuelo(){
         return tocandoSuelo;
     }   
+    public void setDireccion(int direccionActual){
+        dirAnterior=this.direccion;
+        this.direccion=direccionActual;
+    }
    /* public void setTiempo(int t){ //tendriamos que hacerlo con el timer
         int tiempo;
         if(t>=0){

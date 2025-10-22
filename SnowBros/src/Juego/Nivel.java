@@ -75,7 +75,6 @@ public class Nivel {
     }
     public void agregarJugador(Entidad j){
         jugador=(Jugador)j;
-        //jugador.getObserver().actualizar(jugador.getDireccion(), jugador.getEstadoAereo());
     }
     public void agregarPlataforma(Entidad p){
         listaPlataformas.addLast(p);

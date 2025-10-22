@@ -33,9 +33,9 @@ public class ObserverGrafico extends JLabel implements Observer{
     private int adaptarY(int y){
         return ConstantesVistas.PANEL_ALTO - ConstantesVistas.PADDING - y;
     }
-	@Override
 	public void actualizar(int direccion, int estadoAereo) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'actualizar'");
+		String rutaImagen = entidadObservada.getSprite().getRutaImagen("idleIzquierda");
+		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
+		setIcon(icono);
 	}
 }

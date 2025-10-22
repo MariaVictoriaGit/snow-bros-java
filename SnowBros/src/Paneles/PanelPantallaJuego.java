@@ -92,7 +92,7 @@ public class PanelPantallaJuego extends JPanel{
         imagenFondoJuego.add(observerEntidad);
         return observerEntidad;
     }
-    public Observer incorporarEntidadJugador(Jugador jugador) {
+    public ObserverJugador incorporarEntidadJugador(Jugador jugador) {
         ObserverJugador observerJugador= new ObserverJugador((jugador));
         imagenFondoJuego.add(observerJugador);
         actualizarInformacionJugador(jugador);

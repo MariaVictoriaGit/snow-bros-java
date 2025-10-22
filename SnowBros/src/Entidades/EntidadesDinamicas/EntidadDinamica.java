@@ -15,6 +15,7 @@ public abstract class EntidadDinamica extends Entidad{
     public EntidadDinamica(int posX, int posY, Sprite mSprite){
         super(posX, posY, mSprite);
         registrarObserver(new ObserverEntidad(this));
+        velocidad=8;
     }
     public void mover(){
         //TODO implementar o dejar abstract¿

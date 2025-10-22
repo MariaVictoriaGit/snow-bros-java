@@ -17,26 +17,14 @@ public class ObserverJugador extends ObserverGrafico{
     public void actualizar() {
         super.actualizar();
     }
-    public void actualizar(int direccion, boolean estadoAereo){
-        actualizarImagen(jugadorObservado.getDireccion(), jugadorObservado.tocoAire());
+    public void actualizar(int direccion, int estadoAereo){
+        actualizarImagen(jugadorObservado.getDireccion(), jugadorObservado.getEstadoAereo()); 
         super.actualizarPosicionTamano();
 
     }
-    protected void actualizarImagen(int direccion, boolean estadoAereo) {
-        String estado= null;
-        if (!estadoAereo)
-            switch(direccion){
-                case ConstantesEntidades.IZQUIERDA:
-                    estado="moverIzquierda";
-                case ConstantesEntidades.QUIETO:
-                    if (jugadorObservado.getDirAnterior() == ConstantesEntidades.IZQUIERDA)
-                        estado="idleIzquierda";
-                    else 
-                        estado="idleDerecha";
-                case ConstantesEntidades.DERECHA:
-                    estado= "moverDerecha";
-            }
-        
+    protected void actualizarImagen(int direccion, int estadoAereo) {
+        jugadorObservado.setDireccion(direccion);
+        String estado= jugadorObservado.generarClaveEstado(jugadorObservado.getDirAnterior());
 		String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
 		setIcon(icono);

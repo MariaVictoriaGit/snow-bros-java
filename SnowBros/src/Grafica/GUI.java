@@ -46,14 +46,13 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     private void addWindowKeyListener() {
         ventana.addKeyListener(new KeyAdapter() {
-            @Override
             public void keyPressed(KeyEvent event) {
                 int keyCode = event.getKeyCode();
                 if (keyCode == KeyEvent.VK_A) {
-                    miJuego.setDirection(ConstantesEntidades.IZQUIERDA);
+                    miJuego.getJugador().mover(ConstantesEntidades.IZQUIERDA);
                     
                 } else if (keyCode == KeyEvent.VK_D) {
-                    miJuego.setDirection(ConstantesEntidades.DERECHA);
+                    miJuego.getJugador().mover(ConstantesEntidades.DERECHA);
                     
                 } else if (keyCode == KeyEvent.VK_W) {
                     /*if (miJuego.getNivel().getJugador().getTocandoSuelo()) {
@@ -73,12 +72,10 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                 	miJuego.reiniciarNivel();
                 }
             }
-            @Override
             public void keyReleased(KeyEvent event) {
                 int keyCode = event.getKeyCode();
-
                 if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_D) {
-                    miJuego.setDirection(ConstantesEntidades.QUIETO);
+                    miJuego.getJugador().mover(ConstantesEntidades.QUIETO);
                 }
                 }
             }
@@ -138,8 +135,8 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         refrescar();
         return observerEntidad;
     }
-    public Observer registrarEntidad(Jugador jugador) {
-        Observer observerJugador = panelPantallaJuego.incorporarEntidadJugador(jugador);
+    public ObserverJugador registrarEntidad(Jugador jugador) {
+        ObserverJugador observerJugador = panelPantallaJuego.incorporarEntidadJugador(jugador);
         refrescar();
         return observerJugador;
     }

@@ -88,7 +88,7 @@ public class Juego {
 
     }
     public void registrarObserverJugador(){
-    	Observer observerJugador = controladorGrafica.registrarEntidad(jugador);
+    	ObserverJugador observerJugador = controladorGrafica.registrarEntidad(jugador);
 		jugador.registrarObserver(observerJugador);
 	}
 	
