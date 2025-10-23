@@ -24,7 +24,6 @@ public class FabricaEntidades {
         Sprite spritesJugador=fabrica.getSpriteJugador();
         Jugador jugador= new Jugador(x,y,spritesJugador);
         return jugador;
-        
     }
     public DemonioRojo getDemonioRojo(int x, int y){
         Sprite spritesDemonioRojo=fabrica.getSpriteDemonioRojo();

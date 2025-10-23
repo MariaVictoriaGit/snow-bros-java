@@ -24,7 +24,6 @@ public abstract class FabricaSprites {
         mapeo.put("saltandoDerecha", rutaACarpeta+ "/Jugador/JugadorSaltandoDerecha.png");
         mapeo.put("saltandoIzquierda", rutaACarpeta+ "/Jugador/JugadorSaltandoIzquierda.png");
         return new Sprite(mapeo);
-    	
     }
     public Sprite getSpritePlataforma(){  //TODO lo hacemos abstracto o lo dejamos implementado?
          HashMap<String, String> mapeo = new HashMap<>();
