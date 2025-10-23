@@ -24,7 +24,7 @@ public class ObserverJugador extends ObserverGrafico{
     }
     protected void actualizarImagen(int direccion, int estadoAereo) {
         jugadorObservado.setDireccion(direccion);
-        String estado= jugadorObservado.generarClaveEstado(direccion);
+        String estado= jugadorObservado.generarClaveEstado(jugadorObservado.getDirAnterior());
 		String rutaImagen = jugadorObservado.getSprite().getRutaImagen(estado);
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
 		setIcon(icono);

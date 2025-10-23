@@ -25,6 +25,7 @@ public class Jugador extends EntidadDinamica {
         velocidad=8;
     }
     public void mover(int direccionAMover){
+        dirAnterior=direccion;
         if(direccionAMover==ConstantesEntidades.QUIETO){
             this.direccion=direccionAMover;
         }
@@ -33,12 +34,23 @@ public class Jugador extends EntidadDinamica {
             posX=posX+this.velocidad;
         }
         else if(direccionAMover==ConstantesEntidades.IZQUIERDA){
-            this.direccion=direccionAMover; //toma la velocidad de entidad? ver como solucionar
+            this.direccion=direccionAMover; 
             posX=posX-this.velocidad;
         }
+        else if(direccionAMover==ConstantesEntidades.ARRIBA){
+            this.iniciarSalto();
+            
+        }
     }
-    public void actualizarSalto(){
-        //TODO implementar
+    public void iniciarSalto(){
+        tocandoSuelo=false;
+        if(!tocandoSuelo){
+            int gravedad=-1;
+            int rapidezEnY=8;
+            rapidezEnY=gravedad+rapidezEnY;
+            posY=rapidezEnY+posY;
+            observer.actualizar(direccion, getEstadoAereo());
+        }
     }
     public boolean tocoAire(){
         return !tocandoSuelo;
@@ -54,7 +66,7 @@ public class Jugador extends EntidadDinamica {
         puntajeJugador+=puntaje;
         //TODO implementar      es return definido por el compilador
     }
-    public String generarClaveEstado(int direccion){
+    public String generarClaveEstado(int direccionAnterior){
         String claveADevolver=null;
         if (!estadoAereo)
             switch(direccion){
@@ -62,7 +74,7 @@ public class Jugador extends EntidadDinamica {
                     claveADevolver="moverIzquierda";
                     break;
                 case ConstantesEntidades.QUIETO:
-                    if (dirAnterior == ConstantesEntidades.IZQUIERDA){
+                    if (direccionAnterior == ConstantesEntidades.IZQUIERDA){
                         claveADevolver="idleIzquierda";
                     }
                     else {
@@ -109,7 +121,9 @@ public class Jugador extends EntidadDinamica {
         return tocandoSuelo;
     }   
     public void setDireccion(int direccionActual){
-        dirAnterior=this.direccion;
+        if(direccionActual!=0){
+            dirAnterior=this.direccion;
+        }
         this.direccion=direccionActual;
     }
    /* public void setTiempo(int t){ //tendriamos que hacerlo con el timer

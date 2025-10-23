@@ -57,11 +57,12 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                     miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.DERECHA, miJuego.getJugador().getEstadoAereo());
                     
                 } else if (keyCode == KeyEvent.VK_W) {
-                    /*if (miJuego.getNivel().getJugador().getTocandoSuelo()) {
-                        miJuego.getNivel().getJugador().iniciarSalto();
-                    }*/
+                    //if (miJuego.getJugador().getTocandoSuelo()) { poner una vez el salto este perfecto
+                        miJuego.getJugador().mover(ConstantesEntidades.ARRIBA);
+                        miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ARRIBA, miJuego.getJugador().getEstadoAereo());
+
+                    //}
                     //controladorDeSonido.reproducirSonidoDeSalto();
-                    
                 } else if (keyCode== KeyEvent.VK_S) {//podria ser para bajar la escalera
                     miJuego.setDirection(ConstantesEntidades.ABAJO);
                     
