@@ -50,9 +50,11 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                 int keyCode = event.getKeyCode();
                 if (keyCode == KeyEvent.VK_A) {
                     miJuego.getJugador().mover(ConstantesEntidades.IZQUIERDA);
+                    miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.IZQUIERDA, miJuego.getJugador().getEstadoAereo());
                     
                 } else if (keyCode == KeyEvent.VK_D) {
                     miJuego.getJugador().mover(ConstantesEntidades.DERECHA);
+                    miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.DERECHA, miJuego.getJugador().getEstadoAereo());
                     
                 } else if (keyCode == KeyEvent.VK_W) {
                     /*if (miJuego.getNivel().getJugador().getTocandoSuelo()) {
@@ -76,6 +78,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                 int keyCode = event.getKeyCode();
                 if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_D) {
                     miJuego.getJugador().mover(ConstantesEntidades.QUIETO);
+                    miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.QUIETO, miJuego.getJugador().getEstadoAereo());
                 }
                 }
             }

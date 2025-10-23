@@ -27,17 +27,14 @@ public class Jugador extends EntidadDinamica {
     public void mover(int direccionAMover){
         if(direccionAMover==ConstantesEntidades.QUIETO){
             this.direccion=direccionAMover;
-            observer.actualizar(direccionAMover, direccionAMover);
         }
         else if(direccionAMover==ConstantesEntidades.DERECHA){
             this.direccion=direccionAMover;
             posX=posX+this.velocidad;
-            observer.actualizar(direccion,getEstadoAereo());
         }
         else if(direccionAMover==ConstantesEntidades.IZQUIERDA){
             this.direccion=direccionAMover; //toma la velocidad de entidad? ver como solucionar
             posX=posX-this.velocidad;
-            observer.actualizar(direccion,getEstadoAereo());
         }
     }
     public void actualizarSalto(){
@@ -57,19 +54,24 @@ public class Jugador extends EntidadDinamica {
         puntajeJugador+=puntaje;
         //TODO implementar      es return definido por el compilador
     }
-    public String generarClaveEstado(int dirAnterior){
+    public String generarClaveEstado(int direccion){
         String claveADevolver=null;
         if (!estadoAereo)
             switch(direccion){
                 case ConstantesEntidades.IZQUIERDA:
                     claveADevolver="moverIzquierda";
+                    break;
                 case ConstantesEntidades.QUIETO:
-                    if (dirAnterior == ConstantesEntidades.IZQUIERDA)
+                    if (dirAnterior == ConstantesEntidades.IZQUIERDA){
                         claveADevolver="idleIzquierda";
-                    else 
+                    }
+                    else {
                         claveADevolver="idleDerecha";
+                    }
+                    break;
                 case ConstantesEntidades.DERECHA:
                     claveADevolver= "moverDerecha";
+                    break;
             }
         
         //TODO faltan estas dos claves "saltandoDerecha" ---- JugadorSaltandoDerecha.png

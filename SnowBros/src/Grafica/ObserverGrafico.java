@@ -34,7 +34,7 @@ public class ObserverGrafico extends JLabel implements Observer{
         return ConstantesVistas.PANEL_ALTO - ConstantesVistas.PADDING - y;
     }
 	public void actualizar(int direccion, int estadoAereo) {
-		String rutaImagen = entidadObservada.getSprite().getRutaImagen("idleIzquierda");
+		String rutaImagen = entidadObservada.getSprite().getRutaImagen("idleDerecha");
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
 		setIcon(icono);
 	}
