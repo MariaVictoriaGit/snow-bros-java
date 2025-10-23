@@ -46,21 +46,28 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     private void addWindowKeyListener() {
         ventana.addKeyListener(new KeyAdapter() {
+            private int direccionAnterior;
             public void keyPressed(KeyEvent event) {
                 int keyCode = event.getKeyCode();
                 if (keyCode == KeyEvent.VK_A) {
+                    direccionAnterior=ConstantesEntidades.IZQUIERDA;
                     miJuego.getJugador().mover(ConstantesEntidades.IZQUIERDA);
                     miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.IZQUIERDA, miJuego.getJugador().getEstadoAereo());
                     
                 } else if (keyCode == KeyEvent.VK_D) {
+                    direccionAnterior=ConstantesEntidades.DERECHA;
                     miJuego.getJugador().mover(ConstantesEntidades.DERECHA);
                     miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.DERECHA, miJuego.getJugador().getEstadoAereo());
                     
                 } else if (keyCode == KeyEvent.VK_W) {
                     //if (miJuego.getJugador().getTocandoSuelo()) { poner una vez el salto este perfecto
-                        miJuego.getJugador().mover(ConstantesEntidades.ARRIBA);
-                        miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ARRIBA, miJuego.getJugador().getEstadoAereo());
-
+                    if(direccionAnterior==ConstantesEntidades.IZQUIERDA){
+                        miJuego.getJugador().mover(ConstantesEntidades.ARRIBA_IZQUIERDA);
+                        miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ARRIBA_IZQUIERDA, miJuego.getJugador().getEstadoAereo());
+                    }else if(direccionAnterior==ConstantesEntidades.DERECHA){
+                        miJuego.getJugador().mover(ConstantesEntidades.ARRIBA_DERECHA);
+                        miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ARRIBA_DERECHA,miJuego.getJugador().getEstadoAereo());
+                    }
                     //}
                     //controladorDeSonido.reproducirSonidoDeSalto();
                 } else if (keyCode== KeyEvent.VK_S) {//podria ser para bajar la escalera

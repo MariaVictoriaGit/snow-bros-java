@@ -55,7 +55,12 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
                 posX-=velocidad;
             }
             break;
-        case ConstantesEntidades.ARRIBA:
+        case ConstantesEntidades.ARRIBA_IZQUIERDA:
+            direccion=direccionAMover;
+            this.iniciarSalto();
+            break;
+        case ConstantesEntidades.ARRIBA_DERECHA:
+            direccion=direccionAMover;
             this.iniciarSalto();
             break;
         }
