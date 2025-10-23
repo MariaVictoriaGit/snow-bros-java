@@ -1,6 +1,7 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Visitor.Visitador;
 
 public class Calabaza extends Enemigo{
     public Calabaza(int x, int y, Sprite sprite){
@@ -24,5 +25,8 @@ public class Calabaza extends Enemigo{
     public void agregarPowerUp(Boolean agregar){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
+    }
+    public void aceptar(Visitador v){
+        v.visitar(this);
     }
 }

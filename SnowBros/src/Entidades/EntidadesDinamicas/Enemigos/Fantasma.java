@@ -1,6 +1,7 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Visitor.Visitador;
 
 public class Fantasma extends Enemigo{
     
@@ -22,5 +23,8 @@ public class Fantasma extends Enemigo{
     public void agregarPowerUp(Boolean b){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
+    }
+    public void aceptar(Visitador v){
+        v.visitar(this);
     }
 }

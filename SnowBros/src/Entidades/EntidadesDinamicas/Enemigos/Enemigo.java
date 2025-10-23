@@ -3,8 +3,9 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Timer;
+import SnowBros.src.Visitor.Visitable;
 
-public abstract class Enemigo extends EntidadDinamica {
+public abstract class Enemigo extends EntidadDinamica implements Visitable {
    private static final int tiempoCongelado=10000;
    protected int salud;
    protected Timer temporizado;

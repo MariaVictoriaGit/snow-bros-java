@@ -1,5 +1,5 @@
 package SnowBros.src.Visitor;
 
-interface Visitable {
+public interface Visitable {
     public void aceptar(Visitador v);
 }

@@ -18,9 +18,6 @@ public abstract class PowerUp extends EntidadEstatica {
         activo=false;   
         //TODO implementar
     }
-    public void afectarJugador(){
-        //TODO implementar
-    }
     public int getPuntaje(){
         return puntaje;
     }
