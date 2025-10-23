@@ -1,7 +1,7 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
-import java.util.HashMap;
 
 import SnowBros.src.Datos.ConstantesEntidades;
+import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Juego;
@@ -26,21 +26,27 @@ public class Jugador extends EntidadDinamica {
     }
     public void mover(int direccionAMover){
         dirAnterior=direccion;
-        if(direccionAMover==ConstantesEntidades.QUIETO){
-            this.direccion=direccionAMover;
-        }
-        else if(direccionAMover==ConstantesEntidades.DERECHA){
-            this.direccion=direccionAMover;
-            posX=posX+this.velocidad;
-        }
-        else if(direccionAMover==ConstantesEntidades.IZQUIERDA){
-            this.direccion=direccionAMover; 
-            posX=posX-this.velocidad;
-        }
-        else if(direccionAMover==ConstantesEntidades.ARRIBA){
+    switch (direccionAMover) {
+        case ConstantesEntidades.QUIETO:
+            direccion = direccionAMover;
+            break;
+        case ConstantesEntidades.DERECHA:
+            direccion = direccionAMover;
+            if(posX+velocidad<ConstantesVistas.PANEL_ANCHO){
+               posX += velocidad;
+            }
+            break;
+        case ConstantesEntidades.IZQUIERDA:
+            direccion=direccionAMover;
+            if (posX-velocidad>0){
+                posX-=velocidad;
+            }
+            break;
+        case ConstantesEntidades.ARRIBA:
             this.iniciarSalto();
-            
+            break;
         }
+            
     }
     public void iniciarSalto(){
         tocandoSuelo=false;
@@ -77,7 +83,7 @@ public class Jugador extends EntidadDinamica {
                     if (direccionAnterior == ConstantesEntidades.IZQUIERDA){
                         claveADevolver="idleIzquierda";
                     }
-                    else {
+                    else if (dirAnterior == ConstantesEntidades.DERECHA){
                         claveADevolver="idleDerecha";
                     }
                     break;
