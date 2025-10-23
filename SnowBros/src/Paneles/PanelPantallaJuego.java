@@ -77,10 +77,10 @@ public class PanelPantallaJuego extends JPanel{
     protected void agregarPanelJuego() {
        imagenFondoJuego= new JLabel();
        imagenFondoJuego.setLayout(null); //null para posicionar sprites manualmente
-       imagenFondoJuego.setBounds(0,0, ConstantesVistas.PANEL_JUEGO_ANCHO, ConstantesVistas.PANEL_ALTO);
+       imagenFondoJuego.setBounds(0,0, ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO);
        //Panel del Juego donde se van a agregar los objetos
        panelPantallaJuego= new JPanel();
-       panelPantallaJuego.setPreferredSize(new Dimension(ConstantesVistas.PANEL_JUEGO_ANCHO,ConstantesVistas.PANEL_ALTO));
+       panelPantallaJuego.setPreferredSize(new Dimension(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO));
        panelPantallaJuego.add(imagenFondoJuego);
        //voy a agregar el panel de juevo al PanelPantallaJuego
        this.add(panelPantallaJuego,BorderLayout.CENTER);

@@ -2,6 +2,7 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
 import java.util.HashMap;
 
 import SnowBros.src.Datos.ConstantesEntidades;
+import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Juego;
@@ -25,16 +26,23 @@ public class Jugador extends EntidadDinamica {
         velocidad=8;
     }
     public void mover(int direccionAMover){
-        if(direccionAMover==ConstantesEntidades.QUIETO){
-            this.direccion=direccionAMover;
-        }
-        else if(direccionAMover==ConstantesEntidades.DERECHA){
-            this.direccion=direccionAMover;
-            posX=posX+this.velocidad;
-        }
-        else if(direccionAMover==ConstantesEntidades.IZQUIERDA){
-            this.direccion=direccionAMover; //toma la velocidad de entidad? ver como solucionar
-            posX=posX-this.velocidad;
+        dirAnterior=direccion;
+    switch (direccionAMover) {
+        case ConstantesEntidades.QUIETO:
+            direccion = direccionAMover;
+            break;
+        case ConstantesEntidades.DERECHA:
+            direccion = direccionAMover;
+            if(posX+velocidad<ConstantesVistas.PANEL_ANCHO){
+               posX += velocidad;
+            }
+            break;
+        case ConstantesEntidades.IZQUIERDA:
+            direccion=direccionAMover;
+            if (posX-velocidad>0){
+                posX-=velocidad;
+            }
+            break;
         }
     }
     public void actualizarSalto(){
@@ -65,7 +73,7 @@ public class Jugador extends EntidadDinamica {
                     if (dirAnterior == ConstantesEntidades.IZQUIERDA){
                         claveADevolver="idleIzquierda";
                     }
-                    else {
+                    else if (dirAnterior == ConstantesEntidades.DERECHA){
                         claveADevolver="idleDerecha";
                     }
                     break;
