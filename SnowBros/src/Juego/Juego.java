@@ -24,6 +24,7 @@ public class Juego {
     protected FabricaSprites fabricaSprites;
     protected FabricaEntidades fabricaEntidades;
     protected ParserNivel parser;
+    
 
     public Juego(){
         reiniciarJugador=false;
@@ -87,9 +88,7 @@ public class Juego {
     public void registrarObserverJugador(){
     	ObserverJugador observerJugador = controladorGrafica.registrarEntidad(jugador);
 		jugador.registrarObserver(observerJugador);
-	}
-	
-	
+	}	
 	protected void registrarObserversEntidades(List<? extends Entidad> entidades) {
 		for(Entidad entidad : entidades) {
 			Observer observer = controladorGrafica.registrarEntidad(entidad);
@@ -102,12 +101,7 @@ public class Juego {
         return puntajeJugador;
         //TODO implementar;
     }   
-    public void setDirection(int abajo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setDirection'");
-    }
     public void shootJugador() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'shootJugador'");
+        jugador.disparar();
     }
 }

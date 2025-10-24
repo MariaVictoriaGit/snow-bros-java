@@ -7,22 +7,14 @@ import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Visitor.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Escalera;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.TrampaPinchos;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaAzul;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaRoja;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaVerde;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.Fruta;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.VidaExtra;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 
 public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     private static final int vidaDeInicio = 3;
     protected Juego miJuego;
-    protected boolean tocandoSuelo;
+    protected int tocandoSuelo;
     protected int puntajeJugador;
     protected int direccion;
     protected int velocidad;
@@ -34,19 +26,19 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     public Jugador(int x,int y, Sprite mISprite){
         super(x,y,mISprite);
         vidas=vidaDeInicio;
-        tocandoSuelo=true;
+        tocandoSuelo=ConstantesEntidades.SUELO;
         velocidad=8;
     }
     public void mover(int direccionAMover){
         dirAnterior=direccion;
-    switch (direccionAMover) {
+    switch (direccionAMover){
         case ConstantesEntidades.QUIETO:
-            direccion = direccionAMover;
+            direccion=direccionAMover;
             break;
         case ConstantesEntidades.DERECHA:
-            direccion = direccionAMover;
+            direccion=direccionAMover;
             if(posX+velocidad<ConstantesVistas.PANEL_ANCHO){
-               posX += velocidad;
+               posX+=velocidad;
             }
             break;
         case ConstantesEntidades.IZQUIERDA:
@@ -57,27 +49,56 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
             break;
         case ConstantesEntidades.ARRIBA_IZQUIERDA:
             direccion=direccionAMover;
-            this.iniciarSalto();
+            if(tocandoSuelo==ConstantesEntidades.SUELO)
+                this.iniciarSalto();
             break;
         case ConstantesEntidades.ARRIBA_DERECHA:
             direccion=direccionAMover;
-            this.iniciarSalto();
+            if(tocandoSuelo==ConstantesEntidades.SUELO)
+                this.iniciarSalto();
             break;
         }
             
     }
+    /*    private void iniciarCaida(){//gestiona la caida
+        //caer hacia donde la tacla indica pq puede que salte derecha y caiga izquierda
+        if(tocandoSuelo==ConstantesEntidades.AIRE){
+            //SI APUNTA A LA IZQ QUE CAE A LA IZQ
+                //QUE CAIGA
+            if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
+
+            }
+            //SI APUNTA A LA DER QUE CAE A LA DER
+                //QUE CAIGA
+            else if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
+
+            }
+        }
+    }
     public void iniciarSalto(){
-        tocandoSuelo=false;
-        if(!tocandoSuelo){
+        //tal vez necesite un parametro para ver hacia donde salta con teclas w y a o d
+        if(tocandoSuelo==ConstantesEntidades.SUELO){//realiza la subida del salto
+            //SI APUNTA A LA IZQ QUE SALTE A LA IZQ
+                //QUE SUBA
+            if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
+
+            }
+            //SI APUNTA A LA DER QUE SALTE A LA DER
+                //QUE SUBA
+            else if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
+
+            }
+            iniciarCaida();
+        } */
+    public void iniciarSalto(){
+        tocandoSuelo=ConstantesEntidades.SUELO;
+        if(tocandoSuelo==ConstantesEntidades.SUELO){
             int gravedad=-1;
             int rapidezEnY=8;
             rapidezEnY=gravedad+rapidezEnY;
             posY=rapidezEnY+posY;
             observer.actualizar(direccion, getEstadoAereo());
         }
-    }
-    public boolean tocoAire(){
-        return !tocandoSuelo;
     }
     public void disparar(){
         Sprite miDisparo=null;  // ponermos getfabrica()
@@ -88,30 +109,31 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     } 
     public void actualizarPuntaje(int puntaje){
         puntajeJugador+=puntaje;
-        //TODO implementar      es return definido por el compilador
     }
     public String generarClaveEstado(int direccionAnterior){
         String claveADevolver=null;
-        if (!estadoAereo)
-            switch(direccion){
-                case ConstantesEntidades.IZQUIERDA:
-                    claveADevolver="moverIzquierda";
+        switch(direccion){
+            case ConstantesEntidades.IZQUIERDA:
+                claveADevolver="moverIzquierda";
+                break;
+            case ConstantesEntidades.QUIETO:
+                if (direccionAnterior == ConstantesEntidades.IZQUIERDA){
+                    claveADevolver="idleIzquierda";
+                }
+                else if (dirAnterior == ConstantesEntidades.DERECHA){
+                    claveADevolver="idleDerecha";
+                }
+                break;
+            case ConstantesEntidades.DERECHA:
+                claveADevolver= "moverDerecha";
+                break;
+            case ConstantesEntidades.ARRIBA_DERECHA:
+                    claveADevolver="saltandoDerecha";
                     break;
-                case ConstantesEntidades.QUIETO:
-                    if (direccionAnterior == ConstantesEntidades.IZQUIERDA){
-                        claveADevolver="idleIzquierda";
-                    }
-                    else if (dirAnterior == ConstantesEntidades.DERECHA){
-                        claveADevolver="idleDerecha";
-                    }
+                case ConstantesEntidades.ARRIBA_IZQUIERDA:
+                    claveADevolver="saltandoIzquierda";
                     break;
-                case ConstantesEntidades.DERECHA:
-                    claveADevolver= "moverDerecha";
-                    break;
-            }
-        
-        //TODO faltan estas dos claves "saltandoDerecha" ---- JugadorSaltandoDerecha.png
-        //                             "saltandoIzquierda" --- JugadorSaltandoIzquierda.png
+        }
         return claveADevolver;
     }
     public int getVidas(){
@@ -135,15 +157,6 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     public int getVelocidad(){
         return velocidad;
     }
-    public void setEnElAire(Boolean b){
-        // TODO preguntar borrar
-    }
-    public void setTocandoSuelo(Boolean b){
-        tocandoSuelo=b;
-    }
-    public boolean getTocandoSuelo(){
-        return tocandoSuelo;
-    }   
     public void setDireccion(int direccionActual){
         if(direccionActual!=0){
             dirAnterior=this.direccion;

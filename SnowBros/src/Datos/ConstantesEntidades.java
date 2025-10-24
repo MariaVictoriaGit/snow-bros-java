@@ -8,6 +8,7 @@ public class ConstantesEntidades {
     public static final String Normal= "normal";
     public static final String BolaDeNieve="BolaDeNieve";
     //Constantes direccion de movimiento 
+    public static final int ARRIBA=15000;
     public static final int ARRIBA_IZQUIERDA = 15001;
     public static final int ARRIBA_DERECHA=15002;
     public static final int IZQUIERDA = 15003;
@@ -15,7 +16,7 @@ public class ConstantesEntidades {
     public static final int ABAJO= 15005;
     public static final int QUIETO = 0;
 
-    //Constantes Sprites DIRECCION
+    //Constantes Sprites DIRECCION  //TODO
     public static final String SPRITESESTATICO= "estatico";
     public static final String SPRITEDERECHA= "derecha";
     public static final String SPRITEIZQUIERDA= "izquierda";
