@@ -2,8 +2,6 @@ package SnowBros.src.Juego;
 
 import java.util.List;
 
-import javax.swing.ImageIcon;
-
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
@@ -11,7 +9,6 @@ import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.Observer;
-import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Parser.ParserNivel;
 
