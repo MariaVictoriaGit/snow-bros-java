@@ -89,7 +89,8 @@ public class PanelPantallaJuego extends JPanel{
     }
     public void mostrarPlataformas(){
         for (Entidad plataforma : miControladorGrafico.getJuego().getNivelActual().getPlataformas()) {
-            ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource("SnowBros/src/Imagenes/Plataforma/estatico.png"));//plataforma.getSprite().getRutaImagen("estatico.png"
+            String ruta = plataforma.getSprite().getRutaImagen("normal");
+            ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));//plataforma.getSprite().getRutaImagen("estatico.png"
             JLabel plataformaVisible = new JLabel(icono);
             plataformaVisible.setBounds(plataforma.getPosX(), plataforma.getPosY(), icono.getIconWidth(), icono.getIconHeight());
             this.add(plataformaVisible);

@@ -22,12 +22,16 @@ public class Jugador extends EntidadDinamica implements Visitable{
     protected String nombre;
     protected int dirAnterior;
     protected boolean disparoAumentado;
+    protected int posXoriginal;
+    protected int posYoriginal;
 
     public Jugador(int x,int y, Sprite mISprite){
         super(x,y,mISprite);
         vidas=vidaDeInicio;
         tocandoSuelo=ConstantesEntidades.SUELO;
         velocidad=8;
+        posXoriginal = x;
+        posYoriginal = y;
     }
     public void mover(int direccionAMover){
         dirAnterior=direccion;
@@ -190,6 +194,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
     //Metodos de la interfaz Visitador
     public void visitar(Enemigo e){
         perderVida();
+        posX = posXoriginal;
+        posY = posYoriginal;
         //TODO reiniciar al personaje en la posicion original
     }
     public void visitar(Plataforma p){
@@ -213,6 +219,12 @@ public class Jugador extends EntidadDinamica implements Visitable{
         puntajeJugador+=v.getPuntaje();
     }
     public void visitar(Pared p){
+        if(direccion == ConstantesEntidades.DERECHA){
+            posX -= 8;
+        }
+        else if(direccion == ConstantesEntidades.IZQUIERDA){
+            posX += 8;
+        }
         //TODO Colision con los costados de la pared
     }
     public void visitar(ParedDestructible p){
@@ -230,6 +242,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public void visitar(TrampaPinchos t){
         perderVida();
+        posX = posXoriginal;
+        posY = posYoriginal;
         //TODO Reiniciar al personaje a la posicion origianl
     }
     public void visitar(Jugador j){
