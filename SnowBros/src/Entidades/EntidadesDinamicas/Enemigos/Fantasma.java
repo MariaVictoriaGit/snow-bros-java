@@ -27,4 +27,10 @@ public class Fantasma extends Enemigo{
     public void aceptar(Visitador v){
         v.visitar(this);
     }
+    public int getPuntajeCongelado() {
+        return 0;//indestructible
+    }
+    public int getPuntajeEmpujado() {
+        return 0;//indestructible
+    }
 }

@@ -202,7 +202,6 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     }
     public void visitar(ParedDestructible p){
         p.destruirse();
-        puntajeJugador += p.getPuntaje();
     }
     public void visitar(Escalera e){
         //Ver forma de subir

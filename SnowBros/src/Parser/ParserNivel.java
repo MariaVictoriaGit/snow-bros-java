@@ -10,6 +10,7 @@ import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.Original;
 import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Juego.Silueta;
+import SnowBros.src.Datos.ConstantesNiveles;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -90,17 +91,17 @@ public class ParserNivel {
     public String obtenerArchivoNivel(int modo) {
         switch (modo) {
             case 1:
-                return "SnowBros/src/Niveles/clasico 1.txt";
+                return ConstantesNiveles.CLASICO1;
             case 2:
-                return "SnowBros/src/Niveles/clasico 2.txt";
+                return ConstantesNiveles.CLASICO2;
             case 3:
-                return "SnowBros/src/Niveles/supervivencia 1.txt";
+                return ConstantesNiveles.SUPERVIVENCIA1;
             case 4:
-                return "SnowBros/src/Niveles/supervivencia 2.txt";
+                return ConstantesNiveles.SUPERVIVENCIA2;
             case 5:
-                return "SnowBros/src/Niveles/contrarreloj 1.txt";
+                return ConstantesNiveles.CONTRARRELOJ1;
             default:
-                return "SnowBros/src/Niveles/contrarreloj 2.txt";
+                return ConstantesNiveles.CONTRARRELOJ2;
         }
        }
 
