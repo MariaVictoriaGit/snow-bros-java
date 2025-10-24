@@ -92,12 +92,16 @@ public class Jugador extends EntidadDinamica implements Visitable{
         } */
     public void iniciarSalto(){
         tocandoSuelo=ConstantesEntidades.SUELO;
-        if(tocandoSuelo==ConstantesEntidades.SUELO){
+        if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_ALTO){
             int gravedad=-1;
             int rapidezEnY=8;
             rapidezEnY=gravedad+rapidezEnY;
             posY=rapidezEnY+posY;
             observer.actualizar(direccion, getEstadoAereo());
+            rapidezEnY=(gravedad+rapidezEnY)*(-1);
+            posY-=rapidezEnY;
+            observer.actualizar(direccion, getEstadoAereo());
+            
         }
     }
     public void disparar(){
