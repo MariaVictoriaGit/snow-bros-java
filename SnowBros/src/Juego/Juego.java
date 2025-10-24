@@ -1,5 +1,6 @@
 package SnowBros.src.Juego;
 
+import java.awt.Rectangle;
 import java.util.List;
 
 import SnowBros.src.Entidades.Entidad;
@@ -103,5 +104,18 @@ public class Juego {
     }   
     public void shootJugador() {
         jugador.disparar();
+    }
+
+    public boolean estaCerca(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
+        Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();
+        Rectangle hitboxEntidadEvaluada = entidadEvaluada.getHitbox().getRectangle();
+
+        double distanciaEnX = hitboxEntidadPrincipal.getCenterX() - hitboxEntidadEvaluada.getCenterX();
+        double distanciaEnY = hitboxEntidadPrincipal.getCenterY() - hitboxEntidadEvaluada.getCenterY();
+
+        double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
+
+        return distancia <= umbralDeRango*umbralDeRango;
+        
     }
 }

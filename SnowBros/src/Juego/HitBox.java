@@ -1,32 +1,37 @@
 package SnowBros.src.Juego;
 import java.awt.Rectangle;
-public class HitBox {
-    private Rectangle hitBox;
 
-    public HitBox(){
-        //TODO implementar
+public class HitBox {
+    private Rectangle hitbox;
+    private int ancho;
+    private int alto;
+
+    public HitBox(int ancho, int altura){
+        this.ancho = ancho;
+        this.alto = altura;
+        hitbox = new Rectangle(ancho/2, altura/2, ancho, altura);
     }
     public void actualizarHitbox(int x, int y, int ancho, int alto){
-        //TODO implementar
+        hitbox = new Rectangle(x, y, ancho, alto);
     }
-    public Rectangle getHitBox(){
-        return hitBox;
-        //TODO implementar
+    
+    public Rectangle getRectangle(){
+        return hitbox;
     }
     public Rectangle getTopHitBox(){
-        return hitBox;
+        return hitbox;
         //TODO implementar
     }
     public Rectangle getBottomHitBox(){
-        return hitBox;
+        return hitbox;
         //TODO implementar
     }
     public Rectangle getLeftHitBox(){
-        return hitBox;
+        return hitbox;
         //TODO implementar
     }
     public Rectangle getRightHitBox(){
-        return hitBox;
+        return hitbox;
         //TODO implementar
     }
 }
