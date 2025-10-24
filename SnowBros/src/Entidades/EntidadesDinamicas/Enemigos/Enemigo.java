@@ -1,6 +1,12 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Escalera;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.TrampaPinchos;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Timer;
 import SnowBros.src.Visitor.Visitable;
@@ -18,8 +24,8 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       temporizado=new Timer(tiempoCongelado);
       congelado=false;
    }
-   public void recibirDaño(){
-      salud--;
+   public void recibirDaño(int daño){
+      salud-=daño;
    }
    public boolean estaCongelado(){
       return congelado;
@@ -29,4 +35,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public abstract void agregarPowerUp(Boolean b);
    public abstract int getPuntajeCongelado();
    public abstract int getPuntajeEmpujado();
+   public void visitar(Jugador e) {
+      e.perderVida();
+   }
 }

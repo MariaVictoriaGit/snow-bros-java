@@ -2,11 +2,17 @@ package SnowBros.src.Entidades.EntidadesDinamicas;
 
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Entidades.Entidad;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Visitor.Visitador;
 
-public abstract class EntidadDinamica extends Entidad{
+public abstract class EntidadDinamica extends Entidad implements Visitador{
     protected int direccion;
     protected Observer observer;
     protected boolean estadoAereo;
@@ -19,6 +25,8 @@ public abstract class EntidadDinamica extends Entidad{
     }
     public void mover(){
         //TODO implementar o dejar abstract¿
+        //dejarlo asi,
+        
     }
     public void actualizar(int direccion, int estadoAereo){
         this.establecerEstadoAereo(estadoAereo);
@@ -54,5 +62,54 @@ public abstract class EntidadDinamica extends Entidad{
     public void notificarObserver(){
         observer.actualizar();
     }
-
+    public void visitar(Enemigo e) {
+        //se ignoran
+    }
+    public void visitar(Plataforma e) {
+        //TODO esta arriba, todas estan arriba
+    }
+    public void visitar(BotellaAzul b) {
+      //lo ignora
+      throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+    }
+    public void visitar(BotellaRoja b) {
+      //lo ignora
+      throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+    }
+    public void visitar(BotellaVerde b) {
+      //lo ignora
+      throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+    }
+    public void visitar(Fruta f) {
+      //lo ignora
+      throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+    }
+    public void visitar(VidaExtra v) {
+      //lo ignora
+      throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+    }
+    public void visitar(Pared e) {
+      //TODO cambio de direccion
+        throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+    }
+    public void visitar(ParedDestructible e) {
+      //lo ignora
+      throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+    }
+   public void visitar(Escalera e) {
+      //lo ignora
+      throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+   }
+   public void visitar(SueloResbaladizo e) {
+      //lo ignora
+    throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+   }
+   public void visitar(TrampaPinchos e) {
+      //lo ignora
+      throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+   }
+   public void visitar(Jugador e) {
+      //lo ignora
+      throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+   }
 }

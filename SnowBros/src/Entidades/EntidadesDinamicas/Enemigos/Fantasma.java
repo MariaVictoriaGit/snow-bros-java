@@ -1,5 +1,8 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaQuebradiza;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -7,10 +10,6 @@ public class Fantasma extends Enemigo{
     
     public Fantasma(int x, int y, Sprite sprite){
         super(x, y, sprite);
-    }
-    public int getPuntaje(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
     }
     public void convertirEnBola(){
         // TODO Auto-generated method stub
@@ -24,13 +23,29 @@ public class Fantasma extends Enemigo{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
     }
-    public void aceptar(Visitador v){
-        v.visitar(this);
+    public void recibirDaño(){
+        //es indestructible
+        throw new UnsupportedOperationException("Es indestructible");
     }
     public int getPuntajeCongelado() {
         return 0;//indestructible
     }
     public int getPuntajeEmpujado() {
         return 0;//indestructible
+    }
+    public void visitar(Plataforma e){
+        //Kamakichi atraviesa plataformas
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntajeEmpujado'");
+    }
+    public void visitar(PlataformaMovil e){
+        //Kamakichi atraviesa plataformas
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntajeEmpujado'");
+    }
+    public void visita(PlataformaQuebradiza e){
+        //Kamakichi atraviesa plataformas
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntajeEmpujado'");
+    }
+    public void aceptar(Visitador v){
+        v.visitar(this);
     }
 }

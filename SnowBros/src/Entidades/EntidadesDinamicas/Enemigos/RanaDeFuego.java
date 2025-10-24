@@ -1,5 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import SnowBros.src.Datos.ConstantesEnemigos;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -9,14 +10,11 @@ public class RanaDeFuego extends Enemigo{
 
     public RanaDeFuego(int x, int y, Sprite sprite){
         super(x,y,sprite);
+        salud=ConstantesEnemigos.VIDA_RANA_DE_FUEGO;
     }
     public BolaDeFuego lanzarFuego(){
         return null;
         //TODO implementar, return predefinido por el compilador
-    }
-    public int getPuntaje(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
     }
     public void convertirEnBola(){
         // TODO Auto-generated method stub

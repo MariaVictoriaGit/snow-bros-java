@@ -1,5 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import SnowBros.src.Datos.ConstantesEnemigos;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -9,16 +10,13 @@ public class Moghera extends Enemigo{
 
     public Moghera(int x, int y, Sprite sprite){
         super(x, y, sprite);       
+        salud=ConstantesEnemigos.VIDA_MOGHERA;
     }
     public void lanzarFuego(){
         //TODO implementar
     }
     public void esDerrotado(){
         //TODO implementar
-    }
-    public int getPuntaje(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
     }
     public void convertirEnBola(){
         // TODO Auto-generated method stub

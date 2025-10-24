@@ -11,7 +11,6 @@ public class Fruta extends PowerUp{
     public int getPuntaje(){
         return puntaje;
     }
-
     public void aceptar(Visitador v){
         v.visitar(this);
     }

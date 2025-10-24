@@ -3,7 +3,7 @@ package SnowBros.src.Entidades.EntidadesEstaticas.Plataformas;
 import SnowBros.src.Grafica.Sprite;
 
 public class PlataformaMovil extends Plataforma{
-    public static final int puntaje = 200;
+    public static final int puntaje=200;
     public boolean horizontal;
 
     public PlataformaMovil(int x, int y, Sprite sprite){
@@ -11,5 +11,8 @@ public class PlataformaMovil extends Plataforma{
     }
     public void mover(){
         //TODO implementar
+    }
+    public int getPuntaje(){
+        return puntaje;
     }
 }

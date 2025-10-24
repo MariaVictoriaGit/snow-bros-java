@@ -11,7 +11,6 @@ public class Calabaza extends Enemigo{
         //TODO implementar
     }
     public void convertirEnBola(){
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
     }
     public void patronMovimiento(){
@@ -19,16 +18,19 @@ public class Calabaza extends Enemigo{
         throw new UnsupportedOperationException("Unimplemented method 'patronMovimiento'");
     }
     public void agregarPowerUp(Boolean agregar){
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
-    }
-    public void aceptar(Visitador v){
-        v.visitar(this);
     }
     public int getPuntajeCongelado() {//redefinirlo pq son indestructibles
         return 0;
     }
     public int getPuntajeEmpujado() {//redefinirlo pq son indestructibles
         return 0;
+    }
+    public void recibirDaño(){
+        //es indestructible, no tiene salud
+        throw new UnsupportedOperationException("Es indestructible");
+    }
+    public void aceptar(Visitador v){
+        v.visitar(this);
     }
 }

@@ -9,4 +9,7 @@ public class PlataformaQuebradiza extends Plataforma {
     public PlataformaQuebradiza(int x, int y, Sprite sprite){
         super(x,y,sprite);
     }
+    public int getPuntaje(){
+        return puntaje;
+    }
 }

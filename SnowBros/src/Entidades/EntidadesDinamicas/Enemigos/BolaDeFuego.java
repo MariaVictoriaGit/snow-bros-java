@@ -1,6 +1,7 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Timer;
 
@@ -12,5 +13,11 @@ public class BolaDeFuego extends EntidadDinamica{
     }
     public Timer getTimer(){
         return tiempo;
+    }
+    public void visitar(Jugador jugador){
+        jugador.perderVida();
+    }
+    public void mover(){
+        //TODO determinar movimientos
     }
 }

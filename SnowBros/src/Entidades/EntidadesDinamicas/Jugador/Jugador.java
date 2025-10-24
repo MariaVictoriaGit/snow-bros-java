@@ -11,7 +11,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 
-public class Jugador extends EntidadDinamica implements Visitador, Visitable{
+public class Jugador extends EntidadDinamica implements Visitable{
     private static final int vidaDeInicio = 3;
     protected Juego miJuego;
     protected int tocandoSuelo;
@@ -163,14 +163,11 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         }
         this.direccion=direccionActual;
     }
-   /* public void setTiempo(int t){ //tendriamos que hacerlo con el timer
-        int tiempo;
-        if(t>=0){
-            tiempo=t;
-        }
-    }*/ //ver si es necesario el set aca y no en juego
     public void perderVida(){
         vidas--;
+        if(vidas==0){
+            //TODO reiniciar jugador
+        }
     }
     public void setVidas(){
         vidas=vidaDeInicio;
@@ -189,10 +186,10 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     //Metodos de la interfaz Visitador
     public void visitar(Enemigo e){
         perderVida();
-        //reiniciar al personaje en la posicion original
+        //TODO reiniciar al personaje en la posicion original
     }
     public void visitar(Plataforma p){
-        //Colision con la parte superior de la plataforma
+        //TODO Colision con la parte superior de la plataforma
     }
     public void visitar(BotellaAzul b){
         efectoBotellaAzul();
@@ -204,30 +201,36 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         efectoBotellaVerde();
     }
     public void visitar(Fruta f){
-        puntajeJugador+= f.getPuntaje();
+        puntajeJugador+=f.getPuntaje();
     }
     public void visitar(VidaExtra v){
-        vidas++;
+        if(vidas!=vidaDeInicio)
+            vidas++;
         puntajeJugador+=v.getPuntaje();
     }
     public void visitar(Pared p){
-        //Colision con los costados de la pared
+        //TODO Colision con los costados de la pared
     }
     public void visitar(ParedDestructible p){
+        //TODO creo q las paredes se destruian con bolas de nieve
         p.destruirse();
     }
     public void visitar(Escalera e){
-        //Ver forma de subir
+        subirEscalera();
+    }
+    private void subirEscalera(){
+        //TODO implementar
     }
     public void visitar(SueloResbaladizo e){
-        velocidad -= 3;
+        velocidad-=3;
     }
     public void visitar(TrampaPinchos t){
         perderVida();
-        //Reiniciar al personaje a la posicion origianl
+        //TODO Reiniciar al personaje a la posicion origianl
     }
     public void visitar(Jugador j){
-        //Que hacemos aca?
+        //Que hacemos aca? 
+        //      Buena pregunta
     }
     //Metodo de la interfaz Visitable
     public void aceptar(Visitador v){

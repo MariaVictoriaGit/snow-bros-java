@@ -1,5 +1,8 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import SnowBros.src.Datos.ConstantesEnemigos;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaQuebradiza;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -9,13 +12,10 @@ public class Kamakichi extends Enemigo{
 
     public Kamakichi(int x, int y, Sprite sprite){
         super(x, y, sprite);  
+        salud=ConstantesEnemigos.VIDA_KAMAKICHI;
     }
     public void dispararBomba(){
         //TODO implementar
-    }
-    public int getPuntaje(){//TODO misma situacion q moghera   
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
     }
     public void convertirEnBola(){
         // TODO Auto-generated method stub
@@ -32,14 +32,22 @@ public class Kamakichi extends Enemigo{
     public void aceptar(Visitador v){
         v.visitar(this);
     }
-    @Override
     public int getPuntajeCongelado() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPuntajeCongelado'");
+        return puntajeCongelado;
     }
-    @Override
     public int getPuntajeEmpujado() {
-        // TODO Auto-generated method stub
+        return puntajeEmpujado;
+    }
+    public void visitar(Plataforma e){
+        //Kamakichi atraviesa plataformas
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntajeEmpujado'");
+    }
+    public void visitar(PlataformaMovil e){
+        //Kamakichi atraviesa plataformas
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntajeEmpujado'");
+    }
+    public void visita(PlataformaQuebradiza e){
+        //Kamakichi atraviesa plataformas
         throw new UnsupportedOperationException("Unimplemented method 'getPuntajeEmpujado'");
     }
 }
