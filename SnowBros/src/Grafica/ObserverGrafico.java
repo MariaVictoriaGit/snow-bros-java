@@ -25,13 +25,10 @@ public class ObserverGrafico extends JLabel implements Observer{
 	}
     protected void actualizarPosicionTamano(){
         int x = entidadObservada.getPosX();
-		int y = adaptarY(entidadObservada.getPosY());
+		int y = entidadObservada.getPosY();
 		int ancho = this.getIcon().getIconWidth();
 		int alto = this.getIcon().getIconHeight();
 		setBounds(x, y, ancho, alto);
-    }
-    private int adaptarY(int y){
-        return ConstantesVistas.PANEL_ALTO - ConstantesVistas.PADDING - y;
     }
 	public void actualizar(int direccion, int estadoAereo) {
 		String rutaImagen = entidadObservada.getSprite().getRutaImagen("idleDerecha");

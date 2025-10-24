@@ -92,6 +92,8 @@ Plataforma 704 192
 Plataforma 736 192
 Plataforma 768 192
 
+RanaDeFuego 704 224
+
 Plataforma 96 224
 Plataforma 128 224
 Plataforma 160 224
@@ -128,6 +130,8 @@ Plataforma 96 384
 
 PlataformaQuebradiza 160 384
 PlataformaQuebradiza 192 384
+
+TrollAmarillo 192 416
 
 Plataforma 288 384
 Plataforma 320 384

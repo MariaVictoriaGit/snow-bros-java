@@ -41,8 +41,8 @@ public class ParserNivel {
                     case "Jugador":
                         int xJugador = Integer.parseInt(partes[1]);
                         int yArchivo = Integer.parseInt(partes[2]);
-                        int yJugador = ConstantesVistas.PANEL_ALTO - yArchivo;
-                        EntidadDinamica jugador = fabrica.getJugador(xJugador, yJugador-500);
+                        int yJugador = ConstantesVistas.PANEL_ALTO - yArchivo - ConstantesVistas.PADDING;
+                        EntidadDinamica jugador = fabrica.getJugador(xJugador, yJugador);
                         nivel.agregarJugador(jugador);
                         break;
 
@@ -56,24 +56,24 @@ public class ParserNivel {
                     case "DemonioRojo":
                         int xDemRojo = Integer.parseInt(partes[1]);
                         yArchivo = Integer.parseInt(partes[2]);
-                        int yDemRojo = ConstantesVistas.PANEL_ALTO - yArchivo;
-                        EntidadDinamica demonioRojo = fabrica.getDemonioRojo(xDemRojo, yDemRojo-500);
+                        int yDemRojo = ConstantesVistas.PANEL_ALTO - yArchivo - ConstantesVistas.PADDING;
+                        EntidadDinamica demonioRojo = fabrica.getDemonioRojo(xDemRojo, yDemRojo);
                         nivel.agregarEnemigo(demonioRojo);
                         break;
 
                     case "TrollAmarillo":
                         int xTrollAmarillo = Integer.parseInt(partes[1]);
                         yArchivo = Integer.parseInt(partes[2]);
-                        int yTrollAmarillo = ConstantesVistas.PANEL_ALTO - yArchivo;
-                        EntidadDinamica trollAmarillo = fabrica.getTrollAmarillo(xTrollAmarillo, yTrollAmarillo-500);
+                        int yTrollAmarillo = ConstantesVistas.PANEL_ALTO - yArchivo - ConstantesVistas.PADDING;
+                        EntidadDinamica trollAmarillo = fabrica.getTrollAmarillo(xTrollAmarillo, yTrollAmarillo);
                         nivel.agregarEnemigo(trollAmarillo);
                         break;
 
                     case "RanaDeFuego":
                         int xRanaFuego = Integer.parseInt(partes[1]);
                         yArchivo = Integer.parseInt(partes[2]);
-                        int yRanafuego = ConstantesVistas.PANEL_ALTO - yArchivo;
-                        EntidadDinamica ranaFuego = fabrica.getRanaDeFuego(xRanaFuego, yRanafuego-500);
+                        int yRanafuego = ConstantesVistas.PANEL_ALTO - yArchivo - ConstantesVistas.PADDING;
+                        EntidadDinamica ranaFuego = fabrica.getRanaDeFuego(xRanaFuego, yRanafuego);
                         nivel.agregarEnemigo(ranaFuego);
                         break;
 
