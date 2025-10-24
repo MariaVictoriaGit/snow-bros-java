@@ -107,6 +107,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public void accionarInicioJuego() {
         this.panelPantallaJuego = new PanelPantallaJuego(this);
         miJuego.iniciar();
+        this.getPantalla().mostrarPlataformas();
         this.getPantalla().incorporarSilueta(miJuego.getNivelActual().getSilueta());
         refrescar();
         //controladorDeSonido.reproducirSonidoDeFondo();

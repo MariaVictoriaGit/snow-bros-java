@@ -87,6 +87,15 @@ public class PanelPantallaJuego extends JPanel{
        this.add(panelPantallaJuego,BorderLayout.CENTER);
     
     }
+    public void mostrarPlataformas(){
+        for (Entidad plataforma : miControladorGrafico.getJuego().getNivelActual().getPlataformas()) {
+            ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource("SnowBros/src/Imagenes/Plataforma/estatico.png"));//plataforma.getSprite().getRutaImagen("estatico.png"
+            JLabel plataformaVisible = new JLabel(icono);
+            plataformaVisible.setBounds(plataforma.getPosX(), plataforma.getPosY(), icono.getIconWidth(), icono.getIconHeight());
+            this.add(plataformaVisible);
+    }
+
+    }
     //tengo que agregar metodos actualizar
     public Observer incorporarEntidad(Entidad entidad) {
         ObserverEntidad observerEntidad= new ObserverEntidad(entidad);
