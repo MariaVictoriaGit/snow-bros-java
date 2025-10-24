@@ -51,7 +51,6 @@ public class ParserNivel {
                         int y = ConstantesVistas.PANEL_ALTO - Integer.parseInt(partes[2]);
                         Entidad plataforma = fabrica.getPlataforma(x, y);
                         nivel.agregarPlataforma(plataforma);
-
                         break;
 
                     case "DemonioRojo":

@@ -25,19 +25,16 @@ public class Juego {
     protected FabricaSprites fabricaSprites;
     protected FabricaEntidades fabricaEntidades;
     protected ParserNivel parser;
-    
 
     public Juego(){
         reiniciarJugador=false;
         
         //ranking=new Ranking();
     }
-
     //metodos de configuracion
      public void setControladorGrafica(GUI miControlador) {
         controladorGrafica=miControlador;
     }
-
     public void iniciar(){
         ParserNivel parseActual= new ParserNivel(true);
         nivel= parseActual.generarNivel(1);
@@ -97,7 +94,6 @@ public class Juego {
 			e.registrarObserver(observer);
 		}
     }
-    
     public int getModoDeJuego(){
         return puntajeJugador;
         //TODO implementar;

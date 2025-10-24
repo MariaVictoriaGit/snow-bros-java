@@ -11,11 +11,11 @@ public abstract class FabricaSprites {
     }
     public Sprite get_silueta() {
         HashMap<String, String> mapeo = new HashMap<>();
-        mapeo.put("normal", rutaACarpeta+ "/FondoNivel1.png");
+        mapeo.put("normal", rutaACarpeta+ "/FondoNivel1.jpg");
         return new Sprite(mapeo);	
                                 	
     }
-    public Sprite getSpriteJugador(){
+    public Sprite getSpriteJugador(){//podemos reducir sprites de jugadores
         HashMap<String, String> mapeo = new HashMap<String,String>();
         mapeo.put("idleIzquierda", rutaACarpeta+ "/Jugador/nickIzquierda.png");
         mapeo.put("idleDerecha", rutaACarpeta+ "/Jugador/nickDerecha.png");
@@ -26,12 +26,14 @@ public abstract class FabricaSprites {
         return new Sprite(mapeo);
     }
     public Sprite getSpritePlataforma(){  //TODO lo hacemos abstracto o lo dejamos implementado?
-         HashMap<String, String> mapeo = new HashMap<>();
-         mapeo.put("normal", rutaACarpeta+ "/Plataforma/estatico.png");
+        HashMap<String, String> mapeo = new HashMap<>();
+        mapeo.put("normal", rutaACarpeta+ "/Plataforma/plataforma.jpg"); 
+        mapeo.put("esquinaDerecha", rutaACarpeta+ "/Plataforma/plataformaEstaticaDerecha.jng");
+        mapeo.put("esquinaIzquierda", rutaACarpeta+ "/Plataforma/plataformaEstaticaIzquierda.jpg");
          return new Sprite(mapeo);
     }
     public Sprite getSpriteDemonioRojo(){
-        HashMap<String, String> mapeo= new HashMap<>();
+        HashMap<String, String> mapeo= new HashMap<>();//dejamos tanta animacion o la reducimos a uno en cada direccion para caminar y estar quieto?
         mapeo.put("idleIzquierda", rutaACarpeta + "/DemonioRojo/quietoIzquierda.png");
         mapeo.put("idleDerecha", rutaACarpeta + "/DemonioRojo/quietoDerecha.png");
         mapeo.put("moverDerecha1", rutaACarpeta + "/DemonioRojo/caminarDerecha1.png");
@@ -62,19 +64,22 @@ public abstract class FabricaSprites {
     }
     public Sprite getSpriteCalabaza(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("normal", rutaACarpeta + "/Calabaza/calabaza.png");
+        mapeo.put("idleDerecha", rutaACarpeta + "/Calabaza/calabazaDerecha.png");
+        mapeo.put("idleIzquierda", rutaACarpeta + "/Calabaza/calabazaIzquierda.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteFantasma(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("moverDerecha", rutaACarpeta + "/Fantasma/moverDerecha.png");
-        mapeo.put("moverIzquierda", rutaACarpeta + "/Fantasma/moverIzquierda.png");
+        mapeo.put("moverDerecha", rutaACarpeta + "/Fantasma/fantasmaDerecha.png");
+        mapeo.put("moverIzquierda", rutaACarpeta + "/Fantasma/fantasmaIzquierda.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteMoghera(){
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("idleIzquierda", rutaACarpeta + "/Moghera/mogheraIzquierda.png");
+        mapeo.put("idleDerecha", rutaACarpeta + "/Moghera/mogheraDerecha.png");
         mapeo.put("congeladoIzquierda", rutaACarpeta + "/Moghera/mogheraCongeladoIzquierda.png");
+        mapeo.put("congeladoIzquierda", rutaACarpeta + "/Moghera/mogheraCongeladoDerecha.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteKamakichi(){
