@@ -27,5 +27,6 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public abstract void convertirEnBola();
    public abstract void patronMovimiento();
    public abstract void agregarPowerUp(Boolean b);
-   public abstract int getPuntaje();
+   public abstract int getPuntajeCongelado();
+   public abstract int getPuntajeEmpujado();
 }

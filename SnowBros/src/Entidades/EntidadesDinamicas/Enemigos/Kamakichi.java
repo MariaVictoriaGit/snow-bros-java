@@ -32,4 +32,14 @@ public class Kamakichi extends Enemigo{
     public void aceptar(Visitador v){
         v.visitar(this);
     }
+    @Override
+    public int getPuntajeCongelado() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntajeCongelado'");
+    }
+    @Override
+    public int getPuntajeEmpujado() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntajeEmpujado'");
+    }
 }

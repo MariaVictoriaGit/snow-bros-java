@@ -12,7 +12,7 @@ public class Sonido {
     private Map<String, Clip> mapeo;
 
     private Sonido(){
-        mapeo = new HashMap<String,Clip>();
+        mapeo=new HashMap<String,Clip>();
     }
     public Sonido getInstancia(){
         if(instancia == null){

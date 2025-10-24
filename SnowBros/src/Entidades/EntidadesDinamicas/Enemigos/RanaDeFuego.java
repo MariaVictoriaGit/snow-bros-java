@@ -30,7 +30,13 @@ public class RanaDeFuego extends Enemigo{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
     }
-    public void aceptar(Visitador v){
-        v.visitar(this);
+    public void aceptar(Visitador visitador){
+        visitador.visitar(this);
+    }
+    public int getPuntajeCongelado() {
+        return puntajeCongelado;
+    }
+    public int getPuntajeEmpujado() {
+        return puntajeEmpujado;
     }
 }

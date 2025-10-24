@@ -10,10 +10,6 @@ public class Calabaza extends Enemigo{
     public void invocarFantasma(){
         //TODO implementar
     }
-    public int getPuntaje(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
-    }
     public void convertirEnBola(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
@@ -28,5 +24,11 @@ public class Calabaza extends Enemigo{
     }
     public void aceptar(Visitador v){
         v.visitar(this);
+    }
+    public int getPuntajeCongelado() {//redefinirlo pq son indestructibles
+        return 0;
+    }
+    public int getPuntajeEmpujado() {//redefinirlo pq son indestructibles
+        return 0;
     }
 }

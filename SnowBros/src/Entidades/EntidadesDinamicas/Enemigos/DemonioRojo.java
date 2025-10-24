@@ -29,4 +29,10 @@ public class DemonioRojo extends Enemigo{
     public void aceptar(Visitador v){
         v.visitar(this);
     }
+    public int getPuntajeCongelado() {
+        return puntajeCongelado;
+    }
+    public int getPuntajeEmpujado() {
+        return puntajeEmpujado;
+    }
 }
