@@ -19,10 +19,10 @@ public class Timer {
     public void iniciar(){
         if(enMarcha) return;
         enMarcha=true;
-        hilo=new Thread(() ->{//implementa Runnable
+        hilo=new Thread(()->{//implementa Runnable
             while (enMarcha && tiempoActual<tope){
                 try{
-                    Thread.sleep(1000);
+                    Thread.sleep(1000);//1s
                 }catch(InterruptedException e){
                     Thread.currentThread().interrupt();
                     break;
@@ -49,6 +49,7 @@ public class Timer {
         if(tiempoActual<tope){
             tiempoActual++;
         }
+
     }
     public boolean llegoAlTope(){
         return tiempoActual>=tope;
@@ -62,7 +63,13 @@ public class Timer {
     public int getTiempoActual(){
         return tiempoActual;
     }
+    /*
     public void setTiempoActual(int tiempo){
         tiempoActual=tiempo;
+    }*/
+    public String stringDeTiempo(){
+        int minutos=tiempoActual/60;
+        int segundos=tiempoActual%60;
+        return String.format("%02d:%02d", minutos, segundos);
     }
 }
