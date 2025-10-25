@@ -15,78 +15,66 @@ import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 
-public class ParserNivel {
+public class ParserNivel{
     private FabricaEntidades fabrica;
 
-    public ParserNivel(boolean dominioOriginal) {
+    public ParserNivel(boolean dominioOriginal){
         //que desde la llamada para crear el parser se defina el dominio de aplicacion
         this.fabrica = new FabricaEntidades(new Original("SnowBros/src/Imagenes"));
     }
     public Nivel generarNivel(int modo){
         return cargarNivel(obtenerArchivoNivel(modo), modo);
     }
-    private Nivel cargarNivel(String archivo, int modo) {
+    private Nivel cargarNivel(String archivo, int modo){
         Silueta silueta= fabrica.getSilueta();
-
-        Nivel nivel = new Nivel(silueta,1);
-
-        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+        Nivel nivel = new Nivel(silueta,1);//TODO seleccion de nivel
+        try (BufferedReader br=new BufferedReader(new FileReader(archivo))){
             String linea;
-
-            while ((linea = br.readLine()) != null) {
-                String[] partes = linea.split("\\s+"); // divide por espacios
-                String tipo = partes[0];
-
-                switch (tipo) {
+            while ((linea=br.readLine())!=null){
+                String[] partes=linea.split("\\s+"); // divide por espacios
+                String tipo=partes[0];
+                switch (tipo){
                     case "Jugador":
-                        int xJugador = Integer.parseInt(partes[1]);
-                        int yArchivo = Integer.parseInt(partes[2]);
-                        int yJugador = ConstantesVistas.PANEL_ALTO - yArchivo - ConstantesVistas.PADDING;
-                        EntidadDinamica jugador = fabrica.getJugador(xJugador, yJugador);
+                        int xJugador=Integer.parseInt(partes[1]);
+                        int yArchivo=Integer.parseInt(partes[2]);
+                        int yJugador=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
+                        EntidadDinamica jugador=fabrica.getJugador(xJugador, yJugador);
                         nivel.agregarJugador(jugador);
                         break;
-
                     case "Plataforma":
-                        int x = Integer.parseInt(partes[1]);
-                        int y = ConstantesVistas.PANEL_ALTO - Integer.parseInt(partes[2]);
+                        int x=Integer.parseInt(partes[1]);
+                        int y=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2]);
                         Entidad plataforma = fabrica.getPlataforma(x, y);
                         nivel.agregarPlataforma(plataforma);
                         break;
-
                     case "DemonioRojo":
-                        int xDemRojo = Integer.parseInt(partes[1]);
-                        yArchivo = Integer.parseInt(partes[2]);
-                        int yDemRojo = ConstantesVistas.PANEL_ALTO - yArchivo - ConstantesVistas.PADDING;
-                        EntidadDinamica demonioRojo = fabrica.getDemonioRojo(xDemRojo, yDemRojo);
+                        int xDemRojo=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yDemRojo=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
+                        EntidadDinamica demonioRojo=fabrica.getDemonioRojo(xDemRojo, yDemRojo);
                         nivel.agregarEnemigo(demonioRojo);
                         break;
-
                     case "TrollAmarillo":
-                        int xTrollAmarillo = Integer.parseInt(partes[1]);
-                        yArchivo = Integer.parseInt(partes[2]);
-                        int yTrollAmarillo = ConstantesVistas.PANEL_ALTO - yArchivo - ConstantesVistas.PADDING;
-                        EntidadDinamica trollAmarillo = fabrica.getTrollAmarillo(xTrollAmarillo, yTrollAmarillo);
+                        int xTrollAmarillo=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yTrollAmarillo=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
+                        EntidadDinamica trollAmarillo=fabrica.getTrollAmarillo(xTrollAmarillo, yTrollAmarillo);
                         nivel.agregarEnemigo(trollAmarillo);
                         break;
-
                     case "RanaDeFuego":
-                        int xRanaFuego = Integer.parseInt(partes[1]);
-                        yArchivo = Integer.parseInt(partes[2]);
-                        int yRanafuego = ConstantesVistas.PANEL_ALTO - yArchivo - ConstantesVistas.PADDING;
-                        EntidadDinamica ranaFuego = fabrica.getRanaDeFuego(xRanaFuego, yRanafuego);
+                        int xRanaFuego=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yRanafuego=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
+                        EntidadDinamica ranaFuego=fabrica.getRanaDeFuego(xRanaFuego, yRanafuego);
                         nivel.agregarEnemigo(ranaFuego);
                         break;
-
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return nivel;
     }
-
     public String obtenerArchivoNivel(int modo) {
         switch (modo) {
             case 1:
@@ -103,10 +91,6 @@ public class ParserNivel {
                 return ConstantesNiveles.CONTRARRELOJ2;
         }
        }
-
-
-
-
     //TODO metodos que segun el nombre del archivo condicione el modo de juego
     //TODO original y alternativo
 }

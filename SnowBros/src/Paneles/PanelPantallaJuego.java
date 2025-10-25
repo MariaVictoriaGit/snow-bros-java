@@ -41,21 +41,27 @@ public class PanelPantallaJuego extends JPanel{
          agregarPanelJuego();
     }
     protected void agregarPanelInformacion() {
+        //TODO
         panelInformacion= new JPanel();
         panelInformacion.setOpaque(false); //Esto hace que sea transparente
         panelInformacion.setLayout(new GridLayout(1, 4)); //UNA FILA Y 5 COLUM PARA MOSTRAR VALORES ALINEADOS
 		panelInformacion.setBounds(0, 0, ConstantesVistas.PANEL_ANCHO, 50);//Defino manualmente el tamaño y pos del panel info
         //nivel
-        labelNivel= new JLabel("00");
-        labelNivel.setForeground(Color.WHITE);
+        String stringNivel="NombreNivel";
+        labelNivel= new JLabel(stringNivel);
+        labelNivel.setForeground(Color.BLACK);
         labelNivel.setHorizontalAlignment(SwingConstants.CENTER);//centra el texto horizontalmente dentro del JLabel
         //PUNTAJE
-        labelPuntaje= new JLabel("0000");
-        labelPuntaje.setForeground(Color.WHITE);
+        //String puntaje=String.valueOf(miControladorGrafico.getJuego().getJugador().getPuntaje());
+        String puntaje=String.valueOf(0);
+        labelPuntaje= new JLabel(puntaje);
+        labelPuntaje.setForeground(Color.BLACK);
         labelPuntaje.setHorizontalAlignment(SwingConstants.CENTER);
         //TIEMPO
-        labelTiempo= new JLabel("0000");
-        labelTiempo.setForeground(Color.WHITE);
+        //String tiempoString=miControladorGrafico.getJuego().getTimer().stringDeTiempo();
+        String tiempoString="tiempo";
+        labelTiempo= new JLabel(tiempoString);
+        labelTiempo.setForeground(Color.BLACK);
         labelTiempo.setHorizontalAlignment(SwingConstants.CENTER);
         //panel para las vidas con corazones
         panelVidas= new JPanel();

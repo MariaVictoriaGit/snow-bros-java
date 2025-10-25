@@ -1,5 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
 import SnowBros.src.Grafica.Sprite;
@@ -11,7 +12,7 @@ public class BolaDeNieve extends EntidadDinamica{
 
     public BolaDeNieve(int x, int y, Sprite sprite){
         super(x,y,sprite);
-        tiempo=new Timer(10000);//10s
+        tiempo=new Timer(ConstantesTiempos.TIEMPO_BOLA_DE_NIEVE);
         estaActiva=false;
     }
     public boolean getEstado(){

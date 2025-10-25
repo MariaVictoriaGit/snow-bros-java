@@ -7,8 +7,10 @@ import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.*;
 import SnowBros.src.Grafica.Sprite;
 
-public class Nivel {
+public class Nivel{
     protected Sprite sprite;
+    //protected String nombreNivel;
+    /*podriamos cambiar el nombre de nivel en lugar de numero, como un nombre para identificarlos desde ConstantesNiveles*/
     protected Jugador jugador;
     protected int numeroNivel;
     protected Silueta silueta;
