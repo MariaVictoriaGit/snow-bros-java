@@ -1,5 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
 
+import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -27,7 +28,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         super(x,y,mISprite);
         vidas=vidaDeInicio;
         tocandoSuelo=ConstantesEntidades.SUELO;
-        velocidad=8;
+        velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
         posXoriginal = x;
         posYoriginal = y;
     }
@@ -97,14 +98,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public void iniciarSalto(){
         tocandoSuelo=ConstantesEntidades.SUELO;
         if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_ALTO){
-            int gravedad=-1;
-            int rapidezEnY=8;
-            rapidezEnY=gravedad+rapidezEnY;
-            posY=rapidezEnY+posY;
             observer.actualizar(direccion, getEstadoAereo());
-            rapidezEnY=(gravedad+rapidezEnY)*(-1);
-            posY-=rapidezEnY;
-            observer.actualizar(direccion, getEstadoAereo());
+            posY-=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
         }
     }
     public void disparar(){

@@ -1,7 +1,6 @@
 package SnowBros.src.Grafica;
 
 import javax.swing.ImageIcon;
-
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 
 public class ObserverJugador extends ObserverGrafico{
@@ -18,7 +17,6 @@ public class ObserverJugador extends ObserverGrafico{
     public void actualizar(int direccion, int estadoAereo){
         actualizarImagen(jugadorObservado.getDireccion(), jugadorObservado.getEstadoAereo()); 
         super.actualizarPosicionTamano();
-
     }
     protected void actualizarImagen(int direccion, int estadoAereo) {
         jugadorObservado.setDireccion(direccion);
