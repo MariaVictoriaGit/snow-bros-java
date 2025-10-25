@@ -43,14 +43,14 @@ public class Jugador extends EntidadDinamica implements Visitable{
             break;
         case ConstantesEntidades.DERECHA:
             direccion=direccionAMover;
-            if(posX+velocidad<ConstantesVistas.PANEL_ANCHO){
+            if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
                posX+=velocidad;
             }
             break;
         case ConstantesEntidades.IZQUIERDA:
             direccion=direccionAMover;
-            if (posX-velocidad>0){
-                posX-=velocidad;
+            if(posX-velocidad>0){
+               posX-=velocidad;
             }
             break;
         case ConstantesEntidades.ARRIBA_IZQUIERDA:
@@ -77,7 +77,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
                 //QUE CAIGA
             else if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
 
-            }
+        }
         }
     }
     public void iniciarSalto(){
@@ -94,10 +94,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
 
             }
             iniciarCaida();
-        } */
+    } */
     public void iniciarSalto(){
-        tocandoSuelo=ConstantesEntidades.SUELO;
-        if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_ALTO){
+        if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
             observer.actualizar(direccion, getEstadoAereo());
             posY-=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
         }
