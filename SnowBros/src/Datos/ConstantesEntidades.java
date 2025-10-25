@@ -30,4 +30,7 @@ public class ConstantesEntidades {
     //Constante ZIndex
     public static final int PRIORIDAD = 1;
     public static final int FONDO = 0;
+
+    //para cada direccion desde el centro de la entidad
+    public static final int MARGEN_HIT_BOX=5;
 }

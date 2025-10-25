@@ -95,7 +95,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
             }
             iniciarCaida();
     } */
-    public void iniciarSalto(){
+    public void iniciarSalto(){//TODO ver colisiones y caida si no encuentra plataforma
         if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
             observer.actualizar(direccion, getEstadoAereo());
             posY-=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
