@@ -16,11 +16,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
     protected Juego miJuego;
     protected int tocandoSuelo;
     protected int puntajeJugador;
-    protected int direccion;
     protected int velocidad;
     protected int vidas;
     protected String nombre;
-    protected int dirAnterior;
     protected boolean disparoAumentado;
     protected int posXoriginal;
     protected int posYoriginal;
@@ -32,6 +30,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
         velocidad=8;
         posXoriginal = x;
         posYoriginal = y;
+    }
+    public void mover(){
+        //TODO ver como manejamos la herencia pq es de entidad dinamica
     }
     public void mover(int direccionAMover){
         dirAnterior=direccion;
@@ -61,8 +62,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
             if(tocandoSuelo==ConstantesEntidades.SUELO)
                 this.iniciarSalto();
             break;
-        }
-            
+        }   
     }
     /*    private void iniciarCaida(){//gestiona la caida
         //caer hacia donde la tacla indica pq puede que salte derecha y caiga izquierda
@@ -105,7 +105,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
             rapidezEnY=(gravedad+rapidezEnY)*(-1);
             posY-=rapidezEnY;
             observer.actualizar(direccion, getEstadoAereo());
-            
         }
     }
     public void disparar(){

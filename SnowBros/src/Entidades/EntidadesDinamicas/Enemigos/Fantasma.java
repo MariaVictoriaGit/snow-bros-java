@@ -1,5 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaQuebradiza;
@@ -10,14 +11,15 @@ public class Fantasma extends Enemigo{
     
     public Fantasma(int x, int y, Sprite sprite){
         super(x, y, sprite);
+        velocidad=ConstantesDificultad.VELOCIDAD_FANTASMA;
+        direccion=0;
+    }
+    public void mover(){
+        //TODO mover
     }
     public void convertirEnBola(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
-    }
-    public void patronMovimiento(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'patronMovimiento'");
     }
     public void agregarPowerUp(Boolean b){
         // TODO Auto-generated method stub
