@@ -31,7 +31,7 @@ public class Juego {
         
         //ranking=new Ranking();
     }
-    //metodos de configuracion
+    //metodos de configuracionaa
      public void setControladorGrafica(GUI miControlador) {
         controladorGrafica=miControlador;
     }
@@ -39,6 +39,7 @@ public class Juego {
         ParserNivel parseActual= new ParserNivel(true);
         nivel= parseActual.generarNivel(1);
         this.jugador=nivel.getJugador();
+        this.jugador.setJuego(this);
         this.registrarObservers();
         jugador.getObserver().actualizar();
         

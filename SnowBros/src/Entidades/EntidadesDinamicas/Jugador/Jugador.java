@@ -1,10 +1,15 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
 
+import java.awt.Rectangle;
+import javax.swing.Timer;
+
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
+import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.HitBox;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Visitor.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
@@ -65,11 +70,12 @@ public class Jugador extends EntidadDinamica implements Visitable{
             break;
         }   
     }
-    /*    private void iniciarCaida(){//gestiona la caida
+    public void iniciarCaida(){//gestiona la caida
         //caer hacia donde la tacla indica pq puede que salte derecha y caiga izquierda
         if(tocandoSuelo==ConstantesEntidades.AIRE){
             //SI APUNTA A LA IZQ QUE CAE A LA IZQ
-                //QUE CAIGA
+            Timer timerCaida = new Timer(20, e -> actualizarCaida());
+            timerCaida.start();
             if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
 
             }
@@ -80,6 +86,23 @@ public class Jugador extends EntidadDinamica implements Visitable{
         }
         }
     }
+    private void actualizarCaida(){
+        if(tocandoSuelo==ConstantesEntidades.AIRE){
+            int velocidadY=ConstantesDificultad.VELOCIDAD_JUGADOR;
+            /*     if (velocidadY < LIMITE_CAIDA) {            a futuro para meterle aceleracion puede estar bien
+                velocidadY += GRAVEDAD;
+            } */
+            posY+=velocidadY;
+            this.getObserver().actualizar(direccion, getEstadoAereo());
+            this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+            for(Entidad p:miJuego.getNivelActual().getPlataformas()){
+                Plataforma plataforma= (Plataforma) p;
+                plataforma.aceptar(this);
+            }
+        }
+    }
+
+    /*
     public void iniciarSalto(){
         //tal vez necesite un parametro para ver hacia donde salta con teclas w y a o d
         if(tocandoSuelo==ConstantesEntidades.SUELO){//realiza la subida del salto
@@ -94,7 +117,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
 
             }
             iniciarCaida();
-    } */
+    }
+     */
     public void iniciarSalto(){//TODO ver colisiones y caida si no encuentra plataforma
         if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
             observer.actualizar(direccion, getEstadoAereo());
@@ -164,11 +188,17 @@ public class Jugador extends EntidadDinamica implements Visitable{
         }
         this.direccion=direccionActual;
     }
+    public void setJuego(Juego j){
+        miJuego=j;
+    }
     public void perderVida(){
         vidas--;
         if(vidas==0){
             //TODO reiniciar jugador
         }
+    }
+    public void setAire(){
+        tocandoSuelo=ConstantesEntidades.AIRE;
     }
     public void setVidas(){
         vidas=vidaDeInicio;
@@ -192,7 +222,13 @@ public class Jugador extends EntidadDinamica implements Visitable{
         //TODO reiniciar al personaje en la posicion original
     }
     public void visitar(Plataforma p){
-        //TODO Colision con la parte superior de la plataforma
+        Rectangle hitboxJugador=this.getHitbox().getRectangle();
+        Rectangle hitboxPlataforma=p.getHitbox().getRectangle();
+        if(this.getHitbox().getBottomHitBox().intersects(p.getHitbox().getRectangle())){
+            this.posY = hitboxPlataforma.y - hitboxJugador.height;
+            this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
+            tocandoSuelo=ConstantesEntidades.SUELO;
+        }
     }
     public void visitar(BotellaAzul b){
         efectoBotellaAzul();

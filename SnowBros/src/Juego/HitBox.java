@@ -9,10 +9,10 @@ public class HitBox {
     private int ancho;
     private int alto;
 
-    public HitBox(int ancho, int altura){
+    public HitBox(int x, int y, int ancho, int altura){
         this.ancho=ancho;
         this.alto=altura;
-        hitbox=new Rectangle(ancho/2, altura/2, ancho, altura);
+        hitbox=new Rectangle(x, y, ancho, altura);
     }
     public void actualizarHitbox(int x, int y, int ancho, int alto){
         this.alto=alto;
