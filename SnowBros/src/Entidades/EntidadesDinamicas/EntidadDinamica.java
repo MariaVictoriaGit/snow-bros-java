@@ -4,16 +4,24 @@ import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Escalera;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.TrampaPinchos;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaAzul;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaRoja;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaVerde;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.Fruta;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.VidaExtra;
 import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Visitor.Visitador;
 
-public abstract class EntidadDinamica extends Entidad implements Visitador{
+public abstract class EntidadDinamica extends Entidad{
     protected int direccion;
+    protected int dirAnterior;
     protected Observer observer;
     protected boolean estadoAereo;
     protected int velocidad;
@@ -25,8 +33,6 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     }
     public void mover(){
         //TODO implementar o dejar abstract¿
-        //dejarlo asi,
-        
     }
     public void actualizar(int direccion, int estadoAereo){
         this.establecerEstadoAereo(estadoAereo);
@@ -45,6 +51,17 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
             }
         }
     }
+    public String generarClaveEstado(){
+        String estado=null;
+        //Si no esta quieto
+       if(direccion!=ConstantesEntidades.QUIETO){
+            if(direccion==ConstantesEntidades.IZQUIERDA)
+                estado="moverIzquierda";
+            else
+                estado="moverDerecha";
+       }
+        return estado;
+    }
     public int getEstadoAereo(){
         int state;
 
@@ -62,7 +79,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     public void notificarObserver(){
         observer.actualizar();
     }
-    public void visitar(Enemigo e) {
+      public void visitar(Enemigo e) {
         //se ignoran
     }
     public void visitar(Plataforma e) {

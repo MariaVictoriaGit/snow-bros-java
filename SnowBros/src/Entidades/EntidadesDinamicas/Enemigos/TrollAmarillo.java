@@ -1,6 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
-import SnowBros.src.Datos.ConstantesEnemigos;
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -10,10 +10,13 @@ public class TrollAmarillo extends Enemigo{
 
     public TrollAmarillo(int x, int y, Sprite spritesTrollAmarillo){
         super(x,y,spritesTrollAmarillo);
-        salud=ConstantesEnemigos.VIDA_TROLL_AMARILLO;
     }
     public void saltar(){
         //TODO implementar
+    }
+    public int getPuntaje(){
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
     }
     public void convertirEnBola(){
         // TODO Auto-generated method stub
@@ -27,13 +30,28 @@ public class TrollAmarillo extends Enemigo{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
     }
+    public String generarClaveEstado(){
+        String estado=null;
+        if(direccion==ConstantesEntidades.QUIETO){
+            if(dirAnterior==ConstantesEntidades.IZQUIERDA)
+                estado="idleIzquierda";
+            else
+                estado="idleDerecha";
+        }else{
+            if(direccion==ConstantesEntidades.IZQUIERDA)
+                estado="moverIzquierda";
+            else
+                estado="moverDerecha";
+        }
+        return estado;
+    }
     public void aceptar(Visitador v){
         v.visitar(this);
     }
-    public int getPuntajeCongelado() {
-        return puntajeCongelado;
-    }
-    public int getPuntajeEmpujado() {
+    public int getPuntajeEmpujado(){
         return puntajeEmpujado;
+    }
+    public int getPuntajeCongelado(){
+        return puntajeCongelado;
     }
 }

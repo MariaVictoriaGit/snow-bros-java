@@ -7,4 +7,9 @@ public class Silueta extends Entidad {
     public Silueta(Sprite sprite){
         super(0,0,sprite);
     }
+
+    @Override
+    public String generarClaveEstado() {
+        return "normal";
+    }
 }

@@ -14,4 +14,8 @@ public class ParedDestructible extends Obstaculo{
     public void aceptar(Visitador v){
         v.visitar(this);
     }
+    public int getPuntaje() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
+    }
 }

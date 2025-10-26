@@ -20,4 +20,7 @@ public class BolaDeFuego extends EntidadDinamica{
     public void mover(){
         //TODO determinar movimientos
     }
+    public void setDireccion(int direccionDisparo) {
+        direccion=direccionDisparo;
+    }
 }

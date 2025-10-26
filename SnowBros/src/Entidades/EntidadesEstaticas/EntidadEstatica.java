@@ -9,4 +9,7 @@ public abstract class EntidadEstatica extends Entidad implements Visitable {
     public EntidadEstatica(int i, int j, Sprite sprite) {
         super(i,j,sprite);
     }
+    public String generarClaveEstado(){
+        return "normal";
+    }
 }

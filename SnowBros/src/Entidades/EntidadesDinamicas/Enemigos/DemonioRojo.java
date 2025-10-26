@@ -1,6 +1,7 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Datos.ConstantesEnemigos;
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -32,5 +33,26 @@ public class DemonioRojo extends Enemigo{
     }
     public int getPuntajeEmpujado() {
         return puntajeEmpujado;
+    }
+    public String generarClaveEstado(){
+        String clave=null;
+        if(direccion==ConstantesEntidades.QUIETO){
+            switch (dirAnterior) {
+                case ConstantesEntidades.DERECHA:
+                    clave="idleDerecha";
+                    break;
+            
+                case ConstantesEntidades.IZQUIERDA:
+                    clave="idleIzquierda";
+                    break;
+            }
+        }else{
+            if(direccion==ConstantesEntidades.IZQUIERDA){
+                clave="moverIzquierda1";
+            }else
+                clave="moverDerecha1";
+        }
+        return clave;
+
     }
 }
