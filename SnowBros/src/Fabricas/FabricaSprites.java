@@ -64,8 +64,8 @@ public abstract class FabricaSprites {
     }
     public Sprite getSpriteCalabaza(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("idleDerecha", rutaACarpeta + "/Calabaza/calabazaDerecha.png");
-        mapeo.put("idleIzquierda", rutaACarpeta + "/Calabaza/calabazaIzquierda.png");
+        mapeo.put("moverDerecha", rutaACarpeta + "/Calabaza/calabazaDerecha.png");
+        mapeo.put("moverIzquierda", rutaACarpeta + "/Calabaza/calabazaIzquierda.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteFantasma(){
@@ -79,7 +79,7 @@ public abstract class FabricaSprites {
         mapeo.put("idleIzquierda", rutaACarpeta + "/Moghera/mogheraIzquierda.png");
         mapeo.put("idleDerecha", rutaACarpeta + "/Moghera/mogheraDerecha.png");
         mapeo.put("congeladoIzquierda", rutaACarpeta + "/Moghera/mogheraCongeladoIzquierda.png");
-        mapeo.put("congeladoIzquierda", rutaACarpeta + "/Moghera/mogheraCongeladoDerecha.png");
+        mapeo.put("congeladoDerecha", rutaACarpeta + "/Moghera/mogheraCongeladoDerecha.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteKamakichi(){

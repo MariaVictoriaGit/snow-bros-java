@@ -1,12 +1,14 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Datos.ConstantesDificultad;
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
 public class Moghera extends Enemigo{
     protected static final int puntajeCongelado = 1000;
     protected static final int puntajeEmpujado = 5000;
+    protected boolean congelado;
 
     public Moghera(int x, int y, Sprite sprite){
         super(x, y, sprite);       
@@ -23,8 +25,7 @@ public class Moghera extends Enemigo{
         //TODO implementar
     }
     public void convertirEnBola(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
+       congelado=true;
     }
     public void agregarPowerUp(Boolean b){
         // TODO Auto-generated method stub
@@ -32,6 +33,26 @@ public class Moghera extends Enemigo{
     }
     public void aceptar(Visitador v){
         v.visitar(this);
+    }
+    public String generarClaveEstado(){
+        String clave=null;
+        switch (direccion) {
+            case ConstantesEntidades.IZQUIERDA:
+                if(congelado)
+                    clave="congeladoIzquierda";
+                else
+                    clave="idleIzquierda";
+                break;
+        
+            case ConstantesEntidades.DERECHA:
+                if(congelado)
+                    clave="congeladoDerecha";
+                else
+                    clave="idleDerecha";
+                break;
+        }
+        return clave;
+        
     }
     public int getPuntajeCongelado() {
         return puntajeCongelado;

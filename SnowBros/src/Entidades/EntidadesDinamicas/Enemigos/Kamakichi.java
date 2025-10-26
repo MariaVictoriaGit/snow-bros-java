@@ -8,6 +8,8 @@ import SnowBros.src.Visitor.Visitador;
 public class Kamakichi extends Enemigo{
     protected static final int puntajeCongelado = 1000;
     protected static final int puntajeEmpujado = 5000;
+    protected boolean activarDisparo;
+
 
     public Kamakichi(int x, int y, Sprite sprite){
         super(x, y, sprite);  
@@ -18,11 +20,10 @@ public class Kamakichi extends Enemigo{
         //TODO mover       
     }
     public void dispararBomba(){
-        //TODO implementar
+        activarDisparo=true;
     }
     public void convertirEnBola(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
+        congelado=true;
     }
     public void agregarPowerUp(Boolean b){
         // TODO Auto-generated method stub
@@ -36,6 +37,15 @@ public class Kamakichi extends Enemigo{
     }
     public int getPuntajeEmpujado() {
         return puntajeEmpujado;
+    }
+    public String generarClaveEstado(){
+        String clave="normal"; //estado por defecto
+        if(congelado)
+            clave="congelado";
+        else
+            if(activarDisparo)
+                clave="disparo";
+        return clave;
     }
     public void visitar(Plataforma e){
         //Kamakichi atraviesa plataformas
