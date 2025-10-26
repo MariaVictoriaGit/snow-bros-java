@@ -10,6 +10,7 @@ public class DemonioRojo extends Enemigo{
     protected static final int puntajeEmpujado = 300;
     protected int velocidad;
     protected int direccion;
+    protected int contadorAnimacion=0;
 
     public DemonioRojo(int posX, int posY, Sprite miSprite){
         super(posX, posY, miSprite);
@@ -38,7 +39,10 @@ public class DemonioRojo extends Enemigo{
     }
     public String generarClaveEstado(){
         String clave=null;
+        if(contadorAnimacion==3)
+            contadorAnimacion=0;
         if(direccion==ConstantesEntidades.QUIETO){
+            contadorAnimacion=0;
             switch (dirAnterior) {
                 case ConstantesEntidades.DERECHA:
                     clave="idleDerecha";
@@ -49,10 +53,29 @@ public class DemonioRojo extends Enemigo{
                     break;
             }
         }else{
-            if(direccion==ConstantesEntidades.IZQUIERDA){
-                clave="moverIzquierda1";
-            }else
-                clave="moverDerecha1";
+            contadorAnimacion++;
+            switch (contadorAnimacion) {
+                case 1:
+                    if(direccion==ConstantesEntidades.IZQUIERDA)
+                        clave="moverIzquierda1";
+                    else
+                        clave="moverDerecha1";
+                    break;
+            
+                case 2:
+                    if(direccion==ConstantesEntidades.IZQUIERDA)
+                        clave="moverIzquierda2";
+                    else
+                        clave="moverDerecha2";
+                    break;
+                case 3:
+                     if(direccion==ConstantesEntidades.IZQUIERDA)
+                        clave="moverIzquierda3";
+                    else
+                        clave="moverDerecha3";
+                    break;
+            }
+          
         }
         return clave;
 
