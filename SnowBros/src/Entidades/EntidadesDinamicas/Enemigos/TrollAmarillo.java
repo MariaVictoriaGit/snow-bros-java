@@ -10,7 +10,6 @@ public class TrollAmarillo extends Enemigo{
 
     public TrollAmarillo(int x, int y, Sprite spritesTrollAmarillo){
         super(x,y,spritesTrollAmarillo);
-        salud=ConstantesEnemigos.VIDA_TROLL_AMARILLO;
         velocidad=ConstantesDificultad.VELOCIDAD_TROLL_AMARILLO;
     }
     public void mover(){
