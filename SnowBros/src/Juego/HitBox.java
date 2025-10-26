@@ -9,29 +9,29 @@ public class HitBox {
     private int ancho;
     private int alto;
 
-    public HitBox(int x, int y, int ancho, int altura){
+    public HitBox(int x, int y, int ancho, int alto){
         this.ancho=ancho;
-        this.alto=altura;
-        hitbox=new Rectangle(x, y, ancho, altura);
+        this.alto=alto;
+        hitbox=new Rectangle(x - (ancho/2), y - (alto/2), ancho, alto);
     }
     public void actualizarHitbox(int x, int y, int ancho, int alto){
         this.alto=alto;
         this.ancho=ancho;
-        hitbox.setBounds(x, y, this.ancho, this.alto);
+        hitbox.setBounds(x - (ancho/2), y - (alto/2), this.ancho, this.alto);
     }
     public Rectangle getRectangle(){
         return hitbox;
     }
     public Rectangle getTopHitBox(){
-        return new Rectangle(hitbox.x+margen, hitbox.y, hitbox.width-(margen*2), margen);
+        return new Rectangle(hitbox.x, hitbox.y-margen, hitbox.width, margen);
     }
     public Rectangle getBottomHitBox(){
-        return new Rectangle(hitbox.x+margen, hitbox.y+hitbox.height-margen, hitbox.width-(margen*2), margen);
+        return new Rectangle(hitbox.x, hitbox.y+hitbox.height, hitbox.width, margen);
     }
     public Rectangle getLeftHitBox(){
-        return new Rectangle(hitbox.x, hitbox.y+margen, margen, hitbox.height-(margen*2));
+        return new Rectangle(hitbox.x-margen, hitbox.y, margen, hitbox.height);
     }
     public Rectangle getRightHitBox(){
-        return new Rectangle(hitbox.x+hitbox.width-margen, hitbox.y+margen, margen, hitbox.height-(margen*2));
+        return new Rectangle(hitbox.x+hitbox.width, hitbox.y, margen, hitbox.height);
     }
 }

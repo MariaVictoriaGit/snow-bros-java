@@ -226,7 +226,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     public void visitar(Plataforma p){
         Rectangle hitboxJugador=this.getHitbox().getRectangle();
         Rectangle hitboxPlataforma=p.getHitbox().getRectangle();
-        if(this.getHitbox().getBottomHitBox().intersects(p.getHitbox().getRectangle())){
+        if(this.getHitbox().getBottomHitBox().intersects(p.getHitbox().getTopHitBox())){
             this.posY = hitboxPlataforma.y - hitboxJugador.height;
             this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
             tocandoSuelo=ConstantesEntidades.SUELO;
