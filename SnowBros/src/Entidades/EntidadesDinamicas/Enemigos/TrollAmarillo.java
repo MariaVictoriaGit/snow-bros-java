@@ -1,6 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
-import SnowBros.src.Datos.ConstantesEntidades;
+import SnowBros.src.Datos.*;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -10,21 +10,18 @@ public class TrollAmarillo extends Enemigo{
 
     public TrollAmarillo(int x, int y, Sprite spritesTrollAmarillo){
         super(x,y,spritesTrollAmarillo);
+        salud=ConstantesEnemigos.VIDA_TROLL_AMARILLO;
+        velocidad=ConstantesDificultad.VELOCIDAD_TROLL_AMARILLO;
+    }
+    public void mover(){
+        //TODO mover
     }
     public void saltar(){
         //TODO implementar
     }
-    public int getPuntaje(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
-    }
     public void convertirEnBola(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
-    }
-    public void patronMovimiento(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'patronMovimiento'");
     }
     public void agregarPowerUp(Boolean b){
         // TODO Auto-generated method stub

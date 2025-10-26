@@ -27,29 +27,33 @@ public abstract class EntidadDinamica extends Entidad{
     protected int velocidad;
 
     public EntidadDinamica(int posX, int posY, Sprite mSprite){
-        super(posX, posY, mSprite);
-        registrarObserver(new ObserverEntidad(this));
-        velocidad=8;
+      super(posX, posY, mSprite);
+      registrarObserver(new ObserverEntidad(this));
+      velocidad=8;
     }
-    public void mover(){
-        //TODO implementar o dejar abstract¿
+    public int getDireccion(){
+      return direccion;
     }
+     public void setDireccion(int direccion){
+      dirAnterior=direccion;
+      this.direccion=direccion;
+    }
+    public abstract void mover();//antes no era abstract pero no tenia implemntacion 
     public void actualizar(int direccion, int estadoAereo){
-        this.establecerEstadoAereo(estadoAereo);
-        this.direccion=direccion;
+      this.establecerEstadoAereo(estadoAereo);
+      this.direccion=direccion;
     }
     public void registrarObserver(Observer observer){
-        this.observer= observer;
+      this.observer= observer;
     }
     public void establecerEstadoAereo(int estado){
-        boolean estadoNuevo= (estado==ConstantesEntidades.AIRE);
-
-        if (this.estadoAereo !=estadoNuevo) {
-            estadoAereo= estadoNuevo;
-            if (observer != null) {
-                observer.actualizar(direccion,estado);
-            }
-        }
+      boolean estadoNuevo= (estado==ConstantesEntidades.AIRE);
+      if (this.estadoAereo !=estadoNuevo) {
+          estadoAereo= estadoNuevo;
+          if (observer != null) {
+              observer.actualizar(direccion,estado);
+          }
+      }
     }
     public String generarClaveEstado(){
         String estado=null;

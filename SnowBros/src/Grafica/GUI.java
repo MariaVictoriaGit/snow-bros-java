@@ -26,6 +26,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         this.miJuego=juego;
         panelPantallaPrincipal = new PanelPantallaPrincipal(this);
         panelPantallaDominio= new PanelPantallaDominio(this);
+        panelPantallaRanking = new PanelPantallaRanking(this);
         panelPantallaJuego = new PanelPantallaJuego(this);
         panelPantallaModo = new PanelPantallaModo(this);
         panelPantallaFinDelJuego= new PanelPantallaFinDelJuego(this);
@@ -71,9 +72,11 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                     //controladorDeSonido.reproducirSonidoDeSalto();
                 } else if (keyCode== KeyEvent.VK_S) {//podria ser para bajar la escalera
                     //miJuego.setDirection(ConstantesEntidades.ABAJO);
+                    miJuego.getJugador().setAire();
+                    miJuego.getJugador().iniciarCaida();     //puesto en esta tecla para testear la caida
                     
                 }else if (keyCode == KeyEvent.VK_SPACE) {
-                        miJuego.shootJugador();
+                        miJuego.getJugador().disparar();
 
                 } else if(keyCode == KeyEvent.VK_ESCAPE) {
                         System.exit(0);
@@ -92,6 +95,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
      public void mostrarPantallaPrincipal() {
         ventana.setContentPane(panelPantallaPrincipal);
+        ventana.requestFocusInWindow();
         refrescar();
     }
     public void mostrarPantallaJuego() {
@@ -104,28 +108,51 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         ventana.requestFocusInWindow();
         refrescar();
     }
+    public void mostrarPantallaDominio() {
+        ventana.setContentPane(panelPantallaDominio);
+        ventana.requestFocusInWindow();
+        refrescar();
+    }
+    public void mostrarPantallaModo() {
+        ventana.setContentPane(panelPantallaModo);
+        ventana.requestFocusInWindow();
+        refrescar();
+    }    
+    public void mostrarPantallaRanking() {
+        ventana.setContentPane(panelPantallaRanking);
+        ventana.requestFocusInWindow();
+        refrescar();
+    }
     public void accionarInicioJuego() {
-        this.panelPantallaJuego = new PanelPantallaJuego(this);
         miJuego.iniciar();
         this.getPantalla().mostrarPlataformas();
         this.getPantalla().incorporarSilueta(miJuego.getNivelActual().getSilueta());
         refrescar();
         //controladorDeSonido.reproducirSonidoDeFondo();
     }
+    //accionarPantallaPrincipal
+    public void accionarPantallaFinDelJuego(){
+        ventana.setContentPane(panelPantallaFinDelJuego);
+        ventana.requestFocusInWindow();
+        refrescar();
+    }
+    public void accionarPantallaPrincipal(){
+        ventana.setContentPane(panelPantallaPrincipal);
+        ventana.requestFocusInWindow();
+        refrescar();
+    }
+    //accionarPantallaFinDeJuego
     public void accionarPantallaModoJuego() {
-       this.panelPantallaModo = new PanelPantallaModo(this);
        ventana.setContentPane(panelPantallaModo);
        ventana.requestFocusInWindow();
        refrescar();
     }
     public void accionarPantallaDominio(){
-        this.panelPantallaDominio= new PanelPantallaDominio(this);
         ventana.setContentPane(panelPantallaDominio);
         ventana.requestFocusInWindow();
         refrescar();
     } 
     public void accionarPantallaRanking(){
-        this.panelPantallaRanking= new PanelPantallaRanking(this);
         ventana.setContentPane(panelPantallaRanking);
         ventana.requestFocusInWindow();
         refrescar();

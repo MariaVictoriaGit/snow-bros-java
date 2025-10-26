@@ -1,13 +1,17 @@
 package SnowBros.src.Entidades.EntidadesEstaticas.Plataformas;
 
+import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Grafica.Sprite;
 
 public class PlataformaMovil extends Plataforma{
-    public static final int puntaje=200;
-    public boolean horizontal;
+    private static final int puntaje=200;
+    protected boolean horizontal;
+    protected int direccion;
+    protected int velocidad;
 
     public PlataformaMovil(int x, int y, Sprite sprite){
         super(x,y,sprite);
+        velocidad=ConstantesDificultad.VELOCIDAD_PLATAFORMA_MOVIL;
     }
     public void mover(){
         //TODO implementar

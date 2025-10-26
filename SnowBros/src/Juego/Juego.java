@@ -16,7 +16,7 @@ import SnowBros.src.Parser.ParserNivel;
 public class Juego {
     protected Nivel nivel;
     protected int puntajeJugador;
-    protected Timer tiempo;
+    protected Timer tiempo;//TODO revisar control del tiempo del juego 
     protected boolean reiniciarJugador;
     protected Jugador jugador;
     protected Sonido sonido;
@@ -31,7 +31,7 @@ public class Juego {
         
         //ranking=new Ranking();
     }
-    //metodos de configuracion
+    //metodos de configuracionaa
      public void setControladorGrafica(GUI miControlador) {
         controladorGrafica=miControlador;
     }
@@ -39,6 +39,7 @@ public class Juego {
         ParserNivel parseActual= new ParserNivel(true);
         nivel= parseActual.generarNivel(1);
         this.jugador=nivel.getJugador();
+        this.jugador.setJuego(this);
         this.registrarObservers();
         jugador.getObserver().actualizar();
         
@@ -49,7 +50,7 @@ public class Juego {
     public void reiniciarNivel(){
         reiniciarJugador=true;
         puntajeJugador=0;
-        tiempo.setTiempoActual(0);
+        //tiempo.setTiempoActual(0);
         //TODO terminar de implementar
     }
     public void superarNivel(){
@@ -71,6 +72,9 @@ public class Juego {
     public int getTiempoActual(){
         return tiempo.getTiempoActual();
     }
+    public Timer getTimer(){
+        return tiempo;
+    }
     public Ranking getRanking(){
         return ranking;
     }
@@ -81,7 +85,6 @@ public class Juego {
         registrarObserverJugador();
         registrarObserversEntidades(nivel.getEnemigos());
         registrarObserversEntidades(nivel.getDisparos());
-
     }
     public void registrarObserverJugador(){
     	ObserverJugador observerJugador = controladorGrafica.registrarEntidad(jugador);
@@ -101,17 +104,12 @@ public class Juego {
     public void shootJugador() {
         jugador.disparar();
     }
-
     public boolean estaCerca(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
         Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();
         Rectangle hitboxEntidadEvaluada = entidadEvaluada.getHitbox().getRectangle();
-
         double distanciaEnX = hitboxEntidadPrincipal.getCenterX() - hitboxEntidadEvaluada.getCenterX();
         double distanciaEnY = hitboxEntidadPrincipal.getCenterY() - hitboxEntidadEvaluada.getCenterY();
-
         double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
-
         return distancia <= umbralDeRango*umbralDeRango;
-        
     }
 }

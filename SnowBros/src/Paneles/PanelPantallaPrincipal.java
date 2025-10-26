@@ -13,6 +13,7 @@ import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Grafica.GUI;
 
 public class PanelPantallaPrincipal extends JPanel{
+    public static final long serialVersionUID=1L;//ayuda a evitar warnings
     protected GUI miControladorGrafico;
     protected JLabel imagenFondo;
     protected JButton botonIniciar;
@@ -22,9 +23,9 @@ public class PanelPantallaPrincipal extends JPanel{
         this.miControladorGrafico=controlador;
         setSize(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO);
         setLayout(null);
-        agregarImagenFondo();
         agregarBotonIniciar();
         agregarBotonRanking();
+        agregarImagenFondo();
     }
     protected void agregarImagenFondo(){
         imagenFondo = new JLabel();
@@ -42,28 +43,32 @@ public class PanelPantallaPrincipal extends JPanel{
         botonIniciar.setBounds(100, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonIniciar);
         registrarOyenteBotonIniciar();
-        add(botonIniciar,0);
+        add(botonIniciar);
     }
     private void agregarBotonRanking(){
         botonRanking= new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonJugar.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonRanking.png"));
         botonRanking.setIcon(iconoBoton);
-        botonRanking.setBounds(85, 450, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
+        botonRanking.setBounds(100, 450, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonRanking);
         registrarOyenteBotonRanking();
-        add(botonRanking,0);
+        add(botonRanking);
     }
     private void registrarOyenteBotonIniciar(){
         botonIniciar.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
+                System.out.println("click iniciar");
                 miControladorGrafico.accionarInicioJuego();
+                miControladorGrafico.mostrarPantallaJuego();
             }
         });
     }
     private void registrarOyenteBotonRanking(){
         botonRanking.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                System.out.println("click ranking");
                 miControladorGrafico.accionarPantallaRanking();
+                miControladorGrafico.mostrarPantallaRanking();
             }
         });
     }

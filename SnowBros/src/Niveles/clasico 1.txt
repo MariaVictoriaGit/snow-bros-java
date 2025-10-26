@@ -1,3 +1,4 @@
+Plataforma 800 0
 Plataforma 768 0
 Plataforma 736 0
 Plataforma 704 0
@@ -19,7 +20,7 @@ Plataforma 224 0
 Plataforma 192 0
 Plataforma 160 0
 Plataforma 128 0
-Plataforma 98 0
+Plataforma 96 0
 Plataforma 64 0
 Plataforma 32 0
 Plataforma 0 0

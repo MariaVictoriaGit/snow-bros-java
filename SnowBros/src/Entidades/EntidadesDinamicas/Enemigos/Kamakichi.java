@@ -1,8 +1,7 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
-import SnowBros.src.Datos.ConstantesEnemigos;
+import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaQuebradiza;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -12,7 +11,11 @@ public class Kamakichi extends Enemigo{
 
     public Kamakichi(int x, int y, Sprite sprite){
         super(x, y, sprite);  
-        salud=ConstantesEnemigos.VIDA_KAMAKICHI;
+        salud=ConstantesDificultad.SALUD_KAMAKICHI;
+        velocidad=ConstantesDificultad.VELOCIDAD_KAMAKICHI;
+    }
+    public void mover(){
+        //TODO mover       
     }
     public void dispararBomba(){
         //TODO implementar
@@ -20,10 +23,6 @@ public class Kamakichi extends Enemigo{
     public void convertirEnBola(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
-    }
-    public void patronMovimiento(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'patronMovimiento'");
     }
     public void agregarPowerUp(Boolean b){
         // TODO Auto-generated method stub

@@ -1,6 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
-import SnowBros.src.Datos.ConstantesEnemigos;
+import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
@@ -14,7 +14,12 @@ public class RanaDeFuego extends Enemigo{
     public RanaDeFuego(int x, int y, Sprite sprite){
         super(x,y,sprite);
         lanzandoBolas=false;
-        salud=ConstantesEnemigos.VIDA_RANA_DE_FUEGO;
+        salud=ConstantesDificultad.SALUD_RANA_DE_FUEGO;
+        velocidad=ConstantesDificultad.VELOCIDAD_RANA_DE_FUEGO;
+    }
+    public void mover(){
+        // TODO Auto-generated method stub
+        
     }
     public BolaDeFuego lanzarFuego(int posXJugador){
         BolaDeFuego bola=null;
@@ -45,10 +50,6 @@ public class RanaDeFuego extends Enemigo{
     public void convertirEnBola(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
-    }
-    public void patronMovimiento(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'patronMovimiento'");
     }
     public void agregarPowerUp(Boolean b){
         // TODO Auto-generated method stub
