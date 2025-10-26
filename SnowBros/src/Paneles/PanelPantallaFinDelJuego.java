@@ -49,7 +49,7 @@ public class PanelPantallaFinDelJuego extends JPanel {
     }
     public void agregarBotonSalir(){
         botonSalir = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonJugar.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonSalir.png"));
         botonSalir.setIcon(iconoBoton);
         botonSalir.setBounds(100, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonSalir);
@@ -69,12 +69,14 @@ public class PanelPantallaFinDelJuego extends JPanel {
         botonReinicio.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 miControladorGrafico.accionarInicioJuego();
+                miControladorGrafico.mostrarPantallaJuego();
             }
         });
     }
     public void registrarOyenteBotonSalir(){
         botonSalir.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                miControladorGrafico.accionarPantallaPrincipal();
                 miControladorGrafico.mostrarPantallaPrincipal();
             }
         });
@@ -83,6 +85,7 @@ public class PanelPantallaFinDelJuego extends JPanel {
         botonNuevaPartida.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 miControladorGrafico.accionarInicioJuego();
+                miControladorGrafico.mostrarPantallaJuego();
             }
         });
     }    
