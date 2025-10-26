@@ -107,8 +107,8 @@ public class Juego {
     public boolean estaCerca(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
         Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();
         Rectangle hitboxEntidadEvaluada = entidadEvaluada.getHitbox().getRectangle();
-        double distanciaEnX = hitboxEntidadPrincipal.getCenterX() - hitboxEntidadEvaluada.getCenterX();
-        double distanciaEnY = hitboxEntidadPrincipal.getCenterY() - hitboxEntidadEvaluada.getCenterY();
+        double distanciaEnX = hitboxEntidadPrincipal.x - hitboxEntidadEvaluada.x;
+        double distanciaEnY = hitboxEntidadPrincipal.y - hitboxEntidadEvaluada.y;
         double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
         return distancia <= umbralDeRango*umbralDeRango;
     }

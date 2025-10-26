@@ -17,7 +17,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 
-public class Jugador extends EntidadDinamica implements Visitable{
+public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     private static final int vidaDeInicio = 3;
     protected Juego miJuego;
     protected int tocandoSuelo;
@@ -97,7 +97,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
             this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
             for(Entidad p:miJuego.getNivelActual().getPlataformas()){
                 Plataforma plataforma= (Plataforma) p;
-                plataforma.aceptar(this);
+                if(miJuego.estaCerca(this, p, 50)){
+                    plataforma.aceptar((Visitador) this);
+                }
             }
         }
     }
