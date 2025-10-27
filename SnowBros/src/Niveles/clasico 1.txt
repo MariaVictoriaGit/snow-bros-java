@@ -25,9 +25,9 @@ Plataforma 64 0
 Plataforma 32 0
 Plataforma 0 0
 
-Jugador 400 32
+Jugador 400 64
 
-DemonioRojo 400 32
+DemonioRojo 400 62
 
 Plataforma 0 64 
 Plataforma 32 64
@@ -72,7 +72,7 @@ Plataforma 704 128
 Plataforma 736 128
 Plataforma 768 128
 
-ParedDestructible 320 160
+ParedDestructible 320 192
 
 Pared 480 160
 
@@ -93,7 +93,7 @@ Plataforma 704 192
 Plataforma 736 192
 Plataforma 768 192
 
-RanaDeFuego 704 224
+RanaDeFuego 704 256
 
 Plataforma 96 224
 Plataforma 128 224
@@ -132,7 +132,7 @@ Plataforma 96 384
 PlataformaQuebradiza 160 384
 PlataformaQuebradiza 192 384
 
-TrollAmarillo 192 416
+TrollAmarillo 192 448
 
 Plataforma 288 384
 Plataforma 320 384

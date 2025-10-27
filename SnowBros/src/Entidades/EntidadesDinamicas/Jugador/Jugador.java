@@ -8,6 +8,7 @@ import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Grafica.Sprite;
 //import SnowBros.src.Juego.HitBox;
 import SnowBros.src.Juego.Juego;
@@ -33,6 +34,8 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         super(x,y,mISprite);
         vidas=vidaDeInicio;
         tocandoSuelo=ConstantesEntidades.SUELO;
+        observer=new ObserverJugador(this);
+        registrarObserver(observer);
         velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
         posXoriginal = x;
         posYoriginal = y;

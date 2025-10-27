@@ -20,7 +20,8 @@ public abstract class EntidadDinamica extends Entidad{
 
     public EntidadDinamica(int posX, int posY, Sprite mSprite){
       super(posX, posY, mSprite);
-      registrarObserver(new ObserverEntidad(this));
+      observer=new ObserverEntidad(this);
+      registrarObserver(observer);
       velocidad=8;
     }
     public int getDireccion(){
@@ -50,10 +51,9 @@ public abstract class EntidadDinamica extends Entidad{
           }
       }
     }
-    public String generarClaveEstado(){//TODO    public String generarClaveEstado(int direccionAnterior)
+    public String generarClaveEstado(int d){
         String estado=null;
-        //Si no esta quieto
-       if(direccion!=ConstantesEntidades.QUIETO){
+        if(direccion!=ConstantesEntidades.QUIETO){
             if(direccion==ConstantesEntidades.IZQUIERDA)
                 estado="moverIzquierda";
             else

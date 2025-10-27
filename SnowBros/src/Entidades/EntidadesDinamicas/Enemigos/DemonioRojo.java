@@ -3,6 +3,7 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.Timer;
 import SnowBros.src.Visitor.Visitador;
 
 public class DemonioRojo extends Enemigo{
@@ -18,7 +19,19 @@ public class DemonioRojo extends Enemigo{
         velocidad=ConstantesDificultad.VELOCIDAD_DEMONIO_ROJO;
     }
     public void mover(){
-        //TODO mover
+        accionMovimientoEnemigo.iniciar();
+        while(accionMovimientoEnemigo.getTiempoActual()!=0){
+            Timer caminar= new Timer(100);
+            if(dirAnterior==ConstantesEntidades.IZQUIERDA){
+                while(caminar.getTiempoActual()!=0){
+                    posX-=32;
+                }
+            }else if(dirAnterior==ConstantesEntidades.DERECHA){
+                while(caminar.getTiempoActual()!=0){
+                    posX+=32;
+                }
+            }  
+        }
     }
     public void convertirEnBola(){
         // TODO Auto-generated method stub
@@ -78,6 +91,5 @@ public class DemonioRojo extends Enemigo{
           
         }
         return clave;
-
     }
 }

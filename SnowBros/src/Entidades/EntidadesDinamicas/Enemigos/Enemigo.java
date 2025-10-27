@@ -1,5 +1,7 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import SnowBros.src.Datos.ConstantesDificultad;
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
@@ -13,6 +15,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected int dirAnterior;
    protected int salud;
    protected Timer temporizadoCongelado;
+   protected Timer accionMovimientoEnemigo;
    protected boolean rodando;
    protected boolean muerto;
    protected boolean congelado;
@@ -25,9 +28,9 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       congelado=false;
       muerto=false;
       rodando=false;
+      accionMovimientoEnemigo=new Timer(ConstantesTiempos.TOPE_TIEMPO_JUEGO);
    }
-   public void mover(){
-      //TODO mover
+   public abstract void mover();
       /*
       if (muerto || congelado) return;
          if (direccion==ConstantesEntidades.DERECHA) {
@@ -41,7 +44,6 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
                   direccion=ConstantesEntidades.DERECHA;
                }
          }*/
-   }
    public void recibirDaño(int daño){
       if (congelado || muerto) return;
       salud -= daño;

@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
+import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 //import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 //import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
@@ -70,7 +71,7 @@ public class PanelPantallaJuego extends JPanel{
         panelVidas.setOpaque(false);//transparente
         panelVidas.setLayout(new FlowLayout(FlowLayout.CENTER,5,5));// espacio de 5 pixeles horiz y vert entre cada componente
         ImageIcon iconoCorazon= new ImageIcon("SnowBros/src/Imagenes/PowerUps/vidaJugador.png");
-        int vidas=3;
+        int vidas=3;//TODO hacer constante
         for(int i=0;i<vidas;i++){
             JLabel vidaLabel=new JLabel(iconoCorazon);
             panelVidas.add(vidaLabel);
@@ -84,38 +85,39 @@ public class PanelPantallaJuego extends JPanel{
         this.add(panelInformacion,BorderLayout.NORTH);
     }
     protected void agregarPanelJuego() {
-       imagenFondoJuego= new JLabel();
-       imagenFondoJuego.setLayout(null); //null para posicionar sprites manualmente
-       imagenFondoJuego.setBounds(0,0, ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO);
-       //Panel del Juego donde se van a agregar los objetos
-       panelPantallaJuego= new JPanel();
-       panelPantallaJuego.setPreferredSize(new Dimension(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO));
-       panelPantallaJuego.add(imagenFondoJuego);
-       //voy a agregar el panel de juevo al PanelPantallaJuego
-       this.add(panelPantallaJuego,BorderLayout.CENTER);
-    
+        imagenFondoJuego= new JLabel();
+        imagenFondoJuego.setLayout(null); //null para posicionar sprites manualmente
+        imagenFondoJuego.setBounds(0,0, ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO);
+        //Panel del Juego donde se van a agregar los objetos
+        panelPantallaJuego= new JPanel();
+        panelPantallaJuego.setPreferredSize(new Dimension(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO));
+        panelPantallaJuego.add(imagenFondoJuego);
+        //voy a agregar el panel de juevo al PanelPantallaJuego
+        this.add(panelPantallaJuego,BorderLayout.CENTER);
+        panelPantallaJuego.setOpaque(false);
     }
     public void mostrarPlataformas(){
-        for (Entidad plataforma:miControladorGrafico.getJuego().getNivelActual().getPlataformas()){
+        for(Entidad plataforma:miControladorGrafico.getJuego().getNivelActual().getPlataformas()){
             String ruta = plataforma.getSprite().getRutaImagen("normal");
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));//plataforma.getSprite().getRutaImagen("estatico.png"
             JLabel plataformaVisible = new JLabel(icono);
             plataformaVisible.setBounds(plataforma.getPosX(), plataforma.getPosY(), icono.getIconWidth(), icono.getIconHeight());
-            this.add(plataformaVisible);
+            this.add(plataformaVisible);  
+            //imagenFondoJuego.add(plataformaVisible);
         }
     }
     //tengo que agregar metodos actualizar
     public Observer incorporarEntidad(Entidad entidad) {
         //TODO pq crear otro observer si al crear cada entidad se le crea su respectivo observer?
-        ObserverEntidad observerEntidad= new ObserverEntidad(entidad);
-        imagenFondoJuego.add(observerEntidad);
-        return observerEntidad;
+        EntidadDinamica  aux=(EntidadDinamica)entidad;
+        imagenFondoJuego.add((JLabel)aux.getObserver());
+        return aux.getObserver();
     }
     public ObserverJugador incorporarEntidadJugador(Jugador jugador) {
-        ObserverJugador observerJugador= new ObserverJugador((jugador));
-        imagenFondoJuego.add(observerJugador);
+        //ObserverJugador observerJugador= new ObserverJugador((jugador));
+        imagenFondoJuego.add((JLabel)jugador.getObserver());
         actualizarInformacionJugador(jugador);
-        return observerJugador;
+        return (ObserverJugador) jugador.getObserver();
     }
     public void incorporarSilueta(Entidad silueta) {
         ImageIcon imagenOriginal= new ImageIcon( getClass().getClassLoader().getResource(silueta.getSprite().getRutaImagen("normal")));

@@ -168,7 +168,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public void reiniciarNivel(){
         miJuego.reiniciarNivel();
     }
-    public Observer registrarEntidad(Entidad entidad) {//entidad dinamica?
+    public Observer registrarEntidad(Entidad entidad){
         Observer observerEntidad = panelPantallaJuego.incorporarEntidad(entidad);
         refrescar();
         return observerEntidad;
