@@ -25,7 +25,7 @@ Plataforma 64 0
 Plataforma 32 0
 Plataforma 0 0
 
-Jugador 400 32
+Jugador 400 56
 
 DemonioRojo 400 32
 

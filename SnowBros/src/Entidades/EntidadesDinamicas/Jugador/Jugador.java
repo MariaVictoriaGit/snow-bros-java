@@ -17,7 +17,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 
-public class Jugador extends EntidadDinamica implements Visitable{
+public class Jugador extends EntidadDinamica implements Visitable,Visitador{
     private static final int vidaDeInicio = 3;
     protected Juego miJuego;
     protected int tocandoSuelo;
@@ -62,19 +62,22 @@ public class Jugador extends EntidadDinamica implements Visitable{
             direccion=direccionAMover;
             if(tocandoSuelo==ConstantesEntidades.SUELO)
                 this.iniciarSalto();
+               // tocandoSuelo=ConstantesEntidades.AIRE;
             break;
         case ConstantesEntidades.ARRIBA_DERECHA:
             direccion=direccionAMover;
             if(tocandoSuelo==ConstantesEntidades.SUELO)
                 this.iniciarSalto();
+               // tocandoSuelo=ConstantesEntidades.AIRE;
+
             break;
         }   
     }
     public void iniciarCaida(){//gestiona la caida
         //caer hacia donde la tacla indica pq puede que salte derecha y caiga izquierda
+        Timer timerCaida = new Timer(30, e -> actualizarCaida());
         if(tocandoSuelo==ConstantesEntidades.AIRE){
             //SI APUNTA A LA IZQ QUE CAE A LA IZQ
-            Timer timerCaida = new Timer(20, e -> actualizarCaida());
             timerCaida.start();
             if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
 
@@ -85,16 +88,20 @@ public class Jugador extends EntidadDinamica implements Visitable{
 
         }
         }
+        else{
+            timerCaida.stop();
+        }
     }
     private void actualizarCaida(){
         if(tocandoSuelo==ConstantesEntidades.AIRE){
-            int velocidadY=ConstantesDificultad.VELOCIDAD_JUGADOR;
+            int velocidadY=3;
             /*     if (velocidadY < LIMITE_CAIDA) {            a futuro para meterle aceleracion puede estar bien
                 velocidadY += GRAVEDAD;
             } */
+            int ajuste=40;
             posY+=velocidadY;
             this.getObserver().actualizar(direccion, getEstadoAereo());
-            this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+            this.getHitbox().actualizarHitbox(posX,posY+ajuste,ancho,alto);
             for(Entidad p:miJuego.getNivelActual().getPlataformas()){
                 Plataforma plataforma= (Plataforma) p;
                 plataforma.aceptar(this);
@@ -105,7 +112,10 @@ public class Jugador extends EntidadDinamica implements Visitable{
     /*
     public void iniciarSalto(){
         //tal vez necesite un parametro para ver hacia donde salta con teclas w y a o d
-        if(tocandoSuelo==ConstantesEntidades.SUELO){//realiza la subida del salto
+        Timer timerSalto= new Timer(30, e-> actualizarSalto());
+        timerSalto.start();
+        posY-=velocidadY;//realiza la subida del salto
+            
             //SI APUNTA A LA IZQ QUE SALTE A LA IZQ
                 //QUE SUBA
             if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
@@ -117,9 +127,10 @@ public class Jugador extends EntidadDinamica implements Visitable{
 
             }
             iniciarCaida();
-    }
-     */
+    }  */
     public void iniciarSalto(){//TODO ver colisiones y caida si no encuentra plataforma
+        //int velocidadY=ConstantesDificultad.VELOCIDAD_JUGADOR-3;
+
         if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
             observer.actualizar(direccion, getEstadoAereo());
             posY-=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
@@ -225,7 +236,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         Rectangle hitboxJugador=this.getHitbox().getRectangle();
         Rectangle hitboxPlataforma=p.getHitbox().getRectangle();
         if(this.getHitbox().getBottomHitBox().intersects(p.getHitbox().getRectangle())){
-            this.posY = hitboxPlataforma.y - hitboxJugador.height;
+            this.posY = hitboxPlataforma.y - hitboxJugador.height-40; //40 es el ajuste de momento
             this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
             tocandoSuelo=ConstantesEntidades.SUELO;
         }
