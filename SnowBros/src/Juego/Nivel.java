@@ -5,8 +5,6 @@ import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.*;
-import SnowBros.src.Grafica.Observer;
-import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.Sprite;
 
 public class Nivel{
