@@ -38,7 +38,7 @@ public class ParserNivel{
                     case "Jugador":
                         int xJugador=Integer.parseInt(partes[1]);
                         int yArchivo=Integer.parseInt(partes[2]);
-                        int yJugador=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
+                        int yJugador=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2])-ConstantesVistas.PADDING;
                         EntidadDinamica jugador=fabrica.getJugador(xJugador, yJugador);
                         nivel.agregarJugador(jugador);
                         break;
@@ -70,7 +70,7 @@ public class ParserNivel{
                         nivel.agregarEnemigo(ranaFuego);
                         break;
                     case "BotellaAzul":
-                        int xBotellaAzul=Integer.parseInt(partes [1]);
+                        int xBotellaAzul=Integer.parseInt(partes[1]);
                         yArchivo=Integer.parseInt(partes[2]);
                         int yBotellaAzul=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
                         EntidadEstatica botellaAzul=fabrica.getBotellaAzul(xBotellaAzul, yBotellaAzul);

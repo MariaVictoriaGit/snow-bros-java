@@ -53,7 +53,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
                 direccion=direccionAMover;
                 if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
                 posX+=velocidad;
-                getHitbox().actualizarHitbox(posX,posY-8,ancho,alto);
+                getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 verificarSuelo();
                 }
                 break;
@@ -61,7 +61,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
                 direccion=direccionAMover;
                 if(posX-velocidad>0){
                 posX-=velocidad;
-                getHitbox().actualizarHitbox(posX,posY,ancho,alto-16);
+                getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 verificarSuelo();
                 }
                 break;
