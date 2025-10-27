@@ -5,7 +5,9 @@ import java.util.List;
 
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Grafica.GUI;
@@ -42,7 +44,29 @@ public class Juego {
         this.jugador.setJuego(this);
         this.registrarObservers();
         jugador.getObserver().actualizar();
-        
+        Thread hilo = new Thread(() -> {
+            while(!nivel.getEnemigos().isEmpty()){
+                try {
+                    Thread.sleep(100);
+                    for(Entidad ent : nivel.getEnemigos()){
+                        if(estaCercaEntidad(jugador, ent, 20) && jugador.getHitbox().getRectangle().intersects(ent.getHitbox().getRectangle())){
+                            Enemigo enemigo = (Enemigo) ent;
+                            enemigo.aceptar(jugador);
+                        }
+                    }
+                    for(Entidad entidad : nivel.getPowerUps()){
+                        if(estaCercaEntidad(jugador, entidad, 16) && jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())){
+                            PowerUp powerUp = (PowerUp) entidad;
+                            powerUp.aceptar(jugador);
+                        }
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        });
+        hilo.start();
 
         
     }
@@ -104,9 +128,19 @@ public class Juego {
     public void shootJugador() {
         jugador.disparar();
     }
-    public boolean estaCerca(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
+    public boolean estaCercaEntidad(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
         Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();
         Rectangle hitboxEntidadEvaluada = entidadEvaluada.getHitbox().getRectangle();
+        double comprobacion = hitboxEntidadPrincipal.getCenterX();
+        double distanciaEnX = hitboxEntidadPrincipal.getCenterX() - hitboxEntidadEvaluada.getCenterX();
+        double distanciaEnY = hitboxEntidadPrincipal.getCenterY() - hitboxEntidadEvaluada.getCenterY();
+        double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
+        return distancia <= umbralDeRango*umbralDeRango;
+    }
+    public boolean estaCercaPlataforma(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
+        Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();
+        Rectangle hitboxEntidadEvaluada = entidadEvaluada.getHitbox().getRectangle();
+        double comprobacion = hitboxEntidadPrincipal.getCenterX();
         double distanciaEnX = hitboxEntidadPrincipal.getCenterX() - hitboxEntidadEvaluada.getCenterX();
         double distanciaEnY = hitboxEntidadPrincipal.getCenterY() - hitboxEntidadEvaluada.getCenterY();
         double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);

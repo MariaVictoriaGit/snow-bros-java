@@ -20,6 +20,7 @@ public class FabricaEntidades {
         Silueta silueta=new Silueta(spriteSilueta);
         return silueta;
     }
+    // getters entidades
     public Jugador getJugador(int x, int y){
         Sprite spritesJugador=fabrica.getSpriteJugador();
         Jugador jugador= new Jugador(x,y,spritesJugador);
@@ -60,6 +61,7 @@ public class FabricaEntidades {
         Moghera moghera=new Moghera(x, y, spriteMoghera);
         return moghera;
     }
+    // getters powerups
     public BotellaAzul getBotellaAzul(int x, int y){
         Sprite botellaAzul= fabrica.getSpriteBotellaAzul();
         BotellaAzul azul= new BotellaAzul(x, y, botellaAzul);
@@ -85,6 +87,7 @@ public class FabricaEntidades {
         VidaExtra vida= new VidaExtra(x, y, vidaExtra);
         return vida;
     }
+    // getters terreno
     public Escalera getEscalera(int x, int y){
         Sprite spriteEscalera= fabrica.getSpriteEscalera();
         Escalera escalera= new Escalera(x,y,spriteEscalera);
