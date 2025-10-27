@@ -14,7 +14,9 @@ import javax.swing.SwingConstants;
 
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
+//import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
+//import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverEntidad;
@@ -94,17 +96,17 @@ public class PanelPantallaJuego extends JPanel{
     
     }
     public void mostrarPlataformas(){
-        for (Entidad plataforma : miControladorGrafico.getJuego().getNivelActual().getPlataformas()) {
+        for (Entidad plataforma:miControladorGrafico.getJuego().getNivelActual().getPlataformas()){
             String ruta = plataforma.getSprite().getRutaImagen("normal");
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));//plataforma.getSprite().getRutaImagen("estatico.png"
             JLabel plataformaVisible = new JLabel(icono);
             plataformaVisible.setBounds(plataforma.getPosX(), plataforma.getPosY(), icono.getIconWidth(), icono.getIconHeight());
             this.add(plataformaVisible);
-    }
-
+        }
     }
     //tengo que agregar metodos actualizar
     public Observer incorporarEntidad(Entidad entidad) {
+        //TODO pq crear otro observer si al crear cada entidad se le crea su respectivo observer?
         ObserverEntidad observerEntidad= new ObserverEntidad(entidad);
         imagenFondoJuego.add(observerEntidad);
         return observerEntidad;

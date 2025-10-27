@@ -10,6 +10,7 @@ import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.Observer;
+//import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Parser.ParserNivel;
 
@@ -36,7 +37,7 @@ public class Juego {
     }
     public void iniciar(){
         ParserNivel parseActual= new ParserNivel(true);
-        nivel= parseActual.generarNivel(1);
+        nivel= parseActual.generarNivel(1);//TODO
         this.jugador=nivel.getJugador();
         this.jugador.setJuego(this);
         this.registrarObservers();
@@ -91,7 +92,7 @@ public class Juego {
 	}	
 	protected void registrarObserversEntidades(List<? extends Entidad> entidades) {
 		for(Entidad entidad : entidades) {
-			Observer observer = controladorGrafica.registrarEntidad(entidad);
+			Observer observer = controladorGrafica.registrarEntidad(entidad);//observerEntidad?
             EntidadDinamica e=(EntidadDinamica) entidad;
 			e.registrarObserver(observer);
 		}

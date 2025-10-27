@@ -9,7 +9,7 @@ import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Juego.HitBox;
+//import SnowBros.src.Juego.HitBox;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Visitor.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
@@ -29,7 +29,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     protected int posXoriginal;
     protected int posYoriginal;
 
-    public Jugador(int x,int y, Sprite mISprite){
+    public Jugador(int x,int y, Sprite mISprite){//no se usa observerJugador y en entidadDinamica se le asigna un observer a cada uno
         super(x,y,mISprite);
         vidas=vidaDeInicio;
         tocandoSuelo=ConstantesEntidades.SUELO;

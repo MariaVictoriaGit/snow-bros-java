@@ -58,16 +58,16 @@ public class PanelPantallaPrincipal extends JPanel{
     private void registrarOyenteBotonIniciar(){
         botonIniciar.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                System.out.println("click iniciar");
-                miControladorGrafico.accionarInicioJuego();
-                miControladorGrafico.mostrarPantallaJuego();
+                //System.out.println("click iniciar");
+                miControladorGrafico.accionarPantallaDominio();
+                miControladorGrafico.mostrarPantallaDominio();
             }
         });
     }
     private void registrarOyenteBotonRanking(){
         botonRanking.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                System.out.println("click ranking");
+                //System.out.println("click ranking");
                 miControladorGrafico.accionarPantallaRanking();
                 miControladorGrafico.mostrarPantallaRanking();
             }
