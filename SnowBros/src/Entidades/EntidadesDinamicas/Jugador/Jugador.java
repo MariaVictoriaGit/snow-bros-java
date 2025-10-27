@@ -8,8 +8,9 @@ import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Juego.HitBox;
+//import SnowBros.src.Juego.HitBox;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Visitor.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
@@ -17,7 +18,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 
-public class Jugador extends EntidadDinamica implements Visitable,Visitador{
+public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     private static final int vidaDeInicio = 3;
     protected Juego miJuego;
     protected int tocandoSuelo;
@@ -29,10 +30,12 @@ public class Jugador extends EntidadDinamica implements Visitable,Visitador{
     protected int posXoriginal;
     protected int posYoriginal;
 
-    public Jugador(int x,int y, Sprite mISprite){
+    public Jugador(int x,int y, Sprite mISprite){//no se usa observerJugador y en entidadDinamica se le asigna un observer a cada uno
         super(x,y,mISprite);
         vidas=vidaDeInicio;
         tocandoSuelo=ConstantesEntidades.SUELO;
+        observer=new ObserverJugador(this);
+        registrarObserver(observer);
         velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
         posXoriginal = x;
         posYoriginal = y;
@@ -104,7 +107,9 @@ public class Jugador extends EntidadDinamica implements Visitable,Visitador{
             this.getHitbox().actualizarHitbox(posX,posY+ajuste,ancho,alto);
             for(Entidad p:miJuego.getNivelActual().getPlataformas()){
                 Plataforma plataforma= (Plataforma) p;
-                plataforma.aceptar(this);
+                if(miJuego.estaCerca(this, p, 50)){
+                    plataforma.aceptar((Visitador) this);
+                }
             }
         }
     }

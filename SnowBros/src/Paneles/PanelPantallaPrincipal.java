@@ -35,12 +35,13 @@ public class PanelPantallaPrincipal extends JPanel{
         imagenFondo.setIcon(iconoImagenEscalada);
         imagenFondo.setBounds(0,0,ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO);
         add(imagenFondo);
+        imagenFondo.setOpaque(false);
     }
     protected void agregarBotonIniciar(){
         botonIniciar = new JButton();
 		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonJugar.png"));
         botonIniciar.setIcon(iconoBoton);
-        botonIniciar.setBounds(100, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
+        botonIniciar.setBounds(0,300,iconoBoton.getIconWidth(),iconoBoton.getIconHeight());
         transparentarBoton(botonIniciar);
         registrarOyenteBotonIniciar();
         add(botonIniciar);
@@ -49,7 +50,7 @@ public class PanelPantallaPrincipal extends JPanel{
         botonRanking= new JButton();
 		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonRanking.png"));
         botonRanking.setIcon(iconoBoton);
-        botonRanking.setBounds(100, 450, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
+        botonRanking.setBounds(13,450,iconoBoton.getIconWidth(),iconoBoton.getIconHeight());
         transparentarBoton(botonRanking);
         registrarOyenteBotonRanking();
         add(botonRanking);
@@ -57,16 +58,16 @@ public class PanelPantallaPrincipal extends JPanel{
     private void registrarOyenteBotonIniciar(){
         botonIniciar.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                System.out.println("click iniciar");
-                miControladorGrafico.accionarInicioJuego();
-                miControladorGrafico.mostrarPantallaJuego();
+                //System.out.println("click iniciar");
+                miControladorGrafico.accionarPantallaDominio();
+                miControladorGrafico.mostrarPantallaDominio();
             }
         });
     }
     private void registrarOyenteBotonRanking(){
         botonRanking.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                System.out.println("click ranking");
+                //System.out.println("click ranking");
                 miControladorGrafico.accionarPantallaRanking();
                 miControladorGrafico.mostrarPantallaRanking();
             }

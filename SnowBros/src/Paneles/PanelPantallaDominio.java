@@ -27,7 +27,7 @@ public class PanelPantallaDominio extends JPanel {
     }
     public void agregarImagenFondo(){ 
         imagenFondo = new JLabel();
-        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/PantallaPrincipal.jpg"));
+        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/PantallaRanking.jpg"));
         Image imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO,Image.SCALE_SMOOTH);
         Icon iconoImagenEscalada = new ImageIcon(imagenEscalada);
         imagenFondo.setIcon(iconoImagenEscalada);
@@ -36,33 +36,36 @@ public class PanelPantallaDominio extends JPanel {
     }
     public void agregarBotonOriginal(){
         botonOriginal = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonJugar.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonOriginal.png"));
         botonOriginal.setIcon(iconoBoton);
-        botonOriginal.setBounds(100, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
+        botonOriginal.setBounds(300, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonOriginal);
         registrarOyenteBotonOriginal();
         add(botonOriginal,0);    
     }
     public void agregarBotonAlternativo(){
         botonAlternativo = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonJugar.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonAlternativo.png"));
         botonAlternativo.setIcon(iconoBoton);
-        botonAlternativo.setBounds(100, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
+        botonAlternativo.setBounds(300, 500, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonAlternativo);
         registrarOyenteBotonAlternativo();
         add(botonAlternativo,0);    
     }                
     public void registrarOyenteBotonOriginal(){        
         botonOriginal.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            miControladorGrafico.mostrarPantallaJuego();
+        public void actionPerformed(ActionEvent e){
+            //agregar el modo especifico con algun metodo 
+            miControladorGrafico.accionarPantallaModoJuego();
+            miControladorGrafico.mostrarPantallaModo();
         }
         });
     }
     public void registrarOyenteBotonAlternativo(){
         botonAlternativo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                miControladorGrafico.mostrarPantallaJuego();
+            public void actionPerformed(ActionEvent e){
+            miControladorGrafico.accionarPantallaModoJuego();
+            miControladorGrafico.mostrarPantallaModo();
             }
         });
     }

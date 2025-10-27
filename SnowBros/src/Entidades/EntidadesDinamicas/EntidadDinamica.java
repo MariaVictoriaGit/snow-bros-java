@@ -4,17 +4,9 @@ import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Escalera;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.TrampaPinchos;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaAzul;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaRoja;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaVerde;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.Fruta;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.VidaExtra;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.Sprite;
@@ -22,19 +14,23 @@ import SnowBros.src.Grafica.Sprite;
 public abstract class EntidadDinamica extends Entidad{
     protected int direccion;
     protected int dirAnterior;
-    protected Observer observer;
+    protected Observer observer;//ObserverEntidad
     protected boolean estadoAereo;
     protected int velocidad;
 
     public EntidadDinamica(int posX, int posY, Sprite mSprite){
       super(posX, posY, mSprite);
-      registrarObserver(new ObserverEntidad(this));
+      observer=new ObserverEntidad(this);
+      registrarObserver(observer);
       velocidad=8;
     }
     public int getDireccion(){
       return direccion;
     }
-     public void setDireccion(int direccion){
+    public int getDirAnterior(){
+      return dirAnterior;
+    }
+    public void setDireccion(int direccion){
       dirAnterior=direccion;
       this.direccion=direccion;
     }
@@ -43,7 +39,7 @@ public abstract class EntidadDinamica extends Entidad{
       this.establecerEstadoAereo(estadoAereo);
       this.direccion=direccion;
     }
-    public void registrarObserver(Observer observer){
+    public void registrarObserver(Observer observer){//ObserverEntidad
       this.observer= observer;
     }
     public void establecerEstadoAereo(int estado){
@@ -55,10 +51,9 @@ public abstract class EntidadDinamica extends Entidad{
           }
       }
     }
-    public String generarClaveEstado(){
+    public String generarClaveEstado(int d){
         String estado=null;
-        //Si no esta quieto
-       if(direccion!=ConstantesEntidades.QUIETO){
+        if(direccion!=ConstantesEntidades.QUIETO){
             if(direccion==ConstantesEntidades.IZQUIERDA)
                 estado="moverIzquierda";
             else

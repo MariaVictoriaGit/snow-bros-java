@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
+//import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Paneles.*;
@@ -167,7 +168,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public void reiniciarNivel(){
         miJuego.reiniciarNivel();
     }
-    public Observer registrarEntidad(Entidad entidad) {
+    public Observer registrarEntidad(Entidad entidad){
         Observer observerEntidad = panelPantallaJuego.incorporarEntidad(entidad);
         refrescar();
         return observerEntidad;

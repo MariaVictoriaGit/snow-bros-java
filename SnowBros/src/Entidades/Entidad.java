@@ -37,7 +37,6 @@ public abstract class Entidad {
     public Sprite getSprite(){
         return sprite;
     }
-    public abstract String generarClaveEstado();
     public void eliminar(){
         //TODO implementar
     }

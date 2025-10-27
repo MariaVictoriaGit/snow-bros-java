@@ -9,9 +9,6 @@ public class ObserverJugador extends ObserverGrafico{
     public ObserverJugador(Jugador j){
         super(j);
         jugadorObservado= j;
-        actualizar();
-    }
-    public void actualizar() {
         super.actualizar();
     }
     public void actualizar(int direccion, int estadoAereo){
