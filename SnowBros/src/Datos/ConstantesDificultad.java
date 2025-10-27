@@ -25,5 +25,5 @@ public class ConstantesDificultad {
     public static final int VELOCIDAD_PLATAFORMA_MOVIL=4;
 
     public static final int VELOCIDAD_JUGADOR=8;
-    public static final int VELOCIDAD_SALTO_JUGADOR=32;
+    public static final int VELOCIDAD_SALTO_JUGADOR=64;
 }

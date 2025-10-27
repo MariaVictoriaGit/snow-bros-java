@@ -66,12 +66,6 @@ Plataforma 416 128
 Plataforma 448 128
 Plataforma 480 128
 
-Plataforma 640 128
-Plataforma 672 128
-Plataforma 704 128
-Plataforma 736 128
-Plataforma 768 128
-
 ParedDestructible 320 192
 
 Pared 480 160
@@ -132,7 +126,7 @@ Plataforma 96 384
 PlataformaQuebradiza 160 384
 PlataformaQuebradiza 192 384
 
-TrollAmarillo 192 448
+TrollAmarillo 320 448
 
 Plataforma 288 384
 Plataforma 320 384

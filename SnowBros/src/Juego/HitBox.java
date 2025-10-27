@@ -12,7 +12,7 @@ public class HitBox {
     public HitBox(int x, int y, int ancho, int alto){
         this.ancho=ancho;
         this.alto=alto;
-        hitbox=new Rectangle(x - (ancho/2), y - (alto/2), ancho, alto);
+        hitbox=new Rectangle(x-(ancho/2),y-(alto/2),ancho,alto);
     }
     public void actualizarHitbox(int x, int y, int ancho, int alto){
         this.alto=alto;

@@ -16,5 +16,6 @@ public class ConstantesTiempos{
 
     public static final int TOPE_TIEMPO_JUEGO=60*2;
 
-    public static final int TIEMPO_CAIDA=15;
+    public static final int TIEMPO_SALTO=4;
+
 }

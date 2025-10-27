@@ -106,12 +106,12 @@ public abstract class FabricaSprites {
     }
     public Sprite getSpritePlataformaMovil(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("normal", rutaACarpeta + "/Obstaculos/plataformaMovil.png");
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/plataforma.jpg");
         return new Sprite(mapeo);
     }
     public Sprite getSpritePlataformaQuebradiza(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("normal", rutaACarpeta + "/Obstaculos/plataformaQuebradiza.png");
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/plataforma.jpg");
         return new Sprite(mapeo);
     }
     public Sprite getSpritePared(){

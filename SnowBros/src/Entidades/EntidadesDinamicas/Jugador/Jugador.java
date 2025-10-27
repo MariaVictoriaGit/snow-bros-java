@@ -45,36 +45,51 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     }
     public void mover(int direccionAMover){
         dirAnterior=direccion;
-    switch (direccionAMover){
-        case ConstantesEntidades.QUIETO:
-            direccion=direccionAMover;
-            break;
-        case ConstantesEntidades.DERECHA:
-            direccion=direccionAMover;
-            if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
-               posX+=velocidad;
-            }
-            break;
-        case ConstantesEntidades.IZQUIERDA:
-            direccion=direccionAMover;
-            if(posX-velocidad>0){
-               posX-=velocidad;
-            }
-            break;
-        case ConstantesEntidades.ARRIBA_IZQUIERDA:
-            direccion=direccionAMover;
-            if(tocandoSuelo==ConstantesEntidades.SUELO)
-                this.iniciarSalto();
-               // tocandoSuelo=ConstantesEntidades.AIRE;
-            break;
-        case ConstantesEntidades.ARRIBA_DERECHA:
-            direccion=direccionAMover;
-            if(tocandoSuelo==ConstantesEntidades.SUELO)
-                this.iniciarSalto();
-               // tocandoSuelo=ConstantesEntidades.AIRE;
+        switch (direccionAMover){
+            case ConstantesEntidades.QUIETO:
+                direccion=direccionAMover;
+                break;
+            case ConstantesEntidades.DERECHA:
+                direccion=direccionAMover;
+                if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
+                posX+=velocidad;
+                getHitbox().actualizarHitbox(posX,posY-8,ancho,alto);
+                verificarSuelo();
+                }
+                break;
+            case ConstantesEntidades.IZQUIERDA:
+                direccion=direccionAMover;
+                if(posX-velocidad>0){
+                posX-=velocidad;
+                getHitbox().actualizarHitbox(posX,posY,ancho,alto-16);
+                verificarSuelo();
+                }
+                break;
+            case ConstantesEntidades.ARRIBA_IZQUIERDA:
+            case ConstantesEntidades.ARRIBA_DERECHA:
+                direccion=direccionAMover;
+                if(tocandoSuelo==ConstantesEntidades.SUELO)
+                    this.iniciarSalto();
+                // tocandoSuelo=ConstantesEntidades.AIRE;
 
-            break;
+                break;
         }   
+    }
+    private void verificarSuelo(){
+        boolean haySuelo=false;
+        for(Entidad e:miJuego.getNivelActual().getPlataformas()){
+            Plataforma p=(Plataforma)e;
+            if(hitbox.getBottomHitBox().intersects(p.getHitbox().getRectangle())){
+                haySuelo=true;
+                break;
+            }
+        }
+        if(!haySuelo){
+            tocandoSuelo=ConstantesEntidades.AIRE;
+            iniciarCaida();
+        }else{
+            tocandoSuelo=ConstantesEntidades.SUELO;
+        }
     }
     public void iniciarCaida(){//gestiona la caida
         //caer hacia donde la tacla indica pq puede que salte derecha y caiga izquierda
@@ -83,12 +98,10 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
             //SI APUNTA A LA IZQ QUE CAE A LA IZQ
             timerCaida.start();
             if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
-
             }
             //SI APUNTA A LA DER QUE CAE A LA DER
                 //QUE CAIGA
             else if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
-
         }
         }
         else{
