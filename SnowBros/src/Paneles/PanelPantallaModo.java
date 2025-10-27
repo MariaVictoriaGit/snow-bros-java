@@ -54,7 +54,7 @@ public class PanelPantallaModo extends JPanel{
         botonSupervivencia.setIcon(iconoBoton);
         botonSupervivencia.setBounds(300, 256, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonSupervivencia);
-        registrarOyenteBotonClasico();
+        registrarOyenteBotonSupervivencia();
         add(botonSupervivencia,0);
     }
     public void agregarBotonContrarreloj(){
@@ -63,13 +63,12 @@ public class PanelPantallaModo extends JPanel{
         botonContrarreloj.setIcon(iconoBoton);
         botonContrarreloj.setBounds(300, 416, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonContrarreloj);
-        registrarOyenteBotonClasico();
+        registrarOyenteBotonContrarreloj();
         add(botonContrarreloj,0);
     }
     public void registrarOyenteBotonClasico(){
         botonClasico.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-                //
                 miControladorGrafico.accionarInicioJuego();
                 miControladorGrafico.mostrarPantallaJuego();
 			}
