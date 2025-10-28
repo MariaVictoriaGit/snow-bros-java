@@ -14,6 +14,7 @@ import SnowBros.src.Datos.ConstantesNiveles;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 
 public class ParserNivel{
     private FabricaEntidades fabrica;
@@ -37,7 +38,7 @@ public class ParserNivel{
                     case "Jugador":
                         int xJugador=Integer.parseInt(partes[1]);
                         int yArchivo=Integer.parseInt(partes[2]);
-                        int yJugador=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
+                        int yJugador=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2])-ConstantesVistas.PADDING;
                         EntidadDinamica jugador=fabrica.getJugador(xJugador, yJugador);
                         nivel.agregarJugador(jugador);
                         break;
@@ -67,6 +68,13 @@ public class ParserNivel{
                         int yRanafuego=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
                         EntidadDinamica ranaFuego=fabrica.getRanaDeFuego(xRanaFuego, yRanafuego);
                         nivel.agregarEnemigo(ranaFuego);
+                        break;
+                    case "BotellaAzul":
+                        int xBotellaAzul=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yBotellaAzul=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
+                        EntidadEstatica botellaAzul=fabrica.getBotellaAzul(xBotellaAzul, yBotellaAzul);
+                        nivel.agregarPowerUp(botellaAzul);
                         break;
                 }
             }

@@ -1,7 +1,7 @@
 package SnowBros.src.Datos;
 
 public class ConstantesVistas {
-    public static final int VENTANA_ALTO=672;
+    public static final int VENTANA_ALTO=696;//672
 	public static final int VENTANA_ANCHO=832;	
 	
 	public static final int PANEL_ALTO=600;

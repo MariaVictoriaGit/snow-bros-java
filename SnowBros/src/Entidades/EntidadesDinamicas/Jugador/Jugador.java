@@ -53,7 +53,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
                 direccion=direccionAMover;
                 if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
                 posX+=velocidad;
-                getHitbox().actualizarHitbox(posX,posY-8,ancho,alto);
+                getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 verificarSuelo();
                 }
                 break;
@@ -120,7 +120,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
             this.getHitbox().actualizarHitbox(posX,posY+ajuste,ancho,alto);
             for(Entidad p:miJuego.getNivelActual().getPlataformas()){
                 Plataforma plataforma= (Plataforma) p;
-                if(miJuego.estaCerca(this, p, 50)){
+                if(miJuego.estaCercaPlataforma(this, p, 50)){
                     plataforma.aceptar((Visitador) this);
                 }
             }
@@ -248,6 +248,8 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         perderVida();
         posX = posXoriginal;
         posY = posYoriginal;
+        this.getObserver().actualizar(direccion, getEstadoAereo());
+        this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
         //TODO reiniciar al personaje en la posicion original
     }
     public void visitar(Plataforma p){
