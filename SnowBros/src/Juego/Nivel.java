@@ -94,26 +94,43 @@ public class Nivel implements InterfazEliminar{
     }
     // métodos que agregan
     public void agregarJugador(Jugador j){
-        jugador=(Jugador)j;
+        jugador=j;
+        j.setNivel(this);
     }
     public void agregarPlataforma(Plataforma p){
         listaPlataformas.addLast(p);
+        p.setNivel(this);
+    }
+    public void agregarObstaculo(Obstaculo o){
+        listaObstaculos.addLast(o);
+        o.setNivel(this);
     }
     public void agregarPowerUp(PowerUp p){
         listaPowerUps.addLast(p);
+        p.setNivel(this);
     }
     public void agregarEnemigo(Enemigo e){
         listaEnemigos.addLast(e);
-        Enemigo enemigo=(Enemigo) e;
+        e.setNivel(this);
         //enemigo.registrarObserver(new ObserverEntidad(e));
-        enemigo.getObserver().actualizar();
-        enemigo.setNivel(this);
-        enemigo.mover();
+        e.getObserver().actualizar();
+        e.setNivel(this);
+        e.mover();
     }
     public void agregarDisparo(DisparoJugador b){
         listaDisparoJugador.addLast(b);
-        DisparoJugador tiro=(DisparoJugador) b;
-        tiro.getObserver().actualizar();
+        b.setNivel(this);
+        b.getObserver().actualizar();
+    }
+    public void agregarBolaDeNieve(BolaDeNieve b){
+        listaBolaDeNieve.addLast(b);
+        b.setNivel(this);
+        b.getObserver().actualizar();
+    }
+    public void agregarBolaDeFuego(BolaDeFuego b){
+        listaBolaDeFuego.addLast(b);
+        b.setNivel(this);
+        b.getObserver().actualizar();
     }
     public void efectoBotellaVerde(){
         //TODO implemetar
