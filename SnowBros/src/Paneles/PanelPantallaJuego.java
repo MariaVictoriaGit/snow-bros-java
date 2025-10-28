@@ -114,12 +114,13 @@ public class PanelPantallaJuego extends JPanel{
         imagenFondoJuego.add((JLabel)aux.getObserver());
         return aux.getObserver();
     }
-    public void incorporarEntidadEstatica(EntidadEstatica e) {
+    public JLabel incorporarEntidadEstatica(EntidadEstatica e) {
         String ruta = e.getSprite().getRutaImagen("normal");
         ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));//plataforma.getSprite().getRutaImagen("estatico.png"
         JLabel estatica = new JLabel(icono);
         estatica.setBounds(e.getHitbox().getX(), e.getHitbox().getY(), e.getHitbox().getAncho(), e.getHitbox().getAlto());
         this.add(estatica);
+        return estatica;
     }
     public ObserverJugador incorporarEntidadJugador(Jugador jugador) {
         //ObserverJugador observerJugador= new ObserverJugador((jugador));
@@ -170,5 +171,10 @@ public class PanelPantallaJuego extends JPanel{
     }
     public void decorarLabelsVidas(){
         //TODO implementar
+    }
+    public void eliminarEntidadEstatica(JLabel l){
+        remove(l);
+        this.revalidate();
+        this.repaint();
     }
 }
