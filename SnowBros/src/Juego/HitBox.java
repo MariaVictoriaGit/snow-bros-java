@@ -8,12 +8,8 @@ public class HitBox {
     private Rectangle hitbox;
     private int ancho;
     private int alto;
-    private int x;
-    private int y;
 
     public HitBox(int x, int y, int ancho, int alto){
-        this.x=x;
-        this.y=y;
         this.ancho=ancho;
         this.alto=alto;
         hitbox=new Rectangle(x-(ancho/2),y-(alto/2),ancho,alto);
@@ -50,8 +46,4 @@ public class HitBox {
     public int getAlto(){
         return alto;
     }
-    public void hitBoxAgrandada(){
-        actualizarHitbox(x,y,alto*2,ancho*2);
-    }
-
 }

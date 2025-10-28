@@ -234,14 +234,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         vidas=vidaDeInicio;
  }
     public void efectoBotellaAzul(){
-        Temporizador efecto= new Temporizador(ConstantesTiempos.TIEMPO_EFECTO_POWER_UP);
-        
-        while(efecto.getTiempoActual()<efecto.getTope()){
-            efecto.incrementar();
-            this.velocidad=ConstantesDificultad.EFECTO_BOTELLA_AZUL;
-        }
-        velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
-
+        this.velocidad=ConstantesDificultad.EFECTO_BOTELLA_AZUL;
     }
     public void efectoBotellaRoja(){
         this.disparoAumentado=true;

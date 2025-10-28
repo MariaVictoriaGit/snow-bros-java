@@ -151,9 +151,6 @@ public class PanelPantallaJuego extends JPanel{
     public void actualizarLabelsTiempo(Jugador jugador) {
         //TODO implementar
     }    
-    public void centrarEnJugador(int posXJugador) {
-        //TODO implementar
-    }   
     public void agregarLabelsEditablesTiempo(int posXJugador) {
         //TODO implementar
     }
