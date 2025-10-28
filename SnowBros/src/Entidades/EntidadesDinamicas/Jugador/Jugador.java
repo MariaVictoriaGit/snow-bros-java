@@ -24,7 +24,6 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     protected Juego miJuego;
     protected int tocandoSuelo;
     protected int puntajeJugador;
-    protected int velocidad;
     protected int vidas;
     protected String nombre;
     protected boolean disparoAumentado;

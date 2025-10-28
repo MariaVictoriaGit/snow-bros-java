@@ -10,9 +10,6 @@ import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitable;
 
 public abstract class Enemigo extends EntidadDinamica implements Visitable {
-   protected int velocidad;
-   protected int direccion;
-   protected int dirAnterior;
    protected int salud;
    protected Temporizador temporizadoCongelado;
    protected Temporizador accionMovimientoEnemigo;
