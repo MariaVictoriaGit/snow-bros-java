@@ -34,4 +34,16 @@ public class HitBox {
     public Rectangle getRightHitBox(){
         return new Rectangle(hitbox.x+hitbox.width, hitbox.y, margen, hitbox.height);
     }
+    public int getX(){
+        return hitbox.x;
+    }
+    public int getY(){
+        return hitbox.y;
+    }
+    public int getAncho(){
+        return ancho;
+    }
+    public int getAlto(){
+        return alto;
+    }
 }
