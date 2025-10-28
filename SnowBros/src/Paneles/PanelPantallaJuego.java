@@ -36,7 +36,7 @@ public class PanelPantallaJuego extends JPanel{
     public PanelPantallaJuego(GUI miControladorGrafico){
          this.miControladorGrafico=miControladorGrafico;
          //tamaño fijo de la pantalla
-         setPreferredSize(new Dimension(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO));
+         setPreferredSize(new Dimension(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO));
          setLayout(new BorderLayout());
          //agrega la informacion del jugador
          agregarPanelInformacion();
