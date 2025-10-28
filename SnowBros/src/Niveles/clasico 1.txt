@@ -27,11 +27,11 @@ Plataforma 0 -32
 
 Jugador 400 90
 
-BotellaAzul 432 64
 
 DemonioRojo 368 64
 
-BotellaAzul 464 500
+BotellaAzul 200 -10
+BotellaAzul 400 -10
 
 Plataforma 0 64 
 Plataforma 32 64

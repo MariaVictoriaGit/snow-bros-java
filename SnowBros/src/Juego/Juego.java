@@ -3,10 +3,14 @@ package SnowBros.src.Juego;
 import java.awt.Rectangle;
 import java.util.List;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.FabricaSprites;
@@ -43,6 +47,7 @@ public class Juego {
         this.jugador=nivel.getJugador();
         this.jugador.setJuego(this);
         this.registrarObservers();
+        this.crearPowerUps();
         jugador.getObserver().actualizar();
         Thread hilo = new Thread(() -> {
             while(!nivel.getEnemigos().isEmpty()){
@@ -120,6 +125,17 @@ public class Juego {
             EntidadDinamica e=(EntidadDinamica) entidad;
 			e.registrarObserver(observer);
 		}
+    }
+    public void crearPowerUps(){
+        for (EntidadEstatica e: nivel.getPowerUps()){
+            controladorGrafica.registrarEntidadEstatica(e); 
+        }
+        
+        
+    }
+    public void crearNuevaPowerUp(){
+        EntidadEstatica e= nivel.getPowerUps().getLast();
+        controladorGrafica.registrarEntidadEstatica(e); 
     }
     public int getModoDeJuego(){
         return puntajeJugador;
