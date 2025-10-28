@@ -1,7 +1,10 @@
+package SnowBros.src.Launcher;
+
 import java.awt.EventQueue;
 
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Juego.Juego;
+
 
 public class Launcher {	public static void main(String [] args) {
 		EventQueue.invokeLater(new Runnable() {

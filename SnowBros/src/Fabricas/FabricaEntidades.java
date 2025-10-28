@@ -1,5 +1,8 @@
 package SnowBros.src.Fabricas;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;

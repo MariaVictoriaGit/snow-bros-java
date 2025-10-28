@@ -66,4 +66,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public void visitar(Jugador e) {
       e.perderVida();
    }
+   public void eliminar(){
+      nivel.eliminarEnemigo(this);
+   }
 }

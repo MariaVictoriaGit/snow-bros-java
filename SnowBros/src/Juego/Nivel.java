@@ -3,13 +3,14 @@ package SnowBros.src.Juego;
 import java.util.LinkedList;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.*;
 import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.Sprite;
 
-public class Nivel{
+public class Nivel implements ListaEliminables{
     protected Sprite sprite;
     //protected String nombreNivel;
     /*podriamos cambiar el nombre de nivel en lugar de numero, como un nombre para identificarlos desde ConstantesNiveles*/
@@ -52,26 +53,26 @@ public class Nivel{
         return numeroNivel;
     }
     //metodos de eliminar
-    public void eliminarPlataforma(Entidad p){
+    public void eliminarPlataforma(Plataforma p){
         listaPlataformas.remove(p);
     }
-    public void eliminarJugador(Entidad j){
+    public void eliminarJugador(Jugador j){
         //TODO implementar
     }
-    public void eliminarEnemigo(Entidad e){
+    public void eliminarEnemigo(Enemigo e){
         listaEnemigos.remove(e);
         Enemigo enemigo=(Enemigo) e;
         enemigo.getObserver().actualizar();
     }
-    public void eliminarPowerUp(Entidad p){
+    public void eliminarPowerUp(PowerUp p){
         listaPowerUps.remove(p);
     }
-    public void eliminarBolaDeFuego(Entidad b){
+    public void eliminarBolaDeFuego(BolaDeFuego b){
         listaEnemigos.remove(b);  //asumiendo que guardamos la bola de fuego en enemigos
         BolaDeFuego fuego=(BolaDeFuego) b;
         fuego.getObserver().actualizar();
     }
-    public void eliminarBolaDeNieve(Entidad b){
+    public void eliminarBolaDeNieve(BolaDeNieve b){
         listaDisparoJugador.remove(b);
         DisparoJugador tiro=(DisparoJugador) b;
         tiro.getObserver().actualizar();
@@ -90,6 +91,7 @@ public class Nivel{
         Enemigo enemigo=(Enemigo) e;
         //enemigo.registrarObserver(new ObserverEntidad(e));
         enemigo.getObserver().actualizar();
+        enemigo.setNivel(this);
         enemigo.mover();
     }
     public void agregarBolaDeNieve(Entidad b){
