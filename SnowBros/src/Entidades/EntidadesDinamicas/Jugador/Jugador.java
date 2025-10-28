@@ -41,6 +41,8 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
         posXoriginal = x;
         posYoriginal = y;
+        timerCaida = new Timer(16, e -> actualizarCaida());
+        timerCaida.setRepeats(true);
     }
     public void mover(){
         //TODO ver como manejamos la herencia pq es de entidad dinamica
@@ -92,25 +94,16 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         }
     }
     public void iniciarCaida(){//gestiona la caida
-        //caer hacia donde la tacla indica pq puede que salte derecha y caiga izquierda
-        timerCaida = new Timer(200, e -> actualizarCaida());
-        if(tocandoSuelo==ConstantesEntidades.AIRE){
-            //SI APUNTA A LA IZQ QUE CAE A LA IZQ
-        timerCaida.start();
-            //SI APUNTA A LA DER QUE CAE A LA DER
-                //QUE CAIGA
-        }
-        else{
+       if (tocandoSuelo == ConstantesEntidades.AIRE && !timerCaida.isRunning()) {
+            timerCaida.start();
+        } else if (tocandoSuelo != ConstantesEntidades.AIRE && timerCaida.isRunning()) {
             timerCaida.stop();
         }
     }
     private void actualizarCaida(){
         if(tocandoSuelo==ConstantesEntidades.AIRE){
-            int velocidadY=3;
-            /*     if (velocidadY < LIMITE_CAIDA) {            a futuro para meterle aceleracion puede estar bien
-                velocidadY += GRAVEDAD;
-            } */
-            int ajuste=38;
+            int velocidadY=2;
+            int ajuste=36;
             posY+=velocidadY;
             this.getObserver().actualizar(direccion, getEstadoAereo());
             this.getHitbox().actualizarHitbox(posX,posY+ajuste,ancho,alto);
@@ -120,6 +113,9 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
                     plataforma.aceptar((Visitador) this);
                 }
             }
+        }
+        else{
+            timerCaida.stop();
         }
     }
 
@@ -257,7 +253,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         Rectangle hitboxJugador=this.getHitbox().getRectangle();
         Rectangle hitboxPlataforma=p.getHitbox().getRectangle();
         if(this.getHitbox().getBottomHitBox().intersects(p.getHitbox().getTopHitBox())){
-            this.posY = hitboxPlataforma.y - hitboxJugador.height-30; //40 es el ajuste de momento
+            this.posY = hitboxPlataforma.y - hitboxJugador.height-24; //40 es el ajuste de momento
             this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
             tocandoSuelo=ConstantesEntidades.SUELO;
         }
