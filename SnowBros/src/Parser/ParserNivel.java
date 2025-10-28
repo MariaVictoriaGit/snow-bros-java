@@ -78,7 +78,7 @@ public class ParserNivel{
                     case "BotellaAzul":
                         int xBotellaAzul=Integer.parseInt(partes[1]);
                         yArchivo=Integer.parseInt(partes[2]);
-                        int yBotellaAzul=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
+                        int yBotellaAzul=ConstantesVistas.PANEL_ALTO-yArchivo;
                         BotellaAzul botellaAzul=fabrica.getBotellaAzul(xBotellaAzul, yBotellaAzul);
                         nivel.agregarPowerUp(botellaAzul);
                         break;
