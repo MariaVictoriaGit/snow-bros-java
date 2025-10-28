@@ -271,6 +271,8 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     }
     public void visitar(BotellaAzul b){
         efectoBotellaAzul();
+        miNivel.eliminarPowerUp(b);
+        miJuego.eliminarPowerUp(b);
     }
     public void visitar(BotellaRoja b){
         efectoBotellaRoja();

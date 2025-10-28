@@ -127,15 +127,17 @@ public class Juego {
 		}
     }
     public void crearPowerUps(){
-        for (EntidadEstatica e: nivel.getPowerUps()){
-            controladorGrafica.registrarEntidadEstatica(e); 
+        for (PowerUp e: nivel.getPowerUps()){
+        e.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(e));   
         }
-        
         
     }
     public void crearNuevaPowerUp(){
         EntidadEstatica e= nivel.getPowerUps().getLast();
-        controladorGrafica.registrarEntidadEstatica(e); 
+        controladorGrafica.getPantalla().incorporarEntidadEstatica(e); 
+    }
+    public void eliminarPowerUp(PowerUp p){
+        controladorGrafica.getPantalla().eliminarEntidadEstatica(p.getLabel());
     }
     public int getModoDeJuego(){
         return puntajeJugador;
