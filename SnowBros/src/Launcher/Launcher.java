@@ -1,4 +1,3 @@
-package SnowBros.src.Launcher;
 
 import java.awt.EventQueue;
 

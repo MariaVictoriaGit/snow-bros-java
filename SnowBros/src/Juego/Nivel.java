@@ -1,6 +1,10 @@
 package SnowBros.src.Juego;
 
 import java.util.LinkedList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
