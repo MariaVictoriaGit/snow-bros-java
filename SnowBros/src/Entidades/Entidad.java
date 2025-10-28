@@ -2,10 +2,10 @@ package SnowBros.src.Entidades;
 
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.HitBox;
-import SnowBros.src.Juego.ListaEliminables;
+import SnowBros.src.Juego.InterfazEliminar;
 
 public abstract class Entidad {
-    protected ListaEliminables nivel;
+    protected InterfazEliminar miNivel;
     protected Sprite sprite;
     protected int posX;
     protected int posY;
@@ -39,8 +39,8 @@ public abstract class Entidad {
     public Sprite getSprite(){
         return sprite;
     }
-    public void setNivel(ListaEliminables l){
-        nivel=l;
+    public void setNivel(InterfazEliminar l){
+        miNivel=l;
     }
     abstract public void eliminar();
 }

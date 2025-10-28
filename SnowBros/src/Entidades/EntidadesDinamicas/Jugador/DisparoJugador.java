@@ -36,4 +36,7 @@ public class DisparoJugador extends EntidadDinamica {
     public void visitar(Enemigo e) {
         e.recibirDaño(potenciaDisparo);
     }
+    public void eliminar(){
+        miNivel.eliminarDisparoJugador(this);
+    }
 }

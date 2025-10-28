@@ -14,7 +14,13 @@ import SnowBros.src.Datos.ConstantesNiveles;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.DemonioRojo;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.RanaDeFuego;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.TrollAmarillo;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaAzul;
 
 public class ParserNivel{
     private FabricaEntidades fabrica;
@@ -39,41 +45,41 @@ public class ParserNivel{
                         int xJugador=Integer.parseInt(partes[1]);
                         int yArchivo=Integer.parseInt(partes[2]);
                         int yJugador=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2])-ConstantesVistas.PADDING;
-                        EntidadDinamica jugador=fabrica.getJugador(xJugador, yJugador);
+                        Jugador jugador=fabrica.getJugador(xJugador, yJugador);
                         nivel.agregarJugador(jugador);
                         break;
                     case "Plataforma":
                         int x=Integer.parseInt(partes[1]);
                         int y=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2]);
-                        Entidad plataforma = fabrica.getPlataforma(x, y);
+                        Plataforma plataforma = fabrica.getPlataforma(x, y);
                         nivel.agregarPlataforma(plataforma);
                         break;
                     case "DemonioRojo":
                         int xDemRojo=Integer.parseInt(partes[1]);
                         yArchivo=Integer.parseInt(partes[2]);
                         int yDemRojo=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
-                        EntidadDinamica demonioRojo=fabrica.getDemonioRojo(xDemRojo, yDemRojo);
+                        DemonioRojo demonioRojo=fabrica.getDemonioRojo(xDemRojo, yDemRojo);
                         nivel.agregarEnemigo(demonioRojo);
                         break;
                     case "TrollAmarillo":
                         int xTrollAmarillo=Integer.parseInt(partes[1]);
                         yArchivo=Integer.parseInt(partes[2]);
                         int yTrollAmarillo=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
-                        EntidadDinamica trollAmarillo=fabrica.getTrollAmarillo(xTrollAmarillo, yTrollAmarillo);
+                        TrollAmarillo trollAmarillo=fabrica.getTrollAmarillo(xTrollAmarillo, yTrollAmarillo);
                         nivel.agregarEnemigo(trollAmarillo);
                         break;
                     case "RanaDeFuego":
                         int xRanaFuego=Integer.parseInt(partes[1]);
                         yArchivo=Integer.parseInt(partes[2]);
                         int yRanafuego=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
-                        EntidadDinamica ranaFuego=fabrica.getRanaDeFuego(xRanaFuego, yRanafuego);
+                        RanaDeFuego ranaFuego=fabrica.getRanaDeFuego(xRanaFuego, yRanafuego);
                         nivel.agregarEnemigo(ranaFuego);
                         break;
                     case "BotellaAzul":
                         int xBotellaAzul=Integer.parseInt(partes[1]);
                         yArchivo=Integer.parseInt(partes[2]);
                         int yBotellaAzul=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
-                        EntidadEstatica botellaAzul=fabrica.getBotellaAzul(xBotellaAzul, yBotellaAzul);
+                        BotellaAzul botellaAzul=fabrica.getBotellaAzul(xBotellaAzul, yBotellaAzul);
                         nivel.agregarPowerUp(botellaAzul);
                         break;
                 }

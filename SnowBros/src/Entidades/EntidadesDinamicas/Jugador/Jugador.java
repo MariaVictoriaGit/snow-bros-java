@@ -158,9 +158,12 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         Sprite miDisparo=null;  // ponermos getfabrica()
         //TODO corregir
         DisparoJugador disparo=new DisparoJugador(posX,posY,miDisparo);
-        miJuego.getNivelActual().agregarBolaDeNieve(disparo);
+        miJuego.getNivelActual().agregarDisparo(disparo);
 
-    } 
+    }
+    public void eliminar(){
+        miNivel.eliminarJugador(this);
+    }
     public void actualizarPuntaje(int puntaje){
         puntajeJugador+=puntaje;
     }

@@ -32,7 +32,7 @@ public class BolaDeNieve extends EntidadDinamica{
         //TDOO a los indestructibles se les aturde no elimina(calabaza), al fantasma ni lo toca
         rebotar();
     }
-    public void visitar(ParedDestructible e){
-        e.eliminar();
+    public void eliminar(){
+        miNivel.eliminarBolaDeNieve(this);
     }
 }

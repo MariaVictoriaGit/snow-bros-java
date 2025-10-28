@@ -12,4 +12,7 @@ public class Plataforma extends EntidadEstatica{
     public void aceptar(Visitador v){
         v.visitar(this);
     }
+    public void eliminar(){
+        miNivel.eliminarPlataforma(this);
+    }
 }

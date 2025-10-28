@@ -6,4 +6,8 @@ public abstract class Obstaculo extends EntidadEstatica {
     public Obstaculo(int x, int y, Sprite sprite ){
         super(x,y,sprite);
     }
+
+    public void eliminar(){
+        miNivel.eliminarObstaculo(this);
+    }
 }

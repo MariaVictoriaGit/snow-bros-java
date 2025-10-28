@@ -10,4 +10,7 @@ public class Silueta extends Entidad {
     public String generarClaveEstado() {
         return "normal";
     }
+    public void eliminar(){
+        miNivel.eliminarSilueta(this);
+    }
 }
