@@ -4,10 +4,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
+import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 //import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Juego.Juego;
@@ -172,6 +174,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         Observer observerEntidad = panelPantallaJuego.incorporarEntidad(entidad);
         refrescar();
         return observerEntidad;
+    }
+    public void registrarEntidadEstatica(EntidadEstatica e){
+        panelPantallaJuego.incorporarEntidadEstatica(e);
     }
     public ObserverJugador registrarEntidad(Jugador jugador) {
         ObserverJugador observerJugador = panelPantallaJuego.incorporarEntidadJugador(jugador);
