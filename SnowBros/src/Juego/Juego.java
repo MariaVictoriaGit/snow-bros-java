@@ -52,16 +52,16 @@ public class Juego {
         Thread hilo = new Thread(() -> {
             while(!nivel.getEnemigos().isEmpty()){
                     
-                    for(Entidad ent : nivel.getEnemigos()){
-                        if(estaCercaEntidad(jugador, ent, 20) && jugador.getHitbox().getRectangle().intersects(ent.getHitbox().getRectangle())){
-                            Enemigo enemigo = (Enemigo) ent;
-                            enemigo.aceptar(jugador);
+                    for(Enemigo entidad : nivel.getEnemigos()){
+                        if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
+                        Enemigo enemigo = entidad;
+                        enemigo.aceptar(jugador);
                         }
                     }
                     for(Entidad entidad : nivel.getPowerUps()){
-                        if(estaCercaEntidad(jugador, entidad, 16) && jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())){
-                            PowerUp powerUp = (PowerUp) entidad;
-                            powerUp.aceptar(jugador);
+                        if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
+                        PowerUp powerUp = (PowerUp) entidad;
+                        powerUp.aceptar(jugador);
                         }
                     }
             }
