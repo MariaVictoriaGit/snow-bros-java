@@ -2,7 +2,6 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
 
 import java.awt.Rectangle;
 import javax.swing.Timer;
-import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
@@ -29,7 +28,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     protected boolean disparoAumentado;
     protected int posXoriginal;
     protected int posYoriginal;
-    protected Timer timerCaida;
+    protected Timer timerCaida;   
 
     public Jugador(int x,int y, Sprite mISprite){//no se usa observerJugador y en entidadDinamica se le asigna un observer a cada uno
         super(x,y,mISprite);
@@ -51,6 +50,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         switch (direccionAMover){
             case ConstantesEntidades.QUIETO:
                 direccion=direccionAMover;
+                verificarSuelo();
                 break;
             case ConstantesEntidades.DERECHA:
                 direccion=direccionAMover;
@@ -82,7 +82,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         for(Entidad e:miJuego.getNivelActual().getPlataformas()){
             Plataforma p=(Plataforma)e;
             if(hitbox.getBottomHitBox().intersects(p.getHitbox().getTopHitBox())){
-            tocandoSuelo=ConstantesEntidades.SUELO;
+                tocandoSuelo=ConstantesEntidades.SUELO;
                 break;
             }
         }
@@ -139,7 +139,6 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     }  */
     public void iniciarSalto(){//TODO ver colisiones y caida si no encuentra plataforma
         //int velocidadY=ConstantesDificultad.VELOCIDAD_JUGADOR-3;
-
         if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
             tocandoSuelo=ConstantesEntidades.AIRE;
             observer.actualizar(direccion, getEstadoAereo());
@@ -230,6 +229,21 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
  }
     public void efectoBotellaAzul(){
         this.velocidad=ConstantesDificultad.EFECTO_BOTELLA_AZUL;
+        /*        if(afectadoBotellaAzul){
+            return;
+        }
+        afectadoBotellaAzul=true;
+        velocidad=ConstantesDificultad.EFECTO_BOTELLA_AZUL;
+        hiloBotellaAzul=new Thread(()->{
+        try{
+            Thread.sleep(ConstantesTiempos.TIEMPO_EFECTO_POWER_UP);
+        }catch(InterruptedException e){
+            //podria tocar otros power ups tmb pero no del mismo
+        }
+            velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
+            afectadoBotellaAzul=false;
+        });
+        hiloBotellaAzul.start();  */
     }
     public void efectoBotellaRoja(){
         this.disparoAumentado=true;

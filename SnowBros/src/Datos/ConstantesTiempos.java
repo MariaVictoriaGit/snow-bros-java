@@ -9,7 +9,7 @@ public class ConstantesTiempos{
     public static final int TIEMPO_BOLA_DE_NIEVE=10;
     public static final int TIEMPO_DISPARO_JUGADOR=12;//12s
     public static final int TIEMPO_VIDA_POWER_UP=10;
-    public static final int TIEMPO_EFECTO_POWER_UP=10;
+    public static final int TIEMPO_EFECTO_POWER_UP=7;
 
     //tiempo que permanecen congelados
     public static final int TIEMPO_CONGELADO_ENEMIGOS=10;//10s
