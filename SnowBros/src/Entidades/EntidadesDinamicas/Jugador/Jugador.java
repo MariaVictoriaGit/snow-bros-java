@@ -90,11 +90,17 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         if(tocandoSuelo==ConstantesEntidades.SUELO){
             tocandoSuelo=ConstantesEntidades.AIRE;
             iniciarCaida();
-
         }
     }
     public void iniciarCaida(){//gestiona la caida
-       if (tocandoSuelo == ConstantesEntidades.AIRE && !timerCaida.isRunning()) {
+        /*timerCaida = new Timer(ConstantesTiempos.TIEMPO_SALTO, e -> actualizarCaida());
+        if(tocandoSuelo==ConstantesEntidades.AIRE){
+            timerCaida.start();
+        }
+        else{
+            timerCaida.stop();
+        }*/
+        if (tocandoSuelo == ConstantesEntidades.AIRE && !timerCaida.isRunning()) {
             timerCaida.start();
         } else if (tocandoSuelo != ConstantesEntidades.AIRE && timerCaida.isRunning()) {
             timerCaida.stop();
@@ -230,6 +236,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
  }
     public void efectoBotellaAzul(){
         this.velocidad=ConstantesDificultad.EFECTO_BOTELLA_AZUL;
+
         /*        if(afectadoBotellaAzul){
             return;
         }
@@ -267,21 +274,28 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         Rectangle hitboxJugador=this.getHitbox().getRectangle();
         Rectangle hitboxPlataforma=p.getHitbox().getRectangle();
         if(this.getHitbox().getBottomHitBox().intersects(p.getHitbox().getTopHitBox())){
-            this.posY = hitboxPlataforma.y - hitboxJugador.height-24; //40 es el ajuste de momento
+            this.posY = hitboxPlataforma.y - hitboxJugador.height-24; //40 o 30 es el ajuste de momento
             this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
             tocandoSuelo=ConstantesEntidades.SUELO;
         }
     }
     public void visitar(BotellaAzul b){
         efectoBotellaAzul();
+        puntajeJugador+=b.getPuntaje();
         miNivel.eliminarPowerUp(b);
         miJuego.eliminarPowerUp(b);
     }
     public void visitar(BotellaRoja b){
         efectoBotellaRoja();
+        puntajeJugador+=b.getPuntaje();
+        miNivel.eliminarPowerUp(b);
+        miJuego.eliminarPowerUp(b);
     }
     public void visitar(BotellaVerde b){
         efectoBotellaVerde();
+        puntajeJugador+=b.getPuntaje();
+        miNivel.eliminarPowerUp(b);
+        miJuego.eliminarPowerUp(b);
     }
     public void visitar(Fruta f){
         puntajeJugador+=f.getPuntaje();
