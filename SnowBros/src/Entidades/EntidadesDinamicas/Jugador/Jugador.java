@@ -29,6 +29,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     protected boolean disparoAumentado;
     protected int posXoriginal;
     protected int posYoriginal;
+    protected Timer timerCaida;
 
     public Jugador(int x,int y, Sprite mISprite){//no se usa observerJugador y en entidadDinamica se le asigna un observer a cada uno
         super(x,y,mISprite);
@@ -76,33 +77,26 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         }   
     }
     private void verificarSuelo(){
-        boolean haySuelo=false;
         for(Entidad e:miJuego.getNivelActual().getPlataformas()){
             Plataforma p=(Plataforma)e;
             if(hitbox.getBottomHitBox().intersects(p.getHitbox().getTopHitBox())){
-                haySuelo=true;
+            tocandoSuelo=ConstantesEntidades.SUELO;
                 break;
             }
         }
-        if(!haySuelo){
+        if(tocandoSuelo==ConstantesEntidades.SUELO){
             tocandoSuelo=ConstantesEntidades.AIRE;
             iniciarCaida();
-        }else{
-            tocandoSuelo=ConstantesEntidades.SUELO;
         }
     }
     public void iniciarCaida(){//gestiona la caida
         //caer hacia donde la tacla indica pq puede que salte derecha y caiga izquierda
-        Timer timerCaida = new Timer(30, e -> actualizarCaida());
+        timerCaida = new Timer(200, e -> actualizarCaida());
         if(tocandoSuelo==ConstantesEntidades.AIRE){
             //SI APUNTA A LA IZQ QUE CAE A LA IZQ
             timerCaida.start();
-            if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
-            }
             //SI APUNTA A LA DER QUE CAE A LA DER
                 //QUE CAIGA
-            else if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
-        }
         }
         else{
             timerCaida.stop();
@@ -114,7 +108,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
             /*     if (velocidadY < LIMITE_CAIDA) {            a futuro para meterle aceleracion puede estar bien
                 velocidadY += GRAVEDAD;
             } */
-            int ajuste=40;
+            int ajuste=38;
             posY+=velocidadY;
             this.getObserver().actualizar(direccion, getEstadoAereo());
             this.getHitbox().actualizarHitbox(posX,posY+ajuste,ancho,alto);
@@ -150,8 +144,10 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         //int velocidadY=ConstantesDificultad.VELOCIDAD_JUGADOR-3;
 
         if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
+            tocandoSuelo=ConstantesEntidades.AIRE;
             observer.actualizar(direccion, getEstadoAereo());
             posY-=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
+            iniciarCaida();
         }
     }
     public void disparar(){

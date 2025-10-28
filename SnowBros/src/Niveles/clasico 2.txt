@@ -1,3 +1,4 @@
+Plataforma 800 0
 Plataforma 768 0
 Plataforma 736 0
 Plataforma 704 0
@@ -19,12 +20,12 @@ Plataforma 224 0
 Plataforma 192 0
 Plataforma 160 0
 Plataforma 128 0
-Plataforma 98 0
+Plataforma 96 0
 Plataforma 64 0
 Plataforma 32 0
 Plataforma 0 0
 
-Jugador 400 32
+Jugador 416 96
 
 Plataforma 96 64
 Plataforma 128 64
@@ -77,6 +78,8 @@ Plataforma 544 224
 Plataforma 576 224
 Plataforma 608 224
 
+DemonioRojo 224 256
+
 Plataforma 224 288
 Plataforma 256 288
 Plataforma 288 288
@@ -90,6 +93,8 @@ Plataforma 544 288
 Plataforma 64 320
 Plataforma 96 320
 Plataforma 128 320
+
+TrollAmarillo 96 352
 
 Plataforma 352 320
 Plataforma 384 320

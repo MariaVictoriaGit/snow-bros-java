@@ -43,7 +43,7 @@ public class Juego {
     }
     public void iniciar(){
         ParserNivel parseActual= new ParserNivel(true);
-        nivel= parseActual.generarNivel(1);//TODO
+        nivel= parseActual.generarNivel(1);//TODO -..................................................................................
         this.jugador=nivel.getJugador();
         this.jugador.setJuego(this);
         this.registrarObservers();
