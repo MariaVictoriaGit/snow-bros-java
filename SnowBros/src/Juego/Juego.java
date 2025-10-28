@@ -124,12 +124,15 @@ public class Juego {
         }
         
     }
+    public void quitarVida(){
+        controladorGrafica.getPantalla().actualizarLabelsVidas(jugador.getVidas());
+    }
     public void crearNuevaPowerUp(){
         EntidadEstatica e= nivel.getPowerUps().getLast();
         controladorGrafica.getPantalla().incorporarEntidadEstatica(e); 
     }
     public void eliminarPowerUp(PowerUp p){
-        controladorGrafica.getPantalla().eliminarEntidadEstatica(p.getLabel());
+        controladorGrafica.getPantalla().eliminarLabel(p.getLabel());
     }
     public int getModoDeJuego(){
         return puntajeJugador;
