@@ -4,21 +4,21 @@ import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Juego.Timer;
+import SnowBros.src.Juego.Temporizador;
 
 public class BolaDeNieve extends EntidadDinamica{
     private boolean estaActiva;
-    private Timer tiempo;
+    private Temporizador tiempo;
 
     public BolaDeNieve(int x, int y, Sprite sprite){
         super(x,y,sprite);
-        tiempo=new Timer(ConstantesTiempos.TIEMPO_BOLA_DE_NIEVE);
+        tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_NIEVE);
         estaActiva=false;
     }
     public boolean getEstado(){
         return estaActiva;
     }
-    public Timer getTimer(){
+    public Temporizador getTimer(){
         return tiempo;
     }
     public void mover(){

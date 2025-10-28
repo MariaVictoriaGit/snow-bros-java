@@ -1,8 +1,5 @@
 package SnowBros.src.Fabricas;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
@@ -10,7 +7,6 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Silueta;
-
 
 public class FabricaEntidades {
     private FabricaSprites fabrica;

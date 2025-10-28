@@ -23,7 +23,7 @@ import SnowBros.src.Parser.ParserNivel;
 public class Juego {
     protected Nivel nivel;
     protected int puntajeJugador;
-    protected Timer tiempo;//TODO revisar control del tiempo del juego 
+    protected Temporizador tiempo;//TODO revisar control del tiempo del juego 
     protected boolean reiniciarJugador;
     protected Jugador jugador;
     protected Sonido sonido;
@@ -101,7 +101,7 @@ public class Juego {
     public int getTiempoActual(){
         return tiempo.getTiempoActual();
     }
-    public Timer getTimer(){
+    public Temporizador getTimer(){
         return tiempo;
     }
     public Ranking getRanking(){

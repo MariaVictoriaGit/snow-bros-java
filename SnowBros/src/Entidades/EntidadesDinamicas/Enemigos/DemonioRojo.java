@@ -3,7 +3,7 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Juego.Timer;
+import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitador;
 
 public class DemonioRojo extends Enemigo{
@@ -21,7 +21,7 @@ public class DemonioRojo extends Enemigo{
     public void mover(){
         accionMovimientoEnemigo.iniciar();
         while(accionMovimientoEnemigo.getTiempoActual()!=0){
-            Timer caminar= new Timer(100);
+            Temporizador caminar= new Temporizador(100);
             if(dirAnterior==ConstantesEntidades.IZQUIERDA){
                 while(caminar.getTiempoActual()!=0){
                     posX-=32;

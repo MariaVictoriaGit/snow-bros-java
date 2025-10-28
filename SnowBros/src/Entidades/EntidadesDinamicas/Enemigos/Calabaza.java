@@ -3,16 +3,16 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Juego.Timer;
+import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitador;
 
 public class Calabaza extends Enemigo{
-    protected Timer tiempoAntesAparicion;
+    protected Temporizador tiempoAntesAparicion;
     
     public Calabaza(int x, int y, Sprite sprite){
         super(x, y, sprite);
         velocidad=ConstantesDificultad.VELOCIDAD_CALABAZA;
-        tiempoAntesAparicion=new Timer(ConstantesTiempos.TIEMPO_CALABAZA);
+        tiempoAntesAparicion=new Temporizador(ConstantesTiempos.TIEMPO_CALABAZA);
     }
     public void mover(){
         //TODO mover

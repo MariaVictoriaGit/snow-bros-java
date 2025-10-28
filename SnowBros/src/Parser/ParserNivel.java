@@ -12,13 +12,10 @@ import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Juego.Silueta;
 import SnowBros.src.Datos.ConstantesNiveles;
 import SnowBros.src.Datos.ConstantesVistas;
-import SnowBros.src.Entidades.Entidad;
-import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.DemonioRojo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.RanaDeFuego;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.TrollAmarillo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
-import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaAzul;
 
@@ -78,7 +75,7 @@ public class ParserNivel{
                     case "BotellaAzul":
                         int xBotellaAzul=Integer.parseInt(partes[1]);
                         yArchivo=Integer.parseInt(partes[2]);
-                        int yBotellaAzul=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
+                        int yBotellaAzul=ConstantesVistas.PANEL_ALTO-yArchivo;
                         BotellaAzul botellaAzul=fabrica.getBotellaAzul(xBotellaAzul, yBotellaAzul);
                         nivel.agregarPowerUp(botellaAzul);
                         break;

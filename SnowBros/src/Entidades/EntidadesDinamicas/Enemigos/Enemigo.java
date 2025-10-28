@@ -6,7 +6,7 @@ import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Juego.Timer;
+import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitable;
 
 public abstract class Enemigo extends EntidadDinamica implements Visitable {
@@ -14,8 +14,8 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected int direccion;
    protected int dirAnterior;
    protected int salud;
-   protected Timer temporizadoCongelado;
-   protected Timer accionMovimientoEnemigo;
+   protected Temporizador temporizadoCongelado;
+   protected Temporizador accionMovimientoEnemigo;
    protected boolean rodando;
    protected boolean muerto;
    protected boolean congelado;
@@ -24,11 +24,11 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       //la dificultad va a verse definida por lsa salud
       //de c/u y los tiempos congelado, desp cambiar
       super(x, y, sprites);
-      temporizadoCongelado=new Timer(ConstantesTiempos.TIEMPO_CONGELADO_ENEMIGOS);
+      temporizadoCongelado=new Temporizador(ConstantesTiempos.TIEMPO_CONGELADO_ENEMIGOS);
       congelado=false;
       muerto=false;
       rodando=false;
-      accionMovimientoEnemigo=new Timer(ConstantesTiempos.TOPE_TIEMPO_JUEGO);
+      accionMovimientoEnemigo=new Temporizador(ConstantesTiempos.TOPE_TIEMPO_JUEGO);
    }
    public abstract void mover();
       /*

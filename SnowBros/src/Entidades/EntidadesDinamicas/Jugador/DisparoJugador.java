@@ -4,10 +4,10 @@ import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Juego.Timer;
+import SnowBros.src.Juego.Temporizador;
 
 public class DisparoJugador extends EntidadDinamica {
-    protected Timer tiempoEfecto;
+    protected Temporizador tiempoEfecto;
     protected int potenciaDisparo;
     protected int velocidad;
     protected boolean efectoBotella;
@@ -19,7 +19,7 @@ public class DisparoJugador extends EntidadDinamica {
         //direccion= jugador.getDireccion();--->que tan necesaria es la direcion;
         velocidad=ConstantesDificultad.VELOCIDAD_DISPARO; // a definir
         potenciaDisparo=ConstantesDificultad.POTENCIA_DISPARO_NORMAL; //a definir
-        tiempoEfecto=new Timer(ConstantesTiempos.TIEMPO_DISPARO_JUGADOR);
+        tiempoEfecto=new Temporizador(ConstantesTiempos.TIEMPO_DISPARO_JUGADOR);
     }
     public void mover(){
         //TODO mover

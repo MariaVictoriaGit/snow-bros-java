@@ -1,17 +1,17 @@
 package SnowBros.src.Juego;
 
-public class Timer {
+public class Temporizador {
     private int tiempoActual;
     private int tope;
     private Thread hilo;
     private boolean enMarcha;
     
-    public Timer(){
+    public Temporizador(){
         tope=Integer.MAX_VALUE;
         tiempoActual=0;
         enMarcha=false;
     }
-    public Timer(int tMaximo){
+    public Temporizador(int tMaximo){
         tope=tMaximo;
         tiempoActual=0;
         enMarcha=false;

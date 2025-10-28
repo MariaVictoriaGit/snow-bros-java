@@ -2,9 +2,10 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
 
 import java.awt.Rectangle;
 import javax.swing.Timer;
-
+import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
+import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -87,6 +88,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         if(tocandoSuelo==ConstantesEntidades.SUELO){
             tocandoSuelo=ConstantesEntidades.AIRE;
             iniciarCaida();
+
         }
     }
     public void iniciarCaida(){//gestiona la caida
@@ -94,7 +96,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         timerCaida = new Timer(200, e -> actualizarCaida());
         if(tocandoSuelo==ConstantesEntidades.AIRE){
             //SI APUNTA A LA IZQ QUE CAE A LA IZQ
-            timerCaida.start();
+        timerCaida.start();
             //SI APUNTA A LA DER QUE CAE A LA DER
                 //QUE CAIGA
         }
@@ -232,7 +234,14 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         vidas=vidaDeInicio;
  }
     public void efectoBotellaAzul(){
-        this.velocidad+=5; // suponiendo que ese es el incremento final, cambiar dsp
+        Temporizador efecto= new Temporizador(ConstantesTiempos.TIEMPO_EFECTO_POWER_UP);
+        
+        while(efecto.getTiempoActual()<efecto.getTope()){
+            efecto.incrementar();
+            this.velocidad=ConstantesDificultad.EFECTO_BOTELLA_AZUL;
+        }
+        velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
+
     }
     public void efectoBotellaRoja(){
         this.disparoAumentado=true;
