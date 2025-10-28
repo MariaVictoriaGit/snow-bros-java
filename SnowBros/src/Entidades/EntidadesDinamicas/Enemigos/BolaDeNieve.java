@@ -2,7 +2,6 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
 
