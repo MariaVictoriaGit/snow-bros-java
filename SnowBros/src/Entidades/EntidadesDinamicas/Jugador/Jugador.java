@@ -61,7 +61,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
                 direccion=direccionAMover;
                 if(posX-velocidad>0){
                 posX-=velocidad;
-                getHitbox().actualizarHitbox(posX,posY,ancho,alto-16);
+                getHitbox().actualizarHitbox(posX,posY-8,ancho,alto-32);
                 verificarSuelo();
                 }
                 break;
@@ -79,7 +79,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         boolean haySuelo=false;
         for(Entidad e:miJuego.getNivelActual().getPlataformas()){
             Plataforma p=(Plataforma)e;
-            if(hitbox.getBottomHitBox().intersects(p.getHitbox().getRectangle())){
+            if(hitbox.getBottomHitBox().intersects(p.getHitbox().getTopHitBox())){
                 haySuelo=true;
                 break;
             }
@@ -253,8 +253,8 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     public void visitar(Plataforma p){
         Rectangle hitboxJugador=this.getHitbox().getRectangle();
         Rectangle hitboxPlataforma=p.getHitbox().getRectangle();
-        if(this.getHitbox().getBottomHitBox().intersects(p.getHitbox().getRectangle())){
-            this.posY = hitboxPlataforma.y - hitboxJugador.height-40; //40 es el ajuste de momento
+        if(this.getHitbox().getBottomHitBox().intersects(p.getHitbox().getTopHitBox())){
+            this.posY = hitboxPlataforma.y - hitboxJugador.height-30; //40 es el ajuste de momento
             this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
             tocandoSuelo=ConstantesEntidades.SUELO;
         }

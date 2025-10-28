@@ -101,7 +101,7 @@ public class PanelPantallaJuego extends JPanel{
             String ruta = plataforma.getSprite().getRutaImagen("normal");
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));//plataforma.getSprite().getRutaImagen("estatico.png"
             JLabel plataformaVisible = new JLabel(icono);
-            plataformaVisible.setBounds(plataforma.getPosX(), plataforma.getPosY(), icono.getIconWidth(), icono.getIconHeight());
+            plataformaVisible.setBounds(plataforma.getHitbox().getX(), plataforma.getHitbox().getY(), plataforma.getHitbox().getAncho(), plataforma.getHitbox().getAlto());
             this.add(plataformaVisible);  
             //imagenFondoJuego.add(plataformaVisible);
         }
