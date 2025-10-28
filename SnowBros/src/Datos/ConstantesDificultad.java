@@ -24,7 +24,7 @@ public class ConstantesDificultad {
     //velocidades y salto a escala
     public static final int VELOCIDAD_PLATAFORMA_MOVIL=4;
 
-    public static final int VELOCIDAD_JUGADOR=3;
+    public static final int VELOCIDAD_JUGADOR=5;
     public static final int VELOCIDAD_SALTO_JUGADOR=64;
     public static final int VELOCIDAD_CAIDA=100;
 
