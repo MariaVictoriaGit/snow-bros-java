@@ -51,8 +51,7 @@ public class Juego {
         jugador.getObserver().actualizar();
         Thread hilo = new Thread(() -> {
             while(!nivel.getEnemigos().isEmpty()){
-                try {
-                    Thread.sleep(100);
+                    
                     for(Entidad ent : nivel.getEnemigos()){
                         if(estaCercaEntidad(jugador, ent, 20) && jugador.getHitbox().getRectangle().intersects(ent.getHitbox().getRectangle())){
                             Enemigo enemigo = (Enemigo) ent;
@@ -65,10 +64,6 @@ public class Juego {
                             powerUp.aceptar(jugador);
                         }
                     }
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    break;
-                }
             }
         });
         hilo.start();
