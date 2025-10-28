@@ -168,7 +168,7 @@ public class PanelPantallaJuego extends JPanel{
     public void decorarLabelsVidas(){
         //TODO implementar
     }
-    public void eliminarEntidadEstatica(JLabel l){
+    public void eliminarLabel(JLabel l){
         remove(l);
         this.revalidate();
         this.repaint();
