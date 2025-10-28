@@ -4,7 +4,6 @@ import java.awt.Rectangle;
 import javax.swing.Timer;
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
-import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -23,7 +22,6 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     protected Juego miJuego;
     protected int tocandoSuelo;
     protected int puntajeJugador;
-    protected int velocidad;
     protected int vidas;
     protected String nombre;
     protected boolean disparoAumentado;

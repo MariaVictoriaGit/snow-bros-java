@@ -1,6 +1,5 @@
 package SnowBros.src.Juego;
 
-import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;

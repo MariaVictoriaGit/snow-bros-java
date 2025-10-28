@@ -3,9 +3,6 @@ package SnowBros.src.Juego;
 import java.awt.Rectangle;
 import java.util.List;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;

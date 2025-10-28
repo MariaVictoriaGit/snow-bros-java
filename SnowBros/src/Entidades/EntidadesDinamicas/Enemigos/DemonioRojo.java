@@ -9,8 +9,6 @@ import SnowBros.src.Visitor.Visitador;
 public class DemonioRojo extends Enemigo{
     protected static final int puntajeCongelado = 150;
     protected static final int puntajeEmpujado = 300;
-    protected int velocidad;
-    protected int direccion;
     protected int contadorAnimacion=0;
 
     public DemonioRojo(int posX, int posY, Sprite miSprite){

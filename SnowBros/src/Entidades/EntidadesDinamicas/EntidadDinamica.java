@@ -14,9 +14,9 @@ import SnowBros.src.Grafica.Sprite;
 public abstract class EntidadDinamica extends Entidad{
     protected int direccion;
     protected int dirAnterior;
+    protected int velocidad;
     protected Observer observer;//ObserverEntidad
     protected boolean estadoAereo;
-    protected int velocidad;
 
     public EntidadDinamica(int posX, int posY, Sprite mSprite){
       super(posX, posY, mSprite);

@@ -21,7 +21,6 @@ import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 //import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.Observer;
-import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.ObserverJugador;
 
 public class PanelPantallaJuego extends JPanel{
