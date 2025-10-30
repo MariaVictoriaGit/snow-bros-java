@@ -222,6 +222,8 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     }
     public void perderVida(){
         vidas--;
+        if (vidas > -1)
+        miJuego.quitarVida();
         if(vidas==0){
             //TODO reiniciar jugador
         }
