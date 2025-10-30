@@ -150,7 +150,7 @@ public class Nivel implements InterfazEliminar{
     }
     public void notificarObservers(){
         for(Enemigo e:this.getEnemigos()){
-            e.getObserver().actualizar();
+            e.getObserver().actualizar(e.getDireccion(),e.getEstadoAereo());
         }
       /*  for(DisparoJugador d:this.getDisparos()){
             d.getObserver().actualizar();

@@ -93,11 +93,9 @@ public class Juego {
                 //jugador.moverSegunInput() por si movemos el movimiento a booleanos
                 jugador.verificarSuelo();
                 for (Enemigo enemigo : nivel.getEnemigos()) {
-                    //enemigo.mover();        
+                   // enemigo.mover();        
                    // enemigo.verificarSuelo(); 
                 }
-
-                // --- 4. Notificar Observers o repintar ---
                 SwingUtilities.invokeLater(() -> {
                     nivel.notificarObservers();
                 });

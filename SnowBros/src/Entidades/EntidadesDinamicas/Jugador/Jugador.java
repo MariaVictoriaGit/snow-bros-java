@@ -64,15 +64,17 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
                 break;
             case ConstantesEntidades.ARRIBA_IZQUIERDA:
                 direccion=direccionAMover;
-                if(tocandoSuelo==ConstantesEntidades.SUELO)
+                if(tocandoSuelo==ConstantesEntidades.SUELO){
                     this.iniciarSalto();
                     tocandoSuelo=ConstantesEntidades.AIRE;
+                }
                 break;
             case ConstantesEntidades.ARRIBA_DERECHA:
                 direccion=direccionAMover;
-                if(tocandoSuelo==ConstantesEntidades.SUELO)
+                if(tocandoSuelo==ConstantesEntidades.SUELO){
                     this.iniciarSalto();
                     tocandoSuelo=ConstantesEntidades.AIRE;
+                }
                 break;
         }   
     }
@@ -86,9 +88,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
             tocandoSuelo=ConstantesEntidades.AIRE;
         }
         if(tocandoSuelo==ConstantesEntidades.AIRE){
-            //while()
             actualizarCaida();
-            tocandoSuelo=ConstantesEntidades.SUELO;
         }
     }
     private void actualizarCaida(){
@@ -102,6 +102,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
                 Plataforma plataforma= (Plataforma) p;
                 if(miJuego.estaCercaPlataforma(this, p, 50)){
                     plataforma.aceptar((Visitador) this);
+                    tocandoSuelo=ConstantesEntidades.SUELO;
                 }
             }
         }
