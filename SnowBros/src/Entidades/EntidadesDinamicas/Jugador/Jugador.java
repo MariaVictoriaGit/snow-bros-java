@@ -40,6 +40,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         posYoriginal = y;
         timerCaida = new Timer(16, e -> actualizarCaida());
         timerCaida.setRepeats(true);
+        puntajeJugador=0;
     }
     public void mover(){
         //TODO ver como manejamos la herencia pq es de entidad dinamica
@@ -78,8 +79,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         }   
     }
     private void verificarSuelo(){
-        for(Entidad e:miJuego.getNivelActual().getPlataformas()){
-            Plataforma p=(Plataforma)e;
+        for(Plataforma p:miJuego.getNivelActual().getPlataformas()){
             if(hitbox.getBottomHitBox().intersects(p.getHitbox().getTopHitBox())){
                 tocandoSuelo=ConstantesEntidades.SUELO;
                 break;
@@ -90,14 +90,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
             iniciarCaida();
         }
     }
-    public void iniciarCaida(){//gestiona la caida
-        /*timerCaida = new Timer(ConstantesTiempos.TIEMPO_SALTO, e -> actualizarCaida());
-        if(tocandoSuelo==ConstantesEntidades.AIRE){
-            timerCaida.start();
-        }
-        else{
-            timerCaida.stop();
-        }*/
+    public void iniciarCaida(){
         if (tocandoSuelo == ConstantesEntidades.AIRE && !timerCaida.isRunning()) {
             timerCaida.start();
         } else if (tocandoSuelo != ConstantesEntidades.AIRE && timerCaida.isRunning()) {
@@ -111,9 +104,8 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
             posY+=velocidadY;
             this.getObserver().actualizar(direccion, getEstadoAereo());
             this.getHitbox().actualizarHitbox(posX,posY+ajuste,ancho,alto);
-            for(Entidad p:miJuego.getNivelActual().getPlataformas()){
-                Plataforma plataforma= (Plataforma) p;
-                if(miJuego.estaCercaPlataforma(this, p, 50)){
+            for(Plataforma plataforma:miJuego.getNivelActual().getPlataformas()){
+                if(miJuego.estaCercaPlataforma(this, plataforma, 50)){
                     plataforma.aceptar((Visitador) this);
                 }
             }
@@ -122,26 +114,6 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
             timerCaida.stop();
         }
     }
-
-    /*
-    public void iniciarSalto(){
-        //tal vez necesite un parametro para ver hacia donde salta con teclas w y a o d
-        Timer timerSalto= new Timer(30, e-> actualizarSalto());
-        timerSalto.start();
-        posY-=velocidadY;//realiza la subida del salto
-            
-            //SI APUNTA A LA IZQ QUE SALTE A LA IZQ
-                //QUE SUBA
-            if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
-
-            }
-            //SI APUNTA A LA DER QUE SALTE A LA DER
-                //QUE SUBA
-            else if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
-
-            }
-            iniciarCaida();
-    }  */
     public void iniciarSalto(){//TODO ver colisiones y caida si no encuentra plataforma
         //int velocidadY=ConstantesDificultad.VELOCIDAD_JUGADOR-3;
         if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
@@ -152,10 +124,12 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         }
     }
     public void disparar(){
-        Sprite miDisparo=null;  // ponermos getfabrica()
         //TODO corregir
-        DisparoJugador disparo=new DisparoJugador(posX,posY,miDisparo);
+        DisparoJugador disparo=miJuego.getFabricaEntidades().getDisparoJugador(posX, posY);
         miJuego.getNivelActual().agregarDisparo(disparo);
+        disparo.setDireccion(this.direccion);
+        disparo.actualizar(direccion, getEstadoAereo());
+        
 
     }
     public void eliminar(){
@@ -227,6 +201,10 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         if(vidas==0){
             //TODO reiniciar jugador
         }
+    }
+    public void setPuntaje(int n){
+        puntajeJugador=n;
+        
     }
     public void setAire(){
         tocandoSuelo=ConstantesEntidades.AIRE;

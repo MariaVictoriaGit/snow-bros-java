@@ -1,5 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
@@ -9,6 +10,7 @@ import SnowBros.src.Visitor.Visitable;
 
 public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected int salud;
+   protected int tocandoSuelo;
    protected Temporizador temporizadoCongelado;
    protected Temporizador accionMovimientoEnemigo;
    protected boolean rodando;
@@ -20,10 +22,11 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       //de c/u y los tiempos congelado, desp cambiar
       super(x, y, sprites);
       temporizadoCongelado=new Temporizador(ConstantesTiempos.TIEMPO_CONGELADO_ENEMIGOS);
+      accionMovimientoEnemigo=new Temporizador(ConstantesTiempos.TOPE_TIEMPO_JUEGO);
       congelado=false;
       muerto=false;
       rodando=false;
-      accionMovimientoEnemigo=new Temporizador(ConstantesTiempos.TOPE_TIEMPO_JUEGO);
+      tocandoSuelo=ConstantesEntidades.SUELO;
    }
    public abstract void mover();
       /*
@@ -39,6 +42,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
                   direccion=ConstantesEntidades.DERECHA;
                }
          }*/
+   
    public void recibirDaño(int daño){
       if (congelado || muerto) return;
       salud -= daño;

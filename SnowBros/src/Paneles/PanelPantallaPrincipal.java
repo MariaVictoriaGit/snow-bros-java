@@ -1,4 +1,5 @@
 package SnowBros.src.Paneles;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,34 +24,36 @@ public class PanelPantallaPrincipal extends JPanel{
         this.miControladorGrafico=controlador;
         setSize(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO);
         setLayout(null);
+        setBackground(Color.BLACK);
+        setOpaque(true);
         agregarBotonIniciar();
         agregarBotonRanking();
         agregarImagenFondo();
     }
     protected void agregarImagenFondo(){
         imagenFondo = new JLabel();
-        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/PantallaPrincipal.jpg"));
-        Image imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO,Image.SCALE_SMOOTH);
+        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Pantallas/pantallaPrincipal.jpg"));
+        Image imagenEscalada = iconoImagen.getImage().getScaledInstance(iconoImagen.getIconWidth(),ConstantesVistas.VENTANA_ALTO-25,Image.SCALE_SMOOTH);
         Icon iconoImagenEscalada = new ImageIcon(imagenEscalada);
         imagenFondo.setIcon(iconoImagenEscalada);
-        imagenFondo.setBounds(0,0,ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO);
+        imagenFondo.setBounds(9,-14,ConstantesVistas.VENTANA_ANCHO+10,ConstantesVistas.VENTANA_ALTO-10);
         add(imagenFondo);
         imagenFondo.setOpaque(false);
     }
     protected void agregarBotonIniciar(){
         botonIniciar = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonJugar.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonJugar.jpg"));
         botonIniciar.setIcon(iconoBoton);
-        botonIniciar.setBounds(0,300,iconoBoton.getIconWidth(),iconoBoton.getIconHeight());
+        botonIniciar.setBounds(15,45,iconoBoton.getIconWidth(),iconoBoton.getIconHeight());
         transparentarBoton(botonIniciar);
         registrarOyenteBotonIniciar();
         add(botonIniciar);
     }
     private void agregarBotonRanking(){
         botonRanking= new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonRanking.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonRanking.jpg"));
         botonRanking.setIcon(iconoBoton);
-        botonRanking.setBounds(13,450,iconoBoton.getIconWidth(),iconoBoton.getIconHeight());
+        botonRanking.setBounds(530,45,iconoBoton.getIconWidth(),iconoBoton.getIconHeight());
         transparentarBoton(botonRanking);
         registrarOyenteBotonRanking();
         add(botonRanking);

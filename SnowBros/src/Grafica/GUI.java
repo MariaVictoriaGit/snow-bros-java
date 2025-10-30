@@ -204,4 +204,8 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public PanelPantallaJuego getPantalla(){
         return panelPantallaJuego;
     }
+    public void mostrarPantallaGameOver() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'mostrarPantallaGameOver'");
+    }
 }

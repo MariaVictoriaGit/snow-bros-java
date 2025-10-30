@@ -11,7 +11,7 @@ public abstract class FabricaSprites {
     }
     public Sprite get_silueta() {
         HashMap<String, String> mapeo = new HashMap<>();
-        mapeo.put("normal", rutaACarpeta+ "/FondoNivel1.jpg");
+        mapeo.put("normal", rutaACarpeta+ "/Pantallas/FondoNivel1.jpg");
         return new Sprite(mapeo);	
                                 	
     }
