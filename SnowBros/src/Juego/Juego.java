@@ -51,14 +51,12 @@ public class Juego {
                     
                     for(Enemigo entidad : nivel.getEnemigos()){
                         if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
-                        Enemigo enemigo = entidad;
-                        enemigo.aceptar(jugador);
+                        entidad.aceptar(jugador);
                         }
                     }
-                    for(Entidad entidad : nivel.getPowerUps()){
+                    for(PowerUp entidad : nivel.getPowerUps()){
                         if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
-                        PowerUp powerUp = (PowerUp) entidad;
-                        powerUp.aceptar(jugador);
+                        entidad.aceptar(jugador);
                         }
                     }
             }
@@ -125,7 +123,7 @@ public class Juego {
         
     }
     public void quitarVida(){
-        controladorGrafica.getPantalla().actualizarLabelsVidas(jugador.getVidas());
+        controladorGrafica.getPantalla().actualizarLabelsVidas(jugador);
     }
     public void crearNuevaPowerUp(){
         EntidadEstatica e= nivel.getPowerUps().getLast();
