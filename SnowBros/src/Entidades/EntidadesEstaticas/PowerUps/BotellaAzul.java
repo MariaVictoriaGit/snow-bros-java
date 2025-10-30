@@ -11,5 +11,6 @@ public class BotellaAzul extends PowerUp{
 
     public void aceptar(Visitador v){
         v.visitar(this);
+        eliminar();
     }
 }
