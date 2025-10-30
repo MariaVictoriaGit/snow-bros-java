@@ -337,4 +337,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     public void aceptar(Visitador v){
         v.visitar(this);
     }
+    public void setPuntaje(int i) {
+       puntajeJugador=i;
+    }
 }

@@ -20,7 +20,7 @@ public class DemonioRojo extends Enemigo{
     public void mover(){
         accionMovimientoEnemigo.iniciar();
         while(accionMovimientoEnemigo.getTiempoActual()!=0){
-       //     Temporizador caminar= new Temporizador(100);
+            Temporizador caminar= new Temporizador(100);
             if(dirAnterior==ConstantesEntidades.IZQUIERDA){
                 while(caminar.getTiempoActual()!=0 && posX-velocidad>0){
                     posX-=velocidad;
