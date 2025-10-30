@@ -53,7 +53,6 @@ public class Juego {
             nivel=parseActual.generarNivel(nivelActual);
         } else{
             jugador.setVidas();
-            jugador.setPuntaje(0);
             nivel= parseActual.generarNivel(1);
         }
 
