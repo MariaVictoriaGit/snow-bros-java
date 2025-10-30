@@ -31,7 +31,7 @@ public class PanelPantallaFinDelJuego extends JPanel {
     }
     public void agregarImagenFondo(){
         imagenFondo = new JLabel();
-        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Pantallas/PantallaNegra.jpg"));
+        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Pantallas/pantallaFinDelJuego.jpg"));
         Image imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO,Image.SCALE_SMOOTH);
         Icon iconoImagenEscalada = new ImageIcon(imagenEscalada);
         imagenFondo.setIcon(iconoImagenEscalada);
