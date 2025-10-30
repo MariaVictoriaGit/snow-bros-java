@@ -31,7 +31,7 @@ public class PanelPantallaFinDelJuego extends JPanel {
     }
     public void agregarImagenFondo(){
         imagenFondo = new JLabel();
-        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/PantallaPrincipal.jpg"));
+        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Pantallas/PantallaNegra.jpg"));
         Image imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO,Image.SCALE_SMOOTH);
         Icon iconoImagenEscalada = new ImageIcon(imagenEscalada);
         imagenFondo.setIcon(iconoImagenEscalada);
@@ -40,7 +40,7 @@ public class PanelPantallaFinDelJuego extends JPanel {
     }
     public void agregarBotonReinicio(){
         botonReinicio = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonJugar.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonReinicio.jpg"));
         botonReinicio.setIcon(iconoBoton);
         botonReinicio.setBounds(100, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonReinicio);
@@ -49,7 +49,7 @@ public class PanelPantallaFinDelJuego extends JPanel {
     }
     public void agregarBotonSalir(){
         botonSalir = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonSalir.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonSalir.jpg"));
         botonSalir.setIcon(iconoBoton);
         botonSalir.setBounds(100, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonSalir);
@@ -58,7 +58,7 @@ public class PanelPantallaFinDelJuego extends JPanel {
     }
     public void agregarBotonNuevaPartida(){
         botonNuevaPartida = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonJugar.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonJugar.jpg"));
         botonNuevaPartida.setIcon(iconoBoton);
         botonNuevaPartida.setBounds(100, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonSalir);

@@ -27,7 +27,7 @@ public class PanelPantallaDominio extends JPanel {
     }
     public void agregarImagenFondo(){ 
         imagenFondo = new JLabel();
-        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/PantallaRanking.jpg"));
+        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Pantallas/PantallaInicio.jpg"));
         Image imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO,Image.SCALE_SMOOTH);
         Icon iconoImagenEscalada = new ImageIcon(imagenEscalada);
         imagenFondo.setIcon(iconoImagenEscalada);
@@ -36,18 +36,18 @@ public class PanelPantallaDominio extends JPanel {
     }
     public void agregarBotonOriginal(){
         botonOriginal = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonOriginal.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonOriginal.jpg"));
         botonOriginal.setIcon(iconoBoton);
-        botonOriginal.setBounds(300, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
+        botonOriginal.setBounds(20, 150, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonOriginal);
         registrarOyenteBotonOriginal();
         add(botonOriginal,0);    
     }
     public void agregarBotonAlternativo(){
         botonAlternativo = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonAlternativo.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonAlternativo.jpg"));
         botonAlternativo.setIcon(iconoBoton);
-        botonAlternativo.setBounds(300, 500, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
+        botonAlternativo.setBounds(350, 150, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonAlternativo);
         registrarOyenteBotonAlternativo();
         add(botonAlternativo,0);    

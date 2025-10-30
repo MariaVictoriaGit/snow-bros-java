@@ -32,7 +32,7 @@ public class PanelPantallaModo extends JPanel{
     }
     public void agregarImagenFondo(){
         imagenFondo = new JLabel();
-        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/PantallaModo.png"));
+        ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Pantallas/PantallaNegra.jpg"));
         Image imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO,Image.SCALE_SMOOTH);
         Icon iconoImagenEscalada = new ImageIcon(imagenEscalada);
         imagenFondo.setIcon(iconoImagenEscalada);
@@ -41,7 +41,7 @@ public class PanelPantallaModo extends JPanel{
     }
     public void agregarBotonClasico(){
         botonClasico = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonClasico.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonClasico.jpg"));
         botonClasico.setIcon(iconoBoton);
         botonClasico.setBounds(300, 96, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonClasico);
@@ -50,7 +50,8 @@ public class PanelPantallaModo extends JPanel{
     }
     public void agregarBotonSupervivencia(){
         botonSupervivencia = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonSupervivencia.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonSupervivencia.jpg"));
+        
         botonSupervivencia.setIcon(iconoBoton);
         botonSupervivencia.setBounds(300, 256, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonSupervivencia);
@@ -59,7 +60,7 @@ public class PanelPantallaModo extends JPanel{
     }
     public void agregarBotonContrarreloj(){
         botonContrarreloj = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonContrarreloj.png"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonContrarreloj.jpg"));
         botonContrarreloj.setIcon(iconoBoton);
         botonContrarreloj.setBounds(300, 416, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonContrarreloj);
