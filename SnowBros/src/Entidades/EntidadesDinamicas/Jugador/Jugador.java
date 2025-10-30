@@ -223,9 +223,15 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     }
     public void perderVida(){
         vidas--;
+        if (vidas > -1)
+        miJuego.quitarVida();
+        if(vidas==0){
+            //TODO reiniciar jugador
+        }
     }
     public void setPuntaje(int n){
         puntajeJugador=n;
+        
     }
     public void setAire(){
         tocandoSuelo=ConstantesEntidades.AIRE;
@@ -233,9 +239,14 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     public void setVidas(){
         vidas=vidaDeInicio;
  }
-    public void efectoBotellaAzul(){
+    public void efectoBotellaAzul(BotellaAzul b){
         this.velocidad=ConstantesDificultad.EFECTO_BOTELLA_AZUL;
-
+        b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
+            this.velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
+            b.getTiempoDeEfecto().resetear();
+        } );
+        b.getTiempoDeEfecto().iniciar();
+        
         /*        if(afectadoBotellaAzul){
             return;
         }
@@ -252,9 +263,13 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         });
         hiloBotellaAzul.start();  */
     }
-    public void efectoBotellaRoja(){
+    public void efectoBotellaRoja(BotellaRoja b){
         this.disparoAumentado=true;
-        //TODO implementar
+        b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
+            this.disparoAumentado=false;
+            b.getTiempoDeEfecto().resetear();
+        });
+        b.getTiempoDeEfecto().iniciar();
     }
     public void efectoBotellaVerde(){
         //TODO implementar
@@ -279,22 +294,22 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         }
     }
     public void visitar(BotellaAzul b){
-        efectoBotellaAzul();
         puntajeJugador+=b.getPuntaje();
         miNivel.eliminarPowerUp(b);
         miJuego.eliminarPowerUp(b);
+        efectoBotellaAzul(b);
     }
     public void visitar(BotellaRoja b){
-        efectoBotellaRoja();
         puntajeJugador+=b.getPuntaje();
         miNivel.eliminarPowerUp(b);
         miJuego.eliminarPowerUp(b);
+        efectoBotellaRoja(b);
     }
     public void visitar(BotellaVerde b){
-        efectoBotellaVerde();
         puntajeJugador+=b.getPuntaje();
         miNivel.eliminarPowerUp(b);
         miJuego.eliminarPowerUp(b);
+        efectoBotellaVerde();
     }
     public void visitar(Fruta f){
         puntajeJugador+=f.getPuntaje();

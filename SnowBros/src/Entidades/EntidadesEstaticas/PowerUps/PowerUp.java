@@ -31,4 +31,10 @@ public abstract class PowerUp extends EntidadEstatica {
     public void setLabel(JLabel l){
         label= l;
     }
+    public Temporizador getTiempoDeVida(){
+        return tiempoDeVida;
+    }
+    public Temporizador getTiempoDeEfecto(){
+        return tiempoDeEfecto;
+    }
 }

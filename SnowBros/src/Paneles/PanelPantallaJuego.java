@@ -145,7 +145,12 @@ public class PanelPantallaJuego extends JPanel{
         //DESPUES
     }
     public void actualizarLabelsVidas(Jugador jugador) {
-        
+        panelVidas.remove(jugador.getVidas());
+        ImageIcon iconoVida = new ImageIcon("SnowBros/src/Imagenes/PowerUps/vidaPerdida.png");
+        JLabel label= new JLabel(iconoVida);
+        panelVidas.add(label, jugador.getVidas());
+        revalidate();
+        repaint();
     }   
     public void actualizarLabelsPuntaje(Jugador jugador) {
         //TODO implementar
