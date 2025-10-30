@@ -100,6 +100,9 @@ public class Juego {
     public Jugador getJugador(){
         return jugador;
     }
+    public FabricaEntidades getFabricaEntidades(){
+        return fabricaEntidades;
+    }
     public void registrarObservers(){
         registrarObserverJugador();
         registrarObserversEntidades(nivel.getEnemigos());
