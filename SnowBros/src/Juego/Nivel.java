@@ -33,6 +33,8 @@ public class Nivel implements InterfazEliminar{
         listaObstaculos= new LinkedList<>();
         listaPlataformas= new LinkedList<>();
         listaDisparoJugador= new LinkedList<>();
+        listaBolaDeFuego= new LinkedList<>();
+        listaBolaDeNieve= new LinkedList<>();
     }
 
     //metodos getters
@@ -50,6 +52,12 @@ public class Nivel implements InterfazEliminar{
     }
     public LinkedList<DisparoJugador> getDisparos(){
         return listaDisparoJugador;
+    }
+    public LinkedList<BolaDeFuego> getBolasDeFuego(){
+        return listaBolaDeFuego;
+    }
+    public LinkedList<BolaDeNieve> getBolaDeNieves(){
+        return listaBolaDeNieve;
     }
     public int getNivelActual(){
         return numeroNivel;
@@ -76,7 +84,7 @@ public class Nivel implements InterfazEliminar{
         silueta=null;
     }
     public void eliminarBolaDeFuego(BolaDeFuego b){
-        listaBolaDeFuego.remove(b);  //asumiendo que guardamos la bola de fuego en enemigos
+        listaBolaDeFuego.remove(b); 
         b.getObserver().actualizar();
     }
     public void eliminarDisparo(DisparoJugador b){
@@ -139,5 +147,20 @@ public class Nivel implements InterfazEliminar{
     }
     public Silueta getSilueta(){
         return silueta;
+    }
+    public void notificarObservers(){
+        for(Enemigo e:this.getEnemigos()){
+            e.getObserver().actualizar();
+        }
+      /*  for(DisparoJugador d:this.getDisparos()){
+            d.getObserver().actualizar();
+        }
+        for(BolaDeFuego b:this.getBolasDeFuego()){
+            b.getObserver().actualizar();
+        }
+        for(BolaDeNieve b:this.getBolaDeNieves()){
+            b.getObserver().actualizar();
+        }
+            */
     }
 }

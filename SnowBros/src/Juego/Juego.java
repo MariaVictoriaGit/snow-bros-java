@@ -3,6 +3,8 @@ package SnowBros.src.Juego;
 import java.awt.Rectangle;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
+
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
@@ -46,7 +48,7 @@ public class Juego {
         this.registrarObservers();
         this.crearPowerUps();
         jugador.getObserver().actualizar();
-        Thread hilo = new Thread(() -> {
+        Thread hiloColision = new Thread(() -> {
             while(!nivel.getEnemigos().isEmpty()){
                     
                     for(Enemigo entidad : nivel.getEnemigos()){
@@ -61,11 +63,49 @@ public class Juego {
                         powerUp.aceptar(jugador);
                         }
                     }
+                     try {
+                        Thread.sleep(16);
+                     } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        break;
+                     }
             }
         });
-        hilo.start();
+        Thread hiloGlobal = new Thread(() -> {
+            final int FPS = 60;
+            final long frameTime = 1000 / FPS;
 
-        
+            while (!nivel.getEnemigos().isEmpty()) {
+                long inicio = System.currentTimeMillis();
+
+                //jugador.moverSegunInput() por si movemos el movimiento a booleanos
+                jugador.verificarSuelo();
+                for (Enemigo enemigo : nivel.getEnemigos()) {
+                    //enemigo.mover();        
+                   // enemigo.verificarSuelo(); 
+                }
+
+                // --- 4. Notificar Observers o repintar ---
+                SwingUtilities.invokeLater(() -> {
+                    nivel.notificarObservers();
+                });
+
+                long duracion = System.currentTimeMillis() - inicio;
+                long dormir = frameTime - duracion;
+                if (dormir > 0) {
+                    try {
+                        Thread.sleep(dormir);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        break;
+                    }
+                }
+            }
+
+        });
+        hiloGlobal.start();
+        hiloColision.start();
+
     }
 
     public void reiniciarNivel(){
