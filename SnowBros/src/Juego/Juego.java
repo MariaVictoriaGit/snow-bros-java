@@ -30,7 +30,7 @@ public class Juego {
     protected GUI controladorGrafica; 
     protected FabricaSprites fabricaSprites;
     protected FabricaEntidades fabricaEntidades;
-    protected ParserNivel parser;
+    protected ParserNivel parseActual;
 
     public Juego(){
         reiniciarJugador=false;
@@ -41,10 +41,24 @@ public class Juego {
         controladorGrafica=miControlador;
     }
     public void iniciar(){
-        ParserNivel parseActual= new ParserNivel(true);
-        nivel= parseActual.generarNivel(1);//TODO -..................................................................................
+        parseActual= new ParserNivel(true);
+          // Si el nivel todavía no fue creado, crealo antes de pedir el jugador
+        if (nivel == null) {
+             nivel = parseActual.generarNivel(1); // o el nivel que corresponda
+        }
         this.jugador=nivel.getJugador();
         this.jugador.setJuego(this);
+        if(jugador.getVidas()==0)
+            reiniciarJugador=false;
+        if(reiniciarJugador){
+            int nivelActual=nivel.getNivelActual();
+            nivel=parseActual.generarNivel(nivelActual);
+        } else{
+            jugador.setVidas();
+            nivel= parseActual.generarNivel(1);
+        }
+
+        //TODO -..................................................................................
         this.registrarObservers();
         this.crearPowerUps();
         jugador.getObserver().actualizar();
@@ -53,14 +67,12 @@ public class Juego {
                     
                     for(Enemigo entidad : nivel.getEnemigos()){
                         if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
-                        Enemigo enemigo = entidad;
-                        enemigo.aceptar(jugador);
+                        entidad.aceptar(jugador);
                         }
                     }
-                    for(Entidad entidad : nivel.getPowerUps()){
+                    for(PowerUp entidad : nivel.getPowerUps()){
                         if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
-                        PowerUp powerUp = (PowerUp) entidad;
-                        powerUp.aceptar(jugador);
+                        entidad.aceptar(jugador);
                         }
                     }
                      try {
@@ -109,8 +121,13 @@ public class Juego {
     }
 
     public void reiniciarNivel(){
-        reiniciarJugador=true;
-        puntajeJugador=0;
+        jugador.perderVida();
+        if(jugador.getVidas()==0)
+            controladorGrafica.mostrarPantallaPrincipal(); //hasta hacer la gameOver
+        else 
+            controladorGrafica.accionarInicioJuego();
+        //reiniciarJugador=true;
+        //puntajeJugador=0;
         //tiempo.setTiempoActual(0);
         //TODO terminar de implementar
     }
@@ -121,7 +138,7 @@ public class Juego {
         
     }
     public void actualizarPuntaje(int puntajeASumar){
-        puntajeJugador+=puntajeASumar;
+        controladorGrafica.getPantalla().actualizarLabelsPuntaje(jugador);
     }
     //metodos de obtencion(getters)
     public int getPuntaje(){
@@ -141,6 +158,9 @@ public class Juego {
     }
     public Jugador getJugador(){
         return jugador;
+    }
+    public FabricaEntidades getFabricaEntidades(){
+        return fabricaEntidades;
     }
     public void registrarObservers(){
         registrarObserverJugador();
@@ -165,7 +185,7 @@ public class Juego {
         
     }
     public void quitarVida(){
-        controladorGrafica.getPantalla().actualizarLabelsVidas(jugador.getVidas());
+        controladorGrafica.getPantalla().actualizarLabelsVidas(jugador);
     }
     public void crearNuevaPowerUp(){
         EntidadEstatica e= nivel.getPowerUps().getLast();

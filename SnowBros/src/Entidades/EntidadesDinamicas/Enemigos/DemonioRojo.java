@@ -2,6 +2,7 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
+import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitador;
@@ -21,13 +22,15 @@ public class DemonioRojo extends Enemigo{
         while(accionMovimientoEnemigo.getTiempoActual()!=0){
        //     Temporizador caminar= new Temporizador(100);
             if(dirAnterior==ConstantesEntidades.IZQUIERDA){
-        //        while(caminar.getTiempoActual()!=0){
-                    posX-=32;
-          //      }
+                while(caminar.getTiempoActual()!=0 && posX-velocidad>0){
+                    posX-=velocidad;
+                    this.actualizar(direccion, getEstadoAereo());
+                }
             }else if(dirAnterior==ConstantesEntidades.DERECHA){
-            //    while(caminar.getTiempoActual()!=0){
+                while(caminar.getTiempoActual()!=0  && posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
                     posX+=32;
-              //  }
+                    this.actualizar(direccion, getEstadoAereo());
+                }
             }  
         }
     }

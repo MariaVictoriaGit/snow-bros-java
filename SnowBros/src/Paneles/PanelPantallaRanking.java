@@ -29,7 +29,7 @@ public class PanelPantallaRanking extends JPanel {
     }
     public void agregarImagenFondo(){
         imagenFondo = new JLabel();
-        ImageIcon iconoImagen=new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/PantallaRanking.jpg"));
+        ImageIcon iconoImagen=new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Pantallas/PantallaNegra.jpg"));
         Image imagenEscalada=iconoImagen.getImage().getScaledInstance(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO,Image.SCALE_SMOOTH);
         Icon iconoImagenEscalada=new ImageIcon(imagenEscalada);
         imagenFondo.setIcon(iconoImagenEscalada);
@@ -38,7 +38,7 @@ public class PanelPantallaRanking extends JPanel {
     }
     public void agregarBotonSalir(){
         botonSalir=new JButton();
-		ImageIcon iconoBoton=new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/botonSalir.png"));
+		ImageIcon iconoBoton=new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonSalir.jpg"));
         botonSalir.setIcon(iconoBoton);
         botonSalir.setBounds(13,350,iconoBoton.getIconWidth(),iconoBoton.getIconHeight());
         transparentarBoton(botonSalir);
@@ -72,7 +72,7 @@ public class PanelPantallaRanking extends JPanel {
     private void agregarColumnaRanking(String titulo, LinkedHashMap<String,Integer> mapeo, int x, int tituloY, int filaInicialY, int separacion) {
         JLabel labelTitulo=new JLabel(titulo);
         labelTitulo.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
-        labelTitulo.setForeground(java.awt.Color.WHITE);
+        labelTitulo.setForeground(java.awt.Color.YELLOW);
         labelTitulo.setBounds(x,tituloY,450,20);
         labelTitulo.setOpaque(false);
         add(labelTitulo);

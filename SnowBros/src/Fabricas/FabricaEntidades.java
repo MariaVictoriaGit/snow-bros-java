@@ -1,6 +1,7 @@
 package SnowBros.src.Fabricas;
 
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
@@ -24,6 +25,11 @@ public class FabricaEntidades {
         Sprite spritesJugador=fabrica.getSpriteJugador();
         Jugador jugador= new Jugador(x,y,spritesJugador);
         return jugador;
+    }
+    public DisparoJugador getDisparoJugador(int x, int y){
+        Sprite spritesDisparos=fabrica.getSpriteDisparoJugador();
+        DisparoJugador disparo= new DisparoJugador(x, y, spritesDisparos);
+        return disparo;
     }
     public DemonioRojo getDemonioRojo(int x, int y){
         Sprite spritesDemonioRojo=fabrica.getSpriteDemonioRojo();

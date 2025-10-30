@@ -1,5 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
 import SnowBros.src.Datos.ConstantesDificultad;
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
@@ -22,7 +23,9 @@ public class DisparoJugador extends EntidadDinamica {
         tiempoEfecto=new Temporizador(ConstantesTiempos.TIEMPO_DISPARO_JUGADOR);
     }
     public void mover(){
-        //TODO mover
+    }
+    public void setDireccion(int direccion){
+        this.direccion = direccion;
     }
     public void setEfectoBotellaAzul(boolean efecto){
         //TODO  revisar  timer del power ups
