@@ -28,7 +28,7 @@ public class Juego {
     protected GUI controladorGrafica; 
     protected FabricaSprites fabricaSprites;
     protected FabricaEntidades fabricaEntidades;
-    protected ParserNivel parser;
+    protected ParserNivel parseActual;
 
     public Juego(){
         reiniciarJugador=false;
@@ -39,10 +39,25 @@ public class Juego {
         controladorGrafica=miControlador;
     }
     public void iniciar(){
-        ParserNivel parseActual= new ParserNivel(true);
-        nivel= parseActual.generarNivel(1);//TODO -..................................................................................
+        parseActual= new ParserNivel(true);
+          // Si el nivel todavía no fue creado, crealo antes de pedir el jugador
+        if (nivel == null) {
+             nivel = parseActual.generarNivel(1); // o el nivel que corresponda
+        }
         this.jugador=nivel.getJugador();
         this.jugador.setJuego(this);
+        if(jugador.getVidas()==0)
+            reiniciarJugador=false;
+        if(reiniciarJugador){
+            int nivelActual=nivel.getNivelActual();
+            nivel=parseActual.generarNivel(nivelActual);
+        } else{
+            jugador.setVidas();
+            jugador.setPuntaje(0);
+            nivel= parseActual.generarNivel(1);
+        }
+
+        //TODO -..................................................................................
         this.registrarObservers();
         this.crearPowerUps();
         jugador.getObserver().actualizar();
@@ -62,13 +77,18 @@ public class Juego {
             }
         });
         hilo.start();
-
+    
         
     }
 
     public void reiniciarNivel(){
-        reiniciarJugador=true;
-        puntajeJugador=0;
+        jugador.perderVida();
+        if(jugador.getVidas()==0)
+            controladorGrafica.mostrarPantallaPrincipal(); //hasta hacer la gameOver
+        else 
+            controladorGrafica.accionarInicioJuego();
+        //reiniciarJugador=true;
+        //puntajeJugador=0;
         //tiempo.setTiempoActual(0);
         //TODO terminar de implementar
     }

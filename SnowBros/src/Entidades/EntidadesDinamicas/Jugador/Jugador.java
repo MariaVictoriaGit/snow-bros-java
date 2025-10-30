@@ -40,6 +40,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         posYoriginal = y;
         timerCaida = new Timer(16, e -> actualizarCaida());
         timerCaida.setRepeats(true);
+        puntajeJugador=0;
     }
     public void mover(){
         //TODO ver como manejamos la herencia pq es de entidad dinamica
@@ -195,9 +196,15 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     }
     public void perderVida(){
         vidas--;
+        if (vidas > -1)
+        miJuego.quitarVida();
         if(vidas==0){
             //TODO reiniciar jugador
         }
+    }
+    public void setPuntaje(int n){
+        puntajeJugador=n;
+        
     }
     public void setAire(){
         tocandoSuelo=ConstantesEntidades.AIRE;

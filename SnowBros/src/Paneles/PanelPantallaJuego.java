@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -68,12 +69,14 @@ public class PanelPantallaJuego extends JPanel{
         labelTiempo.setHorizontalAlignment(SwingConstants.CENTER);
         //panel para las vidas con corazones
         panelVidas= new JPanel();
+        ArrayList<JLabel> corazones= new ArrayList<>();
         panelVidas.setOpaque(false);//transparente
         panelVidas.setLayout(new FlowLayout(FlowLayout.CENTER,5,5));// espacio de 5 pixeles horiz y vert entre cada componente
         ImageIcon iconoCorazon= new ImageIcon("SnowBros/src/Imagenes/PowerUps/vidaJugador.png");
         int vidas=3;//TODO hacer constante
         for(int i=0;i<vidas;i++){
             JLabel vidaLabel=new JLabel(iconoCorazon);
+            corazones.add(vidaLabel);
             panelVidas.add(vidaLabel);
         }
         //AGREGAMOS TODO AL PANEL INFORMACION
@@ -142,7 +145,12 @@ public class PanelPantallaJuego extends JPanel{
         //DESPUES
     }
     public void actualizarLabelsVidas(Jugador jugador) {
-        //TODO implementar
+        panelVidas.remove(jugador.getVidas());
+        ImageIcon iconoVida = new ImageIcon("SnowBros/src/Imagenes/PowerUps/vidaPerdida.png");
+        JLabel label= new JLabel(iconoVida);
+        panelVidas.add(label, jugador.getVidas());
+        revalidate();
+        repaint();
     }   
     public void actualizarLabelsPuntaje(Jugador jugador) {
         //TODO implementar
