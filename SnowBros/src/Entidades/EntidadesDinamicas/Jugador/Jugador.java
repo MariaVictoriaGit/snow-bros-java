@@ -234,6 +234,10 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     public void setVidas(){
         vidas=vidaDeInicio;
  }
+    public void sumarPuntaje(int p){
+        puntajeJugador+=p;
+        miJuego.actualizarPuntaje(puntajeJugador);
+    }
     public void efectoBotellaAzul(BotellaAzul b){
         this.velocidad=ConstantesDificultad.EFECTO_BOTELLA_AZUL;
         b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
@@ -289,7 +293,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         }
     }
     public void visitar(BotellaAzul b){
-        puntajeJugador+=b.getPuntaje();
+        sumarPuntaje(b.getPuntaje());
         miNivel.eliminarPowerUp(b);
         miJuego.eliminarPowerUp(b);
         efectoBotellaAzul(b);

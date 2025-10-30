@@ -79,7 +79,7 @@ public class Juego {
         
     }
     public void actualizarPuntaje(int puntajeASumar){
-        puntajeJugador+=puntajeASumar;
+        controladorGrafica.getPantalla().actualizarLabelsPuntaje(jugador);
     }
     //metodos de obtencion(getters)
     public int getPuntaje(){

@@ -2,6 +2,7 @@ package SnowBros.src.Paneles;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -150,7 +151,15 @@ public class PanelPantallaJuego extends JPanel{
         repaint();
     }   
     public void actualizarLabelsPuntaje(Jugador jugador) {
-        //TODO implementar
+        Component componenteActual = panelInformacion.getComponent(1);
+        panelInformacion.remove(componenteActual);
+        String puntaje=String.valueOf(jugador.getPuntaje());
+        labelPuntaje= new JLabel(puntaje);
+         labelPuntaje.setForeground(Color.BLACK);
+        labelPuntaje.setHorizontalAlignment(SwingConstants.CENTER);
+        panelInformacion.add(labelPuntaje,1);
+        revalidate();
+        repaint();
     }
     public void actualizarLabelsTiempo(Jugador jugador) {
         //TODO implementar
