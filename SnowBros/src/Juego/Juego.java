@@ -44,19 +44,23 @@ public class Juego {
         if (nivel == null) {
              nivel = parseActual.generarNivel(1); // o el nivel que corresponda
         }
-        this.jugador=nivel.getJugador();
-        this.jugador.setJuego(this);
-        if(jugador.getVidas()==0)
-            reiniciarJugador=false;
-        if(reiniciarJugador){
-            int nivelActual=nivel.getNivelActual();
-            nivel=parseActual.generarNivel(nivelActual);
-        } else{
-            jugador.setVidas();
-            jugador.setPuntaje(0);
-            nivel= parseActual.generarNivel(1);
+        if(jugador==null){
+            nivel = parseActual.generarNivel(1);
+            jugador = nivel.getJugador();
+            jugador.setJuego(this);
+        }else{
+            //si ya existe el jugador
+            if(jugador.getVidas()==0)
+                reiniciarJugador=false;
+            if(reiniciarJugador){
+                int nivelActual=nivel.getNivelActual();
+                nivel=parseActual.generarNivel(nivelActual);
+             } else{
+                jugador.setVidas();
+                jugador.setPuntaje(0);
+                nivel= parseActual.generarNivel(1);
+            }
         }
-
         //TODO -..................................................................................
         this.registrarObservers();
         this.crearPowerUps();
@@ -82,9 +86,8 @@ public class Juego {
     }
 
     public void reiniciarNivel(){
-        jugador.perderVida();
         if(jugador.getVidas()==0)
-            controladorGrafica.mostrarPantallaPrincipal(); //hasta hacer la gameOver
+            controladorGrafica.accionarPantallaFinDelJuego(); //hasta hacer la gameOver
         else 
             controladorGrafica.accionarInicioJuego();
         //reiniciarJugador=true;
@@ -100,6 +103,9 @@ public class Juego {
     }
     public void actualizarPuntaje(int puntajeASumar){
         puntajeJugador+=puntajeASumar;
+    }
+    public void setReinicio(boolean t){
+        reiniciarJugador=t;
     }
     //metodos de obtencion(getters)
     public int getPuntaje(){

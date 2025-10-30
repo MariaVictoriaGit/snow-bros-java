@@ -223,11 +223,8 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     }
     public void perderVida(){
         vidas--;
-        if (vidas > -1)
+        if (vidas > 0)
         miJuego.quitarVida();
-        if(vidas==0){
-            //TODO reiniciar jugador
-        }
     }
     public void setPuntaje(int n){
         puntajeJugador=n;
@@ -282,6 +279,9 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         posY = posYoriginal;
         this.getObserver().actualizar(direccion, getEstadoAereo());
         this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+        miJuego.setReinicio(true);
+        if(vidas<=0)
+            miJuego.reiniciarNivel();
         //TODO reiniciar al personaje en la posicion original
     }
     public void visitar(Plataforma p){
