@@ -22,12 +22,9 @@ public class DisparoJugador extends EntidadDinamica {
         potenciaDisparo=ConstantesDificultad.POTENCIA_DISPARO_NORMAL; //a definir
         tiempoEfecto=new Temporizador(ConstantesTiempos.TIEMPO_DISPARO_JUGADOR);
     }
-    public void setDireccion(int direccion){
+    public void setDireccion(int direccion, int dirAnterior){
         this.direccion = direccion;
-        dirAnterior=ConstantesEntidades.DERECHA;
-        if(dirAnterior==0 && direccion!=ConstantesEntidades.QUIETO){
-            dirAnterior=direccion;
-        }
+        this.dirAnterior = dirAnterior;
     }
     public void mover(){
         Thread hilo = new Thread(() -> {
