@@ -22,7 +22,7 @@ public class ObserverEntidad extends ObserverGrafico{
         actualizar();
     }
     public void actualizar(int direccion, int estadoAereo) {
-        actualizarImagen(entidadObservada.getDireccion(),entidadObservada.getEstadoAereo()); 
+        actualizarImagen(direccion,entidadObservada.getEstadoAereo()); 
         super.actualizarPosicionTamano();
     }
     protected void actualizarImagen(int direccion, int estadoAereo) {
