@@ -2,6 +2,8 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
+import SnowBros.src.Datos.ConstantesVistas;
+import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -10,6 +12,8 @@ public class RanaDeFuego extends Enemigo{
     protected static final int puntajeEmpujado = 300;
     protected boolean lanzandoBolas;
     protected int direccionDisparo;
+    private long tiempoEstado = 0;
+    private int estado = EstadosDePatron.MOVERDERECHA;
 
     public RanaDeFuego(int x, int y, Sprite sprite){
         super(x,y,sprite);
@@ -17,12 +21,68 @@ public class RanaDeFuego extends Enemigo{
         salud=ConstantesDificultad.SALUD_RANA_DE_FUEGO;
         velocidad=ConstantesDificultad.VELOCIDAD_RANA_DE_FUEGO;
     }
-    public void mover(){
-        // TODO Auto-generated method stub
-        
-    }
-    public void patronDeMovimiento(){
-        
+      public void mover(){
+        switch (direccion) {
+            case ConstantesEntidades.QUIETO:
+                lanzarFuego(posX); //como accedemos a la pos del jugador que pide el metodo?
+                if (dirAnterior == ConstantesEntidades.DERECHA){
+                    direccion = ConstantesEntidades.IZQUIERDA;
+                }
+                else{
+                    direccion = ConstantesEntidades.DERECHA;
+                }
+                break;
+            case ConstantesEntidades.IZQUIERDA:
+                dirAnterior=ConstantesEntidades.IZQUIERDA;
+                if(posX-velocidad>0){
+                    posX-=1;
+                    this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+
+                }
+                break;
+            case ConstantesEntidades.DERECHA:
+                dirAnterior=ConstantesEntidades.DERECHA;
+                if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
+                    posX+=1;
+                    this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                }
+                break;
+            }  
+        }
+
+
+
+    public void patronDeMovimiento() {
+        long ahora = System.currentTimeMillis();
+
+        switch (estado) {
+            case EstadosDePatron.MOVERDERECHA:
+                direccion = ConstantesEntidades.DERECHA;
+                mover();
+                if (posX > ConstantesVistas.PANEL_JUEGO_ANCHO - 100) {
+                    estado = EstadosDePatron.ESPERAR;
+                    tiempoEstado = ahora;
+                }
+                break;
+    
+        case EstadosDePatron.MOVERIZQUIERDA:
+            direccion = ConstantesEntidades.IZQUIERDA;
+            mover();
+            if (posX < 100) {
+                estado = EstadosDePatron.ESPERAR;
+                tiempoEstado = ahora;
+            }
+            break;
+        case EstadosDePatron.ESPERAR:
+                direccion=ConstantesEntidades.QUIETO;
+                if (ahora - tiempoEstado > 2000) { // espera 2 segundos
+                    if (dirAnterior == ConstantesEntidades.DERECHA)
+                        estado = EstadosDePatron.MOVERIZQUIERDA;
+                    else
+                        estado = EstadosDePatron.MOVERDERECHA;
+                }
+            break;
+        }
     }
     public BolaDeFuego lanzarFuego(int posXJugador){
         BolaDeFuego bola=null;
@@ -39,7 +99,6 @@ public class RanaDeFuego extends Enemigo{
                 posicionXBola= this.getPosX()+20;
             else
                 posicionXBola=this.getPosX()-20;
-            //ver al crear la bola de fuego, estoy pasando el sprite de la rana
             bola= new BolaDeFuego(posicionXBola,this.getPosY(), sprite);
             bola.setDireccion(direccionDisparo);
         }

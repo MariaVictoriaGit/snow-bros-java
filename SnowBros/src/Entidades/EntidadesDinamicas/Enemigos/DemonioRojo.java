@@ -3,8 +3,8 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
+import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitador;
 
 public class DemonioRojo extends Enemigo{
@@ -12,7 +12,7 @@ public class DemonioRojo extends Enemigo{
     protected static final int puntajeEmpujado = 300;
     protected int contadorAnimacion=0;
     private long tiempoEstado = 0;
-    private EstadosDePatron estado = EstadosDePatron.MOVERDERECHA;
+    private int estado = EstadosDePatron.MOVERIZQUIERDA;
 
 
     public DemonioRojo(int posX, int posY, Sprite miSprite){
@@ -48,15 +48,12 @@ public class DemonioRojo extends Enemigo{
             }  
         }
 
-    private enum EstadosDePatron {
-        MOVERDERECHA, MOVERIZQUIERDA, ESPERAR
-    }
 
     public void patronDeMovimiento() {
         long ahora = System.currentTimeMillis();
 
         switch (estado) {
-            case MOVERDERECHA:
+            case EstadosDePatron.MOVERDERECHA:
                 direccion = ConstantesEntidades.DERECHA;
                 mover();
                 if (posX > ConstantesVistas.PANEL_JUEGO_ANCHO - 100) {
@@ -65,7 +62,7 @@ public class DemonioRojo extends Enemigo{
                 }
                 break;
     
-        case MOVERIZQUIERDA:
+        case EstadosDePatron.MOVERIZQUIERDA:
             direccion = ConstantesEntidades.IZQUIERDA;
             mover();
             if (posX < 100) {
@@ -73,7 +70,7 @@ public class DemonioRojo extends Enemigo{
                 tiempoEstado = ahora;
             }
             break;
-        case ESPERAR:
+        case EstadosDePatron.ESPERAR:
                 direccion=ConstantesEntidades.QUIETO;
                 if (ahora - tiempoEstado > 2000) { // espera 2 segundos
                     if (dirAnterior == ConstantesEntidades.DERECHA)
