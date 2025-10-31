@@ -130,7 +130,6 @@ public class Nivel implements InterfazEliminar{
     public void agregarDisparo(DisparoJugador b){
         listaDisparoJugador.addLast(b);
         b.setNivel(this);
-        b.getObserver().actualizar();
     }
     public void agregarBolaDeNieve(BolaDeNieve b){
         listaBolaDeNieve.addLast(b);

@@ -22,21 +22,51 @@ public class DisparoJugador extends EntidadDinamica {
         potenciaDisparo=ConstantesDificultad.POTENCIA_DISPARO_NORMAL; //a definir
         tiempoEfecto=new Temporizador(ConstantesTiempos.TIEMPO_DISPARO_JUGADOR);
     }
+    public void setDireccion(int direccion, int dirAnterior){
+        this.direccion = direccion;
+        this.dirAnterior = dirAnterior;
+    }
     public void mover(){
         Thread hilo = new Thread(() -> {
-            while(true){
-                if(direccion==ConstantesEntidades.DERECHA){
-                    posX += 4;
-                    posY += 1;
-                    incremetarY();
-                    getObserver().actualizar(direccion, getTocandoSuelo());
+            while(this!=null){
+                switch (direccion) {
+                    case ConstantesEntidades.QUIETO:
+                        if(dirAnterior==ConstantesEntidades.DERECHA){
+                            posX += 4;
+                            //posY += 2;
+                            //incremetarY();
+                            getObserver().actualizar(dirAnterior, getTocandoSuelo());
+                            getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                        }
+                        else if(dirAnterior==ConstantesEntidades.IZQUIERDA){
+                            posX -= 4;
+                            //posY += 2;
+                            //incremetarY();
+                            getObserver().actualizar(dirAnterior, getTocandoSuelo());
+                            getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                        }
+                        break;
+                    case ConstantesEntidades.DERECHA:
+                        posX += 4;
+                        //posY += 2;
+                        //incremetarY();
+                        getObserver().actualizar(direccion, getTocandoSuelo());
+                        getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                        break;
+                    case ConstantesEntidades.IZQUIERDA:
+                        posX -= 4;
+                        //posY += 2;
+                        //incremetarY();
+                        getObserver().actualizar(direccion, getTocandoSuelo());
+                        getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                        break;
                 }
-                else if(direccion==ConstantesEntidades.IZQUIERDA){
-                    posX -= 4;
-                    posY += 1;
-                    incremetarY();
-                    getObserver().actualizar(direccion, getTocandoSuelo());
-                }
+                try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        break;
+                    }
             }
         });
         hilo.start();
@@ -44,9 +74,7 @@ public class DisparoJugador extends EntidadDinamica {
     private int incremetarY(){
         return posY+1;
     }
-    public void setDireccion(int direccion){
-        this.direccion = direccion;
-    }
+
     public void setEfectoBotellaRoja(boolean efecto){
         //TODO  revisar  timer del power ups
         efectoBotella=true;

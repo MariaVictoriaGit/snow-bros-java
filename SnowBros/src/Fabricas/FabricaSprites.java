@@ -62,28 +62,31 @@ public abstract class FabricaSprites {
     }
     public Sprite getSpriteCalabaza(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("moverDerecha", rutaACarpeta + "/Calabaza/calabazaDerecha.png");
-        mapeo.put("moverIzquierda", rutaACarpeta + "/Calabaza/calabazaIzquierda.png");
+        mapeo.put("idleDerecha", rutaACarpeta + "/Calabaza/calabazaDerecha.png");
+        mapeo.put("idleIzquierda", rutaACarpeta + "/Calabaza/calabazaIzquierda.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteFantasma(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("moverDerecha", rutaACarpeta + "/Fantasma/fantasmaDerecha.png");
-        mapeo.put("moverIzquierda", rutaACarpeta + "/Fantasma/fantasmaIzquierda.png");
+            mapeo.put("idleDerecha", rutaACarpeta + "/Fantasma/fantasmaDerecha.png");
+            mapeo.put("idleIzquierda", rutaACarpeta + "/Fantasma/fantasmaIzquierda.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteMoghera(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("idleIzquierda", rutaACarpeta + "/Moghera/mogheraIzquierda.png");
-        mapeo.put("idleDerecha", rutaACarpeta + "/Moghera/mogheraDerecha.png");
+        mapeo.put("idleIzquierda", rutaACarpeta + "/Moghera/izquierdaMoghera.png");//32x40
+        mapeo.put("idleDerecha", rutaACarpeta + "/Moghera/derechaMoghera.png");        
+        mapeo.put("saltandoIzquierda", rutaACarpeta + "/Moghera/mogheraIzquierda.png");
+        mapeo.put("saltandoDerecha", rutaACarpeta + "/Moghera/mogheraDerecha.png");
         mapeo.put("congeladoIzquierda", rutaACarpeta + "/Moghera/mogheraCongeladoIzquierda.png");
         mapeo.put("congeladoDerecha", rutaACarpeta + "/Moghera/mogheraCongeladoDerecha.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteKamakichi(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("normal", rutaACarpeta + "/Kamakichi/kamakichiEspera.png");
-        mapeo.put("disparo", rutaACarpeta + "/Kamakichi/kamakichiDisparando.png");
+        mapeo.put("idleIzquierda", rutaACarpeta + "/Kamakichi/kamakichiIzquierda.png");
+        mapeo.put("idleDerecha", rutaACarpeta + "/Kamakichi/kamakichiDerecha.png");
+        mapeo.put("disparo", rutaACarpeta + "/Kamakichi/kamakichiDisparando.png");//44 alto
         mapeo.put("congelado", rutaACarpeta + "/Kamakichi/kamakichiCongelado.png");
         return new Sprite(mapeo);
     }

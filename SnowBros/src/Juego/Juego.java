@@ -222,6 +222,7 @@ public class Juego {
     public void shootJugador() {
         DisparoJugador disparo = jugador.disparar();
         controladorGrafica.getPantalla().incorporarEntidad(disparo);
+        nivel.agregarDisparo(disparo);
     }
     public boolean estaCercaEntidad(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
         Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();
