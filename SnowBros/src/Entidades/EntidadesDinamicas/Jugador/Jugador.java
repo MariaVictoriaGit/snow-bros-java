@@ -137,9 +137,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         }
     }
     public DisparoJugador disparar(){
-        Sprite miDisparo=null;  // ponermos getfabrica()
-        //TODO corregir
-        DisparoJugador disparo=new DisparoJugador(posX,posY,miDisparo);
+        DisparoJugador disparo=miJuego.getFabricaEntidades().getDisparoJugador(posX, posY);
         miJuego.getNivelActual().agregarDisparo(disparo);
         disparo.setDireccion(this.direccion);
         disparo.mover();
