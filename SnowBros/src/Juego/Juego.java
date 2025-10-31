@@ -3,6 +3,8 @@ package SnowBros.src.Juego;
 import java.awt.Rectangle;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
+
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
@@ -54,24 +56,28 @@ public class Juego {
         if (nivel == null) {
              nivel = parseActual.generarNivel(1); // o el nivel que corresponda
         }
-        this.jugador=nivel.getJugador();
-        this.jugador.setJuego(this);
-        if(jugador.getVidas()==0)
-            reiniciarJugador=false;
-        if(reiniciarJugador){
-            int nivelActual=nivel.getNivelActual();
-            nivel=parseActual.generarNivel(nivelActual);
-        } else{
-            jugador.setVidas();
-            jugador.setPuntaje(0);
-            nivel= parseActual.generarNivel(1);
+        if(jugador==null){
+            nivel = parseActual.generarNivel(1);
+            jugador = nivel.getJugador();
+            jugador.setJuego(this);
+        }else{
+            //si ya existe el jugador
+            if(jugador.getVidas()==0)
+                reiniciarJugador=false;
+            if(reiniciarJugador){
+                int nivelActual=nivel.getNivelActual();
+                nivel=parseActual.generarNivel(nivelActual);
+             } else{
+                jugador.setVidas();
+                jugador.setPuntaje(0);
+                nivel= parseActual.generarNivel(1);
+            }
         }
-
         //TODO -..................................................................................
         this.registrarObservers();
         this.crearPowerUps();
         jugador.getObserver().actualizar();
-        Thread hilo = new Thread(() -> {
+        Thread hiloColision = new Thread(() -> {
             while(!nivel.getEnemigos().isEmpty()){
                     
                     for(Enemigo entidad : nivel.getEnemigos()){
@@ -84,17 +90,52 @@ public class Juego {
                         entidad.aceptar(jugador);
                         }
                     }
+                     try {
+                        Thread.sleep(16);
+                     } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        break;
+                     }
             }
         });
-        hilo.start();
-    
-        
+        Thread hiloGlobal = new Thread(() -> {
+            final int FPS = 60;
+            final long frameTime = 1000 / FPS;
+
+            while (!nivel.getEnemigos().isEmpty()) {
+                long inicio = System.currentTimeMillis();
+
+                //jugador.moverSegunInput() por si movemos el movimiento a booleanos
+                jugador.verificarSuelo();
+                for (Enemigo enemigo : nivel.getEnemigos()) {
+                   enemigo.mover();        
+                   // enemigo.verificarSuelo(); 
+                }
+                SwingUtilities.invokeLater(() -> {
+                    nivel.notificarObservers();
+                });
+
+                long duracion = System.currentTimeMillis() - inicio;
+                long dormir = frameTime - duracion;
+                if (dormir > 0) {
+                    try {
+                        Thread.sleep(dormir);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        break;
+                    }
+                }
+            }
+
+        });
+        hiloGlobal.start();
+        hiloColision.start();
+
     }
 
     public void reiniciarNivel(){
-        jugador.perderVida();
         if(jugador.getVidas()==0)
-            controladorGrafica.mostrarPantallaPrincipal(); //hasta hacer la gameOver
+            controladorGrafica.accionarPantallaFinDelJuego(); //hasta hacer la gameOver
         else 
             controladorGrafica.accionarInicioJuego();
         //reiniciarJugador=true;
@@ -109,7 +150,10 @@ public class Juego {
         
     }
     public void actualizarPuntaje(int puntajeASumar){
-        controladorGrafica.getPantalla().actualizarLabelsPuntaje(jugador);
+        puntajeJugador+=puntajeASumar;
+    }
+    public void setReinicio(boolean t){
+        reiniciarJugador=t;
     }
     //metodos de obtencion(getters)
     public int getPuntaje(){

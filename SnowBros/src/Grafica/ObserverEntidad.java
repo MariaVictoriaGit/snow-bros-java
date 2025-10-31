@@ -1,20 +1,21 @@
 package SnowBros.src.Grafica;
 
+import java.net.URL;
+
+import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
+
 //import javax.swing.ImageIcon;
 import SnowBros.src.Entidades.Entidad;
 //import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 
 public class ObserverEntidad extends ObserverGrafico{
+    protected EntidadDinamica entidadObservada;
     public ObserverEntidad(Entidad entidad) {
         super(entidad);
         //TODO Auto-generated constructor stub
     }
-    public void actualizar(int direccion, int estadoAereo) {
-        //TODO implementar
-    }
-}    
-    /*protected EntidadDinamica entidadObservada;
-
     public ObserverEntidad(EntidadDinamica entidad){
         super(entidad);
         entidadObservada=entidad;
@@ -25,14 +26,24 @@ public class ObserverEntidad extends ObserverGrafico{
         super.actualizarPosicionTamano();
     }
     protected void actualizarImagen(int direccion, int estadoAereo) {
-        entidadObservada.setDireccion(direccion);
-        String estado= entidadObservada.generarClaveEstado(entidadObservada.getDirAnterior());
-		String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);
-		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
-		setIcon(icono);
+        SwingUtilities.invokeLater(() -> {
+        try{
+            entidadObservada.setDireccion(direccion);
+            String estado= entidadObservada.generarClaveEstado();
+            String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);
+            if (rutaImagen == null || rutaImagen.isBlank()) {
+                return;
+            }
+            URL url= getClass().getClassLoader().getResource(rutaImagen);
+            if (url == null) {
+                System.err.println("No se encontró recurso: " + rutaImagen);
+                return;
+            }
+            ImageIcon icono = new ImageIcon(url);
+            setIcon(icono);
+        }catch(Exception ex){
+            ex.printStackTrace();
+            }
+	    });
 	}
 }
-/*TODO pq un observer especifico para jugador cuando TODAS las entidades dinamicas 
-van a moverse y cambiar de direccion(cambiar de sprite)
-En si todo lo que necesita un observer son las dinamicas y plataforma movil
-*/

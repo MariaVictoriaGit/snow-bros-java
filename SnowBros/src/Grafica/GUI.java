@@ -75,8 +75,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                     //controladorDeSonido.reproducirSonidoDeSalto();
                 } else if (keyCode== KeyEvent.VK_S) {//podria ser para bajar la escalera
                     //miJuego.setDirection(ConstantesEntidades.ABAJO);
-                    miJuego.getJugador().setAire();
-                    miJuego.getJugador().iniciarCaida();     //puesto en esta tecla para testear la caida
+                    miJuego.getJugador().verificarSuelo();     //puesto en esta tecla para testear la caida
                     
                 }else if (keyCode == KeyEvent.VK_SPACE) {
                         miJuego.shootJugador();

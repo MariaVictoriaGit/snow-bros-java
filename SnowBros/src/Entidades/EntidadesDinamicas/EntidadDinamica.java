@@ -51,7 +51,7 @@ public abstract class EntidadDinamica extends Entidad{
           }
       }
     }
-    public String generarClaveEstado(int d){
+    public String generarClaveEstado(){
         String estado=null;
         if(direccion!=ConstantesEntidades.QUIETO){
             if(direccion==ConstantesEntidades.IZQUIERDA)
