@@ -8,11 +8,14 @@ import javax.swing.SwingUtilities;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
+import SnowBros.src.Fabricas.Alternativo;
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.FabricaSprites;
+import SnowBros.src.Fabricas.Original;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.Observer;
 //import SnowBros.src.Grafica.ObserverEntidad;
@@ -40,8 +43,15 @@ public class Juego {
      public void setControladorGrafica(GUI miControlador) {
         controladorGrafica=miControlador;
     }
-    public void iniciar(){
-        parseActual= new ParserNivel(true);
+    public void iniciar(boolean dominio){
+        if(dominio){
+            fabricaSprites = new Original();
+        }
+        else{
+            fabricaSprites = new Alternativo();
+        }
+        fabricaEntidades = new FabricaEntidades(fabricaSprites);
+        parseActual= new ParserNivel(fabricaSprites);
           // Si el nivel todavía no fue creado, crealo antes de pedir el jugador
         if (nivel == null) {
              nivel = parseActual.generarNivel(1); // o el nivel que corresponda
@@ -59,7 +69,7 @@ public class Juego {
                 nivel=parseActual.generarNivel(nivelActual);
              } else{
                 jugador.setVidas();
-                jugador.setPuntaje(0);
+                jugador.actualizarPuntaje(0);
                 nivel= parseActual.generarNivel(1);
             }
         }
@@ -141,6 +151,7 @@ public class Juego {
     }
     public void actualizarPuntaje(int puntajeASumar){
         puntajeJugador+=puntajeASumar;
+        controladorGrafica.getPantalla().actualizarLabelsPuntaje(jugador);
     }
     public void setReinicio(boolean t){
         reiniciarJugador=t;
@@ -185,9 +196,8 @@ public class Juego {
     }
     public void crearPowerUps(){
         for (PowerUp e: nivel.getPowerUps()){
-        e.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(e));   
+            e.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(e));   
         }
-        
     }
     public void quitarVida(){
         controladorGrafica.getPantalla().actualizarLabelsVidas(jugador);
@@ -204,7 +214,8 @@ public class Juego {
         //TODO implementar;
     }   
     public void shootJugador() {
-        jugador.disparar();
+        DisparoJugador disparo = jugador.disparar();
+        controladorGrafica.getPantalla().incorporarEntidad(disparo);
     }
     public boolean estaCercaEntidad(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
         Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();

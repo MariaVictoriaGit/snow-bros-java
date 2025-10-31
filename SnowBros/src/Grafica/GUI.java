@@ -23,6 +23,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     protected PanelPantallaJuego panelPantallaJuego;
     protected PanelPantallaFinDelJuego panelPantallaFinDelJuego;
     protected Juego miJuego;
+    protected boolean dominio=true;//TODO ...............................................................................
     
     public GUI(Juego juego){
         this.miJuego=juego;
@@ -77,7 +78,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                     miJuego.getJugador().verificarSuelo();     //puesto en esta tecla para testear la caida
                     
                 }else if (keyCode == KeyEvent.VK_SPACE) {
-                        miJuego.getJugador().disparar();
+                        miJuego.shootJugador();
 
                 } else if(keyCode == KeyEvent.VK_ESCAPE) {
                         System.exit(0);
@@ -125,7 +126,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         refrescar();
     }
     public void accionarInicioJuego() {
-        miJuego.iniciar();
+        miJuego.iniciar(dominio);
         this.getPantalla().mostrarPlataformas();
         this.getPantalla().incorporarSilueta(miJuego.getNivelActual().getSilueta());
         refrescar();

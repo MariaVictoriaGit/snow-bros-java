@@ -53,6 +53,8 @@ Plataforma 704 64
 Plataforma 736 64
 Plataforma 768 64
 
+BotellaVerde 672 96
+
 Plataforma 0 128
 Plataforma 32 128
 Plataforma 64 128
@@ -67,6 +69,8 @@ Plataforma 384 128
 Plataforma 416 128
 Plataforma 448 128
 Plataforma 480 128
+
+BotellaRoja 352 160
 
 ParedDestructible 320 192
 
@@ -91,6 +95,8 @@ Plataforma 768 192
 
 RanaDeFuego 704 256
 
+VidaExtra 640 288
+
 Plataforma 96 224
 Plataforma 128 224
 Plataforma 160 224
@@ -101,6 +107,8 @@ Plataforma 576 256
 Plataforma 608 256
 Plataforma 640 256
 Plataforma 672 256
+
+Fruta 600 288
 
 Plataforma 160 288
 Plataforma 192 288
