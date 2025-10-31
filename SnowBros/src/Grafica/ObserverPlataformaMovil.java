@@ -15,11 +15,11 @@ public class ObserverPlataformaMovil extends ObserverGrafico{
         plataformaObservada=p;
         super.actualizar();
     }
-    public void actualizar(int direccion, int estadoAereo){
+    public void actualizar(int direccion, int tocandoSuelo){
         actualizarImagen(plataformaObservada.getDireccion(),ConstantesEntidades.AIRE); 
         super.actualizarPosicionTamano();
     }
-    protected void actualizarImagen(int direccion, int estadoAereo) {
+    protected void actualizarImagen(int direccion, int tocandoSuelo) {
         plataformaObservada.setDireccion(direccion);
 		String rutaImagen = plataformaObservada.getSprite().getRutaImagen("normal");
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));

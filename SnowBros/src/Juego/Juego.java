@@ -115,7 +115,7 @@ public class Juego {
                 jugador.verificarSuelo();
                 for (Enemigo enemigo : nivel.getEnemigos()) {
                    enemigo.patronDeMovimiento();        
-                   // enemigo.verificarSuelo(); 
+                   enemigo.verificarSuelo(); 
                 }
                 SwingUtilities.invokeLater(() -> {
                     nivel.notificarObservers();
@@ -231,12 +231,5 @@ public class Juego {
         double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
         return distancia <= umbralDeRango*umbralDeRango;
     }
-    public boolean estaCercaPlataforma(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
-        Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();
-        Rectangle hitboxEntidadEvaluada = entidadEvaluada.getHitbox().getRectangle();
-        double distanciaEnX = hitboxEntidadPrincipal.getCenterX() - hitboxEntidadEvaluada.getCenterX();
-        double distanciaEnY = hitboxEntidadPrincipal.getCenterY() - hitboxEntidadEvaluada.getCenterY();
-        double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
-        return distancia <= umbralDeRango*umbralDeRango;
-    }
+
 }

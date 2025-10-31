@@ -29,13 +29,13 @@ public class DisparoJugador extends EntidadDinamica {
                     posX += 4;
                     posY += 1;
                     incremetarY();
-                    getObserver().actualizar(direccion, getEstadoAereo());
+                    getObserver().actualizar(direccion, getTocandoSuelo());
                 }
                 else if(direccion==ConstantesEntidades.IZQUIERDA){
                     posX -= 4;
                     posY += 1;
                     incremetarY();
-                    getObserver().actualizar(direccion, getEstadoAereo());
+                    getObserver().actualizar(direccion, getTocandoSuelo());
                 }
             }
         });

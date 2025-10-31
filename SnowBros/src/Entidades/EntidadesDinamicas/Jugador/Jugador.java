@@ -19,7 +19,6 @@ import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     private static final int vidaDeInicio = 3;
     protected Juego miJuego;
-    protected int tocandoSuelo;
     protected int puntajeJugador;
     protected int vidas;
     protected String nombre;
@@ -78,43 +77,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
                 break;
         }   
     }
-    public void verificarSuelo(){
-        for(Entidad e:miJuego.getNivelActual().getPlataformas()){
-            Plataforma p=(Plataforma)e;
-            if(hitbox.getBottomHitBox().intersects(p.getHitbox().getTopHitBox())){
-                tocandoSuelo=ConstantesEntidades.SUELO;
-                break;
-            }
-            tocandoSuelo=ConstantesEntidades.AIRE;
-        }
-        if(tocandoSuelo==ConstantesEntidades.AIRE){
-            actualizarCaida();
-        }
-    }
-    private void actualizarCaida(){
-        if(tocandoSuelo==ConstantesEntidades.AIRE){
-            int velocidadY=2;
-            int ajuste=36;
-            posY+=velocidadY;
-            this.getObserver().actualizar(direccion, getEstadoAereo());
-            this.getHitbox().actualizarHitbox(posX,posY+ajuste,ancho,alto);
-            for(Entidad p:miJuego.getNivelActual().getPlataformas()){
-                Plataforma plataforma= (Plataforma) p;
-                if(miJuego.estaCercaPlataforma(this, p, 50)){
-                    plataforma.aceptar((Visitador) this);
-                    tocandoSuelo=ConstantesEntidades.SUELO;
-                }
-            }
-        }
-    }
-    public void iniciarSalto(){
-        if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
-            observer.actualizar(direccion, getEstadoAereo());
-            posY-=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
-            tocandoSuelo=ConstantesEntidades.AIRE;
-            actualizarCaida();
-        }
-    }
+
     public DisparoJugador disparar(){
         DisparoJugador disparo=miJuego.getFabricaEntidades().getDisparoJugador(posX, posY);
         miJuego.getNivelActual().agregarDisparo(disparo);
@@ -247,7 +210,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         perderVida();
         posX = posXoriginal;
         posY = posYoriginal;
-        this.getObserver().actualizar(direccion, getEstadoAereo());
+        this.getObserver().actualizar(direccion, getTocandoSuelo());
         this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
         miJuego.setReinicio(true);
         if(vidas<=0)

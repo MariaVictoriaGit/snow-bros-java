@@ -16,11 +16,11 @@ public class ObserverJugador extends ObserverGrafico{
         jugadorObservado= j;
         super.actualizar();
     }
-    public void actualizar(int direccion, int estadoAereo){
-        actualizarImagen(jugadorObservado.getDireccion(), jugadorObservado.getEstadoAereo()); 
+    public void actualizar(int direccion, int tocandoSuelo){
+        actualizarImagen(jugadorObservado.getDireccion(), jugadorObservado.getTocandoSuelo()); 
         super.actualizarPosicionTamano();
     }
-    protected void actualizarImagen(int direccion, int estadoAereo) {
+    protected void actualizarImagen(int direccion, int tocandoSuelo) {
         SwingUtilities.invokeLater(() -> {
         try{
             jugadorObservado.setDireccion(direccion);

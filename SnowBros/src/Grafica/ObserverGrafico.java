@@ -29,7 +29,7 @@ public class ObserverGrafico extends JLabel implements Observer{
 		int alto = this.getIcon().getIconHeight();
 		setBounds(x, y, ancho, alto);
     }
-	public void actualizar(int direccion, int estadoAereo) {
+	public void actualizar(int direccion, int tocandoSuelo) {
 		String rutaImagen = entidadObservada.getSprite().getRutaImagen("idleDerecha");
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
 		setIcon(icono);

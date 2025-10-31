@@ -1,6 +1,9 @@
 package SnowBros.src.Juego;
 
+import java.awt.Rectangle;
 import java.util.LinkedList;
+
+import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
@@ -150,7 +153,7 @@ public class Nivel implements InterfazEliminar{
     }
     public void notificarObservers(){
         for(Enemigo e:this.getEnemigos()){
-            e.getObserver().actualizar(e.getDireccion(),e.getEstadoAereo());
+            e.getObserver().actualizar(e.getDireccion(),e.getTocandoSuelo());
         }
       /*  for(DisparoJugador d:this.getDisparos()){
             d.getObserver().actualizar();
@@ -162,5 +165,13 @@ public class Nivel implements InterfazEliminar{
             b.getObserver().actualizar();
         }
             */
+    }
+    public boolean estaCercaPlataforma(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
+        Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();
+        Rectangle hitboxEntidadEvaluada = entidadEvaluada.getHitbox().getRectangle();
+        double distanciaEnX = hitboxEntidadPrincipal.getCenterX() - hitboxEntidadEvaluada.getCenterX();
+        double distanciaEnY = hitboxEntidadPrincipal.getCenterY() - hitboxEntidadEvaluada.getCenterY();
+        double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
+        return distancia <= umbralDeRango*umbralDeRango;
     }
 }

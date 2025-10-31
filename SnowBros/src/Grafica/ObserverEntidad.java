@@ -21,11 +21,11 @@ public class ObserverEntidad extends ObserverGrafico{
         entidadObservada=entidad;
         actualizar();
     }
-    public void actualizar(int direccion, int estadoAereo) {
-        actualizarImagen(entidadObservada.getDireccion(),entidadObservada.getEstadoAereo()); 
+    public void actualizar(int direccion, int tocandoSuelo) {
+        actualizarImagen(entidadObservada.getDireccion(),entidadObservada.getTocandoSuelo()); 
         super.actualizarPosicionTamano();
     }
-    protected void actualizarImagen(int direccion, int estadoAereo) {
+    protected void actualizarImagen(int direccion, int tocandoSuelo) {
         SwingUtilities.invokeLater(() -> {
         try{
             entidadObservada.setDireccion(direccion);
