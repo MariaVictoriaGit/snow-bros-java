@@ -7,8 +7,8 @@ public class BotellaRoja extends PowerUp{
     public BotellaRoja(int x, int y, Sprite sprite){
         super(x,y,sprite);
     }
-
     public void aceptar(Visitador v){
         v.visitar(this);
+        eliminar();
     }
 }

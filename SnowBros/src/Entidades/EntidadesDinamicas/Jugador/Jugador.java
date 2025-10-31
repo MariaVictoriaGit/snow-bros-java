@@ -1,7 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
 
 import java.awt.Rectangle;
-import javax.swing.Timer;
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;

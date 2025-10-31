@@ -1,23 +1,18 @@
 package SnowBros.src.Parser;
 
 import java.io.IOException;
-
-
 import java.io.BufferedReader;
 import java.io.FileReader;
-
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.Original;
 import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Juego.Silueta;
 import SnowBros.src.Datos.ConstantesNiveles;
 import SnowBros.src.Datos.ConstantesVistas;
-import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.DemonioRojo;
-import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.RanaDeFuego;
-import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.TrollAmarillo;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaAzul;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 
 public class ParserNivel{
     private FabricaEntidades fabrica;
@@ -72,6 +67,34 @@ public class ParserNivel{
                         RanaDeFuego ranaFuego=fabrica.getRanaDeFuego(xRanaFuego, yRanafuego);
                         nivel.agregarEnemigo(ranaFuego);
                         break;
+                    case "Calabaza":
+                        int xCalabaza=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yCalabaza=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
+                        Calabaza calbaza=fabrica.getCalabaza(xCalabaza, yCalabaza);
+                        nivel.agregarEnemigo(calbaza);
+                        break;
+                    case "Fantasma":
+                        int xFantasma=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yFantasma=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
+                        Fantasma fantasma=fabrica.getFantasma(xFantasma, yFantasma);
+                        nivel.agregarEnemigo(fantasma);
+                        break;
+                    case "Kamakichi":
+                        int xKamakichi=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yKamakichi=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
+                        Kamakichi kamakichi=fabrica.getKamakichi(xKamakichi, yKamakichi);
+                        nivel.agregarEnemigo(kamakichi);
+                        break;
+                    case "Moghera":
+                        int xMoghera=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yMoghera=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
+                        Moghera moghera=fabrica.getMoghera(xMoghera, yMoghera);
+                        nivel.agregarEnemigo(moghera);
+                        break;
                     case "BotellaAzul":
                         int xBotellaAzul=Integer.parseInt(partes[1]);
                         yArchivo=Integer.parseInt(partes[2]);
@@ -79,7 +102,35 @@ public class ParserNivel{
                         BotellaAzul botellaAzul=fabrica.getBotellaAzul(xBotellaAzul, yBotellaAzul);
                         nivel.agregarPowerUp(botellaAzul);
                         break;
-                }
+                    case "BotellaRoja":
+                        int xBotellaRoja=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yBotellaRoja=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
+                        BotellaRoja botellaRoja=fabrica.getBotellaRoja(xBotellaRoja, yBotellaRoja);
+                        nivel.agregarPowerUp(botellaRoja);
+                        break;
+                    case "BotellaVerde":
+                        int xBotellaVerde=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yBotellaVerde=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
+                        BotellaVerde botellaVerde=fabrica.getBotellaVerde(xBotellaVerde, yBotellaVerde);
+                        nivel.agregarPowerUp(botellaVerde);
+                        break;
+                    case "Fruta":
+                        int xFruta=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yFruta=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
+                        Fruta fruta=fabrica.getFruta(xFruta, yFruta);
+                        nivel.agregarPowerUp(fruta);
+                        break;                
+                    case "VidaExtra":
+                        int xVidaExtra=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yVidaExtra=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
+                        VidaExtra vidaExtra=fabrica.getVidaExtra(xVidaExtra, yVidaExtra);
+                        nivel.agregarPowerUp(vidaExtra);
+                        break;
+                    }
             }
         } catch (IOException e) {
             e.printStackTrace();

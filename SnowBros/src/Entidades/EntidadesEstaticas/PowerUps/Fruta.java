@@ -13,5 +13,6 @@ public class Fruta extends PowerUp{
     }
     public void aceptar(Visitador v){
         v.visitar(this);
+        eliminar();
     }
 }
