@@ -18,20 +18,24 @@ public class DemonioRojo extends Enemigo{
         velocidad=ConstantesDificultad.VELOCIDAD_DEMONIO_ROJO;
     }
     public void mover(){
-        accionMovimientoEnemigo.iniciar();
-        while(accionMovimientoEnemigo.getTiempoActual()!=0){
-            //temporizador caminar= new Temporizador(100);
-            if(dirAnterior==ConstantesEntidades.IZQUIERDA){
-                while(accionMovimientoEnemigo.getTiempoActual()!=0 && posX-velocidad>0){
+        switch (direccion) {
+            case ConstantesEntidades.QUIETO:
+                direccion=ConstantesEntidades.DERECHA;
+                break;
+            case ConstantesEntidades.IZQUIERDA:
+                if(posX-velocidad>0){
                     posX-=velocidad;
+                    direccion=ConstantesEntidades.DERECHA;
                 }
-            }else if(dirAnterior==ConstantesEntidades.DERECHA){
-                while(accionMovimientoEnemigo.getTiempoActual()!=0  && posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
-                    posX+=32;
+                break;
+            case ConstantesEntidades.DERECHA:
+                if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
+                    posX+=8;
+                    direccion=ConstantesEntidades.IZQUIERDA;
                 }
+                break;
             }  
         }
-    }
     public void convertirEnBola(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
