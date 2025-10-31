@@ -19,6 +19,9 @@ public class Kamakichi extends Enemigo{
     public void mover(){
         //TODO mover       
     }
+     public void patronDeMovimiento(){
+        
+    }
     public void dispararBomba(){
         activarDisparo=true;
     }

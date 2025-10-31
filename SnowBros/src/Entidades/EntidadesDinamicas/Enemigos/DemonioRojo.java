@@ -11,6 +11,9 @@ public class DemonioRojo extends Enemigo{
     protected static final int puntajeCongelado = 150;
     protected static final int puntajeEmpujado = 300;
     protected int contadorAnimacion=0;
+    private long tiempoEstado = 0;
+    private EstadosDePatron estado = EstadosDePatron.MOVERDERECHA;
+
 
     public DemonioRojo(int posX, int posY, Sprite miSprite){
         super(posX, posY, miSprite);
@@ -20,22 +23,67 @@ public class DemonioRojo extends Enemigo{
     public void mover(){
         switch (direccion) {
             case ConstantesEntidades.QUIETO:
-                direccion=ConstantesEntidades.DERECHA;
+                if (dirAnterior == ConstantesEntidades.DERECHA){
+                    direccion = ConstantesEntidades.IZQUIERDA;
+                }
+                else{
+                    direccion = ConstantesEntidades.DERECHA;
+                }
                 break;
             case ConstantesEntidades.IZQUIERDA:
+                dirAnterior=ConstantesEntidades.IZQUIERDA;
                 if(posX-velocidad>0){
-                    posX-=velocidad;
-                    direccion=ConstantesEntidades.DERECHA;
+                    posX-=1;
+                    this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+
                 }
                 break;
             case ConstantesEntidades.DERECHA:
+                dirAnterior=ConstantesEntidades.DERECHA;
                 if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
-                    posX+=8;
-                    direccion=ConstantesEntidades.IZQUIERDA;
+                    posX+=1;
+                    this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 }
                 break;
             }  
         }
+
+    private enum EstadosDePatron {
+        MOVERDERECHA, MOVERIZQUIERDA, ESPERAR
+    }
+
+    public void patronDeMovimiento() {
+        long ahora = System.currentTimeMillis();
+
+        switch (estado) {
+            case MOVERDERECHA:
+                direccion = ConstantesEntidades.DERECHA;
+                mover();
+                if (posX > ConstantesVistas.PANEL_JUEGO_ANCHO - 100) {
+                    estado = EstadosDePatron.ESPERAR;
+                    tiempoEstado = ahora;
+                }
+                break;
+    
+        case MOVERIZQUIERDA:
+            direccion = ConstantesEntidades.IZQUIERDA;
+            mover();
+            if (posX < 100) {
+                estado = EstadosDePatron.ESPERAR;
+                tiempoEstado = ahora;
+            }
+            break;
+        case ESPERAR:
+                direccion=ConstantesEntidades.QUIETO;
+                if (ahora - tiempoEstado > 2000) { // espera 2 segundos
+                    if (dirAnterior == ConstantesEntidades.DERECHA)
+                        estado = EstadosDePatron.MOVERIZQUIERDA;
+                    else
+                        estado = EstadosDePatron.MOVERDERECHA;
+                }
+            break;
+        }
+    }
     public void convertirEnBola(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
@@ -95,4 +143,4 @@ public class DemonioRojo extends Enemigo{
         }
         return clave;
     }
-}
+    }

@@ -18,6 +18,9 @@ public class Moghera extends Enemigo{
     public void mover(){
         //TODO implementar mover
     }
+     public void patronDeMovimiento(){
+        
+    }
     public void lanzarFuego(){
         //TODO implementar
     }

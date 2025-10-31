@@ -21,6 +21,9 @@ public class RanaDeFuego extends Enemigo{
         // TODO Auto-generated method stub
         
     }
+    public void patronDeMovimiento(){
+        
+    }
     public BolaDeFuego lanzarFuego(int posXJugador){
         BolaDeFuego bola=null;
 

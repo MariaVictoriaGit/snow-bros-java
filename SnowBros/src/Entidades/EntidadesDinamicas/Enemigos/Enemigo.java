@@ -43,6 +43,8 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
                }
          }*/
    
+   public abstract void patronDeMovimiento();
+
    public void recibirDaño(int daño){
       if (congelado || muerto) return;
       salud -= daño;

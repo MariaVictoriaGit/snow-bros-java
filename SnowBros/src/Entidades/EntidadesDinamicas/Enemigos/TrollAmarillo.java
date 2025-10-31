@@ -15,6 +15,9 @@ public class TrollAmarillo extends Enemigo{
     public void mover(){
         //TODO mover
     }
+    public void patronDeMovimiento(){
+        return;
+    }
     public void saltar(){
         //TODO implementar
     }

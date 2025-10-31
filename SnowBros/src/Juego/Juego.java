@@ -98,7 +98,7 @@ public class Juego {
                 //jugador.moverSegunInput() por si movemos el movimiento a booleanos
                 jugador.verificarSuelo();
                 for (Enemigo enemigo : nivel.getEnemigos()) {
-                   enemigo.mover();        
+                   enemigo.patronDeMovimiento();        
                    // enemigo.verificarSuelo(); 
                 }
                 SwingUtilities.invokeLater(() -> {
