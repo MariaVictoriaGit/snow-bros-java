@@ -47,7 +47,7 @@ public class DisparoJugador extends EntidadDinamica {
     public void setDireccion(int direccion){
         this.direccion = direccion;
     }
-    public void setEfectoBotellaAzul(boolean efecto){
+    public void setEfectoBotellaRoja(boolean efecto){
         //TODO  revisar  timer del power ups
         efectoBotella=true;
     }

@@ -6,6 +6,7 @@ import SnowBros.src.Visitor.Visitador;
 public class BotellaRoja extends PowerUp{
     public BotellaRoja(int x, int y, Sprite sprite){
         super(x,y,sprite);
+        hitbox.actualizarHitbox(x-16,y,ancho*2,alto*2);
     }
     public void aceptar(Visitador v){
         v.visitar(this);

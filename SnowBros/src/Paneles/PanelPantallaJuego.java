@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -74,7 +75,7 @@ public class PanelPantallaJuego extends JPanel{
         panelVidas.setOpaque(false);//transparente
         panelVidas.setLayout(new FlowLayout(FlowLayout.CENTER,5,5));// espacio de 5 pixeles horiz y vert entre cada componente
         ImageIcon iconoCorazon= new ImageIcon("SnowBros/src/Imagenes/PowerUps/vidaJugador.png");
-        int vidas=3;//TODO hacer constante
+        int vidas=ConstantesDificultad.VIDAS_INICIO;//TODO hacer constante
         for(int i=0;i<vidas;i++){
             JLabel vidaLabel=new JLabel(iconoCorazon);
             corazones.add(vidaLabel);
@@ -158,7 +159,7 @@ public class PanelPantallaJuego extends JPanel{
         panelInformacion.remove(componenteActual);
         String puntaje=String.valueOf(jugador.getPuntaje());
         labelPuntaje= new JLabel(puntaje);
-         labelPuntaje.setForeground(Color.BLACK);
+        labelPuntaje.setForeground(Color.BLACK);
         labelPuntaje.setHorizontalAlignment(SwingConstants.CENTER);
         panelInformacion.add(labelPuntaje,1);
         revalidate();

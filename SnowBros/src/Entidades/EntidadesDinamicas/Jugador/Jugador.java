@@ -30,11 +30,12 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     
     public Jugador(int x,int y, Sprite mISprite){//no se usa observerJugador y en entidadDinamica se le asigna un observer a cada uno
         super(x,y,mISprite);
-        vidas=vidaDeInicio;
+        vidas=ConstantesDificultad.VIDAS_INICIO;
         tocandoSuelo=ConstantesEntidades.SUELO;
         observer=new ObserverJugador(this);
         registrarObserver(observer);
         velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
+        puntajeJugador=0;
         posXoriginal = x;
         posYoriginal = y;
     }
@@ -147,6 +148,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     }
     public void actualizarPuntaje(int puntaje){
         puntajeJugador+=puntaje;
+        miJuego.actualizarPuntaje(puntajeJugador);
     }
     public String generarClaveEstado(int direccionAnterior){
         String claveADevolver=null;
@@ -207,15 +209,10 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     public void perderVida(){
         vidas--;
         if (vidas > 0)
-        miJuego.quitarVida();
+            miJuego.quitarVida();
     }
-   
     public void setVidas(){
         vidas=vidaDeInicio;
- }
-    public void sumarPuntaje(int p){
-        puntajeJugador+=p;
-        miJuego.actualizarPuntaje(puntajeJugador);
     }
     public void efectoBotellaAzul(BotellaAzul b){
         this.velocidad=ConstantesDificultad.EFECTO_BOTELLA_AZUL;
@@ -242,17 +239,29 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         hiloBotellaAzul.start();  */
     }
     public void efectoBotellaRoja(BotellaRoja b){
-        this.disparoAumentado=true;
+        this.disparoAumentado=true; //TODOOOOOOOO
         b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
             this.disparoAumentado=false;
             b.getTiempoDeEfecto().resetear();
         });
         b.getTiempoDeEfecto().iniciar();
     }
-    public void efectoBotellaVerde(){
-        //TODO implementar
+    public void efectoBotellaVerde(BotellaVerde b){
+        //efecto de botella verde oooooo
+        b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
+            this.disparoAumentado=false;
+            b.getTiempoDeEfecto().resetear();
+        });
+        b.getTiempoDeEfecto().iniciar();    
     }
-
+    public void efectoFruta(Fruta f){
+        //efecto fruta
+        f.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
+            this.disparoAumentado=false;
+            f.getTiempoDeEfecto().resetear();
+        });
+        f.getTiempoDeEfecto().iniciar();
+    }
     //Metodos de la interfaz Visitador
     public void visitar(Enemigo e){
         if (!invencible){
@@ -276,30 +285,34 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
         }
     }
     public void visitar(BotellaAzul b){
-        sumarPuntaje(b.getPuntaje());
+        actualizarPuntaje(b.getPuntaje());
         miNivel.eliminarPowerUp(b);
         miJuego.eliminarPowerUp(b);
         efectoBotellaAzul(b);
     }
     public void visitar(BotellaRoja b){
-        puntajeJugador+=b.getPuntaje();
+        actualizarPuntaje(b.getPuntaje());
         miNivel.eliminarPowerUp(b);
         miJuego.eliminarPowerUp(b);
         efectoBotellaRoja(b);
     }
     public void visitar(BotellaVerde b){
-        puntajeJugador+=b.getPuntaje();
+        actualizarPuntaje(b.getPuntaje());
         miNivel.eliminarPowerUp(b);
         miJuego.eliminarPowerUp(b);
-        efectoBotellaVerde();
+        efectoBotellaVerde(b);
     }
     public void visitar(Fruta f){
-        puntajeJugador+=f.getPuntaje();
+        actualizarPuntaje(f.getPuntaje());
+        miNivel.eliminarPowerUp(f);
+        miJuego.eliminarPowerUp(f);
+        efectoFruta(f);
     }
     public void visitar(VidaExtra v){
-        if(vidas!=vidaDeInicio)
+        if(vidas!=vidaDeInicio){
             vidas++;
-        puntajeJugador+=v.getPuntaje();
+            actualizarPuntaje(v.getPuntaje());
+        }
     }
     public void visitar(Pared p){
         if(direccion == ConstantesEntidades.DERECHA){
@@ -336,8 +349,5 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     //Metodo de la interfaz Visitable
     public void aceptar(Visitador v){
         v.visitar(this);
-    }
-    public void setPuntaje(int i) {
-       puntajeJugador=i;
     }
 }

@@ -69,7 +69,7 @@ public class Juego {
                 nivel=parseActual.generarNivel(nivelActual);
              } else{
                 jugador.setVidas();
-                jugador.setPuntaje(0);
+                jugador.actualizarPuntaje(0);
                 nivel= parseActual.generarNivel(1);
             }
         }
@@ -151,6 +151,7 @@ public class Juego {
     }
     public void actualizarPuntaje(int puntajeASumar){
         puntajeJugador+=puntajeASumar;
+        controladorGrafica.getPantalla().actualizarLabelsPuntaje(jugador);
     }
     public void setReinicio(boolean t){
         reiniciarJugador=t;
@@ -195,9 +196,8 @@ public class Juego {
     }
     public void crearPowerUps(){
         for (PowerUp e: nivel.getPowerUps()){
-        e.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(e));   
+            e.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(e));   
         }
-        
     }
     public void quitarVida(){
         controladorGrafica.getPantalla().actualizarLabelsVidas(jugador);
