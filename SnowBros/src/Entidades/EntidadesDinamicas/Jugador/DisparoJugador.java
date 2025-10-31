@@ -23,6 +23,26 @@ public class DisparoJugador extends EntidadDinamica {
         tiempoEfecto=new Temporizador(ConstantesTiempos.TIEMPO_DISPARO_JUGADOR);
     }
     public void mover(){
+        Thread hilo = new Thread(() -> {
+            while(true){
+                if(direccion==ConstantesEntidades.DERECHA){
+                    posX += 4;
+                    posY += 1;
+                    incremetarY();
+                    getObserver().actualizar(direccion, getEstadoAereo());
+                }
+                else if(direccion==ConstantesEntidades.IZQUIERDA){
+                    posX -= 4;
+                    posY += 1;
+                    incremetarY();
+                    getObserver().actualizar(direccion, getEstadoAereo());
+                }
+            }
+        });
+        hilo.start();
+    }
+    private int incremetarY(){
+        return posY+1;
     }
     public void setDireccion(int direccion){
         this.direccion = direccion;
