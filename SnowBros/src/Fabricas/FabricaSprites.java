@@ -1,7 +1,6 @@
 package SnowBros.src.Fabricas;
 
 import java.util.HashMap;
-
 import SnowBros.src.Grafica.Sprite;
 
 public abstract class FabricaSprites {
@@ -12,8 +11,7 @@ public abstract class FabricaSprites {
     public Sprite get_silueta() {
         HashMap<String, String> mapeo = new HashMap<>();
         mapeo.put("normal", rutaACarpeta+ "/Pantallas/FondoNivel1.jpg");
-        return new Sprite(mapeo);	
-                                	
+        return new Sprite(mapeo);	     	
     }
     public Sprite getSpriteJugador(){//podemos reducir sprites de jugadores
         HashMap<String, String> mapeo = new HashMap<String,String>();
@@ -96,27 +94,27 @@ public abstract class FabricaSprites {
     }
     public Sprite getSpriteSueloResbaladizo(){
         HashMap<String, String> mapeo= new HashMap<>(); 
-        mapeo.put("normal", rutaACarpeta + "/Obstaculos/sueloResbaladizo.png");
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/sueloResbaladizo.jpg");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteParedDestuctible(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("normal", rutaACarpeta + "/Obstaculos/paredDestructible.png");
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/paredDestructible.jpg");
         return new Sprite(mapeo);   
     }
     public Sprite getSpritePlataformaMovil(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("normal", rutaACarpeta + "/Obstaculos/plataforma.jpg");
+        mapeo.put("normal", rutaACarpeta + "/Plataforma/plataformaMovil.jpg");
         return new Sprite(mapeo);
     }
     public Sprite getSpritePlataformaQuebradiza(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("normal", rutaACarpeta + "/Obstaculos/plataforma.jpg");
+        mapeo.put("normal", rutaACarpeta + "/Plataforma/plataformaQuebradiza.jpg");
         return new Sprite(mapeo);
     }
     public Sprite getSpritePared(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("normal", rutaACarpeta + "/Obstaculos/pared.png");
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/pared.jpg");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteEscalera(){
@@ -128,10 +126,9 @@ public abstract class FabricaSprites {
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("normal", rutaACarpeta + "/Obstaculos/escalera.png");
         mapeo.put("normal", rutaACarpeta + "/Obstaculos/trampaPinchos.png");
-        //TODO cuando se agreguen los sprites respetar los nombres
-        mapeo.put("normal", rutaACarpeta + "/Obstaculos/sueloResbaladizo.png");
-        mapeo.put("normal", rutaACarpeta + "/Obstaculos/paredDestructible.png");
-        mapeo.put("normal", rutaACarpeta + "/Obstaculos/pared.png");
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/sueloResbaladizo.jpg");
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/paredDestructible.jpg");
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/pared.jpg");
         return new Sprite(mapeo);
     }
     public Sprite getSpritePowerUp(){

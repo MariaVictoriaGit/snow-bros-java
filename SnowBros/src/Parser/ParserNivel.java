@@ -5,15 +5,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.FabricaSprites;
-import SnowBros.src.Fabricas.Original;
 import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Juego.Silueta;
 import SnowBros.src.Datos.ConstantesNiveles;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 
 public class ParserNivel{
     private FabricaEntidades fabrica;
@@ -42,10 +42,22 @@ public class ParserNivel{
                         nivel.agregarJugador(jugador);
                         break;
                     case "Plataforma":
-                        int x=Integer.parseInt(partes[1]);
-                        int y=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2]);
-                        Plataforma plataforma = fabrica.getPlataforma(x, y);
+                        int xPlataforma=Integer.parseInt(partes[1]);
+                        int yPlataforma=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2]);
+                        Plataforma plataforma = fabrica.getPlataforma(xPlataforma, yPlataforma);
                         nivel.agregarPlataforma(plataforma);
+                        break;
+                    case "PlataformaMovil":
+                        int xPlataformaMovil=Integer.parseInt(partes[1]);
+                        int yPlataformaMovil=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2]);
+                        PlataformaMovil plataformaMovil = fabrica.getPlataformaMovil(xPlataformaMovil, yPlataformaMovil);
+                        nivel.agregarPlataforma(plataformaMovil);
+                        break;
+                    case "PlataformaQuebradiza":
+                        int xPlataformaQuebradiza=Integer.parseInt(partes[1]);
+                        int yPlataformaQuebradiza=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2]);
+                        PlataformaQuebradiza plataformaQuebradiza= fabrica.getPlataformaQuebradiza(xPlataformaQuebradiza, yPlataformaQuebradiza);
+                        nivel.agregarPlataforma(plataformaQuebradiza);
                         break;
                     case "DemonioRojo":
                         int xDemRojo=Integer.parseInt(partes[1]);
@@ -131,6 +143,41 @@ public class ParserNivel{
                         VidaExtra vidaExtra=fabrica.getVidaExtra(xVidaExtra, yVidaExtra);
                         nivel.agregarPowerUp(vidaExtra);
                         break;
+                    case "Escalera":
+                        int xEscalera=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yEscalera=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
+                        Escalera escalera=fabrica.getEscalera(xEscalera, yEscalera);
+                        nivel.agregarObstaculo(escalera);
+                        break;
+                    case "TrampaPinchos":
+                        int xTrampaPinchos=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yTrampaPinchos=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
+                        TrampaPinchos trampaPinchos=fabrica.getTrampaPinchos(xTrampaPinchos, yTrampaPinchos);
+                        nivel.agregarObstaculo(trampaPinchos);
+                        break;                
+                    case "Pared":
+                        int xPared=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yPared=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2-3;
+                        Pared pared=fabrica.getPared(xPared, yPared);
+                        nivel.agregarObstaculo(pared);
+                        break;
+                    case "ParedDestructible":
+                        int xParedDestructible=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int yParedDestructible=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
+                        ParedDestructible paredDestructible=fabrica.getParedDestructible(xParedDestructible, yParedDestructible);
+                        nivel.agregarObstaculo(paredDestructible);
+                        break;
+                    case "SueloResbaladizo":
+                        int xSueloResbaladizo=Integer.parseInt(partes[1]);
+                        yArchivo=Integer.parseInt(partes[2]);
+                        int ySueloResbaladizo=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
+                        SueloResbaladizo sueloResbaladizo=fabrica.getSueloResbaladizo(xSueloResbaladizo, ySueloResbaladizo);
+                        nivel.agregarObstaculo(sueloResbaladizo);
+                        break;                
                     }
             }
         } catch (IOException e) {

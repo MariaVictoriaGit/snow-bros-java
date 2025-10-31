@@ -70,17 +70,7 @@ Plataforma 416 128
 Plataforma 448 128
 Plataforma 480 128
 
-BotellaRoja 352 160
-
-ParedDestructible 320 192
-
-Pared 480 160
-
-Escalera 672 160
-
-PlataformaMovil 288 192
-PlataformaMovil 320 192
-PlataformaMovil 352 192
+BotellaRoja 400 160
 
 Plataforma 480 192
 Plataforma 512 192
@@ -123,7 +113,6 @@ Plataforma 448 288
 
 Plataforma 544 288
 
-Pared 448 320
 
 Plataforma 512 320
 
@@ -132,9 +121,6 @@ Plataforma 480 352
 Plataforma 32 384
 Plataforma 64 384
 Plataforma 96 384
-
-PlataformaQuebradiza 160 384
-PlataformaQuebradiza 192 384
 
 TrollAmarillo 320 448
 

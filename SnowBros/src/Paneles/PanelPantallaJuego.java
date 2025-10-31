@@ -8,12 +8,10 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
@@ -21,6 +19,8 @@ import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 //import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 //import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.Observer;
@@ -102,13 +102,22 @@ public class PanelPantallaJuego extends JPanel{
         panelPantallaJuego.setOpaque(false);
     }
     public void mostrarPlataformas(){
-        for(Entidad plataforma:miControladorGrafico.getJuego().getNivelActual().getPlataformas()){
+        for(Plataforma plataforma:miControladorGrafico.getJuego().getNivelActual().getPlataformas()){
             String ruta = plataforma.getSprite().getRutaImagen("normal");
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));//plataforma.getSprite().getRutaImagen("estatico.png"
             JLabel plataformaVisible = new JLabel(icono);
             plataformaVisible.setBounds(plataforma.getHitbox().getX(), plataforma.getHitbox().getY(), plataforma.getHitbox().getAncho(), plataforma.getHitbox().getAlto());
             this.add(plataformaVisible);  
             //imagenFondoJuego.add(plataformaVisible);
+        }
+    }
+    public void mostrarObstaculos(){
+        for(Obstaculo obstaculo:miControladorGrafico.getJuego().getNivelActual().getObstaculos()){
+            String ruta = obstaculo.getSprite().getRutaImagen("normal");
+            ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));
+            JLabel obstaculoVisible = new JLabel(icono);
+            obstaculoVisible.setBounds(obstaculo.getHitbox().getX(), obstaculo.getHitbox().getY(), obstaculo.getHitbox().getAncho(), obstaculo.getHitbox().getAlto());
+            this.add(obstaculoVisible);  
         }
     }
     //tengo que agregar metodos actualizar

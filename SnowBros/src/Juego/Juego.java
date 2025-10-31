@@ -1,6 +1,7 @@
 package SnowBros.src.Juego;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
@@ -11,6 +12,7 @@ import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 import SnowBros.src.Fabricas.Alternativo;
 import SnowBros.src.Fabricas.FabricaEntidades;
@@ -40,7 +42,7 @@ public class Juego {
         ranking=new Ranking();
     }
     //metodos de configuracionaa
-     public void setControladorGrafica(GUI miControlador) {
+    public void setControladorGrafica(GUI miControlador) {
         controladorGrafica=miControlador;
     }
     public void iniciar(boolean dominio){
@@ -79,23 +81,27 @@ public class Juego {
         jugador.getObserver().actualizar();
         Thread hiloColision = new Thread(() -> {
             while(!nivel.getEnemigos().isEmpty()){
-                    
-                    for(Enemigo entidad : nivel.getEnemigos()){
+                    for(Enemigo entidad : new ArrayList<>(nivel.getEnemigos())){
+                        if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
+                            entidad.aceptar(jugador);
+                        }
+                    }
+                    for(PowerUp entidad : new ArrayList<>(nivel.getPowerUps())){
+                        if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
+                            entidad.aceptar(jugador);
+                        }
+                    }
+                    for(Obstaculo entidad : new ArrayList<>(nivel.getObstaculos())){
                         if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
                         entidad.aceptar(jugador);
                         }
                     }
-                    for(PowerUp entidad : nivel.getPowerUps()){
-                        if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
-                        entidad.aceptar(jugador);
-                        }
-                    }
-                     try {
+                    try {
                         Thread.sleep(16);
-                     } catch (InterruptedException e) {
+                    } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                         break;
-                     }
+                    }
             }
         });
         Thread hiloGlobal = new Thread(() -> {
