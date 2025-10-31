@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 import SnowBros.src.Fabricas.FabricaEntidades;
+import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Fabricas.Original;
 import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Juego.Silueta;
@@ -22,9 +23,9 @@ import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaAzul;
 public class ParserNivel{
     private FabricaEntidades fabrica;
 
-    public ParserNivel(boolean dominioOriginal){
+    public ParserNivel(FabricaSprites fabricaSprites){
         //que desde la llamada para crear el parser se defina el dominio de aplicacion
-        this.fabrica = new FabricaEntidades(new Original("SnowBros/src/Imagenes"));
+        this.fabrica = new FabricaEntidades(fabricaSprites);
     }
     public Nivel generarNivel(int modo){
         return cargarNivel(obtenerArchivoNivel(modo), modo);

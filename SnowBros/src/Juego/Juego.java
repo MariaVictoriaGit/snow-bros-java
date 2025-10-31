@@ -6,11 +6,14 @@ import java.util.List;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
+import SnowBros.src.Fabricas.Alternativo;
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.FabricaSprites;
+import SnowBros.src.Fabricas.Original;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.Observer;
 //import SnowBros.src.Grafica.ObserverEntidad;
@@ -38,8 +41,15 @@ public class Juego {
      public void setControladorGrafica(GUI miControlador) {
         controladorGrafica=miControlador;
     }
-    public void iniciar(){
-        parseActual= new ParserNivel(true);
+    public void iniciar(boolean dominio){
+        if(dominio){
+            fabricaSprites = new Original();
+        }
+        else{
+            fabricaSprites = new Alternativo();
+        }
+        fabricaEntidades = new FabricaEntidades(fabricaSprites);
+        parseActual= new ParserNivel(fabricaSprites);
           // Si el nivel todavía no fue creado, crealo antes de pedir el jugador
         if (nivel == null) {
              nivel = parseActual.generarNivel(1); // o el nivel que corresponda
@@ -160,7 +170,8 @@ public class Juego {
         //TODO implementar;
     }   
     public void shootJugador() {
-        jugador.disparar();
+        DisparoJugador disparo = jugador.disparar();
+        controladorGrafica.getPantalla().incorporarEntidad(disparo);
     }
     public boolean estaCercaEntidad(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
         Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();
