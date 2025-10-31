@@ -17,6 +17,10 @@ public class Calabaza extends Enemigo{
     public void mover(){
         //TODO mover
     }
+    public void patronDeMovimiento(){
+
+    }
+
     public void invocarFantasma(){
         //TODO implementar
     }

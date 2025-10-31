@@ -31,7 +31,6 @@ public abstract class EntidadDinamica extends Entidad{
       return dirAnterior;
     }
     public void setDireccion(int direccion){
-      dirAnterior=direccion;
       this.direccion=direccion;
     }
     public abstract void mover();//antes no era abstract pero no tenia implemntacion 

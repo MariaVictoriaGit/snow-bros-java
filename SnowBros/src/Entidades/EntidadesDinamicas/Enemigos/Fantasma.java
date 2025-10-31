@@ -17,6 +17,9 @@ public class Fantasma extends Enemigo{
     public void mover(){
         //TODO mover
     }
+     public void patronDeMovimiento(){
+        
+    }
     public void convertirEnBola(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");

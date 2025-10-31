@@ -107,28 +107,7 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
             }
         }
     }
-
-    /*
     public void iniciarSalto(){
-        //tal vez necesite un parametro para ver hacia donde salta con teclas w y a o d
-        Timer timerSalto= new Timer(30, e-> actualizarSalto());
-        timerSalto.start();
-        posY-=velocidadY;//realiza la subida del salto
-            
-            //SI APUNTA A LA IZQ QUE SALTE A LA IZQ
-                //QUE SUBA
-            if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
-
-            }
-            //SI APUNTA A LA DER QUE SALTE A LA DER
-                //QUE SUBA
-            else if(dirAnterior==ConstantesEntidades.ARRIBA_IZQUIERDA){
-
-            }
-            iniciarCaida();
-    }  */
-    public void iniciarSalto(){//TODO ver colisiones y caida si no encuentra plataforma
-        //int velocidadY=ConstantesDificultad.VELOCIDAD_JUGADOR-3;
         if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
             observer.actualizar(direccion, getEstadoAereo());
             posY-=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
