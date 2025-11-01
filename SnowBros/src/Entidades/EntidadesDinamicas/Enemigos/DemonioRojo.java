@@ -21,34 +21,33 @@ public class DemonioRojo extends Enemigo{
         velocidad=ConstantesDificultad.VELOCIDAD_DEMONIO_ROJO;
     }
     public void mover(){
-        switch (direccion) {
-            case ConstantesEntidades.QUIETO:
-                if (dirAnterior == ConstantesEntidades.DERECHA){
-                    direccion = ConstantesEntidades.IZQUIERDA;
-                }
-                else{
-                    direccion = ConstantesEntidades.DERECHA;
-                }
-                break;
-            case ConstantesEntidades.IZQUIERDA:
-                dirAnterior=ConstantesEntidades.IZQUIERDA;
-                if(posX-velocidad>0){
-                    posX-=1;
-                    this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+        if(!detenido)
+            switch (direccion) {
+                case ConstantesEntidades.QUIETO:
+                    if (dirAnterior == ConstantesEntidades.DERECHA){
+                        direccion = ConstantesEntidades.IZQUIERDA;
+                    }
+                    else{
+                        direccion = ConstantesEntidades.DERECHA;
+                    }
+                    break;
+                case ConstantesEntidades.IZQUIERDA:
+                    dirAnterior=ConstantesEntidades.IZQUIERDA;
+                    if(posX-velocidad>0){
+                        posX-=1;
+                        this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
 
-                }
-                break;
-            case ConstantesEntidades.DERECHA:
-                dirAnterior=ConstantesEntidades.DERECHA;
-                if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
-                    posX+=1;
-                    this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-                }
+                    }
+                    break;
+                case ConstantesEntidades.DERECHA:
+                    dirAnterior=ConstantesEntidades.DERECHA;
+                    if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
+                        posX+=1;
+                        this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                    }
                 break;
             }  
-        }
-
-
+    }
     public void patronDeMovimiento() {
         long ahora = System.currentTimeMillis();
 

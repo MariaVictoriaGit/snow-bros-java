@@ -1,6 +1,7 @@
 package SnowBros.src.Juego;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import SnowBros.src.Entidades.Entidad;
@@ -140,8 +141,17 @@ public class Nivel implements InterfazEliminar{
         b.setNivel(this);
         b.getObserver().actualizar();
     }
-    public void efectoBotellaVerde(){
-        //TODO implemetar
+    public void efectoBotellaVerde(boolean efecto){
+        if(efecto){
+            for(Enemigo enemigo : new ArrayList<>(listaEnemigos)){
+                enemigo.detener();
+            }
+        }
+        else{
+            for(Enemigo enemigo : new ArrayList<>(listaEnemigos)){
+                enemigo.avanzar();
+            }
+        }
     }
     public Jugador getJugador(){
         return jugador;

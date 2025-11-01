@@ -14,37 +14,36 @@ public class TrollAmarillo extends Enemigo{
         super(x,y,spritesTrollAmarillo);
         velocidad=ConstantesDificultad.VELOCIDAD_TROLL_AMARILLO;
     }
-       public void mover(){
-        switch (direccion) {
-            case ConstantesEntidades.QUIETO:
-                if (dirAnterior == ConstantesEntidades.DERECHA){
-                    direccion = ConstantesEntidades.IZQUIERDA;
-                }
-                else{
-                    direccion = ConstantesEntidades.DERECHA;
-                }
-                break;
-            case ConstantesEntidades.IZQUIERDA:
-                dirAnterior=ConstantesEntidades.IZQUIERDA;
-                if(posX-velocidad>0){
-                    posX-=1;
-                    this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+    public void mover(){
+        if(!detenido)
+            switch (direccion) {
+                case ConstantesEntidades.QUIETO:
+                    if (dirAnterior == ConstantesEntidades.DERECHA){
+                        direccion = ConstantesEntidades.IZQUIERDA;
+                    }
+                    else{
+                        direccion = ConstantesEntidades.DERECHA;
+                    }
+                    break;
+                case ConstantesEntidades.IZQUIERDA:
+                    dirAnterior=ConstantesEntidades.IZQUIERDA;
+                    if(posX-velocidad>0){
+                        posX-=1;
+                        this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
 
-                }
-                break;
-            case ConstantesEntidades.DERECHA:
-                dirAnterior=ConstantesEntidades.DERECHA;
-                if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
-                    posX+=1;
-                    this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-                }
-                break;
+                    }
+                    break;
+                case ConstantesEntidades.DERECHA:
+                    dirAnterior=ConstantesEntidades.DERECHA;
+                    if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
+                        posX+=1;
+                        this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                    }
+                    break;
             }  
-        }
-
+    }
     public void patronDeMovimiento() {
         long ahora = System.currentTimeMillis();
-
         switch (estado) {
             case EstadosDePatron.MOVERDERECHA:
                 direccion = ConstantesEntidades.DERECHA;
@@ -54,7 +53,6 @@ public class TrollAmarillo extends Enemigo{
                     tiempoEstado = ahora;
                 }
                 break;
-    
         case EstadosDePatron.MOVERIZQUIERDA:
             direccion = ConstantesEntidades.IZQUIERDA;
             mover();

@@ -179,21 +179,28 @@ public class Jugador extends EntidadDinamica implements Visitable{
         });
         hiloBotellaAzul.start();  */
     }
-    public void efectoBotellaRoja(BotellaRoja b){
-        this.disparoAumentado=true; //TODOOOOOOOO
+    public void efectoBotellaRoja(BotellaRoja b){//TODO desp de disparo
+        this.disparoAumentado=true; 
         b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
             this.disparoAumentado=false;
             b.getTiempoDeEfecto().resetear();
         });
         b.getTiempoDeEfecto().iniciar();
     }
+    public boolean getDisparoAumentado(){
+        return disparoAumentado;
+    }
     public void efectoBotellaVerde(BotellaVerde b){
         //efecto de botella verde oooooo
+        miJuego.getNivelActual().efectoBotellaVerde(true);
+        System.out.println("true");
         b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
-            this.disparoAumentado=false;
+            miJuego.getNivelActual().efectoBotellaVerde(false);
             b.getTiempoDeEfecto().resetear();
+            System.out.println("true2");
         });
-        b.getTiempoDeEfecto().iniciar();    
+        b.getTiempoDeEfecto().iniciar(); 
+        System.out.println("true3");   
     }
     public void efectoFruta(Fruta f){
         //efecto fruta
