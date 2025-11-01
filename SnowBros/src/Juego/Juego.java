@@ -214,6 +214,7 @@ public class Juego {
     }
     public void eliminarPowerUp(PowerUp p){
         controladorGrafica.getPantalla().eliminarLabel(p.getLabel());
+        nivel.eliminarPowerUp(p);
     }
     public int getModoDeJuego(){
         return puntajeJugador;

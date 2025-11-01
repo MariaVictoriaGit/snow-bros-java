@@ -16,7 +16,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 
-public class Jugador extends EntidadDinamica implements Visitador, Visitable{
+public class Jugador extends EntidadDinamica implements Visitable{
     private static final int vidaDeInicio = 3;
     protected Juego miJuego;
     protected int puntajeJugador;
@@ -227,33 +227,30 @@ public class Jugador extends EntidadDinamica implements Visitador, Visitable{
     }
     public void visitar(BotellaAzul b){
         actualizarPuntaje(b.getPuntaje());
-        miNivel.eliminarPowerUp(b);
         miJuego.eliminarPowerUp(b);
         efectoBotellaAzul(b);
     }
     public void visitar(BotellaRoja b){
         actualizarPuntaje(b.getPuntaje());
-        miNivel.eliminarPowerUp(b);
         miJuego.eliminarPowerUp(b);
         efectoBotellaRoja(b);
     }
     public void visitar(BotellaVerde b){
         actualizarPuntaje(b.getPuntaje());
-        miNivel.eliminarPowerUp(b);
         miJuego.eliminarPowerUp(b);
         efectoBotellaVerde(b);
     }
     public void visitar(Fruta f){
         actualizarPuntaje(f.getPuntaje());
-        miNivel.eliminarPowerUp(f);
         miJuego.eliminarPowerUp(f);
         efectoFruta(f);
     }
     public void visitar(VidaExtra v){
         if(vidas!=vidaDeInicio){
-            vidas++;
+            vidas--;
             actualizarPuntaje(v.getPuntaje());
         }
+        miJuego.eliminarPowerUp(v);
     }
     public void visitar(Pared p){
         if(direccion == ConstantesEntidades.DERECHA){
