@@ -39,7 +39,7 @@ public class DisparoJugador extends EntidadDinamica {
                             getObserver().actualizar(dirAnterior, getTocandoSuelo());
                             getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                         }
-                        else if(dirAnterior==ConstantesEntidades.IZQUIERDA){
+                        else {
                             posX -= 4;
                             //posY += 2;
                             //incremetarY();
@@ -88,11 +88,10 @@ public class DisparoJugador extends EntidadDinamica {
     public void visitar(Enemigo e) {
         e.recibirDaño(potenciaDisparo);
         eliminar();
-        observer=null;
     }
     public void visitar(Plataforma p){
         eliminar();
-        observer=null;
+
     }
     public void eliminar(){
         nivel.eliminarDisparoJugador(this);
