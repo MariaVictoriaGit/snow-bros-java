@@ -4,6 +4,7 @@ import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
 
@@ -86,8 +87,14 @@ public class DisparoJugador extends EntidadDinamica {
     }
     public void visitar(Enemigo e) {
         e.recibirDaño(potenciaDisparo);
+        eliminar();
+        observer=null;
+    }
+    public void visitar(Plataforma p){
+        eliminar();
+        observer=null;
     }
     public void eliminar(){
-        miNivel.eliminarDisparoJugador(this);
+        nivel.eliminarDisparoJugador(this);
     }
 }

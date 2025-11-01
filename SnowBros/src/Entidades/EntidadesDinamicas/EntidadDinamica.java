@@ -23,7 +23,6 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     protected int velocidad;
     protected int tocandoSuelo;
     protected Observer observer;//ObserverEntidad
-    private Nivel nivel;
 
     public EntidadDinamica(int posX, int posY, Sprite mSprite){
       super(posX, posY, mSprite);
@@ -55,9 +54,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
               observer.actualizar(direccion,estado);
           }
     }
-    public void setNivel(Nivel n){
-      nivel=n;
-    }
+
     public String generarClaveEstado(){
         String estado=null;
         if(direccion!=ConstantesEntidades.QUIETO){

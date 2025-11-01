@@ -3,6 +3,7 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
@@ -64,10 +65,13 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public abstract void agregarPowerUp(Boolean b);
    public abstract int getPuntajeCongelado();
    public abstract int getPuntajeEmpujado();
-   public void visitar(Jugador e) {
-      e.perderVida();
-   }
+   public abstract void visitar(Jugador e);
+
    public void eliminar(){
-      miNivel.eliminarEnemigo(this);
+      nivel.eliminarEnemigo(this);
+   }
+
+   public void aceptar(DisparoJugador d){
+      eliminar();
    }
 }

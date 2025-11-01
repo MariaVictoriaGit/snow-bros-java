@@ -85,7 +85,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         return disparo;
     }
     public void eliminar(){
-        miNivel.eliminarJugador(this);
+        nivel.eliminarJugador(this);
     }
     public void actualizarPuntaje(int puntaje){
         puntajeJugador+=puntaje;
