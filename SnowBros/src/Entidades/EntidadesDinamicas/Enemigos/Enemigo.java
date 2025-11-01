@@ -16,6 +16,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected boolean rodando;
    protected boolean muerto;
    protected boolean congelado;
+   protected boolean detenido;
 
    public Enemigo(int x, int y, Sprite sprites) {
       //la dificultad va a verse definida por lsa salud
@@ -26,9 +27,16 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       congelado=false;
       muerto=false;
       rodando=false;
+      detenido=false;
       tocandoSuelo=ConstantesEntidades.SUELO;
    }
    public abstract void mover();
+   public void detener(){
+      detenido=true;
+   }
+   public void avanzar(){
+      detenido=false;
+   }
       /*
       if (muerto || congelado) return;
          if (direccion==ConstantesEntidades.DERECHA) {
