@@ -58,7 +58,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
                 direccion=direccionAMover;
                 if(posX-velocidad>0){
                 posX-=velocidad;
-                getHitbox().actualizarHitbox(posX,posY-8,ancho,alto-32);
+                getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 }
                 break;
             case ConstantesEntidades.ARRIBA_IZQUIERDA:
@@ -222,14 +222,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
         if(vidas<=0)
             miJuego.reiniciarNivel();
         //TODO reiniciar al personaje en la posicion original
-        }
-    }
-    public void visitar(Plataforma p){
-        Rectangle hitboxJugador=this.getHitbox().getRectangle();
-        Rectangle hitboxPlataforma=p.getHitbox().getRectangle();
-        if(this.getHitbox().getBottomHitBox().intersects(p.getHitbox().getTopHitBox())){
-            this.posY = hitboxPlataforma.y - hitboxJugador.height-24; //40 o 30 es el ajuste de momento
-            this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
         }
     }
     public void visitar(BotellaAzul b){
