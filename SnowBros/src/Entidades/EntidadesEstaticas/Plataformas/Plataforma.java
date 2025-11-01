@@ -13,6 +13,6 @@ public class Plataforma extends EntidadEstatica{
         v.visitar(this);
     }
     public void eliminar(){
-        miNivel.eliminarPlataforma(this);
+        nivel.eliminarPlataforma(this);
     }
 }

@@ -125,7 +125,6 @@ public class Nivel implements InterfazEliminar{
         e.setNivel(this);
         //enemigo.registrarObserver(new ObserverEntidad(e));
         e.getObserver().actualizar();
-        e.setNivel(this);
         e.mover();
     }
     public void agregarDisparo(DisparoJugador b){
