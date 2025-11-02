@@ -11,6 +11,6 @@ public class Silueta extends Entidad {
         return "normal";
     }
     public void eliminar(){
-        miNivel.eliminarSilueta(this);
+        nivel.eliminarSilueta(this);
     }
 }

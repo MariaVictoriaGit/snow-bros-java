@@ -32,6 +32,6 @@ public class BolaDeNieve extends EntidadDinamica{
         rebotar();
     }
     public void eliminar(){
-        miNivel.eliminarBolaDeNieve(this);
+        nivel.eliminarBolaDeNieve(this);
     }
 }

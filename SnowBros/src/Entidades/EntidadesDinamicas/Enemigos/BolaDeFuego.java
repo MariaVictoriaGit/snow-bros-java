@@ -25,6 +25,6 @@ public class BolaDeFuego extends EntidadDinamica{
         direccion=direccionDisparo;
     }
     public void eliminar(){
-        miNivel.eliminarBolaDeFuego(this);
+        nivel.eliminarBolaDeFuego(this);
     }
 }

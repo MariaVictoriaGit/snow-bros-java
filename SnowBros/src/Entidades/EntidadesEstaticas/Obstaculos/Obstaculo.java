@@ -8,6 +8,6 @@ public abstract class Obstaculo extends EntidadEstatica {
     }
 
     public void eliminar(){
-        miNivel.eliminarObstaculo(this);
+        nivel.eliminarObstaculo(this);
     }
 }
