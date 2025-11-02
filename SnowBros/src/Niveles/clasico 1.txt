@@ -27,7 +27,7 @@ Plataforma 0 0
 
 Jugador 416 64
 
-DemonioRojo 288 64
+DemonioRojo 288 32
 
 BotellaAzul 544 32
 
@@ -83,7 +83,7 @@ Plataforma 704 192
 Plataforma 736 192
 Plataforma 768 192
 
-RanaDeFuego 704 256
+RanaDeFuego 704 224
 
 VidaExtra 640 288
 

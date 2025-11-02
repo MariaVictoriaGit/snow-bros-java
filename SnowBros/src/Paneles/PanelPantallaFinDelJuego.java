@@ -42,7 +42,7 @@ public class PanelPantallaFinDelJuego extends JPanel {
         botonReinicio = new JButton();
 		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonReinicio.jpg"));
         botonReinicio.setIcon(iconoBoton);
-        botonReinicio.setBounds(100, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
+        botonReinicio.setBounds(50, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonReinicio);
         registrarOyenteBotonReinicio();
         add(botonReinicio,0);
@@ -51,7 +51,7 @@ public class PanelPantallaFinDelJuego extends JPanel {
         botonSalir = new JButton();
 		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonSalir.jpg"));
         botonSalir.setIcon(iconoBoton);
-        botonSalir.setBounds(100, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
+        botonSalir.setBounds(50, 100, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonSalir);
         registrarOyenteBotonSalir();
         add(botonSalir,0);
@@ -60,7 +60,13 @@ public class PanelPantallaFinDelJuego extends JPanel {
         botonNuevaPartida = new JButton();
 		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonJugar.jpg"));
         botonNuevaPartida.setIcon(iconoBoton);
-        botonNuevaPartida.setBounds(100, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
+        botonNuevaPartida.setBounds(50, 500, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
+        
+        botonNuevaPartida.setBorderPainted(false);
+        botonNuevaPartida.setContentAreaFilled(false);
+        botonNuevaPartida.setFocusPainted(false);
+        botonNuevaPartida.setOpaque(false);
+        
         transparentarBoton(botonSalir);
         registrarOyenteBotonNuevaPartida();
         add(botonNuevaPartida,0);
