@@ -37,7 +37,7 @@ public class ParserNivel{
                     case "Jugador":
                         int xJugador=Integer.parseInt(partes[1]);
                         int yArchivo=Integer.parseInt(partes[2]);
-                        int yJugador=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2])-ConstantesVistas.PADDING;
+                        int yJugador=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
                         Jugador jugador=fabrica.getJugador(xJugador, yJugador);
                         jugador.setNivel(nivel);
                         nivel.agregarJugador(jugador);

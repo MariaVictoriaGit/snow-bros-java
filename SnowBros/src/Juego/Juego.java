@@ -13,6 +13,7 @@ import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 import SnowBros.src.Fabricas.Alternativo;
 import SnowBros.src.Fabricas.FabricaEntidades;
@@ -94,6 +95,22 @@ public class Juego {
                     for(Obstaculo entidad : new ArrayList<>(nivel.getObstaculos())){
                         if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
                         entidad.aceptar(jugador);
+                        }
+                    }
+                    for(Enemigo entidad : new ArrayList<>(nivel.getEnemigos())){
+                        while(!nivel.getDisparos().isEmpty()){
+                            DisparoJugador disparo = nivel.getDisparos().getFirst();
+                        if (disparo.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
+                            entidad.aceptar(disparo);
+                            }
+                        }
+                    }
+                    for(Plataforma plataforma: nivel.getPlataformas()){
+                        while(!nivel.getDisparos().isEmpty()){
+                            DisparoJugador disparo = nivel.getDisparos().getFirst();
+                        if (disparo.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) {
+                            plataforma.aceptar(disparo);
+                            }
                         }
                     }
                     try {

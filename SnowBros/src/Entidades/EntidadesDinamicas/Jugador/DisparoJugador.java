@@ -4,6 +4,7 @@ import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
 
@@ -38,7 +39,7 @@ public class DisparoJugador extends EntidadDinamica {
                             getObserver().actualizar(dirAnterior, getTocandoSuelo());
                             getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                         }
-                        else if(dirAnterior==ConstantesEntidades.IZQUIERDA){
+                        else {
                             posX -= 4;
                             //posY += 2;
                             //incremetarY();
@@ -86,8 +87,13 @@ public class DisparoJugador extends EntidadDinamica {
     }
     public void visitar(Enemigo e) {
         e.recibirDaño(potenciaDisparo);
+        eliminar();
+    }
+    public void visitar(Plataforma p){
+        eliminar();
+
     }
     public void eliminar(){
-        miNivel.eliminarDisparoJugador(this);
+        nivel.eliminarDisparoJugador(this);
     }
 }

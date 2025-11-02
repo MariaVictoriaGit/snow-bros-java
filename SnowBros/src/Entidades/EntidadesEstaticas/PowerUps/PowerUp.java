@@ -20,7 +20,7 @@ public abstract class PowerUp extends EntidadEstatica {
         tiempoDeEfecto=new Temporizador(ConstantesTiempos.TIEMPO_EFECTO_POWER_UP);
     }
     public void eliminar(){
-        miNivel.eliminarPowerUp(this);
+        nivel.eliminarPowerUp(this);
     }
     public int getPuntaje(){
         return puntaje;

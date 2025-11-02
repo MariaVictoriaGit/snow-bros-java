@@ -14,6 +14,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.HitBox;
 import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Visitor.Visitador;
 
@@ -21,15 +22,16 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     protected int direccion;
     protected int dirAnterior;
     protected int velocidad;
+    protected int velocidadY;
     protected int tocandoSuelo;
     protected Observer observer;//ObserverEntidad
-    private Nivel nivel;
 
     public EntidadDinamica(int posX, int posY, Sprite mSprite){
       super(posX, posY, mSprite);
       observer=new ObserverEntidad(this);
       registrarObserver(observer);
       velocidad=8;
+      velocidadY=2;
     }
     public int getDireccion(){
       return direccion;
@@ -55,9 +57,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
               observer.actualizar(direccion,estado);
           }
     }
-    public void setNivel(Nivel n){
-      nivel=n;
-    }
+
     public String generarClaveEstado(){
         String estado=null;
         if(direccion!=ConstantesEntidades.QUIETO){
@@ -78,29 +78,34 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     public void notificarObserver(){
         observer.actualizar();
     }
-       public void verificarSuelo(){
+    public void verificarSuelo(){
+        boolean enSuelo=false;
         for(Entidad e:this.nivel.getPlataformas()){
             Plataforma p=(Plataforma)e;
-            if(hitbox.getBottomHitBox().intersects(p.getHitbox().getTopHitBox())){
-                tocandoSuelo=ConstantesEntidades.SUELO;
-                break;
+            if(nivel.estaCercaPlataforma(this,p,40)){
+              if(hitbox.getBottomHitBox().intersects(p.getHitbox().getRectangle())){
+                enSuelo=true;
+              }
             }
-            tocandoSuelo=ConstantesEntidades.AIRE;
         }
-        if(tocandoSuelo==ConstantesEntidades.AIRE){
-            actualizarCaida();
+        if(enSuelo){
+          tocandoSuelo=ConstantesEntidades.SUELO;
+          velocidadY=0;
+        }
+        else{
+          tocandoSuelo=ConstantesEntidades.AIRE;
+          actualizarCaida();
         }
     }
     private void actualizarCaida(){
         if(tocandoSuelo==ConstantesEntidades.AIRE){
-            int velocidadY=2;
-            int ajuste=36;
+            velocidadY=2;
             posY+=velocidadY;
+            this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
             this.getObserver().actualizar(direccion, getTocandoSuelo());
-            this.getHitbox().actualizarHitbox(posX,posY+ajuste,ancho,alto);
             for(Entidad p:nivel.getPlataformas()){
                 Plataforma plataforma= (Plataforma) p;
-                if(nivel.estaCercaPlataforma(this, p, 50)){
+                if(nivel.estaCercaPlataforma(this, p, 40)){
                     plataforma.aceptar((Visitador) this);
                     tocandoSuelo=ConstantesEntidades.SUELO;
                 }
@@ -109,20 +114,19 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     }
     public void iniciarSalto(){
         if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
-            observer.actualizar(direccion, getTocandoSuelo());
-            posY-=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
-            tocandoSuelo=ConstantesEntidades.AIRE;
-            actualizarCaida();
+           posY-=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
+           tocandoSuelo=ConstantesEntidades.AIRE;
+           observer.actualizar(direccion, getTocandoSuelo());
+           actualizarCaida();
         }
     }
       public void visitar(Enemigo e) {
         //se ignoran
     }
     public void visitar(Plataforma e) {
-      Rectangle hitboxEntidad=this.getHitbox().getRectangle();
-      Rectangle hitboxPlataforma=e.getHitbox().getRectangle();
-      if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getTopHitBox())){
-            this.posY = hitboxPlataforma.y - hitboxEntidad.height-24; //40 o 30 es el ajuste de momento
+      HitBox hitboxPlataforma=e.getHitbox();
+      HitBox hitboxEntidad=this.getHitbox();
+      if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
             this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
         }
     }
