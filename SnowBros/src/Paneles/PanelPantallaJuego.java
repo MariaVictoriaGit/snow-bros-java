@@ -156,13 +156,27 @@ public class PanelPantallaJuego extends JPanel{
         //DESPUES
     }
     public void actualizarLabelsVidas(Jugador jugador) {
-        panelVidas.remove(jugador.getVidas());
+        int indice = jugador.getVidas();
+        if (indice >= 0 && indice < panelVidas.getComponentCount()) {
+            panelVidas.remove(indice);
+        }
         ImageIcon iconoVida = new ImageIcon("SnowBros/src/Imagenes/PowerUps/vidaPerdida.png");
         JLabel label= new JLabel(iconoVida);
         panelVidas.add(label, jugador.getVidas());
         revalidate();
         repaint();
     }   
+    public void efectoVidaExtra(Jugador jugador){
+        int indice = jugador.getVidas() - 1;
+        if (indice >= 0 && indice < panelVidas.getComponentCount()) {
+            panelVidas.remove(indice);
+        }        
+        ImageIcon iconoVidaRoja = new ImageIcon("SnowBros/src/Imagenes/PowerUps/vidaJugador.png");
+        JLabel labelVida = new JLabel(iconoVidaRoja);
+        panelVidas.add(labelVida, indice);
+        revalidate();
+        repaint();        
+    }
     public void actualizarLabelsPuntaje(Jugador jugador) {
         Component componenteActual = panelInformacion.getComponent(1);
         panelInformacion.remove(componenteActual);

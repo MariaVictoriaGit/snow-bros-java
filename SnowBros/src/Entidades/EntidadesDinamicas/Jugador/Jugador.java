@@ -150,7 +150,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public void perderVida(){
         vidas--;
         if (vidas > 0)
-            miJuego.quitarVida();
+            miJuego.actualizarVidas();
+        System.out.print(vidas);
     }
     public void setVidas(){
         vidas=vidaDeInicio;
@@ -193,14 +194,11 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public void efectoBotellaVerde(BotellaVerde b){
         //efecto de botella verde oooooo
         miJuego.getNivelActual().efectoBotellaVerde(true);
-        System.out.println("true");
         b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
             miJuego.getNivelActual().efectoBotellaVerde(false);
             b.getTiempoDeEfecto().resetear();
-            System.out.println("true2");
         });
         b.getTiempoDeEfecto().iniciar(); 
-        System.out.println("true3");   
     }
     public void efectoFruta(Fruta f){
         //efecto fruta
@@ -253,10 +251,12 @@ public class Jugador extends EntidadDinamica implements Visitable{
         efectoFruta(f);
     }
     public void visitar(VidaExtra v){
-        if(vidas!=vidaDeInicio){
-            vidas--;
-            actualizarPuntaje(v.getPuntaje());
+        if(vidas < vidaDeInicio){
+            vidas++;
+            System.out.print(vidas);
+            miJuego.efectoVidaExtra();
         }
+        actualizarPuntaje(v.getPuntaje());        
         miJuego.eliminarPowerUp(v);
     }
     public void visitar(Pared p){

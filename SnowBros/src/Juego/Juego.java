@@ -205,8 +205,11 @@ public class Juego {
             e.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(e));   
         }
     }
-    public void quitarVida(){
+    public void actualizarVidas(){
         controladorGrafica.getPantalla().actualizarLabelsVidas(jugador);
+    }
+    public void efectoVidaExtra(){
+        controladorGrafica.getPantalla().efectoVidaExtra(jugador);
     }
     public void crearNuevaPowerUp(){
         EntidadEstatica e= nivel.getPowerUps().getLast();
