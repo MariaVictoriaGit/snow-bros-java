@@ -64,7 +64,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
               estado="idleDerecha";
         return estado;
             
-      }
+    }
     
     public int getTocandoSuelo(){
       return tocandoSuelo;

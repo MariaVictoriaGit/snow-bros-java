@@ -11,7 +11,7 @@ import SnowBros.src.Visitor.Visitable;
 import SnowBros.src.Visitor.Visitador;
 
 public abstract class Enemigo extends EntidadDinamica implements Visitable {
-   protected int salud;
+   protected int salud=1;
    protected int tocandoSuelo;
    protected Temporizador temporizadoCongelado;
    protected Temporizador accionMovimientoEnemigo;
@@ -56,10 +56,23 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public abstract void patronDeMovimiento();
 
    public void recibirDaño(int daño){
-      if (congelado || muerto) return;
       salud -= daño;
-      if (salud <= 0) 
-         convertirEnBola();   
+      if (salud <= 0){
+         muerto=true; 
+         congelar();  
+      } 
+   }
+   
+   public String generarClaveEstado(){
+        String estado=null;
+        if(congelado=true&&direccion==ConstantesEntidades.QUIETO)
+            estado="congelado";
+        if(direccion==ConstantesEntidades.IZQUIERDA)
+            estado="idleIzquierda";
+        else
+            estado="idleDerecha";
+        return estado;
+               
    }
    public boolean getCongelado(){
       return congelado;
@@ -70,7 +83,20 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public boolean getMuerto(){ 
       return muerto; 
    }
-   public abstract void convertirEnBola();
+   public void congelar(){
+      congelado=true;
+      detenido=true;
+      direccion=ConstantesEntidades.QUIETO;
+      observer.actualizar(direccion,ConstantesEntidades.SUELO);
+   }
+   //solo va a ser llamado si el jugador colisiona con el enemigo
+   public void convertirEnBola(){
+      if(congelado){
+         nivel.getJuego().crearBolaDeNieve(posX,posY);
+         this.eliminar();
+      }
+         
+   }
    public abstract void agregarPowerUp(Boolean b);
    public abstract int getPuntajeCongelado();
    public abstract int getPuntajeEmpujado();

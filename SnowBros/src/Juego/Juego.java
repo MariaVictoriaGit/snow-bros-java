@@ -9,6 +9,7 @@ import javax.swing.SwingUtilities;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Calabaza;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
@@ -265,6 +266,12 @@ public class Juego {
         nivel.agregarEnemigo(cala);
         Observer observer = controladorGrafica.registrarEntidad(cala);
         cala.registrarObserver(observer);  
+    }
+    public void crearBolaDeNieve(int posX, int posY){
+        BolaDeNieve bola=fabricaEntidades.getBolaDeNieve(posX, posY);
+        bola.setNivel(nivel);
+        Observer observer=controladorGrafica.registrarEntidad(bola);
+        bola.registrarObserver(observer);
     }
     public void shootJugador() {
         DisparoJugador disparo = jugador.disparar();

@@ -149,6 +149,9 @@ public class Nivel {
             }
         }
     }
+    public Juego getJuego(){
+        return jugador.getJuego();
+    }
     public Jugador getJugador(){
         return jugador;
     }
