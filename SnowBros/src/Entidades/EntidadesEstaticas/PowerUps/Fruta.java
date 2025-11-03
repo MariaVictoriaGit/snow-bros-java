@@ -7,7 +7,6 @@ public class Fruta extends PowerUp{
     private final static int puntaje = 500;
     public Fruta(int x, int y, Sprite sprite){
         super(x, y, sprite);
-        hitbox.actualizarHitbox(x,y+12,ancho,alto);
     }
     public int getPuntaje(){
         return puntaje;
