@@ -198,12 +198,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         b.getTiempoDeEfecto().iniciar(); 
     }
     public void efectoFruta(Fruta f){
-        //efecto fruta
-        f.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
-            this.disparoAumentado=false;
-            f.getTiempoDeEfecto().resetear();
-        });
-        f.getTiempoDeEfecto().iniciar();
+ 
     }
     //Metodos de la interfaz Visitador
     public void visitar(Enemigo e){
