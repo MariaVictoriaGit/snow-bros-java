@@ -1,6 +1,5 @@
 package SnowBros.src.Entidades.EntidadesDinamicas;
 
-
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
@@ -8,12 +7,11 @@ import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Juego.HitBox;
 import SnowBros.src.Visitor.Visitador;
 
 public abstract class EntidadDinamica extends Entidad implements Visitador{
@@ -90,17 +88,18 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
       actualizarCaida();
     }
   }
-  public void verificarPared(){
-    /*for(Pared p: this.nivel.getParedes()){
-      if(nivel.getJugador().getJuego().estaCerca(this,p,2|0)){
-        if(hitbox.getLeftHitBox().intersects(p.getHitbox().getRectangle())){
-          posX+=ConstantesDificultad.VELOCIDAD_JUGADOR;
+  protected void verificarPared(Pared p){
+    if(nivel.getJugador().getJuego().estaCerca(this,p,28)){
+      if (hitbox.getRectangle().intersects(p.getHitbox().getRectangle())){
+        if (direccion==ConstantesEntidades.DERECHA){
+          posX=p.getHitbox().getX()-p.getHitbox().getAncho();
         }
-        else if(hitbox.getRightHitBox().intersects(p.getHitbox().getRectangle())){
-              posX-=ConstantesDificultad.VELOCIDAD_JUGADOR;
-            }
+        else if (direccion==ConstantesEntidades.IZQUIERDA){
+              posX=p.getHitbox().getX()+p.getHitbox().getAncho();
+        }
       }
-    }*/
+    }
+    hitbox.actualizarHitbox(posX, posY, ancho, alto);
   }
   private void actualizarCaida(){
     if(tocandoSuelo==ConstantesEntidades.AIRE){
@@ -129,8 +128,15 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     //se ignoran
   }
   public void visitar(Plataforma e) {
-    HitBox hitboxPlataforma=e.getHitbox();
-    HitBox hitboxEntidad=this.getHitbox();
+    visitarPlataforma(e);
+  }
+  public void visitar(PlataformaMovil e) {
+    visitarPlataforma(e);
+  } 
+  public void visitar(PlataformaQuebradiza e) {
+    visitarPlataforma(e);
+  }
+  private void visitarPlataforma(Plataforma e){
     if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
       this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
     }
@@ -156,10 +162,10 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     throw new UnsupportedOperationException("Unimplemented method 'visitar'");
   }
   public void visitar(Pared e){
-    verificarPared();
+    verificarPared(e);
   }
   public void visitar(ParedDestructible e) {
-    verificarPared();
+    verificarPared(e);
   }
   public void visitar(Escalera e) {
     //lo ignora

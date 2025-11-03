@@ -3,8 +3,6 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
-import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
-import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitable;
@@ -54,7 +52,6 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
          }*/
    
    public abstract void patronDeMovimiento();
-
    public void recibirDaño(int daño){
       salud -= daño;
       if (salud <= 0){
@@ -105,13 +102,8 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public abstract void agregarPowerUp(Boolean b);
    public abstract int getPuntajeCongelado();
    public abstract int getPuntajeEmpujado();
-   public void visitar(Jugador e){
-      //TODO
-   }
    public void eliminar(){
       nivel.eliminarEnemigo(this);
    }
-
    abstract public void aceptar(Visitador v);
-
 }

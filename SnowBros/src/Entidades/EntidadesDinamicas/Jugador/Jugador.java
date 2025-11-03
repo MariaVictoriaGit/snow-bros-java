@@ -11,6 +11,7 @@ import SnowBros.src.Juego.Juego;
 import SnowBros.src.Visitor.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaQuebradiza;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 
 public class Jugador extends EntidadDinamica implements Visitable{
@@ -246,20 +247,10 @@ public class Jugador extends EntidadDinamica implements Visitable{
         actualizarPuntaje(v.getPuntaje());        
         miJuego.eliminarPowerUp(v);
     }
-    public void visitar(Pared p){
-        //deberia ser verficarPares()
-        if(direccion == ConstantesEntidades.DERECHA){
-            posX -= 8;
-        }
-        else if(direccion == ConstantesEntidades.IZQUIERDA){
-            posX += 8;
-        }
-        //TODO Colision con los costados de la pared
-    }
-    public void visitar(ParedDestructible p){
-        //deberia ser verficarPares()
-        //TODO creo q las paredes se destruian con bolas de nieve
-        p.destruirse();
+    public void visitar(PlataformaQuebradiza e) {
+        super.visitar(e);
+        actualizarPuntaje(e.getPuntaje());
+        nivel.eliminarPlataforma(e);
     }
     public void visitar(Escalera e){
         subirEscalera();

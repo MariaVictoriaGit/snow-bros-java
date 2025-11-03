@@ -2,22 +2,15 @@ package SnowBros.src.Visitor;
 
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Escalera;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.TrampaPinchos;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaAzul;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaRoja;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.BotellaVerde;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.Fruta;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.VidaExtra;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 
 public interface Visitador {
     
     public void visitar(Enemigo e);
     public void visitar(Plataforma e);
+    public void visitar(PlataformaQuebradiza e);
     public void visitar(BotellaAzul b);
     public void visitar(BotellaRoja b);
     public void visitar(BotellaVerde b);
