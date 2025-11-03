@@ -14,7 +14,6 @@ public class DemonioRojo extends Enemigo{
     private long tiempoEstado = 0;
     private int estado = EstadosDePatron.MOVERIZQUIERDA;
 
-
     public DemonioRojo(int posX, int posY, Sprite miSprite){
         super(posX, posY, miSprite);
         salud=ConstantesDificultad.SALUD_DEMONIO_ROJO;
@@ -36,7 +35,6 @@ public class DemonioRojo extends Enemigo{
                     if(posX-velocidad>0){
                         posX-=1;
                         this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-
                     }
                     break;
                 case ConstantesEntidades.DERECHA:
@@ -50,7 +48,6 @@ public class DemonioRojo extends Enemigo{
     }
     public void patronDeMovimiento() {
         long ahora = System.currentTimeMillis();
-
         switch (estado) {
             case EstadosDePatron.MOVERDERECHA:
                 direccion = ConstantesEntidades.DERECHA;
@@ -60,7 +57,6 @@ public class DemonioRojo extends Enemigo{
                     tiempoEstado = ahora;
                 }
                 break;
-    
         case EstadosDePatron.MOVERIZQUIERDA:
             direccion = ConstantesEntidades.IZQUIERDA;
             mover();
@@ -83,10 +79,6 @@ public class DemonioRojo extends Enemigo{
     public void convertirEnBola(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
-    }
-    public void agregarPowerUp(Boolean b){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
     }
     public void aceptar(Visitador v){
         super.eliminar();
@@ -136,7 +128,6 @@ public class DemonioRojo extends Enemigo{
                         clave="moverDerecha3";
                     break;
             }
-          
         }
         return clave;
     }

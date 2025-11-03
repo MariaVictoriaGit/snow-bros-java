@@ -14,16 +14,12 @@ public class Fantasma extends Enemigo{
     public void mover(){
         //TODO mover
     }
-     public void patronDeMovimiento(){
+    public void patronDeMovimiento(){
         
     }
     public void convertirEnBola(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
-    }
-    public void agregarPowerUp(Boolean b){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
     }
     public void recibirDaño(){
         //es indestructible

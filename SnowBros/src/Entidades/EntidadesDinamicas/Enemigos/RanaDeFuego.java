@@ -86,7 +86,6 @@ public class RanaDeFuego extends Enemigo{
     }
     public BolaDeFuego lanzarFuego(int posXJugador){
         BolaDeFuego bola=null;
-
         if(direccion==ConstantesEntidades.QUIETO){
             lanzandoBolas=true;
             int posicionXBola;
@@ -104,20 +103,11 @@ public class RanaDeFuego extends Enemigo{
             bola.setNivel(nivel);
             nivel.agregarBolaDeFuego(bola);
         }
-
         return bola;
-    }
-    public int getPuntaje(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPuntaje'");
     }
     public void convertirEnBola(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
-    }
-    public void agregarPowerUp(Boolean b){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
     }
     public String generarClaveEstado(){
         String clave=null;
@@ -149,7 +139,6 @@ public class RanaDeFuego extends Enemigo{
         }
         return clave;
     }
-  
     public void aceptar(Visitador v){
         super.eliminar();
         v.visitar(this);

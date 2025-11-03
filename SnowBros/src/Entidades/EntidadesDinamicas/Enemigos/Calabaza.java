@@ -15,13 +15,12 @@ public class Calabaza extends Enemigo{
     private long tiempoEstado = 0;
     private int estado = EstadosDePatron.MOVERIZQUIERDA;
 
-    
     public Calabaza(int x, int y, Sprite sprite){
         super(x, y, sprite);
         velocidad=ConstantesDificultad.VELOCIDAD_CALABAZA;
         tiempoAntesAparicion=new Temporizador(ConstantesTiempos.TIEMPO_CALABAZA);
     }
-     public void mover(){
+    public void mover(){
         if(!detenido)
             switch (direccion) {
                 case ConstantesEntidades.QUIETO:
@@ -50,7 +49,6 @@ public class Calabaza extends Enemigo{
     }
     public void patronDeMovimiento() {
         long ahora = System.currentTimeMillis();
-
         switch (estado) {
             case EstadosDePatron.MOVERDERECHA:
                 direccion = ConstantesEntidades.DERECHA;
@@ -60,7 +58,6 @@ public class Calabaza extends Enemigo{
                     tiempoEstado = ahora;
                 }
                 break;
-    
         case EstadosDePatron.MOVERIZQUIERDA:
             direccion = ConstantesEntidades.IZQUIERDA;
             mover();
@@ -90,15 +87,11 @@ public class Calabaza extends Enemigo{
         }
         return clave;
     }
-
     public void invocarFantasma(){
         //TODO implementar
     }
     public void convertirEnBola(){
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
-    }
-    public void agregarPowerUp(Boolean agregar){
-        throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
     }
     public int getPuntajeCongelado() {//redefinirlo pq son indestructibles
         return 0;

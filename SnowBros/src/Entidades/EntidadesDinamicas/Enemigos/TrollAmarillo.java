@@ -79,10 +79,6 @@ public class TrollAmarillo extends Enemigo{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
     }
-    public void agregarPowerUp(Boolean b){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
-    }
     public String generarClaveEstado(){
         String estado=null;
         if(direccion==ConstantesEntidades.QUIETO){
