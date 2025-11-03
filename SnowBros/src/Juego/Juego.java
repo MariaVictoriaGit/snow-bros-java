@@ -16,6 +16,7 @@ import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 import SnowBros.src.Fabricas.Alternativo;
@@ -120,6 +121,11 @@ public class Juego {
                             }
                         }
                     }
+                     for(Enemigo enemigo : nivel.getEnemigos()){
+                        for(Pared pared : nivel.getParedes()){
+                            pared.aceptar(enemigo);
+                        }
+                    }
                     try {
                         Thread.sleep(16);
                     } catch (InterruptedException e) {
@@ -220,15 +226,15 @@ public class Juego {
     	ObserverJugador observerJugador = controladorGrafica.registrarEntidad(jugador);
 		jugador.registrarObserver(observerJugador);
 	}	
-    public void registrarObserverEntidad(Entidad entidad){
+    public void registrarObserverEntidad(EntidadDinamica entidad){
         ObserverGrafico observer = controladorGrafica.registrarEntidad(entidad);//observerEntidad?
         EntidadDinamica e=(EntidadDinamica) entidad;
 		e.registrarObserver(observer);
     }
-	protected void registrarObserversEntidades(List<? extends EntidadDinamica> entidades) {
-		for(EntidadDinamica entidad : entidades) {
-			ObserverGrafico observer = controladorGrafica.registrarEntidad(entidad);//observerEntidad?
+	protected void registrarObserversEntidades(List<? extends Entidad> entidades) {
+		for(Entidad entidad : entidades) {
             EntidadDinamica e=(EntidadDinamica) entidad;
+			ObserverGrafico observer = controladorGrafica.registrarEntidad(e);//observerEntidad?
 			e.registrarObserver(observer);
 		}
     }
