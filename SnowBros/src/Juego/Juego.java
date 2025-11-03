@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 import SnowBros.src.Entidades.Entidad;
@@ -250,6 +251,9 @@ public class Juego {
     public void eliminarPowerUp(PowerUp p){
         controladorGrafica.getPantalla().eliminarLabel(p.getLabel());
         nivel.eliminarPowerUp(p);
+    }
+    public void eliminarDisparo(DisparoJugador d){
+        controladorGrafica.getPantalla().eliminarLabel((JLabel) d.getObserver());
     }
     public int getModoDeJuego(){
         return puntajeJugador;
