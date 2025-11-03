@@ -60,7 +60,6 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
          congelar();  
       } 
    }
-   
    public String generarClaveEstado(){
         String estado=null;
         if(congelado )
@@ -72,7 +71,6 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
             estado="idleDerecha";
         }
         return estado;
-               
    }
    public void setCongelado(boolean b){
       congelado=b;
@@ -97,9 +95,11 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
          nivel.getJuego().crearBolaDeNieve(posX,posY);
          this.eliminar();
       }
-         
    }
-   public abstract void agregarPowerUp(Boolean b);
+   public void agregarPowerUp(Boolean b){
+
+      //nivel.agregarPowerUp(b,posX,posY);
+   }
    public abstract int getPuntajeCongelado();
    public abstract int getPuntajeEmpujado();
    public void eliminar(){
