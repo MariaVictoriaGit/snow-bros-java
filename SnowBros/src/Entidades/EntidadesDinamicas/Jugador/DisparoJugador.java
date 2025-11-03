@@ -28,8 +28,6 @@ public class DisparoJugador extends EntidadDinamica {
         this.dirAnterior = dirAnterior;
     }
     public void mover(){
-        Thread hilo = new Thread(() -> {
-            while(this!=null){
                 switch (direccion) {
                     case ConstantesEntidades.QUIETO:
                         if(dirAnterior==ConstantesEntidades.DERECHA){
@@ -62,15 +60,6 @@ public class DisparoJugador extends EntidadDinamica {
                         getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                         break;
                 }
-                try {
-                        Thread.sleep(50);
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                        break;
-                    }
-            }
-        });
-        hilo.start();
     }
     private int incremetarY(){
         return posY+1;
@@ -86,13 +75,12 @@ public class DisparoJugador extends EntidadDinamica {
         }
     }
     public void visitar(Enemigo e) {
-        e.recibirDaño(potenciaDisparo);
         eliminar();
     }
     public void visitar(Plataforma p){
         eliminar();
     }
     public void eliminar(){
-        nivel.eliminarDisparoJugador(this);
+        nivel.eliminarDisparo(this);
     }
 }

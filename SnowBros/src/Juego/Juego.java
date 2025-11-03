@@ -105,7 +105,7 @@ public class Juego {
                         if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
                         entidad.aceptar(jugador);
                         }
-                    }
+                    } 
                     for(Enemigo entidad : new ArrayList<>(nivel.getEnemigos())){
                         while(!nivel.getDisparos().isEmpty()){
                             DisparoJugador disparo = nivel.getDisparos().getFirst();
@@ -136,12 +136,15 @@ public class Juego {
 
             while (!nivel.getEnemigos().isEmpty()) {
                 long inicio = System.currentTimeMillis();
-
+            
                 //jugador.moverSegunInput() por si movemos el movimiento a booleanos
                 jugador.verificarSuelo();
                 for (Enemigo enemigo : nivel.getEnemigos()) {
                    enemigo.patronDeMovimiento();        
                    enemigo.verificarSuelo(); 
+                }
+                for (DisparoJugador disparo: nivel.getDisparos()){
+                    disparo.mover();
                 }
                 SwingUtilities.invokeLater(() -> {
                     nivel.notificarObservers();

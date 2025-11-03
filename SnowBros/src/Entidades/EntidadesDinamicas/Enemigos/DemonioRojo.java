@@ -89,6 +89,7 @@ public class DemonioRojo extends Enemigo{
         throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
     }
     public void aceptar(Visitador v){
+        super.eliminar();
         v.visitar(this);
     }
     public int getPuntajeCongelado() {

@@ -99,6 +99,7 @@ public class TrollAmarillo extends Enemigo{
         return estado;
     }
     public void aceptar(Visitador v){
+        super.eliminar();
         v.visitar(this);
     }
     public int getPuntajeEmpujado(){

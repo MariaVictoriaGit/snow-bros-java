@@ -34,6 +34,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         puntajeJugador=0;
         posXoriginal = x;
         posYoriginal = y;
+        invencible=false;
     }
     public void mover(){
         //TODO ver como manejamos la herencia pq es de entidad dinamica
@@ -78,7 +79,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public DisparoJugador disparar(){
         DisparoJugador disparo=miJuego.getFabricaEntidades().getDisparoJugador(posX, posY);
         disparo.setDireccion(this.direccion, this.dirAnterior);
-        disparo.mover();
         return disparo;
     }
     public void eliminar(){
