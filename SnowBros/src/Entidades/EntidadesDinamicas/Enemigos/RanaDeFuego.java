@@ -1,10 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
-import SnowBros.src.Datos.ConstantesDificultad;
-import SnowBros.src.Datos.ConstantesEntidades;
-import SnowBros.src.Datos.ConstantesVistas;
-import SnowBros.src.Datos.EstadosDePatron;
-import SnowBros.src.Grafica.Observer;
+import SnowBros.src.Datos.*;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Visitor.Visitador;

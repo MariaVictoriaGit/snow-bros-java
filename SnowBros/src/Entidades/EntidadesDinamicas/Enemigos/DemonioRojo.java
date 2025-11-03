@@ -140,4 +140,4 @@ public class DemonioRojo extends Enemigo{
         }
         return clave;
     }
-    }
+}

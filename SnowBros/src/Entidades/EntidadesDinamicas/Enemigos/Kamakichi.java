@@ -1,7 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Datos.ConstantesDificultad;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -49,17 +48,5 @@ public class Kamakichi extends Enemigo{
             if(activarDisparo)
                 clave="disparo";
         return clave;
-    }
-    public void visitar(Plataforma e){
-        //Kamakichi atraviesa plataformas
-        throw new UnsupportedOperationException("Unimplemented method 'getPuntajeEmpujado'");
-    }
-    public void visitar(PlataformaMovil e){
-        //Kamakichi atraviesa plataformas
-        throw new UnsupportedOperationException("Unimplemented method 'getPuntajeEmpujado'");
-    }
-    public void visita(PlataformaQuebradiza e){
-        //Kamakichi atraviesa plataformas
-        throw new UnsupportedOperationException("Unimplemented method 'getPuntajeEmpujado'");
     }
 }

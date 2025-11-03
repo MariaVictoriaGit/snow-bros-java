@@ -212,7 +212,6 @@ public class Juego {
         registrarObserverJugador();
         registrarObserversEntidades(nivel.getEnemigos());
         registrarObserversEntidades(nivel.getDisparos());
-
     }
     public void registrarObserverJugador(){
     	ObserverJugador observerJugador = controladorGrafica.registrarEntidad(jugador);
@@ -222,7 +221,6 @@ public class Juego {
         Observer observer = controladorGrafica.registrarEntidad(entidad);//observerEntidad?
         EntidadDinamica e=(EntidadDinamica) entidad;
 		e.registrarObserver(observer);
-
     }
 	protected void registrarObserversEntidades(List<? extends Entidad> entidades) {
 		for(Entidad entidad : entidades) {
