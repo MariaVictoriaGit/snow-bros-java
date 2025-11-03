@@ -30,10 +30,6 @@ public class Moghera extends Enemigo{
     public void convertirEnBola(){
        congelado=true;
     }
-    public void agregarPowerUp(Boolean b){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
-    }
     public void aceptar(Visitador v){
         v.visitar(this);
     }
@@ -55,7 +51,6 @@ public class Moghera extends Enemigo{
                 break;
         }
         return clave;
-        
     }
     public int getPuntajeCongelado() {
         return puntajeCongelado;

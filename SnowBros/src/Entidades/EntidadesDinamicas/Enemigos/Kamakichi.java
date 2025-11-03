@@ -9,7 +9,6 @@ public class Kamakichi extends Enemigo{
     protected static final int puntajeEmpujado = 5000;
     protected boolean activarDisparo;
 
-
     public Kamakichi(int x, int y, Sprite sprite){
         super(x, y, sprite);  
         salud=ConstantesDificultad.SALUD_KAMAKICHI;
@@ -26,10 +25,6 @@ public class Kamakichi extends Enemigo{
     }
     public void convertirEnBola(){
         congelado=true;
-    }
-    public void agregarPowerUp(Boolean b){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
     }
     public void aceptar(Visitador v){
         v.visitar(this);
