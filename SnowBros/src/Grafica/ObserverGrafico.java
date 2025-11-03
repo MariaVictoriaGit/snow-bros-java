@@ -4,11 +4,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import SnowBros.src.Entidades.Entidad;
+import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 
 public class ObserverGrafico extends JLabel implements Observer{
-    protected Entidad entidadObservada;
+    protected EntidadDinamica entidadObservada;
 
-    public ObserverGrafico(Entidad entidad) {
+    public ObserverGrafico(EntidadDinamica entidad) {
 		entidadObservada = entidad;
 		actualizar();
 	}

@@ -6,20 +6,15 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
 //import javax.swing.ImageIcon;
-import SnowBros.src.Entidades.Entidad;
+
 //import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 
 public class ObserverEntidad extends ObserverGrafico{
-    protected EntidadDinamica entidadObservada;
-    public ObserverEntidad(Entidad entidad) {
+
+    public ObserverEntidad(EntidadDinamica entidad) {
         super(entidad);
         //TODO Auto-generated constructor stub
-    }
-    public ObserverEntidad(EntidadDinamica entidad){
-        super(entidad);
-        entidadObservada=entidad;
-        actualizar();
     }
     public void actualizar(int direccion, int tocandoSuelo) {
         actualizarImagen(entidadObservada.getDireccion(),entidadObservada.getTocandoSuelo()); 
