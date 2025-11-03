@@ -118,9 +118,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
         }
         return claveADevolver;
     }
-    public Juego getJuego(){
-        return miJuego;
-    }  
     public int getVidas(){
         return vidas;
     }
