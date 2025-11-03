@@ -18,8 +18,8 @@ public class DisparoJugador extends EntidadDinamica {
     
     public DisparoJugador(int x, int y, Sprite sprite){
         super(x,y,sprite);
-        ancho= ancho/4;
-        alto= alto/4;
+        ancho= ancho/2;
+        alto= alto/2;
         hitbox.actualizarHitbox(x, y, ancho, alto);
         //ajustar posicion inicial del disparo segun direccion del jugador
         //ajustar pos inicial para que no salga desde el pj
@@ -28,16 +28,17 @@ public class DisparoJugador extends EntidadDinamica {
         potenciaDisparo=ConstantesDificultad.POTENCIA_DISPARO_NORMAL; //a definir
         tiempoEfecto=new Temporizador(ConstantesTiempos.TIEMPO_DISPARO_JUGADOR);
     }
-    public void setDireccion(int direccion, int dirAnterior){
+    public void setDireccion(int direccion, int dirAnt){
         this.direccion = direccion;
-        this.dirAnterior = dirAnterior;
+        if(dirAnt!=ConstantesEntidades.QUIETO && dirAnt!=ConstantesEntidades.ARRIBA_DERECHA && dirAnt!=ConstantesEntidades.ARRIBA_IZQUIERDA){
+            this.dirAnterior = dirAnt;
+        }
     }
     public void mover(){
         switch (direccion) {
             case ConstantesEntidades.QUIETO:
                 if(dirAnterior==ConstantesEntidades.DERECHA){
                     posX += 4;
-                    //posY += 2;
                     caida();
                     if(tiempoCaida==800){
                         posY += 2;
@@ -49,7 +50,6 @@ public class DisparoJugador extends EntidadDinamica {
                 }
                 else {
                     posX -= 4;
-                    //posY += 2;
                     caida();
                     if(tiempoCaida==800){
                         posY += 2;
@@ -62,7 +62,6 @@ public class DisparoJugador extends EntidadDinamica {
                 break;
                 case ConstantesEntidades.DERECHA:
                     posX += 4;
-                    //posY += 2;
                     caida();
                     if(tiempoCaida==800){
                         posY += 2;
@@ -74,7 +73,28 @@ public class DisparoJugador extends EntidadDinamica {
                     break;
                 case ConstantesEntidades.IZQUIERDA:
                     posX -= 4;
-                    //posY += 2;
+                    caida();
+                    if(tiempoCaida==800){
+                        posY += 2;
+                        aumentos++;
+                        incremetarY();
+                    }
+                    getObserver().actualizar(direccion, getTocandoSuelo());
+                    getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                    break;
+                case ConstantesEntidades.ARRIBA_IZQUIERDA:
+                    posX -= 4;
+                    caida();
+                    if(tiempoCaida==800){
+                        posY += 2;
+                        aumentos++;
+                        incremetarY();
+                    }
+                    getObserver().actualizar(direccion, getTocandoSuelo());
+                    getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                    break;
+                case ConstantesEntidades.ARRIBA_DERECHA:
+                    posX += 4;
                     caida();
                     if(tiempoCaida==800){
                         posY += 2;
