@@ -58,6 +58,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public void recibirDaño(int daño){
       salud -= daño;
       if (salud <= 0){
+         congelado=true;
          muerto=true; 
          congelar();  
       } 
@@ -65,14 +66,19 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    
    public String generarClaveEstado(){
         String estado=null;
-        if(congelado=true&&direccion==ConstantesEntidades.QUIETO)
+        if(congelado )
             estado="congelado";
-        if(direccion==ConstantesEntidades.IZQUIERDA)
+        else{
+         if(direccion==ConstantesEntidades.IZQUIERDA)
             estado="idleIzquierda";
         else
             estado="idleDerecha";
+        }
         return estado;
                
+   }
+   public void setCongelado(boolean b){
+      congelado=b;
    }
    public boolean getCongelado(){
       return congelado;
@@ -84,10 +90,9 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       return muerto; 
    }
    public void congelar(){
-      congelado=true;
       detenido=true;
       direccion=ConstantesEntidades.QUIETO;
-      observer.actualizar(direccion,ConstantesEntidades.SUELO);
+      observer.actualizarBolaDeNieve();
    }
    //solo va a ser llamado si el jugador colisiona con el enemigo
    public void convertirEnBola(){
