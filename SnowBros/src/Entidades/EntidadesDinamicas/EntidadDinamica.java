@@ -11,6 +11,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverEntidad;
+import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -20,7 +21,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   protected int velocidad;
   protected int velocidadY;
   protected int tocandoSuelo;
-  protected Observer observer;//ObserverEntidad
+  protected ObserverGrafico observer;//ObserverEntidad
 
   public EntidadDinamica(int posX, int posY, Sprite mSprite){
     super(posX, posY, mSprite);
@@ -43,7 +44,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     this.setTocandoSuelo(tocandoSuelo);
     this.direccion=direccion;
   }
-  public void registrarObserver(Observer observer){//ObserverEntidad
+  public void registrarObserver(ObserverGrafico observer){//ObserverEntidad
     this.observer= observer;
   }
   public void setTocandoSuelo(int estado){
@@ -63,7 +64,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   public int getTocandoSuelo(){
     return tocandoSuelo;
   }
-  public Observer getObserver(){
+  public ObserverGrafico getObserver(){
     return observer;
   }
   public void notificarObserver(){

@@ -24,6 +24,7 @@ import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Fabricas.Original;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.Observer;
+import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Parser.ParserNivel;
 
@@ -220,13 +221,13 @@ public class Juego {
 		jugador.registrarObserver(observerJugador);
 	}	
     public void registrarObserverEntidad(Entidad entidad){
-        Observer observer = controladorGrafica.registrarEntidad(entidad);//observerEntidad?
+        ObserverGrafico observer = controladorGrafica.registrarEntidad(entidad);//observerEntidad?
         EntidadDinamica e=(EntidadDinamica) entidad;
 		e.registrarObserver(observer);
     }
-	protected void registrarObserversEntidades(List<? extends Entidad> entidades) {
-		for(Entidad entidad : entidades) {
-			Observer observer = controladorGrafica.registrarEntidad(entidad);//observerEntidad?
+	protected void registrarObserversEntidades(List<? extends EntidadDinamica> entidades) {
+		for(EntidadDinamica entidad : entidades) {
+			ObserverGrafico observer = controladorGrafica.registrarEntidad(entidad);//observerEntidad?
             EntidadDinamica e=(EntidadDinamica) entidad;
 			e.registrarObserver(observer);
 		}
@@ -261,13 +262,13 @@ public class Juego {
         Calabaza cala=fabricaEntidades.getCalabaza(320, 120);
         cala.setNivel(nivel);
         nivel.agregarEnemigo(cala);
-        Observer observer = controladorGrafica.registrarEntidad(cala);
+        ObserverGrafico observer = controladorGrafica.registrarEntidad(cala);
         cala.registrarObserver(observer);  
     }
     public void crearBolaDeNieve(int posX, int posY){
         BolaDeNieve bola=fabricaEntidades.getBolaDeNieve(posX, posY);
         bola.setNivel(nivel);
-        Observer observer=controladorGrafica.registrarEntidad(bola);
+        ObserverGrafico observer=controladorGrafica.registrarEntidad(bola);
         bola.registrarObserver(observer);
     }
     public void shootJugador() {
