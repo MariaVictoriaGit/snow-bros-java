@@ -1,5 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
@@ -27,4 +28,17 @@ public class BolaDeFuego extends EntidadDinamica{
     public void eliminar(){
         nivel.eliminarBolaDeFuego(this);
     }
+    public String generarClaveEstado(){
+        String clave=null;
+        switch (direccion) {
+            case ConstantesEntidades.IZQUIERDA:
+                    clave="completa";
+                    break;
+            case ConstantesEntidades.DERECHA:
+                    clave="derretida";
+                    break;
+                }
+            return clave;
+    }
+        
 }

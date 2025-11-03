@@ -1,10 +1,8 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
 
-import java.awt.Rectangle;
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
-import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Grafica.Sprite;
@@ -13,7 +11,6 @@ import SnowBros.src.Juego.Juego;
 import SnowBros.src.Visitor.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 
 public class Jugador extends EntidadDinamica implements Visitable{

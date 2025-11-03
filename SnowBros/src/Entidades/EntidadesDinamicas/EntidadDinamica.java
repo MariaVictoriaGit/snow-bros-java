@@ -1,6 +1,5 @@
 package SnowBros.src.Entidades.EntidadesDinamicas;
 
-import java.awt.Rectangle;
 
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
@@ -15,7 +14,6 @@ import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.HitBox;
-import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Visitor.Visitador;
 
 public abstract class EntidadDinamica extends Entidad implements Visitador{
@@ -60,14 +58,14 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
 
     public String generarClaveEstado(){
         String estado=null;
-        if(direccion!=ConstantesEntidades.QUIETO){
-            if(direccion==ConstantesEntidades.IZQUIERDA)
-                estado="moverIzquierda";
-            else
-                estado="moverDerecha";
-       }
+        if(direccion==ConstantesEntidades.IZQUIERDA)
+              estado="idleIzquierda";
+        else
+              estado="idleDerecha";
         return estado;
-    }
+            
+      }
+    
     public int getTocandoSuelo(){
       return tocandoSuelo;
 

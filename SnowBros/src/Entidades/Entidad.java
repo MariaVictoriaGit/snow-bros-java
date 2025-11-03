@@ -2,7 +2,6 @@ package SnowBros.src.Entidades;
 
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.HitBox;
-import SnowBros.src.Juego.InterfazEliminar;
 import SnowBros.src.Juego.Nivel;
 
 public abstract class Entidad {

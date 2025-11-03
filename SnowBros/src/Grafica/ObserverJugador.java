@@ -1,8 +1,6 @@
 package SnowBros.src.Grafica;
 
 import java.net.URL;
-import java.net.URLConnection;
-
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 

@@ -4,7 +4,9 @@ import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Datos.EstadosDePatron;
+import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.Juego;
 import SnowBros.src.Visitor.Visitador;
 
 public class RanaDeFuego extends Enemigo{
@@ -14,12 +16,15 @@ public class RanaDeFuego extends Enemigo{
     protected int direccionDisparo;
     private long tiempoEstado = 0;
     private int estado = EstadosDePatron.MOVERDERECHA;
+    private Juego miJuego;
+    private Sprite spriteBola;
 
-    public RanaDeFuego(int x, int y, Sprite sprite){
+    public RanaDeFuego(int x, int y, Sprite sprite,Sprite spriteB){
         super(x,y,sprite);
         lanzandoBolas=false;
         salud=ConstantesDificultad.SALUD_RANA_DE_FUEGO;
         velocidad=ConstantesDificultad.VELOCIDAD_RANA_DE_FUEGO;
+        this.spriteBola=spriteB;
     }
       public void mover(){
         if(!detenido)
@@ -73,6 +78,7 @@ public class RanaDeFuego extends Enemigo{
             break;
         case EstadosDePatron.ESPERAR:
                 direccion=ConstantesEntidades.QUIETO;
+                mover();
                 if (ahora - tiempoEstado > 2000) { // espera 2 segundos
                     if (dirAnterior == ConstantesEntidades.DERECHA)
                         estado = EstadosDePatron.MOVERIZQUIERDA;
@@ -97,8 +103,10 @@ public class RanaDeFuego extends Enemigo{
                 posicionXBola= this.getPosX()+20;
             else
                 posicionXBola=this.getPosX()-20;
-            bola= new BolaDeFuego(posicionXBola,this.getPosY(), sprite);
+            bola= new BolaDeFuego(posicionXBola,this.getPosY(), spriteBola);
             bola.setDireccion(direccionDisparo);
+            bola.setNivel(nivel);
+            nivel.agregarBolaDeFuego(bola);
         }
 
         return bola;

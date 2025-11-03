@@ -6,8 +6,10 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Calabaza;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
@@ -21,6 +23,7 @@ import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Fabricas.Original;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.Observer;
+import SnowBros.src.Grafica.ObserverEntidad;
 //import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Parser.ParserNivel;
@@ -37,10 +40,13 @@ public class Juego {
     protected FabricaSprites fabricaSprites;
     protected FabricaEntidades fabricaEntidades;
     protected ParserNivel parseActual;
+    private Temporizador tiempoAntesAparicionCalabaza;
+
 
     public Juego(){
         reiniciarJugador=false;
         ranking=new Ranking();
+        tiempoAntesAparicionCalabaza= new Temporizador(60);
     }
     //metodos de configuracionaa
     public void setControladorGrafica(GUI miControlador) {
@@ -80,6 +86,9 @@ public class Juego {
         this.registrarObservers();
         this.crearPowerUps();
         jugador.getObserver().actualizar();
+        tiempoAntesAparicionCalabaza.setAccionAlFinalizar(()->crearCalabaza());
+        tiempoAntesAparicionCalabaza.iniciar();
+
         Thread hiloColision = new Thread(() -> {
             while(!nivel.getEnemigos().isEmpty()){
                     for(Enemigo entidad : new ArrayList<>(nivel.getEnemigos())){
@@ -205,11 +214,18 @@ public class Juego {
         registrarObserverJugador();
         registrarObserversEntidades(nivel.getEnemigos());
         registrarObserversEntidades(nivel.getDisparos());
+
     }
     public void registrarObserverJugador(){
     	ObserverJugador observerJugador = controladorGrafica.registrarEntidad(jugador);
 		jugador.registrarObserver(observerJugador);
 	}	
+    public void registrarObserverEntidad(Entidad entidad){
+        Observer observer = controladorGrafica.registrarEntidad(entidad);//observerEntidad?
+        EntidadDinamica e=(EntidadDinamica) entidad;
+		e.registrarObserver(observer);
+
+    }
 	protected void registrarObserversEntidades(List<? extends Entidad> entidades) {
 		for(Entidad entidad : entidades) {
 			Observer observer = controladorGrafica.registrarEntidad(entidad);//observerEntidad?
@@ -239,7 +255,14 @@ public class Juego {
     public int getModoDeJuego(){
         return puntajeJugador;
         //TODO implementar;
-    }   
+    } 
+    private void crearCalabaza(){
+        Calabaza cala=fabricaEntidades.getCalabaza(320, 120);
+        cala.setNivel(nivel);
+        nivel.agregarEnemigo(cala);
+        Observer observer = controladorGrafica.registrarEntidad(cala);
+        cala.registrarObserver(observer);  
+    }
     public void shootJugador() {
         DisparoJugador disparo = jugador.disparar();
         controladorGrafica.getPantalla().incorporarEntidad(disparo);

@@ -91,7 +91,6 @@ public class DisparoJugador extends EntidadDinamica {
     }
     public void visitar(Plataforma p){
         eliminar();
-
     }
     public void eliminar(){
         nivel.eliminarDisparoJugador(this);

@@ -125,7 +125,6 @@ public class Nivel implements InterfazEliminar{
         e.setNivel(this);
         //enemigo.registrarObserver(new ObserverEntidad(e));
         e.getObserver().actualizar();
-        e.mover();
     }
     public void agregarDisparo(DisparoJugador b){
         listaDisparoJugador.addLast(b);
@@ -166,13 +165,15 @@ public class Nivel implements InterfazEliminar{
       /*  for(DisparoJugador d:this.getDisparos()){
             d.getObserver().actualizar();
         }
-        for(BolaDeFuego b:this.getBolasDeFuego()){
-            b.getObserver().actualizar();
-        }
         for(BolaDeNieve b:this.getBolaDeNieves()){
             b.getObserver().actualizar();
         }
-            */
+        */
+        for(BolaDeFuego b : new ArrayList<>(this.getBolasDeFuego())){
+            if(b!=null){
+                b.getObserver().actualizar(b.getDireccion(),b.getTocandoSuelo());
+            }
+        }
     }
     public boolean estaCercaPlataforma(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
         Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();
