@@ -77,7 +77,12 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
 
     public DisparoJugador disparar(){
-        DisparoJugador disparo=miJuego.getFabricaEntidades().getDisparoJugador(posX, posY);
+        int aumento= 30;
+        if (ConstantesEntidades.DERECHA== direccion)
+            aumento= 30;
+            else 
+            aumento=-30;
+        DisparoJugador disparo=miJuego.getFabricaEntidades().getDisparoJugador(posX + aumento, posY);
         disparo.setDireccion(this.direccion, this.dirAnterior);
         return disparo;
     }
