@@ -2,6 +2,7 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
 
@@ -30,6 +31,10 @@ public class BolaDeNieve extends EntidadDinamica{
         e.eliminar();
         //TDOO a los indestructibles se les aturde no elimina(calabaza), al fantasma ni lo toca
         rebotar();
+    }
+    public void visitar(ParedDestructible p){
+        //TODO creo q las paredes se destruian con bolas de nieve
+        p.destruirse();
     }
     public void eliminar(){
         nivel.eliminarBolaDeNieve(this);

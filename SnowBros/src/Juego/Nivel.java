@@ -1,16 +1,14 @@
 package SnowBros.src.Juego;
 
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.LinkedList;
-
-import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Grafica.Sprite;
 
@@ -28,6 +26,7 @@ public class Nivel implements InterfazEliminar{
     protected LinkedList<DisparoJugador> listaDisparoJugador;
     protected LinkedList<BolaDeNieve> listaBolaDeNieve;
     protected LinkedList<BolaDeFuego> listaBolaDeFuego;
+    protected LinkedList<Pared> listaParedes;
 
     public Nivel(Silueta silueta, int numero){
         this.silueta=silueta;
@@ -35,6 +34,7 @@ public class Nivel implements InterfazEliminar{
         listaEnemigos= new LinkedList<>();
         listaPowerUps= new LinkedList<>();
         listaObstaculos= new LinkedList<>();
+        listaParedes= new LinkedList<>();
         listaPlataformas= new LinkedList<>();
         listaDisparoJugador= new LinkedList<>();
         listaBolaDeFuego= new LinkedList<>();
@@ -50,6 +50,9 @@ public class Nivel implements InterfazEliminar{
     }
     public LinkedList<Obstaculo> getObstaculos(){
         return listaObstaculos;
+    }
+    public LinkedList<Pared> getParedes(){
+        return listaParedes;
     }
     public LinkedList<Plataforma> getPlataformas(){
         return listaPlataformas;
@@ -84,6 +87,9 @@ public class Nivel implements InterfazEliminar{
     public void eliminarObstaculo(Obstaculo o){
         listaObstaculos.remove(o);
     }
+    public void eliminarPared(Pared p){
+        listaParedes.remove(p);
+    }
     public void eliminarSilueta(Silueta s){
         silueta=null;
     }
@@ -115,6 +121,10 @@ public class Nivel implements InterfazEliminar{
     public void agregarObstaculo(Obstaculo o){
         listaObstaculos.addLast(o);
         o.setNivel(this);
+    }
+    public void agregarPared(Pared p){
+        listaParedes.addLast(p);
+        p.setNivel(this);
     }
     public void agregarPowerUp(PowerUp p){
         listaPowerUps.addLast(p);
@@ -159,7 +169,7 @@ public class Nivel implements InterfazEliminar{
         return silueta;
     }
     public void notificarObservers(){
-        for(Enemigo e:this.getEnemigos()){
+        for(Enemigo e:new ArrayList<>(this.getEnemigos())){
             e.getObserver().actualizar(e.getDireccion(),e.getTocandoSuelo());
         }
       /*  for(DisparoJugador d:this.getDisparos()){
@@ -174,13 +184,5 @@ public class Nivel implements InterfazEliminar{
                 b.getObserver().actualizar(b.getDireccion(),b.getTocandoSuelo());
             }
         }
-    }
-    public boolean estaCercaPlataforma(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
-        Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();
-        Rectangle hitboxEntidadEvaluada = entidadEvaluada.getHitbox().getRectangle();
-        double distanciaEnX = hitboxEntidadPrincipal.getCenterX() - hitboxEntidadEvaluada.getCenterX();
-        double distanciaEnY = hitboxEntidadPrincipal.getCenterY() - hitboxEntidadEvaluada.getCenterY();
-        double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
-        return distancia <= umbralDeRango*umbralDeRango;
     }
 }

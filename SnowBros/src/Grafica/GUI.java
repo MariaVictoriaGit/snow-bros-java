@@ -54,12 +54,11 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
             public void keyPressed(KeyEvent event) {
                 int keyCode=event.getKeyCode();
                 if (keyCode==KeyEvent.VK_A) {
-                    direccionAnterior=ConstantesEntidades.IZQUIERDA;
+                        direccionAnterior=ConstantesEntidades.IZQUIERDA;
                         miJuego.getJugador().mover(ConstantesEntidades.IZQUIERDA);
-                        miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.IZQUIERDA, miJuego.getJugador().getTocandoSuelo());
-                    
+                        miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.IZQUIERDA, miJuego.getJugador().getTocandoSuelo());             
                 }else if(keyCode==KeyEvent.VK_D){
-                    direccionAnterior=ConstantesEntidades.DERECHA;
+                        direccionAnterior=ConstantesEntidades.DERECHA;
                         miJuego.getJugador().mover(ConstantesEntidades.DERECHA);
                         miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.DERECHA, miJuego.getJugador().getTocandoSuelo());   
                 }else if(keyCode==KeyEvent.VK_W){
@@ -70,7 +69,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                     }else if(direccionAnterior==ConstantesEntidades.DERECHA){
                                 miJuego.getJugador().mover(ConstantesEntidades.ARRIBA_DERECHA);
                                 miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ARRIBA_DERECHA,miJuego.getJugador().getTocandoSuelo());
-                    }
+            }
                     //}
                     //controladorDeSonido.reproducirSonidoDeSalto();
                 } else if (keyCode== KeyEvent.VK_S) {//podria ser para bajar la escalera

@@ -75,7 +75,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
                 break;
         }   
     }
-
     public DisparoJugador disparar(){
         DisparoJugador disparo=miJuego.getFabricaEntidades().getDisparoJugador(posX, posY);
         disparo.setDireccion(this.direccion, this.dirAnterior);
@@ -115,6 +114,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
         }
         return claveADevolver;
     }
+    public Juego getJuego(){
+        return miJuego;
+    }  
     public int getVidas(){
         return vidas;
     }
@@ -238,6 +240,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         miJuego.eliminarPowerUp(v);
     }
     public void visitar(Pared p){
+        //deberia ser verficarPares()
         if(direccion == ConstantesEntidades.DERECHA){
             posX -= 8;
         }
@@ -247,6 +250,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         //TODO Colision con los costados de la pared
     }
     public void visitar(ParedDestructible p){
+        //deberia ser verficarPares()
         //TODO creo q las paredes se destruian con bolas de nieve
         p.destruirse();
     }

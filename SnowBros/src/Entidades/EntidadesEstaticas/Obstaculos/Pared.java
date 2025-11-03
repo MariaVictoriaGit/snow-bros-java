@@ -7,7 +7,10 @@ public class Pared extends Obstaculo{
     public Pared(int x, int y, Sprite sprite ){
         super(x,y,sprite);
     }
-    
+    public void eliminar(){
+        nivel.eliminarObstaculo(this);
+        nivel.eliminarPared(this);
+    }
     public void aceptar(Visitador v){
         v.visitar(this);
     }

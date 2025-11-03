@@ -74,7 +74,9 @@ Plataforma 480 128
 
 BotellaRoja 400 160
 
-Pared 488 160
+ParedDestructible 300 147
+
+Pared 480 160
 
 Plataforma 480 192
 Plataforma 512 192
