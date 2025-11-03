@@ -12,6 +12,8 @@ public class DisparoJugador extends EntidadDinamica {
     protected Temporizador tiempoEfecto;
     protected int potenciaDisparo;
     protected int velocidad;
+    protected int tiempoCaida;
+    protected int aumentos;
     protected boolean efectoBotella;
     
     public DisparoJugador(int x, int y, Sprite sprite){
@@ -28,41 +30,68 @@ public class DisparoJugador extends EntidadDinamica {
         this.dirAnterior = dirAnterior;
     }
     public void mover(){
-                switch (direccion) {
-                    case ConstantesEntidades.QUIETO:
-                        if(dirAnterior==ConstantesEntidades.DERECHA){
-                            posX += 4;
-                            //posY += 2;
-                            //incremetarY();
-                            getObserver().actualizar(dirAnterior, getTocandoSuelo());
-                            getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-                        }
-                        else {
-                            posX -= 4;
-                            //posY += 2;
-                            //incremetarY();
-                            getObserver().actualizar(dirAnterior, getTocandoSuelo());
-                            getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-                        }
-                        break;
-                    case ConstantesEntidades.DERECHA:
-                        posX += 4;
-                        //posY += 2;
-                        //incremetarY();
-                        getObserver().actualizar(direccion, getTocandoSuelo());
-                        getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-                        break;
-                    case ConstantesEntidades.IZQUIERDA:
-                        posX -= 4;
-                        //posY += 2;
-                        //incremetarY();
-                        getObserver().actualizar(direccion, getTocandoSuelo());
-                        getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-                        break;
+        switch (direccion) {
+            case ConstantesEntidades.QUIETO:
+                if(dirAnterior==ConstantesEntidades.DERECHA){
+                    posX += 4;
+                    //posY += 2;
+                    caida();
+                    if(tiempoCaida==800){
+                        posY += 2;
+                        aumentos++;
+                        incremetarY();
+                    }
+                    getObserver().actualizar(dirAnterior, getTocandoSuelo());
+                    getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 }
+                else {
+                    posX -= 4;
+                    //posY += 2;
+                    caida();
+                    if(tiempoCaida==800){
+                        posY += 2;
+                        aumentos++;
+                        incremetarY();
+                    }
+                    getObserver().actualizar(dirAnterior, getTocandoSuelo());
+                    getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                }
+                break;
+                case ConstantesEntidades.DERECHA:
+                    posX += 4;
+                    //posY += 2;
+                    caida();
+                    if(tiempoCaida==800){
+                        posY += 2;
+                        aumentos++;
+                        incremetarY();
+                    }
+                    getObserver().actualizar(direccion, getTocandoSuelo());
+                    getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                    break;
+                case ConstantesEntidades.IZQUIERDA:
+                    posX -= 4;
+                    //posY += 2;
+                    caida();
+                    if(tiempoCaida==800){
+                        posY += 2;
+                        aumentos++;
+                        incremetarY();
+                    }
+                    getObserver().actualizar(direccion, getTocandoSuelo());
+                    getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                    break;
+        }
     }
-    private int incremetarY(){
-        return posY+1;
+    private void caida(){
+        if(tiempoCaida<800){
+            tiempoCaida+=100;
+        }
+    }
+    public void incremetarY(){
+        if(aumentos>=3){
+            posY += 6;
+        }
     }
 
     public void setEfectoBotellaRoja(boolean efecto){
