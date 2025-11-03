@@ -211,6 +211,7 @@ public class PanelPantallaJuego extends JPanel{
     }
     public void eliminarLabel(JLabel l){
         remove(l);
+        imagenFondoJuego.remove(l);
         this.revalidate();
         this.repaint();
     }
