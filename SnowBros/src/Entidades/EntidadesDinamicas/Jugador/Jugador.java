@@ -145,10 +145,18 @@ public class Jugador extends EntidadDinamica implements Visitable{
         miJuego=j;
     }
     public void perderVida(){
-        vidas--;
-        if (vidas > 0)
-            miJuego.actualizarVidas();
-        System.out.print(vidas);
+        if (!invencible){
+            vidas--;
+            if (vidas > 0)
+                miJuego.actualizarVidas();
+            posX = posXoriginal;
+            posY = posYoriginal;
+            this.getObserver().actualizar(direccion, getTocandoSuelo());
+            this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+            miJuego.setReinicio(true);
+            if(vidas==0)
+                miJuego.reiniciarNivel();
+        }    
     }
     public void setVidas(){
         vidas=vidaDeInicio;
@@ -197,22 +205,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
         });
         b.getTiempoDeEfecto().iniciar(); 
     }
-    public void efectoFruta(Fruta f){
- 
-    }
     //Metodos de la interfaz Visitador
     public void visitar(Enemigo e){
-        if (!invencible){
         perderVida();
-        posX = posXoriginal;
-        posY = posYoriginal;
-        this.getObserver().actualizar(direccion, getTocandoSuelo());
-        this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-        miJuego.setReinicio(true);
-        if(vidas<=0)
-            miJuego.reiniciarNivel();
-        //TODO reiniciar al personaje en la posicion original
-        }
     }
     public void visitar(BotellaAzul b){
         actualizarPuntaje(b.getPuntaje());
@@ -232,12 +227,10 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public void visitar(Fruta f){
         actualizarPuntaje(f.getPuntaje());
         miJuego.eliminarPowerUp(f);
-        efectoFruta(f);
     }
     public void visitar(VidaExtra v){
         if(vidas < vidaDeInicio){
             vidas++;
-            System.out.print(vidas);
             miJuego.efectoVidaExtra();
         }
         actualizarPuntaje(v.getPuntaje());        
@@ -266,10 +259,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         velocidad-=3;
     }
     public void visitar(TrampaPinchos t){
-        perderVida();
-        posX = posXoriginal;
-        posY = posYoriginal;
-        //TODO Reiniciar al personaje a la posicion origianl
+        perderVida();    
     }
     public void visitar(Jugador j){
         //Que hacemos aca? 

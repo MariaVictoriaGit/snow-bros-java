@@ -18,6 +18,7 @@ public abstract class PowerUp extends EntidadEstatica {
         activo=false;
         tiempoDeVida=new Temporizador(ConstantesTiempos.TIEMPO_VIDA_POWER_UP);
         tiempoDeEfecto=new Temporizador(ConstantesTiempos.TIEMPO_EFECTO_POWER_UP);
+        hitbox.actualizarHitbox(x,y+12,ancho*2,alto*2);
     }
     public void eliminar(){
         nivel.eliminarPowerUp(this);

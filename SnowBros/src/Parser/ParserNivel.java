@@ -169,7 +169,7 @@ public class ParserNivel{
                     case "Pared":
                         int xPared=Integer.parseInt(partes[1]);
                         yArchivo=Integer.parseInt(partes[2]);
-                        int yPared=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2-3;
+                        int yPared=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2+13;
                         Pared pared=fabrica.getPared(xPared, yPared);
                         nivel.agregarObstaculo(pared);
                         break;

@@ -31,6 +31,8 @@ DemonioRojo 288 32
 
 BotellaAzul 544 32
 
+TrampaPinchos 32 80
+
 Plataforma 0 64 
 Plataforma 32 64
 Plataforma 64 64
@@ -71,6 +73,8 @@ Plataforma 448 128
 Plataforma 480 128
 
 BotellaRoja 400 160
+
+Pared 488 160
 
 Plataforma 480 192
 Plataforma 512 192
@@ -113,6 +117,7 @@ Plataforma 448 288
 
 Plataforma 544 288
 
+Pared 488 320
 
 Plataforma 512 320
 
@@ -121,6 +126,9 @@ Plataforma 480 352
 Plataforma 32 384
 Plataforma 64 384
 Plataforma 96 384
+
+PlataformaQuebradiza 160 384
+PlataformaQuebradiza 192 384
 
 TrollAmarillo 320 448
 
