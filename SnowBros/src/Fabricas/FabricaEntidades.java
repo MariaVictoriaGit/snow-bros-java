@@ -133,4 +133,9 @@ public class FabricaEntidades {
         PlataformaQuebradiza plataforma= new PlataformaQuebradiza(x, y, spritePlataformaQuebradiza);
         return plataforma;
     }
+    public BolaDeNieve getBolaDeNieve(int x, int y){
+        Sprite spriteBolaDeNieve=fabrica.getSpriteBolaNieve();
+        BolaDeNieve bola= new BolaDeNieve(x, y, spriteBolaDeNieve);
+        return bola;
+    }
 }
