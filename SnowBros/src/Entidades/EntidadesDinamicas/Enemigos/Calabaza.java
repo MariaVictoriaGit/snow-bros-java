@@ -5,22 +5,26 @@ import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Datos.EstadosDePatron;
+import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitador;
 
 
 public class Calabaza extends Enemigo{
-    protected Temporizador tiempoAntesAparicion;
+    protected Temporizador tiempoCreacionFantasmas;
     private long tiempoEstado = 0;
     private int estado = EstadosDePatron.MOVERIZQUIERDA;
 
+    
     public Calabaza(int x, int y, Sprite sprite){
         super(x, y, sprite);
         velocidad=ConstantesDificultad.VELOCIDAD_CALABAZA;
-        tiempoAntesAparicion=new Temporizador(ConstantesTiempos.TIEMPO_CALABAZA);
+        tiempoCreacionFantasmas=new Temporizador(15);
+        tiempoCreacionFantasmas.setAccionAlFinalizar(()->invocarFantasma());
+        tiempoCreacionFantasmas.iniciar();
     }
-    public void mover(){
+     public void mover(){
         if(!detenido)
             switch (direccion) {
                 case ConstantesEntidades.QUIETO:
@@ -49,6 +53,7 @@ public class Calabaza extends Enemigo{
     }
     public void patronDeMovimiento() {
         long ahora = System.currentTimeMillis();
+
         switch (estado) {
             case EstadosDePatron.MOVERDERECHA:
                 direccion = ConstantesEntidades.DERECHA;
@@ -58,6 +63,7 @@ public class Calabaza extends Enemigo{
                     tiempoEstado = ahora;
                 }
                 break;
+    
         case EstadosDePatron.MOVERIZQUIERDA:
             direccion = ConstantesEntidades.IZQUIERDA;
             mover();
@@ -87,11 +93,19 @@ public class Calabaza extends Enemigo{
         }
         return clave;
     }
+
     public void invocarFantasma(){
-        //TODO implementar
+        Fantasma fanta=nivel.getJuego().getFabricaEntidades().getFantasma(this.posX, this.posY);
+        fanta.setNivel(nivel);
+        nivel.agregarEnemigo(fanta);
+        nivel.getJuego().registrarObserverEntidad(fanta); 
+
     }
     public void convertirEnBola(){
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
+    }
+    public void agregarPowerUp(Boolean agregar){
+        throw new UnsupportedOperationException("Unimplemented method 'agregarPowerUp'");
     }
     public int getPuntajeCongelado() {//redefinirlo pq son indestructibles
         return 0;
