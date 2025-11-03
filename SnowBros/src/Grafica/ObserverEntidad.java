@@ -25,6 +25,26 @@ public class ObserverEntidad extends ObserverGrafico{
         actualizarImagen(entidadObservada.getDireccion(),entidadObservada.getTocandoSuelo()); 
         super.actualizarPosicionTamano();
     }
+    public void actualizarBolaDeNieve(){
+      SwingUtilities.invokeLater(() -> {
+        try{
+            String estado= "congelado";
+            String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);
+            if (rutaImagen == null || rutaImagen.isBlank()) {
+                return;
+            }
+            URL url= getClass().getClassLoader().getResource(rutaImagen);
+            if (url == null) {
+                System.err.println("No se encontró recurso: " + rutaImagen);
+                return;
+            }
+            ImageIcon icono = new ImageIcon(url);
+            setIcon(icono);
+        }catch(Exception ex){
+            ex.printStackTrace();
+            }
+	    });
+	}
     protected void actualizarImagen(int direccion, int tocandoSuelo) {
         SwingUtilities.invokeLater(() -> {
         try{

@@ -1,6 +1,8 @@
 package SnowBros.src.Fabricas;
 
 import java.util.HashMap;
+
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
 import SnowBros.src.Grafica.Sprite;
 
 public abstract class FabricaSprites {
@@ -40,6 +42,7 @@ public abstract class FabricaSprites {
         mapeo.put("moverIzquierda1", rutaACarpeta + "/DemonioRojo/caminarIzquierda1.png");
         mapeo.put("moverIzquierda2", rutaACarpeta + "/DemonioRojo/caminarIzquierda2.png");
         mapeo.put("moverIzquierda3", rutaACarpeta + "/DemonioRojo/caminarIzquierda3.png");
+        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieve.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteTrollAmarillo(){
@@ -48,6 +51,7 @@ public abstract class FabricaSprites {
         mapeo.put("idleDerecha", rutaACarpeta + "/TrollAmarillo/quietoDerecha.png");
         mapeo.put("moverDerecha", rutaACarpeta + "/TrollAmarillo/caminarDerecha.png");
         mapeo.put("moverIzquierda", rutaACarpeta + "/TrollAmarillo/caminarIzquierda.png");
+        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieve.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteRanaDeFuego(){
@@ -58,6 +62,7 @@ public abstract class FabricaSprites {
         mapeo.put("moverIzquierda", rutaACarpeta + "/RanaDeFuego/caminarIzquierda.png");
         mapeo.put("disparoDerecha", rutaACarpeta + "/RanaDeFuego/disparoDerecha.png");
         mapeo.put("disparoIzquierda", rutaACarpeta + "/RanaDeFuego/disparoIzquierda.png");
+        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieve.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteCalabaza(){

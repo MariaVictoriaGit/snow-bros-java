@@ -119,11 +119,11 @@ public class Jugador extends EntidadDinamica implements Visitable{
         }
         return claveADevolver;
     }
-    public Juego getJuego(){
-        return miJuego;
-    }  
     public int getVidas(){
         return vidas;
+    }
+    public Juego getJuego(){
+        return miJuego;
     }
     public int getTiempo(){
         return miJuego.getTiempoActual();
@@ -215,7 +215,10 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     //Metodos de la interfaz Visitador
     public void visitar(Enemigo e){
-        perderVida();
+        if(e.getCongelado())
+            e.convertirEnBola();
+        else
+            perderVida();
     }
     public void visitar(BotellaAzul b){
         actualizarPuntaje(b.getPuntaje());

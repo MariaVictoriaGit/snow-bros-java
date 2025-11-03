@@ -35,4 +35,9 @@ public class ObserverGrafico extends JLabel implements Observer{
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
 		setIcon(icono);
 	}
+	@Override
+	public void actualizarBolaDeNieve() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'actualizarBolaDeNieve'");
+	}
 }
