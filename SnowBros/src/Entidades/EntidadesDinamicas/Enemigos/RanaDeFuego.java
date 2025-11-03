@@ -154,8 +154,9 @@ public class RanaDeFuego extends Enemigo{
         return clave;
     }
   
-    public void aceptar(Visitador visitador){
-        visitador.visitar(this);
+    public void aceptar(Visitador v){
+        super.eliminar();
+        v.visitar(this);
     }
     public int getPuntajeCongelado() {
         return puntajeCongelado;

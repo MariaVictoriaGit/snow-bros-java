@@ -12,7 +12,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Grafica.Sprite;
 
-public class Nivel implements InterfazEliminar{
+public class Nivel {
     protected Sprite sprite;
     //protected String nombreNivel;
     /*podriamos cambiar el nombre de nivel en lugar de numero, como un nombre para identificarlos desde ConstantesNiveles*/
@@ -78,8 +78,8 @@ public class Nivel implements InterfazEliminar{
         jugador=null;
     }
     public void eliminarEnemigo(Enemigo e){
+         e.getObserver().actualizar();
         listaEnemigos.remove(e);
-        e.getObserver().actualizar();
     }
     public void eliminarPowerUp(PowerUp p){
         listaPowerUps.remove(p);
@@ -98,16 +98,13 @@ public class Nivel implements InterfazEliminar{
         b.getObserver().actualizar();
     }
     public void eliminarDisparo(DisparoJugador b){
-        listaDisparoJugador.remove(b);
         b.getObserver().actualizar();
+        listaDisparoJugador.remove(b);
+        
     }
     public void eliminarBolaDeNieve(BolaDeNieve b){
         listaBolaDeNieve.remove(b);
         b.getObserver().actualizar();
-    }
-    public void eliminarDisparoJugador(DisparoJugador d){
-        listaDisparoJugador.remove(d);
-        d.getObserver().actualizar();
     }
     // métodos que agregan
     public void agregarJugador(Jugador j){
