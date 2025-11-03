@@ -172,6 +172,7 @@ public class ParserNivel{
                         int yPared=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2+13;
                         Pared pared=fabrica.getPared(xPared, yPared);
                         nivel.agregarObstaculo(pared);
+                        nivel.agregarPared(pared);
                         break;
                     case "ParedDestructible":
                         int xParedDestructible=Integer.parseInt(partes[1]);
@@ -179,6 +180,7 @@ public class ParserNivel{
                         int yParedDestructible=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
                         ParedDestructible paredDestructible=fabrica.getParedDestructible(xParedDestructible, yParedDestructible);
                         nivel.agregarObstaculo(paredDestructible);
+                        nivel.agregarPared(paredDestructible);
                         break;
                     case "SueloResbaladizo":
                         int xSueloResbaladizo=Integer.parseInt(partes[1]);

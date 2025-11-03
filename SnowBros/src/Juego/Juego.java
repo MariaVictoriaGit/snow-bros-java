@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
-import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
@@ -24,8 +23,6 @@ import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Fabricas.Original;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.Observer;
-import SnowBros.src.Grafica.ObserverEntidad;
-//import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Parser.ParserNivel;
 
@@ -96,6 +93,12 @@ public class Juego {
                         if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
                             entidad.aceptar(jugador);
                         }
+                          if(!nivel.getDisparos().isEmpty())
+                            for (DisparoJugador disparo: nivel.getDisparos()){
+                        if (disparo.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
+                            entidad.aceptar(disparo);
+                            }
+                        }
                     }
                     for(PowerUp entidad : new ArrayList<>(nivel.getPowerUps())){
                         if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
@@ -107,17 +110,9 @@ public class Juego {
                         entidad.aceptar(jugador);
                         }
                     } 
-                    for(Enemigo entidad : new ArrayList<>(nivel.getEnemigos())){
-                        while(!nivel.getDisparos().isEmpty()){
-                            DisparoJugador disparo = nivel.getDisparos().getFirst();
-                        if (disparo.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
-                            entidad.aceptar(disparo);
-                            }
-                        }
-                    }
                     for(Plataforma plataforma: nivel.getPlataformas()){
-                        while(!nivel.getDisparos().isEmpty()){
-                            DisparoJugador disparo = nivel.getDisparos().getFirst();
+                         if(!nivel.getDisparos().isEmpty())
+                            for (DisparoJugador disparo: nivel.getDisparos()){
                         if (disparo.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) {
                             plataforma.aceptar(disparo);
                             }
@@ -144,13 +139,13 @@ public class Juego {
                    enemigo.patronDeMovimiento();        
                    enemigo.verificarSuelo(); 
                 }
+                if(!nivel.getDisparos().isEmpty())
                 for (DisparoJugador disparo: nivel.getDisparos()){
                     disparo.mover();
                 }
                 SwingUtilities.invokeLater(() -> {
                     nivel.notificarObservers();
                 });
-
                 long duracion = System.currentTimeMillis() - inicio;
                 long dormir = frameTime - duracion;
                 if (dormir > 0) {
@@ -278,7 +273,7 @@ public class Juego {
         controladorGrafica.getPantalla().incorporarEntidad(disparo);
         nivel.agregarDisparo(disparo);
     }
-    public boolean estaCercaEntidad(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
+    public boolean estaCerca(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
         Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();
         Rectangle hitboxEntidadEvaluada = entidadEvaluada.getHitbox().getRectangle();
         double distanciaEnX = hitboxEntidadPrincipal.getCenterX() - hitboxEntidadEvaluada.getCenterX();
