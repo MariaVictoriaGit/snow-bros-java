@@ -43,7 +43,7 @@ public class FabricaEntidades {
     }
     public RanaDeFuego getRanaDeFuego(int x, int y){
         Sprite RanaDeFuego= fabrica.getSpriteRanaDeFuego();
-        RanaDeFuego rana= new RanaDeFuego(x, y, RanaDeFuego,fabrica.getSpriteBolaFuego());
+        RanaDeFuego rana= new RanaDeFuego(x, y, RanaDeFuego);
         return rana;
     }
     public Calabaza getCalabaza(int x, int y){
@@ -136,6 +136,11 @@ public class FabricaEntidades {
     public BolaDeNieve getBolaDeNieve(int x, int y){
         Sprite spriteBolaDeNieve=fabrica.getSpriteBolaNieve();
         BolaDeNieve bola= new BolaDeNieve(x, y, spriteBolaDeNieve);
+        return bola;
+    }
+    public BolaDeFuego getBolaDeFuego(int x, int y){
+        Sprite spriteBolaDeFuego=fabrica.getSpriteBolaFuego();
+        BolaDeFuego bola= new BolaDeFuego(x, y, spriteBolaDeFuego);
         return bola;
     }
 }

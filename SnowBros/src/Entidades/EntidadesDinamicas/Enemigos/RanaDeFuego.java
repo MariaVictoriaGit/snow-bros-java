@@ -12,26 +12,25 @@ public class RanaDeFuego extends Enemigo{
     protected int direccionDisparo;
     private long tiempoEstado = 0;
     private int estado = EstadosDePatron.MOVERDERECHA;
-    private Juego miJuego;
-    private Sprite spriteBola;
+    private boolean bolaLanzada=false;
 
-    public RanaDeFuego(int x, int y, Sprite sprite,Sprite spriteB){
+
+    public RanaDeFuego(int x, int y, Sprite sprite){
         super(x,y,sprite);
         lanzandoBolas=false;
         salud=ConstantesDificultad.SALUD_RANA_DE_FUEGO;
         velocidad=ConstantesDificultad.VELOCIDAD_RANA_DE_FUEGO;
-        this.spriteBola=spriteB;
     }
       public void mover(){
         if(!detenido)
             switch (direccion) {
                 case ConstantesEntidades.QUIETO:
-                    lanzarFuego(posX); //como accedemos a la pos del jugador que pide el metodo?
+                    lanzarFuego(nivel.getJugador().getPosX()); 
                     if (dirAnterior == ConstantesEntidades.DERECHA){
-                        direccion = ConstantesEntidades.IZQUIERDA;
+                    //    direccion = ConstantesEntidades.IZQUIERDA;
                     }
                     else{
-                        direccion = ConstantesEntidades.DERECHA;
+                       // direccion = ConstantesEntidades.DERECHA;
                     }
                     break;
                 case ConstantesEntidades.IZQUIERDA:
@@ -58,6 +57,7 @@ public class RanaDeFuego extends Enemigo{
             case EstadosDePatron.MOVERDERECHA:
                 direccion = ConstantesEntidades.DERECHA;
                 mover();
+                bolaLanzada=false;
                 if (posX > ConstantesVistas.PANEL_JUEGO_ANCHO - 100) {
                     estado = EstadosDePatron.ESPERAR;
                     tiempoEstado = ahora;
@@ -67,6 +67,7 @@ public class RanaDeFuego extends Enemigo{
         case EstadosDePatron.MOVERIZQUIERDA:
             direccion = ConstantesEntidades.IZQUIERDA;
             mover();
+            bolaLanzada=false;
             if (posX < 100) {
                 estado = EstadosDePatron.ESPERAR;
                 tiempoEstado = ahora;
@@ -78,6 +79,7 @@ public class RanaDeFuego extends Enemigo{
                 if (ahora - tiempoEstado > 2000) { // espera 2 segundos
                     if (dirAnterior == ConstantesEntidades.DERECHA)
                         estado = EstadosDePatron.MOVERIZQUIERDA;
+
                     else
                         estado = EstadosDePatron.MOVERDERECHA;
                 }
@@ -95,13 +97,18 @@ public class RanaDeFuego extends Enemigo{
                 direccionDisparo=ConstantesEntidades.IZQUIERDA;
             direccion=direccionDisparo;
             if (direccionDisparo==ConstantesEntidades.DERECHA) 
-                posicionXBola= this.getPosX()+20;
+                posicionXBola= this.getPosX()+15;
             else
-                posicionXBola=this.getPosX()-20;
-            bola= new BolaDeFuego(posicionXBola,this.getPosY(), spriteBola);
-            bola.setDireccion(direccionDisparo);
-            bola.setNivel(nivel);
-            nivel.agregarBolaDeFuego(bola);
+                posicionXBola=this.getPosX()-15;
+            if(!bolaLanzada){
+                bola=nivel.getJuego().getFabricaEntidades().getBolaDeFuego(posicionXBola, this.posY);
+                bola.setDireccion(direccionDisparo);
+                bola.setNivel(nivel);
+                nivel.agregarBolaDeFuego(bola);
+                nivel.getJuego().registrarObserverEntidad(bola);
+                bolaLanzada=true;
+            }
+
         }
         return bola;
     }

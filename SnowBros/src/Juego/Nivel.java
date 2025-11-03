@@ -172,17 +172,16 @@ public class Nivel {
         for(Enemigo e:new ArrayList<>(this.getEnemigos())){
             e.getObserver().actualizar(e.getDireccion(),e.getTocandoSuelo());
         }
-      /*  for(DisparoJugador d:this.getDisparos()){
-            d.getObserver().actualizar();
-        }
+    /* 
         for(BolaDeNieve b:this.getBolaDeNieves()){
             b.getObserver().actualizar();
         }
         */
         for(BolaDeFuego b : new ArrayList<>(this.getBolasDeFuego())){
-            if(b!=null){
-                b.getObserver().actualizar(b.getDireccion(),b.getTocandoSuelo());
+                if(b!=null){
+                    b.getObserver().actualizar(b.getDireccion(),b.getTocandoSuelo());
+                }
             }
         }
     }
-}
+

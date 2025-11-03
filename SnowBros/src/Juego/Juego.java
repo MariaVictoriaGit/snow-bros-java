@@ -9,6 +9,7 @@ import javax.swing.SwingUtilities;
 
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Calabaza;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
@@ -121,12 +122,19 @@ public class Juego {
                             }
                         }
                     }
-                     for(Enemigo enemigo : nivel.getEnemigos()){
+                    for(Enemigo enemigo : nivel.getEnemigos()){
                         for(Pared pared : nivel.getParedes()){
-                            pared.aceptar(enemigo);
+                            //pared.aceptar(enemigo);
                         }
                     }
-                    try {
+                    if(!nivel.getBolasDeFuego().isEmpty()){
+                        for(BolaDeFuego bola: nivel.getBolasDeFuego()){
+                            if (bola.getHitbox().getRectangle().intersects(jugador.getHitbox().getRectangle())) {
+                                jugador.aceptar(bola);
+                            }
+                        }
+                    }
+                        try {
                         Thread.sleep(16);
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
@@ -151,9 +159,12 @@ public class Juego {
                 for (DisparoJugador disparo: nivel.getDisparos()){
                     disparo.mover();
                 }
-                SwingUtilities.invokeLater(() -> {
-                    nivel.notificarObservers();
-                });
+                if(!nivel.getBolasDeFuego().isEmpty()){
+                    for (BolaDeFuego bola: nivel.getBolasDeFuego()){
+                    bola.mover();
+                    } 
+                }
+                nivel.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
                 long dormir = frameTime - duracion;
                 if (dormir > 0) {

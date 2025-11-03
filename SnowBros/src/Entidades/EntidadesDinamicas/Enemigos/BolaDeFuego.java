@@ -18,15 +18,26 @@ public class BolaDeFuego extends EntidadDinamica{
     }
     public void visitar(Jugador jugador){
         jugador.perderVida();
+        this.eliminar();
     }
     public void mover(){
-        //TODO determinar movimientos
+        switch(direccion){
+            case ConstantesEntidades.DERECHA:
+               posX=posX+5;
+               this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+            break;
+            case ConstantesEntidades.IZQUIERDA:
+                posX=posX-5;
+                this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+            break;
+        }
     }
     public void setDireccion(int direccionDisparo) {
         direccion=direccionDisparo;
     }
     public void eliminar(){
         nivel.eliminarBolaDeFuego(this);
+     //   nivel.getJuego().eliminarBolaDeFuego(); TODO hacer que se elimine graficamente tambien
     }
     public String generarClaveEstado(){
         String clave=null;
