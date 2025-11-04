@@ -94,10 +94,10 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   protected void verificarPared(Pared p){
     Rectangle paredRectangle=p.getHitbox().getRectangle();
     if(this.getHitbox().getRightHitBox().intersects(paredRectangle)) {
-        posX=paredRectangle.x-this.ancho;
+        posX-=this.ancho;
     }
     else if(this.getHitbox().getLeftHitBox().intersects(paredRectangle)) {
-        posX=paredRectangle.x+paredRectangle.width;
+        posX+=this.ancho;
         //      if (hitbox.getRectangle().intersects(p.getHitbox().getRectangle())){
     }
     hitbox.actualizarHitbox(posX, posY, ancho, alto);

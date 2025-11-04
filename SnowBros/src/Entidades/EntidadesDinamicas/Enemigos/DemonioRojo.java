@@ -127,4 +127,9 @@ public class DemonioRojo extends Enemigo{
         }
         return clave;
     }
+    @Override
+    public void aceptar(Visitador visitador) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'aceptar'");
+    }
 }

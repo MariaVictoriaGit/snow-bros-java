@@ -2,7 +2,6 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Datos.*;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Juego.Juego;
 import SnowBros.src.Visitor.Visitador;
 
 public class RanaDeFuego extends Enemigo{
@@ -151,5 +150,10 @@ public class RanaDeFuego extends Enemigo{
     }
     public int getPuntajeEmpujado() {
         return puntajeEmpujado;
+    }
+    @Override
+    public void aceptar(Visitador visitador) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'aceptar'");
     }
 }
