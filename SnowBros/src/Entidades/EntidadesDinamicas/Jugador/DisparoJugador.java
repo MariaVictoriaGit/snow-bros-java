@@ -130,10 +130,10 @@ public class DisparoJugador extends EntidadDinamica {
                 }
                 else{
                     if(dirAnterior==ConstantesEntidades.DERECHA){
-                        estado="normalDerecha1";
+                        estado="idleDerecha";
                     }
                     else{
-                        estado="normalIzquierda1";
+                        estado="idleIzquierda";
                     }
                 }
             case ConstantesEntidades.DERECHA:
@@ -141,7 +141,7 @@ public class DisparoJugador extends EntidadDinamica {
                     estado="aumentadoDerecha1";
                 }
                 else{
-                    estado="normalDerecha1";
+                    estado="idleDerecha";
                 }
                 break;
             case ConstantesEntidades.IZQUIERDA:
@@ -149,7 +149,7 @@ public class DisparoJugador extends EntidadDinamica {
                     estado="aumentadoIzquierda1";
                 }
                 else{
-                    estado="normalIzquierda1";
+                    estado="idleIzquierda";
                 }
                 break;
             case ConstantesEntidades.ARRIBA_DERECHA:
@@ -157,7 +157,7 @@ public class DisparoJugador extends EntidadDinamica {
                     estado="aumentadoDerecha1";
                 }
                 else{
-                    estado="normalDerecha1";
+                    estado="idleDerecha";
                 }
                 break;
             case ConstantesEntidades.ARRIBA_IZQUIERDA:
@@ -165,7 +165,7 @@ public class DisparoJugador extends EntidadDinamica {
                     estado="aumentadoIzquierda1";
                 }
                 else{
-                    estado="normalIzquierda1";
+                    estado="idleIzquierda";
                 }
                 break;
         }

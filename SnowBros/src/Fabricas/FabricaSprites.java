@@ -187,9 +187,9 @@ public abstract class FabricaSprites {
     }
     public Sprite getSpriteDisparoJugador(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("normalDerecha1", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalDerecha1.png");
+        mapeo.put("idleDerecha", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalDerecha1.png");
         mapeo.put("normalDerecha2", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalDerecha2.png");
-        mapeo.put("normalIzquierda1", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalIzquierda1.png");
+        mapeo.put("idleIzquierda", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalIzquierda1.png");
         mapeo.put("normalIzquierda2", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalIzquierda2.png");
         mapeo.put("aumentadoDerecha1", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentadoDerecha1.png");
         mapeo.put("aumentadoDerecha2", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentadoDerecha2.png");
