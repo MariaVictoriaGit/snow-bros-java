@@ -10,6 +10,7 @@ public interface Visitador {
     
     public void visitar(Enemigo e);
     public void visitar(Plataforma e);
+    public void visitar(PlataformaMovil e);
     public void visitar(PlataformaQuebradiza e);
     public void visitar(BotellaAzul b);
     public void visitar(BotellaRoja b);
