@@ -251,6 +251,7 @@ public class Juego {
     }
     public void crearPowerUps(){
         for (PowerUp e: nivel.getPowerUps()){
+            e.getTiempoDeVida().iniciar(); //TODO cuando este implementada la muerte del enemigo considerar moverlo ahi
             e.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(e));   
         }
     }
@@ -265,7 +266,7 @@ public class Juego {
         controladorGrafica.getPantalla().incorporarEntidadEstatica(e); 
     }
     public void eliminarPowerUp(PowerUp p){
-        controladorGrafica.getPantalla().eliminarLabel(p.getLabel());
+        controladorGrafica.getPantalla().eliminarLabel(p.getLabel());   
         nivel.eliminarPowerUp(p);
     }
     public void eliminarDisparo(DisparoJugador d){
