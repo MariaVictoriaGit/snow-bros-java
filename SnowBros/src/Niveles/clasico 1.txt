@@ -48,7 +48,7 @@ Plataforma 480 64
 Plataforma 512 64
 Plataforma 544 64
 Plataforma 576 64
-Plataforma 608 64
+Escalera 608 64
 Plataforma 640 64
 Plataforma 672 64
 Plataforma 704 64

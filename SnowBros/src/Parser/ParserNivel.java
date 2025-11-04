@@ -155,7 +155,7 @@ public class ParserNivel{
                     case "Escalera":
                         int xEscalera=Integer.parseInt(partes[1]);
                         yArchivo=Integer.parseInt(partes[2]);
-                        int yEscalera=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
+                        int yEscalera=ConstantesVistas.PANEL_ALTO-yArchivo;
                         Escalera escalera=fabrica.getEscalera(xEscalera, yEscalera);
                         nivel.agregarObstaculo(escalera);
                         break;
