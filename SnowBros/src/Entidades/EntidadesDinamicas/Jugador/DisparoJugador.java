@@ -116,14 +116,68 @@ public class DisparoJugador extends EntidadDinamica {
             posY += 6;
         }
     }
-
-    public void setEfectoBotellaRoja(boolean efecto){
-        //TODO  revisar  timer del power ups
-        efectoBotella=true;
+    public String generarClaveEstado(){
+        String estado=null;
+        switch (direccion) {
+            case ConstantesEntidades.QUIETO:
+                if(efectoBotella){
+                    if(dirAnterior==ConstantesEntidades.DERECHA){
+                        estado="aumentadoDerecha1";
+                    }
+                    else{
+                        estado="aumentadoIzquierda1";
+                    }
+                }
+                else{
+                    if(dirAnterior==ConstantesEntidades.DERECHA){
+                        estado="idleDerecha";
+                    }
+                    else{
+                        estado="idleIzquierda";
+                    }
+                }
+            case ConstantesEntidades.DERECHA:
+                if(efectoBotella){
+                    estado="aumentadoDerecha1";
+                }
+                else{
+                    estado="idleDerecha";
+                }
+                break;
+            case ConstantesEntidades.IZQUIERDA:
+                if(efectoBotella){
+                    estado="aumentadoIzquierda1";
+                }
+                else{
+                    estado="idleIzquierda";
+                }
+                break;
+            case ConstantesEntidades.ARRIBA_DERECHA:
+                if(efectoBotella){
+                    estado="aumentadoDerecha1";
+                }
+                else{
+                    estado="idleDerecha";
+                }
+                break;
+            case ConstantesEntidades.ARRIBA_IZQUIERDA:
+                if(efectoBotella){
+                    estado="aumentadoIzquierda1";
+                }
+                else{
+                    estado="idleIzquierda";
+                }
+                break;
+        }
+        return estado;
     }
-    public void activarDisparo(){ //TODO para?
-        if(efectoBotella){
+    public void setPotenciaAumentada(boolean efectoActivo){
+        efectoBotella=efectoActivo;
+        if(efectoActivo){
             potenciaDisparo=ConstantesDificultad.POTENCIA_DISPARO_AUMENTADA;
+        }
+        else{
+            potenciaDisparo=ConstantesDificultad.POTENCIA_DISPARO_NORMAL;
         }
     }
     public void visitar(Enemigo e) {

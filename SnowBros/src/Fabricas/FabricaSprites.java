@@ -187,10 +187,14 @@ public abstract class FabricaSprites {
     }
     public Sprite getSpriteDisparoJugador(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("idleIzquierda", rutaACarpeta + "/DisparoJugador/disparoJugadorNormal1.png");
-        mapeo.put("idleDerecha", rutaACarpeta + "/DisparoJugador/disparoJugadorNormal2.png");
-        mapeo.put("disparoAumentado1", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentado1.png");
-        mapeo.put("disparoAumentado2", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentado2.png");
+        mapeo.put("idleDerecha", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalDerecha1.png");
+        mapeo.put("normalDerecha2", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalDerecha2.png");
+        mapeo.put("idleIzquierda", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalIzquierda1.png");
+        mapeo.put("normalIzquierda2", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalIzquierda2.png");
+        mapeo.put("aumentadoDerecha1", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentadoDerecha1.png");
+        mapeo.put("aumentadoDerecha2", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentadoDerecha2.png");
+        mapeo.put("aumentadoIzquierda1", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentadoIzquierda1.png");
+        mapeo.put("aumentadoIzquierda2", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentadoIzquierda2.png");
         return new Sprite(mapeo);
     }
 } 
