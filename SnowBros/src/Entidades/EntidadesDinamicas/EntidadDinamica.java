@@ -1,5 +1,7 @@
 package SnowBros.src.Entidades.EntidadesDinamicas;
 
+import java.awt.Rectangle;
+
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
@@ -9,7 +11,6 @@ import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
-import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.Sprite;
@@ -41,6 +42,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   }
   public abstract void mover();
   public void actualizar(int direccion, int tocandoSuelo){
+    this.dirAnterior=this.direccion;
     this.setTocandoSuelo(tocandoSuelo);
     this.direccion=direccion;
   }
@@ -90,15 +92,13 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     }
   }
   protected void verificarPared(Pared p){
-    if(nivel.getJugador().getJuego().estaCerca(this,p,28)){
-      if (hitbox.getRectangle().intersects(p.getHitbox().getRectangle())){
-        if (direccion==ConstantesEntidades.DERECHA){
-          posX=p.getHitbox().getX()-p.getHitbox().getAncho();
-        }
-        else if (direccion==ConstantesEntidades.IZQUIERDA){
-              posX=p.getHitbox().getX()+p.getHitbox().getAncho();
-        }
-      }
+    Rectangle paredRectangle=p.getHitbox().getRectangle();
+    if(this.getHitbox().getRightHitBox().intersects(paredRectangle)) {
+        posX-=this.ancho;
+    }
+    else if(this.getHitbox().getLeftHitBox().intersects(paredRectangle)) {
+        posX+=this.ancho;
+        //      if (hitbox.getRectangle().intersects(p.getHitbox().getRectangle())){
     }
     hitbox.actualizarHitbox(posX, posY, ancho, alto);
   }

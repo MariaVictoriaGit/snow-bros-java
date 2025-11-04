@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
-
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
@@ -26,7 +24,6 @@ import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Fabricas.Original;
 import SnowBros.src.Grafica.GUI;
-import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Grafica.ObserverPlataformaMovil;
@@ -95,29 +92,39 @@ public class Juego {
 
         Thread hiloColision = new Thread(() -> {
             while(!nivel.getEnemigos().isEmpty()){
-                    for(Enemigo entidad : new ArrayList<>(nivel.getEnemigos())){
-                        if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
-                            entidad.aceptar(jugador);
+                    for(Enemigo enemigo : new ArrayList<>(nivel.getEnemigos())){
+                        if (jugador.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) {
+                            enemigo.aceptar(jugador);
                         }
                           if(!nivel.getDisparos().isEmpty())
                             for (DisparoJugador disparo: nivel.getDisparos()){
-                        if (disparo.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
-                            entidad.aceptar(disparo);
+                        if (disparo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) {
+                            enemigo.aceptar(disparo);
                             }
                         }
+                        /*for(Pared p: nivel.getParedes()){
+                            if (enemigo.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) {
+                                p.aceptar(enemigo);
+                            }
+                        }*/
                     }
-                    for(PowerUp entidad : new ArrayList<>(nivel.getPowerUps())){
+                    for(Pared p: nivel.getParedes()){
+                        if (jugador.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) {
+                            p.aceptar(jugador);
+                        }
+                    }
+                   for(PowerUp entidad : new ArrayList<>(nivel.getPowerUps())){
                         if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
                             entidad.aceptar(jugador);
                         }
                     }
                     for(Obstaculo entidad : new ArrayList<>(nivel.getObstaculos())){
                         if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
-                        entidad.aceptar(jugador);
+                            entidad.aceptar(jugador);
                         }
                     } 
                     for(Plataforma plataforma: nivel.getPlataformas()){
-                         if(!nivel.getDisparos().isEmpty())
+                        if(!nivel.getDisparos().isEmpty())
                             for (DisparoJugador disparo: nivel.getDisparos()){
                         if (disparo.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) {
                             plataforma.aceptar(disparo);

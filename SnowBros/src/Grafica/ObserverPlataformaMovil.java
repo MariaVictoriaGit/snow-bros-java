@@ -1,7 +1,6 @@
 package SnowBros.src.Grafica;
 
 import javax.swing.ImageIcon;
-import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 
 public class ObserverPlataformaMovil extends ObserverGrafico{
