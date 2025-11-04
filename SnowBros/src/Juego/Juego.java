@@ -42,6 +42,7 @@ public class Juego {
     public Juego(){
         reiniciarJugador=false;
         ranking=new Ranking();
+        tiempo= new Temporizador(); 
         tiempoAntesAparicionCalabaza= new Temporizador(60);
     }
     //metodos de configuracionaa
@@ -55,6 +56,7 @@ public class Juego {
         else{
             fabricaSprites = new Alternativo();
         }
+        tiempo.iniciar();
         fabricaEntidades = new FabricaEntidades(fabricaSprites);
         parseActual= new ParserNivel(fabricaSprites);
           // Si el nivel todavía no fue creado, crealo antes de pedir el jugador
@@ -193,9 +195,7 @@ public class Juego {
         });
         hiloGlobal.start();
         hiloColision.start();
-
     }
-
     public void reiniciarNivel(){
         if(jugador.getVidas()==0)
             controladorGrafica.accionarPantallaFinDelJuego(); //hasta hacer la gameOver
@@ -207,10 +207,8 @@ public class Juego {
         //TODO terminar de implementar
     }
     public void superarNivel(){
-
         //TODO implimentar
         //como se maneja el signivel, por numeros? y se lo pasa al constructor?
-        
     }
     public void actualizarPuntaje(int puntajeASumar){
         puntajeJugador+=puntajeASumar;
@@ -303,8 +301,7 @@ public class Juego {
         nivel.eliminarPlataforma(p);
     }
     public int getModoDeJuego(){
-        return puntajeJugador;
-        //TODO implementar;
+        return puntajeJugador;//TODO implementar;
     } 
     private void crearCalabaza(){
         Calabaza cala=fabricaEntidades.getCalabaza(320, 120);
@@ -333,5 +330,4 @@ public class Juego {
         double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
         return distancia <= umbralDeRango*umbralDeRango;
     }
-
 }

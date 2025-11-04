@@ -253,7 +253,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public void visitar(PlataformaQuebradiza e) {
         super.visitar(e);
         actualizarPuntaje(e.getPuntaje());
-        nivel.eliminarPlataforma(e);
+        nivel.eliminarPlataforma(e);//TODO quebradiza
+        nivel.getJuego().eliminarPlataformaQuebradiza(e);
     }
     public void visitar(Escalera e){
         subirEscalera();
