@@ -77,13 +77,9 @@ public class DemonioRojo extends Enemigo{
         }
     }
     public void convertirEnBola(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
+        super.convertirEnBola();
     }
-    public void aceptar(Visitador v){
-        super.eliminar();
-        v.visitar(this);
-    }
+    
     public int getPuntajeCongelado() {
         return puntajeCongelado;
     }
