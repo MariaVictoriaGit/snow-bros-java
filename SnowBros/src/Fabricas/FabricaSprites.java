@@ -1,8 +1,6 @@
 package SnowBros.src.Fabricas;
 
 import java.util.HashMap;
-
-import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
 import SnowBros.src.Grafica.Sprite;
 
 public abstract class FabricaSprites {

@@ -74,7 +74,7 @@ Plataforma 480 128
 
 BotellaRoja 400 160
 
-ParedDestructible 300 147
+ParedDestructible 50 147
 
 Pared 480 160
 
@@ -99,10 +99,10 @@ Plataforma 160 224
 Plataforma 192 224
 Plataforma 224 224
 
-Plataforma 576 256
-Plataforma 608 256
-Plataforma 640 256
-Plataforma 672 256
+PlataformaMovil 576 256
+PlataformaMovil 608 256
+PlataformaMovil 640 256
+PlataformaMovil 672 256
 
 Fruta 600 288
 
@@ -117,7 +117,7 @@ Plataforma 384 288
 Plataforma 416 288
 Plataforma 448 288
 
-PlataformaMovil 544 288
+Plataforma 544 288
 
 Pared 488 320
 

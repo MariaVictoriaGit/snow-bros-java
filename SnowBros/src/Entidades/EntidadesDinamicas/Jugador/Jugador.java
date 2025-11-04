@@ -11,6 +11,7 @@ import SnowBros.src.Juego.Juego;
 import SnowBros.src.Visitor.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaQuebradiza;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 

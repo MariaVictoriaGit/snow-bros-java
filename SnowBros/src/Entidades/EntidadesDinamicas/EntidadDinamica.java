@@ -94,10 +94,10 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   protected void verificarPared(Pared p){
     Rectangle paredRectangle=p.getHitbox().getRectangle();
     if(this.getHitbox().getRightHitBox().intersects(paredRectangle)) {
-        posX=paredRectangle.x-this.ancho;
+        posX-=this.ancho;
     }
     else if(this.getHitbox().getLeftHitBox().intersects(paredRectangle)) {
-        posX=paredRectangle.x+paredRectangle.width;
+        posX+=this.ancho;
         //      if (hitbox.getRectangle().intersects(p.getHitbox().getRectangle())){
     }
     hitbox.actualizarHitbox(posX, posY, ancho, alto);
@@ -133,6 +133,8 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   }
   public void visitar(PlataformaMovil e) {
     visitarPlataforma(e);
+          this.setPosX(this.getPosX() + e.getDeltaX());
+          tocandoSuelo=ConstantesEntidades.SUELO;
   } 
   public void visitar(PlataformaQuebradiza e) {
     visitarPlataforma(e);
@@ -140,6 +142,8 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   private void visitarPlataforma(Plataforma e){
     if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
       this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
+      this.setPosY(e.getPosY() - this.getHitbox().getAlto());
+
     }
   }
   public void visitar(BotellaAzul b) {

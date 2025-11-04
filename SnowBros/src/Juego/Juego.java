@@ -5,28 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
-
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
-import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
-import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
-import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Calabaza;
-import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
-import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
-import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaQuebradiza;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 import SnowBros.src.Fabricas.Alternativo;
 import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Fabricas.Original;
 import SnowBros.src.Grafica.GUI;
-import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Grafica.ObserverPlataformaMovil;
@@ -45,7 +38,6 @@ public class Juego {
     protected FabricaEntidades fabricaEntidades;
     protected ParserNivel parseActual;
     private Temporizador tiempoAntesAparicionCalabaza;
-
 
     public Juego(){
         reiniciarJugador=false;
@@ -105,13 +97,13 @@ public class Juego {
                             enemigo.aceptar(disparo);
                             }
                         }
-                        /*for(Pared p: nivel.getParedes()){
+                        for(Pared p: new ArrayList<>(nivel.getParedes())){
                             if (enemigo.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) {
                                 p.aceptar(enemigo);
                             }
-                        }*/
+                        }
                     }
-                    for(Pared p: nivel.getParedes()){
+                    for(Pared p: new ArrayList<>(nivel.getParedes())){
                         if (jugador.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) {
                             p.aceptar(jugador);
                         }
@@ -134,13 +126,13 @@ public class Juego {
                             }
                         }
                     }
-                    if(!nivel.getBolaDeNieves().isEmpty()){
-                        for(BolaDeNieve bola: nivel.getBolaDeNieves()){
-                            for(Pared pared : nivel.getParedes()){
-                               pared.aceptar(bola);;
-                            }
+                    for(PlataformaMovil movil:nivel.getPlataformasMovil()){
+                        movil.mover();
+                        if(jugador.getHitbox().getRectangle().intersects(movil.getHitbox().getRectangle())) {
+                            movil.aceptar(jugador);
                         }
                     }
+                
                     if(!nivel.getBolasDeFuego().isEmpty()){
                         for(BolaDeFuego bola: nivel.getBolasDeFuego()){
                             if (bola.getHitbox().getRectangle().intersects(jugador.getHitbox().getRectangle())) {
@@ -148,7 +140,14 @@ public class Juego {
                             }
                         }
                     }
-                        try {
+                     if(!nivel.getBolasDeNieve().isEmpty()){
+                        for(BolaDeNieve bola: nivel.getBolasDeNieve()){
+                            if (bola.getHitbox().getRectangle().intersects(jugador.getHitbox().getRectangle())) {
+                                jugador.aceptar(bola);
+                            }
+                        }
+                    }
+                    try {
                         Thread.sleep(16);
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
@@ -178,11 +177,8 @@ public class Juego {
                     bola.mover();
                     } 
                 }
-                for(BolaDeNieve bolaDeNieve:nivel.getBolaDeNieves()){
+                for(BolaDeNieve bolaDeNieve:nivel.getBolasDeNieve()){
                     bolaDeNieve.mover();
-                }
-                for(PlataformaMovil plataforma:nivel.getPlataformasMovil()){
-                    plataforma.mover();
                 }
                 nivel.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
@@ -305,6 +301,10 @@ public class Juego {
     public void eliminarEntidadGraficamente(EntidadDinamica d){
         controladorGrafica.getPantalla().eliminarLabel((JLabel) d.getObserver());
     }
+    public void eliminarPlataformaQuebradiza(PlataformaQuebradiza p){
+        controladorGrafica.getPantalla().eliminarLabel(p.getLabel());
+        nivel.eliminarPlataforma(p);
+    }
     public int getModoDeJuego(){
         return puntajeJugador;
         //TODO implementar;
@@ -319,6 +319,7 @@ public class Juego {
     public void crearBolaDeNieve(int posX, int posY){
         BolaDeNieve bola=fabricaEntidades.getBolaDeNieve(posX, posY);
         bola.setNivel(nivel);
+        nivel.agregarBolaDeNieve(bola);
         ObserverGrafico observer=controladorGrafica.registrarEntidad(bola);
         bola.registrarObserver(observer);
     }

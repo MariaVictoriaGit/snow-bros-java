@@ -12,6 +12,7 @@ public class TrollAmarillo extends Enemigo{
 
     public TrollAmarillo(int x, int y, Sprite spritesTrollAmarillo){
         super(x,y,spritesTrollAmarillo);
+        salud=ConstantesDificultad.SALUD_TROLL_AMARILLO;
         velocidad=ConstantesDificultad.VELOCIDAD_TROLL_AMARILLO;
     }
     public void mover(){
@@ -75,10 +76,6 @@ public class TrollAmarillo extends Enemigo{
     public void saltar(){
         //TODO implementar
     }
-    public void convertirEnBola(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
-    }
     public String generarClaveEstado(){
         String estado=null;
         if(direccion==ConstantesEntidades.QUIETO){
@@ -99,5 +96,10 @@ public class TrollAmarillo extends Enemigo{
     }
     public int getPuntajeCongelado(){
         return puntajeCongelado;
+    }
+    @Override
+    public void aceptar(Visitador visitador) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'aceptar'");
     }
 }

@@ -6,7 +6,7 @@ import SnowBros.src.Visitor.Visitador;
 public class Pared extends Obstaculo{
     public Pared(int x, int y, Sprite sprite ){
         super(x,y,sprite);
-        hitbox.actualizarHitbox(x-16,y,ancho,alto);
+        hitbox.actualizarHitbox(x,y,ancho,alto);
     }
     public void eliminar(){
         nivel.eliminarObstaculo(this);
