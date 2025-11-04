@@ -1,5 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
@@ -9,11 +10,12 @@ import SnowBros.src.Juego.Temporizador;
 public class BolaDeNieve extends EntidadDinamica{
     private boolean estaActiva;
     private Temporizador tiempo;
+    private int velocidad=6;
 
     public BolaDeNieve(int x, int y, Sprite sprite){
         super(x,y,sprite);
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_NIEVE);
-        estaActiva=false;
+        estaActiva=true;
     }
     public boolean getEstado(){
         return estaActiva;
@@ -22,10 +24,19 @@ public class BolaDeNieve extends EntidadDinamica{
         return tiempo;
     }
     public void mover(){
-        //TODO determinar movimientos
+        switch(direccion){
+            case ConstantesEntidades.DERECHA:
+               posX=posX+5;
+               this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+            break;
+            case ConstantesEntidades.IZQUIERDA:
+                posX=posX-5;
+                this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+            break;
+        }
     }
     private void rebotar(){
-        //TODO cada vez que choca un una pared 
+        this.eliminar(); 
     }
     public void visitar(Enemigo e){
         e.eliminar();

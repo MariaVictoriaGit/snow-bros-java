@@ -122,11 +122,14 @@ public class Juego {
                             }
                         }
                     }
-                    for(Enemigo enemigo : nivel.getEnemigos()){
-                        for(Pared pared : nivel.getParedes()){
-                            //pared.aceptar(enemigo);
+                    if(!nivel.getBolaDeNieves().isEmpty()){
+                        for(BolaDeNieve bola: nivel.getBolaDeNieves()){
+                            for(Pared pared : nivel.getParedes()){
+                               pared.aceptar(bola);;
+                            }
                         }
                     }
+                
                     if(!nivel.getBolasDeFuego().isEmpty()){
                         for(BolaDeFuego bola: nivel.getBolasDeFuego()){
                             if (bola.getHitbox().getRectangle().intersects(jugador.getHitbox().getRectangle())) {
@@ -163,6 +166,9 @@ public class Juego {
                     for (BolaDeFuego bola: nivel.getBolasDeFuego()){
                     bola.mover();
                     } 
+                }
+                for(BolaDeNieve bolaDeNieve:nivel.getBolaDeNieves()){
+                    bolaDeNieve.mover();
                 }
                 nivel.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
