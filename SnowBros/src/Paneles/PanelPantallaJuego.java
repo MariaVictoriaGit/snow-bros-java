@@ -124,7 +124,7 @@ public class PanelPantallaJuego extends JPanel{
             String ruta = obstaculo.getSprite().getRutaImagen("normal");
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));
             JLabel obstaculoVisible = new JLabel(icono);
-            obstaculoVisible.setBounds(obstaculo.getHitbox().getX(), obstaculo.getHitbox().getY(), obstaculo.getHitbox().getAncho(), obstaculo.getHitbox().getAlto());
+            obstaculoVisible.setBounds(obstaculo.getPosX(), obstaculo.getPosY(), obstaculo.getHitbox().getAncho(), obstaculo.getHitbox().getAlto());
             this.add(obstaculoVisible);  
         }
     }
