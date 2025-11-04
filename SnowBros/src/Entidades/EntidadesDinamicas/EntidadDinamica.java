@@ -173,8 +173,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     throw new UnsupportedOperationException("Unimplemented method 'visitar'");
   }   
   public void visitar(SueloResbaladizo e) {
-    //lo ignora
-  throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+
   }
   public void visitar(TrampaPinchos e) {
     //lo ignora
