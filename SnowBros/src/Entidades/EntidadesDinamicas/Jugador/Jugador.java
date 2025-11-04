@@ -265,6 +265,10 @@ public class Jugador extends EntidadDinamica implements Visitable{
         actualizarPuntaje(v.getPuntaje());        
         miJuego.eliminarPowerUp(v);
     }
+    public void visitar(PlataformaMovil e) {
+        super.visitar(e);
+        actualizarPuntaje(e.getPuntaje());
+    }
     public void visitar(PlataformaQuebradiza e) {
         super.visitar(e);
         actualizarPuntaje(e.getPuntaje());
