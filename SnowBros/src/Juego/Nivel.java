@@ -27,6 +27,7 @@ public class Nivel {
     protected LinkedList<BolaDeNieve> listaBolaDeNieve;
     protected LinkedList<BolaDeFuego> listaBolaDeFuego;
     protected LinkedList<Pared> listaParedes;
+    protected LinkedList<PlataformaMovil> listaPmovil;
 
     public Nivel(Silueta silueta, int numero){
         this.silueta=silueta;
@@ -36,6 +37,7 @@ public class Nivel {
         listaObstaculos= new LinkedList<>();
         listaParedes= new LinkedList<>();
         listaPlataformas= new LinkedList<>();
+        listaPmovil=new LinkedList<>();
         listaDisparoJugador= new LinkedList<>();
         listaBolaDeFuego= new LinkedList<>();
         listaBolaDeNieve= new LinkedList<>();
@@ -56,6 +58,9 @@ public class Nivel {
     }
     public LinkedList<Plataforma> getPlataformas(){
         return listaPlataformas;
+    }
+    public LinkedList<PlataformaMovil> getPlataformasMovil(){
+        return listaPmovil;
     }
     public LinkedList<DisparoJugador> getDisparos(){
         return listaDisparoJugador;
@@ -113,6 +118,10 @@ public class Nivel {
     }
     public void agregarPlataforma(Plataforma p){
         listaPlataformas.addLast(p);
+        p.setNivel(this);
+    }
+    public void agregarPlataformaMovil(PlataformaMovil p){
+        listaPmovil.addLast(p);
         p.setNivel(this);
     }
     public void agregarObstaculo(Obstaculo o){
@@ -177,6 +186,9 @@ public class Nivel {
             b.getObserver().actualizar();
         }
         */
+        for(PlataformaMovil p:this.getPlataformasMovil()){
+            p.getObserver().actualizar();
+        }
         for(BolaDeFuego b : new ArrayList<>(this.getBolasDeFuego())){
                 if(b!=null){
                     b.getObserver().actualizar(b.getDireccion(),b.getTocandoSuelo());

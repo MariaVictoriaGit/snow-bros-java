@@ -2,15 +2,19 @@ package SnowBros.src.Grafica;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
-import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 
 public class ObserverGrafico extends JLabel implements Observer{
     protected EntidadDinamica entidadObservada;
+	protected PlataformaMovil plataformaObservada;
 
     public ObserverGrafico(EntidadDinamica entidad) {
 		entidadObservada = entidad;
+		actualizar();
+	}
+	public ObserverGrafico(PlataformaMovil entidad) {
+		plataformaObservada = entidad;
 		actualizar();
 	}
     public void actualizar() {
@@ -27,6 +31,14 @@ public class ObserverGrafico extends JLabel implements Observer{
 		int margenVisual=4;
         int x = entidadObservada.getPosX();
 		int y = entidadObservada.getHitbox().getY();
+		int ancho = this.getIcon().getIconWidth();
+		int alto = this.getIcon().getIconHeight();
+		setBounds(x, y-margenVisual, ancho, alto);
+    }
+	protected void actualizarPosicionTamanoP(){
+		int margenVisual=4;
+        int x = plataformaObservada.getPosX();
+		int y = plataformaObservada.getHitbox().getY();
 		int ancho = this.getIcon().getIconWidth();
 		int alto = this.getIcon().getIconHeight();
 		setBounds(x, y-margenVisual, ancho, alto);
