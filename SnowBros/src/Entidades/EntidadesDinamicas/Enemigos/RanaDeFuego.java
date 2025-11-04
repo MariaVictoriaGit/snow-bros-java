@@ -112,10 +112,6 @@ public class RanaDeFuego extends Enemigo{
         }
         return bola;
     }
-    public void convertirEnBola(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
-    }
     public String generarClaveEstado(){
         String clave=null;
         if(direccion==ConstantesEntidades.QUIETO){

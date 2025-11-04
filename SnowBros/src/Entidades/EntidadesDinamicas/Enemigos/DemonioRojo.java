@@ -76,9 +76,6 @@ public class DemonioRojo extends Enemigo{
             break;
         }
     }
-    public void convertirEnBola(){
-        super.convertirEnBola();
-    }
     
     public int getPuntajeCongelado() {
         return puntajeCongelado;

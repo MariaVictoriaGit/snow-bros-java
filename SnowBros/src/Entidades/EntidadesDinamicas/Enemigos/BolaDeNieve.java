@@ -3,6 +3,7 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
@@ -26,12 +27,15 @@ public class BolaDeNieve extends EntidadDinamica{
     public void mover(){
         switch(direccion){
             case ConstantesEntidades.DERECHA:
-               posX=posX+5;
+               posX=posX+1;
                this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+               observer.actualizar();
+
             break;
             case ConstantesEntidades.IZQUIERDA:
-                posX=posX-5;
+                posX=posX-1;
                 this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+                observer.actualizar();
             break;
         }
     }
@@ -49,5 +53,10 @@ public class BolaDeNieve extends EntidadDinamica{
     }
     public void eliminar(){
         nivel.eliminarBolaDeNieve(this);
+    }
+    public void visitar(Jugador j){
+        direccion=j.getDireccion();
+        if (hitbox.getRectangle().intersects(j.getHitbox().getRectangle()))
+        mover();
     }
 }
