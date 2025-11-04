@@ -134,7 +134,7 @@ public class DisparoJugador extends EntidadDinamica {
     }
     public void eliminar(){
         nivel.eliminarDisparo(this);
-        nivel.getJuego().eliminarDisparo(this);
+        nivel.getJuego().eliminarEntidadGraficamente(this);
     }
     
 }

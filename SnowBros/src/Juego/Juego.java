@@ -275,7 +275,7 @@ public class Juego {
         controladorGrafica.getPantalla().eliminarLabel(p.getLabel());   
         nivel.eliminarPowerUp(p);
     }
-    public void eliminarDisparo(DisparoJugador d){
+    public void eliminarEntidadGraficamente(EntidadDinamica d){
         controladorGrafica.getPantalla().eliminarLabel((JLabel) d.getObserver());
     }
     public int getModoDeJuego(){

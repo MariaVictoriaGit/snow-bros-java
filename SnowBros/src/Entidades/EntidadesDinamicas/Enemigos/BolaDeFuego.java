@@ -2,6 +2,7 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
+import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Grafica.Sprite;
@@ -23,12 +24,22 @@ public class BolaDeFuego extends EntidadDinamica{
     public void mover(){
         switch(direccion){
             case ConstantesEntidades.DERECHA:
-               posX=posX+5;
-               this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+                if(!((posX+=5)>ConstantesVistas.PANEL_ANCHO-10)){
+                    posX=posX+5;
+                    this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+                }
+                else{
+                    this.eliminar();
+                }
             break;
             case ConstantesEntidades.IZQUIERDA:
-                posX=posX-5;
-                this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+                if(!((posX-=5)<10)){
+                    posX=posX-5;
+                    this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+                }
+                else{
+                    this.eliminar();
+                }
             break;
         }
     }
@@ -37,6 +48,7 @@ public class BolaDeFuego extends EntidadDinamica{
     }
     public void eliminar(){
         nivel.eliminarBolaDeFuego(this);
+        nivel.getJuego().eliminarEntidadGraficamente(this);
      //   nivel.getJuego().eliminarBolaDeFuego(); TODO hacer que se elimine graficamente tambien
     }
     public String generarClaveEstado(){
