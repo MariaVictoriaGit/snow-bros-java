@@ -126,15 +126,16 @@ public class Juego {
                             }
                         }
                     }
-                    if(!nivel.getBolaDeNieves().isEmpty()){
-                        for(BolaDeNieve bola: nivel.getBolaDeNieves()){
-                            for(Pared pared : nivel.getParedes()){
-                               pared.aceptar(bola);;
+                
+                    if(!nivel.getBolasDeFuego().isEmpty()){
+                        for(BolaDeFuego bola: nivel.getBolasDeFuego()){
+                            if (bola.getHitbox().getRectangle().intersects(jugador.getHitbox().getRectangle())) {
+                                jugador.aceptar(bola);
                             }
                         }
                     }
-                    if(!nivel.getBolasDeFuego().isEmpty()){
-                        for(BolaDeFuego bola: nivel.getBolasDeFuego()){
+                     if(!nivel.getBolasDeNieve().isEmpty()){
+                        for(BolaDeNieve bola: nivel.getBolasDeNieve()){
                             if (bola.getHitbox().getRectangle().intersects(jugador.getHitbox().getRectangle())) {
                                 jugador.aceptar(bola);
                             }
@@ -170,7 +171,7 @@ public class Juego {
                     bola.mover();
                     } 
                 }
-                for(BolaDeNieve bolaDeNieve:nivel.getBolaDeNieves()){
+                for(BolaDeNieve bolaDeNieve:nivel.getBolasDeNieve()){
                     bolaDeNieve.mover();
                 }
                 for(PlataformaMovil plataforma:nivel.getPlataformasMovil()){
@@ -315,6 +316,7 @@ public class Juego {
     public void crearBolaDeNieve(int posX, int posY){
         BolaDeNieve bola=fabricaEntidades.getBolaDeNieve(posX, posY);
         bola.setNivel(nivel);
+        nivel.agregarBolaDeNieve(bola);
         ObserverGrafico observer=controladorGrafica.registrarEntidad(bola);
         bola.registrarObserver(observer);
     }

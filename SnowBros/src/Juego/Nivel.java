@@ -68,7 +68,7 @@ public class Nivel {
     public LinkedList<BolaDeFuego> getBolasDeFuego(){
         return listaBolaDeFuego;
     }
-    public LinkedList<BolaDeNieve> getBolaDeNieves(){
+    public LinkedList<BolaDeNieve> getBolasDeNieve(){
         return listaBolaDeNieve;
     }
     public int getNivelActual(){
