@@ -131,6 +131,12 @@ public class Juego {
                             }
                         }
                     }
+                    for(PlataformaMovil movil:nivel.getPlataformasMovil()){
+                        movil.mover();
+                        if(jugador.getHitbox().getRectangle().intersects(movil.getHitbox().getRectangle())) {
+                            movil.aceptar(jugador);
+                        }
+                    }
                 
                     if(!nivel.getBolasDeFuego().isEmpty()){
                         for(BolaDeFuego bola: nivel.getBolasDeFuego()){
@@ -171,9 +177,6 @@ public class Juego {
                 }
                 for(BolaDeNieve bolaDeNieve:nivel.getBolaDeNieves()){
                     bolaDeNieve.mover();
-                }
-                for(PlataformaMovil plataforma:nivel.getPlataformasMovil()){
-                    plataforma.mover();
                 }
                 nivel.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;

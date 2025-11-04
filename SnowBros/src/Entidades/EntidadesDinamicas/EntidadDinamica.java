@@ -133,6 +133,8 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   }
   public void visitar(PlataformaMovil e) {
     visitarPlataforma(e);
+          this.setPosX(this.getPosX() + e.getDeltaX());
+          tocandoSuelo=ConstantesEntidades.SUELO;
   } 
   public void visitar(PlataformaQuebradiza e) {
     visitarPlataforma(e);
@@ -140,6 +142,8 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   private void visitarPlataforma(Plataforma e){
     if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
       this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
+      this.setPosY(e.getPosY() - this.getHitbox().getAlto());
+
     }
   }
   public void visitar(BotellaAzul b) {
