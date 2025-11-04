@@ -2,10 +2,8 @@ package SnowBros.src.Entidades.EntidadesEstaticas.Plataformas;
 
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.EstadosDePatron;
-import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverPlataformaMovil;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Juego.Temporizador;
 
 public class PlataformaMovil extends Plataforma{
     private static final int puntaje=200;

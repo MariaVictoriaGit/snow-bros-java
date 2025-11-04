@@ -7,17 +7,13 @@ import java.util.List;
 import javax.swing.JLabel;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
-import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
-import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
-import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Calabaza;
-import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
-import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
-import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
+import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaQuebradiza;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 import SnowBros.src.Fabricas.Alternativo;
 import SnowBros.src.Fabricas.FabricaEntidades;
@@ -42,7 +38,6 @@ public class Juego {
     protected FabricaEntidades fabricaEntidades;
     protected ParserNivel parseActual;
     private Temporizador tiempoAntesAparicionCalabaza;
-
 
     public Juego(){
         reiniciarJugador=false;
@@ -102,13 +97,13 @@ public class Juego {
                             enemigo.aceptar(disparo);
                             }
                         }
-                        /*for(Pared p: nivel.getParedes()){
+                        for(Pared p: new ArrayList<>(nivel.getParedes())){
                             if (enemigo.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) {
                                 p.aceptar(enemigo);
                             }
-                        }*/
+                        }
                     }
-                    for(Pared p: nivel.getParedes()){
+                    for(Pared p: new ArrayList<>(nivel.getParedes())){
                         if (jugador.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) {
                             p.aceptar(jugador);
                         }
@@ -145,7 +140,7 @@ public class Juego {
                             }
                         }
                     }
-                        try {
+                    try {
                         Thread.sleep(16);
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
@@ -301,6 +296,10 @@ public class Juego {
     }
     public void eliminarEntidadGraficamente(EntidadDinamica d){
         controladorGrafica.getPantalla().eliminarLabel((JLabel) d.getObserver());
+    }
+    public void eliminarPlataformaQuebradiza(PlataformaQuebradiza p){
+        controladorGrafica.getPantalla().eliminarLabel(p.getLabel());
+        nivel.eliminarPlataforma(p);
     }
     public int getModoDeJuego(){
         return puntajeJugador;
