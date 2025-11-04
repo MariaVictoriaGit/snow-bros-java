@@ -1,5 +1,7 @@
 package SnowBros.src.Grafica;
 
+import java.awt.Container;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -38,7 +40,14 @@ public class ObserverGrafico extends JLabel implements Observer{
 	}
 	@Override
 	public void actualizarBolaDeNieve() {
-		// TODO Auto-generated method stub
+		
 		throw new UnsupportedOperationException("Unimplemented method 'actualizarBolaDeNieve'");
+	}
+	public void borrarObserver(){
+		entidadObservada=null;
+		Container padre= getParent();
+		getParent().remove(this);
+		padre.revalidate();
+		padre.repaint();
 	}
 }

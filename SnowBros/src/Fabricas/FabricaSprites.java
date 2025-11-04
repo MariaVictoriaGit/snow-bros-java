@@ -175,7 +175,7 @@ public abstract class FabricaSprites {
     }
     public Sprite getSpriteBolaNieve(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("completa", rutaACarpeta + "/BolaDeNieve/bolaDeNieve.png");
+        mapeo.put("idleIzquierda", rutaACarpeta + "/BolaDeNieve/bolaDeNieve.png");
         mapeo.put("derretida", rutaACarpeta + "/BolaDeNieve/bolaDeNieveDerretida.png");
         return new Sprite(mapeo);
     }
