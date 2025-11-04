@@ -19,6 +19,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 import SnowBros.src.Fabricas.Alternativo;
 import SnowBros.src.Fabricas.FabricaEntidades;
@@ -28,6 +29,7 @@ import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.ObserverJugador;
+import SnowBros.src.Grafica.ObserverPlataformaMovil;
 import SnowBros.src.Parser.ParserNivel;
 
 public class Juego {
@@ -179,6 +181,9 @@ public class Juego {
                 for(BolaDeNieve bolaDeNieve:nivel.getBolaDeNieves()){
                     bolaDeNieve.mover();
                 }
+                for(PlataformaMovil plataforma:nivel.getPlataformasMovil()){
+                    plataforma.mover();
+                }
                 nivel.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
                 long dormir = frameTime - duracion;
@@ -247,6 +252,7 @@ public class Juego {
         registrarObserverJugador();
         registrarObserversEntidades(nivel.getEnemigos());
         registrarObserversEntidades(nivel.getDisparos());
+        registrarObserversPlataformas(nivel.getPlataformasMovil());
     }
     public void registrarObserverJugador(){
     	ObserverJugador observerJugador = controladorGrafica.registrarEntidad(jugador);
@@ -257,11 +263,23 @@ public class Juego {
         EntidadDinamica e=(EntidadDinamica) entidad;
 		e.registrarObserver(observer);
     }
+    public void registrarObserverEntidad(PlataformaMovil entidad){
+        ObserverPlataformaMovil observer = controladorGrafica.registrarEntidad(entidad);//observerEntidad?
+        PlataformaMovil e= entidad;
+		e.registrarObserver(observer);
+    }
 	protected void registrarObserversEntidades(List<? extends Entidad> entidades) {
 		for(Entidad entidad : entidades) {
             EntidadDinamica e=(EntidadDinamica) entidad;
 			ObserverGrafico observer = controladorGrafica.registrarEntidad(e);//observerEntidad?
 			e.registrarObserver(observer);
+		}
+    }
+    protected void registrarObserversPlataformas(List<? extends Entidad> entidades) {
+		for(Entidad entidad : entidades) {
+            PlataformaMovil p=(PlataformaMovil) entidad;
+			ObserverPlataformaMovil observer = controladorGrafica.registrarEntidad(p);//observerEntidad?
+			p.registrarObserver(observer);
 		}
     }
     public void crearPowerUps(){

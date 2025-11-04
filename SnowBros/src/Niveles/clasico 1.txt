@@ -117,7 +117,7 @@ Plataforma 384 288
 Plataforma 416 288
 Plataforma 448 288
 
-Plataforma 544 288
+PlataformaMovil 544 288
 
 Pared 488 320
 

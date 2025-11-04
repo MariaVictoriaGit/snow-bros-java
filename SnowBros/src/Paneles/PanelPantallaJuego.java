@@ -21,11 +21,13 @@ import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 //import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.Observer;
 import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.ObserverJugador;
+import SnowBros.src.Grafica.ObserverPlataformaMovil;
 
 public class PanelPantallaJuego extends JPanel{
     protected JPanel panelPantallaJuego;
@@ -123,8 +125,12 @@ public class PanelPantallaJuego extends JPanel{
     }
     //tengo que agregar metodos actualizar
     public ObserverGrafico incorporarEntidad(EntidadDinamica entidad) {
-        //TODO pq crear otro observer si al crear cada entidad se le crea su respectivo observer?
         EntidadDinamica  aux= entidad;
+        imagenFondoJuego.add((JLabel)aux.getObserver());
+        return aux.getObserver();
+    }
+    public ObserverPlataformaMovil incorporarEntidad(PlataformaMovil entidad) {
+        PlataformaMovil aux= entidad;
         imagenFondoJuego.add((JLabel)aux.getObserver());
         return aux.getObserver();
     }

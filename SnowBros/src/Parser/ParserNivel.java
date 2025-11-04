@@ -53,7 +53,7 @@ public class ParserNivel{
                         int yPlataformaMovil=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2]);
                         PlataformaMovil plataformaMovil = fabrica.getPlataformaMovil(xPlataformaMovil, yPlataformaMovil);
                         plataformaMovil.setNivel(nivel);
-                        nivel.agregarPlataforma(plataformaMovil);
+                        nivel.agregarPlataformaMovil(plataformaMovil);
                         break;
                     case "PlataformaQuebradiza":
                         int xPlataformaQuebradiza=Integer.parseInt(partes[1]);
