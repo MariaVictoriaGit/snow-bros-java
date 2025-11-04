@@ -121,41 +121,51 @@ public class DisparoJugador extends EntidadDinamica {
         switch (direccion) {
             case ConstantesEntidades.QUIETO:
                 if(efectoBotella){
-                    estado="disparoAumentado1";
+                    if(dirAnterior==ConstantesEntidades.DERECHA){
+                        estado="aumentadoDerecha1";
+                    }
+                    else{
+                        estado="aumentadoIzquierda1";
+                    }
                 }
                 else{
-                    estado="idleIzquierda";
+                    if(dirAnterior==ConstantesEntidades.DERECHA){
+                        estado="normalDerecha1";
+                    }
+                    else{
+                        estado="normalIzquierda1";
+                    }
                 }
             case ConstantesEntidades.DERECHA:
                 if(efectoBotella){
-                    estado="disparoAumentado1";
+                    estado="aumentadoDerecha1";
                 }
                 else{
-                    estado="idleIzquierda";
+                    estado="normalDerecha1";
                 }
                 break;
             case ConstantesEntidades.IZQUIERDA:
                 if(efectoBotella){
-                    estado="disparoAumentado1";
+                    estado="aumentadoIzquierda1";
                 }
                 else{
-                    estado="idleIzquierda";
+                    estado="normalIzquierda1";
                 }
                 break;
             case ConstantesEntidades.ARRIBA_DERECHA:
                 if(efectoBotella){
-                    estado="disparoAumentado1";
+                    estado="aumentadoDerecha1";
                 }
                 else{
-                    estado="idleIzquierda";
+                    estado="normalDerecha1";
                 }
                 break;
             case ConstantesEntidades.ARRIBA_IZQUIERDA:
                 if(efectoBotella){
-                    estado="disparoAumentado1";
+                    estado="aumentadoIzquierda1";
                 }
                 else{
-                    estado="idleIzquierda";
+                    estado="normalIzquierda1";
                 }
                 break;
         }
