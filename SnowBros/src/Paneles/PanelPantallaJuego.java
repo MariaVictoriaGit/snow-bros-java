@@ -110,6 +110,7 @@ public class PanelPantallaJuego extends JPanel{
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));//plataforma.getSprite().getRutaImagen("estatico.png"
             JLabel plataformaVisible = new JLabel(icono);
             plataformaVisible.setBounds(plataforma.getPosX(), plataforma.getPosY(), plataforma.getHitbox().getAncho(), plataforma.getHitbox().getAlto());
+            plataforma.setMiLabel(plataformaVisible);
             this.add(plataformaVisible);  
             //imagenFondoJuego.add(plataformaVisible);
         }
@@ -120,6 +121,7 @@ public class PanelPantallaJuego extends JPanel{
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));
             JLabel obstaculoVisible = new JLabel(icono);
             obstaculoVisible.setBounds(obstaculo.getHitbox().getX(), obstaculo.getHitbox().getY(), obstaculo.getHitbox().getAncho(), obstaculo.getHitbox().getAlto());
+            obstaculo.setMiLabel(obstaculoVisible);
             this.add(obstaculoVisible);  
         }
     }
@@ -217,9 +219,11 @@ public class PanelPantallaJuego extends JPanel{
         //TODO implementar
     }
     public void eliminarLabel(JLabel l){
-        remove(l);
-        imagenFondoJuego.remove(l);
-        this.revalidate();
-        this.repaint();
+        if(l!=null){
+            remove(l);
+            imagenFondoJuego.remove(l);
+            this.revalidate();
+            this.repaint();
+        }
     }
 }

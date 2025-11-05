@@ -74,8 +74,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   }
   public void verificarSuelo(){
     boolean enSuelo=false;
-    for(Entidad e:this.nivel.getPlataformas()){
-    Plataforma p=(Plataforma)e;
+    for(Plataforma p:this.nivel.getPlataformas()){
       if(nivel.getJugador().getJuego().estaCerca(this,p,40)){
         if(hitbox.getBottomHitBox().intersects(p.getHitbox().getRectangle())){
           enSuelo=true;
@@ -108,10 +107,9 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
       posY+=velocidadY;
       this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
       this.getObserver().actualizar(direccion, getTocandoSuelo()); 
-      for(Entidad p:nivel.getPlataformas()){
-        Plataforma plataforma= (Plataforma) p;
+      for(Plataforma p:nivel.getPlataformas()){
         if(nivel.getJugador().getJuego().estaCerca(this,p,40)){
-          plataforma.aceptar((Visitador) this);
+          p.aceptar((Visitador) this);
           tocandoSuelo=ConstantesEntidades.SUELO;
         }
       }

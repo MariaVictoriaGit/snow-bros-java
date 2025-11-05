@@ -252,9 +252,12 @@ public class Jugador extends EntidadDinamica implements Visitable{
         miJuego.eliminarPowerUp(v);
     }
     public void visitar(PlataformaQuebradiza e) {
-        super.visitar(e);
+        if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
+           this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
+           this.setPosY(e.getPosY() - this.getHitbox().getAlto());
+        }
         actualizarPuntaje(e.getPuntaje());
-        nivel.eliminarPlataforma(e);
+        e.getTiempoAntesDeRomperse().iniciar();
     }
     public void visitar(Escalera e){
         subirEscalera();

@@ -302,8 +302,8 @@ public class Juego {
         controladorGrafica.getPantalla().eliminarLabel((JLabel) d.getObserver());
     }
     public void eliminarPlataformaQuebradiza(PlataformaQuebradiza p){
-        controladorGrafica.getPantalla().eliminarLabel(p.getLabel());
         nivel.eliminarPlataforma(p);
+        controladorGrafica.getPantalla().eliminarLabel(p.getMiLabel());
     }
     public int getModoDeJuego(){
         return puntajeJugador;
