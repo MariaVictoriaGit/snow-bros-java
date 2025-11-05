@@ -1,7 +1,5 @@
 package SnowBros.src.Entidades.EntidadesDinamicas;
-
 import java.awt.Rectangle;
-
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
@@ -96,8 +94,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
         posX-=this.ancho;
     }
     else if(this.getHitbox().getLeftHitBox().intersects(paredRectangle)) {
-        posX+=this.ancho;
-        //      if (hitbox.getRectangle().intersects(p.getHitbox().getRectangle())){
+        posX+=this.ancho;//      if (hitbox.getRectangle().intersects(p.getHitbox().getRectangle())){
     }
     hitbox.actualizarHitbox(posX, posY, ancho, alto);
   }
@@ -123,9 +120,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
       actualizarCaida();
     }
   }
-  public void visitar(Enemigo e) {
-    //se ignoran
-  }
+  public void visitar(Enemigo e) {}
   public void visitar(Plataforma e) {
     visitarPlataforma(e);
   }
@@ -144,26 +139,11 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
 
     }
   }
-  public void visitar(BotellaAzul b) {
-    //lo ignora
-    throw new UnsupportedOperationException("Unimplemented method 'visitar'");
-  }
-  public void visitar(BotellaRoja b) {
-    //lo ignora
-    throw new UnsupportedOperationException("Unimplemented method 'visitar'");
-  }
-  public void visitar(BotellaVerde b) {
-    //lo ignora
-    throw new UnsupportedOperationException("Unimplemented method 'visitar'");
-  }
-  public void visitar(Fruta f) {
-    //lo ignora
-    throw new UnsupportedOperationException("Unimplemented method 'visitar'");
-  }
-  public void visitar(VidaExtra v) {
-    //lo ignora
-    throw new UnsupportedOperationException("Unimplemented method 'visitar'");
-  }
+  public void visitar(BotellaAzul b) {}
+  public void visitar(BotellaRoja b) {}
+  public void visitar(BotellaVerde b) {}
+  public void visitar(Fruta f) {}
+  public void visitar(VidaExtra v) {}
   public void visitar(Pared e){
     verificarPared(e);
   }
@@ -175,8 +155,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     throw new UnsupportedOperationException("Unimplemented method 'visitar'");
   }   
   public void visitar(SueloResbaladizo e) {
-    //lo ignora
-  throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+
   }
   public void visitar(TrampaPinchos e) {
     //lo ignora

@@ -31,7 +31,7 @@ DemonioRojo 288 32
 
 BotellaAzul 544 32
 
-TrampaPinchos 32 80
+TrampaPinchos 32 95
 
 Plataforma 0 64 
 Plataforma 32 64
@@ -48,7 +48,7 @@ Plataforma 480 64
 Plataforma 512 64
 Plataforma 544 64
 Plataforma 576 64
-Plataforma 608 64
+Escalera 608 64
 Plataforma 640 64
 Plataforma 672 64
 Plataforma 704 64
@@ -74,9 +74,9 @@ Plataforma 480 128
 
 BotellaRoja 400 160
 
-ParedDestructible 50 147
+ParedDestructible 50 163
 
-Pared 480 160
+Pared 480 173
 
 Plataforma 480 192
 Plataforma 512 192

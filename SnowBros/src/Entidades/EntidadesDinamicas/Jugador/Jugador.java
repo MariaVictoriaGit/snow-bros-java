@@ -24,6 +24,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
     protected boolean disparoAumentado;
     protected int posXoriginal;
     protected int posYoriginal;
+    protected boolean habilitadoASubirEscalera;
     boolean invencible;
     
     public Jugador(int x,int y, Sprite mISprite){//no se usa observerJugador y en entidadDinamica se le asigna un observer a cada uno
@@ -45,9 +46,11 @@ public class Jugador extends EntidadDinamica implements Visitable{
         dirAnterior=direccion;
         switch (direccionAMover){
             case ConstantesEntidades.QUIETO:
+                habilitadoASubirEscalera=false;
                 direccion=direccionAMover;
                 break;
             case ConstantesEntidades.DERECHA:
+                habilitadoASubirEscalera=false;
                 direccion=direccionAMover;
                 if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
                 posX+=velocidad;
@@ -55,6 +58,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
                 }
                 break;
             case ConstantesEntidades.IZQUIERDA:
+                habilitadoASubirEscalera=false;
                 direccion=direccionAMover;
                 if(posX-velocidad>0){
                 posX-=velocidad;
@@ -74,6 +78,16 @@ public class Jugador extends EntidadDinamica implements Visitable{
                     this.iniciarSalto();
                     tocandoSuelo=ConstantesEntidades.AIRE;
                 }
+                break;
+            case ConstantesEntidades.ARRIBA:
+                if(tocandoSuelo==ConstantesEntidades.SUELO){
+                    this.iniciarSalto();
+                    getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                }
+                break;
+            case ConstantesEntidades.ABAJO:
+                posY+=64;
+                getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 break;
         }   
     }
@@ -251,6 +265,10 @@ public class Jugador extends EntidadDinamica implements Visitable{
         actualizarPuntaje(v.getPuntaje());        
         miJuego.eliminarPowerUp(v);
     }
+    public void visitar(PlataformaMovil e) {
+        super.visitar(e);
+        actualizarPuntaje(e.getPuntaje());
+    }
     public void visitar(PlataformaQuebradiza e) {
         if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
            this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
@@ -260,13 +278,16 @@ public class Jugador extends EntidadDinamica implements Visitable{
         e.getTiempoAntesDeRomperse().iniciar();
     }
     public void visitar(Escalera e){
-        subirEscalera();
+        habilitadoASubirEscalera=true;
+        getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+        observer.actualizar(direccion, tocandoSuelo);
     }
-    private void subirEscalera(){
-        //TODO implementar
+    public boolean estaHabilitadoASubirEscalera(){
+        return habilitadoASubirEscalera;
     }
     public void visitar(SueloResbaladizo e){
-        velocidad-=3;
+        super.visitar(e);
+        posX+=3;
     }
     public void visitar(TrampaPinchos t){
         perderVida();    

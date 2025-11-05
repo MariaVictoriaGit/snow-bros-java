@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import SnowBros.src.Datos.ConstantesDificultad;
+import SnowBros.src.Datos.ConstantesNiveles;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -56,7 +57,7 @@ public class PanelPantallaJuego extends JPanel{
         panelInformacion.setLayout(new GridLayout(1, 4)); //UNA FILA Y 5 COLUM PARA MOSTRAR VALORES ALINEADOS
 		panelInformacion.setBounds(0, 0, ConstantesVistas.PANEL_ANCHO, 50);//Defino manualmente el tamaño y pos del panel info
         //nivel
-        String stringNivel="NombreNivel";
+        String stringNivel=ConstantesNiveles.CLASICO1;
         labelNivel= new JLabel(stringNivel);
         labelNivel.setForeground(Color.BLACK);
         labelNivel.setHorizontalAlignment(SwingConstants.CENTER);//centra el texto horizontalmente dentro del JLabel
@@ -67,9 +68,13 @@ public class PanelPantallaJuego extends JPanel{
         labelPuntaje.setForeground(Color.BLACK);
         labelPuntaje.setHorizontalAlignment(SwingConstants.CENTER);
         //TIEMPO
-        //String tiempoString=miControladorGrafico.getJuego().getTimer().stringDeTiempo();
-        String tiempoString="tiempo";
+        String tiempoString=miControladorGrafico.getJuego().getTimer().getStringDeTiempo();
+        //hacer un hilo que durante toda la existencia de el Timer de getTImer se actualice este label
         labelTiempo= new JLabel(tiempoString);
+        javax.swing.Timer actualizadorTiempo = new javax.swing.Timer(1000, e -> {
+            actualizarLabelTiempo();
+        });
+        actualizadorTiempo.start();
         labelTiempo.setForeground(Color.BLACK);
         labelTiempo.setHorizontalAlignment(SwingConstants.CENTER);
         //panel para las vidas con corazones
@@ -120,7 +125,7 @@ public class PanelPantallaJuego extends JPanel{
             String ruta = obstaculo.getSprite().getRutaImagen("normal");
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));
             JLabel obstaculoVisible = new JLabel(icono);
-            obstaculoVisible.setBounds(obstaculo.getHitbox().getX(), obstaculo.getHitbox().getY(), obstaculo.getHitbox().getAncho(), obstaculo.getHitbox().getAlto());
+            obstaculoVisible.setBounds(obstaculo.getPosX(), obstaculo.getPosY(), obstaculo.getHitbox().getAncho(), obstaculo.getHitbox().getAlto());
             obstaculo.setMiLabel(obstaculoVisible);
             this.add(obstaculoVisible);  
         }
@@ -175,6 +180,10 @@ public class PanelPantallaJuego extends JPanel{
         revalidate();
         repaint();
     }   
+    public void actualizarLabelTiempo() {
+        String tiempoString = miControladorGrafico.getJuego().getTimer().getStringDeTiempo();
+        labelTiempo.setText(tiempoString);
+    }
     public void efectoVidaExtra(Jugador jugador){
         int indice = jugador.getVidas() - 1;
         if (indice >= 0 && indice < panelVidas.getComponentCount()) {

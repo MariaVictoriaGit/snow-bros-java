@@ -84,7 +84,17 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                         System.exit(0);
                 } else if(keyCode == KeyEvent.VK_R) {
                         miJuego.reiniciarNivel();
-                }
+                } else if(keyCode == KeyEvent.VK_UP){
+                    if(miJuego.getJugador().estaHabilitadoASubirEscalera()){
+                        miJuego.getJugador().mover(ConstantesEntidades.ARRIBA);
+                        miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ARRIBA_DERECHA, miJuego.getJugador().getTocandoSuelo());
+                    }
+                } else if(keyCode == KeyEvent.VK_DOWN){
+                    if(miJuego.getJugador().estaHabilitadoASubirEscalera()){
+                        miJuego.getJugador().mover(ConstantesEntidades.ABAJO);
+                        miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ABAJO, miJuego.getJugador().getTocandoSuelo());
+                    }
+                } 
             }
             public void keyReleased(KeyEvent event) {
                 int keyCode=event.getKeyCode();
