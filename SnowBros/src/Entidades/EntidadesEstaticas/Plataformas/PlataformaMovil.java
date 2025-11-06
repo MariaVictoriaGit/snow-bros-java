@@ -17,6 +17,7 @@ public class PlataformaMovil extends Plataforma{
     protected int deltaX;
     private int estado=EstadosDePatron.MOVERDERECHA;
     private int distaciaMaxRecorrida;
+    protected boolean usada;
 
     public PlataformaMovil(int x, int y, Sprite sprite){
         super(x,y,sprite);
@@ -26,6 +27,7 @@ public class PlataformaMovil extends Plataforma{
         distanciaRecorrida=0;
         anteriorX=posX;
         deltaX=0;
+        usada=false;
     }
     public void mover(){
         switch (estado) {
@@ -72,4 +74,10 @@ public class PlataformaMovil extends Plataforma{
     public void aceptar(Visitador v){
         v.visitar(this);
     }
+    public void setUsada(){
+        usada=true;
+    }
+    public boolean getUsada(){
+        return usada;
+    } 
 }
