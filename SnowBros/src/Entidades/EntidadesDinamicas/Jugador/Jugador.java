@@ -44,7 +44,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
         //TODO ver como manejamos la herencia pq es de entidad dinamica
     }
     public void mover(int direccionAMover){
-        dirAnterior=direccion;
         switch (direccionAMover){
             case ConstantesEntidades.QUIETO:
                 habilitadoASubirEscalera=false;
@@ -89,7 +88,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         else if(direccion == ConstantesEntidades.IZQUIERDA){
             aumento=-20;
         }
-        DisparoJugador disparo=miJuego.getFabricaEntidades().getDisparoJugador(posX + aumento, posY-5);
+        DisparoJugador disparo=miJuego.getFabricaEntidades().getDisparoJugador(posX + aumento, posY-7);
         disparo.setDireccion(this.direccion, this.dirAnterior);
         disparo.setPotenciaAumentada(disparoAumentado);
         return disparo;

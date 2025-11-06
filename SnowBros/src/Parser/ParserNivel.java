@@ -7,6 +7,7 @@ import SnowBros.src.Fabricas.FabricaEntidades;
 import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Juego.Silueta;
+import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Datos.ConstantesNiveles;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
@@ -199,6 +200,7 @@ public class ParserNivel{
     public String obtenerArchivoNivel(int modo) {
         switch (modo) {
             case 1:
+                Sonido.getInstancia().reproducir("temaMusicalNivel1.wav");
                 return ConstantesNiveles.CLASICO1;
             case 2:
                 return ConstantesNiveles.CLASICO2;

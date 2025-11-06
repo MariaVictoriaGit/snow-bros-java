@@ -81,7 +81,6 @@ public class Juego {
             }
         }
         //TODO -..................................................................................
-        Sonido.getInstancia().reproducir("temaMusicalNivel1.wav");
         this.registrarObservers();
         this.crearPowerUps();
         jugador.getObserver().actualizar();
