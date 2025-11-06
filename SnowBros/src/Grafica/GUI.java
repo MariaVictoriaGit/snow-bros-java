@@ -13,6 +13,7 @@ import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 //import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Juego.Juego;
+import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Paneles.*;
 
 public class GUI implements ControladorGrafico, ControladorDeVista {
@@ -67,6 +68,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                         break;
                     case KeyEvent.VK_W:
                         if(!miJuego.getJugador().getSaltando() && miJuego.getJugador().getTocandoSuelo()==ConstantesEntidades.SUELO){
+                            miJuego.getJugador().mover(ConstantesEntidades.ARRIBA);
                             miJuego.getJugador().setSaltando(true);
                         }
                         break;

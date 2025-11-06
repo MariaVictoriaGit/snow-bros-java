@@ -12,6 +12,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Visitor.Visitador;
 
 public abstract class EntidadDinamica extends Entidad implements Visitador{
@@ -126,6 +127,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   }
   public void iniciarSalto(){
     if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
+      Sonido.getInstancia().reproducir("salto.wav");
       saltando=true;
       enAire=true;
       tocandoSuelo=ConstantesEntidades.AIRE;

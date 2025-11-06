@@ -30,6 +30,8 @@ public class Sonido {
             clip.start();
         }
         else{
+            clip.stop();
+            clip.flush();
             clip.setFramePosition(0);
             clip.start();
         }
