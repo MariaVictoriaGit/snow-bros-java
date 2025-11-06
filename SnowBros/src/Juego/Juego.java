@@ -163,9 +163,11 @@ public class Juego {
 
             while (!nivel.getEnemigos().isEmpty()) {
                 long inicio = System.currentTimeMillis();
-            
-                //jugador.moverSegunInput() por si movemos el movimiento a booleanos
-                jugador.verificarSuelo();
+                controladorGrafica.moverJugadorSegunInput();
+                jugador.actualizarSalto();
+                if(!jugador.getSaltando()){
+                  jugador.verificarSuelo();
+                }
                 for (Enemigo enemigo : nivel.getEnemigos()) {
                    enemigo.patronDeMovimiento();        
                    enemigo.verificarSuelo(); 
