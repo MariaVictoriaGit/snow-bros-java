@@ -8,6 +8,7 @@ import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Grafica.Sprite;
 //import SnowBros.src.Juego.HitBox;
 import SnowBros.src.Juego.Juego;
+import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Visitor.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
@@ -240,21 +241,25 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public void visitar(BotellaAzul b){
         actualizarPuntaje(b.getPuntaje());
+        Sonido.getInstancia().reproducir("AgarrarObjeto.wav");
         miJuego.eliminarPowerUp(b);
         efectoBotellaAzul(b);
     }
     public void visitar(BotellaRoja b){
         actualizarPuntaje(b.getPuntaje());
+        Sonido.getInstancia().reproducir("AgarrarObjeto.wav");
         miJuego.eliminarPowerUp(b);
         efectoBotellaRoja(b);
     }
     public void visitar(BotellaVerde b){
         actualizarPuntaje(b.getPuntaje());
+        Sonido.getInstancia().reproducir("AgarrarObjeto.wav");
         miJuego.eliminarPowerUp(b);
         efectoBotellaVerde(b);
     }
     public void visitar(Fruta f){
         actualizarPuntaje(f.getPuntaje());
+        Sonido.getInstancia().reproducir("AgarrarObjeto.wav");
         miJuego.eliminarPowerUp(f);
     }
     public void visitar(VidaExtra v){
@@ -262,7 +267,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
             vidas++;
             miJuego.efectoVidaExtra();
         }
-        actualizarPuntaje(v.getPuntaje());        
+        actualizarPuntaje(v.getPuntaje());
+        Sonido.getInstancia().reproducir("AgarrarObjeto.wav");    
         miJuego.eliminarPowerUp(v);
     }
     public void visitar(PlataformaMovil e) {

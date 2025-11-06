@@ -1,5 +1,6 @@
 package SnowBros.src.Juego;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,13 +9,13 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 public class Sonido {
-    private Sonido instancia;
+    private static Sonido instancia;
     private Map<String, Clip> mapeo;
 
     private Sonido(){
         mapeo=new HashMap<String,Clip>();
     }
-    public Sonido getInstancia(){
+    public static Sonido getInstancia(){
         if(instancia == null){
             instancia = new Sonido();
         }
@@ -25,6 +26,8 @@ public class Sonido {
         if(clip == null){
             clip = cargarSonido(s);
             mapeo.put(s,clip);
+            clip.setFramePosition(0);
+            clip.start();
         }
         else{
             clip.setFramePosition(0);
@@ -33,8 +36,9 @@ public class Sonido {
     }
     private Clip cargarSonido(String r){
         try {
-            AudioInputStream audio = AudioSystem.getAudioInputStream(getClass().getResource(r));
-            Clip clip = AudioSystem.getClip();
+            File file = new File("SnowBros/src/Sonidos/" + r);
+            AudioInputStream audio = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();  
             clip.open(audio);
             return clip;
         } catch (Exception e) {
