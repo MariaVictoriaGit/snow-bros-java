@@ -52,6 +52,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
                 break;
             case ConstantesEntidades.DERECHA:
                 habilitadoASubirEscalera=false;
+                dirAnterior=ConstantesEntidades.DERECHA;
                 direccion=direccionAMover;
                 if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
                 posX+=velocidad;
@@ -60,28 +61,15 @@ public class Jugador extends EntidadDinamica implements Visitable{
                 break;
             case ConstantesEntidades.IZQUIERDA:
                 habilitadoASubirEscalera=false;
+                dirAnterior=ConstantesEntidades.IZQUIERDA;
                 direccion=direccionAMover;
                 if(posX-velocidad>0){
                 posX-=velocidad;
                 getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 }
                 break;
-            case ConstantesEntidades.ARRIBA_IZQUIERDA:
-                direccion=direccionAMover;
-                if(tocandoSuelo==ConstantesEntidades.SUELO){
-                    this.iniciarSalto();
-                    tocandoSuelo=ConstantesEntidades.AIRE;
-                }
-                break;
-            case ConstantesEntidades.ARRIBA_DERECHA:
-                direccion=direccionAMover;
-                if(tocandoSuelo==ConstantesEntidades.SUELO){
-                    this.iniciarSalto();
-                    tocandoSuelo=ConstantesEntidades.AIRE;
-                }
-                break;
             case ConstantesEntidades.ARRIBA:
-                if(tocandoSuelo==ConstantesEntidades.SUELO){
+                if(tocandoSuelo==ConstantesEntidades.SUELO && !saltando){
                     this.iniciarSalto();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 }
@@ -129,11 +117,13 @@ public class Jugador extends EntidadDinamica implements Visitable{
             case ConstantesEntidades.DERECHA:
                 claveADevolver= "moverDerecha";
                 break;
-            case ConstantesEntidades.ARRIBA_DERECHA:
-                    claveADevolver="saltandoDerecha";
-                    break;
-                case ConstantesEntidades.ARRIBA_IZQUIERDA:
+            case ConstantesEntidades.ARRIBA:
+                if(direccionAnterior==ConstantesEntidades.IZQUIERDA){
                     claveADevolver="saltandoIzquierda";
+                }
+                else{
+                    claveADevolver="saltandoDerecha";
+                }
                     break;
         }
         return claveADevolver;

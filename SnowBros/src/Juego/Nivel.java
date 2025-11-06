@@ -178,6 +178,7 @@ public class Nivel {
         return silueta;
     }
     public void notificarObservers(){
+        jugador.getObserver().actualizar(jugador.getDireccion(), jugador.getTocandoSuelo());
         for(Enemigo e:new ArrayList<>(this.getEnemigos())){
             e.getObserver().actualizar(e.getDireccion(),e.getTocandoSuelo());
         }

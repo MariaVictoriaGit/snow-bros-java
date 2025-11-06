@@ -25,7 +25,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     protected PanelPantallaFinDelJuego panelPantallaFinDelJuego;
     protected Juego miJuego;
     protected boolean dominio=true;//TODO ...............................................................................
-    
+    private boolean movDerecha=false;
+    private boolean movIzquierda=false;
+
     public GUI(Juego juego){
         this.miJuego=juego;
         panelPantallaPrincipal = new PanelPantallaPrincipal(this);
@@ -54,56 +56,68 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
             private int direccionAnterior;
             public void keyPressed(KeyEvent event) {
                 int keyCode=event.getKeyCode();
-                if (keyCode==KeyEvent.VK_A) {
+                switch(keyCode){
+                    case KeyEvent.VK_A:
                         direccionAnterior=ConstantesEntidades.IZQUIERDA;
-                        miJuego.getJugador().mover(ConstantesEntidades.IZQUIERDA);
-                        miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.IZQUIERDA, miJuego.getJugador().getTocandoSuelo());             
-                }else if(keyCode==KeyEvent.VK_D){
+                        movIzquierda=true;
+                        break;
+                    case KeyEvent.VK_D:
                         direccionAnterior=ConstantesEntidades.DERECHA;
-                        miJuego.getJugador().mover(ConstantesEntidades.DERECHA);
-                        miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.DERECHA, miJuego.getJugador().getTocandoSuelo());   
-                }else if(keyCode==KeyEvent.VK_W){
-                    //if (miJuego.getJugador().getTocandoSuelo()) { poner una vez el salto este perfecto
-                    if(direccionAnterior==ConstantesEntidades.IZQUIERDA){
-                                miJuego.getJugador().mover(ConstantesEntidades.ARRIBA_IZQUIERDA);
-                                miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ARRIBA_IZQUIERDA, miJuego.getJugador().getTocandoSuelo());
-                    }else if(direccionAnterior==ConstantesEntidades.DERECHA){
-                                miJuego.getJugador().mover(ConstantesEntidades.ARRIBA_DERECHA);
-                                miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ARRIBA_DERECHA,miJuego.getJugador().getTocandoSuelo());
-            }
-                    //}
-                    //controladorDeSonido.reproducirSonidoDeSalto();
-                } else if (keyCode== KeyEvent.VK_S) {//podria ser para bajar la escalera
-                    //miJuego.setDirection(ConstantesEntidades.ABAJO);
-                    miJuego.getJugador().verificarSuelo();     //puesto en esta tecla para testear la caida
-                    
-                }else if (keyCode == KeyEvent.VK_SPACE) {
+                        movDerecha=true;
+                        break;
+                    case KeyEvent.VK_W:
+                        if(!miJuego.getJugador().getSaltando() && miJuego.getJugador().getTocandoSuelo()==ConstantesEntidades.SUELO){
+                            miJuego.getJugador().setSaltando(true);
+                        }
+                        break;
+                    case KeyEvent.VK_S:
+                        if(miJuego.getJugador().estaHabilitadoASubirEscalera()){
+                            miJuego.getJugador().mover(ConstantesEntidades.ABAJO);
+                            miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ABAJO, miJuego.getJugador().getTocandoSuelo());
+                        }
+                        break;
+                    case KeyEvent.VK_SPACE:
                         miJuego.shootJugador();
+                        break;
+                        
 
-                } else if(keyCode == KeyEvent.VK_ESCAPE) {
-                        System.exit(0);
-                } else if(keyCode == KeyEvent.VK_R) {
-                        miJuego.reiniciarNivel();
-                } else if(keyCode == KeyEvent.VK_UP){
-                    if(miJuego.getJugador().estaHabilitadoASubirEscalera()){
-                        miJuego.getJugador().mover(ConstantesEntidades.ARRIBA);
-                        miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ARRIBA_DERECHA, miJuego.getJugador().getTocandoSuelo());
-                    }
-                } else if(keyCode == KeyEvent.VK_DOWN){
-                    if(miJuego.getJugador().estaHabilitadoASubirEscalera()){
-                        miJuego.getJugador().mover(ConstantesEntidades.ABAJO);
-                        miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ABAJO, miJuego.getJugador().getTocandoSuelo());
-                    }
-                } 
+                }
             }
+                    //controladorDeSonido.reproducirSonidoDeSalto();
+               
+               //     } else if(keyCode == KeyEvent.VK_ESCAPE) {
+              //           System.exit(0);
+              //    } else if(keyCode == KeyEvent.VK_R) {
+              //          miJuego.reiniciarNivel();
             public void keyReleased(KeyEvent event) {
                 int keyCode=event.getKeyCode();
                 if (keyCode==KeyEvent.VK_A || keyCode==KeyEvent.VK_D) {
-                    miJuego.getJugador().mover(ConstantesEntidades.QUIETO);
-                    miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.QUIETO, miJuego.getJugador().getTocandoSuelo());
+                    if(keyCode==KeyEvent.VK_A){
+                        movIzquierda=false;
+                    }
+                    else{
+                        movDerecha=false;
+                    }
                 }
             }
         });
+    }
+    public void moverJugadorSegunInput(){
+        if(movDerecha){
+           miJuego.getJugador().mover(ConstantesEntidades.DERECHA);
+        }
+        else if(movIzquierda){
+            miJuego.getJugador().mover(ConstantesEntidades.IZQUIERDA);
+        }
+        else{
+            miJuego.getJugador().mover(ConstantesEntidades.QUIETO);
+            movDerecha=false;
+            movIzquierda=false;
+        }
+        if(miJuego.getJugador().getSaltando()){
+           miJuego.getJugador().mover(ConstantesEntidades.ARRIBA);
+            
+        }
     }
      public void mostrarPantallaPrincipal() {
         ventana.setContentPane(panelPantallaPrincipal);
@@ -219,7 +233,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     public PanelPantallaJuego getPantalla(){
         return panelPantallaJuego;
-    }
+    } 
     public void mostrarPantallaGameOver() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'mostrarPantallaGameOver'");
