@@ -3,6 +3,7 @@ package SnowBros.src.Juego;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JLabel;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -10,9 +11,14 @@ import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaQuebradiza;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
-import SnowBros.src.Fabricas.*;
+import SnowBros.src.Fabricas.Alternativo;
+import SnowBros.src.Fabricas.FabricaEntidades;
+import SnowBros.src.Fabricas.FabricaSprites;
+import SnowBros.src.Fabricas.Original;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.ObserverJugador;
@@ -21,14 +27,12 @@ import SnowBros.src.Parser.ParserNivel;
 
 public class Juego {
     protected Nivel nivel;
-    protected String nombreJugador;
     protected int puntajeJugador;
     protected Temporizador tiempo;//TODO revisar control del tiempo del juego 
     protected boolean reiniciarJugador;
     protected Jugador jugador;
     protected Sonido sonido;
     protected Ranking ranking;
-    protected String modoDeJuego;
     protected GUI controladorGrafica; 
     protected FabricaSprites fabricaSprites;
     protected FabricaEntidades fabricaEntidades;
@@ -37,7 +41,8 @@ public class Juego {
     protected Thread hiloColision;
     protected Thread hiloGlobal;
     protected Boolean juegoEnEjecucion;
-
+    protected String nombreJugador;
+    protected String modoDeJuego;
     public Juego(){
         reiniciarJugador=false;
         ranking=new Ranking();
@@ -50,34 +55,38 @@ public class Juego {
         controladorGrafica=miControlador;
     }
     public void iniciar(boolean dominio){
-        if(dominio)
+        if(dominio){
             fabricaSprites = new Original();
-        else
+        }
+        else{
             fabricaSprites = new Alternativo();
+        }
         tiempo.iniciar();
         fabricaEntidades = new FabricaEntidades(fabricaSprites);
         parseActual= new ParserNivel(fabricaSprites);
           // Si el nivel todavía no fue creado, crealo antes de pedir el jugador
-        if (nivel == null)
+        if (nivel == null) {
              nivel = parseActual.generarNivel(1); // o el nivel que corresponda
+        }
         if(jugador==null){
             nivel = parseActual.generarNivel(1);
             jugador = nivel.getJugador();
             jugador.setJuego(this);
             jugador.setNombre(nombreJugador);
-        }else{//si ya existe el jugador
+        }else{
+            //si ya existe el jugador
             if(jugador.getVidas()==0)
                 reiniciarJugador=false;
             if(reiniciarJugador){
                 int nivelActual=nivel.getNivelActual();
                 nivel=parseActual.generarNivel(nivelActual);
-            } else{
+             } else{
                 jugador.setVidas();
                 jugador.actualizarPuntaje(0);
                 nivel= parseActual.generarNivel(1);
             }
         }
-        //TODO
+        //TODO -..................................................................................
         this.registrarObservers();
         this.crearPowerUps();
         jugador.getObserver().actualizar();
@@ -108,6 +117,8 @@ public class Juego {
                         for(Pared p: new ArrayList<>(nivelActual.getParedes())){
                             if (enemigo.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) {
                                 p.aceptar(enemigo);
+                            }
+                        }
                     }
                     for(Pared p: new ArrayList<>(nivelActual.getParedes())){
                         if (jugadorActual.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) {
@@ -219,10 +230,12 @@ public class Juego {
     }
     public void reiniciarNivel(){
         if(jugador.getVidas()==0){
+            ranking.setJugador(jugador.getNombre(),jugador.getPuntaje(),modoDeJuego);
             detenerJuego();
             nivel=null;
             jugador=null;
-            controladorGrafica.accionarPantallaFinDelJuego(); //hasta hacer la gameOver
+            tiempo.reiniciar();
+            controladorGrafica.accionarPantallaFinDelJuego(); // gameOver
         }
         else 
             controladorGrafica.accionarInicioJuego();
@@ -320,7 +333,8 @@ public class Juego {
     }
     public void eliminarPowerUp(PowerUp p){
         controladorGrafica.getPantalla().eliminarLabel(p.getLabel());   
-        nivel.eliminarPowerUp(p);
+        if(nivel!=null) 
+            nivel.eliminarPowerUp(p);
     }
     public void eliminarEntidadGraficamente(EntidadDinamica d){
         controladorGrafica.getPantalla().eliminarLabel((JLabel) d.getObserver());
@@ -334,7 +348,7 @@ public class Juego {
     } 
     public void setModoDeJuego(String modo){
         this.modoDeJuego=modo;
-    }   
+    }  
     private void crearCalabaza(){
         Calabaza cala=fabricaEntidades.getCalabaza(320, 120);
         cala.setNivel(nivel);
