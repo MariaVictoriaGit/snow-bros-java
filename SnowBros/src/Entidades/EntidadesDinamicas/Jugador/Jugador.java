@@ -84,7 +84,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         }   
     }
     public DisparoJugador disparar(){
-        Sonido.getInstancia().reproducir("disparo.wav");
+        Sonido.getInstancia().reproducirEfectoDeSonido("disparo.wav");
         int aumento=0;
         if(direccion == ConstantesEntidades.DERECHA){
             aumento=20;
@@ -147,6 +147,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public String getNombre(){
         return nombre;
     }
+    public void setNombre(String nombre){
+        this.nombre=nombre;
+    }
     public int getDirAnterior(){
         return dirAnterior;
     }
@@ -167,7 +170,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public void perderVida(){
         if (!invencible){
-            Sonido.getInstancia().reproducir("muerte.wav");
+            Sonido.getInstancia().reproducirEfectoDeSonido("muerte.wav");
             vidas--;
             if (vidas > 0)
                 miJuego.actualizarVidas();
@@ -242,25 +245,25 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public void visitar(BotellaAzul b){
         actualizarPuntaje(b.getPuntaje());
-        Sonido.getInstancia().reproducir("agarrarObjeto.wav");
+        Sonido.getInstancia().reproducirEfectoDeSonido("agarrarObjeto.wav");
         miJuego.eliminarPowerUp(b);
         efectoBotellaAzul(b);
     }
     public void visitar(BotellaRoja b){
         actualizarPuntaje(b.getPuntaje());
-        Sonido.getInstancia().reproducir("agarrarObjeto.wav");
+        Sonido.getInstancia().reproducirEfectoDeSonido("agarrarObjeto.wav");
         miJuego.eliminarPowerUp(b);
         efectoBotellaRoja(b);
     }
     public void visitar(BotellaVerde b){
         actualizarPuntaje(b.getPuntaje());
-        Sonido.getInstancia().reproducir("agarrarObjeto.wav");
+        Sonido.getInstancia().reproducirEfectoDeSonido("agarrarObjeto.wav");
         miJuego.eliminarPowerUp(b);
         efectoBotellaVerde(b);
     }
     public void visitar(Fruta f){
         actualizarPuntaje(f.getPuntaje());
-        Sonido.getInstancia().reproducir("agarrarObjeto.wav");
+        Sonido.getInstancia().reproducirEfectoDeSonido("agarrarObjeto.wav");
         miJuego.eliminarPowerUp(f);
     }
     public void visitar(VidaExtra v){
@@ -269,7 +272,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
             miJuego.efectoVidaExtra();
         }
         actualizarPuntaje(v.getPuntaje());
-        Sonido.getInstancia().reproducir("agarrarObjeto.wav");    
+        Sonido.getInstancia().reproducirEfectoDeSonido("agarrarObjeto.wav");    
         miJuego.eliminarPowerUp(v);
     }
     public void visitar(PlataformaMovil e) {

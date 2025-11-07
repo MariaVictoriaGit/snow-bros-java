@@ -10,7 +10,6 @@ import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
-//import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Juego.Sonido;
@@ -81,48 +80,41 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                     case KeyEvent.VK_SPACE:
                         miJuego.shootJugador();
                         break;
-                        
-
                 }
             }
                     //controladorDeSonido.reproducirSonidoDeSalto();
-               
                //     } else if(keyCode == KeyEvent.VK_ESCAPE) {
               //           System.exit(0);
               //    } else if(keyCode == KeyEvent.VK_R) {
               //          miJuego.reiniciarNivel();
             public void keyReleased(KeyEvent event) {
                 int keyCode=event.getKeyCode();
-                if (keyCode==KeyEvent.VK_A || keyCode==KeyEvent.VK_D) {
-                    if(keyCode==KeyEvent.VK_A){
+                if (keyCode==KeyEvent.VK_A || keyCode==KeyEvent.VK_D)
+                    if(keyCode==KeyEvent.VK_A)
                         movIzquierda=false;
-                    }
-                    else{
+                    else
                         movDerecha=false;
-                    }
-                }
             }
         });
     }
     public void moverJugadorSegunInput(){
-        if(movDerecha){
+        if(movDerecha)
            miJuego.getJugador().mover(ConstantesEntidades.DERECHA);
-        }
-        else if(movIzquierda){
+        else if(movIzquierda)
             miJuego.getJugador().mover(ConstantesEntidades.IZQUIERDA);
-        }
         else{
             miJuego.getJugador().mover(ConstantesEntidades.QUIETO);
             movDerecha=false;
             movIzquierda=false;
         }
-        if(miJuego.getJugador().getSaltando()){
+        if(miJuego.getJugador().getSaltando())
            miJuego.getJugador().mover(ConstantesEntidades.ARRIBA);
-            
-        }
     }
-     public void mostrarPantallaPrincipal() {
-        Sonido.getInstancia().reproducir("temaMusicalMenu.wav");
+    public JFrame getVentana() {
+        return ventana;
+    }   
+    public void mostrarPantallaPrincipal() {
+        Sonido.getInstancia().reproducirMusica("temaMusicalMenu.wav");
         ventana.setContentPane(panelPantallaPrincipal);
         ventana.requestFocusInWindow();
         refrescar();
@@ -148,6 +140,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         refrescar();
     }    
     public void mostrarPantallaRanking() {
+        panelPantallaRanking.actualizarRanking(miJuego.getRanking());
         ventana.setContentPane(panelPantallaRanking);
         ventana.requestFocusInWindow();
         refrescar();
@@ -161,7 +154,6 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         refrescar();
         //controladorDeSonido.reproducirSonidoDeFondo();
     }
-    //accionarPantallaPrincipal
     public void accionarPantallaFinDelJuego(){
         ventana.setContentPane(panelPantallaFinDelJuego);
         ventana.requestFocusInWindow();
@@ -172,7 +164,6 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         ventana.requestFocusInWindow();
         refrescar();
     }
-    //accionarPantallaFinDeJuego
     public void accionarPantallaModoJuego() {
        ventana.setContentPane(panelPantallaModo);
        ventana.requestFocusInWindow();
@@ -188,15 +179,20 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         ventana.requestFocusInWindow();
         refrescar();
     }
-    public void cambiarModoJuego(int modo) {
-        // ToDo
-        mostrarPantallaPrincipal();
+    public void cambiarModoJuego(String modo) {
+        miJuego.setModoDeJuego(modo);
+        String nombre = javax.swing.JOptionPane.showInputDialog(ventana,"Ingresa tu nombre(5 caracteres) para el ranking:","Registro de Jugador",javax.swing.JOptionPane.PLAIN_MESSAGE);
+        if (nombre == null || nombre.trim().isEmpty())
+            nombre = "Anónimo";
+        miJuego.setNombreJugador(nombre);
+        miJuego.getRanking().setJugador(nombre, 0, modo);
     }
     public void pasarNivel(){
         miJuego.superarNivel();
     }
     public void reiniciarNivel(){
         miJuego.reiniciarNivel();
+
     }
     public ObserverGrafico registrarEntidad(EntidadDinamica entidad){
         ObserverGrafico observerEntidad = panelPantallaJuego.incorporarEntidad(entidad);

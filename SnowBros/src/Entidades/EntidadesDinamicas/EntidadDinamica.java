@@ -128,7 +128,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   }
   public void iniciarSalto(){
     if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
-      Sonido.getInstancia().reproducir("salto.wav");
+      Sonido.getInstancia().reproducirEfectoDeSonido("salto.wav");
       saltando=true;
       enAire=true;
       tocandoSuelo=ConstantesEntidades.AIRE;

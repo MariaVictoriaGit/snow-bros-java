@@ -91,7 +91,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       return muerto; 
    }
    public void congelar(){
-      Sonido.getInstancia().reproducir("enemigoMuereBolaNieve.wav");
+      Sonido.getInstancia().reproducirEfectoDeSonido("enemigoMuereBolaNieve.wav");
       detenido=true;
       direccion=ConstantesEntidades.QUIETO;
       observer.actualizarBolaDeNieve();

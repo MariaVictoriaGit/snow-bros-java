@@ -1,18 +1,14 @@
 package SnowBros.src.Paneles;
-
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Grafica.GUI;
-
 
 public class PanelPantallaModo extends JPanel{
     protected JLabel imagenFondo;
@@ -51,7 +47,6 @@ public class PanelPantallaModo extends JPanel{
     public void agregarBotonSupervivencia(){
         botonSupervivencia = new JButton();
 		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonSupervivencia.jpg"));
-        
         botonSupervivencia.setIcon(iconoBoton);
         botonSupervivencia.setBounds(300, 256, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         transparentarBoton(botonSupervivencia);
@@ -70,24 +65,28 @@ public class PanelPantallaModo extends JPanel{
     public void registrarOyenteBotonClasico(){
         botonClasico.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-                miControladorGrafico.accionarInicioJuego();
-                miControladorGrafico.mostrarPantallaJuego();
+                miControladorGrafico.cambiarModoJuego("Clasico");
+                comenzarJuego();
 			}
 		});
     }
     public void registrarOyenteBotonContrarreloj(){
         botonContrarreloj.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-            miControladorGrafico.accionarInicioJuego();
-            miControladorGrafico.mostrarPantallaJuego();
+                miControladorGrafico.cambiarModoJuego("Contrarreloj");
+                comenzarJuego();
 		}
 		});
+    }
+    private void comenzarJuego(){
+        miControladorGrafico.accionarInicioJuego();
+        miControladorGrafico.mostrarPantallaJuego();        
     }
     public void registrarOyenteBotonSupervivencia(){
         botonSupervivencia.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-                miControladorGrafico.accionarInicioJuego();
-                miControladorGrafico.mostrarPantallaJuego();
+                miControladorGrafico.cambiarModoJuego("Supervivencia");
+                comenzarJuego();
 			}
 		});
     }

@@ -30,7 +30,9 @@ public class DisparoJugador extends EntidadDinamica {
     }
     public void setDireccion(int direccion, int dirAnt){
         this.direccion = direccion;
-        this.dirAnterior = dirAnt;
+        if(dirAnt!=ConstantesEntidades.QUIETO && dirAnt!=ConstantesEntidades.ARRIBA_DERECHA && dirAnt!=ConstantesEntidades.ARRIBA_IZQUIERDA){
+            this.dirAnterior = dirAnt;
+        }
     }
     public void mover(){
         switch (direccion) {

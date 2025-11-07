@@ -5,5 +5,5 @@ interface ControladorDeVista {
     public void accionarInicioJuego();
     public void accionarPantallaRanking();
     public void accionarPantallaModoJuego();
-    public void cambiarModoJuego(int modo);
+    public void cambiarModoJuego(String modo);
 }

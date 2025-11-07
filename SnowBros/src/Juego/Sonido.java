@@ -11,6 +11,7 @@ import javax.sound.sampled.Clip;
 public class Sonido {
     private static Sonido instancia;
     private Map<String, Clip> mapeo;
+    private Clip clipMusical;
 
     private Sonido(){
         mapeo=new HashMap<String,Clip>();
@@ -21,7 +22,16 @@ public class Sonido {
         }
         return instancia;
     }
-    public void reproducir(String s){
+    public void reproducirMusica(String s){
+        if(clipMusical!=null){
+            clipMusical.stop();
+            clipMusical.close();
+            clipMusical = null;
+        }
+        clipMusical = cargarSonido(s);
+        clipMusical.loop(Clip.LOOP_CONTINUOUSLY);
+    }
+    public void reproducirEfectoDeSonido(String s){
         Clip clip = mapeo.get(s);
         if(clip == null){
             clip = cargarSonido(s);
@@ -35,6 +45,9 @@ public class Sonido {
             clip.setFramePosition(0);
             clip.start();
         }
+    }
+    public void frenar(String s){
+        mapeo.get(s).stop();
     }
     private Clip cargarSonido(String r){
         try {
