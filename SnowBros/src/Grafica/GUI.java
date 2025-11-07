@@ -155,6 +155,8 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         //controladorDeSonido.reproducirSonidoDeFondo();
     }
     public void accionarPantallaFinDelJuego(){
+        Sonido.getInstancia().frenarMusica();
+        Sonido.getInstancia().reproducirEfectoDeSonido("gameOver.wav");
         ventana.setContentPane(panelPantallaFinDelJuego);
         ventana.requestFocusInWindow();
         refrescar();

@@ -31,6 +31,13 @@ public class Sonido {
         clipMusical = cargarSonido(s);
         clipMusical.loop(Clip.LOOP_CONTINUOUSLY);
     }
+    public void frenarMusica(){
+        if(clipMusical!=null){
+            clipMusical.stop();
+            clipMusical.close();
+            clipMusical = null;
+        }
+    }
     public void reproducirEfectoDeSonido(String s){
         Clip clip = mapeo.get(s);
         if(clip == null){
@@ -45,9 +52,6 @@ public class Sonido {
             clip.setFramePosition(0);
             clip.start();
         }
-    }
-    public void frenar(String s){
-        mapeo.get(s).stop();
     }
     private Clip cargarSonido(String r){
         try {
