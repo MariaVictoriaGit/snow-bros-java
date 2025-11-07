@@ -122,7 +122,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         }
     }
      public void mostrarPantallaPrincipal() {
-        Sonido.getInstancia().reproducir("temaMusicalMenu.wav");
+        Sonido.getInstancia().reproducirMusica("temaMusicalMenu.wav");
         ventana.setContentPane(panelPantallaPrincipal);
         ventana.requestFocusInWindow();
         refrescar();

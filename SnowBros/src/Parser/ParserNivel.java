@@ -200,13 +200,16 @@ public class ParserNivel{
     public String obtenerArchivoNivel(int modo) {
         switch (modo) {
             case 1:
-                Sonido.getInstancia().reproducir("temaMusicalNivel1.wav");
+                Sonido.getInstancia().reproducirMusica("temaMusicalNivel1.wav");
                 return ConstantesNiveles.CLASICO1;
             case 2:
+                Sonido.getInstancia().reproducirMusica("temaMusicalNivel2.wav");
                 return ConstantesNiveles.CLASICO2;
             case 3:
+                Sonido.getInstancia().reproducirMusica("temaMusicalNivel3.wav");
                 return ConstantesNiveles.SUPERVIVENCIA1;
             case 4:
+                Sonido.getInstancia().reproducirMusica("temaMusicalNivel4.wav");
                 return ConstantesNiveles.SUPERVIVENCIA2;
             case 5:
                 return ConstantesNiveles.CONTRARRELOJ1;
