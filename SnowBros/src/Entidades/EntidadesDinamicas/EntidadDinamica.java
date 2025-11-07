@@ -27,6 +27,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   protected int tocandoSuelo;
   protected ObserverGrafico observer;//ObserverEntidad
 
+
   public EntidadDinamica(int posX, int posY, Sprite mSprite){
     super(posX, posY, mSprite);
     observer=new ObserverEntidad(this);
@@ -148,7 +149,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
 }
   public void visitar(Enemigo e) {}
   public void visitar(Plataforma e) {
-    velocidad=8;                
+    velocidad=6;                
     visitarPlataforma(e);
   }
   public void visitar(PlataformaMovil e) {
@@ -159,7 +160,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   public void visitar(PlataformaQuebradiza e) {
     visitarPlataforma(e);
   }
-  private void visitarPlataforma(Plataforma e){
+  protected void visitarPlataforma(Plataforma e){
     if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
       this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
       this.setPosY(e.getPosY() - this.getHitbox().getAlto());
