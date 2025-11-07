@@ -129,6 +129,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     //se ignoran
   }
   public void visitar(Plataforma e) {
+    velocidad=8;                
     visitarPlataforma(e);
   }
   public void visitar(PlataformaMovil e) {
