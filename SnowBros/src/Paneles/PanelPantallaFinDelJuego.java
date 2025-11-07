@@ -18,16 +18,18 @@ public class PanelPantallaFinDelJuego extends JPanel {
     protected JButton botonReinicio;
     protected JButton botonSalir;
     protected JButton botonNuevaPartida;
+    protected JButton botonRanking;
     protected GUI miControladorGrafico;
     
     public PanelPantallaFinDelJuego(GUI miControladorGrafico){
         this.miControladorGrafico=miControladorGrafico;
         setSize(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO);
         setLayout(null);
-        agregarImagenFondo();
         agregarBotonReinicio();
         agregarBotonSalir();
         agregarBotonNuevaPartida();
+        agregarBotonRanking();
+        agregarImagenFondo();
     }
     public void agregarImagenFondo(){
         imagenFondo = new JLabel();
@@ -36,7 +38,7 @@ public class PanelPantallaFinDelJuego extends JPanel {
         Icon iconoImagenEscalada = new ImageIcon(imagenEscalada);
         imagenFondo.setIcon(iconoImagenEscalada);
         imagenFondo.setBounds(0,0,ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO);
-        add(imagenFondo);
+        add(imagenFondo,-1);
     }
     public void agregarBotonReinicio(){
         botonReinicio = new JButton();
@@ -55,6 +57,15 @@ public class PanelPantallaFinDelJuego extends JPanel {
         transparentarBoton(botonSalir);
         registrarOyenteBotonSalir();
         add(botonSalir,0);
+    }
+    private void agregarBotonRanking(){
+        botonRanking= new JButton();
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonRanking.jpg"));
+        botonRanking.setIcon(iconoBoton);
+        botonRanking.setBounds(530,405,iconoBoton.getIconWidth(),iconoBoton.getIconHeight());
+        transparentarBoton(botonRanking);
+        registrarOyenteBotonRanking();
+        add(botonRanking);
     }
     public void agregarBotonNuevaPartida(){
         botonNuevaPartida = new JButton();
@@ -95,6 +106,14 @@ public class PanelPantallaFinDelJuego extends JPanel {
             }
         });
     }    
+    private void registrarOyenteBotonRanking(){
+        botonRanking.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                miControladorGrafico.accionarPantallaRanking();
+                miControladorGrafico.mostrarPantallaRanking();
+            }
+        });
+    }
     private void transparentarBoton(JButton boton){
         boton.setOpaque(false);
 		boton.setContentAreaFilled(false);

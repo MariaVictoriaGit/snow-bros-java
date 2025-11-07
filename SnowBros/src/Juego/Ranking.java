@@ -1,10 +1,8 @@
 package SnowBros.src.Juego;
+
 import java.util.LinkedHashMap;
-//import java.security.KeyStore.Entry;
 import java.util.LinkedList;
 import java.util.Map;
-
-import SnowBros.src.Datos.ConstantesNiveles;
 
 public class Ranking{
     protected LinkedHashMap<String, Integer> topClasico;
@@ -16,29 +14,21 @@ public class Ranking{
         topSupervivencia=new LinkedHashMap<String, Integer>();  
         topContrarreloj=new LinkedHashMap<String, Integer>();
     }
-    /*public void setNivel(String s, int i){
-        //TODO implementar
-    }*/
-    public void setJugador(String nombre, int puntaje, String modo){//para agregar al respectivo modo
-        if((modo==ConstantesNiveles.CLASICO1) || (modo==ConstantesNiveles.CLASICO2)){
-            topClasico.put(nombre,puntaje);
-            ordenarTopClasico();
-        }else if((modo==ConstantesNiveles.SUPERVIVENCIA1) || (modo==ConstantesNiveles.SUPERVIVENCIA2)){
-            topSupervivencia.put(nombre,puntaje);
-            ordenarTopSupervivencia();
-        }else if((modo==ConstantesNiveles.CONTRARRELOJ1) || (modo==ConstantesNiveles.CONTRARRELOJ2)){
-            topContrarreloj.put(nombre,puntaje);
-            ordenarTopContrreloj();
+    public void setJugador(String nombre, int puntajeJugador, String modoDeJuego){//para agregar al respectivo modo
+        if (modoDeJuego.equals("Clasico")) {
+            actualizarRanking(topClasico, nombre, puntajeJugador);
+        } else if (modoDeJuego.equals("Supervivencia")) {
+            actualizarRanking(topSupervivencia, nombre, puntajeJugador);
+        } else if (modoDeJuego.equals("Contrarreloj")) {
+            actualizarRanking(topContrarreloj, nombre, puntajeJugador);
         }
     }
-    public void ordenarTopClasico(){
-        ordenar(topClasico);
-    }
-    public void ordenarTopSupervivencia(){
-        ordenar(topSupervivencia);
-    }
-    public void ordenarTopContrreloj(){
-        ordenar(topContrarreloj);
+ private void actualizarRanking(LinkedHashMap<String, Integer> mapa, String nombre, int puntaje) {
+        if (mapa.containsKey(nombre))
+            mapa.put(nombre, puntaje);
+        else
+            mapa.put(nombre, puntaje);
+        ordenar(mapa);
     }
     public LinkedHashMap<String, Integer> getTopClasico(){
         return topClasico;
@@ -68,7 +58,4 @@ public class Ranking{
             mapeo.put(jugador.getKey(),jugador.getValue());
         }
     }
-    /*public Entry<String, Integer> getTop(){
-        //TODO implementar
-    }*/
 }

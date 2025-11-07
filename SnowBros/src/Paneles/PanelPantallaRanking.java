@@ -1,11 +1,9 @@
 package SnowBros.src.Paneles;
-
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Grafica.GUI;
+import SnowBros.src.Juego.Ranking;
 
 public class PanelPantallaRanking extends JPanel {
     protected JLabel imagenFondo;
@@ -59,12 +58,12 @@ public class PanelPantallaRanking extends JPanel {
 		boton.setBorderPainted(false);
     }
     public void agregarRankings(){
-        int columnaClasico=290;
-        int columnaSupervivencia=418;
-        int columnaContrarreloj=598;
-        int tituloY=200;
-        int filaInicialY=10;
-        int separacionFilas=5;
+        int columnaClasico=200;
+        int columnaSupervivencia=400;
+        int columnaContrarreloj=600;
+        int tituloY=150;
+        int filaInicialY=180;
+        int separacionFilas=30;
         agregarColumnaRanking("Clásico",miControladorGrafico.getJuego().getRanking().getTopClasico(),columnaClasico,tituloY,filaInicialY,separacionFilas);
         agregarColumnaRanking("Supervivencia",miControladorGrafico.getJuego().getRanking().getTopSupervivencia(),columnaSupervivencia,tituloY,filaInicialY,separacionFilas);
         agregarColumnaRanking("Contrarreloj",miControladorGrafico.getJuego().getRanking().getTopContrarreloj(),columnaContrarreloj,tituloY,filaInicialY,separacionFilas);
@@ -73,7 +72,7 @@ public class PanelPantallaRanking extends JPanel {
         JLabel labelTitulo=new JLabel(titulo);
         labelTitulo.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
         labelTitulo.setForeground(java.awt.Color.YELLOW);
-        labelTitulo.setBounds(x,tituloY,450,20);
+        labelTitulo.setBounds(x,tituloY,200,30);
         labelTitulo.setOpaque(false);
         add(labelTitulo);
         int filaY=filaInicialY;
@@ -83,12 +82,20 @@ public class PanelPantallaRanking extends JPanel {
             int puntaje=entry.getValue();
             JLabel labelJugador=new JLabel(posicion+")"+nombre+".."+puntaje);
             labelJugador.setFont(new java.awt.Font("Arial",java.awt.Font.PLAIN,18));
-            labelJugador.setForeground(java.awt.Color.WHITE);
-            labelJugador.setBounds(x,filaY,300,25);
+            labelJugador.setForeground(java.awt.Color.YELLOW);
+            labelJugador.setBounds(x,filaY,200,25);
             labelJugador.setOpaque(false);
             add(labelJugador);
             filaY+=separacion;
             posicion++;
         }
+    }
+    public void actualizarRanking(Ranking ranking) {
+        removeAll();
+        agregarBotonSalir();
+        agregarRankings();
+        agregarImagenFondo();
+        revalidate();
+        repaint();
     }
 }
