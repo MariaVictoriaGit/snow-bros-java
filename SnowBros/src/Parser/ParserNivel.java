@@ -198,24 +198,34 @@ public class ParserNivel{
         return nivel;
     }
     public String obtenerArchivoNivel(int modo) {
+        String nivelACargar=null;
         switch (modo) {
             case 1:
                 Sonido.getInstancia().reproducirMusica("temaMusicalNivel1.wav");
-                return ConstantesNiveles.CLASICO1;
+                nivelACargar = ConstantesNiveles.CLASICO1;
+                break;
             case 2:
                 Sonido.getInstancia().reproducirMusica("temaMusicalNivel2.wav");
-                return ConstantesNiveles.CLASICO2;
+                nivelACargar = ConstantesNiveles.CLASICO2;
+                break;
             case 3:
                 Sonido.getInstancia().reproducirMusica("temaMusicalNivel3.wav");
-                return ConstantesNiveles.SUPERVIVENCIA1;
+                nivelACargar = ConstantesNiveles.SUPERVIVENCIA1;
+                break;
             case 4:
                 Sonido.getInstancia().reproducirMusica("temaMusicalNivel4.wav");
-                return ConstantesNiveles.SUPERVIVENCIA2;
+                nivelACargar = ConstantesNiveles.SUPERVIVENCIA2;
+                break;
             case 5:
-                return ConstantesNiveles.CONTRARRELOJ1;
-            default:
-                return ConstantesNiveles.CONTRARRELOJ2;
+                Sonido.getInstancia().reproducirMusica("temaMusicalNivel5.wav");
+                nivelACargar = ConstantesNiveles.CONTRARRELOJ1;
+                break;
+            case 6:
+                Sonido.getInstancia().reproducirMusica("temaMusicalNivel6.wav");
+                nivelACargar = ConstantesNiveles.CONTRARRELOJ2;
+                break;
         }
+        return nivelACargar;
        }
     //TODO metodos que segun el nombre del archivo condicione el modo de juego
     //TODO original y alternativo
