@@ -1,5 +1,7 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
 
+import java.awt.Rectangle;
+
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
@@ -12,6 +14,7 @@ import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Visitor.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaQuebradiza;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
@@ -26,8 +29,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
     protected int posXoriginal;
     protected int posYoriginal;
     protected boolean habilitadoASubirEscalera;
-    boolean invencible;
-    
+    protected boolean invencible;
+    protected boolean enSueloResbaladizo;
     public Jugador(int x,int y, Sprite mISprite){//no se usa observerJugador y en entidadDinamica se le asigna un observer a cada uno
         super(x,y,mISprite);
         vidas=ConstantesDificultad.VIDAS_INICIO;
@@ -39,6 +42,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         posXoriginal = x;
         posYoriginal = y;
         invencible=false;
+        enSueloResbaladizo=true;
     }
     public void mover(){
         //TODO ver como manejamos la herencia pq es de entidad dinamica
@@ -230,6 +234,12 @@ public class Jugador extends EntidadDinamica implements Visitable{
         else
             this.perderVida();
     }
+    public void visitar(Plataforma p){
+        if(enSueloResbaladizo)
+            enSueloResbaladizo=false;
+        velocidad=6;                
+        visitarPlataforma(p);
+    }
     public void visitar(BotellaAzul b){
         actualizarPuntaje(b.getPuntaje());
         Sonido.getInstancia().reproducir("agarrarObjeto.wav");
@@ -287,7 +297,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public void visitar(SueloResbaladizo e){
         velocidad=1;
-        
+        enSueloResbaladizo=true;
     }
     public void visitar(TrampaPinchos t){
         perderVida();    

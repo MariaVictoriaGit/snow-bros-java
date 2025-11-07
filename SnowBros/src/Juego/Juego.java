@@ -38,12 +38,16 @@ public class Juego {
     protected FabricaEntidades fabricaEntidades;
     protected ParserNivel parseActual;
     private Temporizador tiempoAntesAparicionCalabaza;
+    protected Thread hiloColision;
+    protected Thread hiloGlobal;
+    protected Boolean juegoEnEjecucion;
 
     public Juego(){
         reiniciarJugador=false;
         ranking=new Ranking();
         tiempo= new Temporizador(); 
         tiempoAntesAparicionCalabaza= new Temporizador(60);
+        juegoEnEjecucion=false;
     }
     //metodos de configuracionaa
     public void setControladorGrafica(GUI miControlador) {
@@ -86,66 +90,75 @@ public class Juego {
         jugador.getObserver().actualizar();
         tiempoAntesAparicionCalabaza.setAccionAlFinalizar(()->crearCalabaza());
         tiempoAntesAparicionCalabaza.iniciar();
+        juegoEnEjecucion=true;
+        iniciarHilos();
+    }
 
-        Thread hiloColision = new Thread(() -> {
-            while(!nivel.getEnemigos().isEmpty()){
-                    for(Enemigo enemigo : new ArrayList<>(nivel.getEnemigos())){
-                        if (jugador.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) {
+    private void iniciarHilos(){
+            hiloColision = new Thread(() -> {
+            while(juegoEnEjecucion&&nivel!=null&&!nivel.getEnemigos().isEmpty()){
+                    //variables locales creadas para que cuando el juego termine en mitad de ejecucion y nivel cambie a null, no siga usando el nivel nulo
+                    Nivel nivelActual=nivel;
+                    Jugador jugadorActual=jugador;
+                    if(nivel==null||jugador==null)break;
+                    for(Enemigo enemigo : new ArrayList<>(nivelActual.getEnemigos())){
+                        if (jugadorActual.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) {
                             enemigo.aceptar(jugador);
                         }
-                          if(!nivel.getDisparos().isEmpty())
-                            for (DisparoJugador disparo: nivel.getDisparos()){
-                        if (disparo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) {
-                            enemigo.aceptar(disparo);
+                        if(!nivelActual.getDisparos().isEmpty()){
+                            for (DisparoJugador disparo: nivelActual.getDisparos()){
+                                if (disparo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) {
+                                    enemigo.aceptar(disparo);
+                                }
                             }
                         }
-                        for(Pared p: new ArrayList<>(nivel.getParedes())){
+                        for(Pared p: new ArrayList<>(nivelActual.getParedes())){
                             if (enemigo.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) {
                                 p.aceptar(enemigo);
                             }
                         }
                     }
-                    for(Pared p: new ArrayList<>(nivel.getParedes())){
-                        if (jugador.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) {
-                            p.aceptar(jugador);
+                    for(Pared p: new ArrayList<>(nivelActual.getParedes())){
+                        if (jugadorActual.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) {
+                            p.aceptar(jugadorActual);
                         }
                     }
-                   for(PowerUp entidad : new ArrayList<>(nivel.getPowerUps())){
-                        if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
-                            entidad.aceptar(jugador);
+                   for(PowerUp entidad : new ArrayList<>(nivelActual.getPowerUps())){
+                        if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
+                            entidad.aceptar(jugadorActual);
                         }
                     }
-                    for(Obstaculo entidad : new ArrayList<>(nivel.getObstaculos())){
-                        if (jugador.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
-                            entidad.aceptar(jugador);
+                    for(Obstaculo entidad : new ArrayList<>(nivelActual.getObstaculos())){
+                        if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) {
+                            entidad.aceptar(jugadorActual);
                         }
                     } 
-                    for(Plataforma plataforma: nivel.getPlataformas()){
-                        if(!nivel.getDisparos().isEmpty())
-                            for (DisparoJugador disparo: nivel.getDisparos()){
+                    for(Plataforma plataforma: nivelActual.getPlataformas()){
+                        if(!nivelActual.getDisparos().isEmpty())
+                            for (DisparoJugador disparo: nivelActual.getDisparos()){
                         if (disparo.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) {
                             plataforma.aceptar(disparo);
                             }
                         }
                     }
-                    for(PlataformaMovil movil:nivel.getPlataformasMovil()){
+                    for(PlataformaMovil movil:nivelActual.getPlataformasMovil()){
                         movil.mover();
-                        if(jugador.getHitbox().getRectangle().intersects(movil.getHitbox().getRectangle())) {
-                            movil.aceptar(jugador);
+                        if(jugadorActual.getHitbox().getRectangle().intersects(movil.getHitbox().getRectangle())) {
+                            movil.aceptar(jugadorActual);
                         }
                     }
                 
-                    if(!nivel.getBolasDeFuego().isEmpty()){
-                        for(BolaDeFuego bola: nivel.getBolasDeFuego()){
-                            if (bola.getHitbox().getRectangle().intersects(jugador.getHitbox().getRectangle())) {
-                                jugador.aceptar(bola);
+                    if(!nivelActual.getBolasDeFuego().isEmpty()){
+                        for(BolaDeFuego bola: nivelActual.getBolasDeFuego()){
+                            if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) {
+                                jugadorActual.aceptar(bola);
                             }
                         }
                     }
-                     if(!nivel.getBolasDeNieve().isEmpty()){
-                        for(BolaDeNieve bola: nivel.getBolasDeNieve()){
-                            if (bola.getHitbox().getRectangle().intersects(jugador.getHitbox().getRectangle())) {
-                                jugador.aceptar(bola);
+                     if(!nivelActual.getBolasDeNieve().isEmpty()){
+                        for(BolaDeNieve bola: nivelActual.getBolasDeNieve()){
+                            if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) {
+                                jugadorActual.aceptar(bola);
                             }
                         }
                     }
@@ -157,34 +170,38 @@ public class Juego {
                     }
             }
         });
-        Thread hiloGlobal = new Thread(() -> {
+        hiloGlobal = new Thread(() -> {
             final int FPS = 60;
             final long frameTime = 1000 / FPS;
 
-            while (!nivel.getEnemigos().isEmpty()) {
+            while (juegoEnEjecucion&&nivel!=null&&!nivel.getEnemigos().isEmpty()) {
+                //variables locales creadas para que cuando el juego termine en mitad de ejecucion y nivel cambie a null, no siga usando el nivel nulo
+                Nivel nivelActual=nivel;
+                Jugador jugadorActual=jugador;
+                if(nivel==null||jugador==null)break;
                 long inicio = System.currentTimeMillis();
                 controladorGrafica.moverJugadorSegunInput();
                 jugador.actualizarSalto();
-                if(!jugador.getSaltando()){
-                  jugador.verificarSuelo();
+                if(!jugadorActual.getSaltando()){
+                  jugadorActual.verificarSuelo();
                 }
-                for (Enemigo enemigo : nivel.getEnemigos()) {
+                for (Enemigo enemigo : nivelActual.getEnemigos()) {
                    enemigo.patronDeMovimiento();        
                    enemigo.verificarSuelo(); 
                 }
-                if(!nivel.getDisparos().isEmpty())
-                for (DisparoJugador disparo: nivel.getDisparos()){
+                if(!nivelActual.getDisparos().isEmpty())
+                for (DisparoJugador disparo: nivelActual.getDisparos()){
                     disparo.mover();
                 }
-                if(!nivel.getBolasDeFuego().isEmpty()){
-                    for (BolaDeFuego bola: nivel.getBolasDeFuego()){
+                if(!nivelActual.getBolasDeFuego().isEmpty()){
+                    for (BolaDeFuego bola: nivelActual.getBolasDeFuego()){
                     bola.mover();
                     } 
                 }
-                for(BolaDeNieve bolaDeNieve:nivel.getBolasDeNieve()){
+                for(BolaDeNieve bolaDeNieve:nivelActual.getBolasDeNieve()){
                     bolaDeNieve.mover();
                 }
-                nivel.notificarObservers();
+                nivelActual.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
                 long dormir = frameTime - duracion;
                 if (dormir > 0) {
@@ -200,10 +217,22 @@ public class Juego {
         });
         hiloGlobal.start();
         hiloColision.start();
+    
+    }
+    public void detenerJuego(){
+        juegoEnEjecucion=false;
+        if(hiloGlobal!=null&& Thread.currentThread() != hiloGlobal)
+            hiloGlobal.interrupt();
+        if(hiloColision!=null&& Thread.currentThread() != hiloColision)
+            hiloColision.interrupt();
     }
     public void reiniciarNivel(){
-        if(jugador.getVidas()==0)
+        if(jugador.getVidas()==0){
+            detenerJuego();
+            nivel=null;
+            jugador=null;
             controladorGrafica.accionarPantallaFinDelJuego(); //hasta hacer la gameOver
+        }
         else 
             controladorGrafica.accionarInicioJuego();
         //reiniciarJugador=true;
