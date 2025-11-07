@@ -289,8 +289,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
         return habilitadoASubirEscalera;
     }
     public void visitar(SueloResbaladizo e){
-        super.visitar(e);
-        posX+=3;
+        velocidad=1;
+        
     }
     public void visitar(TrampaPinchos t){
         perderVida();    
