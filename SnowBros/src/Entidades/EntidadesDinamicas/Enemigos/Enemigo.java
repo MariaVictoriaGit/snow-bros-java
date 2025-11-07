@@ -7,6 +7,7 @@ import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitable;
 
@@ -90,6 +91,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       return muerto; 
    }
    public void congelar(){
+      Sonido.getInstancia().reproducir("enemigoMuereBolaNieve.wav");
       detenido=true;
       direccion=ConstantesEntidades.QUIETO;
       observer.actualizarBolaDeNieve();

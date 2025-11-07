@@ -8,6 +8,7 @@ import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Grafica.Sprite;
 //import SnowBros.src.Juego.HitBox;
 import SnowBros.src.Juego.Juego;
+import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Visitor.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
@@ -43,7 +44,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
         //TODO ver como manejamos la herencia pq es de entidad dinamica
     }
     public void mover(int direccionAMover){
-        dirAnterior=direccion;
         switch (direccionAMover){
             case ConstantesEntidades.QUIETO:
                 habilitadoASubirEscalera=false;
@@ -80,6 +80,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         }   
     }
     public DisparoJugador disparar(){
+        Sonido.getInstancia().reproducir("disparo.wav");
         int aumento=0;
         if(direccion == ConstantesEntidades.DERECHA){
             aumento=20;
@@ -87,7 +88,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         else if(direccion == ConstantesEntidades.IZQUIERDA){
             aumento=-20;
         }
-        DisparoJugador disparo=miJuego.getFabricaEntidades().getDisparoJugador(posX + aumento, posY-5);
+        DisparoJugador disparo=miJuego.getFabricaEntidades().getDisparoJugador(posX + aumento, posY-7);
         disparo.setDireccion(this.direccion, this.dirAnterior);
         disparo.setPotenciaAumentada(disparoAumentado);
         return disparo;
@@ -162,6 +163,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public void perderVida(){
         if (!invencible){
+            Sonido.getInstancia().reproducir("muerte.wav");
             vidas--;
             if (vidas > 0)
                 miJuego.actualizarVidas();
@@ -230,21 +232,25 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public void visitar(BotellaAzul b){
         actualizarPuntaje(b.getPuntaje());
+        Sonido.getInstancia().reproducir("agarrarObjeto.wav");
         miJuego.eliminarPowerUp(b);
         efectoBotellaAzul(b);
     }
     public void visitar(BotellaRoja b){
         actualizarPuntaje(b.getPuntaje());
+        Sonido.getInstancia().reproducir("agarrarObjeto.wav");
         miJuego.eliminarPowerUp(b);
         efectoBotellaRoja(b);
     }
     public void visitar(BotellaVerde b){
         actualizarPuntaje(b.getPuntaje());
+        Sonido.getInstancia().reproducir("agarrarObjeto.wav");
         miJuego.eliminarPowerUp(b);
         efectoBotellaVerde(b);
     }
     public void visitar(Fruta f){
         actualizarPuntaje(f.getPuntaje());
+        Sonido.getInstancia().reproducir("agarrarObjeto.wav");
         miJuego.eliminarPowerUp(f);
     }
     public void visitar(VidaExtra v){
@@ -252,12 +258,16 @@ public class Jugador extends EntidadDinamica implements Visitable{
             vidas++;
             miJuego.efectoVidaExtra();
         }
-        actualizarPuntaje(v.getPuntaje());        
+        actualizarPuntaje(v.getPuntaje());
+        Sonido.getInstancia().reproducir("agarrarObjeto.wav");    
         miJuego.eliminarPowerUp(v);
     }
     public void visitar(PlataformaMovil e) {
         super.visitar(e);
-        actualizarPuntaje(e.getPuntaje());
+        if(!e.getUsada()){
+           actualizarPuntaje(e.getPuntaje());
+           e.setUsada();
+        }
     }
     public void visitar(PlataformaQuebradiza e) {
         if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
