@@ -78,7 +78,7 @@ public class Temporizador {
     public void setTiempoActual(int tiempo){
         tiempoActual=tiempo;
     }*/
-    public String stringDeTiempo(){
+    public String getStringDeTiempo(){
         int minutos=tiempoActual/60;
         int segundos=tiempoActual%60;
         return String.format("%02d:%02d", minutos, segundos);

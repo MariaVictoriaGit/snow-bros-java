@@ -1,7 +1,5 @@
 package SnowBros.src.Entidades.EntidadesDinamicas;
-
 import java.awt.Rectangle;
-
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
@@ -14,6 +12,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Visitor.Visitador;
 
 public abstract class EntidadDinamica extends Entidad implements Visitador{
@@ -21,6 +20,10 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   protected int dirAnterior;
   protected int velocidad;
   protected int velocidadY;
+  protected boolean saltando=false;
+  protected boolean enAire=false;
+  private int alturaSalto = 0;
+  private final int ALTURAMAXSALTO = 64;
   protected int tocandoSuelo;
   protected ObserverGrafico observer;//ObserverEntidad
 
@@ -37,9 +40,18 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   public int getDirAnterior(){
     return dirAnterior;
   }
+  public boolean getSaltando(){
+    return saltando;
+  }
+  public boolean getEnAire(){
+    return enAire;
+  }
   public void setDireccion(int direccion){
     this.direccion=direccion;
   }
+  public void setSaltando(boolean salto){
+    saltando=salto;
+  } 
   public abstract void mover();
   public void actualizar(int direccion, int tocandoSuelo){
     this.dirAnterior=this.direccion;
@@ -74,8 +86,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   }
   public void verificarSuelo(){
     boolean enSuelo=false;
-    for(Entidad e:this.nivel.getPlataformas()){
-    Plataforma p=(Plataforma)e;
+    for(Plataforma p:this.nivel.getPlataformas()){
       if(nivel.getJugador().getJuego().estaCerca(this,p,40)){
         if(hitbox.getBottomHitBox().intersects(p.getHitbox().getRectangle())){
           enSuelo=true;
@@ -97,8 +108,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
         posX-=this.ancho;
     }
     else if(this.getHitbox().getLeftHitBox().intersects(paredRectangle)) {
-        posX+=this.ancho;
-        //      if (hitbox.getRectangle().intersects(p.getHitbox().getRectangle())){
+        posX+=this.ancho;//      if (hitbox.getRectangle().intersects(p.getHitbox().getRectangle())){
     }
     hitbox.actualizarHitbox(posX, posY, ancho, alto);
   }
@@ -108,26 +118,35 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
       posY+=velocidadY;
       this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
       this.getObserver().actualizar(direccion, getTocandoSuelo()); 
-      for(Entidad p:nivel.getPlataformas()){
-        Plataforma plataforma= (Plataforma) p;
+      for(Plataforma p:nivel.getPlataformas()){
         if(nivel.getJugador().getJuego().estaCerca(this,p,40)){
-          plataforma.aceptar((Visitador) this);
-          tocandoSuelo=ConstantesEntidades.SUELO;
+          p.aceptar((Visitador) this);
         }
       }
     }
   }
   public void iniciarSalto(){
     if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
-      posY-=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
+      Sonido.getInstancia().reproducir("salto.wav");
+      saltando=true;
+      enAire=true;
       tocandoSuelo=ConstantesEntidades.AIRE;
-      observer.actualizar(direccion, getTocandoSuelo());
-      actualizarCaida();
+      posY-=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
     }
   }
-  public void visitar(Enemigo e) {
-    //se ignoran
-  }
+  public void actualizarSalto() {
+    if (saltando) {
+        if (alturaSalto < ALTURAMAXSALTO) {
+            posY -= ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
+            alturaSalto+=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
+            this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+        } else {
+              saltando = false;
+              alturaSalto=0;
+         }
+    }
+}
+  public void visitar(Enemigo e) {}
   public void visitar(Plataforma e) {
     velocidad=8;                
     visitarPlataforma(e);
@@ -144,29 +163,18 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
       this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
       this.setPosY(e.getPosY() - this.getHitbox().getAlto());
+      tocandoSuelo=ConstantesEntidades.SUELO;
+      saltando=false;
+      enAire=false;
+
 
     }
   }
-  public void visitar(BotellaAzul b) {
-    //lo ignora
-    throw new UnsupportedOperationException("Unimplemented method 'visitar'");
-  }
-  public void visitar(BotellaRoja b) {
-    //lo ignora
-    throw new UnsupportedOperationException("Unimplemented method 'visitar'");
-  }
-  public void visitar(BotellaVerde b) {
-    //lo ignora
-    throw new UnsupportedOperationException("Unimplemented method 'visitar'");
-  }
-  public void visitar(Fruta f) {
-    //lo ignora
-    throw new UnsupportedOperationException("Unimplemented method 'visitar'");
-  }
-  public void visitar(VidaExtra v) {
-    //lo ignora
-    throw new UnsupportedOperationException("Unimplemented method 'visitar'");
-  }
+  public void visitar(BotellaAzul b) {}
+  public void visitar(BotellaRoja b) {}
+  public void visitar(BotellaVerde b) {}
+  public void visitar(Fruta f) {}
+  public void visitar(VidaExtra v) {}
   public void visitar(Pared e){
     verificarPared(e);
   }

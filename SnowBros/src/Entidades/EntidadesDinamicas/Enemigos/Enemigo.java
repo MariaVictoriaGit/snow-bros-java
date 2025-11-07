@@ -2,10 +2,12 @@ package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
+import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitable;
 
@@ -18,6 +20,8 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected boolean muerto;
    protected boolean congelado;
    protected boolean detenido;
+   protected long tiempoEstado = 0;
+   protected int estado = EstadosDePatron.MOVERDERECHA;
 
    public Enemigo(int x, int y, Sprite sprites) {
       //la dificultad va a verse definida por lsa salud
@@ -87,6 +91,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       return muerto; 
    }
    public void congelar(){
+      Sonido.getInstancia().reproducir("enemigoMuereBolaNieve.wav");
       detenido=true;
       direccion=ConstantesEntidades.QUIETO;
       observer.actualizarBolaDeNieve();

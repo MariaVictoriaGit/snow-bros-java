@@ -9,8 +9,6 @@ public class RanaDeFuego extends Enemigo{
     protected static final int puntajeEmpujado = 300;
     protected boolean lanzandoBolas;
     protected int direccionDisparo;
-    private long tiempoEstado = 0;
-    private int estado = EstadosDePatron.MOVERDERECHA;
     private boolean bolaLanzada=false;
 
 
@@ -26,10 +24,10 @@ public class RanaDeFuego extends Enemigo{
                 case ConstantesEntidades.QUIETO:
                     lanzarFuego(nivel.getJugador().getPosX()); 
                     if (dirAnterior == ConstantesEntidades.DERECHA){
-                    //    direccion = ConstantesEntidades.IZQUIERDA;
+                        direccion = ConstantesEntidades.IZQUIERDA;
                     }
                     else{
-                       // direccion = ConstantesEntidades.DERECHA;
+                        direccion = ConstantesEntidades.DERECHA;
                     }
                     break;
                 case ConstantesEntidades.IZQUIERDA:
@@ -94,6 +92,7 @@ public class RanaDeFuego extends Enemigo{
                 direccionDisparo=ConstantesEntidades.DERECHA;
             else
                 direccionDisparo=ConstantesEntidades.IZQUIERDA;
+
             direccion=direccionDisparo;
             if (direccionDisparo==ConstantesEntidades.DERECHA) 
                 posicionXBola= this.getPosX()+15;
