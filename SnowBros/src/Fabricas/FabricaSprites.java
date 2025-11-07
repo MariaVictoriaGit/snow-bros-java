@@ -77,8 +77,8 @@ public abstract class FabricaSprites {
     }
     public Sprite getSpriteMoghera(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("idleIzquierda", rutaACarpeta + "/Moghera/izquierdaMoghera.png");//32x40
-        mapeo.put("idleDerecha", rutaACarpeta + "/Moghera/derechaMoghera.png");        
+        mapeo.put("idleIzquierda", rutaACarpeta + "/Moghera/mogera.png");//32x40
+        mapeo.put("idleDerecha", rutaACarpeta + "/Moghera/mogera.png");        
         mapeo.put("saltandoIzquierda", rutaACarpeta + "/Moghera/mogheraIzquierda.png");
         mapeo.put("saltandoDerecha", rutaACarpeta + "/Moghera/mogheraDerecha.png");
         mapeo.put("congeladoIzquierda", rutaACarpeta + "/Moghera/mogheraCongeladoIzquierda.png");
