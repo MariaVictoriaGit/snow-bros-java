@@ -5,11 +5,14 @@ import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
 
 public class BolaDeFuego extends EntidadDinamica{
     protected Temporizador tiempo;
+    private int tiempoCaida;
+    private int aumentos;
     public BolaDeFuego(int posX, int posY,Sprite miSprite){
         super(posX, posY, miSprite);
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_FUEGO);
@@ -41,6 +44,42 @@ public class BolaDeFuego extends EntidadDinamica{
                     this.eliminar();
                 }
             break;
+            case ConstantesEntidades.ARRIBA_IZQUIERDA:
+                    posX -= 4;
+                    caida();
+                    if(tiempoCaida==800){
+                        posY += 2;
+                        aumentos++;
+                        incremetarY();
+                    }
+                    else{
+                        posY-=20;
+                    }
+                    getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                    break;
+                case ConstantesEntidades.ARRIBA_DERECHA:
+                    posX += 4;
+                    caida();
+                    if(tiempoCaida==800){
+                        posY += 2;
+                        aumentos++;
+                        incremetarY();
+                    }
+                    else{
+                        posY-=20;
+                    }
+                    getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                    break;
+        }
+    }
+    private void caida(){
+        if(tiempoCaida<800){
+            tiempoCaida+=100;
+        }
+    }
+    public void incremetarY(){
+        if(aumentos>=3){
+            posY += 6;
         }
     }
     public void setDireccion(int direccionDisparo) {
@@ -49,7 +88,12 @@ public class BolaDeFuego extends EntidadDinamica{
     public void eliminar(){
         nivel.eliminarBolaDeFuego(this);
         nivel.getJuego().eliminarEntidadGraficamente(this);
-     //   nivel.getJuego().eliminarBolaDeFuego(); TODO hacer que se elimine graficamente tambien
+    }
+    public void visitar(Plataforma p){
+        eliminar();
+    }
+    public boolean kamakichiBomba(){
+        return direccion==ConstantesEntidades.ARRIBA_DERECHA || direccion==ConstantesEntidades.ARRIBA_IZQUIERDA;
     }
     public String generarClaveEstado(){
         String clave=null;

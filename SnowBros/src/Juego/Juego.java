@@ -136,13 +136,20 @@ public class Juego {
                         }
                     } 
                     for(Plataforma plataforma: nivelActual.getPlataformas()){
-                        if(!nivelActual.getDisparos().isEmpty())
+                        if(!nivelActual.getDisparos().isEmpty()){
                             for (DisparoJugador disparo: nivelActual.getDisparos()){
-                        if (disparo.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) {
-                            plataforma.aceptar(disparo);
+                                if (disparo.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) {
+                                plataforma.aceptar(disparo);
+                                }
                             }
+                            for (BolaDeFuego bomba: nivelActual.getBolasDeFuego()){
+                                if (bomba.kamakichiBomba() && bomba.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) {
+                                    plataforma.aceptar(bomba);
+                                }
+                            }
+                            
                         }
-                    }
+                }
                     for(PlataformaMovil movil:nivelActual.getPlataformasMovil()){
                         movil.mover();
                         if(jugadorActual.getHitbox().getRectangle().intersects(movil.getHitbox().getRectangle())) {
@@ -196,7 +203,7 @@ public class Juego {
                     disparo.mover();
                 }
                 if(!nivelActual.getBolasDeFuego().isEmpty()){
-                    for (BolaDeFuego bola: nivelActual.getBolasDeFuego()){
+                    for (BolaDeFuego bola:new ArrayList<>(nivel.getBolasDeFuego())){
                     bola.mover();
                     } 
                 }

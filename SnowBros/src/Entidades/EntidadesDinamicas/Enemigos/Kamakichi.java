@@ -12,7 +12,7 @@ public class Kamakichi extends Enemigo{
     protected static final int puntajeEmpujado = 5000;
     protected boolean activarDisparo;
 
-    public Kamakichi(int x, int y, Sprite sprite){
+     public Kamakichi(int x, int y, Sprite sprite){
         super(x, y, sprite);  
         salud=ConstantesDificultad.SALUD_KAMAKICHI;
         velocidad=ConstantesDificultad.VELOCIDAD_KAMAKICHI;
@@ -32,7 +32,6 @@ public class Kamakichi extends Enemigo{
                 this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 break;
             case ConstantesEntidades.QUIETO:
-                dispararBomba();
                     if (dirAnterior == ConstantesEntidades.DERECHA){
                         direccion = ConstantesEntidades.IZQUIERDA;
                     }
@@ -69,16 +68,43 @@ public class Kamakichi extends Enemigo{
             direccion=ConstantesEntidades.QUIETO;
             mover();
             if (ahora - tiempoEstado > 2000) { // espera 4 seg
-                mover();
-                if (dirAnterior == ConstantesEntidades.ARRIBA)
+                if (dirAnterior == ConstantesEntidades.ARRIBA){
                     estado = EstadosDePatron.MOVERABAJO;
-                else
-                    estado = EstadosDePatron.MOVERARRIBA;
+                    activarDisparo=true;
+                    dispararBomba();
                 }
+                else{
+                    estado = EstadosDePatron.MOVERARRIBA;
+                    activarDisparo=true;
+                    dispararBomba();
+                }
+            }
         }
     }
     public void dispararBomba(){
-        activarDisparo=true;
+        boolean patronDisparo=true;
+        if(activarDisparo){
+            agregarBomba(posX+30, posY, ConstantesEntidades.DERECHA);
+            agregarBomba(posX-30, posY, ConstantesEntidades.IZQUIERDA);
+            if(patronDisparo){
+                agregarBomba(posX+20, posY-15, ConstantesEntidades.ARRIBA_DERECHA);
+                agregarBomba(posX-20, posY-15, ConstantesEntidades.ARRIBA_IZQUIERDA);
+            }
+            else{
+                agregarBomba(posX+20, posY-25, ConstantesEntidades.ARRIBA_IZQUIERDA);
+                agregarBomba(posX-20, posY-25, ConstantesEntidades.ARRIBA_DERECHA);
+            }
+            activarDisparo=false;
+
+        }
+    }
+    public void agregarBomba(int posXInicial,int posYInicial,int direccionDisparo){
+        BolaDeFuego bola;
+        bola=nivel.getJuego().getFabricaEntidades().getBolaDeFuego(posXInicial, this.posY);
+        bola.setDireccion(direccionDisparo);
+        bola.setNivel(nivel);
+        nivel.agregarBolaDeFuego(bola);
+        nivel.getJuego().registrarObserverEntidad(bola);
     }
     public void convertirEnBola(){
         congelado=true;
