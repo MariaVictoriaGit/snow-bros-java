@@ -79,7 +79,7 @@ public class PanelPantallaJuego extends JPanel{
         ArrayList<JLabel> corazones= new ArrayList<>();
         panelVidas.setOpaque(false);//transparente
         panelVidas.setLayout(new FlowLayout(FlowLayout.CENTER,5,5));// espacio de 5 pixeles horiz y vert entre cada componente
-        ImageIcon iconoCorazon= new ImageIcon("SnowBros/src/Imagenes/PowerUps/vidaJugador.png");
+        ImageIcon iconoCorazon= new ImageIcon("SnowBros/src/Imagenes/Original/PowerUps/vidaJugador.png");
         int vidas=ConstantesDificultad.VIDAS_INICIO;//TODO hacer constante
         for(int i=0;i<vidas;i++){
             JLabel vidaLabel=new JLabel(iconoCorazon);
@@ -171,7 +171,7 @@ public class PanelPantallaJuego extends JPanel{
         if (indice >= 0 && indice < panelVidas.getComponentCount()) {
             panelVidas.remove(indice);
         }
-        ImageIcon iconoVida = new ImageIcon("SnowBros/src/Imagenes/PowerUps/vidaPerdida.png");
+        ImageIcon iconoVida = new ImageIcon("SnowBros/src/Imagenes/Original/PowerUps/vidaPerdida.png");
         JLabel label= new JLabel(iconoVida);
         panelVidas.add(label, jugador.getVidas());
         revalidate();
@@ -186,7 +186,7 @@ public class PanelPantallaJuego extends JPanel{
         if (indice >= 0 && indice < panelVidas.getComponentCount()) {
             panelVidas.remove(indice);
         }        
-        ImageIcon iconoVidaRoja = new ImageIcon("SnowBros/src/Imagenes/PowerUps/vidaJugador.png");
+        ImageIcon iconoVidaRoja = new ImageIcon("SnowBros/src/Imagenes/Original/PowerUps/vidaJugador.png");
         JLabel labelVida = new JLabel(iconoVidaRoja);
         panelVidas.add(labelVida, indice);
         revalidate();

@@ -55,7 +55,7 @@ public class PanelPantallaDominio extends JPanel {
     public void registrarOyenteBotonOriginal(){        
         botonOriginal.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e){
-            //agregar el modo especifico con algun metodo 
+            miControladorGrafico.setDominio("Original");
             miControladorGrafico.accionarPantallaModoJuego();
             miControladorGrafico.mostrarPantallaModo();
         }
@@ -64,6 +64,7 @@ public class PanelPantallaDominio extends JPanel {
     public void registrarOyenteBotonAlternativo(){
         botonAlternativo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
+            miControladorGrafico.setDominio("Alternativo");
             miControladorGrafico.accionarPantallaModoJuego();
             miControladorGrafico.mostrarPantallaModo();
             }

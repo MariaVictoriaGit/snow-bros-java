@@ -12,7 +12,6 @@ public class Launcher {	public static void main(String [] args) {
 					juego.setControladorGrafica(miControlador);
 					miControlador.accionarPantallaPrincipal();
 					miControlador.mostrarPantallaPrincipal();
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

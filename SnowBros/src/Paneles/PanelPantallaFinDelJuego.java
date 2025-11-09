@@ -101,8 +101,8 @@ public class PanelPantallaFinDelJuego extends JPanel {
     private void registrarOyenteBotonNuevaPartida(){
         botonNuevaPartida.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                miControladorGrafico.accionarInicioJuego();
-                miControladorGrafico.mostrarPantallaJuego();
+                miControladorGrafico.accionarPantallaDominio();
+                miControladorGrafico.mostrarPantallaDominio();
             }
         });
     }    
