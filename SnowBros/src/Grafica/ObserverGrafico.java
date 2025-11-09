@@ -1,7 +1,6 @@
 package SnowBros.src.Grafica;
 
 import java.awt.Container;
-import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -52,7 +51,7 @@ public class ObserverGrafico extends JLabel implements Observer{
 	}
 	@Override
 	public void actualizarBolaDeNieve() {
-		
+		//TODO salta NPE
 		throw new UnsupportedOperationException("Unimplemented method 'actualizarBolaDeNieve'");
 	}
 	public void borrarObserver(){

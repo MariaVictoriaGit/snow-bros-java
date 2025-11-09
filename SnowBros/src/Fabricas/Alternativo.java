@@ -1,5 +1,7 @@
 package SnowBros.src.Fabricas;
 
+import java.util.HashMap;
+
 import SnowBros.src.Grafica.Sprite;
 
 public class Alternativo extends FabricaSprites{
@@ -7,167 +9,191 @@ public class Alternativo extends FabricaSprites{
     public Alternativo() {
         super("SnowBros/src/Imagenes/Alternativo");
     }
-
-    @Override
     public Sprite get_silueta() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get_silueta'");
+        HashMap<String, String> mapeo = new HashMap<>();
+        mapeo.put("normal", rutaACarpeta+ "/FondoNivelAlternativo.jpg");
+        return new Sprite(mapeo);	     	
     }
-
-    @Override
-    public Sprite getSpriteJugador() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteJugador'");
+    public Sprite getSpriteJugador(){
+        HashMap<String, String> mapeo = new HashMap<String,String>();
+        mapeo.put("idleIzquierda", rutaACarpeta+ "/Jugador/nickIzquierdaAlternativo.png");
+        mapeo.put("idleDerecha", rutaACarpeta+ "/Jugador/nickDerechaAlternativo.png");
+        mapeo.put("moverIzquierda", rutaACarpeta+ "/Jugador/nickAvanzarIzquierdaAlternativo.png");
+        mapeo.put("moverDerecha", rutaACarpeta+ "/Jugador/nickAvanzarDerechaAlternativo.png");
+        mapeo.put("saltandoDerecha", rutaACarpeta+ "/Jugador/JugadorSaltandoDerechaAlternativo.png");
+        mapeo.put("saltandoIzquierda", rutaACarpeta+ "/Jugador/JugadorSaltandoIzquierdaAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpritePlataforma() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpritePlataforma'");
+    public Sprite getSpritePlataforma(){
+        HashMap<String, String> mapeo = new HashMap<>();
+        mapeo.put("normal", rutaACarpeta+ "/Plataforma/plataformaAlternativo.jpg"); 
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteDemonioRojo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteDemonioRojo'");
+    public Sprite getSpriteDemonioRojo(){
+        HashMap<String, String> mapeo= new HashMap<>();//dejamos tanta animacion o la reducimos a uno en cada direccion para caminar y estar quieto?
+        mapeo.put("idleIzquierda", rutaACarpeta + "/DemonioRojo/quietoIzquierdaA.png");
+        mapeo.put("idleDerecha", rutaACarpeta + "/DemonioRojo/quietoDerechaA.png");
+        mapeo.put("moverDerecha1", rutaACarpeta + "/DemonioRojo/caminarDerecha1A.png");
+        mapeo.put("moverDerecha2", rutaACarpeta + "/DemonioRojo/caminarDerecha2A.png");
+        mapeo.put("moverDerecha3", rutaACarpeta + "/DemonioRojo/caminarDerecha3A.png");
+        mapeo.put("moverIzquierda1", rutaACarpeta + "/DemonioRojo/caminarIzquierda1A.png");
+        mapeo.put("moverIzquierda2", rutaACarpeta + "/DemonioRojo/caminarIzquierda2A.png");
+        mapeo.put("moverIzquierda3", rutaACarpeta + "/DemonioRojo/caminarIzquierda3A.png");
+        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieve.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteTrollAmarillo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteTrollAmarillo'");
+    public Sprite getSpriteTrollAmarillo(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("idleIzquierda", rutaACarpeta + "/TrollAmarillo/quietoIzquierdaAlternativo.png");
+        mapeo.put("idleDerecha", rutaACarpeta + "/TrollAmarillo/quietoDerechaAlternativo.png");
+        mapeo.put("moverDerecha", rutaACarpeta + "/TrollAmarillo/caminarDerechaAlternativo.png");
+        mapeo.put("moverIzquierda", rutaACarpeta + "/TrollAmarillo/caminarIzquierdaAlternativo.png");
+        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieveAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteRanaDeFuego() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteRanaDeFuego'");
+    public Sprite getSpriteRanaDeFuego(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("idleIzquierda", rutaACarpeta + "/RanaDeFuego/quietaIzquierdaAlternativo.png");
+        mapeo.put("idleDerecha", rutaACarpeta + "/RanaDeFuego/quietaDerechaAlternativo.png");
+        mapeo.put("moverDerecha", rutaACarpeta + "/RanaDeFuego/AlternativoCaminandoDerecha.png");
+        mapeo.put("moverIzquierda", rutaACarpeta + "/RanaDeFuego/AlternativoCaminandoIzquierda.png");
+        mapeo.put("disparoDerecha", rutaACarpeta + "/RanaDeFuego/AlternativodisparoDerecha.png");
+        mapeo.put("disparoIzquierda", rutaACarpeta + "/RanaDeFuego/AlternativodisparoIzquierda.png");
+        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieveAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteCalabaza() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteCalabaza'");
+    public Sprite getSpriteCalabaza(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("idleDerecha", rutaACarpeta + "/Calabaza/calabazaDerechaAlternativo.png");
+        mapeo.put("idleIzquierda", rutaACarpeta + "/Calabaza/calabazaIzquierdaAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteFantasma() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteFantasma'");
+    public Sprite getSpriteFantasma(){
+        HashMap<String, String> mapeo= new HashMap<>();
+            mapeo.put("idleDerecha", rutaACarpeta + "/Fantasma/fantasmaDerechaAlternativo.png");
+            mapeo.put("idleIzquierda", rutaACarpeta + "/Fantasma/fantasmaIzquierdaAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteMoghera() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteMoghera'");
+    public Sprite getSpriteMoghera(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("idleIzquierda", rutaACarpeta + "/Moghera/izquierdaMogheraAlternativo.png");//32x40
+        mapeo.put("idleDerecha", rutaACarpeta + "/Moghera/derechaMogheraAlternativo.png");        
+        mapeo.put("saltandoIzquierda", rutaACarpeta + "/Moghera/mogheraIzquierdaAlternativo.png");
+        mapeo.put("saltandoDerecha", rutaACarpeta + "/Moghera/mogheraDerechaAlternativo.png");
+        mapeo.put("congeladoIzquierda", rutaACarpeta + "/Moghera/mogheraCongeladoIzquierdaAlternativo.png");
+        mapeo.put("congeladoDerecha", rutaACarpeta + "/Moghera/mogheraCongeladoDerechaAlternativo.png");
+        //TODO MEJORAR SPRITES
+        mapeo.put("disparo", rutaACarpeta + "/Moghera/mogheraDisparoAlternativo.png");
+        mapeo.put("quieto", rutaACarpeta + "/Moghera/mogheraQuietoAlternativo.png");
+        mapeo.put("salto1", rutaACarpeta + "/Moghera/mogheraSalto1Alternativo.png");
+        mapeo.put("salto2", rutaACarpeta + "/Moghera/mogheraSalto2Alternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteKamakichi() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteKamakichi'");
+    public Sprite getSpriteKamakichi(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("idleIzquierda", rutaACarpeta + "/Kamakichi/kamakichiIzquierdaAlternativo.png");
+        mapeo.put("idleDerecha", rutaACarpeta + "/Kamakichi/kamakichiDerechaAlternativo.png");
+        mapeo.put("quieto", rutaACarpeta + "/Kamakichi/kamakichiEsperaAlternativo.png");
+        mapeo.put("disparo", rutaACarpeta + "/Kamakichi/kamakichiDisparandoAlternativo.png");//44 alto
+        mapeo.put("congelado", rutaACarpeta + "/Kamakichi/kamakichiCongeladoAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteTrampaPinchos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteTrampaPinchos'");
+    public Sprite getSpriteTrampaPinchos(){    
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/trampaPinchosAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteSueloResbaladizo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteSueloResbaladizo'");
+    public Sprite getSpriteSueloResbaladizo(){
+        HashMap<String, String> mapeo= new HashMap<>(); 
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/sueloResbaladizoAlternativo.jpg");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteParedDestuctible() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteParedDestuctible'");
+    public Sprite getSpriteParedDestuctible(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/paredDestructibleAlternativo.jpg");
+        return new Sprite(mapeo);   
     }
-
-    @Override
-    public Sprite getSpritePlataformaMovil() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpritePlataformaMovil'");
+    public Sprite getSpritePlataformaMovil(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("normal", rutaACarpeta + "/Plataforma/plataformaMovilAlternativo.jpg");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpritePlataformaQuebradiza() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpritePlataformaQuebradiza'");
+    public Sprite getSpritePlataformaQuebradiza(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("normal", rutaACarpeta + "/Plataforma/plataformaQuebradizaAlternativo.jpg");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpritePared() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpritePared'");
+    public Sprite getSpritePared(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/paredAlternativo.jpg");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteEscalera() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteEscalera'");
+    public Sprite getSpriteEscalera(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/escaleraAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteObstaculo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteObstaculo'");
+    public Sprite getSpriteObstaculo(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/escaleraAlternativo.png");
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/trampaPinchosAlternativo.png");
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/sueloResbaladizoAlternativo.jpg");
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/paredDestructibleAlternativo.jpg");
+        mapeo.put("normal", rutaACarpeta + "/Obstaculos/paredAlternativo.jpg");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpritePowerUp() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpritePowerUp'");
+    public Sprite getSpritePowerUp(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("normal", rutaACarpeta + "/PowerUps/botellaAzulAlternativo.png");
+        mapeo.put("normal", rutaACarpeta + "/PowerUps/botellaRojaAlternativo.png");
+        mapeo.put("normal", rutaACarpeta + "/PowerUps/botellaVerdeAlternativo.png");
+        mapeo.put("normal", rutaACarpeta + "/PowerUps/frutaAlternativo.png");
+        mapeo.put("normal", rutaACarpeta + "/PowerUps/vidaJugadorAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteBotellaAzul() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteBotellaAzul'");
+    public Sprite getSpriteBotellaAzul(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("normal", rutaACarpeta+"/PowerUps/botellaAzulAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteBotellaRoja() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteBotellaRoja'");
+    public Sprite getSpriteBotellaRoja(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("normal", rutaACarpeta+"/PowerUps/botellaRojaAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteBotellaVerde() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteBotellaVerde'");
+    public Sprite getSpriteBotellaVerde(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("normal", rutaACarpeta+"/PowerUps/botellaVerdeAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteFruta() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteFruta'");
+    public Sprite getSpriteFruta(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("normal", rutaACarpeta+"/PowerUps/frutaAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteVidaExtra() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteVidaExtra'");
+    public Sprite getSpriteVidaExtra(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("normal", rutaACarpeta+"/PowerUps/vidaJugadorAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteBolaNieve() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteBolaNieve'");
+    public Sprite getSpriteBolaNieve(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("idleIzquierda", rutaACarpeta + "/BolaDeNieve/bolaDeNieveAlternativo.gif");
+        mapeo.put("derretida", rutaACarpeta + "/BolaDeNieve/bolaDeNieveDerretidaAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteBolaFuego() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteBolaFuego'");
+    public Sprite getSpriteBolaFuego(){
+        HashMap<String, String> mapeo= new HashMap<>();
+        mapeo.put("idleIzquierda", rutaACarpeta + "/BolaDeFuego/bolaDeFuegoIzquierdaAlternativo.png");
+        mapeo.put("idleDerecha", rutaACarpeta + "/BolaDeFuego/bolaDeFuegoDerechaAlternativo.png");
+        return new Sprite(mapeo);
     }
-
-    @Override
-    public Sprite getSpriteDisparoJugador() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSpriteDisparoJugador'");
+    public Sprite getSpriteDisparoJugador(){
+        HashMap<String, String> mapeo= new HashMap<>();//TODOoooooooooooooooooo
+        mapeo.put("idleDerecha", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalDerechaAlternativo.gif");
+        mapeo.put("idleIzquierda", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalIzquierdaAlternativo.gif");
+        mapeo.put("aumentadoDerecha", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentadoDerechaAlternativo.gif");
+        mapeo.put("aumentadoIzquierda", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentadoIzquierdaAlternativo.gif");
+        return new Sprite(mapeo);
     }
 }
-

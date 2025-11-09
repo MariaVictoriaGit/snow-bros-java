@@ -92,8 +92,8 @@ public class Original extends FabricaSprites{
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("idleIzquierda", rutaACarpeta + "/Kamakichi/kamakichiIzquierda.png");
         mapeo.put("idleDerecha", rutaACarpeta + "/Kamakichi/kamakichiDerecha.png");
-        mapeo.put("quieto", rutaACarpeta + "/Kamakichi/kamakichiQuieto.png");
-        mapeo.put("quieto2", rutaACarpeta + "/Kamakichi/kamakichiQuieto2.png");//TODO revisar alto
+        //mapeo.put("quieto", rutaACarpeta + "/Kamakichi/kamakichiQuieto.png");
+        //mapeo.put("quieto2", rutaACarpeta + "/Kamakichi/kamakichiQuieto2.png");//TODO revisar alto
         mapeo.put("disparo", rutaACarpeta + "/Kamakichi/kamakichiDisparando.png");//44 alto
         mapeo.put("congelado", rutaACarpeta + "/Kamakichi/kamakichiCongelado.png");
         return new Sprite(mapeo);
@@ -148,7 +148,7 @@ public class Original extends FabricaSprites{
         mapeo.put("normal", rutaACarpeta + "/PowerUps/botellaRoja.png");
         mapeo.put("normal", rutaACarpeta + "/PowerUps/botellaVerde.png");
         mapeo.put("normal", rutaACarpeta + "/PowerUps/fruta.png");
-        mapeo.put("normal", rutaACarpeta + "/PowerUps/VidaJugador.png");
+        mapeo.put("normal", rutaACarpeta + "/PowerUps/vidaJugador.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteBotellaAzul(){
