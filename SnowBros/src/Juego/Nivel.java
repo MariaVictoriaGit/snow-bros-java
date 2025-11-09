@@ -180,7 +180,9 @@ public class Nivel {
     public void notificarObservers(){
         jugador.getObserver().actualizar(jugador.getDireccion(), jugador.getTocandoSuelo());
         for(Enemigo e:new ArrayList<>(this.getEnemigos())){
-            e.getObserver().actualizar(e.getDireccion(),e.getTocandoSuelo());
+            if(!e.getCongelado()){
+                e.getObserver().actualizar(e.getDireccion(),e.getTocandoSuelo());
+            }
         }
     /* 
         for(BolaDeNieve b:this.getBolaDeNieves()){
