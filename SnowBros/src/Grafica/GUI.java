@@ -209,9 +209,14 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         ventana.revalidate();
         ventana.repaint();
     }
-   /* public ControladorDeSonido getControladorDeSonido() {
-        return controladorDeSonido;
-    }*/
+    public void setJugadorVisibleGraficamente(){
+        miJuego.getJugador().getObserver().setVisible(true);
+        panelPantallaJuego.repaint();
+    }
+    public void setJugadorInvisibleGraficamente(){
+        miJuego.getJugador().getObserver().setVisible(false);
+        panelPantallaJuego.repaint();
+    }
     public Juego getJuego() {
         return miJuego;
     }

@@ -366,6 +366,27 @@ public class Juego {
             ultimoDisparo=tiempoHilo;
         }
     }
+    public void invencibilidad(){
+        long tiempoHilo=System.currentTimeMillis();
+        long tiempoUltimoParpadeo=0;
+        boolean invisible=false;
+        while(jugador.getInvencibilidad()){
+            if((tiempoHilo - tiempoUltimoParpadeo > ConstantesTiempos.TIEMPO_LAPSO_INVENCIBILIDAD) && invisible){
+                controladorGrafica.setJugadorVisibleGraficamente();
+                tiempoUltimoParpadeo=tiempoHilo;
+                invisible=false;
+            }
+            else if((tiempoHilo - tiempoUltimoParpadeo > ConstantesTiempos.TIEMPO_LAPSO_INVENCIBILIDAD) && !invisible){
+                controladorGrafica.setJugadorInvisibleGraficamente();
+                tiempoUltimoParpadeo=tiempoHilo;
+                invisible=true;
+            }
+            tiempoHilo=System.currentTimeMillis();
+        }
+        if(invisible){
+            controladorGrafica.setJugadorVisibleGraficamente();
+        }
+    }
     public boolean estaCerca(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
         Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();
         Rectangle hitboxEntidadEvaluada = entidadEvaluada.getHitbox().getRectangle();

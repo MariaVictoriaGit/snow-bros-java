@@ -11,6 +11,7 @@ import SnowBros.src.Grafica.Sprite;
 //import SnowBros.src.Juego.HitBox;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Juego.Sonido;
+import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
@@ -172,16 +173,31 @@ public class Jugador extends EntidadDinamica implements Visitable{
         if (!invencible){
             Sonido.getInstancia().reproducirEfectoDeSonido("muerte.wav");
             vidas--;
-            if (vidas > 0)
+            if (vidas > 0){
                 miJuego.actualizarVidas();
-            posX = posXoriginal;
-            posY = posYoriginal;
-            this.getObserver().actualizar(direccion, getTocandoSuelo());
-            this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-            miJuego.setReinicio(true);
-            if(vidas==0)
+                posX = posXoriginal;
+                posY = posYoriginal;
+                this.getObserver().actualizar(direccion, getTocandoSuelo());
+                this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                miJuego.setReinicio(true);
+                iniciarInvencibilidad();
+            }
+            if(vidas==0){
                 miJuego.reiniciarNivel();
+            }
         }    
+    }
+    public void iniciarInvencibilidad(){
+        invencible=true;
+        Temporizador tiempoInvencible = new Temporizador(4);
+        tiempoInvencible.setAccionAlFinalizar(() -> {
+            invencible=false;
+        });
+        tiempoInvencible.iniciar();
+        miJuego.invencibilidad();
+    }
+    public boolean getInvencibilidad(){
+        return invencible;
     }
     public void setVidas(){
         vidas=vidaDeInicio;
