@@ -122,6 +122,7 @@ public class PanelPantallaJuego extends JPanel{
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));//plataforma.getSprite().getRutaImagen("estatico.png"
             JLabel plataformaVisible = new JLabel(icono);
             plataformaVisible.setBounds(plataforma.getPosX(), plataforma.getPosY(), plataforma.getHitbox().getAncho(), plataforma.getHitbox().getAlto());
+            this.setComponentZOrder(plataformaVisible,2);
             plataforma.setMiLabel(plataformaVisible);
             this.add(plataformaVisible);  
             //imagenFondoJuego.add(plataformaVisible);
@@ -133,6 +134,7 @@ public class PanelPantallaJuego extends JPanel{
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));
             JLabel obstaculoVisible = new JLabel(icono);
             obstaculoVisible.setBounds(obstaculo.getPosX(), obstaculo.getPosY(), obstaculo.getHitbox().getAncho(), obstaculo.getHitbox().getAlto());
+            this.setComponentZOrder(obstaculoVisible,2);
             obstaculo.setMiLabel(obstaculoVisible);
             this.add(obstaculoVisible);  
         }
@@ -166,7 +168,7 @@ public class PanelPantallaJuego extends JPanel{
         ImageIcon imagenOriginal= new ImageIcon( getClass().getClassLoader().getResource(silueta.getSprite().getRutaImagen("normal")));
         Image imagenRedimensionada= imagenOriginal.getImage().getScaledInstance(ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO, Image.SCALE_SMOOTH);
         imagenFondoJuego.setIcon(new ImageIcon(imagenRedimensionada));
-        imagenFondoJuego.setBounds(0,0, ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO);
+        imagenFondoJuego.setBounds(0,30, ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO); // el 30 en y es para repetar el tamaño del panel fin
         this.add(imagenFondoJuego);
         //imagenFondoJuego.setIcon(new ImageIcon(getClass().getClassLoader().getResource(silueta.getSprite().getRutaImagen("normal"))));
         //imagenFondoJuego.setBounds(0, 0, imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight());

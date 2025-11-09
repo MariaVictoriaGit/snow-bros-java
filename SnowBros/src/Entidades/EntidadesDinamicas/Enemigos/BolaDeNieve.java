@@ -57,6 +57,6 @@ public class BolaDeNieve extends EntidadDinamica{
     public void visitar(Jugador j){
         direccion=j.getDireccion();
         if (hitbox.getRectangle().intersects(j.getHitbox().getRectangle()))
-        mover();
+         mover();
     }
 }

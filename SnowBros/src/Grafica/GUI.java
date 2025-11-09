@@ -11,6 +11,7 @@ import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Juego.Sonido;
@@ -27,6 +28,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     protected Juego miJuego;
     private boolean movDerecha=false;
     private boolean movIzquierda=false;
+    private boolean disparando=false;
     protected String dominio;
     protected String modoDeJuego;
 
@@ -79,7 +81,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                         }
                         break;
                     case KeyEvent.VK_SPACE:
-                        miJuego.shootJugador();
+                        disparando=true;
                         break;
                 }
             }
@@ -95,6 +97,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                         movIzquierda=false;
                     else
                         movDerecha=false;
+                if(keyCode==KeyEvent.VK_SPACE){
+                    disparando=false;
+                }
             }
         });
     }
@@ -110,6 +115,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         }
         if(miJuego.getJugador().getSaltando())
            miJuego.getJugador().mover(ConstantesEntidades.ARRIBA);
+        if(disparando){
+            miJuego.shootJugador();
+        }
     }
     public JFrame getVentana() {
         return ventana;
@@ -145,6 +153,10 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         panelPantallaJuego.mostrarPlataformas();
         panelPantallaJuego.mostrarObstaculos();
         panelPantallaJuego.incorporarSilueta(miJuego.getNivelActual().getSilueta());
+        panelPantallaJuego.setComponentZOrder(miJuego.getJugador().getObserver().getImagen(),3);
+        for(Enemigo enemigo:miJuego.getNivelActual().getEnemigos()){
+            panelPantallaJuego.setComponentZOrder(enemigo.getObserver().getImagen(),3);
+        }
         refrescar();
         //controladorDeSonido.reproducirSonidoDeFondo();
     }
