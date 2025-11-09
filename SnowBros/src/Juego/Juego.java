@@ -1,11 +1,8 @@
 package SnowBros.src.Juego;
-
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JLabel;
-
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -13,19 +10,10 @@ import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaQuebradiza;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
-import SnowBros.src.Fabricas.Alternativo;
-import SnowBros.src.Fabricas.FabricaEntidades;
-import SnowBros.src.Fabricas.FabricaSprites;
-import SnowBros.src.Fabricas.Original;
-import SnowBros.src.Grafica.GUI;
-import SnowBros.src.Grafica.ObserverEntidad;
-import SnowBros.src.Grafica.ObserverGrafico;
-import SnowBros.src.Grafica.ObserverJugador;
-import SnowBros.src.Grafica.ObserverPlataformaMovil;
+import SnowBros.src.Fabricas.*;
+import SnowBros.src.Grafica.*;
 import SnowBros.src.Parser.ParserNivel;
 
 public class Juego {
@@ -243,10 +231,10 @@ public class Juego {
             nivel=null;
             jugador=null;
             tiempo.reiniciar();
-            controladorGrafica.accionarPantallaFinDelJuego(); // gameOver
+            controladorGrafica.cambiarPantallaFinDelJuego(); // gameOver
         }
         else 
-            controladorGrafica.accionarInicioJuego();
+            controladorGrafica.cambiarInicioJuego();
         //reiniciarJugador=true;
         //puntajeJugador=0;
         //tiempo.setTiempoActual(0);

@@ -4,6 +4,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
@@ -29,13 +30,13 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     private boolean movIzquierda=false;
     private boolean disparando=false;
     protected String dominio;
+    protected String modoDeJuego;
 
     public GUI(Juego juego){
         this.miJuego=juego;
         panelPantallaPrincipal = new PanelPantallaPrincipal(this);
         panelPantallaDominio= new PanelPantallaDominio(this);
         panelPantallaRanking = new PanelPantallaRanking(this);
-        panelPantallaJuego = new PanelPantallaJuego(this);
         panelPantallaModo = new PanelPantallaModo(this);
         panelPantallaFinDelJuego= new PanelPantallaFinDelJuego(this);
        // controladorDeSonido = new ControladorDeSonido()
@@ -121,40 +122,33 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public JFrame getVentana() {
         return ventana;
     }   
-    public void mostrarPantallaPrincipal() {
+    private void cambiarPantalla(JPanel panel) {
+        ventana.setContentPane(panel);
+        ventana.requestFocusInWindow();
+        refrescar();
+    }
+    public void cambiarPantallaPrincipal() {
         Sonido.getInstancia().reproducirMusica("temaMusicalMenu.wav");
-        ventana.setContentPane(panelPantallaPrincipal);
-        ventana.requestFocusInWindow();
-        refrescar();
+        cambiarPantalla(panelPantallaPrincipal);
     }
-    public void mostrarPantallaJuego() {
-        ventana.setContentPane(panelPantallaJuego);
-        ventana.requestFocusInWindow();
-        refrescar();
+    public void cambiarPantallaFinDelJuego() {
+        Sonido.getInstancia().frenarMusica();
+        Sonido.getInstancia().reproducirEfectoDeSonido("gameOver.wav");
+        cambiarPantalla(panelPantallaFinDelJuego);
     }
-    public void mostrarPantallaFinDelJuego() {
-        ventana.setContentPane(panelPantallaFinDelJuego);
-        ventana.requestFocusInWindow();
-        refrescar();
+    public void cambiarPantallaDominio() {
+        cambiarPantalla(panelPantallaDominio);
     }
-    public void mostrarPantallaDominio() {
-        ventana.setContentPane(panelPantallaDominio);
-        ventana.requestFocusInWindow();
-        refrescar();
-    }
-    public void mostrarPantallaModo() {
-        ventana.setContentPane(panelPantallaModo);
-        ventana.requestFocusInWindow();
-        refrescar();
+    public void cambiarPantallaModo() {
+        cambiarPantalla(panelPantallaModo);
     }    
-    public void mostrarPantallaRanking() {
+    public void cambiarPantallaRanking() {
         panelPantallaRanking.actualizarRanking(miJuego.getRanking());
-        ventana.setContentPane(panelPantallaRanking);
-        ventana.requestFocusInWindow();
-        refrescar();
+        cambiarPantalla(panelPantallaRanking);
     }
-    public void accionarInicioJuego() {
+    public void cambiarInicioJuego() {
         this.panelPantallaJuego=new PanelPantallaJuego(this);
+        cambiarPantalla(panelPantallaJuego);
         miJuego.iniciar();
         panelPantallaJuego.mostrarPlataformas();
         panelPantallaJuego.mostrarObstaculos();
@@ -166,42 +160,16 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         refrescar();
         //controladorDeSonido.reproducirSonidoDeFondo();
     }
-    public void accionarPantallaFinDelJuego(){
-        Sonido.getInstancia().frenarMusica();
-        Sonido.getInstancia().reproducirEfectoDeSonido("gameOver.wav");
-        ventana.setContentPane(panelPantallaFinDelJuego);
-        ventana.requestFocusInWindow();
-        refrescar();
-    }
-    public void accionarPantallaPrincipal(){
-        ventana.setContentPane(panelPantallaPrincipal);
-        ventana.requestFocusInWindow();
-        refrescar();
-    }
-    public void accionarPantallaModoJuego() {
-       ventana.setContentPane(panelPantallaModo);
-       ventana.requestFocusInWindow();
-       refrescar();
-    }
-    public void accionarPantallaDominio(){
-        ventana.setContentPane(panelPantallaDominio);
-        ventana.requestFocusInWindow();
-        refrescar();
-    } 
-    public void accionarPantallaRanking(){
-        ventana.setContentPane(panelPantallaRanking);
-        ventana.requestFocusInWindow();
-        refrescar();
-    }
     public void setDominio(String dominio){
         this.dominio=dominio;
         miJuego.setDominio(dominio);
     }
     public void setModoJuego(String modo) {
+        modoDeJuego=modo;
         miJuego.setModoDeJuego(modo);
-        String nombre = javax.swing.JOptionPane.showInputDialog(ventana,"Ingresa tu nombre(5 caracteres) para el ranking:","Registro de Jugador",javax.swing.JOptionPane.PLAIN_MESSAGE);
+        String nombre = javax.swing.JOptionPane.showInputDialog(ventana,"Ingresa tu nombre para el ranking:","Registro de Jugador",javax.swing.JOptionPane.PLAIN_MESSAGE);
         if (nombre == null || nombre.trim().isEmpty())
-            nombre = "Anónimo";
+            cambiarPantallaFinDelJuego();
         miJuego.setNombreJugador(nombre);
         miJuego.getRanking().setJugador(nombre, 0, modo);
     }
@@ -210,7 +178,6 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     public void reiniciarNivel(){
         miJuego.reiniciarNivel();
-
     }
     public ObserverGrafico registrarEntidad(EntidadDinamica entidad){
         ObserverGrafico observerEntidad = panelPantallaJuego.incorporarEntidad(entidad);
@@ -236,8 +203,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
      //   return observer_silueta;
     //}
    /* public Observer registrarSprite(Entidad e){
-        return null;
-        
+        return null; 
     }*/
     public void refrescar() {
         ventana.revalidate();

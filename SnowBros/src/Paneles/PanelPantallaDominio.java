@@ -56,8 +56,7 @@ public class PanelPantallaDominio extends JPanel {
         botonOriginal.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e){
             miControladorGrafico.setDominio("Original");
-            miControladorGrafico.accionarPantallaModoJuego();
-            miControladorGrafico.mostrarPantallaModo();
+            miControladorGrafico.cambiarPantallaModo();
         }
         });
     }
@@ -65,8 +64,7 @@ public class PanelPantallaDominio extends JPanel {
         botonAlternativo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
             miControladorGrafico.setDominio("Alternativo");
-            miControladorGrafico.accionarPantallaModoJuego();
-            miControladorGrafico.mostrarPantallaModo();
+            miControladorGrafico.cambiarPantallaModo();
             }
         });
     }

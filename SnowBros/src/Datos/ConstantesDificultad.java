@@ -30,4 +30,6 @@ public class ConstantesDificultad {
     public static final int VELOCIDAD_CAIDA=100;
 
     public static final int EFECTO_BOTELLA_AZUL=10;
+
+    public static final int TOPE_TIEMPO_CONTRARRELOJ=120;
 }

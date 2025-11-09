@@ -7,12 +7,6 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 
 interface ControladorGrafico {
     
-    public void mostrarPantallaPrincipal();
-    public void mostrarPantallaDominio();
-    public void mostrarPantallaModo();
-    public void mostrarPantallaRanking();
-    public void mostrarPantallaJuego();
-    public void mostrarPantallaFinDelJuego();
     public ObserverGrafico registrarEntidad(EntidadDinamica e);
     public Observer registrarEntidad(Jugador j);
     public ObserverPlataformaMovil registrarEntidad(PlataformaMovil p);

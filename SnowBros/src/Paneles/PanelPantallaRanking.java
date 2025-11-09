@@ -47,8 +47,7 @@ public class PanelPantallaRanking extends JPanel {
     public void registrarOyenteBotonSalir(){
         botonSalir.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            miControladorGrafico.accionarPantallaPrincipal();
-            miControladorGrafico.mostrarPantallaPrincipal();
+            miControladorGrafico.cambiarPantallaPrincipal();
         }
         });
     }

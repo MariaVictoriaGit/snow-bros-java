@@ -20,8 +20,7 @@ import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.ObserverJugador;
@@ -39,12 +38,9 @@ public class PanelPantallaJuego extends JPanel{
 
     public PanelPantallaJuego(GUI miControladorGrafico){
          this.miControladorGrafico=miControladorGrafico;
-         //tamaño fijo de la pantalla
          setPreferredSize(new Dimension(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO));
          setLayout(new BorderLayout());
-         //agrega la informacion del jugador
          agregarPanelInformacion();
-         //agrega el panel donde estara el juego
          agregarPanelJuego();
     }
     protected void agregarPanelInformacion() {
@@ -65,15 +61,29 @@ public class PanelPantallaJuego extends JPanel{
         labelPuntaje.setForeground(Color.BLACK);
         labelPuntaje.setHorizontalAlignment(SwingConstants.CENTER);
         //TIEMPO
-        String tiempoString=miControladorGrafico.getJuego().getTimer().getStringDeTiempo();
-        //hacer un hilo que durante toda la existencia de el Timer de getTImer se actualice este label
-        labelTiempo= new JLabel(tiempoString);
-        javax.swing.Timer actualizadorTiempo = new javax.swing.Timer(1000, e -> {
-            actualizarLabelTiempo();
-        });
-        actualizadorTiempo.start();
-        labelTiempo.setForeground(Color.BLACK);
-        labelTiempo.setHorizontalAlignment(SwingConstants.CENTER);
+        String tiempoString;
+        switch (miControladorGrafico.getJuego().getModoDeJuego()) {
+            case "Contrarreloj":
+                tiempoString=miControladorGrafico.getJuego().getTimer().getStringTiempoContrarreloj();
+                labelTiempo= new JLabel(tiempoString);
+                javax.swing.Timer tiempoActualizador = new javax.swing.Timer(1000, e -> {
+                    actualizarLabelTiempoContrarreloj();
+                });
+                tiempoActualizador.start();
+                labelTiempo.setForeground(Color.RED);
+                labelTiempo.setHorizontalAlignment(SwingConstants.CENTER);
+                break;
+            default://si es clasico o supervivencia mimso reloj en pantalla
+                tiempoString=miControladorGrafico.getJuego().getTimer().getStringDeTiempo();
+                labelTiempo= new JLabel(tiempoString);
+                javax.swing.Timer actualizadorTiempo = new javax.swing.Timer(1000, e -> {
+                    actualizarLabelTiempo();
+                });
+                actualizadorTiempo.start();
+                labelTiempo.setForeground(Color.BLACK);
+                labelTiempo.setHorizontalAlignment(SwingConstants.CENTER);
+                break;
+            }
         //panel para las vidas con corazones
         panelVidas= new JPanel();
         ArrayList<JLabel> corazones= new ArrayList<>();
@@ -112,7 +122,7 @@ public class PanelPantallaJuego extends JPanel{
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));//plataforma.getSprite().getRutaImagen("estatico.png"
             JLabel plataformaVisible = new JLabel(icono);
             plataformaVisible.setBounds(plataforma.getPosX(), plataforma.getPosY(), plataforma.getHitbox().getAncho(), plataforma.getHitbox().getAlto());
-            this.setComponentZOrder(plataformaVisible,2);
+            //this.setComponentZOrder(plataformaVisible,2);
             plataforma.setMiLabel(plataformaVisible);
             this.add(plataformaVisible);  
             //imagenFondoJuego.add(plataformaVisible);
@@ -124,7 +134,7 @@ public class PanelPantallaJuego extends JPanel{
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));
             JLabel obstaculoVisible = new JLabel(icono);
             obstaculoVisible.setBounds(obstaculo.getPosX(), obstaculo.getPosY(), obstaculo.getHitbox().getAncho(), obstaculo.getHitbox().getAlto());
-            this.setComponentZOrder(obstaculoVisible,2);
+            //this.setComponentZOrder(obstaculoVisible,2);
             obstaculo.setMiLabel(obstaculoVisible);
             this.add(obstaculoVisible);  
         }
@@ -158,7 +168,8 @@ public class PanelPantallaJuego extends JPanel{
         ImageIcon imagenOriginal= new ImageIcon( getClass().getClassLoader().getResource(silueta.getSprite().getRutaImagen("normal")));
         Image imagenRedimensionada= imagenOriginal.getImage().getScaledInstance(ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO, Image.SCALE_SMOOTH);
         imagenFondoJuego.setIcon(new ImageIcon(imagenRedimensionada));
-        imagenFondoJuego.setBounds(0,30, ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO); // el 30 en y es para repetar el tamaño del panel fin
+        imagenFondoJuego.setBounds(0,0, ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO);
+        //imagenFondoJuego.setBounds(0,30, ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO); // el 30 en y es para repetar el tamaño del panel fin
         this.add(imagenFondoJuego);
         //imagenFondoJuego.setIcon(new ImageIcon(getClass().getClassLoader().getResource(silueta.getSprite().getRutaImagen("normal"))));
         //imagenFondoJuego.setBounds(0, 0, imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight());
@@ -181,6 +192,10 @@ public class PanelPantallaJuego extends JPanel{
     }   
     public void actualizarLabelTiempo() {
         String tiempoString = miControladorGrafico.getJuego().getTimer().getStringDeTiempo();
+        labelTiempo.setText(tiempoString);
+    }
+    public void actualizarLabelTiempoContrarreloj() {
+        String tiempoString = miControladorGrafico.getJuego().getTimer().getStringTiempoContrarreloj();
         labelTiempo.setText(tiempoString);
     }
     public void efectoVidaExtra(Jugador jugador){
