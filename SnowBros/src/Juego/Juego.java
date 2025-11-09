@@ -106,6 +106,7 @@ public class Juego {
                     Jugador jugadorActual=jugador;
                     Nivel nivelActual=nivel;
                     if(nivel==null||jugador==null)break;
+
                     for(Enemigo enemigo : new ArrayList<>(nivelActual.getEnemigos())){
                         if (jugadorActual.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) {
                             enemigo.aceptar(jugador);
@@ -113,7 +114,8 @@ public class Juego {
                         if(!nivelActual.getDisparos().isEmpty()){
                             for (DisparoJugador disparo: nivelActual.getDisparos()){
                                 if (disparo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) {
-                                    enemigo.aceptar(disparo);
+                                    if (disparo.getObserver()!=null) 
+                                        enemigo.aceptar(disparo);
                                 }
                             }
                         }
@@ -181,22 +183,25 @@ public class Juego {
                         break;
                     }
                     for(Pared p: new ArrayList<>(nivelActual.getParedes()))
-                    if (jugadorActual.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) 
-                    p.aceptar(jugadorActual);
+                        if (jugadorActual.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) 
+                            p.aceptar(jugadorActual);
+                            
                     for(PowerUp entidad : new ArrayList<>(nivelActual.getPowerUps()))
-                    if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle()))
-                    entidad.aceptar(jugadorActual);
+                        if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle()))
+                            entidad.aceptar(jugadorActual);
+
                     for(Obstaculo entidad : new ArrayList<>(nivelActual.getObstaculos()))
-                    if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) 
-                    entidad.aceptar(jugadorActual);
+                        if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) 
+                            entidad.aceptar(jugadorActual);
+
                     for(Plataforma plataforma: nivelActual.getPlataformas()){
                         if(!nivelActual.getDisparos().isEmpty()){
                             for (DisparoJugador disparo: nivelActual.getDisparos())
                             if (disparo.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
-                            plataforma.aceptar(disparo);
+                                plataforma.aceptar(disparo);
                     for (BolaDeFuego bomba: nivelActual.getBolasDeFuego())
-                    if (bomba.kamakichiBomba() && bomba.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
-                    plataforma.aceptar(bomba);
+                        if (bomba.kamakichiBomba() && bomba.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
+                            plataforma.aceptar(bomba);
                 }
             }
             for(PlataformaMovil movil:nivelActual.getPlataformasMovil()){
@@ -205,13 +210,14 @@ public class Juego {
                 movil.aceptar(jugadorActual);
             }
             if(!nivelActual.getBolasDeFuego().isEmpty())
-            for(BolaDeFuego bola: nivelActual.getBolasDeFuego())
-            if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) 
-            jugadorActual.aceptar(bola);
+                for(BolaDeFuego bola: nivelActual.getBolasDeFuego())
+                    if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) 
+                        jugadorActual.aceptar(bola);
+
             if(!nivelActual.getBolasDeNieve().isEmpty())
-            for(BolaDeNieve bola: nivelActual.getBolasDeNieve())
-            if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) 
-            jugadorActual.aceptar(bola);
+                for(BolaDeNieve bola: nivelActual.getBolasDeNieve())
+                    if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) 
+                        jugadorActual.aceptar(bola);
             try {
                 Thread.sleep(16);
             } catch (InterruptedException e) {
@@ -243,8 +249,6 @@ public class Juego {
                 if(!nivelActual.getBolasDeFuego().isEmpty())
                     for (BolaDeFuego bola:new ArrayList<>(nivel.getBolasDeFuego()))
                         bola.mover();
-                for(BolaDeNieve bolaDeNieve:nivelActual.getBolasDeNieve())
-                    bolaDeNieve.mover();
                 nivelActual.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
                 long dormir = frameTime - duracion;
