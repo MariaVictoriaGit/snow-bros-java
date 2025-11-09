@@ -117,7 +117,8 @@ public class Juego {
                         if(!nivelActual.getDisparos().isEmpty()){
                             for (DisparoJugador disparo:new ArrayList<>(nivelActual.getDisparos())){
                                 if (disparo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) {
-                                    enemigo.aceptar(disparo);
+                                    if (disparo.getObserver()!=null) 
+                                        enemigo.aceptar(disparo);
                                 }
                             }
                         }
@@ -257,13 +258,10 @@ public class Juego {
     }
     public void actualizarPuntaje(int puntajeASumar){
         puntajeJugador+=puntajeASumar;
-        ranking.setJugador(jugador.getNombre(), puntajeJugador, modoDeJuego);
         controladorGrafica.getPantalla().actualizarLabelsPuntaje(jugador);
     }
     public void setReinicio(boolean t){
         reiniciarJugador=t;
-    }
-    public int getPuntaje(){
         return puntajeJugador;
     }
     public Nivel getNivelActual(){
