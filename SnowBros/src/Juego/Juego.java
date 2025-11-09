@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
+
+import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
@@ -43,12 +45,15 @@ public class Juego {
     protected Boolean juegoEnEjecucion;
     protected String nombreJugador;
     protected String modoDeJuego;
+    private long ultimoDisparo;
+
     public Juego(){
         reiniciarJugador=false;
         ranking=new Ranking();
         tiempo= new Temporizador(); 
         tiempoAntesAparicionCalabaza= new Temporizador(60);
         juegoEnEjecucion=false;
+        ultimoDisparo=0;
     }
     //metodos de configuracionaa
     public void setControladorGrafica(GUI miControlador) {
@@ -139,7 +144,7 @@ public class Juego {
                         if(!nivelActual.getDisparos().isEmpty()){
                             for (DisparoJugador disparo: nivelActual.getDisparos()){
                                 if (disparo.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) {
-                                plataforma.aceptar(disparo);
+                                    plataforma.aceptar(disparo);
                                 }
                             }
                             for (BolaDeFuego bomba: nivelActual.getBolasDeFuego()){
@@ -371,9 +376,13 @@ public class Juego {
         bola.registrarObserver(observer);
     }
     public void shootJugador() {
-        DisparoJugador disparo = jugador.disparar();
-        controladorGrafica.getPantalla().incorporarEntidad(disparo);
-        nivel.agregarDisparo(disparo);
+        long tiempoHilo=System.currentTimeMillis();
+        if(tiempoHilo-ultimoDisparo>=ConstantesTiempos.COOLDOWN_DISPARO){
+            DisparoJugador disparo = jugador.disparar();
+            controladorGrafica.getPantalla().incorporarEntidad(disparo);
+            nivel.agregarDisparo(disparo);
+            ultimoDisparo=tiempoHilo;
+        }
     }
     public boolean estaCerca(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
         Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();

@@ -13,6 +13,8 @@ public class BolaDeFuego extends EntidadDinamica{
     protected Temporizador tiempo;
     private int tiempoCaida;
     private int aumentos;
+    private boolean spriteJefe=false;
+
     public BolaDeFuego(int posX, int posY,Sprite miSprite){
         super(posX, posY, miSprite);
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_FUEGO);
@@ -99,13 +101,27 @@ public class BolaDeFuego extends EntidadDinamica{
         String clave=null;
         switch (direccion) {
             case ConstantesEntidades.IZQUIERDA:
+                if(spriteJefe){
+                    clave="fuegoMoghera";
+                }
+                else{   
                     clave="completa";
+                }
                     break;
             case ConstantesEntidades.DERECHA:
+                if(spriteJefe){
+                    clave="bomba";
+                }
+                else{
+
                     clave="derretida";
+                }
                     break;
                 }
             return clave;
+    }
+    public void setSpriteJefe(boolean b){
+        spriteJefe=b;
     }
         
 }
