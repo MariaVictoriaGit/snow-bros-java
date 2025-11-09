@@ -85,32 +85,28 @@ public class PanelPantallaFinDelJuego extends JPanel {
     public void registrarOyenteBotonReinicio(){
         botonReinicio.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                miControladorGrafico.accionarInicioJuego();
-                miControladorGrafico.mostrarPantallaJuego();
+                miControladorGrafico.cambiarInicioJuego();
             }
         });
     }
     public void registrarOyenteBotonSalir(){
         botonSalir.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                miControladorGrafico.accionarPantallaPrincipal();
-                miControladorGrafico.mostrarPantallaPrincipal();
+                miControladorGrafico.cambiarPantallaPrincipal();
             }
         });
     }
     private void registrarOyenteBotonNuevaPartida(){
         botonNuevaPartida.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                miControladorGrafico.accionarPantallaDominio();
-                miControladorGrafico.mostrarPantallaDominio();
+                miControladorGrafico.cambiarPantallaDominio();
             }
         });
     }    
     private void registrarOyenteBotonRanking(){
         botonRanking.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                miControladorGrafico.accionarPantallaRanking();
-                miControladorGrafico.mostrarPantallaRanking();
+                miControladorGrafico.cambiarPantallaRanking();
             }
         });
     }

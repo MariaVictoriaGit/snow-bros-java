@@ -62,8 +62,7 @@ public class PanelPantallaPrincipal extends JPanel{
         botonIniciar.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 //System.out.println("click iniciar");
-                miControladorGrafico.accionarPantallaDominio();
-                miControladorGrafico.mostrarPantallaDominio();
+                miControladorGrafico.cambiarPantallaDominio();
             }
         });
     }
@@ -71,8 +70,7 @@ public class PanelPantallaPrincipal extends JPanel{
         botonRanking.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 //System.out.println("click ranking");
-                miControladorGrafico.accionarPantallaRanking();
-                miControladorGrafico.mostrarPantallaRanking();
+                miControladorGrafico.cambiarPantallaRanking();
             }
         });
     }

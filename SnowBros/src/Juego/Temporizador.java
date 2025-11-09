@@ -1,5 +1,7 @@
 package SnowBros.src.Juego;
 
+import SnowBros.src.Datos.ConstantesDificultad;
+
 public class Temporizador {
     private int tiempoActual;
     private int tope;
@@ -81,6 +83,13 @@ public class Temporizador {
     public String getStringDeTiempo(){
         int minutos=tiempoActual/60;
         int segundos=tiempoActual%60;
+        return String.format("%02d:%02d", minutos, segundos);
+    }
+    public String getStringTiempoContrarreloj(){
+        int restante = ConstantesDificultad.TOPE_TIEMPO_CONTRARRELOJ - tiempoActual;
+        if(restante < 0) restante = 0;
+        int minutos = restante / 60;
+        int segundos = restante % 60;
         return String.format("%02d:%02d", minutos, segundos);
     }
 }
