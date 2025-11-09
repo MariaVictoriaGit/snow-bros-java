@@ -1,142 +1,142 @@
-Plataforma 800 16
-Plataforma 768 16
-Plataforma 736 16
-Plataforma 704 16
-Plataforma 672 16
-Plataforma 640 16
-Plataforma 608 16
-Plataforma 576 16
-Plataforma 544 16
-Plataforma 512 16
-Plataforma 480 16
-Plataforma 448 16
-Plataforma 416 16
-Plataforma 384 16
-Plataforma 352 16
-Plataforma 320 16
-Plataforma 288 16
-Plataforma 256 16
-Plataforma 224 16
-Plataforma 192 16
-Plataforma 160 16
-Plataforma 128 16
-Plataforma 96 16
-Plataforma 64 16
-Plataforma 32 16
-Plataforma 0 16
+Plataforma 800 0
+Plataforma 768 0
+Plataforma 736 0
+Plataforma 704 0
+Plataforma 672 0
+Plataforma 640 0
+Plataforma 608 0
+Plataforma 576 0
+Plataforma 544 0
+Plataforma 512 0
+Plataforma 480 0
+Plataforma 448 0
+Plataforma 416 0
+Plataforma 384 0
+Plataforma 352 0
+Plataforma 320 0
+Plataforma 288 0
+Plataforma 256 0
+Plataforma 224 0
+Plataforma 192 0
+Plataforma 160 0
+Plataforma 128 0
+Plataforma 96 0
+Plataforma 64 0
+Plataforma 32 0
+Plataforma 0 0
 
-Jugador 416 80
+Jugador 416 64
 
-DemonioRojo 288 48
+DemonioRojo 288 32
 
-BotellaAzul 544 48
+BotellaAzul 544 32
 
-TrampaPinchos 32 111
+TrampaPinchos 32 95
 
-Plataforma 0 80 
-Plataforma 32 80
-Plataforma 64 80
-Plataforma 96 80
-Plataforma 128 80
-SueloResbaladizo 160 80
-Plataforma 192 80
-Plataforma 224 80
-Plataforma 256 80
-Plataforma 288 80
+Plataforma 0 64 
+Plataforma 32 64
+Plataforma 64 64
+Plataforma 96 64
+Plataforma 128 64
+SueloResbaladizo 160 68
+Plataforma 192 64
+Plataforma 224 64
+Plataforma 256 64
+Plataforma 288 64
 
-Plataforma 480 80
-Plataforma 512 80
-Plataforma 544 80
-Plataforma 576 80
-Escalera 608 80
-Plataforma 640 80
-Plataforma 672 80
-Plataforma 704 80
-Plataforma 736 80
-Plataforma 768 80
+Plataforma 480 64
+Plataforma 512 64
+Plataforma 544 64
+Plataforma 576 64
+Escalera 608 64
+Plataforma 640 64
+Plataforma 672 64
+Plataforma 704 64
+Plataforma 736 64
+Plataforma 768 64
 
-BotellaVerde 672 112
+BotellaVerde 672 96
 
-Plataforma 0 144
-Plataforma 32 144
-Plataforma 64 144
-Plataforma 96 144
+Plataforma 0 128
+Plataforma 32 128
+Plataforma 64 128
+Plataforma 96 128
 
-Plataforma 224 144
-Plataforma 256 144
-Plataforma 288 144
-Plataforma 320 144
-Plataforma 352 144
-Plataforma 384 144
-Plataforma 416 144
-Plataforma 448 144
-Plataforma 480 144
+Plataforma 224 128
+Plataforma 256 128
+Plataforma 288 128
+Plataforma 320 128
+Plataforma 352 128
+Plataforma 384 128
+Plataforma 416 128
+Plataforma 448 128
+Plataforma 480 128
 
-BotellaRoja 400 176
+BotellaRoja 400 160
 
-ParedDestructible 50 179
+ParedDestructible 50 163
 
-Pared 480 189
+Pared 480 173
 
-Plataforma 480 208
-Plataforma 512 208
-Plataforma 544 208
-Plataforma 576 208
-Plataforma 608 208
-Plataforma 640 208
-Plataforma 672 208
-Plataforma 704 208
-Plataforma 736 208
-Plataforma 768 208
+Plataforma 480 192
+Plataforma 512 192
+Plataforma 544 192
+Plataforma 576 192
+Plataforma 608 192
+Plataforma 640 192
+Plataforma 672 192
+Plataforma 704 192
+Plataforma 736 192
+Plataforma 768 192
 
-RanaDeFuego 704 240
+RanaDeFuego 704 224
 
-VidaExtra 640 304
+VidaExtra 640 288
 
-Plataforma 96 240
-Plataforma 128 240
-Plataforma 160 240
-Plataforma 192 240
-Plataforma 224 240
+Plataforma 96 224
+Plataforma 128 224
+Plataforma 160 224
+Plataforma 192 224
+Plataforma 224 224
 
-PlataformaMovil 576 272
-PlataformaMovil 608 272
-PlataformaMovil 640 272
-PlataformaMovil 672 272
+PlataformaMovil 576 256
+PlataformaMovil 608 256
+PlataformaMovil 640 256
+PlataformaMovil 672 256
 
-Fruta 600 304
+Fruta 600 288
 
-Plataforma 160 304
-Plataforma 192 304
-Plataforma 224 304
-Plataforma 256 304
-Plataforma 288 304
-Plataforma 320 304
-Plataforma 352 304
-Plataforma 384 304
-Plataforma 416 304
-Plataforma 448 304
+Plataforma 160 288
+Plataforma 192 288
+Plataforma 224 288
+Plataforma 256 288
+Plataforma 288 288
+Plataforma 320 288
+Plataforma 352 288
+Plataforma 384 288
+Plataforma 416 288
+Plataforma 448 288
 
-Plataforma 544 304
+Plataforma 544 288
 
-Pared 488 336
+Pared 488 320
 
-Plataforma 512 336
+Plataforma 512 320
 
-Plataforma 480 368
+Plataforma 480 352
 
-Plataforma 32 400
-Plataforma 64 400
-Plataforma 96 400
+Plataforma 32 384
+Plataforma 64 384
+Plataforma 96 384
 
-PlataformaQuebradiza 160 400
-PlataformaQuebradiza 192 400
+PlataformaQuebradiza 160 384
+PlataformaQuebradiza 192 384
 
-TrollAmarillo 320 464
+RanaDeFuego 320 448
 
-Plataforma 288 400
-Plataforma 320 400
-Plataforma 352 400
-Plataforma 400 400
-Plataforma 416 400
-Plataforma 448 400
+Plataforma 288 384
+Plataforma 320 384
+Plataforma 352 384
+Plataforma 384 384
+Plataforma 416 384
+Plataforma 448 384

@@ -17,6 +17,7 @@ public class BolaDeFuego extends EntidadDinamica{
 
     public BolaDeFuego(int posX, int posY,Sprite miSprite){
         super(posX, posY, miSprite);
+        observer.getImagen().setLocation(posX, posY);
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_FUEGO);
     }
     public Temporizador getTimer(){

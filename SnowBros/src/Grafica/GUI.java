@@ -159,10 +159,10 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         panelPantallaJuego.mostrarPlataformas();
         panelPantallaJuego.mostrarObstaculos();
         panelPantallaJuego.incorporarSilueta(miJuego.getNivelActual().getSilueta());
-        panelPantallaJuego.setComponentZOrder(miJuego.getJugador().getObserver().getImagen(),3);
-        for(Enemigo enemigo:miJuego.getNivelActual().getEnemigos()){
-            panelPantallaJuego.setComponentZOrder(enemigo.getObserver().getImagen(),3);
-        }
+    //    panelPantallaJuego.setComponentZOrder(miJuego.getJugador().getObserver().getImagen(),3);
+      //  for(Enemigo enemigo:miJuego.getNivelActual().getEnemigos()){
+        //    panelPantallaJuego.setComponentZOrder(enemigo.getObserver().getImagen(),3);
+        //}
         refrescar();
         //controladorDeSonido.reproducirSonidoDeFondo();
     }

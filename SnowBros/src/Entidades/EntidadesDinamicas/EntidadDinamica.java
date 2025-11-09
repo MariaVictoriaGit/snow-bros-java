@@ -163,6 +163,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   protected void visitarPlataforma(Plataforma e){
     if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
       this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
+      this.setPosY(e.getPosY() - this.getHitbox().getAlto());
       tocandoSuelo=ConstantesEntidades.SUELO;
       saltando=false;
       enAire=false;

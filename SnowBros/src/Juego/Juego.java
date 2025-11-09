@@ -262,7 +262,6 @@ public class Juego {
     }
     public void setReinicio(boolean t){
         reiniciarJugador=t;
-        return puntajeJugador;
     }
     public Nivel getNivelActual(){
         return nivel;
