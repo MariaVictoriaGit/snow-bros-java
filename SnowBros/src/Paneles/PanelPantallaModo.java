@@ -65,7 +65,7 @@ public class PanelPantallaModo extends JPanel{
     public void registrarOyenteBotonClasico(){
         botonClasico.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-                miControladorGrafico.cambiarModoJuego("Clasico");
+                miControladorGrafico.setModoJuego("Clasico");
                 comenzarJuego();
 			}
 		});
@@ -73,7 +73,7 @@ public class PanelPantallaModo extends JPanel{
     public void registrarOyenteBotonContrarreloj(){
         botonContrarreloj.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-                miControladorGrafico.cambiarModoJuego("Contrarreloj");
+                miControladorGrafico.setModoJuego("Contrarreloj");
                 comenzarJuego();
 		}
 		});
@@ -85,7 +85,7 @@ public class PanelPantallaModo extends JPanel{
     public void registrarOyenteBotonSupervivencia(){
         botonSupervivencia.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-                miControladorGrafico.cambiarModoJuego("Supervivencia");
+                miControladorGrafico.setModoJuego("Supervivencia");
                 comenzarJuego();
 			}
 		});

@@ -24,9 +24,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     protected PanelPantallaJuego panelPantallaJuego;
     protected PanelPantallaFinDelJuego panelPantallaFinDelJuego;
     protected Juego miJuego;
-    protected boolean dominio=true;//TODO ...............................................................................
     private boolean movDerecha=false;
     private boolean movIzquierda=false;
+    protected String dominio;
 
     public GUI(Juego juego){
         this.miJuego=juego;
@@ -147,7 +147,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     public void accionarInicioJuego() {
         this.panelPantallaJuego=new PanelPantallaJuego(this);
-        miJuego.iniciar(dominio);
+        miJuego.iniciar();
         panelPantallaJuego.mostrarPlataformas();
         panelPantallaJuego.mostrarObstaculos();
        panelPantallaJuego.incorporarSilueta(miJuego.getNivelActual().getSilueta());
@@ -181,7 +181,11 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         ventana.requestFocusInWindow();
         refrescar();
     }
-    public void cambiarModoJuego(String modo) {
+    public void setDominio(String dominio){
+        this.dominio=dominio;
+        miJuego.setDominio(dominio);
+    }
+    public void setModoJuego(String modo) {
         miJuego.setModoDeJuego(modo);
         String nombre = javax.swing.JOptionPane.showInputDialog(ventana,"Ingresa tu nombre(5 caracteres) para el ranking:","Registro de Jugador",javax.swing.JOptionPane.PLAIN_MESSAGE);
         if (nombre == null || nombre.trim().isEmpty())

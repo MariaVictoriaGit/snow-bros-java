@@ -1,7 +1,7 @@
 package SnowBros.src.Grafica;
 
 import java.awt.Container;
-
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
