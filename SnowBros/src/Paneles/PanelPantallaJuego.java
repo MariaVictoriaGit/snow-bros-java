@@ -39,7 +39,7 @@ public class PanelPantallaJuego extends JPanel{
     public PanelPantallaJuego(GUI miControladorGrafico){
          this.miControladorGrafico=miControladorGrafico;
          setPreferredSize(new Dimension(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO));
-         setLayout(new BorderLayout());
+         setLayout(null);
          agregarPanelInformacion();
          agregarPanelJuego();
     }
@@ -113,7 +113,7 @@ public class PanelPantallaJuego extends JPanel{
             JLabel plataformaVisible = new JLabel(icono);
             plataformaVisible.setBounds(plataforma.getPosX(), plataforma.getPosY(), plataforma.getHitbox().getAncho(), plataforma.getHitbox().getAlto());
             this.add(plataformaVisible);  //TODO revisar, a veces se mueven las plataformas
-            this.setComponentZOrder(plataformaVisible,0);
+            //this.setComponentZOrder(plataformaVisible,0);
             plataforma.setMiLabel(plataformaVisible);//imagenFondoJuego.add(plataformaVisible);
         }
         this.revalidate();
@@ -126,7 +126,7 @@ public class PanelPantallaJuego extends JPanel{
             JLabel obstaculoVisible = new JLabel(icono);
             obstaculoVisible.setBounds(obstaculo.getPosX(), obstaculo.getPosY(), obstaculo.getHitbox().getAncho(), obstaculo.getHitbox().getAlto());
             this.add(obstaculoVisible);  
-            this.setComponentZOrder(obstaculoVisible,0);
+            //this.setComponentZOrder(obstaculoVisible,0);
             obstaculo.setMiLabel(obstaculoVisible);  
         }
         this.revalidate();

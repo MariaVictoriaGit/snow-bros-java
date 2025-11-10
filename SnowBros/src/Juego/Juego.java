@@ -221,6 +221,7 @@ public class Juego {
     }
     public void actualizarPuntaje(int puntajeASumar){
         puntajeJugador+=puntajeASumar;
+        ranking.setJugador(jugador.getNombre(), puntajeJugador, modoDeJuego);
         controladorGrafica.getPantalla().actualizarLabelsPuntaje(jugador);
     }
     public void setReinicio(boolean t){

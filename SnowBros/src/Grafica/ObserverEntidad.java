@@ -14,7 +14,6 @@ public class ObserverEntidad extends ObserverGrafico{
 
     public ObserverEntidad(EntidadDinamica entidad) {
         super(entidad);
-        //TODO Auto-generated constructor stub
     }
     public void actualizar(int direccion, int tocandoSuelo) {
         if(entidadObservada!=null){
