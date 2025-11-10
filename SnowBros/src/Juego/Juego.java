@@ -161,8 +161,16 @@ public class Juego {
                     }
                     if(!nivelActual.getBolasDeNieve().isEmpty()){
                         for(BolaDeNieve bola: nivelActual.getBolasDeNieve()){
-                            if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) {
+                            if (bola.getHitbox().getLeftHitBox().intersects(jugadorActual.getHitbox().getRectangle())) {
                                 jugadorActual.aceptar(bola);
+                            }
+                            if (bola.getHitbox().getRightHitBox().intersects(jugadorActual.getHitbox().getRectangle())) {
+                                jugadorActual.aceptar(bola);
+                            }
+                            for(Enemigo enemigo:nivel.getEnemigos()){
+                                if (bola.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) {
+                                    enemigo.aceptar(bola);
+                                }
                             }
                         }
                     }

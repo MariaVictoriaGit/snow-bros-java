@@ -64,9 +64,6 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   }
   public void setTocandoSuelo(int estado){
     tocandoSuelo=estado;
-    if (observer != null) {
-      observer.actualizar(direccion,estado);
-    }
   }
   public String generarClaveEstado(){
     String estado=null;
@@ -118,7 +115,6 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
       velocidadY=2;
       posY+=velocidadY;
       this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
-      this.getObserver().actualizar(direccion, getTocandoSuelo()); 
       for(Plataforma p:nivel.getPlataformas()){
         if(nivel.getJugador().getJuego().estaCerca(this,p,40)){
           p.aceptar((Visitador) this);

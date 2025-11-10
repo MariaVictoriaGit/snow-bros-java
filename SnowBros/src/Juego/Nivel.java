@@ -83,7 +83,6 @@ public class Nivel {
         jugador=null;
     }
     public void eliminarEnemigo(Enemigo e){
-         e.getObserver().actualizar();
         listaEnemigos.remove(e);
     }
     public void eliminarPowerUp(PowerUp p){
@@ -109,7 +108,6 @@ public class Nivel {
     }
     public void eliminarBolaDeNieve(BolaDeNieve b){
         listaBolaDeNieve.remove(b);
-        b.getObserver().actualizar();
     }
     // métodos que agregan
     public void agregarJugador(Jugador j){
@@ -180,7 +178,7 @@ public class Nivel {
     public void notificarObservers(){
         jugador.getObserver().actualizar(jugador.getDireccion(), jugador.getTocandoSuelo());
         for(Enemigo e:new ArrayList<>(this.getEnemigos())){
-            if(!e.getCongelado()){
+            if(!e.getCongelado() && !e.getMuerto() && e!=null){
                 e.getObserver().actualizar(e.getDireccion(),e.getTocandoSuelo());
             }
         }

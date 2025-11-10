@@ -99,7 +99,6 @@ public class TrollAmarillo extends Enemigo{
     }
     @Override
     public void aceptar(Visitador visitador) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'aceptar'");
+        visitador.visitar(this);
     }
 }

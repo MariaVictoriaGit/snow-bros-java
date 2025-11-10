@@ -110,17 +110,22 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public abstract int getPuntajeCongelado();
    public abstract int getPuntajeEmpujado();
    public void eliminar(){
-      nivel.eliminarEnemigo(this);
-      observer.borrarObserver();
-      observer=null;
+      if(observer!=null){
+         observer.borrarObserver();
+         nivel.eliminarEnemigo(this);
+         observer=null;
+      }
    }
     public void aceptar(Jugador j){
        if(!congelado)
          j.visitar(this);
-         else convertirEnBola();
+      else convertirEnBola();
       
     }
     public void aceptar(DisparoJugador d){
       d.visitar(this);
+    }
+    public void aceptar(BolaDeNieve b){
+      b.visitar(this);
     }
 }
