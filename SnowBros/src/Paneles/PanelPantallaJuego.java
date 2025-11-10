@@ -43,10 +43,10 @@ public class PanelPantallaJuego extends JPanel{
     }
     protected void agregarPanelInformacion() {
         panelInformacion= new JPanel();
-        panelInformacion.setOpaque(false); //Esto hace que sea transparente
+        panelInformacion.setOpaque(true); //true lo deja en blanco
         panelInformacion.setLayout(new GridLayout(1, 4, 20,0)); 
-		panelInformacion.setBounds(0, 0, ConstantesVistas.PANEL_ANCHO, 60);//Defino manualmente el tamaño y pos del panel info
-        Font fuente = new Font("Arial", Font.BOLD, 22);
+		panelInformacion.setBounds(0, 0, ConstantesVistas.PANEL_ANCHO, 42);//40         //Defino manualmente el tamaño y pos del panel info
+        Font fuente = new Font("Arial", Font.BOLD, 16);
         String stringModo=miControladorGrafico.getJuego().getModoDeJuego();
         labelNivel= new JLabel(stringModo);
         labelNivel.setForeground(Color.BLACK);
@@ -85,10 +85,9 @@ public class PanelPantallaJuego extends JPanel{
         panelVidas= new JPanel();
         //ArrayList<JLabel> corazones= new ArrayList<>();
         panelVidas.setOpaque(false);//transparente
-        panelVidas.setLayout(new FlowLayout(FlowLayout.CENTER,5,5));// espacio de 5 pixeles horiz y vert entre cada componente
+        panelVidas.setLayout(new FlowLayout(FlowLayout.CENTER,5,15));// espacio de 5 pixeles horiz y vert entre cada componente
         ImageIcon iconoCorazon= new ImageIcon("SnowBros/src/Imagenes/Original/PowerUps/vidaJugador.png");
-        int vidas=ConstantesDificultad.VIDAS_INICIO;//TODO hacer constante
-        for(int i=0;i<vidas;i++){
+        for(int i=0;i<ConstantesDificultad.VIDAS_INICIO;i++){
             JLabel vidaLabel=new JLabel(iconoCorazon);
             //corazones.add(vidaLabel);
             panelVidas.add(vidaLabel);
@@ -205,7 +204,7 @@ public class PanelPantallaJuego extends JPanel{
     public void actualizarLabelsPuntaje(Jugador jugador) {
         Component componenteActual = panelInformacion.getComponent(1);
         panelInformacion.remove(componenteActual);
-        Font fuente = new Font("Arial", Font.BOLD, 22);
+        Font fuente = new Font("Arial", Font.BOLD, 16);
         String puntaje=String.valueOf(jugador.getPuntaje());
         labelPuntaje= new JLabel(puntaje);
         labelPuntaje.setFont(fuente);
