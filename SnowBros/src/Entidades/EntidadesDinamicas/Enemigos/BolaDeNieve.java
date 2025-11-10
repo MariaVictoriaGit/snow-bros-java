@@ -1,5 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.ConstantesVistas;
@@ -53,7 +54,6 @@ public class BolaDeNieve extends EntidadDinamica{
             terminaRebotar();
         }
     }
-
     private void terminaRebotar(){
         if(reboto && posX<=0 || posX>=ConstantesVistas.PANEL_ANCHO)
             this.eliminar(); 

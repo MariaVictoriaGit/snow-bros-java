@@ -20,6 +20,7 @@ import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Grafica.GUI;
 import SnowBros.src.Grafica.ObserverGrafico;
@@ -128,9 +129,17 @@ public class PanelPantallaJuego extends JPanel{
             //this.setComponentZOrder(obstaculoVisible,0);
             obstaculo.setMiLabel(obstaculoVisible);  
         }
+        for(SueloResbaladizo suelo:miControladorGrafico.getJuego().getNivelActual().getResbaladizos()){
+            String ruta = suelo.getSprite().getRutaImagen("normal");
+            ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));
+            JLabel obstaculoVisible = new JLabel(icono);
+            obstaculoVisible.setBounds(suelo.getPosX(), suelo.getPosY(), suelo.getHitbox().getAncho(), suelo.getHitbox().getAlto());
+            this.add(obstaculoVisible);  
+            suelo.setMiLabel(obstaculoVisible);  
         this.revalidate();
         this.repaint();
     }
+}
     public ObserverGrafico incorporarEntidad(EntidadDinamica entidad) {
         EntidadDinamica  aux= entidad;
         imagenFondoJuego.add((JLabel)aux.getObserver());
@@ -147,6 +156,8 @@ public class PanelPantallaJuego extends JPanel{
         JLabel estatica = new JLabel(icono);
         estatica.setBounds(e.getHitbox().getX(), e.getHitbox().getY(), e.getHitbox().getAncho(), e.getHitbox().getAlto());
         this.add(estatica);
+        this.revalidate();
+        this.repaint();
         return estatica;
     }
     public ObserverJugador incorporarEntidadJugador(Jugador jugador) {

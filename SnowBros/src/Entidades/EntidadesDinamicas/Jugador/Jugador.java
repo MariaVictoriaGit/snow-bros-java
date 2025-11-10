@@ -95,6 +95,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public void setVelocidad(int v){
         velocidad=v;
     }
+    public void setVelocidadBase(){
+        velocidad= ConstantesDificultad.VELOCIDAD_JUGADOR;
+    }
     public void eliminar(){
         nivel.eliminarJugador(this);
     }
@@ -247,10 +250,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         else
             this.perderVida();
     }
-    public void visitar(Plataforma p){
-        if(enSueloResbaladizo)
-            enSueloResbaladizo=false;
-        velocidad=6;                
+    public void visitar(Plataforma p){              
         visitarPlataforma(p);
     }
     private void efectoPowerUp(PowerUp b){
@@ -304,8 +304,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         return habilitadoASubirEscalera;
     }
     public void visitar(SueloResbaladizo e){
-        velocidad=1;
-        enSueloResbaladizo=true;
+        setVelocidad(1);
         super.visitar(e);
     }
     public void visitar(TrampaPinchos t){

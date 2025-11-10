@@ -72,7 +72,7 @@ public class Juego {
                     break;
                 for(Enemigo enemigo : new ArrayList<>(nivelActual.getEnemigos())){
                     if (jugadorActual.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
-                        enemigo.aceptar(jugador);
+                        enemigo.aceptar(jugadorActual);
                     if(!nivelActual.getDisparos().isEmpty())
                         for (DisparoJugador disparo:new ArrayList<>(nivelActual.getDisparos()))
                             if (disparo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
@@ -112,6 +112,13 @@ public class Juego {
                         }
                     }
                 }
+                for(SueloResbaladizo suelo: nivelActual.getResbaladizos()){
+                    if (jugadorActual.getHitbox().getRectangle().intersects(suelo.getHitbox().getRectangle())) 
+                        suelo.aceptar(jugadorActual);
+                        else    
+                            jugadorActual.setVelocidadBase();
+                            
+                }
                 for(Plataforma plataforma: nivelActual.getPlataformas())
                     if(!nivelActual.getDisparos().isEmpty()){
                         for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
@@ -139,11 +146,10 @@ public class Juego {
                         } else if (bola.getHitbox().getRightHitBox().intersects(jugadorActual.getHitbox().getRectangle())){
                             jugadorActual.aceptar(bola);
                         } else {
-                            jugador.setVelocidad(ConstantesDificultad.VELOCIDAD_JUGADOR);
+                            jugadorActual.setVelocidadBase();
                         } 
                         
-                           
-                        
+
                         for(Enemigo enemigo:nivelActual.getEnemigos())
                             if (bola.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
                                 enemigo.aceptar(bola);
