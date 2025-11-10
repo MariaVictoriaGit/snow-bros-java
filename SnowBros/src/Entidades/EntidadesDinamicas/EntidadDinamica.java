@@ -4,6 +4,7 @@ import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
@@ -167,6 +168,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
 
     }
   }
+
   public void visitar(BotellaAzul b) {}
   public void visitar(BotellaRoja b) {}
   public void visitar(BotellaVerde b) {}

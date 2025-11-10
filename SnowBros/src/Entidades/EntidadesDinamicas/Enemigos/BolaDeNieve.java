@@ -57,6 +57,7 @@ public class BolaDeNieve extends EntidadDinamica{
     }
     public void visitar(Enemigo e){
         e.eliminar();
+        this.eliminar();
         //TDOO a los indestructibles se les aturde no elimina(calabaza), al fantasma ni lo toca
     }
     public void visitar(ParedDestructible p){
@@ -64,10 +65,16 @@ public class BolaDeNieve extends EntidadDinamica{
         p.destruirse();
     }
     public void eliminar(){
-        nivel.eliminarBolaDeNieve(this);
+        if(observer!=null){
+            observer.borrarObserver();
+            nivel.eliminarBolaDeNieve(this);
+            observer=null;
+        }
+        
     }
     public void visitar(Jugador j){
         direccion=j.getDireccion();
         mover();
     }
+   
 }

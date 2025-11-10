@@ -167,7 +167,7 @@ public class Juego {
                             if (bola.getHitbox().getRightHitBox().intersects(jugadorActual.getHitbox().getRectangle())) {
                                 jugadorActual.aceptar(bola);
                             }
-                            for(Enemigo enemigo:nivel.getEnemigos()){
+                            for(Enemigo enemigo:nivelActual.getEnemigos()){
                                 if (bola.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) {
                                     enemigo.aceptar(bola);
                                 }
