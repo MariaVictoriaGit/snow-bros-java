@@ -182,11 +182,22 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     verificarPared(e);
   }
   public void visitar(Escalera e) {
-    //lo ignora
-    throw new UnsupportedOperationException("Unimplemented method 'visitar'");
+      if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
+            this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
+            this.setPosY(e.getPosY() - this.getHitbox().getAlto());
+            tocandoSuelo=ConstantesEntidades.SUELO;
+            saltando=false;
+            enAire=false;
+        }
   }   
   public void visitar(SueloResbaladizo e) {
-      
+      if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
+            this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
+            this.setPosY(e.getPosY() - this.getHitbox().getAlto());
+            tocandoSuelo=ConstantesEntidades.SUELO;
+            saltando=false;
+            enAire=false;
+        }
   }
   public void visitar(TrampaPinchos e) {
     //lo ignora
