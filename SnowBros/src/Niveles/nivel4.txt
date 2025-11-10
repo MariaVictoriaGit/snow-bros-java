@@ -31,6 +31,8 @@ Plataforma 32 64
 Plataforma 64 64
 Plataforma 96 64
 
+RanaDeFuego 64 96
+
 Plataforma 224 64
 Plataforma 256 64
 Plataforma 288 64

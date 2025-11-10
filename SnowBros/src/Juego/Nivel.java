@@ -19,7 +19,6 @@ public class Nivel {
     //protected String nombreNivel;
     /*podriamos cambiar el nombre de nivel en lugar de numero, como un nombre para identificarlos desde ConstantesNiveles*/
     protected Jugador jugador;
-    protected int numeroNivel;
     protected Silueta silueta;
     protected LinkedList<Enemigo> listaEnemigos;
     protected LinkedList<PowerUp> listaPowerUps;
@@ -33,9 +32,8 @@ public class Nivel {
     protected Calabaza calabaza;
     protected LinkedList<Fantasma> listaFantasmas;
 
-    public Nivel(Silueta silueta, int numero){
+    public Nivel(Silueta silueta){
         this.silueta=silueta;
-        numeroNivel=numero;
         listaEnemigos= new LinkedList<>();
         listaPowerUps= new LinkedList<>();
         listaObstaculos= new LinkedList<>();
@@ -47,7 +45,6 @@ public class Nivel {
         listaBolaDeNieve= new LinkedList<>();
         listaFantasmas = new LinkedList<>();
     }
-
     //metodos getters
     public LinkedList<Enemigo> getEnemigos(){
         return listaEnemigos;
@@ -154,8 +151,7 @@ public class Nivel {
     }
     public void agregarEnemigo(Enemigo e){
         listaEnemigos.addLast(e);
-        e.setNivel(this);
-        //enemigo.registrarObserver(new ObserverEntidad(e));
+        e.setNivel(this);//enemigo.registrarObserver(new ObserverEntidad(e));
         e.getObserver().actualizar();
     }
     public void agregarDisparo(DisparoJugador b){
@@ -183,16 +179,12 @@ public class Nivel {
         calabaza.getObserver().actualizar();
     }
     public void efectoBotellaVerde(boolean efecto){
-        if(efecto){
-            for(Enemigo enemigo : new ArrayList<>(listaEnemigos)){
+        if(efecto)
+            for(Enemigo enemigo : new ArrayList<>(listaEnemigos))
                 enemigo.detener();
-            }
-        }
-        else{
-            for(Enemigo enemigo : new ArrayList<>(listaEnemigos)){
+        else
+            for(Enemigo enemigo : new ArrayList<>(listaEnemigos))
                 enemigo.avanzar();
-            }
-        }
     }
     public Juego getJuego(){
         return jugador.getJuego();
@@ -205,24 +197,15 @@ public class Nivel {
     }
     public void notificarObservers(){
         jugador.getObserver().actualizar(jugador.getDireccion(), jugador.getTocandoSuelo());
-        for(Enemigo e:new ArrayList<>(this.getEnemigos())){
-            if(!e.getCongelado() && !e.getMuerto() && e!=null){
+        for(Enemigo e:new ArrayList<>(this.getEnemigos()))
+            if(!e.getCongelado() && !e.getMuerto() && e!=null)
                 e.getObserver().actualizar(e.getDireccion(),e.getTocandoSuelo());
-            }
-        }
-    /* 
-        for(BolaDeNieve b:this.getBolaDeNieves()){
-            b.getObserver().actualizar();
-        }
-        */
-        for(PlataformaMovil p:this.getPlataformasMovil()){
+        /*for(BolaDeNieve b:this.getBolaDeNieves())
+            b.getObserver().actualizar();*/
+        for(PlataformaMovil p:this.getPlataformasMovil())
             p.getObserver().actualizar();
-        }
-        for(BolaDeFuego b : new ArrayList<>(this.getBolasDeFuego())){
-                if(b!=null){
+        for(BolaDeFuego b : new ArrayList<>(this.getBolasDeFuego()))
+                if(b!=null)
                     b.getObserver().actualizar(b.getDireccion(),b.getTocandoSuelo());
-                }
-            }
-        }
     }
-
+}

@@ -1,14 +1,11 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
 
-import java.awt.Rectangle;
-
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Grafica.Sprite;
-//import SnowBros.src.Juego.HitBox;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Juego.Temporizador;
@@ -45,9 +42,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         invencible=false;
         enSueloResbaladizo=true;
     }
-    public void mover(){
-        //TODO ver como manejamos la herencia pq es de entidad dinamica
-    }
+    public void mover(){}
     public void mover(int direccionAMover){
         switch (direccionAMover){
             case ConstantesEntidades.QUIETO:
@@ -59,8 +54,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
                 dirAnterior=ConstantesEntidades.DERECHA;
                 direccion=direccionAMover;
                 if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
-                posX+=velocidad;
-                getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+                    posX+=velocidad;
+                    getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 }
                 break;
             case ConstantesEntidades.IZQUIERDA:
@@ -68,8 +63,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
                 dirAnterior=ConstantesEntidades.IZQUIERDA;
                 direccion=direccionAMover;
                 if(posX-velocidad>0){
-                posX-=velocidad;
-                getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+                    posX-=velocidad;
+                    getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 }
                 break;
             case ConstantesEntidades.ARRIBA:
@@ -87,12 +82,10 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public DisparoJugador disparar(){
         Sonido.getInstancia().reproducirEfectoDeSonido("disparo.wav");
         int aumento=0;
-        if(direccion == ConstantesEntidades.DERECHA){
+        if(direccion == ConstantesEntidades.DERECHA)
             aumento=20;
-        }
-        else if(direccion == ConstantesEntidades.IZQUIERDA){
+        else if(direccion == ConstantesEntidades.IZQUIERDA)
             aumento=-20;
-        }
         DisparoJugador disparo=miJuego.getFabricaEntidades().getDisparoJugador(posX + aumento, posY);
         disparo.setDireccion(this.direccion, this.dirAnterior);
         disparo.setPotenciaAumentada(disparoAumentado);
@@ -112,24 +105,20 @@ public class Jugador extends EntidadDinamica implements Visitable{
                 claveADevolver="moverIzquierda";
                 break;
             case ConstantesEntidades.QUIETO:
-                if (direccionAnterior == ConstantesEntidades.IZQUIERDA){
+                if (direccionAnterior == ConstantesEntidades.IZQUIERDA)
                     claveADevolver="idleIzquierda";
-                }
-                else if (dirAnterior == ConstantesEntidades.DERECHA){
+                else if (dirAnterior == ConstantesEntidades.DERECHA)
                     claveADevolver="idleDerecha";
-                }
                 break;
             case ConstantesEntidades.DERECHA:
                 claveADevolver= "moverDerecha";
                 break;
             case ConstantesEntidades.ARRIBA:
-                if(direccionAnterior==ConstantesEntidades.IZQUIERDA){
+                if(direccionAnterior==ConstantesEntidades.IZQUIERDA)
                     claveADevolver="saltandoIzquierda";
-                }
-                else{
+                else
                     claveADevolver="saltandoDerecha";
-                }
-                    break;
+                break;
         }
         return claveADevolver;
     }
@@ -161,9 +150,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
         return velocidad;
     }
     public void setDireccion(int direccionActual){
-        if(direccionActual!=0){
+        if(direccionActual!=0)
             dirAnterior=this.direccion;
-        }
         this.direccion=direccionActual;
     }
     public void setJuego(Juego j){
@@ -182,9 +170,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
                 miJuego.setReinicio(true);
                 iniciarInvencibilidad();
             }
-            if(vidas==0){
+            if(vidas==0)
                 miJuego.reiniciarNivel();
-            }
         }    
     }
     public void iniciarInvencibilidad(){
@@ -202,7 +189,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public void setVidas(){
         vidas=vidaDeInicio;
     }
-    public void efectoBotellaAzul(BotellaAzul b){
+    private void efectoBotellaAzul(BotellaAzul b){
+        if(velocidad==ConstantesDificultad.EFECTO_BOTELLA_AZUL)
+            return;
         this.velocidad=ConstantesDificultad.EFECTO_BOTELLA_AZUL;
         b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
             this.velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
@@ -226,7 +215,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
         });
         hiloBotellaAzul.start();  */
     }
-    public void efectoBotellaRoja(BotellaRoja b){//TODO desp de disparo
+    private void efectoBotellaRoja(BotellaRoja b){//TODO desp de disparo
+        if(disparoAumentado)    
+            return;
         this.disparoAumentado=true; 
         b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
             this.disparoAumentado=false;
@@ -237,7 +228,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public boolean getDisparoAumentado(){
         return disparoAumentado;
     }
-    public void efectoBotellaVerde(BotellaVerde b){
+    private void efectoBotellaVerde(BotellaVerde b){
         //efecto de botella verde oooooo
         miJuego.getNivelActual().efectoBotellaVerde(true);
         b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
@@ -246,7 +237,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
         });
         b.getTiempoDeEfecto().iniciar(); 
     }
-    //Metodos de la interfaz Visitador
     public void visitar(Enemigo e){
         if(e.getCongelado())
             e.convertirEnBola();
@@ -259,37 +249,32 @@ public class Jugador extends EntidadDinamica implements Visitable{
         velocidad=6;                
         visitarPlataforma(p);
     }
-    public void visitar(BotellaAzul b){
+    private void efectoPowerUp(PowerUp b){
         actualizarPuntaje(b.getPuntaje());
         Sonido.getInstancia().reproducirEfectoDeSonido("agarrarObjeto.wav");
         miJuego.eliminarPowerUp(b);
+    }
+    public void visitar(BotellaAzul b){
+        efectoPowerUp(b);
         efectoBotellaAzul(b);
     }
     public void visitar(BotellaRoja b){
-        actualizarPuntaje(b.getPuntaje());
-        Sonido.getInstancia().reproducirEfectoDeSonido("agarrarObjeto.wav");
-        miJuego.eliminarPowerUp(b);
+        efectoPowerUp(b);
         efectoBotellaRoja(b);
     }
     public void visitar(BotellaVerde b){
-        actualizarPuntaje(b.getPuntaje());
-        Sonido.getInstancia().reproducirEfectoDeSonido("agarrarObjeto.wav");
-        miJuego.eliminarPowerUp(b);
+        efectoPowerUp(b);
         efectoBotellaVerde(b);
     }
     public void visitar(Fruta f){
-        actualizarPuntaje(f.getPuntaje());
-        Sonido.getInstancia().reproducirEfectoDeSonido("agarrarObjeto.wav");
-        miJuego.eliminarPowerUp(f);
+        efectoPowerUp(f);
     }
     public void visitar(VidaExtra v){
         if(vidas < vidaDeInicio){
             vidas++;
             miJuego.efectoVidaExtra();
         }
-        actualizarPuntaje(v.getPuntaje());
-        Sonido.getInstancia().reproducirEfectoDeSonido("agarrarObjeto.wav");    
-        miJuego.eliminarPowerUp(v);
+        efectoPowerUp(v);
     }
     public void visitar(PlataformaMovil e) {
         super.visitar(e);
@@ -325,7 +310,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
         //Que hacemos aca? 
         //      Buena pregunta
     }
-    //Metodo de la interfaz Visitable
     public void aceptar(Visitador v){
         v.visitar(this);
     }

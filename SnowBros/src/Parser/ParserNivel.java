@@ -18,17 +18,19 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 
 public class ParserNivel{
     private FabricaEntidades fabrica;
+    private boolean superoNivelAnterior;
 
     public ParserNivel(FabricaSprites fabricaSprites){
         //que desde la llamada para crear el parser se defina el dominio de aplicacion
         this.fabrica = new FabricaEntidades(fabricaSprites);
+        superoNivelAnterior=false;
     }
-    public Nivel generarNivel(int modo){
-        return cargarNivel(obtenerArchivoNivel(modo), modo);
+    public Nivel generarNivel(String modoDeJuego){
+        return cargarNivel(obtenerArchivoNivel(modoDeJuego));
     }
-    private Nivel cargarNivel(String archivo, int modo){
+    private Nivel cargarNivel(String archivo){
         Silueta silueta= fabrica.getSilueta();
-        Nivel nivel = new Nivel(silueta,1);//TODO seleccion de nivel
+        Nivel nivel = new Nivel(silueta);
         try (BufferedReader br=new BufferedReader(new FileReader(archivo))){
             String linea;
             while ((linea=br.readLine())!=null){
@@ -197,36 +199,38 @@ public class ParserNivel{
         }
         return nivel;
     }
-    public String obtenerArchivoNivel(int modo) {
+    public String obtenerArchivoNivel(String modo) {
         String nivelACargar=null;
-        switch (modo) {
-            case 1:
+        if(modo.equals("Clasico"))
+            if(!superoNivelAnterior){
                 Sonido.getInstancia().reproducirMusica("temaMusicalNivel1.wav");
-                nivelACargar = ConstantesNiveles.CLASICO1;
-                break;
-            case 2:
+                nivelACargar = ConstantesNiveles.NIVEL1;
+            }else{
                 Sonido.getInstancia().reproducirMusica("temaMusicalNivel2.wav");
-                nivelACargar = ConstantesNiveles.CLASICO2;
-                break;
-            case 3:
+                nivelACargar = ConstantesNiveles.NIVEL2;
+            }
+        else if(modo.equals("Supervivencia"))
+            if(!superoNivelAnterior){
                 Sonido.getInstancia().reproducirMusica("temaMusicalNivel3.wav");
-                nivelACargar = ConstantesNiveles.SUPERVIVENCIA1;
-                break;
-            case 4:
+                nivelACargar = ConstantesNiveles.NIVEL2;
+            }else{
                 Sonido.getInstancia().reproducirMusica("temaMusicalNivel4.wav");
-                nivelACargar = ConstantesNiveles.SUPERVIVENCIA2;
-                break;
-            case 5:
+                nivelACargar = ConstantesNiveles.NIVEL3;
+            }
+        else if(modo.equals("Contrarreloj"))
+            if(!superoNivelAnterior){
                 Sonido.getInstancia().reproducirMusica("temaMusicalNivel5.wav");
-                nivelACargar = ConstantesNiveles.CONTRARRELOJ1;
-                break;
-            case 6:
+                nivelACargar = ConstantesNiveles.NIVEL3;
+            }else{
                 Sonido.getInstancia().reproducirMusica("temaMusicalNivel6.wav");
-                nivelACargar = ConstantesNiveles.CONTRARRELOJ2;
-                break;
-        }
+                nivelACargar = ConstantesNiveles.NIVEL4;
+            }
         return nivelACargar;
        }
-    //TODO metodos que segun el nombre del archivo condicione el modo de juego
-    //TODO original y alternativo
+    public void setSuperoNivelAnterior(boolean b){
+        superoNivelAnterior=b;
+    }
+    public boolean superoNivelAnterior(){
+        return superoNivelAnterior;
+    }
 }

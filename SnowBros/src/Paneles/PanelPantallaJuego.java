@@ -44,23 +44,18 @@ public class PanelPantallaJuego extends JPanel{
          agregarPanelJuego();
     }
     protected void agregarPanelInformacion() {
-        //TODO
         panelInformacion= new JPanel();
         panelInformacion.setOpaque(false); //Esto hace que sea transparente
         panelInformacion.setLayout(new GridLayout(1, 4)); //UNA FILA Y 5 COLUM PARA MOSTRAR VALORES ALINEADOS
 		panelInformacion.setBounds(0, 0, ConstantesVistas.PANEL_ANCHO, 50);//Defino manualmente el tamaño y pos del panel info
-        //nivel
-        String stringNivel=ConstantesNiveles.CLASICO1;
+        String stringNivel=ConstantesNiveles.NIVEL1;////
         labelNivel= new JLabel(stringNivel);
         labelNivel.setForeground(Color.BLACK);
         labelNivel.setHorizontalAlignment(SwingConstants.CENTER);//centra el texto horizontalmente dentro del JLabel
-        //PUNTAJE
-        //String puntaje=String.valueOf(miControladorGrafico.getJuego().getJugador().getPuntaje());
         String puntaje=String.valueOf(0);
         labelPuntaje= new JLabel(puntaje);
         labelPuntaje.setForeground(Color.BLACK);
         labelPuntaje.setHorizontalAlignment(SwingConstants.CENTER);
-        //TIEMPO
         String tiempoString;
         switch (miControladorGrafico.getJuego().getModoDeJuego()) {
             case "Contrarreloj":
@@ -84,7 +79,6 @@ public class PanelPantallaJuego extends JPanel{
                 labelTiempo.setHorizontalAlignment(SwingConstants.CENTER);
                 break;
             }
-        //panel para las vidas con corazones
         panelVidas= new JPanel();
         ArrayList<JLabel> corazones= new ArrayList<>();
         panelVidas.setOpaque(false);//transparente
@@ -96,23 +90,19 @@ public class PanelPantallaJuego extends JPanel{
             corazones.add(vidaLabel);
             panelVidas.add(vidaLabel);
         }
-        //AGREGAMOS TODO AL PANEL INFORMACION
         panelInformacion.add(labelNivel);
         panelInformacion.add(labelPuntaje);
         panelInformacion.add(labelTiempo);
         panelInformacion.add(panelVidas);
-
         this.add(panelInformacion,BorderLayout.NORTH);
     }
     protected void agregarPanelJuego() {
         imagenFondoJuego= new JLabel();
         imagenFondoJuego.setLayout(null); //null para posicionar sprites manualmente
-        imagenFondoJuego.setBounds(0,0, ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO);
-        //Panel del Juego donde se van a agregar los objetos
+        imagenFondoJuego.setBounds(0,0, ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO);//Panel del Juego donde se van a agregar los objetos
         panelPantallaJuego= new JPanel();
         panelPantallaJuego.setPreferredSize(new Dimension(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO));
-        panelPantallaJuego.add(imagenFondoJuego);
-        //voy a agregar el panel de juevo al PanelPantallaJuego
+        panelPantallaJuego.add(imagenFondoJuego);//voy a agregar el panel de juevo al PanelPantallaJuego
         this.add(panelPantallaJuego,BorderLayout.CENTER);
         panelPantallaJuego.setOpaque(false);
     }
@@ -124,8 +114,7 @@ public class PanelPantallaJuego extends JPanel{
             plataformaVisible.setBounds(plataforma.getPosX(), plataforma.getPosY(), plataforma.getHitbox().getAncho(), plataforma.getHitbox().getAlto());
             this.add(plataformaVisible);  //TODO revisar, a veces se mueven las plataformas
             this.setComponentZOrder(plataformaVisible,0);
-            plataforma.setMiLabel(plataformaVisible);
-            //imagenFondoJuego.add(plataformaVisible);
+            plataforma.setMiLabel(plataformaVisible);//imagenFondoJuego.add(plataformaVisible);
         }
         this.revalidate();
         this.repaint();
@@ -143,7 +132,6 @@ public class PanelPantallaJuego extends JPanel{
         this.revalidate();
         this.repaint();
     }
-    //tengo que agregar metodos actualizar
     public ObserverGrafico incorporarEntidad(EntidadDinamica entidad) {
         EntidadDinamica  aux= entidad;
         imagenFondoJuego.add((JLabel)aux.getObserver());
