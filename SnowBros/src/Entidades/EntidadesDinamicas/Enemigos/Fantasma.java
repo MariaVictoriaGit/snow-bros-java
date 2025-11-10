@@ -33,7 +33,6 @@ public class Fantasma extends Enemigo{
     public void patronDeMovimiento(){
         setPosicionJugador(nivel.getJugador().getPosX(), nivel.getJugador().getPosY());
         mover();
-        notificarObserver();
     }
     public void convertirEnBola(){
         // TODO Auto-generated method stub

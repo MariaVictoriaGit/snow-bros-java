@@ -207,5 +207,13 @@ public class Nivel {
         for(BolaDeFuego b : new ArrayList<>(this.getBolasDeFuego()))
                 if(b!=null)
                     b.getObserver().actualizar(b.getDireccion(),b.getTocandoSuelo());
+        if(calabaza!=null){
+            calabaza.getObserver().actualizar(calabaza.getDireccion(), calabaza.getTocandoSuelo());
+            if(!this.getFantasmas().isEmpty()){
+                for(Fantasma f:this.getFantasmas()){
+                    f.getObserver().actualizar(f.getDireccion(), f.getTocandoSuelo());
+                }
+            }
+        }
     }
 }

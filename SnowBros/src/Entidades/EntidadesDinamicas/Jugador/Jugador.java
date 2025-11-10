@@ -302,6 +302,13 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public void visitar(SueloResbaladizo e){
         velocidad=1;
         enSueloResbaladizo=true;
+        if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
+            this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
+            this.setPosY(e.getPosY() - this.getHitbox().getAlto());
+            tocandoSuelo=ConstantesEntidades.SUELO;
+            saltando=false;
+            enAire=false;
+        }
     }
     public void visitar(TrampaPinchos t){
         perderVida();    

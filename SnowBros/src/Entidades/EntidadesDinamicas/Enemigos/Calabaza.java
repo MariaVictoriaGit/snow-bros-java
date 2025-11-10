@@ -63,7 +63,6 @@ public class Calabaza extends Enemigo{
                     estado = EstadosDePatron.ESPERAR;
                     tiempoEstado = ahora;
                 }
-                notificarObserver();
                 break;
     
         case EstadosDePatron.MOVERIZQUIERDA:
@@ -73,7 +72,6 @@ public class Calabaza extends Enemigo{
                 estado = EstadosDePatron.ESPERAR;
                 tiempoEstado = ahora;
             }
-             notificarObserver();
             break; 
         case EstadosDePatron.ESPERAR:
                 direccion=ConstantesEntidades.QUIETO;
@@ -83,7 +81,6 @@ public class Calabaza extends Enemigo{
                     else
                         estado = EstadosDePatron.MOVERDERECHA;
                 }
-                 notificarObserver();
             break;
         }
     }
