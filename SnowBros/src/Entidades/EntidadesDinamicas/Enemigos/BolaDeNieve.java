@@ -52,7 +52,7 @@ public class BolaDeNieve extends EntidadDinamica{
         terminaRebotar();
     }
     private void terminaRebotar(){
-        if(reboto && posX==0 || posX==ConstantesVistas.PANEL_ANCHO)
+        if(reboto && posX<=0 || posX>=ConstantesVistas.PANEL_ANCHO)
             this.eliminar(); 
     }
     public void visitar(Enemigo e){
