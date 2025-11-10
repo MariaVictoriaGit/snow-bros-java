@@ -29,6 +29,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
     protected boolean habilitadoASubirEscalera;
     protected boolean invencible;
     protected boolean enSueloResbaladizo;
+    
     public Jugador(int x,int y, Sprite mISprite){//no se usa observerJugador y en entidadDinamica se le asigna un observer a cada uno
         super(x,y,mISprite);
         vidas=ConstantesDificultad.VIDAS_INICIO;
@@ -90,6 +91,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
         disparo.setDireccion(this.direccion, this.dirAnterior);
         disparo.setPotenciaAumentada(disparoAumentado);
         return disparo;
+    }
+    public void setVelocidad(int v){
+        velocidad=v;
     }
     public void eliminar(){
         nivel.eliminarJugador(this);

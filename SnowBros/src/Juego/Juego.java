@@ -3,6 +3,9 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
+
+import SnowBros.src.Datos.ConstantesDificultad;
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -127,12 +130,20 @@ public class Juego {
                     for(BolaDeFuego bola: nivelActual.getBolasDeFuego())
                         if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) 
                             jugadorActual.aceptar(bola);
+
                 if(!nivelActual.getBolasDeNieve().isEmpty())
                     for(BolaDeNieve bola: nivelActual.getBolasDeNieve()){
-                        if (bola.getHitbox().getLeftHitBox().intersects(jugadorActual.getHitbox().getRectangle())) 
+                        if (bola.getHitbox().getLeftHitBox().intersects(jugadorActual.getHitbox().getRectangle())){
+                             jugadorActual.aceptar(bola);
+
+                        } else if (bola.getHitbox().getRightHitBox().intersects(jugadorActual.getHitbox().getRectangle())){
                             jugadorActual.aceptar(bola);
-                        if (bola.getHitbox().getRightHitBox().intersects(jugadorActual.getHitbox().getRectangle())) 
-                            jugadorActual.aceptar(bola);
+                        } else {
+                            jugador.setVelocidad(ConstantesDificultad.VELOCIDAD_JUGADOR);
+                        } 
+                        
+                           
+                        
                         for(Enemigo enemigo:nivelActual.getEnemigos())
                             if (bola.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
                                 enemigo.aceptar(bola);
@@ -168,6 +179,7 @@ public class Juego {
                 if(!nivelActual.getBolasDeFuego().isEmpty())
                     for (BolaDeFuego bola:new ArrayList<>(nivel.getBolasDeFuego()))
                         bola.mover();
+
                 for(BolaDeNieve bolaDeNieve:nivelActual.getBolasDeNieve()){
                     bolaDeNieve.verificarSuelo();
                     bolaDeNieve.mover();
@@ -184,7 +196,7 @@ public class Juego {
                 }
                 nivelActual.notificarObservers();
                 if(nivel.terminoElNivel()){
-                    
+
 
                 }
                 long duracion = System.currentTimeMillis() - inicio;

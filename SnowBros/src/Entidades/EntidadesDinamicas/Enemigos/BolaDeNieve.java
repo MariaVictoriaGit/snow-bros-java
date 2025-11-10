@@ -18,7 +18,7 @@ public class BolaDeNieve extends EntidadDinamica{
     public BolaDeNieve(int x, int y, Sprite sprite){
         super(x,y,sprite);
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_NIEVE);
-        estaActiva=true;
+        estaActiva=false;
         reboto=false;
     }
     public boolean getEstado(){
@@ -28,29 +28,32 @@ public class BolaDeNieve extends EntidadDinamica{
         return tiempo;
     }
     public void mover(){
-        switch(direccion){
-            case ConstantesEntidades.DERECHA:
-               posX=posX+velocidad;
-               this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
-               observer.actualizar();
-               if(!reboto && posX>ConstantesVistas.PANEL_ANCHO-20){
-                    direccion=ConstantesEntidades.IZQUIERDA;
-                    reboto=true;
-               }
-
-            break;
-            case ConstantesEntidades.IZQUIERDA:
-                posX=posX-velocidad;
+        if(estaActiva){
+            switch(direccion){
+                case ConstantesEntidades.DERECHA:
+                posX=posX+velocidad;
                 this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 observer.actualizar();
-                if(!reboto && posX<20){
-                   direccion=ConstantesEntidades.DERECHA;
-                   reboto=true;
+                if(!reboto && posX>ConstantesVistas.PANEL_ANCHO-20){
+                        direccion=ConstantesEntidades.IZQUIERDA;
+                        reboto=true;
                 }
-            break;
+
+                break;
+                case ConstantesEntidades.IZQUIERDA:
+                    posX=posX-velocidad;
+                    this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+                    observer.actualizar();
+                    if(!reboto && posX<20){
+                    direccion=ConstantesEntidades.DERECHA;
+                    reboto=true;
+                    }
+                break;
+            }
+            terminaRebotar();
         }
-        terminaRebotar();
     }
+
     private void terminaRebotar(){
         if(reboto && posX<=0 || posX>=ConstantesVistas.PANEL_ANCHO)
             this.eliminar(); 
@@ -74,7 +77,21 @@ public class BolaDeNieve extends EntidadDinamica{
     }
     public void visitar(Jugador j){
         direccion=j.getDireccion();
-        mover();
+        empujar();
+        j.setVelocidad(4);
     }
-   
+    public void empujar(){
+        switch(direccion){
+                case ConstantesEntidades.DERECHA:
+                posX=posX+velocidad;
+                this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+                observer.actualizar();
+                break;
+                case ConstantesEntidades.IZQUIERDA:
+                    posX=posX-velocidad;
+                    this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+                    observer.actualizar();
+                break;
+            }
+    }
 }
