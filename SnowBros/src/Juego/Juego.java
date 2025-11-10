@@ -57,33 +57,7 @@ public class Juego {
         tiempo.iniciar();
         fabricaEntidades = new FabricaEntidades(fabricaSprites);
         parseActual= new ParserNivel(fabricaSprites);
-        // Si el nivel todavía no fue creado, crealo antes de pedir el jugador
-        if (nivel == null)
-            nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que corresponda
-        if(jugador==null){
-            nivel = parseActual.generarNivel(modoDeJuego);
-            jugador = nivel.getJugador();
-            jugador.setJuego(this);
-            jugador.setNombre(nombreJugador);
-        }
-        else{//si ya existe el jugador
-            if(jugador.getVidas()==0)
-                reiniciarJugador=false;
-            if(reiniciarJugador)
-                nivel=parseActual.generarNivel(modoDeJuego);
-            else{
-                jugador.setVidas();
-                jugador.actualizarPuntaje(0);
-                nivel= parseActual.generarNivel(modoDeJuego);
-            }
-        }
-        this.registrarObservers();
-        this.crearPowerUps();
-        jugador.getObserver().actualizar();
-        tiempoAntesAparicionCalabaza.setAccionAlFinalizar(()->crearCalabaza());
-        tiempoAntesAparicionCalabaza.iniciar();
-        juegoEnEjecucion=true;
-        iniciarHilos();
+        iniciarNivel();
     }
     private void iniciarHilos(){
         hiloColision = new Thread(() -> {
@@ -200,6 +174,10 @@ public class Juego {
                     }
                 }
                 nivelActual.notificarObservers();
+                if(nivel.terminoElNivel()){
+                    
+
+                }
                 long duracion = System.currentTimeMillis() - inicio;
                 long dormir = frameTime - duracion;
                 if (dormir > 0) 
@@ -237,9 +215,42 @@ public class Juego {
         //tiempo.setTiempoActual(0);
         //TODO terminar de implementar
     }
+     
+    public void iniciarNivel(){
+        if (nivel == null)
+            nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que corresponda
+        if(jugador==null){
+            jugador = nivel.getJugador();
+            jugador.setJuego(this);
+            jugador.setNombre(nombreJugador);
+        }
+        else{//si ya existe el jugador
+            if(jugador.getVidas()==0)
+                reiniciarJugador=false;
+            if(reiniciarJugador)
+                nivel=parseActual.generarNivel(modoDeJuego);
+            else{
+                jugador.setVidas();
+                jugador.actualizarPuntaje(0);
+                nivel= parseActual.generarNivel(modoDeJuego);
+            }
+        }
+
+        this.registrarObservers();
+        this.crearPowerUps();
+        jugador.getObserver().actualizar();
+        tiempoAntesAparicionCalabaza.setAccionAlFinalizar(()->crearCalabaza());
+        tiempoAntesAparicionCalabaza.iniciar();
+        juegoEnEjecucion=true;
+        iniciarHilos();
+
+    }
     public void superarNivel(){
-        //TODO implimentar
-        //como se maneja el signivel, por numeros? y se lo pasa al constructor?
+        nivel.eliminarse();
+        detenerJuego();
+        nivel=null;
+        iniciarNivel();
+
     }
     public void actualizarPuntaje(int puntajeASumar){
         puntajeJugador+=puntajeASumar;
