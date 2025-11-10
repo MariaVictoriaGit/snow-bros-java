@@ -86,10 +86,6 @@ public class Nivel {
         return listaResbaladizos;
     } 
 
-    public int getNivelActual(){
-        return numeroNivel;
-    }
-
     //metodos de eliminar
     public void eliminarPlataforma(Plataforma p){
         listaPlataformas.remove(p);

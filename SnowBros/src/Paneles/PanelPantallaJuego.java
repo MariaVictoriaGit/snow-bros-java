@@ -5,15 +5,16 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
+
 import SnowBros.src.Datos.ConstantesDificultad;
-import SnowBros.src.Datos.ConstantesNiveles;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -22,10 +23,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
-import SnowBros.src.Grafica.GUI;
-import SnowBros.src.Grafica.ObserverGrafico;
-import SnowBros.src.Grafica.ObserverJugador;
-import SnowBros.src.Grafica.ObserverPlataformaMovil;
+import SnowBros.src.Grafica.*;
 
 public class PanelPantallaJuego extends JPanel{
     protected JPanel panelPantallaJuego;
@@ -40,54 +38,59 @@ public class PanelPantallaJuego extends JPanel{
     public PanelPantallaJuego(GUI miControladorGrafico){
          this.miControladorGrafico=miControladorGrafico;
          setPreferredSize(new Dimension(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO));
-         setLayout(null);
+         setLayout(null);//         setLayout(new BorderLayout());
          agregarPanelInformacion();
          agregarPanelJuego();
     }
     protected void agregarPanelInformacion() {
         panelInformacion= new JPanel();
-        panelInformacion.setOpaque(true); //Esto hace que sea transparente
-        panelInformacion.setLayout(new GridLayout(1, 4)); //UNA FILA Y 5 COLUM PARA MOSTRAR VALORES ALINEADOS
-		panelInformacion.setBounds(0, 0, ConstantesVistas.PANEL_ANCHO, 40);//Defino manualmente el tamaño y pos del panel info
-        String stringNivel=ConstantesNiveles.NIVEL1;////
-        labelNivel= new JLabel(stringNivel);
+        panelInformacion.setOpaque(true); //true lo deja en blanco
+        panelInformacion.setLayout(new GridLayout(1, 4, 20,0)); 
+		panelInformacion.setBounds(0, 0, ConstantesVistas.PANEL_ANCHO, 42);//40         //Defino manualmente el tamaño y pos del panel info
+        Font fuente = new Font("Arial", Font.BOLD, 16);
+        String stringModo=miControladorGrafico.getJuego().getModoDeJuego();
+        labelNivel= new JLabel(stringModo);
         labelNivel.setForeground(Color.BLACK);
         labelNivel.setHorizontalAlignment(SwingConstants.CENTER);//centra el texto horizontalmente dentro del JLabel
+        labelNivel.setFont(fuente);
         String puntaje=String.valueOf(0);
         labelPuntaje= new JLabel(puntaje);
         labelPuntaje.setForeground(Color.BLACK);
         labelPuntaje.setHorizontalAlignment(SwingConstants.CENTER);
+        labelPuntaje.setFont(fuente);
         String tiempoString;
+        labelTiempo = new JLabel();
+        labelTiempo.setHorizontalAlignment(SwingConstants.CENTER);
+        labelTiempo.setFont(fuente);
         switch (miControladorGrafico.getJuego().getModoDeJuego()) {
             case "Contrarreloj":
                 tiempoString=miControladorGrafico.getJuego().getTimer().getStringTiempoContrarreloj();
-                labelTiempo= new JLabel(tiempoString);
-                javax.swing.Timer tiempoActualizador = new javax.swing.Timer(1000, e -> {
+                labelTiempo.setText(tiempoString);
+                labelTiempo.setForeground(Color.BLACK);
+                Timer tiempoActualizador = new Timer(1000, e -> {
                     actualizarLabelTiempoContrarreloj();
                 });
                 tiempoActualizador.start();
-                labelTiempo.setForeground(Color.RED);
-                labelTiempo.setHorizontalAlignment(SwingConstants.CENTER);
                 break;
             default://si es clasico o supervivencia mimso reloj en pantalla
                 tiempoString=miControladorGrafico.getJuego().getTimer().getStringDeTiempo();
-                labelTiempo= new JLabel(tiempoString);
-                javax.swing.Timer actualizadorTiempo = new javax.swing.Timer(1000, e -> {
+                labelTiempo.setText(tiempoString);
+                labelTiempo.setForeground(Color.BLACK);
+                Timer actualizadorTiempo = new Timer(1000, e -> {
                     actualizarLabelTiempo();
                 });
                 actualizadorTiempo.start();
                 labelTiempo.setForeground(Color.BLACK);
-                labelTiempo.setHorizontalAlignment(SwingConstants.CENTER);
                 break;
             }
         panelVidas= new JPanel();
-        ArrayList<JLabel> corazones= new ArrayList<>();
+        //ArrayList<JLabel> corazones= new ArrayList<>();
         panelVidas.setOpaque(false);//transparente
         panelVidas.setLayout(new FlowLayout(FlowLayout.CENTER,5,15));// espacio de 5 pixeles horiz y vert entre cada componente
         ImageIcon iconoCorazon= new ImageIcon("SnowBros/src/Imagenes/Original/PowerUps/vidaJugador.png");
         for(int i=0;i<ConstantesDificultad.VIDAS_INICIO;i++){
             JLabel vidaLabel=new JLabel(iconoCorazon);
-            corazones.add(vidaLabel);
+            //corazones.add(vidaLabel);
             panelVidas.add(vidaLabel);
         }
         panelInformacion.add(labelNivel);
@@ -113,7 +116,7 @@ public class PanelPantallaJuego extends JPanel{
             JLabel plataformaVisible = new JLabel(icono);
             plataformaVisible.setBounds(plataforma.getPosX(), plataforma.getPosY(), plataforma.getHitbox().getAncho(), plataforma.getHitbox().getAlto());
             this.add(plataformaVisible);  //TODO revisar, a veces se mueven las plataformas
-            //this.setComponentZOrder(plataformaVisible,0);
+            this.setComponentZOrder(plataformaVisible,0);
             plataforma.setMiLabel(plataformaVisible);//imagenFondoJuego.add(plataformaVisible);
         }
         this.revalidate();
@@ -126,7 +129,7 @@ public class PanelPantallaJuego extends JPanel{
             JLabel obstaculoVisible = new JLabel(icono);
             obstaculoVisible.setBounds(obstaculo.getPosX(), obstaculo.getPosY(), obstaculo.getHitbox().getAncho(), obstaculo.getHitbox().getAlto());
             this.add(obstaculoVisible);  
-            //this.setComponentZOrder(obstaculoVisible,0);
+            this.setComponentZOrder(obstaculoVisible,0);
             obstaculo.setMiLabel(obstaculoVisible);  
         }
         for(SueloResbaladizo suelo:miControladorGrafico.getJuego().getNivelActual().getResbaladizos()){
@@ -212,8 +215,10 @@ public class PanelPantallaJuego extends JPanel{
     public void actualizarLabelsPuntaje(Jugador jugador) {
         Component componenteActual = panelInformacion.getComponent(1);
         panelInformacion.remove(componenteActual);
+        Font fuente = new Font("Arial", Font.BOLD, 16);
         String puntaje=String.valueOf(jugador.getPuntaje());
         labelPuntaje= new JLabel(puntaje);
+        labelPuntaje.setFont(fuente);
         labelPuntaje.setForeground(Color.BLACK);
         labelPuntaje.setHorizontalAlignment(SwingConstants.CENTER);
         panelInformacion.add(labelPuntaje,1);
