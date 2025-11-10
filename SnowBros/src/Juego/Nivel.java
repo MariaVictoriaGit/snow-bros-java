@@ -216,4 +216,24 @@ public class Nivel {
             }
         }
     }
+    public boolean terminoElNivel(){
+        boolean condicion= listaEnemigos.isEmpty();
+        condicion= condicion && listaBolaDeNieve.isEmpty();
+        condicion= condicion && listaPowerUps.isEmpty();
+        return condicion;
+    }
+    public void eliminarse(){
+        silueta=null;
+        listaEnemigos.clear();
+        listaPowerUps.clear();
+        listaObstaculos.clear();
+        listaParedes.clear();
+        listaPlataformas.clear();
+        listaPmovil.clear();
+        listaDisparoJugador.clear();
+        listaBolaDeFuego.clear();
+        listaBolaDeNieve.clear();
+        listaFantasmas.clear();
+        calabaza=null;
+    }
 }
