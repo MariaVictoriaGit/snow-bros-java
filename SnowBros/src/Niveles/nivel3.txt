@@ -36,6 +36,8 @@ Plataforma 576 64
 Plataforma 608 64 
 Plataforma 640 64 
 
+RanaDeFuego 544 96
+
 Plataforma 256 96
 Plataforma 288 96
 Plataforma 320 96
@@ -79,6 +81,8 @@ Plataforma 544 192
 Plataforma 576 192
 Plataforma 608 192
 Plataforma 640 192
+
+TrollAmarillo 320 224
 
 Escalera 288 224
 

@@ -1,8 +1,6 @@
 package SnowBros.src.Entidades.EntidadesEstaticas.Plataformas;
 
 import javax.swing.JLabel;
-
-import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitador;
@@ -17,7 +15,7 @@ public class PlataformaQuebradiza extends Plataforma {
     public PlataformaQuebradiza(int x, int y, Sprite sprite){
         super(x,y,sprite);
         eliminado=false;
-        tiempoAntesDeRomperse= new Temporizador(5);
+        tiempoAntesDeRomperse= new Temporizador(1);
         tiempoAntesDeRomperse.setAccionAlFinalizar(()->eliminar());
     }
     public void eliminar(){
