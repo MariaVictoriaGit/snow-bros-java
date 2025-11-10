@@ -97,9 +97,18 @@ public class Juego {
                 for(PowerUp entidad : new ArrayList<>(nivelActual.getPowerUps()))
                     if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) 
                         entidad.aceptar(jugadorActual);
-                for(Obstaculo entidad : new ArrayList<>(nivelActual.getObstaculos()))
+                for(Obstaculo entidad : new ArrayList<>(nivelActual.getObstaculos())){
                     if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) 
                         entidad.aceptar(jugadorActual);
+                    if(nivel.getCalabaza()!=null && nivel.getCalabaza().getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())){
+                            entidad.aceptar(nivel.getCalabaza());
+                        }
+                    for(Enemigo e:nivel.getEnemigos()){
+                        if(e.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())){
+                            entidad.aceptar(e);
+                        }
+                    }
+                }
                 for(Plataforma plataforma: nivelActual.getPlataformas())
                     if(!nivelActual.getDisparos().isEmpty()){
                         for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
