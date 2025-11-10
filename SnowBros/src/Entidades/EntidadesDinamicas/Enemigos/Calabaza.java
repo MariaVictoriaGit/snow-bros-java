@@ -13,6 +13,8 @@ public class Calabaza extends Enemigo{
     protected Temporizador tiempoCreacionFantasmas;
     private long tiempoEstado = 0;
     private int estado = EstadosDePatron.MOVERIZQUIERDA;
+    private int yJugador;
+    private int xJugador;
 
     
     public Calabaza(int x, int y, Sprite sprite){
@@ -21,6 +23,7 @@ public class Calabaza extends Enemigo{
         tiempoCreacionFantasmas=new Temporizador(15);
         tiempoCreacionFantasmas.setAccionAlFinalizar(()->invocarFantasma());
         tiempoCreacionFantasmas.iniciar();
+        tocandoSuelo=ConstantesEntidades.AIRE;
     }
      public void mover(){
         if(!detenido)
@@ -60,6 +63,7 @@ public class Calabaza extends Enemigo{
                     estado = EstadosDePatron.ESPERAR;
                     tiempoEstado = ahora;
                 }
+                notificarObserver();
                 break;
     
         case EstadosDePatron.MOVERIZQUIERDA:
@@ -69,7 +73,8 @@ public class Calabaza extends Enemigo{
                 estado = EstadosDePatron.ESPERAR;
                 tiempoEstado = ahora;
             }
-            break;
+             notificarObserver();
+            break; 
         case EstadosDePatron.ESPERAR:
                 direccion=ConstantesEntidades.QUIETO;
                 if (ahora - tiempoEstado > 1000) { 
@@ -78,6 +83,7 @@ public class Calabaza extends Enemigo{
                     else
                         estado = EstadosDePatron.MOVERDERECHA;
                 }
+                 notificarObserver();
             break;
         }
     }
@@ -94,9 +100,9 @@ public class Calabaza extends Enemigo{
 
     public void invocarFantasma(){
         Fantasma fanta=nivel.getJuego().getFabricaEntidades().getFantasma(this.posX, this.posY);
-        fanta.setNivel(nivel);
-        nivel.agregarEnemigo(fanta);
         nivel.getJuego().registrarObserverEntidad(fanta); 
+        nivel.agregarFantasma(fanta);
+        
 
     }
     public void convertirEnBola(){

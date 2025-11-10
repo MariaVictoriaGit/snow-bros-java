@@ -5,6 +5,9 @@ import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
 public class Fantasma extends Enemigo{
+
+    private int xJugador;
+    private int yJugador;
     
     public Fantasma(int x, int y, Sprite sprite){
         super(x, y, sprite);
@@ -12,10 +15,25 @@ public class Fantasma extends Enemigo{
         direccion=0;
     }
     public void mover(){
-        //TODO mover
+        if(xJugador> posX)
+            posX+= velocidad;
+            else posX-=velocidad;
+        if(yJugador > posY)
+            posY+= velocidad;
+            else posY-=velocidad;
+        // Aquí podrías actualizar la hitbox o hacer otros cálculos si es necesario
+        this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+    }
+
+    public void setPosicionJugador(int x, int y){
+        xJugador=x;
+        yJugador=y;
+
     }
     public void patronDeMovimiento(){
-        
+        setPosicionJugador(nivel.getJugador().getPosX(), nivel.getJugador().getPosY());
+        mover();
+        notificarObserver();
     }
     public void convertirEnBola(){
         // TODO Auto-generated method stub

@@ -10,6 +10,7 @@ import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitable;
+import SnowBros.src.Visitor.Visitador;
 
 public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected int salud=1;
@@ -116,16 +117,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
          observer=null;
       }
    }
-    public void aceptar(Jugador j){
-       if(!congelado)
-         j.visitar(this);
-      else convertirEnBola();
-      
-    }
-    public void aceptar(DisparoJugador d){
-      d.visitar(this);
-    }
-    public void aceptar(BolaDeNieve b){
-      b.visitar(this);
-    }
+    public void aceptar(Visitador v){
+      v.visitar(this);
+   }
 }

@@ -41,7 +41,7 @@ public class Juego {
         reiniciarJugador=false;
         ranking=new Ranking();
         tiempo= new Temporizador(); 
-        tiempoAntesAparicionCalabaza= new Temporizador(60);
+        tiempoAntesAparicionCalabaza= new Temporizador(5);
         juegoEnEjecucion=false;
         ultimoDisparo=0;
     }
@@ -105,6 +105,18 @@ public class Juego {
                         if (enemigo.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) 
                             p.aceptar(enemigo);
                 }
+                if (!nivelActual.getFantasmas().isEmpty()){
+                    for(Fantasma f : nivelActual.getFantasmas()){
+                        if (jugadorActual.getHitbox().getRectangle().intersects(f.getHitbox().getRectangle())) {
+                            f.aceptar(jugadorActual);
+                            }
+                        }
+                    }
+                    if (nivelActual.getCalabaza()!=null){
+                        if (jugadorActual.getHitbox().getRectangle().intersects(nivelActual.getCalabaza().getHitbox().getRectangle())) {
+                            nivelActual.getCalabaza().aceptar(jugadorActual);
+                        }
+                    }
                 for(Pared p: new ArrayList<>(nivelActual.getParedes()))
                     if (jugadorActual.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) 
                         p.aceptar(jugadorActual);
@@ -176,6 +188,16 @@ public class Juego {
                 for(BolaDeNieve bolaDeNieve:nivelActual.getBolasDeNieve()){
                     bolaDeNieve.verificarSuelo();
                     bolaDeNieve.mover();
+                }
+                Calabaza calabaza= nivelActual.getCalabaza();
+                if (calabaza!=null){
+                    calabaza.patronDeMovimiento();
+                    calabaza.verificarSuelo();
+                }
+                if (!nivelActual.getFantasmas().isEmpty()){
+                    for(Fantasma fantasma : nivelActual.getFantasmas()){
+                        fantasma.patronDeMovimiento();
+                    }
                 }
                 nivelActual.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
@@ -321,10 +343,9 @@ public class Juego {
     }  
     private void crearCalabaza(){
         Calabaza cala=fabricaEntidades.getCalabaza(320, 120);
-        cala.setNivel(nivel);
-        nivel.agregarEnemigo(cala);
         ObserverGrafico observer = controladorGrafica.registrarEntidad(cala);
-        cala.registrarObserver(observer);  
+        cala.registrarObserver(observer);
+        nivel.agregarCalabaza(cala);
     }
     public void crearBolaDeNieve(int posX, int posY){
         BolaDeNieve bola=fabricaEntidades.getBolaDeNieve(posX, posY);
