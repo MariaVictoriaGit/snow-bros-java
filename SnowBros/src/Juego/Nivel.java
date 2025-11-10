@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Calabaza;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Fantasma;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
@@ -28,6 +30,8 @@ public class Nivel {
     protected LinkedList<BolaDeFuego> listaBolaDeFuego;
     protected LinkedList<Pared> listaParedes;
     protected LinkedList<PlataformaMovil> listaPmovil;
+    protected Calabaza calabaza;
+    protected LinkedList<Fantasma> listaFantasmas;
 
     public Nivel(Silueta silueta, int numero){
         this.silueta=silueta;
@@ -41,6 +45,7 @@ public class Nivel {
         listaDisparoJugador= new LinkedList<>();
         listaBolaDeFuego= new LinkedList<>();
         listaBolaDeNieve= new LinkedList<>();
+        listaFantasmas = new LinkedList<>();
     }
 
     //metodos getters
@@ -71,6 +76,13 @@ public class Nivel {
     public LinkedList<BolaDeNieve> getBolasDeNieve(){
         return listaBolaDeNieve;
     }
+    public LinkedList<Fantasma> getFantasmas(){
+        return listaFantasmas;
+    }
+    public Calabaza getCalabaza(){
+        return calabaza;
+    }
+
     public int getNivelActual(){
         return numeroNivel;
     }
@@ -108,6 +120,12 @@ public class Nivel {
     }
     public void eliminarBolaDeNieve(BolaDeNieve b){
         listaBolaDeNieve.remove(b);
+    }
+    public void eliminarFantasmas(){
+        listaFantasmas.clear();
+    }
+    public void eliminarCalabaza(){
+        calabaza=null;
     }
     // métodos que agregan
     public void agregarJugador(Jugador j){
@@ -153,6 +171,16 @@ public class Nivel {
         listaBolaDeFuego.addLast(b);
         b.setNivel(this);
         b.getObserver().actualizar();
+    }
+    public void agregarFantasma(Fantasma f){
+        listaFantasmas.addLast(f);
+        f.setNivel(this);
+        f.getObserver().actualizar();
+    }
+    public void agregarCalabaza(Calabaza c){
+        calabaza=c;
+        calabaza.setNivel(this);
+        calabaza.getObserver().actualizar();
     }
     public void efectoBotellaVerde(boolean efecto){
         if(efecto){

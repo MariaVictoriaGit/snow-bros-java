@@ -10,6 +10,7 @@ import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Calabaza;
 import SnowBros.src.Grafica.ObserverEntidad;
 import SnowBros.src.Grafica.ObserverGrafico;
 import SnowBros.src.Grafica.Sprite;
@@ -118,7 +119,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
       this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
       for(Plataforma p:nivel.getPlataformas()){
         if(nivel.getJugador().getJuego().estaCerca(this,p,40)){
-          p.aceptar((Visitador) this);
+          p.aceptar(this);
         }
       }
     }
