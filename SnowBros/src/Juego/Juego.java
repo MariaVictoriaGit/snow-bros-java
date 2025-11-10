@@ -342,24 +342,27 @@ public class Juego {
         }
     }
     public void invencibilidad(){
-        long tiempoHilo=System.currentTimeMillis();
-        long tiempoUltimoParpadeo=0;
-        boolean invisible=false;
-        while(jugador.getInvencibilidad()){
-            if((tiempoHilo - tiempoUltimoParpadeo > ConstantesTiempos.TIEMPO_LAPSO_INVENCIBILIDAD) && invisible){
+        Thread hiloInv = new Thread(() -> {
+            long tiempoUltimoParpadeo = 0;
+            boolean invisible = false;
+            while(jugador.getInvencibilidad()){
+                long tiempoHilo = System.currentTimeMillis();
+                if(tiempoHilo - tiempoUltimoParpadeo > ConstantesTiempos.TIEMPO_LAPSO_INVENCIBILIDAD){
+                    if(invisible)
+                        controladorGrafica.setJugadorVisibleGraficamente();
+                    else controladorGrafica.setJugadorInvisibleGraficamente();
+                    tiempoUltimoParpadeo=tiempoHilo;
+                    invisible=false;
+                }
+                try {
+                    Thread.sleep(50); // para no saturar el CPU
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }       
                 controladorGrafica.setJugadorVisibleGraficamente();
-                tiempoUltimoParpadeo=tiempoHilo;
-                invisible=false;
             }
-            else if((tiempoHilo - tiempoUltimoParpadeo > ConstantesTiempos.TIEMPO_LAPSO_INVENCIBILIDAD) && !invisible){
-                controladorGrafica.setJugadorInvisibleGraficamente();
-                tiempoUltimoParpadeo=tiempoHilo;
-                invisible=true;
-            }
-            tiempoHilo=System.currentTimeMillis();
-        }
-        if(invisible)
-            controladorGrafica.setJugadorVisibleGraficamente();
+        });
+        hiloInv.start();
     }
     public boolean estaCerca(Entidad entidadPrincipal, Entidad entidadEvaluada, double umbralDeRango){
         Rectangle hitboxEntidadPrincipal = entidadPrincipal.getHitbox().getRectangle();

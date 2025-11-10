@@ -48,7 +48,7 @@ public class PanelPantallaJuego extends JPanel{
         panelInformacion.setOpaque(false); //Esto hace que sea transparente
         panelInformacion.setLayout(new GridLayout(1, 4)); //UNA FILA Y 5 COLUM PARA MOSTRAR VALORES ALINEADOS
 		panelInformacion.setBounds(0, 0, ConstantesVistas.PANEL_ANCHO, 50);//Defino manualmente el tamaño y pos del panel info
-        String stringNivel=ConstantesNiveles.NIVEL1;
+        String stringNivel=ConstantesNiveles.NIVEL1;////
         labelNivel= new JLabel(stringNivel);
         labelNivel.setForeground(Color.BLACK);
         labelNivel.setHorizontalAlignment(SwingConstants.CENTER);//centra el texto horizontalmente dentro del JLabel
