@@ -122,11 +122,13 @@ public class PanelPantallaJuego extends JPanel{
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));//plataforma.getSprite().getRutaImagen("estatico.png"
             JLabel plataformaVisible = new JLabel(icono);
             plataformaVisible.setBounds(plataforma.getPosX(), plataforma.getPosY(), plataforma.getHitbox().getAncho(), plataforma.getHitbox().getAlto());
-            //this.setComponentZOrder(plataformaVisible,2);
+            this.add(plataformaVisible);  //TODO revisar, a veces se mueven las plataformas
+            this.setComponentZOrder(plataformaVisible,0);
             plataforma.setMiLabel(plataformaVisible);
-            this.add(plataformaVisible);  
             //imagenFondoJuego.add(plataformaVisible);
         }
+        this.revalidate();
+        this.repaint();
     }
     public void mostrarObstaculos(){
         for(Obstaculo obstaculo:miControladorGrafico.getJuego().getNivelActual().getObstaculos()){
@@ -134,10 +136,12 @@ public class PanelPantallaJuego extends JPanel{
             ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));
             JLabel obstaculoVisible = new JLabel(icono);
             obstaculoVisible.setBounds(obstaculo.getPosX(), obstaculo.getPosY(), obstaculo.getHitbox().getAncho(), obstaculo.getHitbox().getAlto());
-            //this.setComponentZOrder(obstaculoVisible,2);
-            obstaculo.setMiLabel(obstaculoVisible);
             this.add(obstaculoVisible);  
+            this.setComponentZOrder(obstaculoVisible,0);
+            obstaculo.setMiLabel(obstaculoVisible);  
         }
+        this.revalidate();
+        this.repaint();
     }
     //tengo que agregar metodos actualizar
     public ObserverGrafico incorporarEntidad(EntidadDinamica entidad) {
@@ -177,13 +181,12 @@ public class PanelPantallaJuego extends JPanel{
         //this.add(imagenFondoJuego);
     }
     public void actualizarInformacionJugador(Jugador jugador) {
-        //DESPUES
+        //DESPUES TODO
     }
     public void actualizarLabelsVidas(Jugador jugador) {
         int indice = jugador.getVidas();
-        if (indice >= 0 && indice < panelVidas.getComponentCount()) {
+        if (indice >= 0 && indice < panelVidas.getComponentCount())
             panelVidas.remove(indice);
-        }
         ImageIcon iconoVida = new ImageIcon("SnowBros/src/Imagenes/Original/PowerUps/vidaPerdida.png");
         JLabel label= new JLabel(iconoVida);
         panelVidas.add(label, jugador.getVidas());
@@ -200,9 +203,8 @@ public class PanelPantallaJuego extends JPanel{
     }
     public void efectoVidaExtra(Jugador jugador){
         int indice = jugador.getVidas() - 1;
-        if (indice >= 0 && indice < panelVidas.getComponentCount()) {
+        if (indice >= 0 && indice < panelVidas.getComponentCount()) 
             panelVidas.remove(indice);
-        }        
         ImageIcon iconoVidaRoja = new ImageIcon("SnowBros/src/Imagenes/Original/PowerUps/vidaJugador.png");
         JLabel labelVida = new JLabel(iconoVidaRoja);
         panelVidas.add(labelVida, indice);
@@ -219,27 +221,6 @@ public class PanelPantallaJuego extends JPanel{
         panelInformacion.add(labelPuntaje,1);
         revalidate();
         repaint();
-    }
-    public void actualizarLabelsTiempo(Jugador jugador) {
-        //TODO implementar
-    }    
-    public void agregarLabelsEditablesTiempo(int posXJugador) {
-        //TODO implementar
-    }
-    public void agregarLabelsEditablesPuntaje(){
-        //TODO implementar
-    }
-    public void agregarLabelsEditablesVidas(){
-        //TODO implementar
-    }
-    public void decorarLabelsTiempo(){
-        //TODO implementar
-    }
-    public void decorarLabelsPuntaje(){
-        //TODO implementar
-    }
-    public void decorarLabelsVidas(){
-        //TODO implementar
     }
     public void eliminarLabel(JLabel l){
         if(l!=null){
