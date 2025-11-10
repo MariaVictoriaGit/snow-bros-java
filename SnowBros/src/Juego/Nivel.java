@@ -79,11 +79,6 @@ public class Nivel {
     public Calabaza getCalabaza(){
         return calabaza;
     }
-
-    public int getNivelActual(){
-        return numeroNivel;
-    }
-
     //metodos de eliminar
     public void eliminarPlataforma(Plataforma p){
         listaPlataformas.remove(p);
