@@ -45,9 +45,9 @@ public class PanelPantallaJuego extends JPanel{
     }
     protected void agregarPanelInformacion() {
         panelInformacion= new JPanel();
-        panelInformacion.setOpaque(false); //Esto hace que sea transparente
+        panelInformacion.setOpaque(true); //Esto hace que sea transparente
         panelInformacion.setLayout(new GridLayout(1, 4)); //UNA FILA Y 5 COLUM PARA MOSTRAR VALORES ALINEADOS
-		panelInformacion.setBounds(0, 0, ConstantesVistas.PANEL_ANCHO, 50);//Defino manualmente el tamaño y pos del panel info
+		panelInformacion.setBounds(0, 0, ConstantesVistas.PANEL_ANCHO, 40);//Defino manualmente el tamaño y pos del panel info
         String stringNivel=ConstantesNiveles.NIVEL1;////
         labelNivel= new JLabel(stringNivel);
         labelNivel.setForeground(Color.BLACK);
@@ -82,10 +82,9 @@ public class PanelPantallaJuego extends JPanel{
         panelVidas= new JPanel();
         ArrayList<JLabel> corazones= new ArrayList<>();
         panelVidas.setOpaque(false);//transparente
-        panelVidas.setLayout(new FlowLayout(FlowLayout.CENTER,5,5));// espacio de 5 pixeles horiz y vert entre cada componente
+        panelVidas.setLayout(new FlowLayout(FlowLayout.CENTER,5,15));// espacio de 5 pixeles horiz y vert entre cada componente
         ImageIcon iconoCorazon= new ImageIcon("SnowBros/src/Imagenes/Original/PowerUps/vidaJugador.png");
-        int vidas=ConstantesDificultad.VIDAS_INICIO;//TODO hacer constante
-        for(int i=0;i<vidas;i++){
+        for(int i=0;i<ConstantesDificultad.VIDAS_INICIO;i++){
             JLabel vidaLabel=new JLabel(iconoCorazon);
             corazones.add(vidaLabel);
             panelVidas.add(vidaLabel);
