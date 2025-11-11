@@ -104,7 +104,7 @@ public class Juego {
                     if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) 
                         entidad.aceptar(jugadorActual);
                     if(nivelActual.getCalabaza()!=null && nivelActual.getCalabaza().getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())){
-                            entidad.aceptar(nivelA.getCalabaza());
+                            entidad.aceptar(nivelActual.getCalabaza());
                         }
                     for(Enemigo e:nivelActual.getEnemigos()){
                         if(e.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())){
@@ -249,7 +249,7 @@ public class Juego {
     public void iniciarNivel(){
         if (nivel == null){
             nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que corresponda
-            nivel.setNivel(nivel.getNivelActual()+1);
+            //nivel.setNivel(nivel.getNivelActual()+1);
         }
         if(jugador==null){
             jugador = nivel.getJugador();
