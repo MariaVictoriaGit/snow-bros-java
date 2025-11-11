@@ -57,6 +57,7 @@ public class BolaDeNieve extends EntidadDinamica{
                 break;
             }
             terminaRebotar();
+        }
     }
     private void terminaRebotar(){
         if(reboto && posX<=0 || posX>=ConstantesVistas.PANEL_ANCHO)
