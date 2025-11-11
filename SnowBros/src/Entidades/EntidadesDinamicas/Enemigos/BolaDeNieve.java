@@ -15,12 +15,13 @@ import SnowBros.src.Juego.Temporizador;
 public class BolaDeNieve extends EntidadDinamica{
     private boolean estaActiva;
     private Temporizador tiempo;
-    private int velocidadMaxima=8;
+    private int velocidadMaxima=15;
     private boolean reboto;
 
     public BolaDeNieve(int x, int y, Sprite sprite){
         super(x,y,sprite);
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_NIEVE);
+        velocidad=1;
         estaActiva=false;
         reboto=false;
     }
@@ -43,10 +44,9 @@ public class BolaDeNieve extends EntidadDinamica{
                         direccion=ConstantesEntidades.IZQUIERDA;
                         reboto=true;
                 }
-
                 break;
                 case ConstantesEntidades.IZQUIERDA:
-                    posX=posX-velocidad;
+                    posX=posX-velocidadMaxima;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                     if(!reboto && posX<20){
                     direccion=ConstantesEntidades.DERECHA;
@@ -112,24 +112,18 @@ public class BolaDeNieve extends EntidadDinamica{
         
     }
     public void visitar(Jugador j){
-        /* 
-        direccion=j.getDireccion();
-        empujar();
-        j.setVelocidad(velocidad);
-        */
-          
-        // Detectar desde qué lado el jugador empuja
+         if(!estaActiva){  
         if (j.getPosX() < this.posX) {
-            // El jugador está a la izquierda → empuja hacia la derecha
             direccion = ConstantesEntidades.DERECHA;
         } else {
-            // El jugador está a la derecha → empuja hacia la izquierda
             direccion = ConstantesEntidades.IZQUIERDA;
         }
         j.setEmpujando(this);
-        empujar();
-        j.setVelocidad(velocidad);
-
+       
+            empujar();
+            j.setVelocidad(velocidad);
+        }
+        
     }
     
     public void empujar(){

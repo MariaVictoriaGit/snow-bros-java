@@ -103,6 +103,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                 if(keyCode==KeyEvent.VK_SPACE){
                     disparando=false;
                     empujando=false;
+                    miJuego.getJugador().setEmpujando(null);
                 }
             }
         });
@@ -124,9 +125,6 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         } 
         if(empujando)
             miJuego.empujarBolaDeNieve();
-         else {
-            miJuego.getJugador().setEmpujando(null);
-        }
     }
     public JFrame getVentana() {
         return ventana;

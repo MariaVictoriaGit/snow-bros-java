@@ -417,7 +417,7 @@ public class Juego {
         }
     }
     public void empujarBolaDeNieve(){
-        jugador.estaEmpujando().
+        jugador.estaEmpujando().disparar();
     }
     public void invencibilidad(){
         Thread hiloInv = new Thread(() -> {
