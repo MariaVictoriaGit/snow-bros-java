@@ -407,15 +407,11 @@ public class Juego {
     public void invencibilidad(){
         Thread hiloInv = new Thread(() -> {
             long tiempoUltimoParpadeo = 0;
-            boolean invisible = false;
             while(jugador.getInvencibilidad()){
                 long tiempoHilo = System.currentTimeMillis();
                 if(tiempoHilo - tiempoUltimoParpadeo > ConstantesTiempos.TIEMPO_LAPSO_INVENCIBILIDAD){
-                    if(invisible)
-                        controladorGrafica.setJugadorVisibleGraficamente();
-                    else controladorGrafica.setJugadorInvisibleGraficamente();
+                    controladorGrafica.setJugadorInvisibleGraficamente();
                     tiempoUltimoParpadeo=tiempoHilo;
-                    invisible=false;
                 }
                 try {
                     Thread.sleep(50); // para no saturar el CPU
