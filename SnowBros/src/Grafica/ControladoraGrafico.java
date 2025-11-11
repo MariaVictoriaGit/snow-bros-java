@@ -10,7 +10,4 @@ interface ControladorGrafico {
     public ObserverGrafico registrarEntidad(EntidadDinamica e);
     public Observer registrarEntidad(Jugador j);
     public ObserverPlataformaMovil registrarEntidad(PlataformaMovil p);
-    /*public ObserverEntidad registrarEntidad(EntidadDinamica e);
-    public ObserverJugador registrarEntidad(Jugador j); */
-    //TODO public Observer registrarSprite(Entidad e);
 }

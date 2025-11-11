@@ -1,7 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import java.util.Random;
-import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.ConstantesVistas;

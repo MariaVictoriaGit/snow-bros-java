@@ -189,7 +189,7 @@ public class Alternativo extends FabricaSprites{
         return new Sprite(mapeo);
     }
     public Sprite getSpriteDisparoJugador(){
-        HashMap<String, String> mapeo= new HashMap<>();//TODO
+        HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("idleDerecha", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalDerechaAlternativo.gif");
         mapeo.put("idleIzquierda", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalIzquierdaAlternativo.gif");
         mapeo.put("aumentadoDerecha", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentadoDerechaAlternativo.gif");

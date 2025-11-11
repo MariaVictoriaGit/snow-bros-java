@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 
-import SnowBros.src.Datos.ConstantesDificultad;
-import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.*;
-import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
@@ -22,7 +19,7 @@ import SnowBros.src.Parser.ParserNivel;
 public class Juego {
     protected Nivel nivel;
     protected int puntajeJugador;
-    protected Temporizador tiempo;//TODO revisar control del tiempo del juego 
+    protected Temporizador tiempo;
     protected boolean reiniciarJugador;
     protected Jugador jugador;
     protected Sonido sonido;
