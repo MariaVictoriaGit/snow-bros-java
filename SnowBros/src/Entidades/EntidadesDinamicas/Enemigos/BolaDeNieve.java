@@ -23,7 +23,7 @@ public class BolaDeNieve extends EntidadDinamica{
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_NIEVE);
         estaActiva=false;
         reboto=false;
-        velocidad=2;
+        velocidad=ConstantesDificultad.VELOCIDAD_BOLADENIEVE;
     }
     public boolean getEstado(){
         return estaActiva;
@@ -39,7 +39,9 @@ public class BolaDeNieve extends EntidadDinamica{
                 this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 if(!reboto && posX>ConstantesVistas.PANEL_ANCHO-20){
                         direccion=ConstantesEntidades.IZQUIERDA;
-                        reboto=true;
+                        if(posY>ConstantesVistas.PANEL_ALTO-100){
+                            reboto=true;
+                        }
                 }
 
                 break;
@@ -47,13 +49,14 @@ public class BolaDeNieve extends EntidadDinamica{
                     posX=posX-velocidad;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                     if(!reboto && posX<20){
-                    direccion=ConstantesEntidades.DERECHA;
-                    reboto=true;
+                        direccion=ConstantesEntidades.DERECHA;
+                        if(posY>ConstantesVistas.PANEL_ALTO-100){
+                            reboto=true;
+                        }
                     }
                 break;
             }
             terminaRebotar();
-        }
     }
     private void terminaRebotar(){
         if(reboto && posX<=0 || posX>=ConstantesVistas.PANEL_ANCHO)

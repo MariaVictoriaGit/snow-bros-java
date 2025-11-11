@@ -292,7 +292,10 @@ public class Jugador extends EntidadDinamica implements Visitable{
            this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
            this.setPosY(e.getPosY() - this.getHitbox().getAlto());
         }
-        actualizarPuntaje(e.getPuntaje());
+        if(!e.getUsada()){
+            actualizarPuntaje(e.getPuntaje());
+            e.setUsada();
+        }
         e.getTiempoAntesDeRomperse().iniciar();
     }
     public void visitar(Escalera e){
