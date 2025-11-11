@@ -15,14 +15,16 @@ public class Fantasma extends Enemigo{
         direccion=0;
     }
     public void mover(){
-        if(xJugador> posX)
-            posX+= velocidad;
-            else posX-=velocidad;
-        if(yJugador > posY)
-            posY+= velocidad;
-            else posY-=velocidad;
-        // Aquí podrías actualizar la hitbox o hacer otros cálculos si es necesario
-        this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+        if(!detenido){
+            if(xJugador> posX)
+                posX+= velocidad;
+                else posX-=velocidad;
+            if(yJugador > posY)
+                posY+= velocidad;
+                else posY-=velocidad;
+            // Aquí podrías actualizar la hitbox o hacer otros cálculos si es necesario
+            this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+        }
     }
 
     public void setPosicionJugador(int x, int y){
@@ -36,10 +38,6 @@ public class Fantasma extends Enemigo{
     }
     public int getSalud(){
         return salud; // es inmortal, no tiene salud
-    }
-    public void convertirEnBola(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
     }
     public void recibirDaño(){
         //es indestructible

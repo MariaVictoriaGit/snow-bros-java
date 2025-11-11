@@ -158,7 +158,7 @@ public class Nivel {
     }
     public void agregarEnemigo(Enemigo e){
         listaEnemigos.addLast(e);
-        e.setNivel(this);//enemigo.registrarObserver(new ObserverEntidad(e));
+        e.setNivel(this);
         e.getObserver().actualizar();
     }
     public void agregarDisparo(DisparoJugador b){
@@ -190,12 +190,20 @@ public class Nivel {
         s.setNivel(this);
     }
     public void efectoBotellaVerde(boolean efecto){
-        if(efecto)
+        if(efecto){
             for(Enemigo enemigo : new ArrayList<>(listaEnemigos))
                 enemigo.detener();
-        else
+            for(Fantasma fantasma : new ArrayList<>(listaFantasmas))
+                fantasma.detener();
+            calabaza.detener();
+        }
+        else{
             for(Enemigo enemigo : new ArrayList<>(listaEnemigos))
                 enemigo.avanzar();
+            for(Fantasma fantasma : new ArrayList<>(listaFantasmas))
+                fantasma.avanzar();
+            calabaza.avanzar();
+        }
     }
     public Juego getJuego(){
         return jugador.getJuego();

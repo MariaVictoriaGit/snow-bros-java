@@ -11,7 +11,7 @@ import SnowBros.src.Visitor.Visitable;
 import SnowBros.src.Visitor.Visitador;
 
 public abstract class Enemigo extends EntidadDinamica implements Visitable {
-   protected int salud=1;
+   protected int salud;
    protected int tocandoSuelo;
    protected Temporizador temporizadoCongelado;
    protected Temporizador accionMovimientoEnemigo;
@@ -22,7 +22,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected long tiempoEstado = 0;
    protected long inicioCongelado=0;
    protected int estado = EstadosDePatron.MOVERDERECHA;
-
+   protected boolean activarCongelado;
    public Enemigo(int x, int y, Sprite sprites) {
       //la dificultad va a verse definida por lsa salud
       //de c/u y los tiempos congelado, desp cambiar
@@ -31,6 +31,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       muerto=false;
       rodando=false;
       detenido=false;
+      activarCongelado=false;//para Moghera y kamaki
       tocandoSuelo=ConstantesEntidades.SUELO;
    }
    public abstract void mover();
@@ -100,8 +101,9 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       Sonido.getInstancia().reproducirEfectoDeSonido("enemigoMuereBolaNieve.wav");
       detenido=true;
       direccion=ConstantesEntidades.QUIETO;
+      nivel.getJugador().actualizarPuntaje(this.getPuntajeCongelado());
       if(observer!=null)
-         observer.actualizarBolaDeNieve();
+         observer.actualizarBolaDeNieve(activarCongelado);
    }
    public void descongelar(){
       detenido=false;
