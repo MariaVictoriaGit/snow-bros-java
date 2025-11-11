@@ -128,14 +128,14 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
       saltando=true;
       enAire=true;
       tocandoSuelo=ConstantesEntidades.AIRE;
-      posY-=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
+      posY-=ConstantesDificultad.VELOCIDAD_SALTO;
     }
   }
   public void actualizarSalto() {
     if (saltando) {
         if (alturaSalto < ALTURAMAXSALTO) {
-            posY -= ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
-            alturaSalto+=ConstantesDificultad.VELOCIDAD_SALTO_JUGADOR;
+            posY -= ConstantesDificultad.VELOCIDAD_SALTO;
+            alturaSalto+=ConstantesDificultad.VELOCIDAD_SALTO;
             this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
         } else {
               saltando = false;
