@@ -1,9 +1,5 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
-
-import SnowBros.src.Datos.ConstantesDificultad;
-import SnowBros.src.Datos.ConstantesEntidades;
-import SnowBros.src.Datos.ConstantesVistas;
-import SnowBros.src.Datos.EstadosDePatron;
+import SnowBros.src.Datos.*;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -13,7 +9,6 @@ public class DemonioRojo extends Enemigo{
     protected int contadorAnimacion=0;
     private long tiempoEstado = 0;
     private int estado = EstadosDePatron.MOVERIZQUIERDA;
-
     public DemonioRojo(int posX, int posY, Sprite miSprite){
         super(posX, posY, miSprite);
         salud=ConstantesDificultad.SALUD_DEMONIO_ROJO;
@@ -23,12 +18,10 @@ public class DemonioRojo extends Enemigo{
         if(!detenido)
             switch (direccion) {
                 case ConstantesEntidades.QUIETO:
-                    if (dirAnterior == ConstantesEntidades.DERECHA){
+                    if (dirAnterior == ConstantesEntidades.DERECHA)
                         direccion = ConstantesEntidades.IZQUIERDA;
-                    }
-                    else{
+                    else
                         direccion = ConstantesEntidades.DERECHA;
-                    }
                     break;
                 case ConstantesEntidades.IZQUIERDA:
                     dirAnterior=ConstantesEntidades.IZQUIERDA;
@@ -123,6 +116,10 @@ public class DemonioRojo extends Enemigo{
             }
         }
         return clave;
+    }
+    public int getSalud(){
+        salud= ConstantesDificultad.SALUD_DEMONIO_ROJO;
+        return salud;
     }
     public void aceptar(Visitador visitador) {
         visitador.visitar(this);

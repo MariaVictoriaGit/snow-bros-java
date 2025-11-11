@@ -8,7 +8,6 @@ public class Temporizador {
     private Thread hilo;
     private boolean enMarcha;
     private Runnable accionAlFinalizar;
-    
     public Temporizador(){
         tope=Integer.MAX_VALUE;
         tiempoActual=0;
@@ -20,13 +19,13 @@ public class Temporizador {
         enMarcha=false;
     }
     public void iniciar(){
-        if(enMarcha) return;
-        
-        hilo=new Thread(()->{//implementa Runnable
+        if(enMarcha) 
+            return;
+        hilo=new Thread(()->{
             enMarcha=true;
             while (enMarcha && !llegoAlTope()){
                 try{
-                    Thread.sleep(1000);//1s
+                    Thread.sleep(1000);
                 }catch(InterruptedException e){
                     Thread.currentThread().interrupt();
                     break;
@@ -59,10 +58,8 @@ public class Temporizador {
         tiempoActual=0;
     }
     public void incrementar(){
-        if(tiempoActual<tope){
+        if(tiempoActual<tope)
             tiempoActual++;
-        }
-
     }
     public boolean llegoAlTope(){
         return tiempoActual==tope;
@@ -76,8 +73,7 @@ public class Temporizador {
     public int getTiempoActual(){
         return tiempoActual;
     }
-    /*
-    public void setTiempoActual(int tiempo){
+    /*public void setTiempoActual(int tiempo){
         tiempoActual=tiempo;
     }*/
     public String getStringDeTiempo(){

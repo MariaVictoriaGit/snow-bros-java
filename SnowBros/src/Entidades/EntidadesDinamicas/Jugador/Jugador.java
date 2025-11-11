@@ -229,7 +229,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         });
         hiloBotellaAzul.start();  */
     }
-    private void efectoBotellaRoja(BotellaRoja b){//TODO desp de disparo
+    private void efectoBotellaRoja(BotellaRoja b){
         if(disparoAumentado)    
             return;
         this.disparoAumentado=true; 

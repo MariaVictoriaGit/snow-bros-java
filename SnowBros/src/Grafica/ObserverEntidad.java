@@ -1,17 +1,10 @@
 package SnowBros.src.Grafica;
-
 import java.net.URL;
-
-import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
-
-//import javax.swing.ImageIcon;
-
-//import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import javax.swing.ImageIcon;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 
 public class ObserverEntidad extends ObserverGrafico{
-
     public ObserverEntidad(EntidadDinamica entidad) {
         super(entidad);
     }
@@ -21,18 +14,15 @@ public class ObserverEntidad extends ObserverGrafico{
             super.actualizarPosicionTamano();
         }
     }
-    
-    protected void actualizarImagen(int direccion, int tocandoSuelo) {
-        
+    protected void actualizarImagen(int direccion, int tocandoSuelo) {   
         SwingUtilities.invokeLater(() -> {
             if(entidadObservada!=null){
-            try{
+                try{
                     entidadObservada.setDireccion(direccion);
                     String estado= entidadObservada.generarClaveEstado();
                     String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);
-                    if (rutaImagen == null || rutaImagen.isBlank()) {
+                    if (rutaImagen == null || rutaImagen.isBlank())
                         return;
-                    }
                     URL url= getClass().getClassLoader().getResource(rutaImagen);
                     if (url == null) {
                         System.err.println("No se encontró recurso: " + rutaImagen);
@@ -44,6 +34,6 @@ public class ObserverEntidad extends ObserverGrafico{
                     ex.printStackTrace();
                 }
             }
-            });   
-       }
+        });   
     }
+}

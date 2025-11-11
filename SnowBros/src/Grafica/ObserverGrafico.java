@@ -1,12 +1,9 @@
 package SnowBros.src.Grafica;
-
 import java.awt.Container;
 import java.net.URL;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
-
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 
@@ -14,7 +11,6 @@ public class ObserverGrafico extends JLabel implements Observer{
     protected EntidadDinamica entidadObservada;
 	protected PlataformaMovil plataformaObservada;
 	private JLabel imagen;
-
     public ObserverGrafico(EntidadDinamica entidad) {
 		entidadObservada = entidad;
 		actualizar();
@@ -28,7 +24,6 @@ public class ObserverGrafico extends JLabel implements Observer{
 		actualizarPosicionTamano();
 	}
     protected void actualizarImagen() {
-        //No todas las entidades tienen mas de un sprite, como hacemos con las estaticas?
 		String rutaImagen = entidadObservada.getSprite().getRutaImagen("idleIzquierda");
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
 	    setIcon(icono);
@@ -55,11 +50,14 @@ public class ObserverGrafico extends JLabel implements Observer{
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
 		setIcon(icono);
 	}
-	@Override
-	public void actualizarBolaDeNieve() {	
+	public void actualizarBolaDeNieve(boolean activo) {	
 			SwingUtilities.invokeLater(() -> {
 				try{
-					String estado= "congelado";
+					String estado=null;
+					if(activo)
+						estado="congeladoDerecha";
+					else
+						estado="congelado";
 					String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);
 					if (rutaImagen == null || rutaImagen.isBlank()) {
 						return;
@@ -75,7 +73,6 @@ public class ObserverGrafico extends JLabel implements Observer{
             ex.printStackTrace();
             }
 	    });
-	
 	}
 	public void borrarObserver(){
 		entidadObservada=null;

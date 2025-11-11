@@ -1,5 +1,4 @@
 package SnowBros.src.Fabricas;
-
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
@@ -19,8 +18,7 @@ public class FabricaEntidades {
         Sprite spriteSilueta= fabrica.get_silueta();
         Silueta silueta=new Silueta(spriteSilueta);
         return silueta;
-    }
-    // getters entidades
+    }// getters entidades
     public Jugador getJugador(int x, int y){
         Sprite spritesJugador=fabrica.getSpriteJugador();
         Jugador jugador= new Jugador(x,y,spritesJugador);
@@ -65,8 +63,7 @@ public class FabricaEntidades {
         Sprite spriteMoghera= fabrica.getSpriteMoghera();
         Moghera moghera=new Moghera(x, y, spriteMoghera);
         return moghera;
-    }
-    // getters powerups
+    }// getters powerups
     public BotellaAzul getBotellaAzul(int x, int y){
         Sprite botellaAzul= fabrica.getSpriteBotellaAzul();
         BotellaAzul azul= new BotellaAzul(x, y, botellaAzul);

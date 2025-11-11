@@ -1,9 +1,7 @@
 package SnowBros.src.Entidades.EntidadesEstaticas;
 
 import java.awt.Container;
-
 import javax.swing.JLabel;
-
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitable;
@@ -17,8 +15,7 @@ public abstract class EntidadEstatica extends Entidad implements Visitable {
         alto=32;
     }
     public String generarClaveEstado(){
-        return "normal"
-        ;
+        return "normal";
     }
     public void setMiLabel(JLabel j){
         miLabel=j;

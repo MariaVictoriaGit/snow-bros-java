@@ -18,7 +18,6 @@ public class PanelPantallaGameOver extends JPanel {
     protected JButton botonNuevaPartida;
     protected JButton botonRanking;
     protected GUI miControladorGrafico;
-
     public PanelPantallaGameOver(GUI miControladorGrafico) {
         this.miControladorGrafico = miControladorGrafico;
         setSize(ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO);

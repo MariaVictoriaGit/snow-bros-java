@@ -16,7 +16,6 @@ public class PanelPantallaModo extends JPanel{
     protected JButton botonSupervivencia;
     protected JButton botonContrarreloj;
     protected GUI miControladorGrafico;
-
     public PanelPantallaModo(GUI miControladorGrafico){
         this.miControladorGrafico=miControladorGrafico;
         setSize(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO);

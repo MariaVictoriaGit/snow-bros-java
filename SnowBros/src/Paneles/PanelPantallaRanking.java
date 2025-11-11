@@ -17,7 +17,6 @@ public class PanelPantallaRanking extends JPanel {
     protected JLabel imagenFondo;
     protected JButton botonSalir;
     protected GUI miControladorGrafico;
-
     public PanelPantallaRanking(GUI miControladorGrafico){
         this.miControladorGrafico=miControladorGrafico;
         setSize(ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO);

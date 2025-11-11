@@ -2,8 +2,7 @@ package SnowBros.src.Datos;
 
 public class ConstantesTiempos{
     //tiempo antes de que aparezca la calabaza
-    public static final int TIEMPO_CALABAZA=120;//2 minutos
-
+    public static final int TIEMPO_CALABAZA=60;
     //tiempo de vida entidad
     public static final int TIEMPO_BOLA_DE_FUEGO=10;//10s
     public static final int TIEMPO_BOLA_DE_NIEVE=10;
@@ -12,12 +11,9 @@ public class ConstantesTiempos{
     public static final int TIEMPO_EFECTO_POWER_UP=7;
     public static final long COOLDOWN_DISPARO = 300;
     public static final long TIEMPO_LAPSO_INVENCIBILIDAD = 100;
-
+    public static final int TIEMPO_CREACION_FANTASMA=15;
     //tiempo que permanecen congelados
     public static final int TIEMPO_CONGELADO_ENEMIGOS=10;//10s
-
     public static final int TOPE_TIEMPO_JUEGO=60*2;
-
-    public static final int TIEMPO_SALTO=4;
-
+    public static final int TIEMPO_CAIDA_DISPARO=800;
 }

@@ -7,7 +7,6 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 
 public interface Visitador {
-    
     public void visitar(Enemigo e);
     public void visitar(Plataforma e);
     public void visitar(PlataformaMovil e);

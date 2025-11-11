@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 
-import SnowBros.src.Datos.ConstantesDificultad;
-import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.*;
-import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
@@ -22,7 +19,7 @@ import SnowBros.src.Parser.ParserNivel;
 public class Juego {
     protected Nivel nivel;
     protected int puntajeJugador;
-    protected Temporizador tiempo;//TODO revisar control del tiempo del juego 
+    protected Temporizador tiempo;
     protected boolean reiniciarJugador;
     protected Jugador jugador;
     protected Sonido sonido;
@@ -44,7 +41,7 @@ public class Juego {
         reiniciarJugador=false;
         ranking=new Ranking();
         tiempo= new Temporizador(); 
-        tiempoAntesAparicionCalabaza= new Temporizador(60);
+        tiempoAntesAparicionCalabaza= new Temporizador(ConstantesTiempos.TIEMPO_CALABAZA);
         juegoEnEjecucion=false;
         ultimoDisparo=0;
     }
@@ -155,10 +152,10 @@ public class Juego {
                     if (jugadorActual.getHitbox().getRectangle().intersects(suelo.getHitbox().getRectangle())) {
                         suelo.aceptar(jugadorActual);
                         colisionSuelo = true;
-                        for(Enemigo enemigo:nivelActual.getEnemigos())
-                            if (suelo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
-                                suelo.aceptar(enemigo);
                     }
+                    for(Enemigo enemigo:nivelActual.getEnemigos())
+                            if(suelo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
+                                suelo.aceptar(enemigo);
                 }
                 if (!colisionBola && !colisionSuelo) {
                     jugadorActual.setVelocidadBase();
@@ -187,6 +184,9 @@ public class Juego {
                 for (Enemigo enemigo : nivelActual.getEnemigos()) {
                    enemigo.patronDeMovimiento();        
                    enemigo.verificarSuelo(); 
+                   if(enemigo.getCongelado()){
+                        enemigo.actualizarTiempoCongelado();
+                   }
                 }
                 if(!nivelActual.getDisparos().isEmpty())
                     for (DisparoJugador disparo: nivelActual.getDisparos())
@@ -392,12 +392,14 @@ public class Juego {
         Calabaza cala=fabricaEntidades.getCalabaza(320, 120);
         ObserverGrafico observer = controladorGrafica.registrarEntidad(cala);
         cala.registrarObserver(observer);
-        nivel.agregarCalabaza(cala);
+        if(nivel!=null)
+            nivel.agregarCalabaza(cala);
     }
     public void crearMoghera(){
-        Moghera moghera=fabricaEntidades.getMoghera(704, 240);
+        Moghera moghera=fabricaEntidades.getMoghera(730, 70);
         ObserverGrafico observer= controladorGrafica.registrarEntidad(moghera);
         moghera.registrarObserver(observer);
+        moghera.setActivo(true);
         nivel.agregarEnemigo(moghera);
     }
     public void crearBolaDeNieve(int posX, int posY, int puntajeEmpujado){

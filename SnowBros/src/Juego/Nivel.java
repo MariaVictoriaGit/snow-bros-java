@@ -158,7 +158,7 @@ public class Nivel {
     }
     public void agregarEnemigo(Enemigo e){
         listaEnemigos.addLast(e);
-        e.setNivel(this);//enemigo.registrarObserver(new ObserverEntidad(e));
+        e.setNivel(this);
         e.getObserver().actualizar();
     }
     public void agregarDisparo(DisparoJugador b){

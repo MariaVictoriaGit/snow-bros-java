@@ -1,6 +1,5 @@
 package SnowBros.src.Entidades.EntidadesEstaticas.PowerUps;
 import javax.swing.JLabel;
-
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Grafica.Sprite;
@@ -11,7 +10,6 @@ public abstract class PowerUp extends EntidadEstatica {
     protected boolean activo;
     protected Temporizador tiempoDeVida;
     protected Temporizador tiempoDeEfecto;
-
     public PowerUp(int x, int y, Sprite sprite){
         super(x,y-6,sprite); // 4 es margen visual
         activo=false;
