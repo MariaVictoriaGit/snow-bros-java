@@ -18,6 +18,7 @@ public class ConstantesDificultad {
     public static final int VELOCIDAD_CALABAZA=1;
     public static final int VELOCIDAD_FANTASMA=1;
     public static final int VELOCIDAD_BOLADENIEVE=2;
+    public static final int VELOCIDAD_MAXIMA_BOLADENIEVE=15;
     public static final int VELOCIDAD_BOLADEFUEGO=6;
     public static final int VIDAS_INICIO=3;
     //velocidades y salto a escala

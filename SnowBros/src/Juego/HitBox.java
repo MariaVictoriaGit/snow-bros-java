@@ -1,6 +1,5 @@
 package SnowBros.src.Juego;
 import java.awt.Rectangle;
-
 import SnowBros.src.Datos.ConstantesEntidades;
 
 public class HitBox {
@@ -8,7 +7,6 @@ public class HitBox {
     private Rectangle hitbox;
     private int ancho;
     private int alto;
-
     public HitBox(int x, int y, int ancho, int alto){
         this.ancho=ancho;
         this.alto=alto;

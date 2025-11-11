@@ -3,13 +3,11 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Grafica.GUI;
 
@@ -19,7 +17,6 @@ public class PanelPantallaPrincipal extends JPanel{
     protected JLabel imagenFondo;
     protected JButton botonIniciar;
     protected JButton botonRanking;
-
     public PanelPantallaPrincipal(GUI controlador){
         this.miControladorGrafico=controlador;
         setSize(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO);

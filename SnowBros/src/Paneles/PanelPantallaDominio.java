@@ -16,7 +16,6 @@ public class PanelPantallaDominio extends JPanel {
     protected JButton botonOriginal;
     protected JButton botonAlternativo;
     protected GUI miControladorGrafico;
-
     public PanelPantallaDominio(GUI miControladorGrafico){
         this.miControladorGrafico=miControladorGrafico;
         setSize(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO);

@@ -1,5 +1,4 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
-
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
@@ -16,7 +15,6 @@ public class BolaDeFuego extends EntidadDinamica{
     private int decrementos;
     private boolean caida;
     private boolean spriteJefe=false;
-
     public BolaDeFuego(int posX, int posY,Sprite miSprite){
         super(posX, posY, miSprite);
         observer.getImagen().setLocation(posX, posY);
@@ -38,60 +36,55 @@ public class BolaDeFuego extends EntidadDinamica{
                     posX=posX+5;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 }
-                else{
+                else
                     this.eliminar();
-                }
-            break;
+                break;
             case ConstantesEntidades.IZQUIERDA:
                 if(!((posX-=5)<10)){
                     posX=posX-5;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 }
-                else{
+                else
                     this.eliminar();
-                }
-            break;
+                break;
             case ConstantesEntidades.ARRIBA_IZQUIERDA:
-                    posX -= 6;
-                    subida();
-                    if(tiempoCaida<=1000 && !caida){
-                        posY -= 4;
-                    }
-                    if(tiempoCaida==1000)
-                        caida=true;
-                    if(caida){
-                        posY += 2;
-                        decrementos++;
-                        decrementarY();
-                    }
-                    getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-                    break;
-                case ConstantesEntidades.ARRIBA_DERECHA:
-                    posX += 6;
-                    subida();
-                    if(tiempoCaida<=1000 && !caida){
-                        posY -= 4;
-                    }
-                    if(tiempoCaida==1000)
-                        caida=true;
-                    if(caida){
-                        posY += 2;
-                        decrementos++;
-                        decrementarY();
-                    }
-                    getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-                    break;
+                posX -= 6;
+                subida();
+                if(tiempoCaida<=1000 && !caida)
+                    posY -= 4;
+                if(tiempoCaida==1000)
+                    caida=true;
+                if(caida){
+                    posY += 2;
+                    decrementos++;
+                    decrementarY();
+                }
+                getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                break;
+            case ConstantesEntidades.ARRIBA_DERECHA:
+                posX += 6;
+                subida();
+                if(tiempoCaida<=1000 && !caida){
+                    posY -= 4;
+                }
+                if(tiempoCaida==1000)
+                    caida=true;
+                if(caida){
+                    posY += 2;
+                    decrementos++;
+                    decrementarY();
+                }
+                getHitbox().actualizarHitbox(posX, posY, ancho, alto);
+                break;
         }
     }
     private void subida(){
-        if(tiempoCaida<1000 && !caida){
+        if(tiempoCaida<1000 && !caida)
             tiempoCaida+=100;
-        }
     }
     private void decrementarY(){
-        if(decrementos>=3){
+        if(decrementos>=3)
             posY += 3;
-        }
     }
     public void setDireccion(int direccionDisparo) {
         direccion=direccionDisparo;
@@ -110,24 +103,19 @@ public class BolaDeFuego extends EntidadDinamica{
         String clave=null;
         switch (direccion) {
             case ConstantesEntidades.IZQUIERDA:
-                if(spriteJefe){
+                if(spriteJefe)
                     clave="fuegoMoghera";
-                }
-                else{   
+                else
                     clave="completa";
-                }
-                    break;
+                break;
             case ConstantesEntidades.DERECHA:
-                if(spriteJefe){
+                if(spriteJefe)
                     clave="bomba";
-                }
-                else{
-
+                else
                     clave="derretida";
-                }
-                    break;
-                }
-            return clave;
+                break;
+        }
+        return clave;
     }
     public void setSpriteJefe(boolean b){
         spriteJefe=b;

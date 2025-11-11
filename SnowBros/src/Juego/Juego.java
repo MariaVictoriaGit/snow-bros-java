@@ -44,7 +44,7 @@ public class Juego {
         reiniciarJugador=false;
         ranking=new Ranking();
         tiempo= new Temporizador(); 
-        tiempoAntesAparicionCalabaza= new Temporizador(60);
+        tiempoAntesAparicionCalabaza= new Temporizador(ConstantesTiempos.TIEMPO_CALABAZA);
         juegoEnEjecucion=false;
         ultimoDisparo=0;
     }

@@ -1,5 +1,4 @@
 package SnowBros.src.Juego;
-
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
@@ -10,7 +9,6 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 
 public interface InterfazEliminar {
-
     public void eliminarPlataforma(Plataforma p);
     public void eliminarJugador(Jugador j);
     public void eliminarEnemigo(Enemigo e);

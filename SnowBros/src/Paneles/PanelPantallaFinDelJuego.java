@@ -1,15 +1,12 @@
 package SnowBros.src.Paneles;
-
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Grafica.GUI;
 
@@ -20,7 +17,6 @@ public class PanelPantallaFinDelJuego extends JPanel {
     protected JButton botonNuevaPartida;
     protected JButton botonRanking;
     protected GUI miControladorGrafico;
-    
     public PanelPantallaFinDelJuego(GUI miControladorGrafico){
         this.miControladorGrafico=miControladorGrafico;
         setSize(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO);

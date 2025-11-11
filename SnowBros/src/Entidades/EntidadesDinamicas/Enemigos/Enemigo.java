@@ -1,5 +1,4 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
-
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.EstadosDePatron;
@@ -7,8 +6,7 @@ import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Juego.Temporizador;
-import SnowBros.src.Visitor.Visitable;
-import SnowBros.src.Visitor.Visitador;
+import SnowBros.src.Visitor.*;
 
 public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected int salud=1;
@@ -21,10 +19,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected boolean detenido;
    protected long tiempoEstado = 0;
    protected int estado = EstadosDePatron.MOVERDERECHA;
-
    public Enemigo(int x, int y, Sprite sprites) {
-      //la dificultad va a verse definida por lsa salud
-      //de c/u y los tiempos congelado, desp cambiar
       super(x, y, sprites);
       temporizadoCongelado=new Temporizador(ConstantesTiempos.TIEMPO_CONGELADO_ENEMIGOS);
       accionMovimientoEnemigo=new Temporizador(ConstantesTiempos.TOPE_TIEMPO_JUEGO);
@@ -54,9 +49,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
                   direccion=ConstantesEntidades.DERECHA;
                }
          }*/
-   
    public abstract void patronDeMovimiento();
-
    public void recibirDaño(int daño){
       salud -= daño;
       if (salud <= 0){
@@ -66,16 +59,15 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       } 
    }
    public String generarClaveEstado(){
-        String estado=null;
-        if(congelado )
-            estado="congelado";
-        else{
+      String estado=null;
+      if(congelado )
+         estado="congelado";
+      else
          if(direccion==ConstantesEntidades.IZQUIERDA)
             estado="idleIzquierda";
-        else
+         else
             estado="idleDerecha";
-        }
-        return estado;
+      return estado;
    }
    public void setCongelado(boolean b){
       congelado=b;
@@ -102,10 +94,6 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
          this.eliminar();
          nivel.getJuego().crearBolaDeNieve(posX,posY);
       }
-   }
-   public void agregarPowerUp(Boolean b){
-
-      //nivel.agregarPowerUp(b,posX,posY);
    }
    public abstract int getPuntajeCongelado();
    public abstract int getPuntajeEmpujado();

@@ -1,5 +1,4 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
-
 import SnowBros.src.Datos.*;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
@@ -10,32 +9,27 @@ public class RanaDeFuego extends Enemigo{
     protected boolean lanzandoBolas;
     protected int direccionDisparo;
     private boolean bolaLanzada=false;
-
-
     public RanaDeFuego(int x, int y, Sprite sprite){
         super(x,y,sprite);
         lanzandoBolas=false;
         salud=ConstantesDificultad.SALUD_RANA_DE_FUEGO;
         velocidad=ConstantesDificultad.VELOCIDAD_RANA_DE_FUEGO;
     }
-      public void mover(){
+    public void mover(){
         if(!detenido)
             switch (direccion) {
                 case ConstantesEntidades.QUIETO:
                     lanzarFuego(nivel.getJugador().getPosX()); 
-                    if (dirAnterior == ConstantesEntidades.DERECHA){
+                    if (dirAnterior == ConstantesEntidades.DERECHA)
                         direccion = ConstantesEntidades.IZQUIERDA;
-                    }
-                    else{
+                    else
                         direccion = ConstantesEntidades.DERECHA;
-                    }
                     break;
                 case ConstantesEntidades.IZQUIERDA:
                     dirAnterior=ConstantesEntidades.IZQUIERDA;
                     if(posX-velocidad>0){
                         posX-=1;
                         this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-
                     }
                     break;
                 case ConstantesEntidades.DERECHA:
@@ -49,7 +43,6 @@ public class RanaDeFuego extends Enemigo{
     }
     public void patronDeMovimiento() {
         long ahora = System.currentTimeMillis();
-
         switch (estado) {
             case EstadosDePatron.MOVERDERECHA:
                 direccion = ConstantesEntidades.DERECHA;
@@ -76,7 +69,6 @@ public class RanaDeFuego extends Enemigo{
                 if (ahora - tiempoEstado > 2000) { // espera 2 segundos
                     if (dirAnterior == ConstantesEntidades.DERECHA)
                         estado = EstadosDePatron.MOVERIZQUIERDA;
-
                     else
                         estado = EstadosDePatron.MOVERDERECHA;
                 }
@@ -92,7 +84,6 @@ public class RanaDeFuego extends Enemigo{
                 direccionDisparo=ConstantesEntidades.DERECHA;
             else
                 direccionDisparo=ConstantesEntidades.IZQUIERDA;
-
             direccion=direccionDisparo;
             if (direccionDisparo==ConstantesEntidades.DERECHA) 
                 posicionXBola= this.getPosX()+15;
@@ -106,7 +97,6 @@ public class RanaDeFuego extends Enemigo{
                 nivel.getJuego().registrarObserverEntidad(bola);
                 bolaLanzada=true;
             }
-
         }
         return bola;
     }
@@ -149,6 +139,5 @@ public class RanaDeFuego extends Enemigo{
     @Override
     public void aceptar(Visitador visitador) {
         visitador.visitar(this);
-    }
-        
+    }       
 }

@@ -11,8 +11,7 @@ public class Kamakichi extends Enemigo{
     protected static final int puntajeCongelado = 1000;
     protected static final int puntajeEmpujado = 5000;
     protected boolean activarDisparo;
-
-     public Kamakichi(int x, int y, Sprite sprite){
+    public Kamakichi(int x, int y, Sprite sprite){
         super(x, y, sprite);  
         salud=ConstantesDificultad.SALUD_KAMAKICHI;
         velocidad=ConstantesDificultad.VELOCIDAD_KAMAKICHI;
@@ -25,29 +24,24 @@ public class Kamakichi extends Enemigo{
                 posY-=1;
                 this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 break;
-        
             case ConstantesEntidades.ABAJO:
                 dirAnterior=ConstantesEntidades.ABAJO;
                 posY+=1;
                 this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 break;
             case ConstantesEntidades.QUIETO:
-                    if (dirAnterior == ConstantesEntidades.DERECHA){
+                    if (dirAnterior == ConstantesEntidades.DERECHA)
                         direccion = ConstantesEntidades.IZQUIERDA;
-                    }
-                    else{
+                    else
                         direccion = ConstantesEntidades.DERECHA;
-                    }
                 break;
         }
-
     }
     public void verificarSuelo(){
         return;
     }
      public void patronDeMovimiento(){
         long ahora = System.currentTimeMillis();
-
         if(estado==EstadosDePatron.MOVERARRIBA){
             direccion=ConstantesEntidades.ARRIBA;
             mover();
@@ -63,23 +57,23 @@ public class Kamakichi extends Enemigo{
                 estado=EstadosDePatron.ESPERAR;
                 tiempoEstado=ahora;
             }
-        }
-        else{
-            direccion=ConstantesEntidades.QUIETO;
-            mover();
-            if (ahora - tiempoEstado > 2000) { // espera 4 seg
-                if (dirAnterior == ConstantesEntidades.ARRIBA){
-                    estado = EstadosDePatron.MOVERABAJO;
-                    activarDisparo=true;
-                    dispararBomba();
-                }
-                else{
-                    estado = EstadosDePatron.MOVERARRIBA;
-                    activarDisparo=true;
-                    dispararBomba();
+            }
+            else{
+                direccion=ConstantesEntidades.QUIETO;
+                mover();
+                if (ahora-tiempoEstado>2000) {
+                    if (dirAnterior==ConstantesEntidades.ARRIBA){
+                        estado=EstadosDePatron.MOVERABAJO;
+                        activarDisparo=true;
+                        dispararBomba();
+                    }
+                    else{
+                        estado=EstadosDePatron.MOVERARRIBA;
+                        activarDisparo=true;
+                        dispararBomba();
+                    }
                 }
             }
-        }
     }
     public void dispararBomba(){
         boolean patronDisparo=true;
@@ -95,7 +89,6 @@ public class Kamakichi extends Enemigo{
                 agregarBomba(posX-20, posY-25, ConstantesEntidades.ARRIBA_DERECHA);
             }
             activarDisparo=false;
-
         }
     }
     public void agregarBomba(int posXInicial,int posYInicial,int direccionDisparo){
@@ -119,7 +112,7 @@ public class Kamakichi extends Enemigo{
         return puntajeEmpujado;
     }
     public String generarClaveEstado(){
-        String clave="normal"; //estado por defecto
+        String clave="normal";
         if(congelado)
             clave="congelado";
         else

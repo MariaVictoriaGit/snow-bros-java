@@ -20,6 +20,8 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     protected PanelPantallaRanking panelPantallaRanking;
     protected PanelPantallaDominio panelPantallaDominio;
     protected PanelPantallaModo panelPantallaModo;
+    protected PanelPantallaGameOver panelPantallaGameOver;
+    protected PanelPantallaTransicion panelPantallaTransicion;
     protected PanelPantallaJuego panelPantallaJuego;
     protected PanelPantallaFinDelJuego panelPantallaFinDelJuego;
     protected Juego miJuego;
@@ -35,13 +37,14 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         panelPantallaDominio= new PanelPantallaDominio(this);
         panelPantallaRanking = new PanelPantallaRanking(this);
         panelPantallaModo = new PanelPantallaModo(this);
+        panelPantallaGameOver= new PanelPantallaGameOver(this);
+        panelPantallaTransicion=new PanelPantallaTransicion(this);
         panelPantallaFinDelJuego= new PanelPantallaFinDelJuego(this);
-       // controladorDeSonido = new ControladorDeSonido()
         configurarVentana();
         registrarOyenteVentana();
     }
     private void configurarVentana() {
-        ventana = new JFrame("SnowBros TDP 14");
+        ventana = new JFrame("✨❄️☃️SnowBros TDP Comision 14 ❄️💙✨");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setSize(ConstantesVistas.VENTANA_ANCHO, ConstantesVistas.VENTANA_ALTO);
@@ -53,16 +56,13 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     private void addWindowKeyListener() {
         ventana.addKeyListener(new KeyAdapter() {
-            //private int direccionAnterior;
             public void keyPressed(KeyEvent event) {
                 int keyCode=event.getKeyCode();
                 switch(keyCode){
                     case KeyEvent.VK_A:
-                        //direccionAnterior=ConstantesEntidades.IZQUIERDA;
                         movIzquierda=true;
                         break;
                     case KeyEvent.VK_D:
-                        //direccionAnterior=ConstantesEntidades.DERECHA;
                         movDerecha=true;
                         break;
                     case KeyEvent.VK_W:
@@ -82,11 +82,6 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                         break;
                 }
             }
-                    //controladorDeSonido.reproducirSonidoDeSalto();
-               //     } else if(keyCode == KeyEvent.VK_ESCAPE) {
-              //           System.exit(0);
-              //    } else if(keyCode == KeyEvent.VK_R) {
-              //          miJuego.reiniciarNivel();
             public void keyReleased(KeyEvent event) {
                 int keyCode=event.getKeyCode();
                 if (keyCode==KeyEvent.VK_A || keyCode==KeyEvent.VK_D)
@@ -94,9 +89,8 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                         movIzquierda=false;
                     else
                         movDerecha=false;
-                if(keyCode==KeyEvent.VK_SPACE){
+                if(keyCode==KeyEvent.VK_SPACE)
                     disparando=false;
-                }
             }
         });
     }
@@ -112,9 +106,8 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         }
         if(miJuego.getJugador().getSaltando())
            miJuego.getJugador().mover(ConstantesEntidades.ARRIBA);
-        if(disparando){
+        if(disparando)
             miJuego.shootJugador();
-        }
     }
     public JFrame getVentana() {
         return ventana;
@@ -123,6 +116,12 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         ventana.setContentPane(panel);
         ventana.requestFocusInWindow();
         refrescar();
+    }
+    public void cambiarPantallaTransicion(){
+        cambiarPantalla(panelPantallaTransicion);
+    }
+    public void cambiarPantallaGameOver(){
+        cambiarPantalla(panelPantallaGameOver);
     }
     public void cambiarPantallaPrincipal() {
         Sonido.getInstancia().reproducirMusica("temaMusicalMenu.wav");
@@ -219,9 +218,5 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     public PanelPantallaJuego getPantalla(){
         return panelPantallaJuego;
-    } 
-    public void mostrarPantallaGameOver() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarPantallaGameOver'");
     }
 }

@@ -1,5 +1,4 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
-
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
@@ -12,7 +11,6 @@ public class Moghera extends Enemigo{
     protected static final int puntajeEmpujado = 5000;
     protected boolean congelado;
     private boolean bolaLanzada;
-
     public Moghera(int x, int y, Sprite sprite){
         super(x, y, sprite);
         ancho=ancho*3;
@@ -25,12 +23,10 @@ public class Moghera extends Enemigo{
             switch (direccion) {
                 case ConstantesEntidades.QUIETO:
                     lanzarFuego(nivel.getJugador().getPosX()); 
-                    if (dirAnterior == ConstantesEntidades.DERECHA){
+                    if (dirAnterior == ConstantesEntidades.DERECHA)
                         direccion = ConstantesEntidades.IZQUIERDA;
-                    }
-                    else{
+                    else
                         direccion = ConstantesEntidades.DERECHA;
-                    }
                     break;
                 case ConstantesEntidades.IZQUIERDA:
                     dirAnterior=ConstantesEntidades.IZQUIERDA;
@@ -48,7 +44,6 @@ public class Moghera extends Enemigo{
     }
     public void patronDeMovimiento(){
         long ahora = System.currentTimeMillis();
-
         switch (estado) {
             case EstadosDePatron.MOVERDERECHA:
                 direccion = ConstantesEntidades.DERECHA;
@@ -74,7 +69,6 @@ public class Moghera extends Enemigo{
                     mover();
                     if (dirAnterior == ConstantesEntidades.DERECHA)
                         estado = EstadosDePatron.MOVERIZQUIERDA;
-
                     else
                         estado = EstadosDePatron.MOVERDERECHA;
                 }
@@ -89,7 +83,6 @@ public class Moghera extends Enemigo{
                 direccion=ConstantesEntidades.DERECHA;
             else
                 direccion=ConstantesEntidades.IZQUIERDA;
-                
             if (direccion==ConstantesEntidades.DERECHA) 
                 posicionXBola= this.getPosX()+15;
             else
@@ -126,7 +119,6 @@ public class Moghera extends Enemigo{
                 else
                     clave="idleIzquierda";
                 break;
-        
             case ConstantesEntidades.DERECHA:
                 if(congelado)
                     clave="congeladoDerecha";

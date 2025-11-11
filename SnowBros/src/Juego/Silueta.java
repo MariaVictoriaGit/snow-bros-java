@@ -1,5 +1,4 @@
 package SnowBros.src.Juego;
-
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Grafica.Sprite;
 
