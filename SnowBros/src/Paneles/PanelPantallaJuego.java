@@ -67,7 +67,7 @@ public class PanelPantallaJuego extends JPanel{
                 tiempoString=miControladorGrafico.getJuego().getTimer().getStringTiempoContrarreloj();
                 labelTiempo.setText(tiempoString);
                 labelTiempo.setForeground(Color.BLACK);
-                Timer tiempoActualizador = new Timer(1000, e -> {
+                Timer tiempoActualizador = new Timer(0, e -> {
                     actualizarLabelTiempoContrarreloj();
                 });
                 tiempoActualizador.start();
@@ -76,7 +76,7 @@ public class PanelPantallaJuego extends JPanel{
                 tiempoString=miControladorGrafico.getJuego().getTimer().getStringDeTiempo();
                 labelTiempo.setText(tiempoString);
                 labelTiempo.setForeground(Color.BLACK);
-                Timer actualizadorTiempo = new Timer(1000, e -> {
+                Timer actualizadorTiempo = new Timer(0, e -> {
                     actualizarLabelTiempo();
                 });
                 actualizadorTiempo.start();
