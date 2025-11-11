@@ -27,7 +27,7 @@ public class ObserverJugador extends ObserverGrafico{
                 }
                 URL url= getClass().getClassLoader().getResource(rutaImagen);
                 if (url == null) {
-                    System.err.println("No se encontró recurso:" + rutaImagen);
+                    System.err.println("3No se encontró recurso:" + rutaImagen);
                     return;
                 }
                 ImageIcon icono = new ImageIcon(url);

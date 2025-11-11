@@ -39,7 +39,7 @@ public class Alternativo extends FabricaSprites{
         mapeo.put("moverIzquierda1", rutaACarpeta + "/DemonioRojo/caminarIzquierda1Alternativo.png");
         mapeo.put("moverIzquierda2", rutaACarpeta + "/DemonioRojo/caminarIzquierda2Alternativo.png");
         mapeo.put("moverIzquierda3", rutaACarpeta + "/DemonioRojo/caminarIzquierda3Alternativo.png");
-        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieveAlternativo.png");
+        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieveAlternativo.gif");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteTrollAmarillo(){
@@ -48,7 +48,7 @@ public class Alternativo extends FabricaSprites{
         mapeo.put("idleDerecha", rutaACarpeta + "/TrollAmarillo/quietoDerechaAlternativo.png");
         mapeo.put("moverDerecha", rutaACarpeta + "/TrollAmarillo/caminarDerechaAlternativo.png");
         mapeo.put("moverIzquierda", rutaACarpeta + "/TrollAmarillo/caminarIzquierdaAlternativo.png");
-        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieveAlternativo.png");
+        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieveAlternativo.gif");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteRanaDeFuego(){
@@ -59,7 +59,7 @@ public class Alternativo extends FabricaSprites{
         mapeo.put("moverIzquierda", rutaACarpeta + "/RanaDeFuego/AlternativoCaminandoIzquierda.png");
         mapeo.put("disparoDerecha", rutaACarpeta + "/RanaDeFuego/AlternativodisparoDerecha.png");
         mapeo.put("disparoIzquierda", rutaACarpeta + "/RanaDeFuego/AlternativodisparoIzquierda.png");
-        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieveAlternativo.png");
+        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieveAlternativo.gif");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteCalabaza(){
@@ -178,8 +178,8 @@ public class Alternativo extends FabricaSprites{
     }
     public Sprite getSpriteBolaNieve(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("idleIzquierda", rutaACarpeta + "/BolaDeNieve/bolaDeNieveAlternativo.png");
-        mapeo.put("derretida", rutaACarpeta + "/BolaDeNieve/bolaDeNieveDerretidaAlternativo.png");
+        mapeo.put("idleIzquierda", rutaACarpeta + "/BolaDeNieve/bolaDeNieveAlternativo.gif");
+        mapeo.put("derretida", rutaACarpeta + "/BolaDeNieve/bolaDeNieveAlternativo.gif");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteBolaFuego(){

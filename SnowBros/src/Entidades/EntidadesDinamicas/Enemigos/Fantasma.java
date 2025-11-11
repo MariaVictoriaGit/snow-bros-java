@@ -1,5 +1,4 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
-
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
