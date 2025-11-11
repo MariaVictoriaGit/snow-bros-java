@@ -10,7 +10,6 @@ public class Pared extends Obstaculo{
     }
     public void eliminar(){
         nivel.eliminarObstaculo(this);
-        nivel.eliminarPared(this);
     }
     public void aceptar(Visitador v){
         v.visitar(this);
