@@ -389,12 +389,14 @@ public class Juego {
         Calabaza cala=fabricaEntidades.getCalabaza(320, 120);
         ObserverGrafico observer = controladorGrafica.registrarEntidad(cala);
         cala.registrarObserver(observer);
-        nivel.agregarCalabaza(cala);
+        if(nivel!=null)
+            nivel.agregarCalabaza(cala);
     }
     public void crearMoghera(){
         Moghera moghera=fabricaEntidades.getMoghera(704, 240);
         ObserverGrafico observer= controladorGrafica.registrarEntidad(moghera);
         moghera.registrarObserver(observer);
+        moghera.setActivo(true);
         nivel.agregarEnemigo(moghera);
     }
     public void crearBolaDeNieve(int posX, int posY){

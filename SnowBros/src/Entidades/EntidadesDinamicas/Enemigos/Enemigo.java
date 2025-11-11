@@ -21,7 +21,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected boolean detenido;
    protected long tiempoEstado = 0;
    protected int estado = EstadosDePatron.MOVERDERECHA;
-
+   protected boolean activarCongelado;
    public Enemigo(int x, int y, Sprite sprites) {
       //la dificultad va a verse definida por lsa salud
       //de c/u y los tiempos congelado, desp cambiar
@@ -32,6 +32,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       muerto=false;
       rodando=false;
       detenido=false;
+      activarCongelado=false;//para Moghera y kamaki
       tocandoSuelo=ConstantesEntidades.SUELO;
    }
    public abstract void mover();
@@ -93,8 +94,9 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       Sonido.getInstancia().reproducirEfectoDeSonido("enemigoMuereBolaNieve.wav");
       detenido=true;
       direccion=ConstantesEntidades.QUIETO;
+      nivel.getJugador().actualizarPuntaje(this.getPuntajeCongelado());
       if(observer!=null)
-         observer.actualizarBolaDeNieve();
+         observer.actualizarBolaDeNieve(activarCongelado);
    }
    //solo va a ser llamado si el jugador colisiona con el enemigo
    public void convertirEnBola(){
