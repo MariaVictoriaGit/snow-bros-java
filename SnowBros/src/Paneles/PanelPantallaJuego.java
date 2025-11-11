@@ -213,11 +213,11 @@ public class PanelPantallaJuego extends JPanel{
         revalidate();
         repaint();        
     }
-    public void actualizarLabelsPuntaje(Jugador jugador) {
+    public void actualizarLabelsPuntaje(int puntajeASumar) {
         Component componenteActual = panelInformacion.getComponent(1);
         panelInformacion.remove(componenteActual);
         Font fuente = new Font("Arial", Font.BOLD, 16);
-        String puntaje=String.valueOf(jugador.getPuntaje());
+        String puntaje=String.valueOf(puntajeASumar);
         labelPuntaje= new JLabel(puntaje);
         labelPuntaje.setFont(fuente);
         labelPuntaje.setForeground(Color.BLACK);

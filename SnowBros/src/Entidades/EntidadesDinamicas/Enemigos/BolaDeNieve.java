@@ -17,6 +17,7 @@ public class BolaDeNieve extends EntidadDinamica{
     private Temporizador tiempo;
     private int velocidadMaxima=15;
     private boolean reboto;
+    protected int puntajeEmpujado;
 
     public BolaDeNieve(int x, int y, Sprite sprite){
         super(x,y,sprite);
@@ -31,8 +32,9 @@ public class BolaDeNieve extends EntidadDinamica{
     public Temporizador getTimer(){
         return tiempo;
     }
-    public void disparar(){
+    public int disparar(){
         estaActiva=true;
+        return puntajeEmpujado;
     }
     public void mover(){
         if(estaActiva){
@@ -112,34 +114,37 @@ public class BolaDeNieve extends EntidadDinamica{
         
     }
     public void visitar(Jugador j){
-         if(!estaActiva){  
-        if (j.getPosX() < this.posX) {
-            direccion = ConstantesEntidades.DERECHA;
-        } else {
-            direccion = ConstantesEntidades.IZQUIERDA;
-        }
-        j.setEmpujando(this);
-       
+        if(!estaActiva){  
+            if (j.getPosX() < this.posX) {
+                direccion = ConstantesEntidades.DERECHA;
+            } else {
+                direccion = ConstantesEntidades.IZQUIERDA;
+            }
+            j.setEmpujando(this);
             empujar();
             j.setVelocidad(velocidad);
         }
-        
     }
-    
     public void empujar(){
         switch(direccion){
-                case ConstantesEntidades.DERECHA:
-                    if(!(posX>ConstantesVistas.PANEL_ANCHO-5)){
+            case ConstantesEntidades.DERECHA:
+                if(!(posX>ConstantesVistas.PANEL_ANCHO-5)){
                     posX=posX+velocidad;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 }
                 break;
-                case ConstantesEntidades.IZQUIERDA:
+            case ConstantesEntidades.IZQUIERDA:
                 if(posX>-5){
                     posX=posX-velocidad;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 }
                 break;
-            }
+        }
+    }
+    public int getPuntajeEmpujado(){
+        return puntajeEmpujado;
+    }
+    public void setPuntajeEmpujado(int puntaje){
+        puntajeEmpujado=puntaje;
     }
 }
