@@ -62,6 +62,8 @@ public class BolaDeNieve extends EntidadDinamica{
     public void visitar(Enemigo e){
         e.eliminar();
         this.eliminar();
+       /* if(nivel!=null&&nivel.terminoElNivel())
+            nivel.getJuego().crearMoghera();*/
         //TDOO a los indestructibles se les aturde no elimina(calabaza), al fantasma ni lo toca
     }
     public void visitar(ParedDestructible p){
