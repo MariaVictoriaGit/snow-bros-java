@@ -2,16 +2,13 @@ package SnowBros.src.Grafica;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
-import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Juego.Sonido;
@@ -56,16 +53,16 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     private void addWindowKeyListener() {
         ventana.addKeyListener(new KeyAdapter() {
-            private int direccionAnterior;
+            //private int direccionAnterior;
             public void keyPressed(KeyEvent event) {
                 int keyCode=event.getKeyCode();
                 switch(keyCode){
                     case KeyEvent.VK_A:
-                        direccionAnterior=ConstantesEntidades.IZQUIERDA;
+                        //direccionAnterior=ConstantesEntidades.IZQUIERDA;
                         movIzquierda=true;
                         break;
                     case KeyEvent.VK_D:
-                        direccionAnterior=ConstantesEntidades.DERECHA;
+                        //direccionAnterior=ConstantesEntidades.DERECHA;
                         movDerecha=true;
                         break;
                     case KeyEvent.VK_W:

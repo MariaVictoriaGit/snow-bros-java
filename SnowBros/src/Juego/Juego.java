@@ -3,6 +3,9 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
+
+import SnowBros.src.Datos.ConstantesDificultad;
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -41,7 +44,7 @@ public class Juego {
         reiniciarJugador=false;
         ranking=new Ranking();
         tiempo= new Temporizador(); 
-        tiempoAntesAparicionCalabaza= new Temporizador(30);
+        tiempoAntesAparicionCalabaza= new Temporizador(60);
         juegoEnEjecucion=false;
         ultimoDisparo=0;
     }
@@ -69,7 +72,7 @@ public class Juego {
                     break;
                 for(Enemigo enemigo : new ArrayList<>(nivelActual.getEnemigos())){
                     if (jugadorActual.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
-                        enemigo.aceptar(jugador);
+                        enemigo.aceptar(jugadorActual);
                     if(!nivelActual.getDisparos().isEmpty())
                         for (DisparoJugador disparo:new ArrayList<>(nivelActual.getDisparos()))
                             if (disparo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
@@ -109,6 +112,13 @@ public class Juego {
                         }
                     }
                 }
+                for(SueloResbaladizo suelo: nivelActual.getResbaladizos()){
+                    if (jugadorActual.getHitbox().getRectangle().intersects(suelo.getHitbox().getRectangle())) 
+                        suelo.aceptar(jugadorActual);
+                        else    
+                            jugadorActual.setVelocidadBase();
+                            
+                }
                 for(Plataforma plataforma: nivelActual.getPlataformas())
                     if(!nivelActual.getDisparos().isEmpty()){
                         for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
@@ -127,12 +137,19 @@ public class Juego {
                     for(BolaDeFuego bola: nivelActual.getBolasDeFuego())
                         if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) 
                             jugadorActual.aceptar(bola);
+
                 if(!nivelActual.getBolasDeNieve().isEmpty())
                     for(BolaDeNieve bola: nivelActual.getBolasDeNieve()){
-                        if (bola.getHitbox().getLeftHitBox().intersects(jugadorActual.getHitbox().getRectangle())) 
+                        if (bola.getHitbox().getLeftHitBox().intersects(jugadorActual.getHitbox().getRectangle())){
+                             jugadorActual.aceptar(bola);
+
+                        } else if (bola.getHitbox().getRightHitBox().intersects(jugadorActual.getHitbox().getRectangle())){
                             jugadorActual.aceptar(bola);
-                        if (bola.getHitbox().getRightHitBox().intersects(jugadorActual.getHitbox().getRectangle())) 
-                            jugadorActual.aceptar(bola);
+                        } else {
+                            jugadorActual.setVelocidadBase();
+                        } 
+                        
+
                         for(Enemigo enemigo:nivelActual.getEnemigos())
                             if (bola.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
                                 enemigo.aceptar(bola);
@@ -168,6 +185,7 @@ public class Juego {
                 if(!nivelActual.getBolasDeFuego().isEmpty())
                     for (BolaDeFuego bola:new ArrayList<>(nivel.getBolasDeFuego()))
                         bola.mover();
+
                 for(BolaDeNieve bolaDeNieve:nivelActual.getBolasDeNieve()){
                     bolaDeNieve.verificarSuelo();
                     bolaDeNieve.mover();
@@ -184,7 +202,7 @@ public class Juego {
                 }
                 nivelActual.notificarObservers();
                 if(nivel.terminoElNivel()){
-                    
+
 
                 }
                 long duracion = System.currentTimeMillis() - inicio;

@@ -1,128 +1,129 @@
-Plataforma 768 0
-Plataforma 736 0
-Plataforma 704 0
-Plataforma 672 0
-Plataforma 640 0
-Plataforma 608 0
-Plataforma 576 0
-Plataforma 544 0
-Plataforma 512 0
-Plataforma 480 0
-Plataforma 448 0
-Plataforma 416 0
-Plataforma 384 0
-Plataforma 352 0
-Plataforma 320 0
-Plataforma 288 0
-Plataforma 256 0
-Plataforma 224 0
-Plataforma 192 0
-Plataforma 160 0
-Plataforma 128 0
-Plataforma 98 0
-Plataforma 64 0
-Plataforma 32 0
-Plataforma 0 0
+Plataforma 800 16
+Plataforma 768 16
+Plataforma 736 16
+Plataforma 704 16
+Plataforma 672 16
+Plataforma 640 16
+Plataforma 608 16
+Plataforma 576 16
+Plataforma 544 16
+Plataforma 512 16
+Plataforma 480 16
+Plataforma 448 16
+Plataforma 416 16
+Plataforma 384 16
+Plataforma 352 16
+Plataforma 320 16
+Plataforma 288 16
+Plataforma 256 16
+Plataforma 224 16
+Plataforma 192 16
+Plataforma 160 16
+Plataforma 128 16
+Plataforma 96 16
+Plataforma 64 16
+Plataforma 32 16
+Plataforma 0 16
 
-Jugador 400 96
+Jugador 400 112
 
-Plataforma 0 64
-Plataforma 32 64
-Plataforma 64 64
-Plataforma 96 64
+Plataforma 0 80
+Plataforma 32 80
+Plataforma 64 80
+Plataforma 96 80
 
-RanaDeFuego 64 96
+RanaDeFuego 64 112
 
-Plataforma 224 64
-Plataforma 256 64
-Plataforma 288 64
-Plataforma 320 64
-Plataforma 352 64
-Plataforma 384 64
-Plataforma 416 64
-Plataforma 448 64
-Plataforma 480 64
-Plataforma 512 64
+Plataforma 224 80
+Plataforma 256 80
+Plataforma 288 80
+Plataforma 320 80
+Plataforma 352 80
+Plataforma 384 80
+Plataforma 416 80
+Plataforma 448 80
+Plataforma 480 80
+Plataforma 512 80
 
-Plataforma 608 64
-Plataforma 640 64
-Plataforma 672 64
+Plataforma 608 80
+Plataforma 640 80
+Plataforma 672 80
 
-Pared 256 64
+Pared 256 80
 
-Escalera 320 64
+Escalera 320 80
 
-ParedDestructible 704 64
+Plataforma 256 144
+Plataforma 288 144
+Plataforma 320 144
+Plataforma 352 144
+Plataforma 384 144
 
-Plataforma 256 128
-Plataforma 288 128
-Plataforma 320 128
-Plataforma 352 128
-Plataforma 384 128
+Plataforma 0 176
+Plataforma 32 176
+Escalera 64 176
+Plataforma 96 176
+Plataforma 128 176
+Plataforma 160 176
+Plataforma 192 176
 
-Plataforma 640 128
-Plataforma 608 128
-Plataforma 576 128
+Plataforma 480 176
+Plataforma 512 176
+Plataforma 544 176
+Plataforma 576 176
+Plataforma 608 176
+Plataforma 604 176
 
-Plataforma 0 160
-Plataforma 32 160
-Plataforma 64 160
-Plataforma 96 160
-Plataforma 128 160
-Plataforma 160 160
-Plataforma 192 160
+RanaDeFuego 544 208
 
-Plataforma 480 160
-Plataforma 512 160
-Plataforma 544 160
-Plataforma 576 160
-Plataforma 608 160
-Plataforma 604 160
+Escalera 64 208
 
-Escalera 64 192
+Escalera 64 240
+Plataforma 96 240
+Plataforma 128 240
+Plataforma 160 240
+Plataforma 192 240
+Plataforma 224 240
+Plataforma 256 240
+Plataforma 288 240
+Plataforma 320 240
+Plataforma 352 240
+Plataforma 384 240
 
-Plataforma 64 224
-Plataforma 96 224
-Plataforma 128 224
-Plataforma 160 224
-Plataforma 192 224
-Plataforma 224 224
-Plataforma 256 224
-Plataforma 288 224
-Plataforma 320 224
-Plataforma 352 224
-Plataforma 384 224
+Escalera 64 272
 
-Escalera 64 256
+Plataforma 448 272
+Plataforma 480 272
+Plataforma 512 272
+Plataforma 544 272
+Plataforma 576 272
 
-Plataforma 448 256
-Plataforma 480 256
-Plataforma 512 256
-Plataforma 544 256
-Plataforma 576 256
+Plataforma 0 304
+Plataforma 32 304
+Escalera 64 304
+Plataforma 96 304
 
-Plataforma 0 288
-Plataforma 32 288
-Plataforma 64 288
-Plataforma 96 288
+Plataforma 608 304
+Plataforma 640 304
+Plataforma 672 304
 
-Plataforma 608 288
-Plataforma 640 288
-Plataforma 672 288
+TrollAmarillo 640 336
 
-Plataforma 160 320
-Plataforma 192 320
-Plataforma 224 320
-Plataforma 256 320
-Plataforma 288 320
-Plataforma 320 320
+Plataforma 160 336
+Plataforma 192 336
+Plataforma 224 336
+Plataforma 256 336
+Plataforma 288 336
+Plataforma 320 336
 
-Plataforma 704 320
-Plataforma 736 320
-Plataforma 768 320
+Plataforma 704 336
+Plataforma 736 336
+Plataforma 768 336
 
-PlataformaMovil 384 352
-PlataformaMovil 416 352
-PlataformaMovil 448 352
-PlataformaMovil 480 352
+TrampaPinchos 768 366
 
+PlataformaMovil 384 368
+PlataformaMovil 416 368
+DemonioRojo 416 400
+PlataformaMovil 448 368
+PlataformaMovil 480 368
