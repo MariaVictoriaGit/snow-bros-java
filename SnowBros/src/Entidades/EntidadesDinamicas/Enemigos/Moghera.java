@@ -142,4 +142,8 @@ public class Moghera extends Enemigo{
     public int getPuntajeEmpujado() {
         return puntajeEmpujado;
     }
+    public int getSalud(){
+        salud=ConstantesDificultad.SALUD_MOGHERA;
+        return salud;
+    }
 }

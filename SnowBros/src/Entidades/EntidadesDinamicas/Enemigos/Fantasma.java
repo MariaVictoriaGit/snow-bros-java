@@ -34,6 +34,9 @@ public class Fantasma extends Enemigo{
         setPosicionJugador(nivel.getJugador().getPosX(), nivel.getJugador().getPosY());
         mover();
     }
+    public int getSalud(){
+        return salud; // es inmortal, no tiene salud
+    }
     public void convertirEnBola(){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");

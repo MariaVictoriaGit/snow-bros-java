@@ -97,7 +97,10 @@ public class TrollAmarillo extends Enemigo{
     public int getPuntajeCongelado(){
         return puntajeCongelado;
     }
-    @Override
+    public int getSalud(){
+        salud=ConstantesDificultad.SALUD_TROLL_AMARILLO;
+        return salud;
+    }
     public void aceptar(Visitador visitador) {
         visitador.visitar(this);
     }

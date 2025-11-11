@@ -20,14 +20,13 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected boolean congelado;
    protected boolean detenido;
    protected long tiempoEstado = 0;
+   protected long inicioCongelado=0;
    protected int estado = EstadosDePatron.MOVERDERECHA;
 
    public Enemigo(int x, int y, Sprite sprites) {
       //la dificultad va a verse definida por lsa salud
       //de c/u y los tiempos congelado, desp cambiar
       super(x, y, sprites);
-      temporizadoCongelado=new Temporizador(ConstantesTiempos.TIEMPO_CONGELADO_ENEMIGOS);
-      accionMovimientoEnemigo=new Temporizador(ConstantesTiempos.TOPE_TIEMPO_JUEGO);
       congelado=false;
       muerto=false;
       rodando=false;
@@ -57,12 +56,14 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    
    public abstract void patronDeMovimiento();
 
+   public abstract int getSalud();
+
    public void recibirDaño(int daño){
       salud -= daño;
       if (salud <= 0){
          congelado=true;
-         muerto=true; 
-         congelar();  
+         congelar();
+         inicioCongelado=System.currentTimeMillis();
       } 
    }
    public String generarClaveEstado(){
@@ -76,6 +77,12 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
             estado="idleDerecha";
         }
         return estado;
+   }
+   public void actualizarTiempoCongelado(){
+      long tiempoADescongelar=5000;
+         if(detenido && System.currentTimeMillis()>inicioCongelado+tiempoADescongelar){
+            descongelar();
+         }
    }
    public void setCongelado(boolean b){
       congelado=b;
@@ -96,10 +103,15 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       if(observer!=null)
          observer.actualizarBolaDeNieve();
    }
-   //solo va a ser llamado si el jugador colisiona con el enemigo
-   public void convertirEnBola(){
+   public void descongelar(){
+      detenido=false;
+      congelado=false;
+      direccion=this.dirAnterior;
+      salud=this.getSalud();
+   }
+   public void convertirEnBola(){ //metodo llamado al colisionar con la bola
       if(congelado){
-         this.eliminar();
+         this.eliminar(); 
          nivel.getJuego().crearBolaDeNieve(posX,posY);
       }
    }

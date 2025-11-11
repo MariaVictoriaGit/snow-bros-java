@@ -156,10 +156,10 @@ public class Juego {
                     if (jugadorActual.getHitbox().getRectangle().intersects(suelo.getHitbox().getRectangle())) {
                         suelo.aceptar(jugadorActual);
                         colisionSuelo = true;
-                        for(Enemigo enemigo:nivelActual.getEnemigos())
-                            if (suelo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
-                                suelo.aceptar(enemigo);
                     }
+                    for(Enemigo enemigo:nivelActual.getEnemigos())
+                            if(suelo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
+                                suelo.aceptar(enemigo);
                 }
                 if (!colisionBola && !colisionSuelo) {
                     jugadorActual.setVelocidadBase();
@@ -188,6 +188,9 @@ public class Juego {
                 for (Enemigo enemigo : nivelActual.getEnemigos()) {
                    enemigo.patronDeMovimiento();        
                    enemigo.verificarSuelo(); 
+                   if(enemigo.getCongelado()){
+                        enemigo.actualizarTiempoCongelado();
+                   }
                 }
                 if(!nivelActual.getDisparos().isEmpty())
                     for (DisparoJugador disparo: nivelActual.getDisparos())

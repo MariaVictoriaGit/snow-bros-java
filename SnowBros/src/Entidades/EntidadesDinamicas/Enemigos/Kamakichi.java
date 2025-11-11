@@ -118,6 +118,10 @@ public class Kamakichi extends Enemigo{
     public int getPuntajeEmpujado() {
         return puntajeEmpujado;
     }
+    public int getSalud(){
+        salud=ConstantesDificultad.SALUD_KAMAKICHI;
+        return salud;
+    }
     public String generarClaveEstado(){
         String clave="normal"; //estado por defecto
         if(congelado)

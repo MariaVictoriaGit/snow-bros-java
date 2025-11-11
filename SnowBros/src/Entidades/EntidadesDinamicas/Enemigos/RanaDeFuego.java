@@ -146,6 +146,10 @@ public class RanaDeFuego extends Enemigo{
     public int getPuntajeEmpujado() {
         return puntajeEmpujado;
     }
+    public int getSalud(){
+        salud=ConstantesDificultad.SALUD_RANA_DE_FUEGO;
+        return salud;
+    }
     @Override
     public void aceptar(Visitador visitador) {
         visitador.visitar(this);

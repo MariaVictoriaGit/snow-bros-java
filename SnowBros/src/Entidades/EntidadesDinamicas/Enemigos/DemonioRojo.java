@@ -124,6 +124,10 @@ public class DemonioRojo extends Enemigo{
         }
         return clave;
     }
+    public int getSalud(){
+        salud= ConstantesDificultad.SALUD_DEMONIO_ROJO;
+        return salud;
+    }
     public void aceptar(Visitador visitador) {
         visitador.visitar(this);
     }

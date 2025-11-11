@@ -111,6 +111,9 @@ public class Calabaza extends Enemigo{
     public int getPuntajeEmpujado() {//redefinirlo pq son indestructibles
         return 0;
     }
+    public int getSalud(){
+        return salud; // es inmortal, no tiene salud
+    }
     public void recibirDaño(){
         //es indestructible, no tiene salud
         throw new UnsupportedOperationException("Es indestructible");

@@ -23,7 +23,7 @@ public class BolaDeNieve extends EntidadDinamica{
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_NIEVE);
         estaActiva=false;
         reboto=false;
-        velocidad=ConstantesDificultad.VELOCIDAD_BOLADENIEVE;
+        velocidad=2;
     }
     public boolean getEstado(){
         return estaActiva;
@@ -57,6 +57,7 @@ public class BolaDeNieve extends EntidadDinamica{
                 break;
             }
             terminaRebotar();
+        }
     }
     private void terminaRebotar(){
         if(reboto && posX<=0 || posX>=ConstantesVistas.PANEL_ANCHO)
@@ -111,7 +112,9 @@ public class BolaDeNieve extends EntidadDinamica{
             observer=null;
         }
         
-    }
+    }   
+
+    
     public void visitar(Jugador j){
         /* 
         direccion=j.getDireccion();
