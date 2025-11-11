@@ -146,7 +146,7 @@ public class Juego {
                             jugadorActual.aceptar(bola);
                             colisionBola = true;
                     }
-                    for(Pared p:nivelActual.getParedes()){
+                    for(Pared p:new ArrayList<>(nivelActual.getParedes())){
                             if(bola.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
                                 p.aceptar(bola);
                         }
