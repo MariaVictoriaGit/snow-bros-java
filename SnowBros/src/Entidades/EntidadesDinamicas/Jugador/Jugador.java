@@ -254,8 +254,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public void visitar(Enemigo e){
         if(e.getCongelado()){
             e.convertirEnBola();
-            puntajeJugador+=e.getPuntajeEmpujado();
-            actualizarPuntaje(puntajeJugador);
         }
         else
             this.perderVida();

@@ -16,6 +16,8 @@ public class BolaDeNieve extends EntidadDinamica{
     private Temporizador tiempo;
     private int velocidadMaxima;
     private boolean reboto;
+    protected int puntajeEmpujado;
+
     public BolaDeNieve(int x, int y, Sprite sprite){
         super(x,y,sprite);
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_NIEVE);
@@ -31,8 +33,9 @@ public class BolaDeNieve extends EntidadDinamica{
     public Temporizador getTimer(){
         return tiempo;
     }
-    public void disparar(){
+    public int disparar(){
         estaActiva=true;
+        return puntajeEmpujado;
     }
     public void mover(){
         if(estaActiva){
@@ -132,5 +135,11 @@ public class BolaDeNieve extends EntidadDinamica{
                 }
                 break;
         }
+    }
+    public int getPuntajeEmpujado(){
+        return puntajeEmpujado;
+    }
+    public void setPuntajeEmpujado(int puntaje){
+        puntajeEmpujado=puntaje;
     }
 }

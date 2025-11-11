@@ -103,8 +103,8 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    }
    public void convertirEnBola(){ //metodo llamado al colisionar con la bola
       if(congelado){
-         this.eliminar(); 
-         nivel.getJuego().crearBolaDeNieve(posX,posY);
+         this.eliminar();
+         nivel.getJuego().crearBolaDeNieve(posX,posY,this.getPuntajeEmpujado());
       }
    }
    public abstract int getPuntajeCongelado();
