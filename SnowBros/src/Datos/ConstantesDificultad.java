@@ -1,9 +1,11 @@
 package SnowBros.src.Datos;
 
 public class ConstantesDificultad {
-    public static int POTENCIA_DISPARO_AUMENTADA=20;
-    public static int POTENCIA_DISPARO_NORMAL=10;
-    public static int VELOCIDAD_DISPARO=15;
+    public static final int POTENCIA_DISPARO_AUMENTADA=20;
+    public static final int POTENCIA_DISPARO_NORMAL=10;
+    public static final int VELOCIDAD_DISPARO=15;
+
+    public static final int ALTURA_MAX_SALTO=60; 
 
     public static final int SALUD_DEMONIO_ROJO=1;
     public static final int SALUD_TROLL_AMARILLO=1;
@@ -21,7 +23,8 @@ public class ConstantesDificultad {
     public static final int VELOCIDAD_BOLADENIEVE=2;
     public static final int VELOCIDAD_MAXIMA_BOLADENIEVE=15;
     public static final int VELOCIDAD_BOLADEFUEGO=6;
-    public static final int VIDAS_INICIO=3;
+    public static final int VELOCIDAD_ENTIDAD_DINAMICA_X=8;
+    public static final int VELOCIDAD_ENTIDAD_DINAMICA_Y=2;
     //velocidades y salto a escala
     public static final int VELOCIDAD_PLATAFORMA_MOVIL=1;
     public static final int VELOCIDAD_JUGADOR=5;
@@ -29,4 +32,5 @@ public class ConstantesDificultad {
     //public static final int VELOCIDAD_CAIDA=100;
     public static final int EFECTO_BOTELLA_AZUL=10;
     public static final int TOPE_TIEMPO_CONTRARRELOJ=120;
+    public static final int VIDAS_INICIO=3;
 }

@@ -116,7 +116,7 @@ public class Juego {
                                 plataforma.aceptar(disparo);
                     }
                     if(!nivelActual.getBolasDeFuego().isEmpty()){
-                        for (BolaDeFuego bomba: nivelActual.getBolasDeFuego())
+                        for (BolaDeFuego bomba: new ArrayList<>(nivelActual.getBolasDeFuego()))
                             if (bomba.kamakichiBomba() && bomba.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
                                 plataforma.aceptar(bomba);
                     }

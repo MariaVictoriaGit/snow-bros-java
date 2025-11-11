@@ -24,7 +24,7 @@ public class ObserverEntidad extends ObserverGrafico{
                         return;
                     URL url= getClass().getClassLoader().getResource(rutaImagen);
                     if (url == null) {
-                        System.err.println("No se encontró recurso: " + rutaImagen);
+                        System.err.println("1No se encontró recurso: " + rutaImagen);
                         return;
                     }
                     ImageIcon icono = new ImageIcon(url);
