@@ -5,6 +5,7 @@ import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Visitor.Visitador;
 
 public class Moghera extends Enemigo{
@@ -12,6 +13,7 @@ public class Moghera extends Enemigo{
     protected static final int puntajeEmpujado = 5000;
     protected boolean congelado;
     private boolean bolaLanzada;
+   
 
     public Moghera(int x, int y, Sprite sprite){
         super(x, y, sprite);
@@ -105,6 +107,9 @@ public class Moghera extends Enemigo{
 
         }
         return bola;
+    }
+    public void setActivo(boolean t){
+        activarCongelado=t;
     }
     public void esDerrotado(){
         if(nivel.terminoElNivel()&&this.congelado){
