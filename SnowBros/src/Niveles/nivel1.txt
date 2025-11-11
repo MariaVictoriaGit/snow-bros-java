@@ -37,7 +37,7 @@ Plataforma 64 80
 Plataforma 96 80
 Plataforma 128 80
 SueloResbaladizo 160 80
-Plataforma 192 80
+SueloResbaladizo 192 80
 Plataforma 224 80
 Plataforma 256 80
 Plataforma 288 80
@@ -58,6 +58,8 @@ Plataforma 32 144
 Plataforma 64 144
 Plataforma 96 144
 
+PlataformaQuebradiza 0 190
+
 Plataforma 224 144
 Plataforma 256 144
 Plataforma 288 144
@@ -68,7 +70,6 @@ Plataforma 416 144
 Plataforma 448 144
 Plataforma 480 144
 
-ParedDestructible 48 176
 
 Pared 464 176
 
@@ -78,23 +79,20 @@ Plataforma 544 208
 Plataforma 576 208
 Plataforma 608 208
 Plataforma 640 208
-Plataforma 672 208
-Plataforma 704 208
-Plataforma 736 208
-Plataforma 768 208
+PlataformaQuebradiza 672 208
+PlataformaQuebradiza 704 208
+PlataformaQuebradiza 736 208
+PlataformaQuebradiza 768 208
 
 RanaDeFuego 704 240
 
-Plataforma 96 240
-Plataforma 128 240
-Plataforma 160 240
-Plataforma 192 240
-Plataforma 224 240
+PlataformaMovil 96 240
+PlataformaMovil 128 240
+PlataformaMovil 160 240
+PlataformaMovil 192 240
+PlataformaMovil 224 240
 
-PlataformaMovil 576 272
-PlataformaMovil 608 272
-PlataformaMovil 640 272
-PlataformaMovil 672 272
+
 
 Plataforma 160 304
 Plataforma 192 304
@@ -107,26 +105,21 @@ Plataforma 384 304
 Plataforma 416 304
 Plataforma 448 304
 
-Plataforma 544 304
+Plataforma 474 336
 
-Pared 472 336
+Plataforma 506 368
 
-Plataforma 512 336
+Plataforma 538 400
 
-Plataforma 480 368
+Plataforma 570 432
+Plataforma 602 432
+Plataforma 634 432
+Plataforma 666 432
+Plataforma 698 432
+Plataforma 730 432
+Plataforma 762 432
+Plataforma 794 432
 
-Plataforma 32 400
-Plataforma 64 400
-Plataforma 96 400
 
-PlataformaQuebradiza 160 400
-PlataformaQuebradiza 192 400
 
-TrollAmarillo 320 464
-
-Plataforma 288 400
-Plataforma 320 400
-Plataforma 352 400
-Plataforma 384 400
-Plataforma 416 400
-Plataforma 448 400
+TrollAmarillo 320 304
