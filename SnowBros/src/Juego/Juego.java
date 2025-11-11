@@ -112,13 +112,6 @@ public class Juego {
                         }
                     }
                 }
-                for(SueloResbaladizo suelo: nivelActual.getResbaladizos()){
-                    if (jugadorActual.getHitbox().getRectangle().intersects(suelo.getHitbox().getRectangle())) 
-                        suelo.aceptar(jugadorActual);
-                        else    
-                            jugadorActual.setVelocidadBase();
-                            
-                }
                 for(Plataforma plataforma: nivelActual.getPlataformas()){
                     if(!nivelActual.getDisparos().isEmpty()){
                         for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
@@ -141,22 +134,30 @@ public class Juego {
                         if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) 
                             jugadorActual.aceptar(bola);
 
-                if(!nivelActual.getBolasDeNieve().isEmpty())
-                    for(BolaDeNieve bola: nivelActual.getBolasDeNieve()){
-                        if (bola.getHitbox().getLeftHitBox().intersects(jugadorActual.getHitbox().getRectangle())){
-                             jugadorActual.aceptar(bola);
-
-                        } else if (bola.getHitbox().getRightHitBox().intersects(jugadorActual.getHitbox().getRectangle())){
-                            jugadorActual.aceptar(bola);
-                        } else {
-                            jugadorActual.setVelocidadBase();
-                        } 
-                        
-
-                        for(Enemigo enemigo:nivelActual.getEnemigos())
-                            if (bola.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
+                boolean colisionBola = false;
+                boolean colisionSuelo = false;
+                for (BolaDeNieve bola : nivelActual.getBolasDeNieve()) {
+                    for(Enemigo enemigo:nivelActual.getEnemigos())
+                        if (bola.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
                                 enemigo.aceptar(bola);
+                    if (bola.getHitbox().getLeftHitBox().intersects(jugadorActual.getHitbox().getRectangle()) ||
+                        bola.getHitbox().getRightHitBox().intersects(jugadorActual.getHitbox().getRectangle())) {
+                        jugadorActual.aceptar(bola);
+                        colisionBola = true;
                     }
+                }
+                for (SueloResbaladizo suelo : nivelActual.getResbaladizos()) {
+                    if (jugadorActual.getHitbox().getRectangle().intersects(suelo.getHitbox().getRectangle())) {
+                        suelo.aceptar(jugadorActual);
+                        colisionSuelo = true;
+                        for(Enemigo enemigo:nivelActual.getEnemigos())
+                            if (suelo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
+                                suelo.aceptar(enemigo);
+                    }
+                }
+                if (!colisionBola && !colisionSuelo) {
+                    jugadorActual.setVelocidadBase();
+                }
                 try {
                     Thread.sleep(16);
                 } catch (InterruptedException e) {
@@ -246,7 +247,7 @@ public class Juego {
     public void iniciarNivel(){
         if (nivel == null){
             nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que corresponda
-            nivel.setNivel(nivel.getNivelActual()+1);
+            //nivel.setNivel(nivel.getNivelActual()+1);
         }
         if(jugador==null){
             jugador = nivel.getJugador();
@@ -266,7 +267,6 @@ public class Juego {
         }
 
         this.registrarObservers();
-        this.crearPowerUps();
         jugador.getObserver().actualizar();
         tiempoAntesAparicionCalabaza.setAccionAlFinalizar(()->crearCalabaza());
         tiempoAntesAparicionCalabaza.iniciar();
@@ -351,21 +351,15 @@ public class Juego {
 			p.registrarObserver(observer);
 		}
     }
-    public void crearPowerUps(){
-        for (PowerUp e: nivel.getPowerUps()){
-            e.getTiempoDeVida().iniciar(); //TODO cuando este implementada la muerte del enemigo considerar moverlo ahi
-            e.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(e));   
-        }
+    public void crearPowerUp(PowerUp p){
+            p.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(p));   
+            p.getTiempoDeVida().iniciar(); //TODO cuando este implementada la muerte del enemigo considerar moverlo ahi
     }
     public void actualizarVidas(){
         controladorGrafica.getPantalla().actualizarLabelsVidas(jugador);
     }
     public void efectoVidaExtra(){
         controladorGrafica.getPantalla().efectoVidaExtra(jugador);
-    }
-    public void crearNuevaPowerUp(){
-        EntidadEstatica e= nivel.getPowerUps().getLast();
-        controladorGrafica.getPantalla().incorporarEntidadEstatica(e); 
     }
     public void eliminarPowerUp(PowerUp p){
         controladorGrafica.getPantalla().eliminarLabel(p.getLabel());   
@@ -416,15 +410,11 @@ public class Juego {
     public void invencibilidad(){
         Thread hiloInv = new Thread(() -> {
             long tiempoUltimoParpadeo = 0;
-            boolean invisible = false;
             while(jugador.getInvencibilidad()){
                 long tiempoHilo = System.currentTimeMillis();
                 if(tiempoHilo - tiempoUltimoParpadeo > ConstantesTiempos.TIEMPO_LAPSO_INVENCIBILIDAD){
-                    if(invisible)
-                        controladorGrafica.setJugadorVisibleGraficamente();
-                    else controladorGrafica.setJugadorInvisibleGraficamente();
+                    controladorGrafica.setJugadorInvisibleGraficamente();
                     tiempoUltimoParpadeo=tiempoHilo;
-                    invisible=false;
                 }
                 try {
                     Thread.sleep(50); // para no saturar el CPU

@@ -1,5 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import java.util.Random;
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
@@ -7,6 +8,7 @@ import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
+import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
 
@@ -35,7 +37,6 @@ public class BolaDeNieve extends EntidadDinamica{
                 case ConstantesEntidades.DERECHA:
                 posX=posX+velocidadMaxima;
                 this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
-                observer.actualizar();
                 if(!reboto && posX>ConstantesVistas.PANEL_ANCHO-20){
                         direccion=ConstantesEntidades.IZQUIERDA;
                         reboto=true;
@@ -45,7 +46,6 @@ public class BolaDeNieve extends EntidadDinamica{
                 case ConstantesEntidades.IZQUIERDA:
                     posX=posX-velocidad;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
-                    observer.actualizar();
                     if(!reboto && posX<20){
                     direccion=ConstantesEntidades.DERECHA;
                     reboto=true;
@@ -60,11 +60,46 @@ public class BolaDeNieve extends EntidadDinamica{
             this.eliminar(); 
     }
     public void visitar(Enemigo e){
+        aparecerPowerUp(e);
         e.eliminar();
         this.eliminar();
         if(nivel!=null&&nivel.terminoElNivel())
             nivel.getJuego().crearMoghera();
         
+    }
+    private void aparecerPowerUp(Enemigo e){
+        Random random=new Random();
+        int probabilidad= random.nextInt(100);
+        if(probabilidad<50){
+            PowerUp p=nivel.getJuego().getFabricaEntidades().getFruta(this.getPosX(), this.getPosY());
+            nivel.agregarPowerUp(p);
+            nivel.getJuego().crearPowerUp(p);
+        }
+        else if(probabilidad<65){
+            PowerUp p=nivel.getJuego().getFabricaEntidades().getBotellaAzul(this.getPosX(), this.getPosY());
+            nivel.agregarPowerUp(p);
+            nivel.getJuego().crearPowerUp(p);
+
+        }
+        else if(probabilidad<80){
+            PowerUp p=nivel.getJuego().getFabricaEntidades().getBotellaRoja(this.getPosX(), this.getPosY());
+            nivel.agregarPowerUp(p);
+            nivel.getJuego().crearPowerUp(p);
+
+        }
+        else if(probabilidad<95){
+            PowerUp p=nivel.getJuego().getFabricaEntidades().getBotellaVerde(this.getPosX(), this.getPosY());
+            nivel.agregarPowerUp(p);
+            nivel.getJuego().crearPowerUp(p);
+
+        }
+        else{
+            PowerUp p=nivel.getJuego().getFabricaEntidades().getVidaExtra(this.getPosX(), this.getPosY());
+            nivel.agregarPowerUp(p);
+            nivel.getJuego().crearPowerUp(p);
+
+        }
+
     }
     public void visitar(ParedDestructible p){
         //TODO creo q las paredes se destruian con bolas de nieve
@@ -101,14 +136,16 @@ public class BolaDeNieve extends EntidadDinamica{
     public void empujar(){
         switch(direccion){
                 case ConstantesEntidades.DERECHA:
-                posX=posX+velocidad;
-                this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
-                observer.actualizar();
+                    if(!(posX>ConstantesVistas.PANEL_ANCHO-5)){
+                    posX=posX+velocidad;
+                    this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+                }
                 break;
                 case ConstantesEntidades.IZQUIERDA:
+                if(posX>-5){
                     posX=posX-velocidad;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
-                    observer.actualizar();
+                }
                 break;
             }
     }

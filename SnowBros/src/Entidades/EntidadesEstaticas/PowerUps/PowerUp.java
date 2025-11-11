@@ -11,14 +11,13 @@ public abstract class PowerUp extends EntidadEstatica {
     protected boolean activo;
     protected Temporizador tiempoDeVida;
     protected Temporizador tiempoDeEfecto;
-    protected JLabel label;
 
     public PowerUp(int x, int y, Sprite sprite){
-        super(x,y,sprite);
+        super(x,y-6,sprite); // 4 es margen visual
         activo=false;
         tiempoDeVida=new Temporizador(ConstantesTiempos.TIEMPO_VIDA_POWER_UP);
         tiempoDeEfecto=new Temporizador(ConstantesTiempos.TIEMPO_EFECTO_POWER_UP);
-        hitbox.actualizarHitbox(x,y+12,ancho*2,alto*2);
+        hitbox.actualizarHitbox(x,y,ancho*2,alto*2); // quite un ajuste +12 en y, testear que ande bien
         tiempoDeVida.setAccionAlFinalizar(()->eliminar());
     }
     public void eliminar(){
@@ -28,10 +27,10 @@ public abstract class PowerUp extends EntidadEstatica {
         return puntaje;
     }
     public JLabel getLabel(){
-        return label;
+        return miLabel;
     }
     public void setLabel(JLabel l){
-        label= l;
+        miLabel= l;
     }
     public Temporizador getTiempoDeVida(){
         return tiempoDeVida;

@@ -23,10 +23,10 @@ public class ObserverEntidad extends ObserverGrafico{
     }
     
     protected void actualizarImagen(int direccion, int tocandoSuelo) {
-        if(entidadObservada!=null){
-
-            SwingUtilities.invokeLater(() -> {
-                try{
+        
+        SwingUtilities.invokeLater(() -> {
+            if(entidadObservada!=null){
+            try{
                     entidadObservada.setDireccion(direccion);
                     String estado= entidadObservada.generarClaveEstado();
                     String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);
@@ -43,8 +43,7 @@ public class ObserverEntidad extends ObserverGrafico{
                 }catch(Exception ex){
                     ex.printStackTrace();
                 }
-            });
-            
-        }
+            }
+            });   
+       }
     }
-}
