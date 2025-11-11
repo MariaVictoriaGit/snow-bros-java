@@ -64,7 +64,7 @@ public class Juego {
     }
     private void iniciarHilos(){
         hiloColision = new Thread(() -> {
-            while(juegoEnEjecucion&&nivel!=null&&!nivel.getEnemigos().isEmpty()){
+            while(juegoEnEjecucion&&nivel!=null){
                 //variables locales creadas para que cuando el juego termine en mitad de ejecucion y nivel cambie a null, no siga usando el nivel nulo
                 Jugador jugadorActual=jugador;
                 Nivel nivelActual=nivel;
@@ -104,7 +104,7 @@ public class Juego {
                     if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) 
                         entidad.aceptar(jugadorActual);
                     if(nivelActual.getCalabaza()!=null && nivelActual.getCalabaza().getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())){
-                            entidad.aceptar(nivelA.getCalabaza());
+                            entidad.aceptar(nivelActual.getCalabaza());
                         }
                     for(Enemigo e:nivelActual.getEnemigos()){
                         if(e.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())){
@@ -168,7 +168,7 @@ public class Juego {
         hiloGlobal = new Thread(() -> {
             final int FPS = 60;
             final long frameTime = 1000 / FPS;
-            while (juegoEnEjecucion&&nivel!=null&&!nivel.getEnemigos().isEmpty()) {
+            while (juegoEnEjecucion&&nivel!=null) {
                 //variables locales creadas para que cuando el juego termine en mitad de ejecucion y nivel cambie a null, no siga usando el nivel nulo
                 Nivel nivelActual=nivel;
                 Jugador jugadorActual=jugador;
@@ -203,11 +203,8 @@ public class Juego {
                         fantasma.patronDeMovimiento();
                     }
                 }
+                
                 nivelActual.notificarObservers();
-                if(nivel.terminoElNivel()){
-
-
-                }
                 long duracion = System.currentTimeMillis() - inicio;
                 long dormir = frameTime - duracion;
                 if (dormir > 0) 
