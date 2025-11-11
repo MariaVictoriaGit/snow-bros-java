@@ -63,8 +63,6 @@ public class BolaDeNieve extends EntidadDinamica{
         aparecerPowerUp(e);
         e.eliminar();
         this.eliminar();
-        if(nivel!=null&&nivel.terminoElNivel())
-            nivel.getJuego().crearMoghera();
         
     }
     private void aparecerPowerUp(Enemigo e){

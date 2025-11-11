@@ -204,6 +204,9 @@ public class Juego {
                         fantasma.patronDeMovimiento();
                     }
                 }
+                if(nivelActual.terminoElNivel()){
+                    crearMoghera();
+                }
                 
                 nivelActual.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
