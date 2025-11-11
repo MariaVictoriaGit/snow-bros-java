@@ -76,16 +76,16 @@ public class Original extends FabricaSprites{
     }
     public Sprite getSpriteMoghera(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("idleIzquierda", rutaACarpeta + "/Moghera/mogheraQuieto.png");//32x40
+        mapeo.put("idleIzquierda", rutaACarpeta + "/Moghera/mogheraQuieto.png");//76x90
         mapeo.put("idleDerecha", rutaACarpeta + "/Moghera/mogheraQuieto.png");        
-        mapeo.put("saltandoIzquierda", rutaACarpeta + "/Moghera/mogheraIzquierda.png");
-        mapeo.put("saltandoDerecha", rutaACarpeta + "/Moghera/mogheraDerecha.png");
-        mapeo.put("congeladoIzquierda", rutaACarpeta + "/Moghera/mogheraCongeladoIzquierda.png");
-        mapeo.put("congeladoDerecha", rutaACarpeta + "/Moghera/mogheraCongeladoDerecha.png");
-        mapeo.put("disparo", rutaACarpeta + "/Moghera/mogheraDisparo.png");
-        mapeo.put("quieto", rutaACarpeta + "/Moghera/mogheraQuieto.png");
-        mapeo.put("salto1", rutaACarpeta + "/Moghera/mogheraSalto1.png");
-        mapeo.put("salto2", rutaACarpeta + "/Moghera/mogheraSalto2.png");
+        mapeo.put("saltandoIzquierda", rutaACarpeta + "/Moghera/mogheraIzquierda.png");//32x54
+        mapeo.put("saltandoDerecha", rutaACarpeta + "/Moghera/mogheraDerecha.png");//32x54
+        mapeo.put("congeladoIzquierda", rutaACarpeta + "/Moghera/mogheraCongeladoIzquierda.png");//42x32
+        mapeo.put("congeladoDerecha", rutaACarpeta + "/Moghera/mogheraCongeladoDerecha.png");//42x32
+        mapeo.put("disparo", rutaACarpeta + "/Moghera/mogheraDisparo.png");//82x82
+        mapeo.put("quieto", rutaACarpeta + "/Moghera/mogheraQuieto.png");//76x90
+        mapeo.put("salto1", rutaACarpeta + "/Moghera/mogheraSalto1.png");//76x96
+        mapeo.put("salto2", rutaACarpeta + "/Moghera/mogheraSalto2.png");//76x112
         return new Sprite(mapeo);
     }
     public Sprite getSpriteKamakichi(){
