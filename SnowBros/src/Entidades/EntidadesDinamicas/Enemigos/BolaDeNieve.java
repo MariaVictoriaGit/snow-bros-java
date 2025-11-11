@@ -6,6 +6,7 @@ import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 import SnowBros.src.Grafica.Sprite;
@@ -63,6 +64,9 @@ public class BolaDeNieve extends EntidadDinamica{
     private void terminaRebotar(){
         if(reboto && posX<=0 || posX>=ConstantesVistas.PANEL_ANCHO)
             this.eliminar(); 
+    }
+    protected void verificarPared(Pared p){
+        this.eliminar();
     }
     public void visitar(Enemigo e){
         aparecerPowerUp(e);

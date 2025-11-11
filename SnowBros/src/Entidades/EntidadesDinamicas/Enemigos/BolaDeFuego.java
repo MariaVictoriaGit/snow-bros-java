@@ -5,6 +5,7 @@ import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
@@ -94,6 +95,9 @@ public class BolaDeFuego extends EntidadDinamica{
         nivel.getJuego().eliminarEntidadGraficamente(this);
     }
     public void visitar(Plataforma p){
+        eliminar();
+    }
+    protected void verificarPared(Pared p){
         eliminar();
     }
     public boolean kamakichiBomba(){

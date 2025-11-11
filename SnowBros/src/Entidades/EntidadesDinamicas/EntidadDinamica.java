@@ -3,6 +3,7 @@ import java.awt.Rectangle;
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
+import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
@@ -100,14 +101,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
       actualizarCaida();
     }
   }
-  protected void verificarPared(Pared p){
-    Rectangle paredRectangle=p.getHitbox().getRectangle();
-    if(this.getHitbox().getRightHitBox().intersects(paredRectangle))
-        posX-=this.ancho;
-    else if(this.getHitbox().getLeftHitBox().intersects(paredRectangle)) 
-        posX+=this.ancho;//      if (hitbox.getRectangle().intersects(p.getHitbox().getRectangle())){
-    hitbox.actualizarHitbox(posX, posY, ancho, alto);
-  }
+  protected abstract void verificarPared(Pared p);
   private void actualizarCaida(){
     if(tocandoSuelo==ConstantesEntidades.AIRE){
       velocidadY=ConstantesDificultad.VELOCIDAD_ENTIDAD_DINAMICA_Y;
@@ -167,7 +161,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   public void visitar(Fruta f) {}
   public void visitar(VidaExtra v) {}
   public void visitar(Pared e){
-    verificarPared(e);
+    this.verificarPared(e);
   }
   public void visitar(ParedDestructible e) {
     verificarPared(e);

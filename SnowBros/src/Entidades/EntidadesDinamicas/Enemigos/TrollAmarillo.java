@@ -7,7 +7,6 @@ public class TrollAmarillo extends Enemigo{
     protected static final int puntajeCongelado = 300;
     protected static final int puntajeEmpujado = 500;
     private long tiempoEstado;
-    private int estado;
     public TrollAmarillo(int x, int y, Sprite spritesTrollAmarillo){
         super(x,y,spritesTrollAmarillo);
         salud=ConstantesDificultad.SALUD_TROLL_AMARILLO;
@@ -38,6 +37,9 @@ public class TrollAmarillo extends Enemigo{
                         this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     }
                     break;
+                case ConstantesEntidades.ARRIBA:
+                    iniciarSalto();
+                    break;
             }  
     }
     public void patronDeMovimiento() {
@@ -59,13 +61,18 @@ public class TrollAmarillo extends Enemigo{
                 tiempoEstado = ahora;
             }
             break;
-        case EstadosDePatron.ESPERAR:
-                direccion=ConstantesEntidades.QUIETO;
-                if (ahora - tiempoEstado > 2000) // espera 2 segundos
-                    if (dirAnterior == ConstantesEntidades.DERECHA)
-                        estado = EstadosDePatron.MOVERIZQUIERDA;
-                    else
-                        estado = EstadosDePatron.MOVERDERECHA;
+            case EstadosDePatron.ESPERAR:
+                    direccion=ConstantesEntidades.QUIETO;
+                    if (ahora - tiempoEstado > 2000) // espera 2 segundos
+                        estado=EstadosDePatron.SALTAR;
+                break;
+            case EstadosDePatron.SALTAR:
+                direccion=ConstantesEntidades.ARRIBA;
+                mover();
+                if (dirAnterior == ConstantesEntidades.DERECHA)
+                    estado = EstadosDePatron.MOVERIZQUIERDA;
+                else
+                    estado = EstadosDePatron.MOVERDERECHA;
             break;
         }
     }
