@@ -119,15 +119,18 @@ public class Juego {
                             jugadorActual.setVelocidadBase();
                             
                 }
-                for(Plataforma plataforma: nivelActual.getPlataformas())
+                for(Plataforma plataforma: nivelActual.getPlataformas()){
                     if(!nivelActual.getDisparos().isEmpty()){
                         for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
                             if (disparo.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
                                 plataforma.aceptar(disparo);
+                    }
+                    if(!nivelActual.getBolasDeFuego().isEmpty()){
                         for (BolaDeFuego bomba: nivelActual.getBolasDeFuego())
                             if (bomba.kamakichiBomba() && bomba.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
                                 plataforma.aceptar(bomba);
                     }
+                }
                 for(PlataformaMovil movil:nivelActual.getPlataformasMovil()){
                     movil.mover();
                     if(jugadorActual.getHitbox().getRectangle().intersects(movil.getHitbox().getRectangle())) 
