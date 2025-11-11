@@ -231,10 +231,11 @@ public class Nivel {
         }
     }
     public boolean terminoElNivel(){
-        boolean condicion= listaEnemigos.isEmpty();
-        condicion= condicion && listaBolaDeNieve.isEmpty();
-        condicion= condicion && listaPowerUps.isEmpty();
-        return condicion;
+      boolean condicion=false;
+      if(listaEnemigos.isEmpty()){//&&listaBolaDeNieve.isEmpty()){
+        condicion=true;
+      }
+      return condicion;
     }
     public void eliminarse(){
         silueta=null;
@@ -250,5 +251,8 @@ public class Nivel {
         listaFantasmas.clear();
         calabaza=null;
         listaResbaladizos.clear();
+    }
+    public int getNivelActual() {
+        return numeroNivel;
     }
 }
