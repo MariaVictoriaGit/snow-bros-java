@@ -24,7 +24,6 @@ import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 public class Jugador extends EntidadDinamica implements Visitable{
     private static final int vidaDeInicio = 3;
     protected Juego miJuego;
-    protected int puntajeJugador;
     protected int vidas;
     protected String nombre;
     protected boolean disparoAumentado;
@@ -44,7 +43,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
         observer=new ObserverJugador(this);
         registrarObserver(observer);
         velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
-        puntajeJugador=0;
         posXoriginal = x;
         posYoriginal = y;
         invencible=false;
@@ -112,8 +110,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         nivel.eliminarJugador(this);
     }
     public void actualizarPuntaje(int puntaje){
-        puntajeJugador+=puntaje;
-        miJuego.actualizarPuntaje(puntajeJugador);
+        miJuego.actualizarPuntaje(puntaje);
     }
     public String generarClaveEstado(int direccionAnterior){
         String claveADevolver=null;
@@ -160,9 +157,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public int getDirAnterior(){
         return dirAnterior;
     }
-    public int getPuntaje(){
-        return puntajeJugador;
-    }
+
     public int getVelocidad(){
         return velocidad;
     }
@@ -282,8 +277,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public void visitar(Enemigo e){
         if(e.getCongelado()){
             e.convertirEnBola();
-            puntajeJugador+=e.getPuntajeEmpujado();
-            actualizarPuntaje(puntajeJugador);
         }
         else
             this.perderVida();

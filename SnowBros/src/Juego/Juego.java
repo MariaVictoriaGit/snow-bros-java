@@ -121,7 +121,7 @@ public class Juego {
                                 plataforma.aceptar(disparo);
                     }
                     if(!nivelActual.getBolasDeFuego().isEmpty()){
-                        for (BolaDeFuego bomba: nivelActual.getBolasDeFuego())
+                        for (BolaDeFuego bomba: new ArrayList<>(nivelActual.getBolasDeFuego()))
                             if (bomba.kamakichiBomba() && bomba.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
                                 plataforma.aceptar(bomba);
                     }
@@ -243,7 +243,7 @@ public class Juego {
     }
     public void reiniciarNivel(){
         if(jugador.getVidas()==0){
-            ranking.setJugador(jugador.getNombre(),jugador.getPuntaje(),modoDeJuego);
+            ranking.setJugador(jugador.getNombre(),puntajeJugador,modoDeJuego);
             detenerJuego();
             nivel=null;
             jugador=null;
@@ -300,7 +300,7 @@ public class Juego {
     public void actualizarPuntaje(int puntajeASumar){
         puntajeJugador+=puntajeASumar;
         ranking.setJugador(jugador.getNombre(), puntajeJugador, modoDeJuego);
-        controladorGrafica.getPantalla().actualizarLabelsPuntaje(jugador);
+        controladorGrafica.getPantalla().actualizarLabelsPuntaje(puntajeJugador);
     }
     public void setReinicio(boolean t){
         reiniciarJugador=t;
@@ -408,8 +408,9 @@ public class Juego {
         moghera.setActivo(true);
         nivel.agregarEnemigo(moghera);
     }
-    public void crearBolaDeNieve(int posX, int posY){
+    public void crearBolaDeNieve(int posX, int posY, int puntajeEmpujado){
         BolaDeNieve bola=fabricaEntidades.getBolaDeNieve(posX, posY);
+        bola.setPuntajeEmpujado(puntajeEmpujado);
         bola.setNivel(nivel);
         nivel.agregarBolaDeNieve(bola);
         ObserverGrafico observer=controladorGrafica.registrarEntidad(bola);
@@ -425,7 +426,10 @@ public class Juego {
         }
     }
     public void empujarBolaDeNieve(){
-        jugador.estaEmpujando().disparar();
+        if(!jugador.estaEmpujando().getEstado()){
+            int puntajeASumar = jugador.estaEmpujando().disparar();
+            actualizarPuntaje(puntajeASumar);
+        }
     }
     public void invencibilidad(){
         Thread hiloInv = new Thread(() -> {

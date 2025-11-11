@@ -118,35 +118,35 @@ public class DisparoJugador extends EntidadDinamica {
             case ConstantesEntidades.QUIETO:
                 if(efectoBotella)
                     if(dirAnterior==ConstantesEntidades.DERECHA)
-                        estado="aumentadoDerecha1";
-                    else
-                        estado="aumentadoIzquierda1";
+                        estado="aumentadoDerecha";
+                    else if(dirAnterior==ConstantesEntidades.IZQUIERDA)
+                        estado="aumentadoIzquierda";
                 else
                     if(dirAnterior==ConstantesEntidades.DERECHA)
                         estado="idleDerecha";
-                    else
+                    else if(dirAnterior==ConstantesEntidades.IZQUIERDA)
                         estado="idleIzquierda";
             case ConstantesEntidades.DERECHA:
                 if(efectoBotella)
-                    estado="aumentadoDerecha1";
+                    estado="aumentadoDerecha";
                 else
                     estado="idleDerecha";
                 break;
             case ConstantesEntidades.IZQUIERDA:
                 if(efectoBotella)
-                    estado="aumentadoIzquierda1";
+                    estado="aumentadoIzquierda";
                 else
                     estado="idleIzquierda";
                 break;
             case ConstantesEntidades.ARRIBA_DERECHA:
                 if(efectoBotella)
-                    estado="aumentadoDerecha1";
+                    estado="aumentadoDerecha";
                 else
                     estado="idleDerecha";
                 break;
             case ConstantesEntidades.ARRIBA_IZQUIERDA:
                 if(efectoBotella)
-                    estado="aumentadoIzquierda1";
+                    estado="aumentadoIzquierda";
                 else
                     estado="idleIzquierda";
                 break;

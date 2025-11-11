@@ -18,14 +18,13 @@ public class ObserverEntidad extends ObserverGrafico{
         SwingUtilities.invokeLater(() -> {
             if(entidadObservada!=null){
                 try{
-                    entidadObservada.setDireccion(direccion);
                     String estado= entidadObservada.generarClaveEstado();
                     String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);
                     if (rutaImagen == null || rutaImagen.isBlank())
                         return;
                     URL url= getClass().getClassLoader().getResource(rutaImagen);
                     if (url == null) {
-                        System.err.println("No se encontró recurso: " + rutaImagen);
+                        System.err.println("1No se encontró recurso: " + rutaImagen);
                         return;
                     }
                     ImageIcon icono = new ImageIcon(url);
