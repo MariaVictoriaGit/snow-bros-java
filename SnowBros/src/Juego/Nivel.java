@@ -232,7 +232,7 @@ public class Nivel {
     }
     public boolean terminoElNivel(){
       boolean condicion=false;
-      if(listaEnemigos.isEmpty()&&listaBolaDeNieve.isEmpty()){
+      if(listaEnemigos.isEmpty()){//&&listaBolaDeNieve.isEmpty()){
         condicion=true;
       }
       return condicion;
