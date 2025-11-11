@@ -1,5 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.ConstantesVistas;
@@ -21,6 +22,7 @@ public class BolaDeFuego extends EntidadDinamica{
         observer.getImagen().setLocation(posX, posY);
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_FUEGO);
         caida=false;
+        velocidad=ConstantesDificultad.VELOCIDAD_BOLADEFUEGO;
     }
     public Temporizador getTimer(){
         return tiempo;

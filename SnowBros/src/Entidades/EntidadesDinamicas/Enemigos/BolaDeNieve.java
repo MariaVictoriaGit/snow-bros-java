@@ -23,7 +23,7 @@ public class BolaDeNieve extends EntidadDinamica{
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_NIEVE);
         estaActiva=false;
         reboto=false;
-        velocidad=2;
+        velocidad=ConstantesDificultad.VELOCIDAD_BOLADENIEVE;
     }
     public boolean getEstado(){
         return estaActiva;
