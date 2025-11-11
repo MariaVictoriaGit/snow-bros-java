@@ -79,11 +79,6 @@ public class Nivel {
     public Calabaza getCalabaza(){
         return calabaza;
     }
-
-    public int getNivelActual(){
-        return numeroNivel;
-    }
-
     //metodos de eliminar
     public void eliminarPlataforma(Plataforma p){
         listaPlataformas.remove(p);
@@ -200,8 +195,11 @@ public class Nivel {
         for(Enemigo e:new ArrayList<>(this.getEnemigos()))
             if(!e.getCongelado() && !e.getMuerto() && e!=null)
                 e.getObserver().actualizar(e.getDireccion(),e.getTocandoSuelo());
-        /*for(BolaDeNieve b:this.getBolaDeNieves())
-            b.getObserver().actualizar();*/
+        for(BolaDeNieve b:this.getBolasDeNieve()){
+            if(b!=null){
+                b.getObserver().actualizar(b.getDireccion(),b.getTocandoSuelo());
+            }
+        }
         for(PlataformaMovil p:this.getPlataformasMovil())
             p.getObserver().actualizar();
         for(BolaDeFuego b : new ArrayList<>(this.getBolasDeFuego()))

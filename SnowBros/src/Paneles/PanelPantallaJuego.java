@@ -146,8 +146,11 @@ public class PanelPantallaJuego extends JPanel{
         String ruta = e.getSprite().getRutaImagen("normal");
         ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(ruta));//plataforma.getSprite().getRutaImagen("estatico.png"
         JLabel estatica = new JLabel(icono);
-        estatica.setBounds(e.getHitbox().getX(), e.getHitbox().getY(), e.getHitbox().getAncho(), e.getHitbox().getAlto());
+        estatica.setBounds(e.getPosX(), e.getPosY(), e.getHitbox().getAncho(), e.getHitbox().getAlto());
         this.add(estatica);
+        this.setComponentZOrder(estatica, 0);
+        revalidate();
+        repaint();
         return estatica;
     }
     public ObserverJugador incorporarEntidadJugador(Jugador jugador) {

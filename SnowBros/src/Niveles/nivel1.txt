@@ -29,8 +29,6 @@ Jugador 416 80
 
 DemonioRojo 288 48
 
-BotellaAzul 544 48
-
 TrampaPinchos 32 110
 
 Plataforma 0 80 
@@ -55,8 +53,6 @@ Plataforma 704 80
 Plataforma 736 80
 Plataforma 768 80
 
-BotellaVerde 672 112
-
 Plataforma 0 144
 Plataforma 32 144
 Plataforma 64 144
@@ -71,8 +67,6 @@ Plataforma 384 144
 Plataforma 416 144
 Plataforma 448 144
 Plataforma 480 144
-
-BotellaRoja 300 176
 
 ParedDestructible 48 176
 
@@ -91,8 +85,6 @@ Plataforma 768 208
 
 RanaDeFuego 704 240
 
-VidaExtra 640 304
-
 Plataforma 96 240
 Plataforma 128 240
 Plataforma 160 240
@@ -103,8 +95,6 @@ PlataformaMovil 576 272
 PlataformaMovil 608 272
 PlataformaMovil 640 272
 PlataformaMovil 672 272
-
-Fruta 600 304
 
 Plataforma 160 304
 Plataforma 192 304

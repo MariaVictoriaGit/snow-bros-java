@@ -41,7 +41,7 @@ public class Juego {
         reiniciarJugador=false;
         ranking=new Ranking();
         tiempo= new Temporizador(); 
-        tiempoAntesAparicionCalabaza= new Temporizador(5);
+        tiempoAntesAparicionCalabaza= new Temporizador(30);
         juegoEnEjecucion=false;
         ultimoDisparo=0;
     }
@@ -246,7 +246,6 @@ public class Juego {
         }
 
         this.registrarObservers();
-        this.crearPowerUps();
         jugador.getObserver().actualizar();
         tiempoAntesAparicionCalabaza.setAccionAlFinalizar(()->crearCalabaza());
         tiempoAntesAparicionCalabaza.iniciar();
@@ -327,21 +326,15 @@ public class Juego {
 			p.registrarObserver(observer);
 		}
     }
-    public void crearPowerUps(){
-        for (PowerUp e: nivel.getPowerUps()){
-            e.getTiempoDeVida().iniciar(); //TODO cuando este implementada la muerte del enemigo considerar moverlo ahi
-            e.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(e));   
-        }
+    public void crearPowerUp(PowerUp p){
+            p.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(p));   
+            p.getTiempoDeVida().iniciar(); //TODO cuando este implementada la muerte del enemigo considerar moverlo ahi
     }
     public void actualizarVidas(){
         controladorGrafica.getPantalla().actualizarLabelsVidas(jugador);
     }
     public void efectoVidaExtra(){
         controladorGrafica.getPantalla().efectoVidaExtra(jugador);
-    }
-    public void crearNuevaPowerUp(){
-        EntidadEstatica e= nivel.getPowerUps().getLast();
-        controladorGrafica.getPantalla().incorporarEntidadEstatica(e); 
     }
     public void eliminarPowerUp(PowerUp p){
         controladorGrafica.getPantalla().eliminarLabel(p.getLabel());   
