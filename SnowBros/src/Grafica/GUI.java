@@ -1,5 +1,4 @@
 package SnowBros.src.Grafica;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
@@ -28,6 +27,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     private boolean movDerecha=false;
     private boolean movIzquierda=false;
     private boolean disparando=false;
+    private boolean empujando=false;
     protected String dominio;
     protected String modoDeJuego;
 
@@ -78,7 +78,12 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                         }
                         break;
                     case KeyEvent.VK_SPACE:
-                        disparando=true;
+                        if(miJuego.getJugador().estaEmpujando()!=null){
+                            disparando=false;
+                            empujando=true;
+                        } else{
+                            disparando=true;
+                        }
                         break;
                 }
             }
@@ -89,8 +94,11 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                         movIzquierda=false;
                     else
                         movDerecha=false;
-                if(keyCode==KeyEvent.VK_SPACE)
+                if(keyCode==KeyEvent.VK_SPACE){
                     disparando=false;
+                    empujando=false;
+                    miJuego.getJugador().setEmpujando(null);
+                }
             }
         });
     }
@@ -107,7 +115,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         if(miJuego.getJugador().getSaltando())
            miJuego.getJugador().mover(ConstantesEntidades.ARRIBA);
         if(disparando)
-            miJuego.shootJugador();
+            miJuego.shootJugador(); 
+        if(empujando)
+            miJuego.empujarBolaDeNieve();
     }
     public JFrame getVentana() {
         return ventana;

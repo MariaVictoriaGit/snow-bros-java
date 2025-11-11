@@ -4,11 +4,12 @@ public class ConstantesDificultad {
     public static int POTENCIA_DISPARO_AUMENTADA=20;
     public static int POTENCIA_DISPARO_NORMAL=10;
     public static int VELOCIDAD_DISPARO=15;
-    public static final int SALUD_DEMONIO_ROJO=4;
-    public static final int SALUD_TROLL_AMARILLO=4;
-    public static final int SALUD_RANA_DE_FUEGO=4;
-    public static final int SALUD_MOGHERA=15;
-    public static final int SALUD_KAMAKICHI=15;
+
+    public static final int SALUD_DEMONIO_ROJO=1;
+    public static final int SALUD_TROLL_AMARILLO=1;
+    public static final int SALUD_RANA_DE_FUEGO=1;
+    public static final int SALUD_MOGHERA=3;
+    public static final int SALUD_KAMAKICHI=3;
     //Calabaza y Fantasma son indestructibles
     public static final int VELOCIDAD_DEMONIO_ROJO=1;
     public static final int VELOCIDAD_TROLL_AMARILLO=2;

@@ -1,7 +1,6 @@
 package SnowBros.src.Datos;
 
 public class ConstantesEntidades{
-     //TODO Constantes estadoAereo PARA QUE? HAGAMOS BOOLEANOS
     public static final int AIRE=20000;
     public static final int SUELO=20001;
     //Constantes direccion de movimiento 

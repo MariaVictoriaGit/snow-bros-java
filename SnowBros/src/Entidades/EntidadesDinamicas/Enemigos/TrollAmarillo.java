@@ -69,9 +69,6 @@ public class TrollAmarillo extends Enemigo{
             break;
         }
     }
-    public void saltar(){
-        //TODO implementar
-    }
     public String generarClaveEstado(){
         String estado=null;
         if(direccion==ConstantesEntidades.QUIETO){

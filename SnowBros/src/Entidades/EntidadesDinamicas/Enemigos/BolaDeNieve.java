@@ -19,6 +19,7 @@ public class BolaDeNieve extends EntidadDinamica{
     public BolaDeNieve(int x, int y, Sprite sprite){
         super(x,y,sprite);
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_NIEVE);
+        velocidad=1;
         estaActiva=false;
         reboto=false;
         velocidadMaxima=ConstantesDificultad.VELOCIDAD_MAXIMA_BOLADENIEVE;
@@ -29,6 +30,9 @@ public class BolaDeNieve extends EntidadDinamica{
     }
     public Temporizador getTimer(){
         return tiempo;
+    }
+    public void disparar(){
+        estaActiva=true;
     }
     public void mover(){
         if(estaActiva){
@@ -42,7 +46,7 @@ public class BolaDeNieve extends EntidadDinamica{
                     }
                     break;
                 case ConstantesEntidades.IZQUIERDA:
-                    posX=posX-velocidad;
+                    posX=posX-velocidadMaxima;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                     if(!reboto && posX<20){
                     direccion=ConstantesEntidades.DERECHA;
@@ -103,20 +107,15 @@ public class BolaDeNieve extends EntidadDinamica{
         }
     }
     public void visitar(Jugador j){
-        /* 
-        direccion=j.getDireccion();
-        empujar();
-        j.setVelocidad(velocidad);
-        */ 
-        // Detectar desde qué lado el jugador empuja
-        if (j.getPosX() < this.posX)
-            // El jugador está a la izquierda → empuja hacia la derecha
-            direccion = ConstantesEntidades.DERECHA;
-        else 
-            // El jugador está a la derecha → empuja hacia la izquierda
-            direccion = ConstantesEntidades.IZQUIERDA;
-        empujar();
-        j.setVelocidad(velocidad);
+        if(!estaActiva){  
+            if (j.getPosX() < this.posX)
+                direccion = ConstantesEntidades.DERECHA;
+            else 
+                direccion = ConstantesEntidades.IZQUIERDA;
+            j.setEmpujando(this);        
+            empujar();
+            j.setVelocidad(velocidad);
+        }
     }
     public void empujar(){
         switch(direccion){

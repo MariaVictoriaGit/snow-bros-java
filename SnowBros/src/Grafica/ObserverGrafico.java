@@ -50,10 +50,14 @@ public class ObserverGrafico extends JLabel implements Observer{
 		ImageIcon icono = new ImageIcon(getClass().getClassLoader().getResource(rutaImagen));
 		setIcon(icono);
 	}
-	public void actualizarBolaDeNieve() {	
+	public void actualizarBolaDeNieve(boolean activo) {	
 			SwingUtilities.invokeLater(() -> {
 				try{
-					String estado= "congelado";
+					String estado=null;
+					if(activo)
+						estado="congeladoDerecha";
+					else
+						estado="congelado";
 					String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);
 					if (rutaImagen == null || rutaImagen.isBlank()) {
 						return;

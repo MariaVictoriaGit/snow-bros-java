@@ -33,7 +33,7 @@ public class DisparoJugador extends EntidadDinamica {
         switch (direccion) {
             case ConstantesEntidades.QUIETO:
                 if(dirAnterior==ConstantesEntidades.DERECHA){
-                    posX += 4;
+                    posX += 8;
                     caida();
                     if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;
@@ -44,7 +44,7 @@ public class DisparoJugador extends EntidadDinamica {
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 }
                 else {
-                    posX -= 4;
+                    posX -= 8;
                     caida();
                     if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;
@@ -56,7 +56,7 @@ public class DisparoJugador extends EntidadDinamica {
                 }
                 break;
                 case ConstantesEntidades.DERECHA:
-                    posX += 4;
+                    posX += 8;
                     caida();
                     if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;
@@ -67,7 +67,7 @@ public class DisparoJugador extends EntidadDinamica {
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.IZQUIERDA:
-                    posX -= 4;
+                    posX -= 8;
                     caida();
                     if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;
@@ -78,7 +78,7 @@ public class DisparoJugador extends EntidadDinamica {
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.ARRIBA_IZQUIERDA:
-                    posX -= 4;
+                    posX -= 8;
                     caida();
                     if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;
@@ -89,7 +89,7 @@ public class DisparoJugador extends EntidadDinamica {
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.ARRIBA_DERECHA:
-                    posX += 4;
+                    posX += 8;
                     caida();
                     if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;
@@ -160,6 +160,7 @@ public class DisparoJugador extends EntidadDinamica {
             potenciaDisparo=ConstantesDificultad.POTENCIA_DISPARO_NORMAL;
     }
     public void visitar(Enemigo e) {
+        this.eliminar();
         e.recibirDaño(1);
     }
     public void visitar(Plataforma p){
