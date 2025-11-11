@@ -37,7 +37,6 @@ public class BolaDeNieve extends EntidadDinamica{
                 case ConstantesEntidades.DERECHA:
                 posX=posX+velocidadMaxima;
                 this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
-                observer.actualizar();
                 if(!reboto && posX>ConstantesVistas.PANEL_ANCHO-20){
                         direccion=ConstantesEntidades.IZQUIERDA;
                         reboto=true;
@@ -47,7 +46,6 @@ public class BolaDeNieve extends EntidadDinamica{
                 case ConstantesEntidades.IZQUIERDA:
                     posX=posX-velocidad;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
-                    observer.actualizar();
                     if(!reboto && posX<20){
                     direccion=ConstantesEntidades.DERECHA;
                     reboto=true;
@@ -138,14 +136,16 @@ public class BolaDeNieve extends EntidadDinamica{
     public void empujar(){
         switch(direccion){
                 case ConstantesEntidades.DERECHA:
-                posX=posX+velocidad;
-                this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
-                observer.actualizar();
+                    if(!(posX>ConstantesVistas.PANEL_ANCHO-5)){
+                    posX=posX+velocidad;
+                    this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+                }
                 break;
                 case ConstantesEntidades.IZQUIERDA:
+                if(posX>-5){
                     posX=posX-velocidad;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
-                    observer.actualizar();
+                }
                 break;
             }
     }

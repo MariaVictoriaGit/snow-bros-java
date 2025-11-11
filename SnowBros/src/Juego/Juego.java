@@ -112,13 +112,6 @@ public class Juego {
                         }
                     }
                 }
-                for(SueloResbaladizo suelo: nivelActual.getResbaladizos()){
-                    if (jugadorActual.getHitbox().getRectangle().intersects(suelo.getHitbox().getRectangle())) 
-                        suelo.aceptar(jugadorActual);
-                        else    
-                            jugadorActual.setVelocidadBase();
-                            
-                }
                 for(Plataforma plataforma: nivelActual.getPlataformas()){
                     if(!nivelActual.getDisparos().isEmpty()){
                         for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
@@ -141,22 +134,30 @@ public class Juego {
                         if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) 
                             jugadorActual.aceptar(bola);
 
-                if(!nivelActual.getBolasDeNieve().isEmpty())
-                    for(BolaDeNieve bola: nivelActual.getBolasDeNieve()){
-                        if (bola.getHitbox().getLeftHitBox().intersects(jugadorActual.getHitbox().getRectangle())){
-                             jugadorActual.aceptar(bola);
-
-                        } else if (bola.getHitbox().getRightHitBox().intersects(jugadorActual.getHitbox().getRectangle())){
-                            jugadorActual.aceptar(bola);
-                        } else {
-                            jugadorActual.setVelocidadBase();
-                        } 
-                        
-
-                        for(Enemigo enemigo:nivelActual.getEnemigos())
-                            if (bola.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
+                boolean colisionBola = false;
+                boolean colisionSuelo = false;
+                for (BolaDeNieve bola : nivelActual.getBolasDeNieve()) {
+                    for(Enemigo enemigo:nivelActual.getEnemigos())
+                        if (bola.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
                                 enemigo.aceptar(bola);
+                    if (bola.getHitbox().getLeftHitBox().intersects(jugadorActual.getHitbox().getRectangle()) ||
+                        bola.getHitbox().getRightHitBox().intersects(jugadorActual.getHitbox().getRectangle())) {
+                        jugadorActual.aceptar(bola);
+                        colisionBola = true;
                     }
+                }
+                for (SueloResbaladizo suelo : nivelActual.getResbaladizos()) {
+                    if (jugadorActual.getHitbox().getRectangle().intersects(suelo.getHitbox().getRectangle())) {
+                        suelo.aceptar(jugadorActual);
+                        colisionSuelo = true;
+                        for(Enemigo enemigo:nivelActual.getEnemigos())
+                            if (suelo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
+                                suelo.aceptar(enemigo);
+                    }
+                }
+                if (!colisionBola && !colisionSuelo) {
+                    jugadorActual.setVelocidadBase();
+                }
                 try {
                     Thread.sleep(16);
                 } catch (InterruptedException e) {
