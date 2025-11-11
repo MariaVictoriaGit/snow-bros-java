@@ -31,15 +31,15 @@ public class Alternativo extends FabricaSprites{
     }
     public Sprite getSpriteDemonioRojo(){
         HashMap<String, String> mapeo= new HashMap<>();//dejamos tanta animacion o la reducimos a uno en cada direccion para caminar y estar quieto?
-        mapeo.put("idleIzquierda", rutaACarpeta + "/DemonioRojo/quietoIzquierdaA.png");
-        mapeo.put("idleDerecha", rutaACarpeta + "/DemonioRojo/quietoDerechaA.png");
-        mapeo.put("moverDerecha1", rutaACarpeta + "/DemonioRojo/caminarDerecha1A.png");
-        mapeo.put("moverDerecha2", rutaACarpeta + "/DemonioRojo/caminarDerecha2A.png");
-        mapeo.put("moverDerecha3", rutaACarpeta + "/DemonioRojo/caminarDerecha3A.png");
-        mapeo.put("moverIzquierda1", rutaACarpeta + "/DemonioRojo/caminarIzquierda1A.png");
-        mapeo.put("moverIzquierda2", rutaACarpeta + "/DemonioRojo/caminarIzquierda2A.png");
-        mapeo.put("moverIzquierda3", rutaACarpeta + "/DemonioRojo/caminarIzquierda3A.png");
-        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieve.png");
+        mapeo.put("idleIzquierda", rutaACarpeta + "/DemonioRojo/quietoIzquierdaAlternativo.png");
+        mapeo.put("idleDerecha", rutaACarpeta + "/DemonioRojo/quietoDerechaAlternativo.png");
+        mapeo.put("moverDerecha1", rutaACarpeta + "/DemonioRojo/caminarDerecha1Alternativo.png");
+        mapeo.put("moverDerecha2", rutaACarpeta + "/DemonioRojo/caminarDerecha2Alternativo.png");
+        mapeo.put("moverDerecha3", rutaACarpeta + "/DemonioRojo/caminarDerecha3Alternativo.png");
+        mapeo.put("moverIzquierda1", rutaACarpeta + "/DemonioRojo/caminarIzquierda1Alternativo.png");
+        mapeo.put("moverIzquierda2", rutaACarpeta + "/DemonioRojo/caminarIzquierda2Alternativo.png");
+        mapeo.put("moverIzquierda3", rutaACarpeta + "/DemonioRojo/caminarIzquierda3Alternativo.png");
+        mapeo.put("congelado",rutaACarpeta+"/BolaDeNieve/bolaDeNieveAlternativo.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteTrollAmarillo(){
