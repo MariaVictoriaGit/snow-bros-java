@@ -10,6 +10,7 @@ import SnowBros.src.Juego.Juego;
 import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.*;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeNieve;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
@@ -28,7 +29,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
     protected int posYoriginal;
     protected boolean habilitadoASubirEscalera;
     protected boolean invencible;
-    protected boolean enSueloResbaladizo;
+    protected BolaDeNieve empujandoBola;
     
     public Jugador(int x,int y, Sprite mISprite){//no se usa observerJugador y en entidadDinamica se le asigna un observer a cada uno
         super(x,y,mISprite);
@@ -41,7 +42,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         posXoriginal = x;
         posYoriginal = y;
         invencible=false;
-        enSueloResbaladizo=true;
+        empujandoBola=null;
     }
     public void mover(){}
     public void mover(int direccionAMover){
@@ -97,6 +98,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public void setVelocidadBase(){
         velocidad= ConstantesDificultad.VELOCIDAD_JUGADOR;
+    }
+    public void setEmpujando(BolaDeNieve b){
+        empujandoBola=b;
     }
     public void eliminar(){
         nivel.eliminarJugador(this);
@@ -155,6 +159,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public int getVelocidad(){
         return velocidad;
+    }
+    public BolaDeNieve estaEmpujando(){
+        return empujandoBola;
     }
     public void setDireccion(int direccionActual){
         if(direccionActual!=0)
@@ -296,7 +303,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
            this.setPosY(e.getPosY() - this.getHitbox().getAlto());
         }
         if(!e.getUsada()){
-            actualizarPuntaje(e.getPuntaje());
+        actualizarPuntaje(e.getPuntaje());
             e.setUsada();
         }
         e.getTiempoAntesDeRomperse().iniciar();
