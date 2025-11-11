@@ -103,9 +103,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         });
     }
     public void moverJugadorSegunInput(){
-        if(movDerecha)
+        if(movDerecha && !miJuego.getJugador().getChocoParedIzq())
            miJuego.getJugador().mover(ConstantesEntidades.DERECHA);
-        else if(movIzquierda)
+        else if(movIzquierda && !miJuego.getJugador().getChocoParedDer())
             miJuego.getJugador().mover(ConstantesEntidades.IZQUIERDA);
         else{
             miJuego.getJugador().mover(ConstantesEntidades.QUIETO);
@@ -225,6 +225,12 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     public Juego getJuego() {
         return miJuego;
+    }
+    public void setMoverIzq(boolean b){
+        movIzquierda=b;
+    }
+    public void setMoverDer(boolean b){
+        movDerecha=b;
     }
     public PanelPantallaJuego getPantalla(){
         return panelPantallaJuego;

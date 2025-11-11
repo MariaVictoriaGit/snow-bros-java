@@ -140,7 +140,6 @@ public class RanaDeFuego extends Enemigo{
         salud=ConstantesDificultad.SALUD_RANA_DE_FUEGO;
         return salud;
     }
-    @Override
     public void aceptar(Visitador visitador) {
         visitador.visitar(this);
     }       

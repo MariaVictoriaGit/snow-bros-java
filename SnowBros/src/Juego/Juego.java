@@ -91,9 +91,14 @@ public class Juego {
                             nivelActual.getCalabaza().aceptar(jugadorActual);
                         }
                     }
-                for(Pared p: new ArrayList<>(nivelActual.getParedes()))
-                    if (jugadorActual.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())) 
-                        p.aceptar(jugadorActual);
+                for(Pared p: new ArrayList<>(nivelActual.getParedes())){
+                    if(jugadorActual.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
+                                p.aceptar(jugadorActual);
+                            }
+                    else{
+                        jugadorActual.setChocoPared(false);
+                        }
+                }
                 for(PowerUp entidad : new ArrayList<>(nivelActual.getPowerUps()))
                     if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) 
                         entidad.aceptar(jugadorActual);
@@ -145,7 +150,7 @@ public class Juego {
                     for(Pared p:new ArrayList<>(nivelActual.getParedes())){
                             if(bola.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
                                 p.aceptar(bola);
-                        }
+                            }
                     }
                 }
                 for (SueloResbaladizo suelo : nivelActual.getResbaladizos()) {
@@ -184,6 +189,7 @@ public class Juego {
                 for (Enemigo enemigo : nivelActual.getEnemigos()) {
                    enemigo.patronDeMovimiento();        
                    enemigo.verificarSuelo(); 
+                   enemigo.actualizarSalto();
                    if(enemigo.getCongelado()){
                         enemigo.actualizarTiempoCongelado();
                    }

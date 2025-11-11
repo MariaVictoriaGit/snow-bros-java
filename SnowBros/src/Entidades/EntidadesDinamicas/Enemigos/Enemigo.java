@@ -1,8 +1,11 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
+import java.awt.Rectangle;
+
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Juego.Temporizador;
@@ -52,6 +55,26 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
          }*/
    public abstract void patronDeMovimiento();
    public abstract int getSalud();
+   protected void verificarPared(Pared p){
+      Rectangle paredRectangle=p.getHitbox().getRectangle();
+      if(this.getHitbox().getRightHitBox().intersects(paredRectangle)) {
+         if(direccion==ConstantesEntidades.IZQUIERDA){
+            estado=EstadosDePatron.MOVERDERECHA;
+         }
+         else{
+            estado=EstadosDePatron.MOVERIZQUIERDA;
+         }
+      }
+      else if(this.getHitbox().getLeftHitBox().intersects(paredRectangle)) {
+         if(direccion==ConstantesEntidades.IZQUIERDA){
+            estado=EstadosDePatron.MOVERDERECHA;
+         }
+         else{
+            estado=EstadosDePatron.MOVERIZQUIERDA;
+         } 
+      }
+      hitbox.actualizarHitbox(posX, posY, ancho, alto);
+   }
    public void recibirDaño(int daño){
       salud -= daño;
       if (salud <= 0){

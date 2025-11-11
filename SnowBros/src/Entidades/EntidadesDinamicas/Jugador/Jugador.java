@@ -1,8 +1,11 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
 
+import java.awt.Rectangle;
+
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
+import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Grafica.Sprite;
@@ -30,6 +33,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
     protected boolean habilitadoASubirEscalera;
     protected boolean invencible;
     protected BolaDeNieve empujandoBola;
+    protected boolean chocoParedIzq=false;
+    protected boolean chocoParedDer=false;
+
     
     public Jugador(int x,int y, Sprite mISprite){//no se usa observerJugador y en entidadDinamica se le asigna un observer a cada uno
         super(x,y,mISprite);
@@ -171,6 +177,16 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public void setJuego(Juego j){
         miJuego=j;
     }
+    public boolean getChocoParedIzq(){
+        return chocoParedIzq;
+    }
+    public boolean getChocoParedDer(){
+        return chocoParedDer;
+    }
+    public void setChocoPared(boolean b){
+        chocoParedIzq=b;
+        chocoParedDer=b;
+    }
     public void perderVida(){
         if (!invencible){
             Sonido.getInstancia().reproducirEfectoDeSonido("muerte.wav");
@@ -250,6 +266,18 @@ public class Jugador extends EntidadDinamica implements Visitable{
             b.getTiempoDeEfecto().resetear();
         });
         b.getTiempoDeEfecto().iniciar(); 
+    }
+    protected void verificarPared(Pared p){
+        Rectangle paredRectangle=p.getHitbox().getRectangle();
+        if(this.getHitbox().getRightHitBox().intersects(paredRectangle)) {
+            miJuego.getControlador().setMoverDer(false);
+            chocoParedIzq=true;
+        }
+        else if(this.getHitbox().getLeftHitBox().intersects(paredRectangle)) {
+            miJuego.getControlador().setMoverIzq(false);
+            chocoParedDer=true;
+        }
+        
     }
     public void visitar(Enemigo e){
         if(e.getCongelado()){
