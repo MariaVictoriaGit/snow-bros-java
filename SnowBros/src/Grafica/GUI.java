@@ -185,10 +185,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public void reiniciarNivel(){
         miJuego.reiniciarNivel();
     }
-    public ObserverGrafico registrarEntidad(EntidadDinamica entidad){
-        ObserverGrafico observerEntidad = panelPantallaJuego.incorporarEntidad(entidad);
+    public void registrarEntidad(EntidadDinamica entidad){
+        panelPantallaJuego.incorporarEntidad(entidad);
         refrescar();
-        return observerEntidad;
     }
     public ObserverPlataformaMovil registrarEntidad(PlataformaMovil entidad){
         ObserverPlataformaMovil observerPlataforma = panelPantallaJuego.incorporarEntidad(entidad);
@@ -198,10 +197,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public void registrarEntidadEstatica(EntidadEstatica e){
         panelPantallaJuego.incorporarEntidadEstatica(e);
     }
-    public ObserverJugador registrarEntidad(Jugador jugador) {
-        ObserverJugador observerJugador = panelPantallaJuego.incorporarEntidadJugador(jugador);
+    public void registrarEntidad(Jugador jugador) {
+        panelPantallaJuego.incorporarEntidadJugador(jugador);
         refrescar();
-        return observerJugador;
     }
    // public Observer registrarSilueta(Entidad silueta) {
         //Observer observer_silueta = panelPantallaJuego.incorporarSilueta(silueta);

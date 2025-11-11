@@ -7,7 +7,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 interface ControladorGrafico {
     public ObserverPlataformaMovil registrarEntidad(PlataformaMovil p);
     public void registrarEntidadEstatica(EntidadEstatica e);
-    public ObserverGrafico registrarEntidad(EntidadDinamica e);
-    public ObserverJugador registrarEntidad(Jugador j);
+    public void registrarEntidad(EntidadDinamica e);
+    public void registrarEntidad(Jugador j);
     //TODO public Observer registrarSprite(Entidad e);
 }

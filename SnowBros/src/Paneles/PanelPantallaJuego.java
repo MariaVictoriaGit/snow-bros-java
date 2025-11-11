@@ -143,10 +143,8 @@ public class PanelPantallaJuego extends JPanel{
         this.repaint();
     }
 }
-    public ObserverGrafico incorporarEntidad(EntidadDinamica entidad) {
-        EntidadDinamica  aux= entidad;
-        imagenFondoJuego.add((JLabel)aux.getObserver());
-        return aux.getObserver();
+    public void incorporarEntidad(EntidadDinamica entidad) {
+        imagenFondoJuego.add((JLabel) entidad.getObserver());
     }
     public ObserverPlataformaMovil incorporarEntidad(PlataformaMovil entidad) {
         PlataformaMovil aux= entidad;
@@ -164,11 +162,10 @@ public class PanelPantallaJuego extends JPanel{
         repaint();
         return estatica;
     }
-    public ObserverJugador incorporarEntidadJugador(Jugador jugador) {
+    public void incorporarEntidadJugador(Jugador jugador) {
         //ObserverJugador observerJugador= new ObserverJugador((jugador));
         imagenFondoJuego.add((JLabel)jugador.getObserver());
         actualizarInformacionJugador(jugador);
-        return (ObserverJugador) jugador.getObserver();
     }
     public void incorporarSilueta(Entidad silueta) {
         ImageIcon imagenOriginal= new ImageIcon( getClass().getClassLoader().getResource(silueta.getSprite().getRutaImagen("normal")));
