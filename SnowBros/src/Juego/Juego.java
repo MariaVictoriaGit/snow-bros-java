@@ -111,6 +111,7 @@ public class Juego {
                             entidad.aceptar(e);
                         }
                     }
+
                 }
                 for(SueloResbaladizo suelo: nivelActual.getResbaladizos()){
                     if (jugadorActual.getHitbox().getRectangle().intersects(suelo.getHitbox().getRectangle())) 
@@ -151,11 +152,14 @@ public class Juego {
                         } else {
                             jugadorActual.setVelocidadBase();
                         } 
-                        
-
                         for(Enemigo enemigo:nivelActual.getEnemigos())
                             if (bola.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
                                 enemigo.aceptar(bola);
+                        for(Pared p:nivelActual.getParedes()){
+                            if(bola.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
+                                p.aceptar(bola);
+                        }
+                        }
                     }
                 try {
                     Thread.sleep(16);

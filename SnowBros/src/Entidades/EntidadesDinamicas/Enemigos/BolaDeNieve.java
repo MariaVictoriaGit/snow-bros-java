@@ -99,13 +99,11 @@ public class BolaDeNieve extends EntidadDinamica{
             PowerUp p=nivel.getJuego().getFabricaEntidades().getVidaExtra(this.getPosX(), this.getPosY());
             nivel.agregarPowerUp(p);
             nivel.getJuego().crearPowerUp(p);
-
         }
-
     }
     public void visitar(ParedDestructible p){
-        //TODO creo q las paredes se destruian con bolas de nieve
         p.destruirse();
+        this.eliminar();
     }
     public void eliminar(){
         if(observer!=null){
