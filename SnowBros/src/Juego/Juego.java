@@ -396,7 +396,7 @@ public class Juego {
             nivel.agregarCalabaza(cala);
     }
     public void crearMoghera(){
-        Moghera moghera=fabricaEntidades.getMoghera(704, 240);
+        Moghera moghera=fabricaEntidades.getMoghera(730, 70);
         ObserverGrafico observer= controladorGrafica.registrarEntidad(moghera);
         moghera.registrarObserver(observer);
         moghera.setActivo(true);
