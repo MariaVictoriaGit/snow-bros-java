@@ -100,10 +100,10 @@ public class Juego {
                 for(Obstaculo entidad : new ArrayList<>(nivelActual.getObstaculos())){
                     if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) 
                         entidad.aceptar(jugadorActual);
-                    if(nivel.getCalabaza()!=null && nivel.getCalabaza().getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())){
-                            entidad.aceptar(nivel.getCalabaza());
+                    if(nivelActual.getCalabaza()!=null && nivelActual.getCalabaza().getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())){
+                            entidad.aceptar(nivelA.getCalabaza());
                         }
-                    for(Enemigo e:nivel.getEnemigos()){
+                    for(Enemigo e:nivelActual.getEnemigos()){
                         if(e.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())){
                             entidad.aceptar(e);
                         }
@@ -226,8 +226,10 @@ public class Juego {
     }
      
     public void iniciarNivel(){
-        if (nivel == null)
+        if (nivel == null){
             nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que corresponda
+            nivel.setNivel(nivel.getNivelActual()+1);
+        }
         if(jugador==null){
             jugador = nivel.getJugador();
             jugador.setJuego(this);
@@ -254,6 +256,7 @@ public class Juego {
         iniciarHilos();
 
     }
+    
     public void superarNivel(){
         nivel.eliminarse();
         detenerJuego();
@@ -268,6 +271,9 @@ public class Juego {
     }
     public void setReinicio(boolean t){
         reiniciarJugador=t;
+    }
+    public GUI getControlador(){
+        return controladorGrafica;
     }
     public Nivel getNivelActual(){
         return nivel;
@@ -366,6 +372,12 @@ public class Juego {
         ObserverGrafico observer = controladorGrafica.registrarEntidad(cala);
         cala.registrarObserver(observer);
         nivel.agregarCalabaza(cala);
+    }
+    public void crearMoghera(){
+        Moghera moghera=fabricaEntidades.getMoghera(704, 240);
+        ObserverGrafico observer= controladorGrafica.registrarEntidad(moghera);
+        moghera.registrarObserver(observer);
+        nivel.agregarEnemigo(moghera);
     }
     public void crearBolaDeNieve(int posX, int posY){
         BolaDeNieve bola=fabricaEntidades.getBolaDeNieve(posX, posY);

@@ -96,7 +96,8 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       Sonido.getInstancia().reproducirEfectoDeSonido("enemigoMuereBolaNieve.wav");
       detenido=true;
       direccion=ConstantesEntidades.QUIETO;
-      observer.actualizarBolaDeNieve();
+    //  if(observer!=null)
+         observer.actualizarBolaDeNieve();
    }
    //solo va a ser llamado si el jugador colisiona con el enemigo
    public void convertirEnBola(){
