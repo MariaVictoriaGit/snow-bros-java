@@ -1,5 +1,7 @@
 package SnowBros.src.Entidades.EntidadesEstaticas;
 
+import java.awt.Container;
+
 import javax.swing.JLabel;
 
 import SnowBros.src.Entidades.Entidad;
@@ -23,5 +25,11 @@ public abstract class EntidadEstatica extends Entidad implements Visitable {
     }
     public JLabel getMiLabel(){
         return miLabel;
+    }
+    public void borrarLabel(){
+        Container padre= miLabel.getParent();
+		miLabel.getParent().remove(miLabel);
+		padre.revalidate();
+		padre.repaint();
     }
 }
