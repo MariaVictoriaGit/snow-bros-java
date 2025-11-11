@@ -190,7 +190,7 @@ public class ParserNivel{
                         yArchivo=Integer.parseInt(partes[2]);
                         int ySueloResbaladizo=ConstantesVistas.PANEL_ALTO-yArchivo;
                         SueloResbaladizo sueloResbaladizo=fabrica.getSueloResbaladizo(xSueloResbaladizo, ySueloResbaladizo);
-                        nivel.agregarObstaculo(sueloResbaladizo);
+                        nivel.agregarResbaladizo(sueloResbaladizo);
                         break;                
                     }
             }

@@ -43,7 +43,7 @@ public class DisparoJugador extends EntidadDinamica {
                     if(tiempoCaida==800){
                         posY += 2;
                         aumentos++;
-                        incremetarY();
+                        incrementarY();
                     }
                     getObserver().actualizar(dirAnterior, getTocandoSuelo());
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
@@ -54,7 +54,7 @@ public class DisparoJugador extends EntidadDinamica {
                     if(tiempoCaida==800){
                         posY += 2;
                         aumentos++;
-                        incremetarY();
+                        incrementarY();
                     }
                     getObserver().actualizar(dirAnterior, getTocandoSuelo());
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
@@ -66,7 +66,7 @@ public class DisparoJugador extends EntidadDinamica {
                     if(tiempoCaida==800){
                         posY += 2;
                         aumentos++;
-                        incremetarY();
+                        incrementarY();
                     }
                     getObserver().actualizar(direccion, getTocandoSuelo());
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
@@ -77,7 +77,7 @@ public class DisparoJugador extends EntidadDinamica {
                     if(tiempoCaida==800){
                         posY += 2;
                         aumentos++;
-                        incremetarY();
+                        incrementarY();
                     }
                     getObserver().actualizar(direccion, getTocandoSuelo());
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
@@ -88,7 +88,7 @@ public class DisparoJugador extends EntidadDinamica {
                     if(tiempoCaida==800){
                         posY += 2;
                         aumentos++;
-                        incremetarY();
+                        incrementarY();
                     }
                     getObserver().actualizar(direccion, getTocandoSuelo());
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
@@ -99,7 +99,7 @@ public class DisparoJugador extends EntidadDinamica {
                     if(tiempoCaida==800){
                         posY += 2;
                         aumentos++;
-                        incremetarY();
+                        incrementarY();
                     }
                     getObserver().actualizar(direccion, getTocandoSuelo());
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
@@ -111,7 +111,7 @@ public class DisparoJugador extends EntidadDinamica {
             tiempoCaida+=100;
         }
     }
-    public void incremetarY(){
+    public void incrementarY(){
         if(aumentos>=3){
             posY += 6;
         }

@@ -12,13 +12,15 @@ import SnowBros.src.Juego.Temporizador;
 public class BolaDeFuego extends EntidadDinamica{
     protected Temporizador tiempo;
     private int tiempoCaida;
-    private int aumentos;
+    private int decrementos;
+    private boolean caida;
     private boolean spriteJefe=false;
 
     public BolaDeFuego(int posX, int posY,Sprite miSprite){
         super(posX, posY, miSprite);
         observer.getImagen().setLocation(posX, posY);
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_FUEGO);
+        caida=false;
     }
     public Temporizador getTimer(){
         return tiempo;
@@ -48,41 +50,45 @@ public class BolaDeFuego extends EntidadDinamica{
                 }
             break;
             case ConstantesEntidades.ARRIBA_IZQUIERDA:
-                    posX -= 4;
-                    caida();
-                    if(tiempoCaida==800){
-                        posY += 2;
-                        aumentos++;
-                        incremetarY();
+                    posX -= 6;
+                    subida();
+                    if(tiempoCaida<=1000 && !caida){
+                        posY -= 4;
                     }
-                    else{
-                        posY-=20;
+                    if(tiempoCaida==1000)
+                        caida=true;
+                    if(caida){
+                        posY += 2;
+                        decrementos++;
+                        decrementarY();
                     }
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.ARRIBA_DERECHA:
-                    posX += 4;
-                    caida();
-                    if(tiempoCaida==800){
-                        posY += 2;
-                        aumentos++;
-                        incremetarY();
+                    posX += 6;
+                    subida();
+                    if(tiempoCaida<=1000 && !caida){
+                        posY -= 4;
                     }
-                    else{
-                        posY-=20;
+                    if(tiempoCaida==1000)
+                        caida=true;
+                    if(caida){
+                        posY += 2;
+                        decrementos++;
+                        decrementarY();
                     }
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
         }
     }
-    private void caida(){
-        if(tiempoCaida<800){
+    private void subida(){
+        if(tiempoCaida<1000 && !caida){
             tiempoCaida+=100;
         }
     }
-    public void incremetarY(){
-        if(aumentos>=3){
-            posY += 6;
+    private void decrementarY(){
+        if(decrementos>=3){
+            posY += 3;
         }
     }
     public void setDireccion(int direccionDisparo) {

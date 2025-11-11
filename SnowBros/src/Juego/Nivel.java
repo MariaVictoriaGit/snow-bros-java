@@ -11,6 +11,7 @@ import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Grafica.Sprite;
 
@@ -32,6 +33,7 @@ public class Nivel {
     protected LinkedList<PlataformaMovil> listaPmovil;
     protected Calabaza calabaza;
     protected LinkedList<Fantasma> listaFantasmas;
+    protected LinkedList<SueloResbaladizo> listaResbaladizos;
 
     public Nivel(Silueta silueta){
         this.silueta=silueta;
@@ -45,6 +47,7 @@ public class Nivel {
         listaBolaDeFuego= new LinkedList<>();
         listaBolaDeNieve= new LinkedList<>();
         listaFantasmas = new LinkedList<>();
+        listaResbaladizos= new LinkedList<>();
     }
     //metodos setters
     public void setNivel(int nivel){
@@ -84,10 +87,9 @@ public class Nivel {
     public Calabaza getCalabaza(){
         return calabaza;
     }
-
-    public int getNivelActual(){
-        return numeroNivel;
-    }
+    public LinkedList<SueloResbaladizo> getResbaladizos(){
+        return listaResbaladizos;
+    } 
 
     //metodos de eliminar
     public void eliminarPlataforma(Plataforma p){
@@ -183,6 +185,10 @@ public class Nivel {
         calabaza.setNivel(this);
         calabaza.getObserver().actualizar();
     }
+    public void agregarResbaladizo(SueloResbaladizo s){
+        listaResbaladizos.addLast(s);
+        s.setNivel(this);
+    }
     public void efectoBotellaVerde(boolean efecto){
         if(efecto)
             for(Enemigo enemigo : new ArrayList<>(listaEnemigos))
@@ -240,5 +246,6 @@ public class Nivel {
         listaBolaDeNieve.clear();
         listaFantasmas.clear();
         calabaza=null;
+        listaResbaladizos.clear();
     }
 }

@@ -13,9 +13,6 @@ public class Calabaza extends Enemigo{
     protected Temporizador tiempoCreacionFantasmas;
     private long tiempoEstado = 0;
     private int estado = EstadosDePatron.MOVERIZQUIERDA;
-    private int yJugador;
-    private int xJugador;
-
     
     public Calabaza(int x, int y, Sprite sprite){
         super(x, y, sprite);
