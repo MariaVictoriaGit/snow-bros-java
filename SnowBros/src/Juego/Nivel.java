@@ -21,6 +21,7 @@ public class Nivel {
     /*podriamos cambiar el nombre de nivel en lugar de numero, como un nombre para identificarlos desde ConstantesNiveles*/
     protected Jugador jugador;
     protected Silueta silueta;
+    protected int numeroNivel;
     protected LinkedList<Enemigo> listaEnemigos;
     protected LinkedList<PowerUp> listaPowerUps;
     protected LinkedList<Obstaculo> listaObstaculos;
@@ -47,6 +48,10 @@ public class Nivel {
         listaBolaDeNieve= new LinkedList<>();
         listaFantasmas = new LinkedList<>();
         listaResbaladizos= new LinkedList<>();
+    }
+    //metodos setters
+    public void setNivel(int nivel){
+        numeroNivel=nivel;
     }
     //metodos getters
     public LinkedList<Enemigo> getEnemigos(){
