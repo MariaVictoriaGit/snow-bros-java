@@ -237,7 +237,7 @@ public class Juego {
     }
     public void reiniciarNivel(){
         if(jugador.getVidas()==0){
-            ranking.setJugador(jugador.getNombre(),jugador.getPuntaje(),modoDeJuego);
+            ranking.setJugador(jugador.getNombre(),puntajeJugador,modoDeJuego);
             detenerJuego();
             nivel=null;
             jugador=null;

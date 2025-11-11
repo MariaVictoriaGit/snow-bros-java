@@ -19,7 +19,6 @@ public class ObserverJugador extends ObserverGrafico{
     protected void actualizarImagen(int direccion, int tocandoSuelo) {
         SwingUtilities.invokeLater(() -> {
             try{
-                jugadorObservado.setDireccion(direccion);
                 String estado= jugadorObservado.generarClaveEstado(jugadorObservado.getDirAnterior());
                 String rutaImagen = jugadorObservado.getSprite().getRutaImagen(estado);
                 if (rutaImagen == null || rutaImagen.isBlank()) {

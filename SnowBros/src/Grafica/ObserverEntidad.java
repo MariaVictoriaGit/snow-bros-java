@@ -18,7 +18,6 @@ public class ObserverEntidad extends ObserverGrafico{
         SwingUtilities.invokeLater(() -> {
             if(entidadObservada!=null){
                 try{
-                    entidadObservada.setDireccion(direccion);
                     String estado= entidadObservada.generarClaveEstado();
                     String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);
                     if (rutaImagen == null || rutaImagen.isBlank())
