@@ -32,6 +32,9 @@ public class Fantasma extends Enemigo{
         setPosicionJugador(nivel.getJugador().getPosX(), nivel.getJugador().getPosY());
         mover();
     }
+    public int getSalud(){
+        return salud; // es inmortal, no tiene salud
+    }
     public int getPuntajeCongelado() {
         return 0;//indestructible
     }
