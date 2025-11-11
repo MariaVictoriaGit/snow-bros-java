@@ -26,6 +26,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     private boolean movDerecha=false;
     private boolean movIzquierda=false;
     private boolean disparando=false;
+    private boolean empujando=false;
     protected String dominio;
     protected String modoDeJuego;
 
@@ -78,7 +79,12 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                         }
                         break;
                     case KeyEvent.VK_SPACE:
-                        disparando=true;
+                        if(miJuego.getJugador().estaEmpujando()!=null){
+                            disparando=false;
+                            empujando=true;
+                        } else{
+                            disparando=true;
+                        }
                         break;
                 }
             }
@@ -96,6 +102,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                         movDerecha=false;
                 if(keyCode==KeyEvent.VK_SPACE){
                     disparando=false;
+                    empujando=false;
                 }
             }
         });
@@ -114,6 +121,11 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
            miJuego.getJugador().mover(ConstantesEntidades.ARRIBA);
         if(disparando){
             miJuego.shootJugador();
+        } 
+        if(empujando)
+            miJuego.empujarBolaDeNieve();
+         else {
+            miJuego.getJugador().setEmpujando(null);
         }
     }
     public JFrame getVentana() {

@@ -23,13 +23,15 @@ public class BolaDeNieve extends EntidadDinamica{
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_NIEVE);
         estaActiva=false;
         reboto=false;
-        velocidad=ConstantesDificultad.VELOCIDAD_BOLADENIEVE;
     }
     public boolean getEstado(){
         return estaActiva;
     }
     public Temporizador getTimer(){
         return tiempo;
+    }
+    public void disparar(){
+        estaActiva=true;
     }
     public void mover(){
         if(estaActiva){
@@ -39,9 +41,7 @@ public class BolaDeNieve extends EntidadDinamica{
                 this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 if(!reboto && posX>ConstantesVistas.PANEL_ANCHO-20){
                         direccion=ConstantesEntidades.IZQUIERDA;
-                        if(posY>ConstantesVistas.PANEL_ALTO-100){
-                            reboto=true;
-                        }
+                        reboto=true;
                 }
 
                 break;
@@ -49,14 +49,13 @@ public class BolaDeNieve extends EntidadDinamica{
                     posX=posX-velocidad;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                     if(!reboto && posX<20){
-                        direccion=ConstantesEntidades.DERECHA;
-                        if(posY>ConstantesVistas.PANEL_ALTO-100){
-                            reboto=true;
-                        }
+                    direccion=ConstantesEntidades.DERECHA;
+                    reboto=true;
                     }
                 break;
             }
             terminaRebotar();
+        }
     }
     private void terminaRebotar(){
         if(reboto && posX<=0 || posX>=ConstantesVistas.PANEL_ANCHO)
@@ -127,9 +126,10 @@ public class BolaDeNieve extends EntidadDinamica{
             // El jugador está a la derecha → empuja hacia la izquierda
             direccion = ConstantesEntidades.IZQUIERDA;
         }
-
+        j.setEmpujando(this);
         empujar();
         j.setVelocidad(velocidad);
+
     }
     
     public void empujar(){
