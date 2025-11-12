@@ -29,6 +29,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     private boolean movIzquierda=false;
     private boolean disparando=false;
     private boolean empujando=false;
+    private boolean juegoIniciado=false;
     protected String dominio;
     protected String modoDeJuego;
 
@@ -58,6 +59,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     private void addWindowKeyListener() {
         ventana.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent event) {
+                if(!juegoIniciado) return;
                 int keyCode=event.getKeyCode();
                 switch(keyCode){
                     case KeyEvent.VK_A:
@@ -89,6 +91,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                 }
             }
             public void keyReleased(KeyEvent event) {
+                if (!juegoIniciado) return;
                 int keyCode=event.getKeyCode();
                 if (keyCode==KeyEvent.VK_A || keyCode==KeyEvent.VK_D)
                     if(keyCode==KeyEvent.VK_A)
@@ -129,9 +132,12 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         refrescar();
     }
     public void cambiarPantallaTransicion(){
+        Sonido.getInstancia().frenarMusica();
+        Sonido.getInstancia().reproducirEfectoDeSonido("gameOver.wav");
         cambiarPantalla(panelPantallaTransicion);
     }
     public void cambiarPantallaGameOver(){
+        juegoIniciado=false;
         cambiarPantalla(panelPantallaGameOver);
     }
     public void cambiarPantallaPrincipal() {
@@ -139,8 +145,6 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         cambiarPantalla(panelPantallaPrincipal);
     }
     public void cambiarPantallaFinDelJuego() {
-        Sonido.getInstancia().frenarMusica();
-        Sonido.getInstancia().reproducirEfectoDeSonido("gameOver.wav");
         cambiarPantalla(panelPantallaFinDelJuego);
     }
     public void cambiarPantallaDominio() {
@@ -165,7 +169,11 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
             panelPantallaJuego.setComponentZOrder(enemigo.getObserver().getImagen(),3);
         }
         refrescar();
-        //controladorDeSonido.reproducirSonidoDeFondo();
+        juegoIniciado = true;
+        movDerecha = false;
+        movIzquierda = false;
+        disparando = false;
+        empujando = false;
     }
     public void setDominio(String dominio){
         this.dominio=dominio;
@@ -174,9 +182,17 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public void setModoJuego(String modo) {
         modoDeJuego=modo;
         miJuego.setModoDeJuego(modo);
-        String nombre = javax.swing.JOptionPane.showInputDialog(ventana,"Ingresa tu nombre para el ranking:","Registro de Jugador",javax.swing.JOptionPane.PLAIN_MESSAGE);
-        if (nombre == null || nombre.trim().isEmpty())
-            cambiarPantallaFinDelJuego();
+        String nombre=null;
+        while(nombre==null || nombre.trim().isEmpty()){
+            nombre = javax.swing.JOptionPane.showInputDialog(ventana,"Ingresa tu nombre para el ranking:","Registro de Jugador",javax.swing.JOptionPane.PLAIN_MESSAGE);
+            if (nombre == null) {
+                int opcion = javax.swing.JOptionPane.showConfirmDialog(ventana,"❄️ ¿Seguro que deseas salir del juego?","Confirmar salida",javax.swing.JOptionPane.YES_NO_OPTION,javax.swing.JOptionPane.QUESTION_MESSAGE);
+                if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            } else if (nombre.trim().isEmpty())
+                    javax.swing.JOptionPane.showMessageDialog(ventana,"⚠️ Debes ingresar un nombre para jugar.","Nombre inválido",javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
         miJuego.setNombreJugador(nombre);
         miJuego.getRanking().setJugador(nombre, 0, modo);
     }
@@ -186,10 +202,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public void reiniciarNivel(){
         miJuego.reiniciarNivel();
     }
-    public ObserverGrafico registrarEntidad(EntidadDinamica entidad){
-        ObserverGrafico observerEntidad = panelPantallaJuego.incorporarEntidad(entidad);
+    public void registrarEntidad(EntidadDinamica entidad){
+        panelPantallaJuego.incorporarEntidad(entidad);
         refrescar();
-        return observerEntidad;
     }
     public ObserverPlataformaMovil registrarEntidad(PlataformaMovil entidad){
         ObserverPlataformaMovil observerPlataforma = panelPantallaJuego.incorporarEntidad(entidad);
@@ -199,10 +214,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public void registrarEntidadEstatica(EntidadEstatica e){
         panelPantallaJuego.incorporarEntidadEstatica(e);
     }
-    public ObserverJugador registrarEntidad(Jugador jugador) {
-        ObserverJugador observerJugador = panelPantallaJuego.incorporarEntidadJugador(jugador);
+    public void registrarEntidad(Jugador jugador) {
+        panelPantallaJuego.incorporarEntidadJugador(jugador);
         refrescar();
-        return observerJugador;
     }
    // public Observer registrarSilueta(Entidad silueta) {
         //Observer observer_silueta = panelPantallaJuego.incorporarSilueta(silueta);

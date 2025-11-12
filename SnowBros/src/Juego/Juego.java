@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -129,7 +130,8 @@ public class Juego {
                     }
                     if(!nivelActual.getBolasDeFuego().isEmpty()){
                         for (BolaDeFuego bomba: new ArrayList<>(nivelActual.getBolasDeFuego()))
-                            if (bomba.kamakichiBomba() && bomba.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
+                            if (bomba!=null && bomba.kamakichiBomba() && bomba.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
+                            //TODO tiro excepcion por eso chequa null
                                 plataforma.aceptar(bomba);
                     }
                 }
@@ -257,7 +259,7 @@ public class Juego {
             jugador=null;
             tiempo.reiniciar();
             tiempoAntesAparicionCalabaza.reiniciar();
-            controladorGrafica.cambiarPantallaFinDelJuego(); // gameOver
+            controladorGrafica.cambiarPantallaGameOver(); // gameOver
         }
         else 
             controladorGrafica.cambiarInicioJuego();
@@ -343,28 +345,18 @@ public class Juego {
     public void registrarObservers(){
         registrarObserverJugador();
         registrarObserversEntidades(nivel.getEnemigos());
-        registrarObserversEntidades(nivel.getDisparos());
         registrarObserversPlataformas(nivel.getPlataformasMovil());
     }
     public void registrarObserverJugador(){
-    	ObserverJugador observerJugador = controladorGrafica.registrarEntidad(jugador);
-		jugador.registrarObserver(observerJugador);
+    	controladorGrafica.registrarEntidad(jugador);
 	}	
     public void registrarObserverEntidad(EntidadDinamica entidad){
-        ObserverGrafico observer = controladorGrafica.registrarEntidad(entidad);//observerEntidad?
-        EntidadDinamica e=(EntidadDinamica) entidad;
-		e.registrarObserver(observer);
-    }
-    public void registrarObserverEntidad(PlataformaMovil entidad){
-        ObserverPlataformaMovil observer = controladorGrafica.registrarEntidad(entidad);//observerEntidad?
-        PlataformaMovil e= entidad;
-		e.registrarObserver(observer);
+        controladorGrafica.registrarEntidad(entidad);//observerEntidad?
     }
 	protected void registrarObserversEntidades(List<? extends Entidad> entidades) {
 		for(Entidad entidad : entidades) {
             EntidadDinamica e=(EntidadDinamica) entidad;
-			ObserverGrafico observer = controladorGrafica.registrarEntidad(e);//observerEntidad?
-			e.registrarObserver(observer);
+			controladorGrafica.registrarEntidad(e);//observerEntidad?
 		}
     }
     protected void registrarObserversPlataformas(List<? extends Entidad> entidades) {
@@ -403,16 +395,14 @@ public class Juego {
         this.modoDeJuego=modo;
     }  
     private void crearCalabaza(){
-        Calabaza cala=fabricaEntidades.getCalabaza(320, 120);
-        ObserverGrafico observer = controladorGrafica.registrarEntidad(cala);
-        cala.registrarObserver(observer);
+        Calabaza cala=fabricaEntidades.getCalabaza(ConstantesEntidades.X_CALABAZA, ConstantesEntidades.Y_CALABAZA);
+        controladorGrafica.registrarEntidad(cala);
         if(nivel!=null)
             nivel.agregarCalabaza(cala);
     }
     public void crearMoghera(){
-        Moghera moghera=fabricaEntidades.getMoghera(730, 70);
-        ObserverGrafico observer= controladorGrafica.registrarEntidad(moghera);
-        moghera.registrarObserver(observer);
+        Moghera moghera=fabricaEntidades.getMoghera(ConstantesEntidades.X_MOGHERA,ConstantesEntidades.Y_MOGHERA);
+        controladorGrafica.registrarEntidad(moghera);
         moghera.setActivo(true);
         nivel.agregarEnemigo(moghera);
     }
@@ -421,8 +411,7 @@ public class Juego {
         bola.setPuntajeEmpujado(puntajeEmpujado);
         bola.setNivel(nivel);
         nivel.agregarBolaDeNieve(bola);
-        ObserverGrafico observer=controladorGrafica.registrarEntidad(bola);
-        bola.registrarObserver(observer);
+        controladorGrafica.registrarEntidad(bola);
     }
     public void shootJugador() {
         long tiempoHilo=System.currentTimeMillis();
@@ -449,7 +438,7 @@ public class Juego {
                     tiempoUltimoParpadeo=tiempoHilo;
                 }
                 try {
-                    Thread.sleep(50); // para no saturar el CPU
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }       

@@ -1,11 +1,8 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Jugador;
-
 import java.awt.Rectangle;
-
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
-import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Grafica.Sprite;
@@ -34,7 +31,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
     protected BolaDeNieve empujandoBola;
     protected boolean chocoParedIzq=false;
     protected boolean chocoParedDer=false;
-
     
     public Jugador(int x,int y, Sprite mISprite){//no se usa observerJugador y en entidadDinamica se le asigna un observer a cada uno
         super(x,y,mISprite);
@@ -157,7 +153,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public int getDirAnterior(){
         return dirAnterior;
     }
-
     public int getVelocidad(){
         return velocidad;
     }
@@ -233,22 +228,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
             b.getTiempoDeEfecto().resetear();
         } );
         b.getTiempoDeEfecto().iniciar();
-        
-        /*        if(afectadoBotellaAzul){
-            return;
-        }
-        afectadoBotellaAzul=true;
-        velocidad=ConstantesDificultad.EFECTO_BOTELLA_AZUL;
-        hiloBotellaAzul=new Thread(()->{
-        try{
-            Thread.sleep(ConstantesTiempos.TIEMPO_EFECTO_POWER_UP);
-        }catch(InterruptedException e){
-            //podria tocar otros power ups tmb pero no del mismo
-        }
-            velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
-            afectadoBotellaAzul=false;
-        });
-        hiloBotellaAzul.start();  */
     }
     private void efectoBotellaRoja(BotellaRoja b){
         if(disparoAumentado)    
@@ -264,7 +243,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
         return disparoAumentado;
     }
     private void efectoBotellaVerde(BotellaVerde b){
-        //efecto de botella verde oooooo
         miJuego.getNivelActual().efectoBotellaVerde(true);
         b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
             miJuego.getNivelActual().efectoBotellaVerde(false);
@@ -282,12 +260,10 @@ public class Jugador extends EntidadDinamica implements Visitable{
             miJuego.getControlador().setMoverIzq(false);
             chocoParedDer=true;
         }
-        
     }
     public void visitar(Enemigo e){
-        if(e.getCongelado()){
+        if(e.getCongelado())
             e.convertirEnBola();
-        }
         else
             this.perderVida();
     }

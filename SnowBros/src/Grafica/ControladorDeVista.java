@@ -10,5 +10,4 @@ interface ControladorDeVista {
     public void cambiarPantallaPrincipal();
     public void cambiarPantallaFinDelJuego();
     public void cambiarPantallaDominio();
-    public void setModoJuego(String modo);
 }
