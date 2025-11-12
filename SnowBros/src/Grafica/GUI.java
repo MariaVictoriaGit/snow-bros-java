@@ -76,7 +76,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                     case KeyEvent.VK_S:
                         if(miJuego.getJugador().estaHabilitadoASubirEscalera()){
                             miJuego.getJugador().mover(ConstantesEntidades.ABAJO);
-                            miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ABAJO, miJuego.getJugador().getTocandoSuelo());
+                            miJuego.getJugador().getObserver().actualizar();
                         }
                         break;
                     case KeyEvent.VK_SPACE:

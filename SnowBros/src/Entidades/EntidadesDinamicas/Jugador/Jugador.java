@@ -4,7 +4,6 @@ import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
-import SnowBros.src.Grafica.ObserverJugador;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Juego.Sonido;
@@ -36,8 +35,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
         super(x,y,mISprite);
         vidas=ConstantesDificultad.VIDAS_INICIO;
         tocandoSuelo=ConstantesEntidades.SUELO;
-        observer=new ObserverJugador(this);
-        registrarObserver(observer);
         velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
         posXoriginal = x;
         posYoriginal = y;
@@ -108,23 +105,23 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public void actualizarPuntaje(int puntaje){
         miJuego.actualizarPuntaje(puntaje);
     }
-    public String generarClaveEstado(int direccionAnterior){
+    public String generarClaveEstado(){
         String claveADevolver=null;
         switch(direccion){
             case ConstantesEntidades.IZQUIERDA:
                 claveADevolver="moverIzquierda";
                 break;
             case ConstantesEntidades.QUIETO:
-                if (direccionAnterior == ConstantesEntidades.IZQUIERDA)
+                if (dirAnterior == ConstantesEntidades.IZQUIERDA)
                     claveADevolver="idleIzquierda";
-                else if (dirAnterior == ConstantesEntidades.DERECHA)
+                else
                     claveADevolver="idleDerecha";
                 break;
             case ConstantesEntidades.DERECHA:
                 claveADevolver= "moverDerecha";
                 break;
             case ConstantesEntidades.ARRIBA:
-                if(direccionAnterior==ConstantesEntidades.IZQUIERDA)
+                if(dirAnterior==ConstantesEntidades.IZQUIERDA)
                     claveADevolver="saltandoIzquierda";
                 else
                     claveADevolver="saltandoDerecha";
@@ -185,7 +182,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
                 miJuego.actualizarVidas();
                 posX = posXoriginal;
                 posY = posYoriginal;
-                this.getObserver().actualizar(direccion, getTocandoSuelo());
+                this.getObserver().actualizar();
                 this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 miJuego.setReinicio(true);
                 iniciarInvencibilidad();
