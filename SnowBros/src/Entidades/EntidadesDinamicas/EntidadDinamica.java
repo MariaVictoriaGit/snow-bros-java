@@ -102,7 +102,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
       actualizarCaida();
     }
   }
-  protected abstract void verificarPared(Pared p);
+  //protected abstract void verificarPared(Pared p);
   private void actualizarCaida(){
     if(tocandoSuelo==ConstantesEntidades.AIRE){
       velocidadY=ConstantesDificultad.VELOCIDAD_ENTIDAD_DINAMICA_Y;
@@ -162,10 +162,10 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   public void visitar(Fruta f) {}
   public void visitar(VidaExtra v) {}
   public void visitar(Pared e){
-    this.verificarPared(e);
+   // this.verificarPared(e);
   }
   public void visitar(ParedDestructible e) {
-    verificarPared(e);
+   // verificarPared(e);
   }
   public void visitar(Escalera e) {
       if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
