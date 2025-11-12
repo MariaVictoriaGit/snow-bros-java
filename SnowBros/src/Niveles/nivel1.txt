@@ -29,7 +29,7 @@ Jugador 416 80
 
 DemonioRojo 288 48
 
-TrampaPinchos 32 110
+ParedDestructible 32 110
 
 Plataforma 0 80 
 Plataforma 32 80
