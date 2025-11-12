@@ -122,7 +122,8 @@ public class Juego {
                     }
                     if(!nivelActual.getBolasDeFuego().isEmpty()){
                         for (BolaDeFuego bomba: new ArrayList<>(nivelActual.getBolasDeFuego()))
-                            if (bomba.kamakichiBomba() && bomba.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
+                            if (bomba!=null && bomba.kamakichiBomba() && bomba.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
+                            //TODO tiro excepcion por eso chequa null
                                 plataforma.aceptar(bomba);
                     }
                 }

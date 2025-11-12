@@ -28,6 +28,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     private boolean movIzquierda=false;
     private boolean disparando=false;
     private boolean empujando=false;
+    private boolean juegoIniciado=false;
     protected String dominio;
     protected String modoDeJuego;
 
@@ -57,6 +58,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     private void addWindowKeyListener() {
         ventana.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent event) {
+                if(!juegoIniciado) return;
                 int keyCode=event.getKeyCode();
                 switch(keyCode){
                     case KeyEvent.VK_A:
@@ -88,6 +90,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                 }
             }
             public void keyReleased(KeyEvent event) {
+                if (!juegoIniciado) return;
                 int keyCode=event.getKeyCode();
                 if (keyCode==KeyEvent.VK_A || keyCode==KeyEvent.VK_D)
                     if(keyCode==KeyEvent.VK_A)
@@ -133,6 +136,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         cambiarPantalla(panelPantallaTransicion);
     }
     public void cambiarPantallaGameOver(){
+        juegoIniciado=false;
         cambiarPantalla(panelPantallaGameOver);
     }
     public void cambiarPantallaPrincipal() {
@@ -164,7 +168,11 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         //    panelPantallaJuego.setComponentZOrder(enemigo.getObserver().getImagen(),3);
         //}
         refrescar();
-        //controladorDeSonido.reproducirSonidoDeFondo();
+        juegoIniciado = true;
+        movDerecha = false;
+        movIzquierda = false;
+        disparando = false;
+        empujando = false;
     }
     public void setDominio(String dominio){
         this.dominio=dominio;
