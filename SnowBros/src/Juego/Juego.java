@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -386,13 +387,13 @@ public class Juego {
         this.modoDeJuego=modo;
     }  
     private void crearCalabaza(){
-        Calabaza cala=fabricaEntidades.getCalabaza(320, 120);
+        Calabaza cala=fabricaEntidades.getCalabaza(ConstantesEntidades.X_CALABAZA, ConstantesEntidades.Y_CALABAZA);
         controladorGrafica.registrarEntidad(cala);
         if(nivel!=null)
             nivel.agregarCalabaza(cala);
     }
     public void crearMoghera(){
-        Moghera moghera=fabricaEntidades.getMoghera(730, 70);
+        Moghera moghera=fabricaEntidades.getMoghera(ConstantesEntidades.X_MOGHERA,ConstantesEntidades.Y_MOGHERA);
         controladorGrafica.registrarEntidad(moghera);
         moghera.setActivo(true);
         nivel.agregarEnemigo(moghera);
@@ -429,7 +430,7 @@ public class Juego {
                     tiempoUltimoParpadeo=tiempoHilo;
                 }
                 try {
-                    Thread.sleep(50); // para no saturar el CPU
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }       

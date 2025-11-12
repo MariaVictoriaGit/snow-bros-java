@@ -181,7 +181,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public void setModoJuego(String modo) {
         modoDeJuego=modo;
         miJuego.setModoDeJuego(modo);
-                String nombre=null;
+        String nombre=null;
         while(nombre==null || nombre.trim().isEmpty()){
             nombre = javax.swing.JOptionPane.showInputDialog(ventana,"Ingresa tu nombre para el ranking:","Registro de Jugador",javax.swing.JOptionPane.PLAIN_MESSAGE);
             if (nombre == null) {
@@ -190,7 +190,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                     System.exit(0);
                 }
             } else if (nombre.trim().isEmpty())
-                javax.swing.JOptionPane.showMessageDialog(ventana,"⚠️ Debes ingresar un nombre para jugar.","Nombre inválido",javax.swing.JOptionPane.WARNING_MESSAGE);
+                    javax.swing.JOptionPane.showMessageDialog(ventana,"⚠️ Debes ingresar un nombre para jugar.","Nombre inválido",javax.swing.JOptionPane.WARNING_MESSAGE);
         }
         miJuego.setNombreJugador(nombre);
         miJuego.getRanking().setJugador(nombre, 0, modo);

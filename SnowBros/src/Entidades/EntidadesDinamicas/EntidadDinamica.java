@@ -1,9 +1,7 @@
 package SnowBros.src.Entidades.EntidadesDinamicas;
-import java.awt.Rectangle;
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
-import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
