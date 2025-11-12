@@ -128,6 +128,8 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         refrescar();
     }
     public void cambiarPantallaTransicion(){
+        Sonido.getInstancia().frenarMusica();
+        Sonido.getInstancia().reproducirEfectoDeSonido("gameOver.wav");
         cambiarPantalla(panelPantallaTransicion);
     }
     public void cambiarPantallaGameOver(){
@@ -138,8 +140,6 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         cambiarPantalla(panelPantallaPrincipal);
     }
     public void cambiarPantallaFinDelJuego() {
-        Sonido.getInstancia().frenarMusica();
-        Sonido.getInstancia().reproducirEfectoDeSonido("gameOver.wav");
         cambiarPantalla(panelPantallaFinDelJuego);
     }
     public void cambiarPantallaDominio() {
@@ -173,9 +173,17 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public void setModoJuego(String modo) {
         modoDeJuego=modo;
         miJuego.setModoDeJuego(modo);
-        String nombre = javax.swing.JOptionPane.showInputDialog(ventana,"Ingresa tu nombre para el ranking:","Registro de Jugador",javax.swing.JOptionPane.PLAIN_MESSAGE);
-        if (nombre == null || nombre.trim().isEmpty())
-            cambiarPantallaFinDelJuego();
+                String nombre=null;
+        while(nombre==null || nombre.trim().isEmpty()){
+            nombre = javax.swing.JOptionPane.showInputDialog(ventana,"Ingresa tu nombre para el ranking:","Registro de Jugador",javax.swing.JOptionPane.PLAIN_MESSAGE);
+            if (nombre == null) {
+                int opcion = javax.swing.JOptionPane.showConfirmDialog(ventana,"❄️ ¿Seguro que deseas salir del juego?","Confirmar salida",javax.swing.JOptionPane.YES_NO_OPTION,javax.swing.JOptionPane.QUESTION_MESSAGE);
+                if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            } else if (nombre.trim().isEmpty())
+                javax.swing.JOptionPane.showMessageDialog(ventana,"⚠️ Debes ingresar un nombre para jugar.","Nombre inválido",javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
         miJuego.setNombreJugador(nombre);
         miJuego.getRanking().setJugador(nombre, 0, modo);
     }

@@ -249,7 +249,7 @@ public class Juego {
             jugador=null;
             tiempo.reiniciar();
             tiempoAntesAparicionCalabaza.reiniciar();
-            controladorGrafica.cambiarPantallaFinDelJuego(); // gameOver
+            controladorGrafica.cambiarPantallaGameOver(); // gameOver
         }
         else 
             controladorGrafica.cambiarInicioJuego();
