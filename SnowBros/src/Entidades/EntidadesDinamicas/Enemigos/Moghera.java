@@ -144,6 +144,15 @@ public class Moghera extends Enemigo{
                     hitbox.actualizarHitbox(posX, posY, 76, 90);
                 }
                 break;
+            case ConstantesEntidades.QUIETO:
+                if(congelado){
+                    clave="congeladoDerecha";
+                    hitbox.actualizarHitbox(posX, posY, 42, 32);
+                }
+                else{
+                    clave="idleDerecha";
+                    hitbox.actualizarHitbox(posX, posY, 76, 90);
+                }
         }
         return clave;
     }
