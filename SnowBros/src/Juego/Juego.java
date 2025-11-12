@@ -116,6 +116,13 @@ public class Juego {
                     }
                 }
                 for(Plataforma plataforma: nivelActual.getPlataformas()){
+                    if (jugadorActual.getHitbox().getLeftHitBox().intersects(plataforma.getHitbox().getRectangle())){
+                        jugadorActual.chocaLadoPlataforma(true);
+                    } 
+                    if (jugadorActual.getHitbox().getRightHitBox().intersects(plataforma.getHitbox().getRectangle())){
+                        jugadorActual.chocaLadoPlataforma(false);
+                    }
+
                     if(!nivelActual.getDisparos().isEmpty()){
                         for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
                             if (disparo.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
@@ -161,8 +168,14 @@ public class Juego {
                         colisionSuelo = true;
                     }
                     for(Enemigo enemigo:nivelActual.getEnemigos())
-                            if(suelo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
-                                suelo.aceptar(enemigo);
+                        if(suelo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
+                            suelo.aceptar(enemigo);
+                    for(BolaDeNieve bola:nivelActual.getBolasDeNieve()){
+                        if(suelo.getHitbox().getRectangle().intersects(bola.getHitbox().getRectangle())) 
+                            suelo.aceptar(bola);
+                    }
+                    if(nivel.getCalabaza()!=null && suelo.getHitbox().getRectangle().intersects(nivel.getCalabaza().getHitbox().getRectangle())) 
+                        suelo.aceptar(nivel.getCalabaza());
                 }
                 if (!colisionBola && !colisionSuelo) {
                     jugadorActual.setVelocidadBase();
@@ -190,8 +203,9 @@ public class Juego {
                     jugadorActual.verificarSuelo();
                 for (Enemigo enemigo : nivelActual.getEnemigos()) {
                    enemigo.patronDeMovimiento();        
-                   enemigo.verificarSuelo(); 
                    enemigo.actualizarSalto();
+                   if(!enemigo.getSaltando())
+                        enemigo.verificarSuelo(); 
                    if(enemigo.getCongelado()){
                         enemigo.actualizarTiempoCongelado();
                    }

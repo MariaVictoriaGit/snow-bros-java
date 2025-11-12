@@ -12,7 +12,7 @@ public class ConstantesEntidades{
     public static final int ABAJO=15005;
     public static final int QUIETO=0;
     //Constantes Sprites DIRECCION 
-    public static final int MARGEN_HIT_BOX=2;
+    public static final int MARGEN_HIT_BOX=1;
 
     public static final int X_CALABAZA =320;
     public static final int Y_CALABAZA =120;

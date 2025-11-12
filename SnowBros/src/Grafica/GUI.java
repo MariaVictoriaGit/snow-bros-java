@@ -8,6 +8,7 @@ import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Juego.Juego;
 import SnowBros.src.Juego.Sonido;
@@ -163,10 +164,10 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         panelPantallaJuego.mostrarPlataformas();
         panelPantallaJuego.mostrarObstaculos();
         panelPantallaJuego.incorporarSilueta(miJuego.getNivelActual().getSilueta());
-    //    panelPantallaJuego.setComponentZOrder(miJuego.getJugador().getObserver().getImagen(),3);
-      //  for(Enemigo enemigo:miJuego.getNivelActual().getEnemigos()){
-        //    panelPantallaJuego.setComponentZOrder(enemigo.getObserver().getImagen(),3);
-        //}
+        panelPantallaJuego.setComponentZOrder(miJuego.getJugador().getObserver().getImagen(),3);
+        for(Enemigo enemigo:miJuego.getNivelActual().getEnemigos()){
+            panelPantallaJuego.setComponentZOrder(enemigo.getObserver().getImagen(),3);
+        }
         refrescar();
         juegoIniciado = true;
         movDerecha = false;

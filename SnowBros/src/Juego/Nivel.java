@@ -193,16 +193,24 @@ public class Nivel {
         if(efecto){
             for(Enemigo enemigo : new ArrayList<>(listaEnemigos))
                 enemigo.detener();
-            for(Fantasma fantasma : new ArrayList<>(listaFantasmas))
-                fantasma.detener();
-            calabaza.detener();
+            if(calabaza!=null){
+                calabaza.detener();
+                if(listaFantasmas.size()!=0){
+                    for(Fantasma fantasma : new ArrayList<>(listaFantasmas))
+                        fantasma.detener();
+                }
+            }
         }
         else{
             for(Enemigo enemigo : new ArrayList<>(listaEnemigos))
                 enemigo.avanzar();
-            for(Fantasma fantasma : new ArrayList<>(listaFantasmas))
-                fantasma.avanzar();
-            calabaza.avanzar();
+            if(calabaza!=null){
+                calabaza.avanzar();
+                if(listaFantasmas.size()!=0){
+                    for(Fantasma fantasma : new ArrayList<>(listaFantasmas))
+                        fantasma.avanzar();
+                }
+            }
         }
     }
     public Juego getJuego(){
