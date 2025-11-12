@@ -8,8 +8,7 @@ import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
-import SnowBros.src.Grafica.ObserverEntidad;
-import SnowBros.src.Grafica.ObserverGrafico;
+import SnowBros.src.Grafica.ObserverEntidad; 
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Visitor.Visitador;
@@ -25,11 +24,10 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   protected int alturaMax;
   protected int tocandoSuelo;
   protected int velocidadSalto;
-  protected ObserverGrafico observer;//ObserverEntidad
+  protected ObserverEntidad observer;//ObserverEntidad
   public EntidadDinamica(int posX, int posY, Sprite mSprite){
     super(posX, posY, mSprite);
     observer=new ObserverEntidad(this);
-    registrarObserver(observer);
     velocidad=ConstantesDificultad.VELOCIDAD_ENTIDAD_DINAMICA_X;
     velocidadY=ConstantesDificultad.VELOCIDAD_ENTIDAD_DINAMICA_Y;
     alturaMax=ConstantesDificultad.ALTURA_MAX_SALTO;
@@ -61,24 +59,28 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     this.setTocandoSuelo(tocandoSuelo);
     this.direccion=direccion;
   }
-  public void registrarObserver(ObserverGrafico observer){//ObserverEntidad
-    this.observer= observer;
-  }
   public void setTocandoSuelo(int estado){
     tocandoSuelo=estado;
   }
   public String generarClaveEstado(){
     String estado=null;
-    if(direccion==ConstantesEntidades.IZQUIERDA)
-      estado="idleIzquierda";
-    else
-      estado="idleDerecha";
+    switch (direccion) {
+      case ConstantesEntidades.IZQUIERDA:
+        estado="idleIzquierda";
+        break;
+      case ConstantesEntidades.DERECHA:
+        estado="idleDerecha";
+        break;
+      case ConstantesEntidades.QUIETO:
+        estado="idleIzquierda";
+        break;
+    }
     return estado;
   }
   public int getTocandoSuelo(){
     return tocandoSuelo;
   }
-  public ObserverGrafico getObserver(){
+  public ObserverEntidad getObserver(){
     return observer;
   }
   public void notificarObserver(){

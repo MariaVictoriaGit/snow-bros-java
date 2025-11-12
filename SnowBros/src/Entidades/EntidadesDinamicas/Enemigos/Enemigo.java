@@ -35,6 +35,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       activarJefe=false;//para Moghera y kamaki
       jefeDerrotado=false;
       tocandoSuelo=ConstantesEntidades.SUELO;
+      direccion=ConstantesEntidades.QUIETO;
    }
    public abstract void mover();
    public void detener(){

@@ -3,7 +3,6 @@ import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Datos.EstadosDePatron;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -15,7 +14,7 @@ public class Moghera extends Enemigo{
     public Moghera(int x, int y, Sprite sprite){
         super(x, y, sprite);
         ancho=76;
-        alto=96;
+        alto=79;
         salud=ConstantesDificultad.SALUD_MOGHERA;
         velocidad=ConstantesDificultad.VELOCIDAD_MOGHERA;
         alturaMax=ConstantesDificultad.ALTURA_MAX_SALTO*4;
@@ -141,6 +140,15 @@ public class Moghera extends Enemigo{
                     hitbox.actualizarHitbox(posX, posY, 76, 90);
                 }
                 break;
+            case ConstantesEntidades.QUIETO:
+                if(congelado){
+                    clave="congeladoDerecha";
+                    hitbox.actualizarHitbox(posX, posY, 42, 32);
+                }
+                else{
+                    clave="idleDerecha";
+                    hitbox.actualizarHitbox(posX, posY, 76, 90);
+                }
         }
         return clave;
     }
