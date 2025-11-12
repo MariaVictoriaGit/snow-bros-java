@@ -20,6 +20,7 @@ public class HitBox {
     public Rectangle getRectangle(){
         return hitbox;
     }
+    
     public Rectangle getTopHitBox(){
         return new Rectangle(hitbox.x, hitbox.y-margen, hitbox.width, margen);
     }
@@ -27,10 +28,10 @@ public class HitBox {
         return new Rectangle(hitbox.x, hitbox.y+hitbox.height, hitbox.width, margen);
     }
     public Rectangle getLeftHitBox(){
-        return new Rectangle(hitbox.x-margen, hitbox.y, margen, hitbox.height);
+        return new Rectangle(hitbox.x-margen, hitbox.y, margen, hitbox.height-5);
     }
     public Rectangle getRightHitBox(){
-        return new Rectangle(hitbox.x+hitbox.width, hitbox.y, margen, hitbox.height);
+        return new Rectangle(hitbox.x+hitbox.width, hitbox.y, margen, hitbox.height-5);
     }
     public int getX(){
         return hitbox.x;

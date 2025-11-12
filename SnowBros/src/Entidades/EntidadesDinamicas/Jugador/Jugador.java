@@ -182,6 +182,16 @@ public class Jugador extends EntidadDinamica implements Visitable{
         chocoParedIzq=b;
         chocoParedDer=b;
     }
+    public void chocaLadoPlataforma(boolean ladoIzq){
+        if(ladoIzq){
+            posX+=3;
+            chocoParedIzq=true;
+        }
+        else{
+            posX-=3;
+            chocoParedIzq=true;
+        }
+    }
     public void perderVida(){
         if (!invencible){
             Sonido.getInstancia().reproducirEfectoDeSonido("muerte.wav");

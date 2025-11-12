@@ -3,6 +3,7 @@ import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Datos.EstadosDePatron;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -13,10 +14,11 @@ public class Moghera extends Enemigo{
     private boolean bolaLanzada;
     public Moghera(int x, int y, Sprite sprite){
         super(x, y, sprite);
-        ancho=ancho*3;
-        alto=alto*3;
+        ancho=76;
+        alto=96;
         salud=ConstantesDificultad.SALUD_MOGHERA;
         velocidad=ConstantesDificultad.VELOCIDAD_MOGHERA;
+        alturaMax=ConstantesDificultad.ALTURA_MAX_SALTO*4;
     }
     public void mover(){
         if(!detenido)
@@ -39,6 +41,9 @@ public class Moghera extends Enemigo{
                         posX+=1;
                         this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     }
+                    break;
+                case ConstantesEntidades.ARRIBA:
+                    iniciarSalto();
                     break;
             } 
     }
@@ -68,10 +73,15 @@ public class Moghera extends Enemigo{
                 if (ahora - tiempoEstado > 3000) { // espera 2 segundos
                     mover();
                     if (dirAnterior == ConstantesEntidades.DERECHA)
-                        estado = EstadosDePatron.MOVERIZQUIERDA;
+                        estado = EstadosDePatron.MOVERDERECHA;
                     else
                         estado = EstadosDePatron.MOVERDERECHA;
                 }
+            break;
+        case EstadosDePatron.SALTAR:
+            direccion=ConstantesEntidades.ARRIBA;
+            mover();
+            estado=EstadosDePatron.ESPERAR;
             break;
         }
     }

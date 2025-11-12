@@ -24,7 +24,9 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   protected boolean saltando;
   protected boolean enAire;
   private int alturaSalto;
+  protected int alturaMax;
   protected int tocandoSuelo;
+  protected int velocidadSalto;
   protected ObserverGrafico observer;//ObserverEntidad
   public EntidadDinamica(int posX, int posY, Sprite mSprite){
     super(posX, posY, mSprite);
@@ -32,6 +34,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     registrarObserver(observer);
     velocidad=ConstantesDificultad.VELOCIDAD_ENTIDAD_DINAMICA_X;
     velocidadY=ConstantesDificultad.VELOCIDAD_ENTIDAD_DINAMICA_Y;
+    alturaMax=ConstantesDificultad.ALTURA_MAX_SALTO;
     alturaSalto=0;
     enAire=false;
     saltando=false;
@@ -87,7 +90,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     boolean enSuelo=false;
     for(Plataforma p:this.nivel.getPlataformas()){
       if(nivel.getJugador().getJuego().estaCerca(this,p,40)){
-        if(hitbox.getBottomHitBox().intersects(p.getHitbox().getRectangle())){
+        if(hitbox.getBottomHitBox().intersects(p.getHitbox().getTopHitBox())){
           enSuelo=true;
         }
       }
@@ -123,7 +126,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   }
   public void actualizarSalto() {
     if (saltando) {
-        if (alturaSalto < ConstantesDificultad.ALTURA_MAX_SALTO) {
+        if (alturaSalto < alturaMax) {
             posY -= ConstantesDificultad.VELOCIDAD_SALTO;
             alturaSalto+=ConstantesDificultad.VELOCIDAD_SALTO;
             this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);

@@ -115,6 +115,13 @@ public class Juego {
                     }
                 }
                 for(Plataforma plataforma: nivelActual.getPlataformas()){
+                    if (jugadorActual.getHitbox().getLeftHitBox().intersects(plataforma.getHitbox().getRectangle())){
+                        jugadorActual.chocaLadoPlataforma(true);
+                    } 
+                    if (jugadorActual.getHitbox().getRightHitBox().intersects(plataforma.getHitbox().getRectangle())){
+                        jugadorActual.chocaLadoPlataforma(false);
+                    }
+
                     if(!nivelActual.getDisparos().isEmpty()){
                         for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
                             if (disparo.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
@@ -188,8 +195,9 @@ public class Juego {
                     jugadorActual.verificarSuelo();
                 for (Enemigo enemigo : nivelActual.getEnemigos()) {
                    enemigo.patronDeMovimiento();        
-                   enemigo.verificarSuelo(); 
                    enemigo.actualizarSalto();
+                   if(!enemigo.getSaltando())
+                        enemigo.verificarSuelo(); 
                    if(enemigo.getCongelado()){
                         enemigo.actualizarTiempoCongelado();
                    }
