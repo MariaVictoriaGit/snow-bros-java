@@ -193,16 +193,24 @@ public class Nivel {
         if(efecto){
             for(Enemigo enemigo : new ArrayList<>(listaEnemigos))
                 enemigo.detener();
-            for(Fantasma fantasma : new ArrayList<>(listaFantasmas))
-                fantasma.detener();
-            calabaza.detener();
+            if(calabaza!=null){
+                calabaza.detener();
+                if(listaFantasmas.size()!=0){
+                    for(Fantasma fantasma : new ArrayList<>(listaFantasmas))
+                        fantasma.detener();
+                }
+            }
         }
         else{
             for(Enemigo enemigo : new ArrayList<>(listaEnemigos))
                 enemigo.avanzar();
-            for(Fantasma fantasma : new ArrayList<>(listaFantasmas))
-                fantasma.avanzar();
-            calabaza.avanzar();
+            if(calabaza!=null){
+                calabaza.avanzar();
+                if(listaFantasmas.size()!=0){
+                    for(Fantasma fantasma : new ArrayList<>(listaFantasmas))
+                        fantasma.avanzar();
+                }
+            }
         }
     }
     public Juego getJuego(){
@@ -215,25 +223,25 @@ public class Nivel {
         return silueta;
     }
     public void notificarObservers(){
-        jugador.getObserver().actualizar(jugador.getDireccion(), jugador.getTocandoSuelo());
+        jugador.getObserver().actualizar();
         for(Enemigo e:new ArrayList<>(this.getEnemigos()))
             if(!e.getCongelado() && !e.getMuerto() && e!=null)
-                e.getObserver().actualizar(e.getDireccion(),e.getTocandoSuelo());
+                e.getObserver().actualizar();
         for(BolaDeNieve b:this.getBolasDeNieve()){
             if(b!=null){
-                b.getObserver().actualizar(b.getDireccion(),b.getTocandoSuelo());
+                b.getObserver().actualizar();
             }
         }
         for(PlataformaMovil p:this.getPlataformasMovil())
             p.getObserver().actualizar();
         for(BolaDeFuego b : new ArrayList<>(this.getBolasDeFuego()))
                 if(b!=null)
-                    b.getObserver().actualizar(b.getDireccion(),b.getTocandoSuelo());
+                    b.getObserver().actualizar();
         if(calabaza!=null){
-            calabaza.getObserver().actualizar(calabaza.getDireccion(), calabaza.getTocandoSuelo());
+            calabaza.getObserver().actualizar();
             if(!this.getFantasmas().isEmpty()){
                 for(Fantasma f:this.getFantasmas()){
-                    f.getObserver().actualizar(f.getDireccion(), f.getTocandoSuelo());
+                    f.getObserver().actualizar();
                 }
             }
         }

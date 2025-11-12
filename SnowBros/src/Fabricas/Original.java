@@ -76,14 +76,10 @@ public class Original extends FabricaSprites{
     }
     public Sprite getSpriteMoghera(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("idleIzquierda", rutaACarpeta + "/Moghera/mogheraQuieto.png");//76x90
-        mapeo.put("idleDerecha", rutaACarpeta + "/Moghera/mogheraQuieto.png");        
-        mapeo.put("saltandoIzquierda", rutaACarpeta + "/Moghera/mogheraIzquierda.png");//32x54
-        mapeo.put("saltandoDerecha", rutaACarpeta + "/Moghera/mogheraDerecha.png");//32x54
-        mapeo.put("congeladoIzquierda", rutaACarpeta + "/Moghera/mogheraCongeladoIzquierda.png");//42x32
-        mapeo.put("congeladoDerecha", rutaACarpeta + "/Moghera/mogheraCongeladoDerecha.png");//42x32
+        mapeo.put("idleIzquierda", rutaACarpeta + "/Moghera/mogheraQuietoIzquierda.png");//76x90
+        mapeo.put("idleDerecha", rutaACarpeta + "/Moghera/mogheraQuietoDerecha.png");        
+        mapeo.put("congelado", rutaACarpeta + "/Moghera/mogheraCongelado.png");//42x32
         mapeo.put("disparo", rutaACarpeta + "/Moghera/mogheraDisparo.png");//82x82
-        mapeo.put("quieto", rutaACarpeta + "/Moghera/mogheraQuieto.png");//76x90
         mapeo.put("salto1", rutaACarpeta + "/Moghera/mogheraSalto1.png");//76x96
         mapeo.put("salto2", rutaACarpeta + "/Moghera/mogheraSalto2.png");//76x112
         return new Sprite(mapeo);
@@ -92,8 +88,6 @@ public class Original extends FabricaSprites{
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("idleIzquierda", rutaACarpeta + "/Kamakichi/kamakichiIzquierda.png");
         mapeo.put("idleDerecha", rutaACarpeta + "/Kamakichi/kamakichiDerecha.png");
-        //mapeo.put("quieto", rutaACarpeta + "/Kamakichi/kamakichiQuieto.png");
-        //mapeo.put("quieto2", rutaACarpeta + "/Kamakichi/kamakichiQuieto2.png");//TODO revisar alto
         mapeo.put("disparo", rutaACarpeta + "/Kamakichi/kamakichiDisparando.png");//44 alto
         mapeo.put("congelado", rutaACarpeta + "/Kamakichi/kamakichiCongelado.png");
         return new Sprite(mapeo);
@@ -191,7 +185,7 @@ public class Original extends FabricaSprites{
     public Sprite getSpriteDisparoJugador(){
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("idleDerecha", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalDerecha.gif");
-        mapeo.put("idleIzquierda", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalIzquierda.gif");
+        mapeo.put("normalIzquierda", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalIzquierda.gif");
         mapeo.put("aumentadoDerecha", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentadoDerecha.gif");
         mapeo.put("aumentadoIzquierda", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentadoIzquierda.gif");
         return new Sprite(mapeo);

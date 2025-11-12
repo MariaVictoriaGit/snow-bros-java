@@ -238,6 +238,11 @@ public class Juego {
                 if(nivelActual.terminoElNivel()){
                     crearMoghera();
                 }
+                if(nivelActual.getEnemigos().isEmpty()){
+                    superarNivel();
+                }
+
+
                 
                 nivelActual.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
