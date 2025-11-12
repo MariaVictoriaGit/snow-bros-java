@@ -14,7 +14,7 @@ public class Moghera extends Enemigo{
     public Moghera(int x, int y, Sprite sprite){
         super(x, y, sprite);
         ancho=76;
-        alto=96;
+        alto=79;
         salud=ConstantesDificultad.SALUD_MOGHERA;
         velocidad=ConstantesDificultad.VELOCIDAD_MOGHERA;
         alturaMax=ConstantesDificultad.ALTURA_MAX_SALTO*4;

@@ -86,40 +86,36 @@ PlataformaQuebradiza 768 208
 
 RanaDeFuego 704 240
 
-PlataformaMovil 96 240
-PlataformaMovil 128 240
-PlataformaMovil 160 240
-PlataformaMovil 192 240
-PlataformaMovil 224 240
+PlataformaMovil 96 208
+PlataformaMovil 128 208
+PlataformaMovil 160 208
+PlataformaMovil 192 208
+PlataformaMovil 224 208
 
+Plataforma 160 272
+Plataforma 192 272
+Plataforma 224 272
+Plataforma 256 272
+Plataforma 288 272
+Plataforma 320 272
+Plataforma 352 272
+Plataforma 384 272
+Plataforma 416 272
+Plataforma 448 272
 
+Plataforma 474 304
 
-Plataforma 160 304
-Plataforma 192 304
-Plataforma 224 304
-Plataforma 256 304
-Plataforma 288 304
-Plataforma 320 304
-Plataforma 352 304
-Plataforma 384 304
-Plataforma 416 304
-Plataforma 448 304
+Plataforma 506 336
 
-Plataforma 474 336
+Plataforma 538 368
 
-Plataforma 506 368
-
-Plataforma 538 400
-
-Plataforma 570 432
-Plataforma 602 432
-Plataforma 634 432
-Plataforma 666 432
-Plataforma 698 432
-Plataforma 730 432
-Plataforma 762 432
-Plataforma 794 432
-
-
+Plataforma 570 400
+Plataforma 602 400
+Plataforma 634 400
+Plataforma 666 400
+Plataforma 698 400
+Plataforma 730 400
+Plataforma 762 400
+Plataforma 794 400
 
 TrollAmarillo 320 304
