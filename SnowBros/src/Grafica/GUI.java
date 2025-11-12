@@ -81,7 +81,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                         }
                         break;
                     case KeyEvent.VK_SPACE:
-                        if(miJuego.getJugador().estaEmpujando()!=null){
+                        if(miJuego.getJugador().getBolaEmpujada()!=null){
                             disparando=false;
                             empujando=true;
                         } else{
@@ -246,6 +246,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     public void setMoverDer(boolean b){
         movDerecha=b;
+    }
+    public void setEmpujando(boolean b){
+        empujando=b;
     }
     public PanelPantallaJuego getPantalla(){
         return panelPantallaJuego;

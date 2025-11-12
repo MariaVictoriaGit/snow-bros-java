@@ -28,7 +28,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
     protected int posYoriginal;
     protected boolean habilitadoASubirEscalera;
     protected boolean invencible;
-    protected BolaDeNieve empujandoBola;
+    protected BolaDeNieve bolaEmpujada;
     protected boolean chocoParedIzq=false;
     protected boolean chocoParedDer=false;
     
@@ -42,7 +42,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         posXoriginal = x;
         posYoriginal = y;
         invencible=false;
-        empujandoBola=null;
+        bolaEmpujada=null;
     }
     public void mover(){}
     public void mover(int direccionAMover){
@@ -100,7 +100,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         velocidad= ConstantesDificultad.VELOCIDAD_JUGADOR;
     }
     public void setEmpujando(BolaDeNieve b){
-        empujandoBola=b;
+        bolaEmpujada=b;
     }
     public void eliminar(){
         nivel.eliminarJugador(this);
@@ -156,8 +156,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public int getVelocidad(){
         return velocidad;
     }
-    public BolaDeNieve estaEmpujando(){
-        return empujandoBola;
+    public BolaDeNieve getBolaEmpujada(){
+        return bolaEmpujada;
     }
     public void setDireccion(int direccionActual){
         if(direccionActual!=0)

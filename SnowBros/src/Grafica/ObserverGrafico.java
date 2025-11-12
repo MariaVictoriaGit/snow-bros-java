@@ -38,7 +38,7 @@ public class ObserverGrafico extends JLabel implements Observer{
 		setBounds(x, y+margenVisual, ancho, alto);
     }
 	protected void actualizarPosicionTamanoP(){
-		int margenVisual=4;
+		int margenVisual=2;
         int x = plataformaObservada.getPosX();
 		int y = plataformaObservada.getPosY();
 		int ancho = this.getIcon().getIconWidth();

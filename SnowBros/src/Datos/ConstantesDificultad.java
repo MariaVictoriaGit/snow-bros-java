@@ -5,7 +5,7 @@ public class ConstantesDificultad {
     public static final int POTENCIA_DISPARO_NORMAL=10;
     public static final int VELOCIDAD_DISPARO=15;
 
-    public static final int ALTURA_MAX_SALTO=60; 
+    public static final int ALTURA_MAX_SALTO=72; 
 
     public static final int SALUD_DEMONIO_ROJO=1;
     public static final int SALUD_TROLL_AMARILLO=1;
@@ -24,7 +24,7 @@ public class ConstantesDificultad {
     public static final int VELOCIDAD_MAXIMA_BOLADENIEVE=15;
     public static final int VELOCIDAD_BOLADEFUEGO=6;
     public static final int VELOCIDAD_ENTIDAD_DINAMICA_X=8;
-    public static final int VELOCIDAD_ENTIDAD_DINAMICA_Y=2;
+    public static final int VELOCIDAD_ENTIDAD_DINAMICA_Y=4;
     //velocidades y salto a escala
     public static final int VELOCIDAD_PLATAFORMA_MOVIL=1;
     public static final int VELOCIDAD_JUGADOR=5;
