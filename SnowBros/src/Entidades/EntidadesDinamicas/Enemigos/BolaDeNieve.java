@@ -66,7 +66,10 @@ public class BolaDeNieve extends EntidadDinamica{
             this.eliminar(); 
     }
     protected void verificarPared(Pared p){
-        this.eliminar();
+        if(direccion==ConstantesEntidades.IZQUIERDA)
+            direccion=ConstantesEntidades.DERECHA;
+        else
+            direccion=ConstantesEntidades.IZQUIERDA;
     }
     public void visitar(Enemigo e){
         aparecerPowerUp(e);

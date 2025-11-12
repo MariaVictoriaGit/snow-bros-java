@@ -168,8 +168,14 @@ public class Juego {
                         colisionSuelo = true;
                     }
                     for(Enemigo enemigo:nivelActual.getEnemigos())
-                            if(suelo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
-                                suelo.aceptar(enemigo);
+                        if(suelo.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
+                            suelo.aceptar(enemigo);
+                    for(BolaDeNieve bola:nivelActual.getBolasDeNieve()){
+                        if(suelo.getHitbox().getRectangle().intersects(bola.getHitbox().getRectangle())) 
+                            suelo.aceptar(bola);
+                    }
+                    if(nivel.getCalabaza()!=null && suelo.getHitbox().getRectangle().intersects(nivel.getCalabaza().getHitbox().getRectangle())) 
+                        suelo.aceptar(nivel.getCalabaza());
                 }
                 if (!colisionBola && !colisionSuelo) {
                     jugadorActual.setVelocidadBase();
