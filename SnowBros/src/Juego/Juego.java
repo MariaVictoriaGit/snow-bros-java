@@ -159,6 +159,7 @@ public class Juego {
                     else{
                         colisionBola=false;
                         controladorGrafica.setEmpujando(false);
+                        jugadorActual.setEmpujando(null);
                     }
                     for(Pared p:new ArrayList<>(nivelActual.getParedes())){
                             if(bola.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
