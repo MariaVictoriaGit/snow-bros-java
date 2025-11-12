@@ -109,13 +109,9 @@ public class Moghera extends Enemigo{
         return bola;
     }
     public void setActivo(boolean t){
-        activarCongelado=t;
+        activarJefe=t;
     }
-    public void esDerrotado(){
-        if(nivel.terminoElNivel()&&this.congelado){
-            nivel.getJuego().superarNivel();
-        }
-    }
+
     public void convertirEnBola(){
        congelado=true;
     }
@@ -144,6 +140,15 @@ public class Moghera extends Enemigo{
                     hitbox.actualizarHitbox(posX, posY, 76, 90);
                 }
                 break;
+            case ConstantesEntidades.QUIETO:
+                if(congelado){
+                    clave="congeladoDerecha";
+                    hitbox.actualizarHitbox(posX, posY, 42, 32);
+                }
+                else{
+                    clave="idleDerecha";
+                    hitbox.actualizarHitbox(posX, posY, 76, 90);
+                }
         }
         return clave;
     }

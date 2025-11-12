@@ -77,11 +77,11 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                     case KeyEvent.VK_S:
                         if(miJuego.getJugador().estaHabilitadoASubirEscalera()){
                             miJuego.getJugador().mover(ConstantesEntidades.ABAJO);
-                            miJuego.getJugador().getObserver().actualizar(ConstantesEntidades.ABAJO, miJuego.getJugador().getTocandoSuelo());
+                            miJuego.getJugador().getObserver().actualizar();
                         }
                         break;
                     case KeyEvent.VK_SPACE:
-                        if(miJuego.getJugador().estaEmpujando()!=null){
+                        if(miJuego.getJugador().getBolaEmpujada()!=null){
                             disparando=false;
                             empujando=true;
                         } else{
@@ -246,6 +246,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     public void setMoverDer(boolean b){
         movDerecha=b;
+    }
+    public void setEmpujando(boolean b){
+        empujando=b;
     }
     public PanelPantallaJuego getPantalla(){
         return panelPantallaJuego;

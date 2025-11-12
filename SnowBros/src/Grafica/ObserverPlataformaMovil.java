@@ -3,7 +3,7 @@ package SnowBros.src.Grafica;
 import javax.swing.ImageIcon;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.PlataformaMovil;
 
-public class ObserverPlataformaMovil extends ObserverGrafico{
+public class ObserverPlataformaMovil extends ObserverEntidad{
     public ObserverPlataformaMovil(PlataformaMovil p){
         super(p);
         plataformaObservada=p;
@@ -11,7 +11,7 @@ public class ObserverPlataformaMovil extends ObserverGrafico{
     }
     public void actualizar(){
         this.actualizarImagen(); 
-        super.actualizarPosicionTamanoP();
+        super.actualizarPosicionTamanoPlataforma();
     }
     protected void actualizarImagen() {
 		String rutaImagen = plataformaObservada.getSprite().getRutaImagen("normal");

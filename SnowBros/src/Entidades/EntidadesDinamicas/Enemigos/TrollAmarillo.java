@@ -79,10 +79,18 @@ public class TrollAmarillo extends Enemigo{
     public String generarClaveEstado(){
         String estado=null;
         if(direccion==ConstantesEntidades.QUIETO){
-            if(dirAnterior==ConstantesEntidades.IZQUIERDA)
-                estado="idleIzquierda";
-            else
-                estado="idleDerecha";
+            switch (dirAnterior) {
+                case ConstantesEntidades.DERECHA:
+                    estado="idleIzquierda";
+                    break;
+            
+                case ConstantesEntidades.IZQUIERDA:
+                    estado="idleDerecha";
+                    break;
+                case ConstantesEntidades.QUIETO:
+                    estado="idleDerecha";
+                    break;
+            }
         }else{
             if(direccion==ConstantesEntidades.IZQUIERDA)
                 estado="moverIzquierda";
