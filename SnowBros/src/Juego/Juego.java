@@ -255,7 +255,7 @@ public class Juego {
                     crearMoghera();
                 }
                 if(nivelActual.getEnemigos().isEmpty()){
-                    controladorGrafica.pasarNivel();
+                    //controladorGrafica.pasarNivel();
                 }
 
 
