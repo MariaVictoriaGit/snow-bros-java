@@ -46,7 +46,7 @@ public class Juego {
         tiempoAntesAparicionCalabaza= new Temporizador(190000);//ConstantesTiempos.TIEMPO_CALABAZA);
         juegoEnEjecucion=false;
         ultimoDisparo=0;
-        jefeCreado=false;
+        
     }
     //metodos de configuracionaa
     public void setControladorGrafica(GUI miControlador) {
@@ -60,6 +60,7 @@ public class Juego {
         tiempo.iniciar();
         fabricaEntidades = new FabricaEntidades(fabricaSprites);
         parseActual= new ParserNivel(fabricaSprites);
+        jefeCreado=false;
         iniciarNivel();
     }
     private void iniciarHilos(){
@@ -157,6 +158,11 @@ public class Juego {
                         bola.getHitbox().getRightHitBox().intersects(jugadorActual.getHitbox().getRectangle())) {
                         jugadorActual.aceptar(bola);
                         colisionBola = true;
+                    }
+                    else{
+                        colisionBola=false;
+                        controladorGrafica.setEmpujando(false);
+                        jugadorActual.setEmpujando(null);
                     }
                     for(Pared p:new ArrayList<>(nivelActual.getParedes())){
                             if(bola.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
@@ -422,14 +428,23 @@ public class Juego {
     private void crearCalabaza(){
         Calabaza cala=fabricaEntidades.getCalabaza(ConstantesEntidades.X_CALABAZA, ConstantesEntidades.Y_CALABAZA);
         controladorGrafica.registrarEntidad(cala);
-        if(nivel!=null)
+        if(nivel!=null){
             nivel.agregarCalabaza(cala);
+            cala.setNivel(nivel);
+        }
     }
     public void crearMoghera(){
-        Moghera moghera=fabricaEntidades.getMoghera(ConstantesEntidades.X_MOGHERA,ConstantesEntidades.Y_MOGHERA);
-        controladorGrafica.registrarEntidad(moghera);
-        moghera.setActivo(true);
-        nivel.agregarEnemigo(moghera);
+        Temporizador timerDeAparicion= new Temporizador(4);
+        timerDeAparicion.setAccionAlFinalizar(()-> {
+            Sonido.getInstancia().reproducirMusica("temaMusicalMoghera.wav");
+            Moghera moghera=fabricaEntidades.getMoghera(ConstantesEntidades.X_MOGHERA,ConstantesEntidades.Y_MOGHERA);
+            controladorGrafica.registrarEntidad(moghera);
+            moghera.setActivo(true);
+            nivel.agregarEnemigo(moghera);
+        });
+        Sonido.getInstancia().frenarMusica();
+        Sonido.getInstancia().reproducirEfectoDeSonido("risaMoghera.wav");
+        timerDeAparicion.iniciar();
     }
     public void crearBolaDeNieve(int posX, int posY, int puntajeEmpujado){
         BolaDeNieve bola=fabricaEntidades.getBolaDeNieve(posX, posY);
@@ -448,8 +463,8 @@ public class Juego {
         }
     }
     public void empujarBolaDeNieve(){
-        if(!jugador.estaEmpujando().getEstado()){
-            int puntajeASumar = jugador.estaEmpujando().disparar();
+        if(!jugador.getBolaEmpujada().getEstado()){
+            int puntajeASumar = jugador.getBolaEmpujada().disparar();
             actualizarPuntaje(puntajeASumar);
         }
     }

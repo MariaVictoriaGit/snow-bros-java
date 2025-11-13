@@ -165,7 +165,7 @@ public class DisparoJugador extends EntidadDinamica {
     }
     public void visitar(Enemigo e) {
         this.eliminar();
-        e.recibirDaño(1);
+        e.recibirDaño(ConstantesDificultad.DANO_A_ENEMIGO);
     }
     public void visitar(Plataforma p){
         eliminar();

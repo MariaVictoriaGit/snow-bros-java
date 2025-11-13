@@ -83,7 +83,8 @@ public class Temporizador {
     }
     public String getStringTiempoContrarreloj(){
         int restante = ConstantesDificultad.TOPE_TIEMPO_CONTRARRELOJ - tiempoActual;
-        if(restante < 0) restante = 0;
+        if(restante < 0) 
+            restante = 0;
         int minutos = restante / 60;
         int segundos = restante % 60;
         return String.format("%02d:%02d", minutos, segundos);
