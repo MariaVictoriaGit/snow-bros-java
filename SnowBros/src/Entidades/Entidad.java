@@ -6,7 +6,7 @@ import SnowBros.src.Juego.InterfazEliminar;
 import SnowBros.src.Juego.Nivel;
 
 public abstract class Entidad {
-    protected Nivel nivel;
+    protected InterfazEliminar nivel;
     protected Sprite sprite;
     protected int posX;
     protected int posY;

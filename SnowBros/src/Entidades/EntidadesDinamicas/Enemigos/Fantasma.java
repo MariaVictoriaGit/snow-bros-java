@@ -28,7 +28,6 @@ public class Fantasma extends Enemigo{
         yJugador=y;
     }
     public void patronDeMovimiento(){
-        setPosicionJugador(nivel.getJugador().getPosX(), nivel.getJugador().getPosY());
         mover();
     }
     public int getSalud(){
