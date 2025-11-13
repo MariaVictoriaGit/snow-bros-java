@@ -133,6 +133,19 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     public void cambiarPantallaTransicion(){
         cambiarPantalla(panelPantallaTransicion);
+        // Espera 3 segundos y luego vuelve al juego
+        new java.util.Timer().schedule(
+            new java.util.TimerTask() {
+                 @Override
+                public void run() {
+                // Esto se ejecuta después del delay
+                    cambiarInicioJuego();
+                    cambiarPantalla(panelPantallaJuego);   // vuelve al panel del juego
+                }
+            },
+        3000 // 3 segundos
+    );
+
     }
     public void cambiarPantallaGameOver(){
         juegoIniciado=false;
@@ -195,9 +208,6 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         }
         miJuego.setNombreJugador(nombre);
         miJuego.getRanking().setJugador(nombre, 0, modo);
-    }
-    public void pasarNivel(){
-        miJuego.superarNivel();
     }
     public void reiniciarNivel(){
         miJuego.reiniciarNivel();
