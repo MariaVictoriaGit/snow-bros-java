@@ -99,9 +99,13 @@ public class Calabaza extends Enemigo{
     public int getSalud(){
         return salud; // es inmortal, no tiene salud
     }
-    public void recibirDaño(){
-        //es indestructible, no tiene salud
-        throw new UnsupportedOperationException("Es indestructible");
+    public void recibirDaño(int daño){
+        Temporizador tiempoAturdido= new Temporizador(3);
+        tiempoAturdido.setAccionAlFinalizar(() -> {
+            avanzar();
+        });
+        detener();
+        tiempoAturdido.iniciar();
     }
     public void aceptar(Visitador v){
         v.visitar(this);

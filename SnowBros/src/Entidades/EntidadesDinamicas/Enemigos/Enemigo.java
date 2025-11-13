@@ -128,11 +128,11 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       if(observer!=null)
          observer.actualizarBolaDeNieve(activarJefe);
       }
-      public void descongelar(){
-         detenido=false;
-         congelado=false;
-         direccion=this.dirAnterior;
-         salud=this.getSalud();
+   public void descongelar(){
+      detenido=false;
+      congelado=false;
+      direccion=this.dirAnterior;
+      salud=this.getSalud();
    }
    public void convertirEnBola(){ //metodo llamado al colisionar con la bola
       if(congelado){

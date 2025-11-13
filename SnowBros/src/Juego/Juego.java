@@ -92,12 +92,19 @@ public class Juego {
                             f.aceptar(jugadorActual);
                             }
                         }
+                }
+                if (nivelActual.getCalabaza()!=null){
+                    if (jugadorActual.getHitbox().getRectangle().intersects(nivelActual.getCalabaza().getHitbox().getRectangle())) {
+                        nivelActual.getCalabaza().aceptar(jugadorActual);
                     }
-                    if (nivelActual.getCalabaza()!=null){
-                        if (jugadorActual.getHitbox().getRectangle().intersects(nivelActual.getCalabaza().getHitbox().getRectangle())) {
-                            nivelActual.getCalabaza().aceptar(jugadorActual);
+                    if(!nivelActual.getDisparos().isEmpty()){
+                        for(DisparoJugador disparo : nivelActual.getDisparos()){
+                            if(disparo.getHitbox().getRectangle().intersects(nivelActual.getCalabaza().getHitbox().getRectangle())){
+                                nivelActual.getCalabaza().aceptar(disparo);
+                            }
                         }
                     }
+                }
                 for(Pared p: new ArrayList<>(nivelActual.getParedes())){
                     if(jugadorActual.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
                             p.aceptar(jugadorActual);
@@ -219,7 +226,7 @@ public class Juego {
                 jugador.actualizarSalto();
                 if(!jugadorActual.getSaltando())
                     jugadorActual.verificarSuelo();
-                for (Enemigo enemigo : nivelActual.getEnemigos()) {
+                for (Enemigo enemigo : new ArrayList<>(nivelActual.getEnemigos())) {
                    enemigo.patronDeMovimiento();        
                    enemigo.actualizarSalto();
                    if(!enemigo.getSaltando())
