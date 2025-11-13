@@ -60,7 +60,6 @@ public class Juego {
             fabricaSprites= new Alternativo();
         fabricaEntidades = new FabricaEntidades(fabricaSprites,gestor);
         tiempo.iniciar();
-
         if (parseActual == null)
             parseActual = new ParserNivel(fabricaEntidades);
         jefeCreado=false;
@@ -273,7 +272,10 @@ public class Juego {
                 }
                 if(nivelActual.terminoElNivel()&&!jefeCreado){
                     jefeCreado=true;
-                    crearMoghera();
+                    if(parseActual.getSuperoNivelAnterior())
+                        crearKamakichi(); //PARA NIVEL 2
+                    else
+                        crearMoghera(); //PARA NIVEL 1
                 }
                 nivelActual.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
@@ -372,6 +374,8 @@ public class Juego {
     public void superarNivel(){
         nivel.eliminarse();
         detenerJuego();
+        //para cuando 
+        jefeCreado=false;
         parseActual.setSuperoNivelAnterior(true);
         nivel=null;
         jugador=null;
@@ -475,6 +479,19 @@ public class Juego {
             cala.setNivel(nivel);
         }
     }
+    public void crearKamakichi(){
+        Temporizador timerDeAparicion= new Temporizador(4);
+        timerDeAparicion.setAccionAlFinalizar(()-> {
+            Sonido.getInstancia().reproducirMusica("temaMusicalKamakichi.wav");
+            Kamakichi kamakichi=fabricaEntidades.getKamakichi(ConstantesEntidades.X_KAMAKICHI,ConstantesEntidades.Y_KAMAKICHI);
+            controladorGrafica.registrarEntidad(kamakichi);
+            kamakichi.setActivo(true);
+            nivel.agregarEnemigo(kamakichi);
+        });
+        Sonido.getInstancia().frenarMusica();
+        Sonido.getInstancia().reproducirEfectoDeSonido("risaKamakichi.wav");
+        timerDeAparicion.iniciar();
+    }
     public void crearMoghera(){
         Temporizador timerDeAparicion= new Temporizador(4);
         timerDeAparicion.setAccionAlFinalizar(()-> {
@@ -515,7 +532,7 @@ public class Juego {
         }
     }
     public void empujarBolaDeNieve(){
-        if(!jugador.getBolaEmpujada().getEstado()){
+        if(jugador.getBolaEmpujada()!=null && !jugador.getBolaEmpujada().getEstado()){
             int puntajeASumar = jugador.getBolaEmpujada().disparar();
             actualizarPuntaje(puntajeASumar);
         }
