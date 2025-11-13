@@ -88,7 +88,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public void actualizarTiempoCongelado(){
       long tiempoADescongelar=5000;
          if(detenido && System.currentTimeMillis()>inicioCongelado+tiempoADescongelar){
-            descongelar();
+               descongelar();
          }
    }
    public void setCongelado(boolean b){
@@ -106,6 +106,9 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public boolean getDerrotado(){
       return jefeDerrotado;
    }
+   public long getInicioCongelado(){
+      return inicioCongelado;
+   }
    public void congelar(){
       Sonido.getInstancia().reproducirEfectoDeSonido("enemigoMuereBolaNieve.wav");
       detenido=true;
@@ -113,14 +116,12 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       nivel.getJugador().actualizarPuntaje(this.getPuntajeCongelado());
       if(observer!=null)
          observer.actualizarBolaDeNieve(activarJefe);
-      if(jefeDerrotado)
-         this.eliminar();
-   }
-   public void descongelar(){
-      detenido=false;
-      congelado=false;
-      direccion=this.dirAnterior;
-      salud=this.getSalud();
+      }
+      public void descongelar(){
+         detenido=false;
+         congelado=false;
+         direccion=this.dirAnterior;
+         salud=this.getSalud();
    }
    public void convertirEnBola(){ //metodo llamado al colisionar con la bola
       if(congelado){

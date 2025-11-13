@@ -37,14 +37,16 @@ public class Juego {
     protected String modoDeJuego;
     private long ultimoDisparo;
     protected String dominio;
+    protected boolean jefeCreado;
 
     public Juego(){
         reiniciarJugador=false;
         ranking=new Ranking();
         tiempo= new Temporizador(); 
-        tiempoAntesAparicionCalabaza= new Temporizador(ConstantesTiempos.TIEMPO_CALABAZA);
+        tiempoAntesAparicionCalabaza= new Temporizador(190000);//ConstantesTiempos.TIEMPO_CALABAZA);
         juegoEnEjecucion=false;
         ultimoDisparo=0;
+        jefeCreado=false;
     }
     //metodos de configuracionaa
     public void setControladorGrafica(GUI miControlador) {
@@ -174,8 +176,8 @@ public class Juego {
                         if(suelo.getHitbox().getRectangle().intersects(bola.getHitbox().getRectangle())) 
                             suelo.aceptar(bola);
                     }
-                    if(nivel.getCalabaza()!=null && suelo.getHitbox().getRectangle().intersects(nivel.getCalabaza().getHitbox().getRectangle())) 
-                        suelo.aceptar(nivel.getCalabaza());
+                    if(nivelActual.getCalabaza()!=null && suelo.getHitbox().getRectangle().intersects(nivel.getCalabaza().getHitbox().getRectangle())) 
+                        suelo.aceptar(nivelActual.getCalabaza());
                 }
                 if (!colisionBola && !colisionSuelo) {
                     jugadorActual.setVelocidadBase();
@@ -207,7 +209,18 @@ public class Juego {
                    if(!enemigo.getSaltando())
                         enemigo.verificarSuelo(); 
                    if(enemigo.getCongelado()){
-                        enemigo.actualizarTiempoCongelado();
+                        if(enemigo.getDerrotado()){
+                            enemigo.setCongelado(true);
+                            long muerte=enemigo.getInicioCongelado();
+                            long tiempoADescongelar=5000;
+                            if(System.currentTimeMillis()>muerte+tiempoADescongelar){
+                                enemigo.eliminar();
+                                muerte=0;
+                            }
+                        }
+                        else{
+                            enemigo.actualizarTiempoCongelado();
+                        }
                    }
                 }
                 if(!nivelActual.getDisparos().isEmpty())
@@ -231,11 +244,12 @@ public class Juego {
                         fantasma.patronDeMovimiento();
                     }
                 }
-                if(nivelActual.terminoElNivel()){
+                if(nivelActual.terminoElNivel()&&!jefeCreado){
+                    jefeCreado=true;
                     crearMoghera();
                 }
                 if(nivelActual.getEnemigos().isEmpty()){
-                    superarNivel();
+                    controladorGrafica.pasarNivel();
                 }
 
 
