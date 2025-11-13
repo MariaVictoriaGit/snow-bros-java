@@ -304,7 +304,7 @@ public class Juego {
      
     public void iniciarNivel(){
         if (nivel == null){
-            nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que corresponda
+            nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que correspon
             gestor.setNivel(nivel);
             //nivel.setNivel(nivel.getNivelActual()+1);
         }
@@ -316,15 +316,19 @@ public class Juego {
         else{//si ya existe el jugador
             if(jugador.getVidas()==0)
                 reiniciarJugador=false;
-            if(reiniciarJugador)
+            if(reiniciarJugador){
                 nivel=parseActual.generarNivel(modoDeJuego);
+                jugador = nivel.getJugador();
+                jugador.setJuego(this);
+            }
             else{
+                nivel=parseActual.generarNivel(modoDeJuego);
+                jugador = nivel.getJugador();
                 jugador.setVidas();
                 jugador.actualizarPuntaje(0);
-                nivel= parseActual.generarNivel(modoDeJuego);
+                jugador.setJuego(this);
             }
         }
-
         this.registrarObservers();
         jugador.getObserver().actualizar();
         tiempoAntesAparicionCalabaza.setAccionAlFinalizar(()->crearCalabaza());

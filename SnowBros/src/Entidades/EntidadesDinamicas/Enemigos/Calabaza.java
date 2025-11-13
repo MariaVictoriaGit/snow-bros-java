@@ -78,12 +78,9 @@ public class Calabaza extends Enemigo{
             clave="moverDerecha";
         return clave;
     }
-<<<<<<< HEAD
-=======
     public void invocarFantasma(){
         gestor.crearFantasma(posX, posY);
     }
->>>>>>> 1e25de752d4608b9636f382e17bdbf6d1d9fba9a
     public void convertirEnBola(){
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");
     }
