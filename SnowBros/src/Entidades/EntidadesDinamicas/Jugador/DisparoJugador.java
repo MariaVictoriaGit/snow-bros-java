@@ -51,10 +51,6 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
-                    getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-                }
-                break;
-                case ConstantesEntidades.DERECHA:
                     posX += 8;
                     caida();
                     if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
@@ -62,10 +58,6 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
-                    getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-                    break;
-                case ConstantesEntidades.IZQUIERDA:
-                    posX -= 8;
                     caida();
                     if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;

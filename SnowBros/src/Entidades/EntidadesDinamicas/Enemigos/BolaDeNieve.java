@@ -64,7 +64,7 @@ public class BolaDeNieve extends EntidadDinamica{
         }
     }
     private void terminaRebotar(){
-        if(reboto && posX<=0 || posX>=ConstantesVistas.PANEL_ANCHO)
+        if(reboto && posX<=0 || posX>=ConstantesVistas.PANEL_JUEGO_ANCHO)
             this.eliminar(); 
     }
     protected void verificarPared(Pared p){
@@ -76,7 +76,6 @@ public class BolaDeNieve extends EntidadDinamica{
     public void visitar(Enemigo e){
         aparecerPowerUp();
         e.eliminar();
-        this.eliminar();
     }
     private void aparecerPowerUp(){
         Random random=new Random();
