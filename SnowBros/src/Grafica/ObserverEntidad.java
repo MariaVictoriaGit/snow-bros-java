@@ -47,11 +47,18 @@ public class ObserverEntidad extends JLabel implements Observer{
     }
     protected void actualizarPosicionTamano(){
 		int margenVisual=3;
-        int x = entidadObservada.getPosX();
-		int y = entidadObservada.getPosY();
-		int ancho = this.getIcon().getIconWidth();
-		int alto = this.getIcon().getIconHeight();
-		setBounds(x, y+margenVisual, ancho, alto);
+        int x;
+        int y;
+        try{
+            x = entidadObservada.getPosX();
+            y = entidadObservada.getPosY();
+            int ancho = this.getIcon().getIconWidth();
+            int alto = this.getIcon().getIconHeight();
+            setBounds(x, y+margenVisual, ancho, alto);
+        } catch(NullPointerException e){
+            return;
+        }
+        
     }
     protected void actualizarPosicionTamanoPlataforma(){
 		int margenVisual=4;
@@ -75,13 +82,13 @@ public class ObserverEntidad extends JLabel implements Observer{
 				}
 				URL url= getClass().getClassLoader().getResource(rutaImagen);
             if (url == null) {
-                System.err.println("2No se encontró recurso: " + rutaImagen);
+                System.err.println("No se encontró recurso: " + rutaImagen);
                 return;
             }
             ImageIcon icono = new ImageIcon(url);
             setIcon(icono);
-        }catch(Exception ex){
-            ex.printStackTrace();
+        }catch(NullPointerException ex){
+            return;
             }
 	    });
 	}
