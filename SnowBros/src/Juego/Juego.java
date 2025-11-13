@@ -251,7 +251,7 @@ public class Juego {
                 }
                 if(!nivelActual.getDisparos().isEmpty())
                     for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
-                        disparo.mover();
+                        disparo.mover();//TODO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
                 if(!nivelActual.getBolasDeFuego().isEmpty())
                     for (BolaDeFuego bola:new ArrayList<>(nivel.getBolasDeFuego()))
                         bola.mover();
