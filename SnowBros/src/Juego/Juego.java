@@ -151,7 +151,7 @@ public class Juego {
                 boolean colisionBola = false;
                 boolean colisionSuelo = false;
                 for (BolaDeNieve bola : nivelActual.getBolasDeNieve()) {
-                    for(Enemigo enemigo:nivelActual.getEnemigos())
+                    for(Enemigo enemigo: new ArrayList<>(nivelActual.getEnemigos()))
                         if (bola.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
                                 enemigo.aceptar(bola);
                     if (bola.getHitbox().getLeftHitBox().intersects(jugadorActual.getHitbox().getRectangle()) ||
@@ -230,7 +230,7 @@ public class Juego {
                    }
                 }
                 if(!nivelActual.getDisparos().isEmpty())
-                    for (DisparoJugador disparo: nivelActual.getDisparos())
+                    for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
                         disparo.mover();
                 if(!nivelActual.getBolasDeFuego().isEmpty())
                     for (BolaDeFuego bola:new ArrayList<>(nivel.getBolasDeFuego()))

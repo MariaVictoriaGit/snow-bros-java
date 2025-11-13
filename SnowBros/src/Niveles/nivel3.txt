@@ -120,7 +120,7 @@ Plataforma 704 336
 Plataforma 736 336
 Plataforma 768 336
 
-TrampaPinchos 768 366
+TrampaPinchos 16 334
 
 PlataformaMovil 384 368
 PlataformaMovil 416 368
