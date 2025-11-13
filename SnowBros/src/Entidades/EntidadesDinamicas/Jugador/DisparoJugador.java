@@ -66,6 +66,7 @@ public class DisparoJugador extends EntidadDinamica {
                     }
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
+                }
                 case ConstantesEntidades.ARRIBA_IZQUIERDA:
                     posX -= 8;
                     caida();
