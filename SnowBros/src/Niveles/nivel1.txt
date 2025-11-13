@@ -36,8 +36,8 @@ Plataforma 32 80
 Plataforma 64 80
 Plataforma 96 80
 Plataforma 128 80
-SueloResbaladizo 160 80
-SueloResbaladizo 192 80
+Plataforma 160 80
+Plataforma 192 80
 Plataforma 224 80
 Plataforma 256 80
 Plataforma 288 80

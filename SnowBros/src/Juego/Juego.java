@@ -105,6 +105,13 @@ public class Juego {
                     else{
                         jugadorActual.setChocoPared(false);
                         }
+                    if(!nivel.getDisparos().isEmpty()){
+                        for(DisparoJugador disparo : nivel.getDisparos()){
+                            if(disparo.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
+                                p.aceptar(disparo);
+                            }
+                        }
+                    }
                 }
                 for(PowerUp entidad : new ArrayList<>(nivelActual.getPowerUps()))
                     if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) 
