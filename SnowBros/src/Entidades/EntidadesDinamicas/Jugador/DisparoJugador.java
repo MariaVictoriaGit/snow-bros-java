@@ -124,7 +124,7 @@ public class DisparoJugador extends EntidadDinamica {
                 }
                 else{
                     if(dirAnterior==ConstantesEntidades.DERECHA)
-                        estado="idleDerecha";
+                        estado="normalDerecha";
                     else if(dirAnterior==ConstantesEntidades.IZQUIERDA)
                         estado="normalIzquierda";
                 }
@@ -133,7 +133,7 @@ public class DisparoJugador extends EntidadDinamica {
                 if(efectoBotella)
                     estado="aumentadoDerecha";
                 else
-                    estado="idleDerecha";
+                    estado="normalDerecha";
                 break;
             case ConstantesEntidades.IZQUIERDA:
                 if(efectoBotella)
@@ -145,7 +145,7 @@ public class DisparoJugador extends EntidadDinamica {
                 if(efectoBotella)
                     estado="aumentadoDerecha";
                 else
-                    estado="idleDerecha";
+                    estado="normalDerecha";
                 break;
             case ConstantesEntidades.ARRIBA_IZQUIERDA:
                 if(efectoBotella)
@@ -175,6 +175,6 @@ public class DisparoJugador extends EntidadDinamica {
     }
     public void eliminar(){
         nivel.eliminarDisparo(this);
-        nivel.getJuego().eliminarEntidadGraficamente(this);
+        super.eliminar();
     }
 }

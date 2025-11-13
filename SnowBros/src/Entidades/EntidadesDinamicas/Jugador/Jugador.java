@@ -113,9 +113,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
                 break;
             case ConstantesEntidades.QUIETO:
                 if (dirAnterior == ConstantesEntidades.IZQUIERDA)
-                    claveADevolver="idleIzquierda";
+                    claveADevolver="quietoIzquierda";
                 else
-                    claveADevolver="idleDerecha";
+                    claveADevolver="quietoDerecha";
                 break;
             case ConstantesEntidades.DERECHA:
                 claveADevolver= "moverDerecha";
@@ -176,11 +176,15 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public void chocaLadoPlataforma(boolean ladoIzq){
         if(ladoIzq){
-            posX+=3;
+            if(tocandoSuelo==ConstantesEntidades.SUELO){
+                posX+=3;
+            }
             chocoParedIzq=true;
         }
         else{
-            posX-=3;
+            if(tocandoSuelo==ConstantesEntidades.SUELO){
+                posX-=3;
+            }
             chocoParedIzq=true;
         }
     }
@@ -305,6 +309,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
         if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
            this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
            this.setPosY(e.getPosY() - this.getHitbox().getAlto());
+           tocandoSuelo=ConstantesEntidades.SUELO;
         }
         if(!e.getUsada()){
         actualizarPuntaje(e.getPuntaje());

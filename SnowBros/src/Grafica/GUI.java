@@ -132,8 +132,6 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         refrescar();
     }
     public void cambiarPantallaTransicion(){
-        Sonido.getInstancia().frenarMusica();
-        Sonido.getInstancia().reproducirEfectoDeSonido("gameOver.wav");
         cambiarPantalla(panelPantallaTransicion);
         // Espera 3 segundos y luego vuelve al juego
         new java.util.Timer().schedule(
@@ -141,6 +139,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
                  @Override
                 public void run() {
                 // Esto se ejecuta después del delay
+                    cambiarInicioJuego();
                     cambiarPantalla(panelPantallaJuego);   // vuelve al panel del juego
                 }
             },
@@ -150,6 +149,8 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     }
     public void cambiarPantallaGameOver(){
         juegoIniciado=false;
+        Sonido.getInstancia().frenarMusica();
+        Sonido.getInstancia().reproducirEfectoDeSonido("gameOver.wav");
         cambiarPantalla(panelPantallaGameOver);
     }
     public void cambiarPantallaPrincipal() {

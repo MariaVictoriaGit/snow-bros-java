@@ -70,7 +70,6 @@ Plataforma 416 144
 Plataforma 448 144
 Plataforma 480 144
 
-
 Pared 464 176
 
 Plataforma 480 208
@@ -100,22 +99,22 @@ Plataforma 288 272
 Plataforma 320 272
 Plataforma 352 272
 Plataforma 384 272
-Plataforma 416 272
-Plataforma 448 272
 
-Plataforma 474 304
+Plataforma 416 304
+Plataforma 448 304
+Plataforma 480 304
 
-Plataforma 506 336
+Plataforma 512 336
 
-Plataforma 538 368
+Plataforma 544 368
 
-Plataforma 570 400
-Plataforma 602 400
-Plataforma 634 400
-Plataforma 666 400
-Plataforma 698 400
-Plataforma 730 400
-Plataforma 762 400
-Plataforma 794 400
+Plataforma 576 400
+Plataforma 608 400
+Plataforma 640 400
+Plataforma 672 400
+Plataforma 704 400
+Plataforma 736 400
+Plataforma 768 400
+Plataforma 800 400
 
 TrollAmarillo 320 304

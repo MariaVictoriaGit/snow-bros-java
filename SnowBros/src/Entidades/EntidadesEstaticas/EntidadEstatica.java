@@ -10,8 +10,8 @@ public abstract class EntidadEstatica extends Entidad implements Visitable {
     protected JLabel miLabel;
     public EntidadEstatica(int i, int j, Sprite sprite) {
         super(i,j,sprite);
-        ancho=32;
-        alto=32;
+        ancho=30;
+        alto=30;
     }
     public String generarClaveEstado(){
         return "normal";
@@ -23,9 +23,15 @@ public abstract class EntidadEstatica extends Entidad implements Visitable {
         return miLabel;
     }
     public void borrarLabel(){
-        Container padre= miLabel.getParent();
-		miLabel.getParent().remove(miLabel);
-		padre.revalidate();
-		padre.repaint();
+        Container padre;
+        try{
+            padre= miLabel.getParent();
+            miLabel.getParent().remove(miLabel);
+            padre.revalidate();
+            padre.repaint();
+        } catch (NullPointerException e){
+            return;
+        }
+        
     }
 }

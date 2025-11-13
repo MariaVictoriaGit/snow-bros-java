@@ -37,16 +37,17 @@ public class Juego {
     protected String modoDeJuego;
     private long ultimoDisparo;
     protected String dominio;
+    protected GestorEntidad gestor;
     protected boolean jefeCreado;
 
     public Juego(){
         reiniciarJugador=false;
         ranking=new Ranking();
         tiempo= new Temporizador(); 
-        tiempoAntesAparicionCalabaza= new Temporizador(190000);//ConstantesTiempos.TIEMPO_CALABAZA);
+        tiempoAntesAparicionCalabaza= new Temporizador(ConstantesTiempos.TIEMPO_CALABAZA);
         juegoEnEjecucion=false;
         ultimoDisparo=0;
-        
+        gestor= new GestorEntidad(this);
     }
     //metodos de configuracionaa
     public void setControladorGrafica(GUI miControlador) {
@@ -57,11 +58,11 @@ public class Juego {
             fabricaSprites= new Original();
         else if (dominio.equals("Alternativo"))
             fabricaSprites= new Alternativo();
-        fabricaEntidades = new FabricaEntidades(fabricaSprites);
+        fabricaEntidades = new FabricaEntidades(fabricaSprites,gestor);
         tiempo.iniciar();
           // 🔧 Solo crear el parser si todavía no existe
         if (parseActual == null)
-            parseActual = new ParserNivel(fabricaSprites);
+            parseActual = new ParserNivel(fabricaEntidades);
         jefeCreado=false;
         iniciarNivel();
     }
@@ -99,7 +100,7 @@ public class Juego {
                     }
                 for(Pared p: new ArrayList<>(nivelActual.getParedes())){
                     if(jugadorActual.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
-                                p.aceptar(jugadorActual);
+                            p.aceptar(jugadorActual);
                             }
                     else{
                         jugadorActual.setChocoPared(false);
@@ -153,7 +154,7 @@ public class Juego {
                 boolean colisionBola = false;
                 boolean colisionSuelo = false;
                 for (BolaDeNieve bola : nivelActual.getBolasDeNieve()) {
-                    for(Enemigo enemigo:nivelActual.getEnemigos())
+                    for(Enemigo enemigo: new ArrayList<>(nivelActual.getEnemigos()))
                         if (bola.getHitbox().getRectangle().intersects(enemigo.getHitbox().getRectangle())) 
                                 enemigo.aceptar(bola);
                     if (bola.getHitbox().getLeftHitBox().intersects(jugadorActual.getHitbox().getRectangle()) ||
@@ -235,7 +236,7 @@ public class Juego {
                    }
                 }
                 if(!nivelActual.getDisparos().isEmpty())
-                    for (DisparoJugador disparo: nivelActual.getDisparos())
+                    for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
                         disparo.mover();
                 if(!nivelActual.getBolasDeFuego().isEmpty())
                     for (BolaDeFuego bola:new ArrayList<>(nivel.getBolasDeFuego()))
@@ -287,6 +288,7 @@ public class Juego {
             detenerJuego();
             nivel=null;
             jugador=null;
+            puntajeJugador=0;
             tiempo.reiniciar();
             tiempoAntesAparicionCalabaza.reiniciar();
             controladorGrafica.cambiarPantallaGameOver(); // gameOver
@@ -302,6 +304,8 @@ public class Juego {
     public void iniciarNivel(){
         if (nivel == null){
             nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que corresponda
+            gestor.setNivel(nivel);
+            //nivel.setNivel(nivel.getNivelActual()+1);
         }
         if(jugador==null){
             jugador = nivel.getJugador();
@@ -399,7 +403,8 @@ public class Juego {
 		}
     }
     public void crearPowerUp(PowerUp p){
-            p.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(p));   
+            p.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(p));
+            nivel.agregarPowerUp(p);   
             p.getTiempoDeVida().iniciar(); //TODO cuando este implementada la muerte del enemigo considerar moverlo ahi
     }
     public void actualizarVidas(){
@@ -450,9 +455,19 @@ public class Juego {
     public void crearBolaDeNieve(int posX, int posY, int puntajeEmpujado){
         BolaDeNieve bola=fabricaEntidades.getBolaDeNieve(posX, posY);
         bola.setPuntajeEmpujado(puntajeEmpujado);
-        bola.setNivel(nivel);
         nivel.agregarBolaDeNieve(bola);
         controladorGrafica.registrarEntidad(bola);
+    }
+    public void crearBolaDeFuego(int posX, int posY, int direccion) {
+        BolaDeFuego bola=fabricaEntidades.getBolaDeFuego(posX, posY);
+        bola.setDireccion(direccion);
+        nivel.agregarBolaDeFuego(bola);
+        controladorGrafica.registrarEntidad(bola);
+    }
+    public void crearFantasma(int posX, int posY){
+        Fantasma fantasma= fabricaEntidades.getFantasma(posX, posY);
+        nivel.agregarFantasma(fantasma);
+        controladorGrafica.registrarEntidad(fantasma);
     }
     public void shootJugador() {
         long tiempoHilo=System.currentTimeMillis();
@@ -496,4 +511,5 @@ public class Juego {
         double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
         return distancia <= umbralDeRango*umbralDeRango;
     }
+    
 }

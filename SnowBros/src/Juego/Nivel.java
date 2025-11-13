@@ -15,7 +15,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Grafica.Sprite;
 
-public class Nivel {
+public class Nivel implements LocalizadorJugador, InterfazEliminar{
     protected Sprite sprite;
     //protected String nombreNivel;
     /*podriamos cambiar el nombre de nivel en lugar de numero, como un nombre para identificarlos desde ConstantesNiveles*/
@@ -107,8 +107,16 @@ public class Nivel {
     public void eliminarObstaculo(Obstaculo o){
         listaObstaculos.remove(o);
     }
-    public void eliminarEntidadesEstaticas()){
-    
+    public void eliminarEntidadesEstaticas(){
+       for(Obstaculo o:listaObstaculos){
+            o.borrarLabel();
+       }
+       for(Plataforma p:listaPlataformas){
+            p.borrarLabel();
+       }
+       for(SueloResbaladizo s:listaResbaladizos){
+            s.borrarLabel();
+       }
     }
     public void eliminarPared(Pared p){
         listaParedes.remove(p);
@@ -128,11 +136,18 @@ public class Nivel {
     public void eliminarBolaDeNieve(BolaDeNieve b){
         listaBolaDeNieve.remove(b);
     }
-    public void eliminarFantasmas(){
-        listaFantasmas.clear();
+    public void eliminarFantasma(Fantasma f){
+        listaFantasmas.remove(f);
+        
     }
     public void eliminarCalabaza(){
         calabaza=null;
+    }
+    public void eliminarPMovil(PlataformaMovil p) {
+       listaPmovil.remove(p);
+    }
+    public void eliminarResbaladizo(SueloResbaladizo s) {
+        listaResbaladizos.remove(s);
     }
     // métodos que agregan
     public void agregarJugador(Jugador j){
@@ -219,6 +234,9 @@ public class Nivel {
     public Juego getJuego(){
         return jugador.getJuego();
     }
+    public int getJugadorX(){
+        return jugador.getPosX();
+    }
     public Jugador getJugador(){
         return jugador;
     }
@@ -226,7 +244,8 @@ public class Nivel {
         return silueta;
     }
     public void notificarObservers(){
-        jugador.getObserver().actualizar();
+        if(jugador!=null)
+            jugador.getObserver().actualizar();
         for(Enemigo e:new ArrayList<>(this.getEnemigos()))
             if(!e.getCongelado() && !e.getMuerto() && e!=null)
                 e.getObserver().actualizar();
@@ -257,6 +276,7 @@ public class Nivel {
       return condicion;
     }
     public void eliminarse(){
+        eliminarEntidadesEstaticas();
         jugador.eliminar();
         silueta=null;
         listaEnemigos.clear();

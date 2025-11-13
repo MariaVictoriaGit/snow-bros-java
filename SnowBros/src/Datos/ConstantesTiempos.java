@@ -14,6 +14,5 @@ public class ConstantesTiempos{
     public static final int TIEMPO_CREACION_FANTASMA=15;
     //tiempo que permanecen congelados
     public static final int TIEMPO_CONGELADO_ENEMIGOS=10;//10s
-    public static final int TOPE_TIEMPO_JUEGO=60*2;
     public static final int TIEMPO_CAIDA_DISPARO=800;
 }

@@ -19,7 +19,9 @@ public abstract class PowerUp extends EntidadEstatica {
         tiempoDeVida.setAccionAlFinalizar(()->eliminar());
     }
     public void eliminar(){
-        nivel.getJuego().eliminarPowerUp(this);
+        nivel.eliminarPowerUp(this);
+        borrarLabel();
+        //nivel.getJuego().eliminarPowerUp(this);
     }
     public int getPuntaje(){
         return puntaje;

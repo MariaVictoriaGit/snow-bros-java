@@ -4,6 +4,8 @@ import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.LocalizadorJugador;
+import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Visitor.Visitador;
 
 public class Moghera extends Enemigo{
@@ -11,6 +13,8 @@ public class Moghera extends Enemigo{
     protected static final int puntajeEmpujado = 5000;
     protected boolean congelado;
     private boolean bolaLanzada;
+    private LocalizadorJugador jugador;
+
     public Moghera(int x, int y, Sprite sprite){
         super(x, y, sprite);
         ancho=76;
@@ -23,7 +27,7 @@ public class Moghera extends Enemigo{
         if(!detenido)
             switch (direccion) {
                 case ConstantesEntidades.QUIETO:
-                    lanzarFuego(nivel.getJugador().getPosX()); 
+                    lanzarFuego(); 
                     if (dirAnterior == ConstantesEntidades.DERECHA)
                         direccion = ConstantesEntidades.IZQUIERDA;
                     else
@@ -84,24 +88,12 @@ public class Moghera extends Enemigo{
             break;
         }
     }
-    public BolaDeFuego lanzarFuego(int posXJugador){
+    public BolaDeFuego lanzarFuego(){
         BolaDeFuego bola=null;
         if(direccion==ConstantesEntidades.QUIETO){
-            int posicionXBola;
-            if(posXJugador>this.getPosX())
-                direccion=ConstantesEntidades.DERECHA;
-            else
-                direccion=ConstantesEntidades.IZQUIERDA;
-            if (direccion==ConstantesEntidades.DERECHA) 
-                posicionXBola= this.getPosX()+15;
-            else
-                posicionXBola=this.getPosX()-15;
+            int posicionXBola= posX+15;
             if(!bolaLanzada){
-                bola=nivel.getJuego().getFabricaEntidades().getBolaDeFuego(posicionXBola, this.posY);
-                bola.setDireccion(direccion);
-                bola.setNivel(nivel);
-                nivel.agregarBolaDeFuego(bola);
-                nivel.getJuego().registrarObserverEntidad(bola);
+                gestor.crearBolaDeFuego(posicionXBola, posY, ConstantesEntidades.IZQUIERDA);
                 bolaLanzada=true;
             }
 
@@ -126,7 +118,7 @@ public class Moghera extends Enemigo{
                     clave="congeladoIzquierda";
                     hitbox.actualizarHitbox(posX,posY,42,32);
                 }else{
-                    clave="idleIzquierda";
+                    clave="quietoIzquierda";
                     hitbox.actualizarHitbox(posX, posY, 76, 90);
                 }
                 break;
@@ -136,7 +128,7 @@ public class Moghera extends Enemigo{
                     hitbox.actualizarHitbox(posX, posY, 42, 32);
                 }
                 else{
-                    clave="idleDerecha";
+                    clave="quietoDerecha";
                     hitbox.actualizarHitbox(posX, posY, 76, 90);
                 }
                 break;
@@ -146,7 +138,7 @@ public class Moghera extends Enemigo{
                     hitbox.actualizarHitbox(posX, posY, 42, 32);
                 }
                 else{
-                    clave="idleDerecha";
+                    clave="quietoDerecha";
                     hitbox.actualizarHitbox(posX, posY, 76, 90);
                 }
         }
@@ -161,5 +153,9 @@ public class Moghera extends Enemigo{
     public int getSalud(){
         salud=ConstantesDificultad.SALUD_MOGHERA;
         return salud;
+    }
+    public void setNivel(Nivel n){
+        super.setNivel(n);
+        jugador=n;
     }
 }
