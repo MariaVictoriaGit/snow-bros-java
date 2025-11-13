@@ -12,7 +12,10 @@ public class Calabaza extends Enemigo{
         super(x, y, sprite);
         velocidad=ConstantesDificultad.VELOCIDAD_CALABAZA;
         tiempoCreacionFantasmas=new Temporizador(ConstantesTiempos.TIEMPO_CREACION_FANTASMA);
-        tiempoCreacionFantasmas.setAccionAlFinalizar(()->invocarFantasma());
+        tiempoCreacionFantasmas.setAccionAlFinalizar(()->{
+            invocarFantasma();
+            tiempoCreacionFantasmas.reiniciar();
+        });
         tiempoCreacionFantasmas.iniciar();
         tocandoSuelo=ConstantesEntidades.AIRE;
     }

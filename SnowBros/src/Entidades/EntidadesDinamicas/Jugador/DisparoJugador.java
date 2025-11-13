@@ -171,7 +171,7 @@ public class DisparoJugador extends EntidadDinamica {
         eliminar();
     }
     protected void verificarPared(Pared p){
-        this.eliminar();
+        eliminar();
     }
     public void eliminar(){
         nivel.eliminarDisparo(this);
