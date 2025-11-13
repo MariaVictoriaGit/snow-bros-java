@@ -71,6 +71,7 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
+                    caida();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.ARRIBA_IZQUIERDA:
