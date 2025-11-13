@@ -132,12 +132,12 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         refrescar();
     }
     public void cambiarPantallaTransicion(){
-        Sonido.getInstancia().frenarMusica();
-        Sonido.getInstancia().reproducirEfectoDeSonido("gameOver.wav");
         cambiarPantalla(panelPantallaTransicion);
     }
     public void cambiarPantallaGameOver(){
         juegoIniciado=false;
+        Sonido.getInstancia().frenarMusica();
+        Sonido.getInstancia().reproducirEfectoDeSonido("gameOver.wav");
         cambiarPantalla(panelPantallaGameOver);
     }
     public void cambiarPantallaPrincipal() {

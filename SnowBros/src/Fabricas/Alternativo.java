@@ -78,7 +78,7 @@ public class Alternativo extends FabricaSprites{
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("quietoIzquierda", rutaACarpeta + "/Moghera/mogheraIAlternativo.png");
         mapeo.put("quietoDerecha", rutaACarpeta + "/Moghera/mogheraDAlternativo.png");        
-        mapeo.put("disparo", rutaACarpeta + "/Moghera/mogheraDisparoAlternativo.png");
+        mapeo.put("congelado", rutaACarpeta + "/Moghera/mogheraCongeladoAlternativo.png");
         mapeo.put("disparo", rutaACarpeta+"/Moghera/mogheraDisparoAlternativo.png");
         mapeo.put("salto1", rutaACarpeta + "/Moghera/mogheraSalto1Alternativo.png");
         mapeo.put("salto2", rutaACarpeta + "/Moghera/mogheraSalto2Alternativo.png");

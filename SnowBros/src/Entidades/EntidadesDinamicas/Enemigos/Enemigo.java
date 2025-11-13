@@ -1,7 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Datos.ConstantesEntidades;
-import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
@@ -91,9 +90,9 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
             estado="congelado";
         else{
          if(direccion==ConstantesEntidades.IZQUIERDA)
-            estado="idleIzquierda";
+            estado="normalIzquierda";
         else
-            estado="idleDerecha";
+            estado="normalDerecha";
         }
         return estado;
    }

@@ -176,11 +176,15 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public void chocaLadoPlataforma(boolean ladoIzq){
         if(ladoIzq){
-            posX+=3;
+            if(tocandoSuelo==ConstantesEntidades.SUELO){
+                posX+=3;
+            }
             chocoParedIzq=true;
         }
         else{
-            posX-=3;
+            if(tocandoSuelo==ConstantesEntidades.SUELO){
+                posX-=3;
+            }
             chocoParedIzq=true;
         }
     }

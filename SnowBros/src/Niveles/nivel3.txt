@@ -51,8 +51,6 @@ Plataforma 672 80
 
 Pared 256 80
 
-Escalera 320 80
-
 Plataforma 256 144
 Plataforma 288 144
 Plataforma 320 144
@@ -61,11 +59,10 @@ Plataforma 384 144
 
 Plataforma 0 176
 Plataforma 32 176
-Escalera 64 176
+Plataforma 64 176
 Plataforma 96 176
 Plataforma 128 176
 Plataforma 160 176
-Plataforma 192 176
 
 Plataforma 480 176
 Plataforma 512 176
@@ -76,9 +73,7 @@ Plataforma 604 176
 
 RanaDeFuego 544 208
 
-Escalera 64 208
-
-Escalera 64 240
+Plataforma 64 240
 Plataforma 96 240
 Plataforma 128 240
 Plataforma 160 240
@@ -88,9 +83,6 @@ Plataforma 256 240
 Plataforma 288 240
 Plataforma 320 240
 Plataforma 352 240
-Plataforma 384 240
-
-Escalera 64 272
 
 Plataforma 448 272
 Plataforma 480 272
@@ -100,8 +92,7 @@ Plataforma 576 272
 
 Plataforma 0 304
 Plataforma 32 304
-Escalera 64 304
-Plataforma 96 304
+Plataforma 64 304
 
 Plataforma 608 304
 Plataforma 640 304
@@ -120,7 +111,7 @@ Plataforma 704 336
 Plataforma 736 336
 Plataforma 768 336
 
-TrampaPinchos 768 366
+TrampaPinchos 36 333
 
 PlataformaMovil 384 368
 PlataformaMovil 416 368

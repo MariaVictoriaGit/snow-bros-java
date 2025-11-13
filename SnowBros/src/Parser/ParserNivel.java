@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import SnowBros.src.Fabricas.FabricaEntidades;
-import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Juego.Silueta;
 import SnowBros.src.Juego.Sonido;
@@ -176,7 +175,7 @@ public class ParserNivel{
     public void setSuperoNivelAnterior(boolean b){
         superoNivelAnterior=b;
     }
-    public boolean superoNivelAnterior(){
+    public boolean getSuperoNivelAnterior(){
         return superoNivelAnterior;
     }
 }
