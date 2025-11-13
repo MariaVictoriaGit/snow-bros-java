@@ -129,9 +129,7 @@ public class Nivel implements LocalizadorJugador, InterfazEliminar{
         b.getObserver().actualizar();
     }
     public void eliminarDisparo(DisparoJugador b){
-        b.getObserver().actualizar();
         listaDisparoJugador.remove(b);
-        
     }
     public void eliminarBolaDeNieve(BolaDeNieve b){
         listaBolaDeNieve.remove(b);
@@ -254,11 +252,6 @@ public class Nivel implements LocalizadorJugador, InterfazEliminar{
                 b.getObserver().actualizar();
             }
         }
-        for(DisparoJugador disparo:this.getDisparos()){
-            if(disparo!=null){
-                disparo.getObserver().actualizar();
-            }
-        }
         for(PlataformaMovil p:this.getPlataformasMovil())
             p.getObserver().actualizar();
         for(BolaDeFuego b : new ArrayList<>(this.getBolasDeFuego()))
@@ -271,6 +264,10 @@ public class Nivel implements LocalizadorJugador, InterfazEliminar{
                     f.getObserver().actualizar();
                 }
             }
+        }
+        for(DisparoJugador d:new ArrayList<>(listaDisparoJugador)){
+            if(d!=null && d.getObserver()!=null)
+                d.getObserver().actualizar();
         }
     }
     public boolean terminoElNivel(){

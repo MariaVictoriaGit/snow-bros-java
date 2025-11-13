@@ -41,7 +41,6 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
-                    notificarObserver();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 }
                 else if(dirAnterior==ConstantesEntidades.IZQUIERDA) {
@@ -52,10 +51,9 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
-                    notificarObserver();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-                }
-                break;
+                    }
+                    break;
                 case ConstantesEntidades.DERECHA:
                     posX += 8;
                     caida();
@@ -64,18 +62,15 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
-                    notificarObserver();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.IZQUIERDA:
                     posX -= 8;
-                    caida();
                     if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;
                         aumentos++;
                         incrementarY();
                     }
-                    notificarObserver();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.ARRIBA_IZQUIERDA:
@@ -86,7 +81,6 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
-                    notificarObserver();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.ARRIBA_DERECHA:
@@ -97,7 +91,6 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
-                    notificarObserver();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
         }

@@ -46,12 +46,14 @@ public class ObserverEntidad extends JLabel implements Observer{
             }   
     }
     protected void actualizarPosicionTamano(){
-		int margenVisual=3;
-        int x = entidadObservada.getPosX();
-		int y = entidadObservada.getPosY();
-		int ancho = this.getIcon().getIconWidth();
-		int alto = this.getIcon().getIconHeight();
-		setBounds(x, y+margenVisual, ancho, alto);
+        if(entidadObservada!=null){
+            int margenVisual=3;
+            int x = entidadObservada.getPosX();
+            int y = entidadObservada.getPosY();
+            int ancho = this.getIcon().getIconWidth();
+            int alto = this.getIcon().getIconHeight();
+            setBounds(x, y+margenVisual, ancho, alto);
+        }
     }
     protected void actualizarPosicionTamanoPlataforma(){
 		int margenVisual=4;
