@@ -68,13 +68,13 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     String estado=null;
     switch (direccion) {
       case ConstantesEntidades.IZQUIERDA:
-        estado="idleIzquierda";
+        estado="normalIzquierda";
         break;
       case ConstantesEntidades.DERECHA:
-        estado="idleDerecha";
+        estado="normalDerecha";
         break;
       case ConstantesEntidades.QUIETO:
-        estado="idleIzquierda";
+        estado="normalIzquierda";
         break;
     }
     return estado;

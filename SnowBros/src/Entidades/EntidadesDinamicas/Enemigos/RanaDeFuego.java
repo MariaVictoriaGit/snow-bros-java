@@ -115,13 +115,13 @@ public class RanaDeFuego extends Enemigo{
             }else{
                 switch (dirAnterior) {
                     case ConstantesEntidades.IZQUIERDA:
-                        clave="idleIzquierda";
+                        clave="quietoIzquierda";
                         break;
                     case ConstantesEntidades.DERECHA:
-                        clave="idleDerecha";
+                        clave="quietoDerecha";
                         break;
                     case ConstantesEntidades.QUIETO:
-                        clave="idleIzquierda";
+                        clave="quietoIzquierda";
                         break;
                 }
             }

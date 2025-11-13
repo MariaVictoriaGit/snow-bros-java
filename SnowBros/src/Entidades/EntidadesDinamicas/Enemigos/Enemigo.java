@@ -126,7 +126,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public void convertirEnBola(){ //metodo llamado al colisionar con la bola
       if(congelado){
          this.eliminar(); 
-         nivel.getJuego().crearBolaDeNieve(posX,posY,1);
+         nivel.getJuego().crearBolaDeNieve(posX,posY,getPuntajeEmpujado());
       }
    }
    public void agregarPowerUp(Boolean b){

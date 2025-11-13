@@ -126,7 +126,7 @@ public class Moghera extends Enemigo{
                     clave="congeladoIzquierda";
                     hitbox.actualizarHitbox(posX,posY,42,32);
                 }else{
-                    clave="idleIzquierda";
+                    clave="quietoIzquierda";
                     hitbox.actualizarHitbox(posX, posY, 76, 90);
                 }
                 break;
@@ -136,7 +136,7 @@ public class Moghera extends Enemigo{
                     hitbox.actualizarHitbox(posX, posY, 42, 32);
                 }
                 else{
-                    clave="idleDerecha";
+                    clave="quietoDerecha";
                     hitbox.actualizarHitbox(posX, posY, 76, 90);
                 }
                 break;
@@ -146,7 +146,7 @@ public class Moghera extends Enemigo{
                     hitbox.actualizarHitbox(posX, posY, 42, 32);
                 }
                 else{
-                    clave="idleDerecha";
+                    clave="quietoDerecha";
                     hitbox.actualizarHitbox(posX, posY, 76, 90);
                 }
         }
