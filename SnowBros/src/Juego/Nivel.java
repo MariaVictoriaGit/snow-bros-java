@@ -107,6 +107,9 @@ public class Nivel {
     public void eliminarObstaculo(Obstaculo o){
         listaObstaculos.remove(o);
     }
+    public void eliminarEntidadesEstaticas()){
+    
+    }
     public void eliminarPared(Pared p){
         listaParedes.remove(p);
     }
@@ -254,6 +257,7 @@ public class Nivel {
       return condicion;
     }
     public void eliminarse(){
+        jugador.eliminar();
         silueta=null;
         listaEnemigos.clear();
         listaPowerUps.clear();

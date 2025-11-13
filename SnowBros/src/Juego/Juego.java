@@ -57,9 +57,11 @@ public class Juego {
             fabricaSprites= new Original();
         else if (dominio.equals("Alternativo"))
             fabricaSprites= new Alternativo();
-        tiempo.iniciar();
         fabricaEntidades = new FabricaEntidades(fabricaSprites);
-        parseActual= new ParserNivel(fabricaSprites);
+        tiempo.iniciar();
+          // 🔧 Solo crear el parser si todavía no existe
+        if (parseActual == null)
+            parseActual = new ParserNivel(fabricaSprites);
         jefeCreado=false;
         iniciarNivel();
     }
@@ -227,6 +229,9 @@ public class Juego {
                         else{
                             enemigo.actualizarTiempoCongelado();
                         }
+                        if(nivelActual.getEnemigos().isEmpty()){
+                            this.superarNivel();
+                        }
                    }
                 }
                 if(!nivelActual.getDisparos().isEmpty())
@@ -254,12 +259,6 @@ public class Juego {
                     jefeCreado=true;
                     crearMoghera();
                 }
-                if(nivelActual.getEnemigos().isEmpty()){
-                    //controladorGrafica.pasarNivel();
-                }
-
-
-                
                 nivelActual.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
                 long dormir = frameTime - duracion;
@@ -303,7 +302,6 @@ public class Juego {
     public void iniciarNivel(){
         if (nivel == null){
             nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que corresponda
-            //nivel.setNivel(nivel.getNivelActual()+1);
         }
         if(jugador==null){
             jugador = nivel.getJugador();
@@ -334,8 +332,11 @@ public class Juego {
     public void superarNivel(){
         nivel.eliminarse();
         detenerJuego();
+        parseActual.setSuperoNivelAnterior(true);
         nivel=null;
+        jugador=null;
         iniciarNivel();
+        controladorGrafica.cambiarPantallaTransicion();
 
     }
     public void actualizarPuntaje(int puntajeASumar){
