@@ -19,4 +19,6 @@ public class ConstantesEntidades{
     
     public static final int X_MOGHERA=730;
     public static final int Y_MOGHERA=70;
+    public static final int X_KAMAKICHI = 0;
+    public static final int Y_KAMAKICHI = 0;
 }
