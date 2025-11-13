@@ -163,9 +163,17 @@ public class DisparoJugador extends EntidadDinamica {
         else
             potenciaDisparo=ConstantesDificultad.POTENCIA_DISPARO_NORMAL;
     }
+    public int getDaño(){
+        int dañoADevolver=0;
+        if(efectoBotella)
+            dañoADevolver=ConstantesDificultad.POTENCIA_DISPARO_AUMENTADA;
+        else
+            dañoADevolver=ConstantesDificultad.POTENCIA_DISPARO_NORMAL;
+        return dañoADevolver;
+    }
     public void visitar(Enemigo e) {
         this.eliminar();
-        e.recibirDaño(ConstantesDificultad.DANO_A_ENEMIGO);
+        e.recibirDaño(getDaño());
     }
     public void visitar(Plataforma p){
         eliminar();

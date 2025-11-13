@@ -89,12 +89,19 @@ public class Juego {
                             f.aceptar(jugadorActual);
                             }
                         }
+                }
+                if (nivelActual.getCalabaza()!=null){
+                    if (jugadorActual.getHitbox().getRectangle().intersects(nivelActual.getCalabaza().getHitbox().getRectangle())) {
+                        nivelActual.getCalabaza().aceptar(jugadorActual);
                     }
-                    if (nivelActual.getCalabaza()!=null){
-                        if (jugadorActual.getHitbox().getRectangle().intersects(nivelActual.getCalabaza().getHitbox().getRectangle())) {
-                            nivelActual.getCalabaza().aceptar(jugadorActual);
+                    if(!nivelActual.getDisparos().isEmpty()){
+                        for(DisparoJugador disparo : nivelActual.getDisparos()){
+                            if(disparo.getHitbox().getRectangle().intersects(nivelActual.getCalabaza().getHitbox().getRectangle())){
+                                nivelActual.getCalabaza().aceptar(disparo);
+                            }
                         }
                     }
+                }
                 for(Pared p: new ArrayList<>(nivelActual.getParedes())){
                     if(jugadorActual.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
                             p.aceptar(jugadorActual);
