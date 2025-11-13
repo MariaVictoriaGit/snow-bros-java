@@ -37,6 +37,7 @@ public class Juego {
     protected String modoDeJuego;
     private long ultimoDisparo;
     protected String dominio;
+    protected boolean creeJefe;
 
     public Juego(){
         reiniciarJugador=false;
@@ -58,6 +59,7 @@ public class Juego {
         tiempo.iniciar();
         fabricaEntidades = new FabricaEntidades(fabricaSprites);
         parseActual= new ParserNivel(fabricaSprites);
+        creeJefe=false;
         iniciarNivel();
     }
     private void iniciarHilos(){
@@ -231,8 +233,9 @@ public class Juego {
                         fantasma.patronDeMovimiento();
                     }
                 }
-                if(nivelActual.terminoElNivel()){
+                if(nivelActual.terminoElNivel() && !creeJefe){
                     crearMoghera();
+                    creeJefe=true;
                 }
                 
                 nivelActual.notificarObservers();
@@ -407,10 +410,17 @@ public class Juego {
             nivel.agregarCalabaza(cala);
     }
     public void crearMoghera(){
-        Moghera moghera=fabricaEntidades.getMoghera(ConstantesEntidades.X_MOGHERA,ConstantesEntidades.Y_MOGHERA);
-        controladorGrafica.registrarEntidad(moghera);
-        moghera.setActivo(true);
-        nivel.agregarEnemigo(moghera);
+        Temporizador timerDeAparicion= new Temporizador(4);
+        timerDeAparicion.setAccionAlFinalizar(()-> {
+            Sonido.getInstancia().reproducirMusica("temaMusicalMoghera.wav");
+            Moghera moghera=fabricaEntidades.getMoghera(ConstantesEntidades.X_MOGHERA,ConstantesEntidades.Y_MOGHERA);
+            controladorGrafica.registrarEntidad(moghera);
+            moghera.setActivo(true);
+            nivel.agregarEnemigo(moghera);
+        });
+        Sonido.getInstancia().frenarMusica();
+        Sonido.getInstancia().reproducirEfectoDeSonido("risaMoghera.wav");
+        timerDeAparicion.iniciar();
     }
     public void crearBolaDeNieve(int posX, int posY, int puntajeEmpujado){
         BolaDeNieve bola=fabricaEntidades.getBolaDeNieve(posX, posY);
