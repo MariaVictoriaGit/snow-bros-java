@@ -66,7 +66,7 @@ public class ObserverEntidad extends JLabel implements Observer{
 			try{
 				String estado=null;
 				if(activo)
-					estado="congeladoDerecha";
+					estado="congelado";
 				else
 					estado="congelado";
 				String rutaImagen = entidadObservada.getSprite().getRutaImagen(estado);
