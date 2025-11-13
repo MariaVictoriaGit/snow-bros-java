@@ -111,7 +111,7 @@ public class Juego {
                     else{
                         jugadorActual.setChocoPared(false);
                         }
-                    if(!nivel.getDisparos().isEmpty()){
+                    if(!nivelActual.getDisparos().isEmpty()){
                         for(DisparoJugador disparo : nivel.getDisparos()){
                             if(disparo.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
                                 p.aceptar(disparo);
@@ -270,7 +270,7 @@ public class Juego {
                         fantasma.patronDeMovimiento();
                     }
                 }
-                if(nivelActual.terminoElNivel()&&!jefeCreado){
+                if(nivelActual==nivel&&nivelActual.terminoElNivel()&&!jefeCreado){
                     jefeCreado=true;
                     if(parseActual.getSuperoNivelAnterior())
                         crearKamakichi(); //PARA NIVEL 2
@@ -414,6 +414,9 @@ public class Juego {
     }
     public void setDominio(String dominio){
         this.dominio=dominio;
+    }
+    public void setNivel(Nivel nivel){
+        this.nivel=nivel;
     }
     public FabricaEntidades getFabricaEntidades(){
         return fabricaEntidades;
