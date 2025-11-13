@@ -107,6 +107,17 @@ public class Nivel implements LocalizadorJugador, InterfazEliminar{
     public void eliminarObstaculo(Obstaculo o){
         listaObstaculos.remove(o);
     }
+    public void eliminarEntidadesEstaticas(){
+       for(Obstaculo o:listaObstaculos){
+            o.borrarLabel();
+       }
+       for(Plataforma p:listaPlataformas){
+            p.borrarLabel();
+       }
+       for(SueloResbaladizo s:listaResbaladizos){
+            s.borrarLabel();
+       }
+    }
     public void eliminarPared(Pared p){
         listaParedes.remove(p);
     }
@@ -233,7 +244,8 @@ public class Nivel implements LocalizadorJugador, InterfazEliminar{
         return silueta;
     }
     public void notificarObservers(){
-        jugador.getObserver().actualizar();
+        if(jugador!=null)
+            jugador.getObserver().actualizar();
         for(Enemigo e:new ArrayList<>(this.getEnemigos()))
             if(!e.getCongelado() && !e.getMuerto() && e!=null)
                 e.getObserver().actualizar();
@@ -264,6 +276,8 @@ public class Nivel implements LocalizadorJugador, InterfazEliminar{
       return condicion;
     }
     public void eliminarse(){
+        eliminarEntidadesEstaticas();
+        jugador.eliminar();
         silueta=null;
         listaEnemigos.clear();
         listaPowerUps.clear();

@@ -1,8 +1,8 @@
 package SnowBros.src.Datos;
 
 public class ConstantesDificultad {
-    public static final int POTENCIA_DISPARO_AUMENTADA=20;
-    public static final int POTENCIA_DISPARO_NORMAL=10;
+    public static final int POTENCIA_DISPARO_AUMENTADA=2;
+    public static final int POTENCIA_DISPARO_NORMAL=1;
     public static final int VELOCIDAD_DISPARO=15;
 
     public static final int ALTURA_MAX_SALTO=72; 

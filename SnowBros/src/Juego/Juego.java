@@ -58,9 +58,12 @@ public class Juego {
             fabricaSprites= new Original();
         else if (dominio.equals("Alternativo"))
             fabricaSprites= new Alternativo();
-        tiempo.iniciar();
         fabricaEntidades = new FabricaEntidades(fabricaSprites,gestor);
-        parseActual= new ParserNivel(fabricaEntidades);
+        tiempo.iniciar();
+          // 🔧 Solo crear el parser si todavía no existe
+        if (parseActual == null)
+            parseActual = new ParserNivel(fabricaEntidades);
+        jefeCreado=false;
         iniciarNivel();
     }
     private void iniciarHilos(){
@@ -89,12 +92,19 @@ public class Juego {
                             f.aceptar(jugadorActual);
                             }
                         }
+                }
+                if (nivelActual.getCalabaza()!=null){
+                    if (jugadorActual.getHitbox().getRectangle().intersects(nivelActual.getCalabaza().getHitbox().getRectangle())) {
+                        nivelActual.getCalabaza().aceptar(jugadorActual);
                     }
-                    if (nivelActual.getCalabaza()!=null){
-                        if (jugadorActual.getHitbox().getRectangle().intersects(nivelActual.getCalabaza().getHitbox().getRectangle())) {
-                            nivelActual.getCalabaza().aceptar(jugadorActual);
+                    if(!nivelActual.getDisparos().isEmpty()){
+                        for(DisparoJugador disparo : nivelActual.getDisparos()){
+                            if(disparo.getHitbox().getRectangle().intersects(nivelActual.getCalabaza().getHitbox().getRectangle())){
+                                nivelActual.getCalabaza().aceptar(disparo);
+                            }
                         }
                     }
+                }
                 for(Pared p: new ArrayList<>(nivelActual.getParedes())){
                     if(jugadorActual.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
                             p.aceptar(jugadorActual);
@@ -102,6 +112,13 @@ public class Juego {
                     else{
                         jugadorActual.setChocoPared(false);
                         }
+                    if(!nivel.getDisparos().isEmpty()){
+                        for(DisparoJugador disparo : nivel.getDisparos()){
+                            if(disparo.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
+                                p.aceptar(disparo);
+                            }
+                        }
+                    }
                 }
                 for(PowerUp entidad : new ArrayList<>(nivelActual.getPowerUps()))
                     if (jugadorActual.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())) 
@@ -227,6 +244,9 @@ public class Juego {
                         else{
                             enemigo.actualizarTiempoCongelado();
                         }
+                        if(nivelActual.getEnemigos().isEmpty()){
+                            this.superarNivel();
+                        }
                    }
                 }
                 if(!nivelActual.getDisparos().isEmpty())
@@ -255,12 +275,6 @@ public class Juego {
                     jefeCreado=true;
                     crearMoghera();
                 }
-                if(nivelActual.getEnemigos().isEmpty()){
-                    //controladorGrafica.pasarNivel();
-                }
-
-
-                
                 nivelActual.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
                 long dormir = frameTime - duracion;
@@ -304,7 +318,7 @@ public class Juego {
      
     public void iniciarNivel(){
         if (nivel == null){
-            nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que corresponda
+            nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que correspon
             gestor.setNivel(nivel);
             //nivel.setNivel(nivel.getNivelActual()+1);
         }
@@ -316,15 +330,19 @@ public class Juego {
         else{//si ya existe el jugador
             if(jugador.getVidas()==0)
                 reiniciarJugador=false;
-            if(reiniciarJugador)
+            if(reiniciarJugador){
                 nivel=parseActual.generarNivel(modoDeJuego);
+                jugador = nivel.getJugador();
+                jugador.setJuego(this);
+            }
             else{
+                nivel=parseActual.generarNivel(modoDeJuego);
+                jugador = nivel.getJugador();
                 jugador.setVidas();
                 jugador.actualizarPuntaje(0);
-                nivel= parseActual.generarNivel(modoDeJuego);
+                jugador.setJuego(this);
             }
         }
-
         this.registrarObservers();
         jugador.getObserver().actualizar();
         tiempoAntesAparicionCalabaza.setAccionAlFinalizar(()->crearCalabaza());
@@ -337,8 +355,11 @@ public class Juego {
     public void superarNivel(){
         nivel.eliminarse();
         detenerJuego();
+        parseActual.setSuperoNivelAnterior(true);
         nivel=null;
+        jugador=null;
         iniciarNivel();
+        controladorGrafica.cambiarPantallaTransicion();
 
     }
     public void actualizarPuntaje(int puntajeASumar){
