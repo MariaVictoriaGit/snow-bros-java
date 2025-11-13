@@ -254,6 +254,7 @@ public class Juego {
                 }
                 if (!nivelActual.getFantasmas().isEmpty()){
                     for(Fantasma fantasma : nivelActual.getFantasmas()){
+                        fantasma.setPosicionJugador(jugadorActual.getPosX(), jugadorActual.getPosY());
                         fantasma.patronDeMovimiento();
                     }
                 }

@@ -82,9 +82,7 @@ public class Calabaza extends Enemigo{
         return clave;
     }
     public void invocarFantasma(){
-        Fantasma fanta=nivel.getJuego().getFabricaEntidades().getFantasma(this.posX, this.posY);
-        nivel.getJuego().registrarObserverEntidad(fanta); 
-        nivel.agregarFantasma(fanta);
+        gestor.crearFantasma(posX, posY);
     }
     public void convertirEnBola(){
         throw new UnsupportedOperationException("Unimplemented method 'convertirEnBola'");

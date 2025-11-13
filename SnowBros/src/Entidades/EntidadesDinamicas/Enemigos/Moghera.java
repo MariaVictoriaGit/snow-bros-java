@@ -13,7 +13,6 @@ public class Moghera extends Enemigo{
     protected static final int puntajeEmpujado = 5000;
     protected boolean congelado;
     private boolean bolaLanzada;
-    private LocalizadorJugador jugador;
 
     public Moghera(int x, int y, Sprite sprite){
         super(x, y, sprite);
@@ -156,6 +155,5 @@ public class Moghera extends Enemigo{
     }
     public void setNivel(Nivel n){
         super.setNivel(n);
-        jugador=n;
     }
 }
