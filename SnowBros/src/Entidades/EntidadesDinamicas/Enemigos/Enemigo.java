@@ -1,14 +1,14 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
-import java.awt.Rectangle;
 
 import SnowBros.src.Datos.ConstantesEntidades;
+import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Juego.Temporizador;
-import SnowBros.src.Visitor.*;
+import SnowBros.src.Visitor.Visitable;
+import SnowBros.src.Visitor.Visitador;
 
 public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected int salud;
@@ -22,14 +22,18 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected long tiempoEstado = 0;
    protected long inicioCongelado=0;
    protected int estado = EstadosDePatron.MOVERDERECHA;
-   protected boolean activarCongelado;
+   protected boolean activarJefe;
+   public boolean jefeDerrotado;
    public Enemigo(int x, int y, Sprite sprites) {
+      //la dificultad va a verse definida por lsa salud
+      //de c/u y los tiempos congelado, desp cambiar
       super(x, y, sprites);
       congelado=false;
       muerto=false;
       rodando=false;
       detenido=false;
-      activarCongelado=false;//para Moghera y kamaki
+      activarJefe=false;//para Moghera y kamaki
+      jefeDerrotado=false;
       tocandoSuelo=ConstantesEntidades.SUELO;
       direccion=ConstantesEntidades.QUIETO;
    }
@@ -53,51 +57,39 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
                   direccion=ConstantesEntidades.DERECHA;
                }
          }*/
+   
    public abstract void patronDeMovimiento();
+
    public abstract int getSalud();
-   protected void verificarPared(Pared p){
-      Rectangle paredRectangle=p.getHitbox().getRectangle();
-      if(this.getHitbox().getRightHitBox().intersects(paredRectangle)) {
-         if(direccion==ConstantesEntidades.IZQUIERDA){
-            estado=EstadosDePatron.MOVERDERECHA;
-         }
-         else{
-            estado=EstadosDePatron.MOVERIZQUIERDA;
-         }
-      }
-      else if(this.getHitbox().getLeftHitBox().intersects(paredRectangle)) {
-         if(direccion==ConstantesEntidades.IZQUIERDA){
-            estado=EstadosDePatron.MOVERDERECHA;
-         }
-         else{
-            estado=EstadosDePatron.MOVERIZQUIERDA;
-         } 
-      }
-      hitbox.actualizarHitbox(posX, posY, ancho, alto);
-   }
+   
    public void recibirDaño(int daño){
       salud -= daño;
       if (salud <= 0){
+         if(activarJefe)
+            jefeDerrotado=true;
          congelado=true;
+         detener();
          congelar();
          inicioCongelado=System.currentTimeMillis();
-      } 
+      }
    }
    public String generarClaveEstado(){
-      String estado=null;
-      if(congelado )
-         estado="congelado";
-      else
+        String estado=null;
+        if(congelado )
+            estado="congelado";
+        else{
          if(direccion==ConstantesEntidades.IZQUIERDA)
             estado="idleIzquierda";
-         else
+        else
             estado="idleDerecha";
-      return estado;
+        }
+        return estado;
    }
    public void actualizarTiempoCongelado(){
       long tiempoADescongelar=5000;
-         if(detenido && System.currentTimeMillis()>inicioCongelado+tiempoADescongelar)
+         if(detenido && System.currentTimeMillis()>inicioCongelado+tiempoADescongelar){
             descongelar();
+         }
    }
    public void setCongelado(boolean b){
       congelado=b;
@@ -111,13 +103,18 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public boolean getMuerto(){ 
       return muerto; 
    }
+   public boolean getDerrotado(){
+      return jefeDerrotado;
+   }
    public void congelar(){
       Sonido.getInstancia().reproducirEfectoDeSonido("enemigoMuereBolaNieve.wav");
       detenido=true;
       direccion=ConstantesEntidades.QUIETO;
       nivel.getJugador().actualizarPuntaje(this.getPuntajeCongelado());
       if(observer!=null)
-         observer.actualizarBolaDeNieve(activarCongelado);
+         observer.actualizarBolaDeNieve(activarJefe);
+      if(jefeDerrotado)
+         this.eliminar();
    }
    public void descongelar(){
       detenido=false;
@@ -127,12 +124,17 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    }
    public void convertirEnBola(){ //metodo llamado al colisionar con la bola
       if(congelado){
-         this.eliminar();
-         nivel.getJuego().crearBolaDeNieve(posX,posY,this.getPuntajeEmpujado());
+         this.eliminar(); 
+         nivel.getJuego().crearBolaDeNieve(posX,posY,1);
       }
+   }
+   public void agregarPowerUp(Boolean b){
+
+      //nivel.agregarPowerUp(b,posX,posY);
    }
    public abstract int getPuntajeCongelado();
    public abstract int getPuntajeEmpujado();
+   
    public void eliminar(){
       if(observer!=null){
          observer.borrarObserver();

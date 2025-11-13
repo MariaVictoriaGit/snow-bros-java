@@ -109,13 +109,9 @@ public class Moghera extends Enemigo{
         return bola;
     }
     public void setActivo(boolean t){
-        activarCongelado=t;
+        activarJefe=t;
     }
-    public void esDerrotado(){
-        if(nivel.terminoElNivel()&&this.congelado){
-            nivel.getJuego().superarNivel();
-        }
-    }
+
     public void convertirEnBola(){
        congelado=true;
     }

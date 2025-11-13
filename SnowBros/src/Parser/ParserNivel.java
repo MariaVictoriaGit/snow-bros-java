@@ -169,7 +169,7 @@ public class ParserNivel{
                 nivelACargar = ConstantesNiveles.NIVEL3;
             }else{
                 Sonido.getInstancia().reproducirMusica("temaMusicalNivel6.wav");
-                nivelACargar = ConstantesNiveles.NIVEL4;
+                nivelACargar = ConstantesNiveles.NIVEL1;
             }
         return nivelACargar;
        }

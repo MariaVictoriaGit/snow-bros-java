@@ -24,6 +24,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   protected int alturaMax;
   protected int tocandoSuelo;
   protected int velocidadSalto;
+  protected long ultimoSalto;
   protected ObserverEntidad observer;//ObserverEntidad
   public EntidadDinamica(int posX, int posY, Sprite mSprite){
     super(posX, posY, mSprite);
@@ -32,6 +33,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     velocidadY=ConstantesDificultad.VELOCIDAD_ENTIDAD_DINAMICA_Y;
     alturaMax=ConstantesDificultad.ALTURA_MAX_SALTO;
     alturaSalto=0;
+    ultimoSalto=0;
     enAire=false;
     saltando=false;
   }
@@ -104,7 +106,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
       actualizarCaida();
     }
   }
-  protected abstract void verificarPared(Pared p);
+  //protected abstract void verificarPared(Pared p);
   private void actualizarCaida(){
     if(tocandoSuelo==ConstantesEntidades.AIRE){
       velocidadY=ConstantesDificultad.VELOCIDAD_ENTIDAD_DINAMICA_Y;
@@ -116,7 +118,8 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     }
   }
   public void iniciarSalto(){
-    if(tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
+    long tiempoHilo=System.currentTimeMillis();
+    if(tiempoHilo-ultimoSalto>500 && tocandoSuelo==ConstantesEntidades.SUELO && posY<ConstantesVistas.PANEL_JUEGO_ALTO){
       Sonido.getInstancia().reproducirEfectoDeSonido("salto.wav");
       saltando=true;
       enAire=true;
@@ -164,10 +167,10 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   public void visitar(Fruta f) {}
   public void visitar(VidaExtra v) {}
   public void visitar(Pared e){
-    this.verificarPared(e);
+   // this.verificarPared(e);
   }
   public void visitar(ParedDestructible e) {
-    verificarPared(e);
+   // verificarPared(e);
   }
   public void visitar(Escalera e) {
       if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){

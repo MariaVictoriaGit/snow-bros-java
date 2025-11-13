@@ -158,6 +158,11 @@ public class Juego {
                         jugadorActual.aceptar(bola);
                         colisionBola = true;
                     }
+                    else{
+                        colisionBola=false;
+                        controladorGrafica.setEmpujando(false);
+                        jugadorActual.setEmpujando(null);
+                    }
                     for(Pared p:new ArrayList<>(nivelActual.getParedes())){
                             if(bola.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
                                 p.aceptar(bola);
@@ -176,7 +181,7 @@ public class Juego {
                         if(suelo.getHitbox().getRectangle().intersects(bola.getHitbox().getRectangle())) 
                             suelo.aceptar(bola);
                     }
-                    if(nivel.getCalabaza()!=null && suelo.getHitbox().getRectangle().intersects(nivel.getCalabaza().getHitbox().getRectangle())) 
+                    if(nivel!=null && nivel.getCalabaza()!=null && suelo.getHitbox().getRectangle().intersects(nivel.getCalabaza().getHitbox().getRectangle())) 
                         suelo.aceptar(nivel.getCalabaza());
                 }
                 if (!colisionBola && !colisionSuelo) {
@@ -237,6 +242,11 @@ public class Juego {
                     crearMoghera();
                     creeJefe=true;
                 }
+                if(nivelActual.getEnemigos().isEmpty()){
+                    superarNivel();
+                }
+
+
                 
                 nivelActual.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
@@ -406,8 +416,10 @@ public class Juego {
     private void crearCalabaza(){
         Calabaza cala=fabricaEntidades.getCalabaza(ConstantesEntidades.X_CALABAZA, ConstantesEntidades.Y_CALABAZA);
         controladorGrafica.registrarEntidad(cala);
-        if(nivel!=null)
+        if(nivel!=null){
             nivel.agregarCalabaza(cala);
+            cala.setNivel(nivel);
+        }
     }
     public void crearMoghera(){
         Temporizador timerDeAparicion= new Temporizador(4);
@@ -439,8 +451,8 @@ public class Juego {
         }
     }
     public void empujarBolaDeNieve(){
-        if(!jugador.estaEmpujando().getEstado()){
-            int puntajeASumar = jugador.estaEmpujando().disparar();
+        if(!jugador.getBolaEmpujada().getEstado()){
+            int puntajeASumar = jugador.getBolaEmpujada().disparar();
             actualizarPuntaje(puntajeASumar);
         }
     }
