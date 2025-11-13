@@ -88,6 +88,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     return observer;
   }
   public void notificarObserver(){
+    if(observer==null) return;
     observer.actualizar();
   }
   public void verificarSuelo(){

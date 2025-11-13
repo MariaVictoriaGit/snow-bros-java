@@ -254,6 +254,11 @@ public class Nivel implements LocalizadorJugador, InterfazEliminar{
                 b.getObserver().actualizar();
             }
         }
+        for(DisparoJugador disparo:this.getDisparos()){
+            if(disparo!=null){
+                disparo.getObserver().actualizar();
+            }
+        }
         for(PlataformaMovil p:this.getPlataformasMovil())
             p.getObserver().actualizar();
         for(BolaDeFuego b : new ArrayList<>(this.getBolasDeFuego()))
