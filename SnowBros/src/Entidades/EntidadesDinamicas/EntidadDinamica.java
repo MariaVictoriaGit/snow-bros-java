@@ -144,7 +144,6 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
 }
   public void visitar(Enemigo e) {}
   public void visitar(Plataforma e) {
-    velocidad=6;                
     visitarPlataforma(e);
   }
   public void visitar(PlataformaMovil e) {
