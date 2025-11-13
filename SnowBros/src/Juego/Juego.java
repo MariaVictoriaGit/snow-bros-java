@@ -37,16 +37,17 @@ public class Juego {
     protected String modoDeJuego;
     private long ultimoDisparo;
     protected String dominio;
+    protected GestorEntidad gestor;
     protected boolean jefeCreado;
 
     public Juego(){
         reiniciarJugador=false;
         ranking=new Ranking();
         tiempo= new Temporizador(); 
-        tiempoAntesAparicionCalabaza= new Temporizador(ConstantesTiempos.TIEMPO_CALABAZA);//ConstantesTiempos.TIEMPO_CALABAZA);
+        tiempoAntesAparicionCalabaza= new Temporizador(ConstantesTiempos.TIEMPO_CALABAZA);
         juegoEnEjecucion=false;
         ultimoDisparo=0;
-        
+        gestor= new GestorEntidad(this);
     }
     //metodos de configuracionaa
     public void setControladorGrafica(GUI miControlador) {
@@ -58,9 +59,8 @@ public class Juego {
         else if (dominio.equals("Alternativo"))
             fabricaSprites= new Alternativo();
         tiempo.iniciar();
-        fabricaEntidades = new FabricaEntidades(fabricaSprites);
-        parseActual= new ParserNivel(fabricaSprites);
-        jefeCreado=false;
+        fabricaEntidades = new FabricaEntidades(fabricaSprites,gestor);
+        parseActual= new ParserNivel(fabricaEntidades);
         iniciarNivel();
     }
     private void iniciarHilos(){
@@ -303,6 +303,7 @@ public class Juego {
     public void iniciarNivel(){
         if (nivel == null){
             nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que corresponda
+            gestor.setNivel(nivel);
             //nivel.setNivel(nivel.getNivelActual()+1);
         }
         if(jugador==null){
@@ -449,9 +450,19 @@ public class Juego {
     public void crearBolaDeNieve(int posX, int posY, int puntajeEmpujado){
         BolaDeNieve bola=fabricaEntidades.getBolaDeNieve(posX, posY);
         bola.setPuntajeEmpujado(puntajeEmpujado);
-        bola.setNivel(nivel);
         nivel.agregarBolaDeNieve(bola);
         controladorGrafica.registrarEntidad(bola);
+    }
+    public void crearBolaDeFuego(int posX, int posY, int direccion) {
+        BolaDeFuego bola=fabricaEntidades.getBolaDeFuego(posX, posY);
+        bola.setDireccion(direccion);
+        nivel.agregarBolaDeFuego(bola);
+        controladorGrafica.registrarEntidad(bola);
+    }
+    public void crearFantasma(int posX, int posY){
+        Fantasma fantasma= fabricaEntidades.getFantasma(posX, posY);
+        nivel.agregarFantasma(fantasma);
+        controladorGrafica.registrarEntidad(fantasma);
     }
     public void shootJugador() {
         long tiempoHilo=System.currentTimeMillis();
@@ -495,4 +506,5 @@ public class Juego {
         double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
         return distancia <= umbralDeRango*umbralDeRango;
     }
+    
 }

@@ -15,7 +15,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Grafica.Sprite;
 
-public class Nivel {
+public class Nivel implements LocalizadorJugador{
     protected Sprite sprite;
     //protected String nombreNivel;
     /*podriamos cambiar el nombre de nivel en lugar de numero, como un nombre para identificarlos desde ConstantesNiveles*/
@@ -215,6 +215,9 @@ public class Nivel {
     }
     public Juego getJuego(){
         return jugador.getJuego();
+    }
+    public int getJugadorX(){
+        return jugador.getPosX();
     }
     public Jugador getJugador(){
         return jugador;
