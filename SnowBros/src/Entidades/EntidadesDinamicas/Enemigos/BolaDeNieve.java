@@ -74,37 +74,32 @@ public class BolaDeNieve extends EntidadDinamica{
             direccion=ConstantesEntidades.IZQUIERDA;
     }
     public void visitar(Enemigo e){
-        aparecerPowerUp(e);
+        aparecerPowerUp();
         e.eliminar();
         this.eliminar();
     }
-    private void aparecerPowerUp(Enemigo e){
+    private void aparecerPowerUp(){
         Random random=new Random();
         int probabilidad= random.nextInt(100);
         if(probabilidad<50){
-            PowerUp p=nivel.getJuego().getFabricaEntidades().getFruta(this.getPosX(), this.getPosY());
-            nivel.agregarPowerUp(p);
-            nivel.getJuego().crearPowerUp(p);
+            PowerUp p= gestor.getFabrica().getFruta(posX,posY);
+            gestor.agregarPowerUp(p);
         }
         else if(probabilidad<65){
-            PowerUp p=nivel.getJuego().getFabricaEntidades().getBotellaAzul(this.getPosX(), this.getPosY());
-            nivel.agregarPowerUp(p);
-            nivel.getJuego().crearPowerUp(p);
+            PowerUp p= gestor.getFabrica().getBotellaAzul(posX,posY);
+            gestor.agregarPowerUp(p);
         }
         else if(probabilidad<80){
-            PowerUp p=nivel.getJuego().getFabricaEntidades().getBotellaRoja(this.getPosX(), this.getPosY());
-            nivel.agregarPowerUp(p);
-            nivel.getJuego().crearPowerUp(p);
+            PowerUp p= gestor.getFabrica().getBotellaRoja(posX,posY);
+            gestor.agregarPowerUp(p);
         }
         else if(probabilidad<95){
-            PowerUp p=nivel.getJuego().getFabricaEntidades().getBotellaVerde(this.getPosX(), this.getPosY());
-            nivel.agregarPowerUp(p);
-            nivel.getJuego().crearPowerUp(p);
+            PowerUp p= gestor.getFabrica().getBotellaVerde(posX,posY);
+            gestor.agregarPowerUp(p);
         }
         else{
-            PowerUp p=nivel.getJuego().getFabricaEntidades().getVidaExtra(this.getPosX(), this.getPosY());
-            nivel.agregarPowerUp(p);
-            nivel.getJuego().crearPowerUp(p);
+            PowerUp p= gestor.getFabrica().getVidaExtra(posX,posY);
+            gestor.agregarPowerUp(p);
         }
     }
     public void visitar(ParedDestructible p){
@@ -116,6 +111,7 @@ public class BolaDeNieve extends EntidadDinamica{
             observer.borrarObserver();
             nivel.eliminarBolaDeNieve(this);
             observer=null;
+            aparecerPowerUp();
         }
     }
     public void visitar(Jugador j){

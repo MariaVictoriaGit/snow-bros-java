@@ -97,7 +97,7 @@ public class Moghera extends Enemigo{
             else
                 posicionXBola=this.getPosX()-15;
             if(!bolaLanzada){
-                gestor.crearBolaDeFuego(posicionXBola, posY, direccionDisparo);
+                gestor.crearBolaDeFuego(posicionXBola, posY, direccion);
                 bolaLanzada=true;
             }
 

@@ -44,7 +44,7 @@ public class Juego {
         reiniciarJugador=false;
         ranking=new Ranking();
         tiempo= new Temporizador(); 
-        tiempoAntesAparicionCalabaza= new Temporizador(190000);//ConstantesTiempos.TIEMPO_CALABAZA);
+        tiempoAntesAparicionCalabaza= new Temporizador(ConstantesTiempos.TIEMPO_CALABAZA);
         juegoEnEjecucion=false;
         ultimoDisparo=0;
         gestor= new GestorEntidad(this);
@@ -303,6 +303,7 @@ public class Juego {
     public void iniciarNivel(){
         if (nivel == null){
             nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que corresponda
+            gestor.setNivel(nivel);
             //nivel.setNivel(nivel.getNivelActual()+1);
         }
         if(jugador==null){
@@ -319,7 +320,6 @@ public class Juego {
                 jugador.setVidas();
                 jugador.actualizarPuntaje(0);
                 nivel= parseActual.generarNivel(modoDeJuego);
-                gestor.setNivel(nivel);
             }
         }
 
@@ -450,16 +450,19 @@ public class Juego {
     public void crearBolaDeNieve(int posX, int posY, int puntajeEmpujado){
         BolaDeNieve bola=fabricaEntidades.getBolaDeNieve(posX, posY);
         bola.setPuntajeEmpujado(puntajeEmpujado);
-        bola.setNivel(nivel);
         nivel.agregarBolaDeNieve(bola);
         controladorGrafica.registrarEntidad(bola);
     }
     public void crearBolaDeFuego(int posX, int posY, int direccion) {
         BolaDeFuego bola=fabricaEntidades.getBolaDeFuego(posX, posY);
-        bola.setNivel(nivel);
         bola.setDireccion(direccion);
         nivel.agregarBolaDeFuego(bola);
         controladorGrafica.registrarEntidad(bola);
+    }
+    public void crearFantasma(int posX, int posY){
+        Fantasma fantasma= fabricaEntidades.getFantasma(posX, posY);
+        nivel.agregarFantasma(fantasma);
+        controladorGrafica.registrarEntidad(fantasma);
     }
     public void shootJugador() {
         long tiempoHilo=System.currentTimeMillis();
