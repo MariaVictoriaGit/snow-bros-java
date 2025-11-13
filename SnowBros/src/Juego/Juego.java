@@ -288,6 +288,7 @@ public class Juego {
             detenerJuego();
             nivel=null;
             jugador=null;
+            puntajeJugador=0;
             tiempo.reiniciar();
             tiempoAntesAparicionCalabaza.reiniciar();
             controladorGrafica.cambiarPantallaGameOver(); // gameOver

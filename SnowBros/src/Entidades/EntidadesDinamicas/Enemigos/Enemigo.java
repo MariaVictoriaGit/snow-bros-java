@@ -90,9 +90,9 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
             estado="congelado";
         else{
          if(direccion==ConstantesEntidades.IZQUIERDA)
-            estado="idleIzquierda";
+            estado="normalIzquierda";
         else
-            estado="idleDerecha";
+            estado="normalDerecha";
         }
         return estado;
    }
