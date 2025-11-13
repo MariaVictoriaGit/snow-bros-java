@@ -184,7 +184,7 @@ public class Original extends FabricaSprites{
     }
     public Sprite getSpriteDisparoJugador(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("idleDerecha", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalDerecha.gif");
+        mapeo.put("normalDerecha", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalDerecha.gif");
         mapeo.put("normalIzquierda", rutaACarpeta + "/DisparoJugador/disparoJugadorNormalIzquierda.gif");
         mapeo.put("aumentadoDerecha", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentadoDerecha.gif");
         mapeo.put("aumentadoIzquierda", rutaACarpeta + "/DisparoJugador/disparoJugadorAumentadoIzquierda.gif");
