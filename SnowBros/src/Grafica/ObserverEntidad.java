@@ -94,10 +94,16 @@ public class ObserverEntidad extends JLabel implements Observer{
 	}
 	public void borrarObserver(){
 		entidadObservada=null;
-		Container padre= getParent();
-		getParent().remove(this);
-		padre.revalidate();
-		padre.repaint();
+
+		Container padre;
+        try{
+            padre= getParent();
+            getParent().remove(this);
+            padre.revalidate();
+            padre.repaint();
+        } catch(NullPointerException e){
+            return;
+        }
 	}
 	public JLabel getImagen(){
 		return imagen;
