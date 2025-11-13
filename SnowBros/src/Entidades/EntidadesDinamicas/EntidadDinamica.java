@@ -167,11 +167,12 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   public void visitar(Fruta f) {}
   public void visitar(VidaExtra v) {}
   public void visitar(Pared e){
-   // this.verificarPared(e);
+    this.verificarPared(e);
   }
   public void visitar(ParedDestructible e) {
-   // verificarPared(e);
+    verificarPared(e);
   }
+  protected abstract void verificarPared(Pared p);
   public void visitar(Escalera e) {
       if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
             this.hitbox.actualizarHitbox(posX, posY, ancho, alto);

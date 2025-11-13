@@ -97,7 +97,7 @@ public class Juego {
                     }
                 for(Pared p: new ArrayList<>(nivelActual.getParedes())){
                     if(jugadorActual.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
-                                p.aceptar(jugadorActual);
+                            p.aceptar(jugadorActual);
                             }
                     else{
                         jugadorActual.setChocoPared(false);
