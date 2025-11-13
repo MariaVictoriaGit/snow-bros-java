@@ -76,7 +76,6 @@ public class BolaDeNieve extends EntidadDinamica{
     public void visitar(Enemigo e){
         aparecerPowerUp();
         e.eliminar();
-        this.eliminar();
     }
     private void aparecerPowerUp(){
         Random random=new Random();
