@@ -108,9 +108,8 @@ public class BolaDeNieve extends EntidadDinamica{
     }
     public void eliminar(){
         if(observer!=null){
-            observer.borrarObserver();
             nivel.eliminarBolaDeNieve(this);
-            observer=null;
+            super.eliminar();
             aparecerPowerUp();
         }
     }

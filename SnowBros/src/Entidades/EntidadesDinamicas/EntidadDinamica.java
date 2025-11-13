@@ -199,4 +199,8 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     //lo ignora
     throw new UnsupportedOperationException("Unimplemented method 'visitar'");
   }
+  public void eliminar(){
+    observer.borrarObserver();
+    observer=null;
+  }
 }

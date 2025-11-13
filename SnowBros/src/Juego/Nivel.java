@@ -15,7 +15,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Grafica.Sprite;
 
-public class Nivel implements LocalizadorJugador{
+public class Nivel implements LocalizadorJugador, InterfazEliminar{
     protected Sprite sprite;
     //protected String nombreNivel;
     /*podriamos cambiar el nombre de nivel en lugar de numero, como un nombre para identificarlos desde ConstantesNiveles*/
@@ -125,11 +125,18 @@ public class Nivel implements LocalizadorJugador{
     public void eliminarBolaDeNieve(BolaDeNieve b){
         listaBolaDeNieve.remove(b);
     }
-    public void eliminarFantasmas(){
-        listaFantasmas.clear();
+    public void eliminarFantasma(Fantasma f){
+        listaFantasmas.remove(f);
+        
     }
     public void eliminarCalabaza(){
         calabaza=null;
+    }
+    public void eliminarPMovil(PlataformaMovil p) {
+       listaPmovil.remove(p);
+    }
+    public void eliminarResbaladizo(SueloResbaladizo s) {
+        listaResbaladizos.remove(s);
     }
     // métodos que agregan
     public void agregarJugador(Jugador j){

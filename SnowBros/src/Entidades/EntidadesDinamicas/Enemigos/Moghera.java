@@ -91,17 +91,9 @@ public class Moghera extends Enemigo{
     public BolaDeFuego lanzarFuego(){
         BolaDeFuego bola=null;
         if(direccion==ConstantesEntidades.QUIETO){
-            int posicionXBola;
-            if(jugador.getJugadorX()>this.getPosX())
-                direccion=ConstantesEntidades.DERECHA;
-            else
-                direccion=ConstantesEntidades.IZQUIERDA;
-            if (direccion==ConstantesEntidades.DERECHA) 
-                posicionXBola= this.getPosX()+15;
-            else
-                posicionXBola=this.getPosX()-15;
+            int posicionXBola= posX+15;
             if(!bolaLanzada){
-                gestor.crearBolaDeFuego(posicionXBola, posY, direccion);
+                gestor.crearBolaDeFuego(posicionXBola, posY, ConstantesEntidades.IZQUIERDA);
                 bolaLanzada=true;
             }
 

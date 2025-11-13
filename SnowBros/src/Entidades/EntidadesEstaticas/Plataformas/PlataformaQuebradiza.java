@@ -21,7 +21,9 @@ public class PlataformaQuebradiza extends Plataforma {
     }
     public void eliminar(){
         if(!eliminado){
-            nivel.getJuego().eliminarPlataformaQuebradiza(this);
+            nivel.eliminarPlataforma(this);
+            borrarLabel();
+           // nivel.getJuego().eliminarPlataformaQuebradiza(this);
             eliminado=true;
         }
     }

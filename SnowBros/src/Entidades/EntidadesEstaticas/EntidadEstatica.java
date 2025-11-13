@@ -23,9 +23,15 @@ public abstract class EntidadEstatica extends Entidad implements Visitable {
         return miLabel;
     }
     public void borrarLabel(){
-        Container padre= miLabel.getParent();
-		miLabel.getParent().remove(miLabel);
-		padre.revalidate();
-		padre.repaint();
+        Container padre;
+        try{
+            padre= miLabel.getParent();
+            miLabel.getParent().remove(miLabel);
+            padre.revalidate();
+            padre.repaint();
+        } catch (NullPointerException e){
+            return;
+        }
+        
     }
 }

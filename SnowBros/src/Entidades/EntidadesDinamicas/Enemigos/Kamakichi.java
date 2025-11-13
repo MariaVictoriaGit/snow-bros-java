@@ -92,12 +92,7 @@ public class Kamakichi extends Enemigo{
         }
     }
     public void agregarBomba(int posXInicial,int posYInicial,int direccionDisparo){
-        BolaDeFuego bola;
-        bola=nivel.getJuego().getFabricaEntidades().getBolaDeFuego(posXInicial, this.posY);
-        bola.setDireccion(direccionDisparo);
-        bola.setNivel(nivel);
-        nivel.agregarBolaDeFuego(bola);
-        nivel.getJuego().registrarObserverEntidad(bola);
+        gestor.crearBolaDeFuego(posXInicial, posYInicial, direccionDisparo);
     }
     public void convertirEnBola(){
         congelado=true;

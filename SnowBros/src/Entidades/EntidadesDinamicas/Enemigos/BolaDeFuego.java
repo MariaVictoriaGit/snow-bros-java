@@ -91,7 +91,7 @@ public class BolaDeFuego extends EntidadDinamica{
     }
     public void eliminar(){
         nivel.eliminarBolaDeFuego(this);
-        nivel.getJuego().eliminarEntidadGraficamente(this);
+       super.eliminar();
     }
     public void visitar(Plataforma p){
         eliminar();

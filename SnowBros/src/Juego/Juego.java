@@ -399,7 +399,8 @@ public class Juego {
 		}
     }
     public void crearPowerUp(PowerUp p){
-            p.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(p));   
+            p.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(p));
+            nivel.agregarPowerUp(p);   
             p.getTiempoDeVida().iniciar(); //TODO cuando este implementada la muerte del enemigo considerar moverlo ahi
     }
     public void actualizarVidas(){
