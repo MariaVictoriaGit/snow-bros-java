@@ -60,7 +60,6 @@ public class Juego {
             fabricaSprites= new Alternativo();
         fabricaEntidades = new FabricaEntidades(fabricaSprites,gestor);
         tiempo.iniciar();
-          // 🔧 Solo crear el parser si todavía no existe
         if (parseActual == null)
             parseActual = new ParserNivel(fabricaEntidades);
         jefeCreado=false;
@@ -273,7 +272,10 @@ public class Juego {
                 }
                 if(nivelActual.terminoElNivel()&&!jefeCreado){
                     jefeCreado=true;
-                    crearMoghera();
+                    if(parseActual.getSuperoNivelAnterior())
+                        crearKamakichi(); //PARA NIVEL 2
+                    else
+                        crearMoghera(); //PARA NIVEL 1
                 }
                 nivelActual.notificarObservers();
                 long duracion = System.currentTimeMillis() - inicio;
@@ -290,13 +292,30 @@ public class Juego {
         hiloGlobal.start();
         hiloColision.start();
     }
-    public void detenerJuego(){
-        juegoEnEjecucion=false;
-        if(hiloGlobal!=null&& Thread.currentThread() != hiloGlobal)
-            hiloGlobal.interrupt();
-        if(hiloColision!=null&& Thread.currentThread() != hiloColision)
-            hiloColision.interrupt();
+    public void detenerJuego() {
+    juegoEnEjecucion = false;
+
+    // Interrumpir hilos
+    if (hiloGlobal != null && hiloGlobal.isAlive()) {
+        hiloGlobal.interrupt();
     }
+    if (hiloColision != null && hiloColision.isAlive()) {
+        hiloColision.interrupt();
+    }
+
+    // Esperar a que terminen
+    try {
+        if (hiloGlobal != null && hiloGlobal.isAlive())
+            hiloGlobal.join(); // Espera a que termine realmente
+        if (hiloColision != null && hiloColision.isAlive())
+            hiloColision.join();
+    } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+    }
+
+    hiloGlobal = null;
+    hiloColision = null;
+}
     public void reiniciarNivel(){
         if(jugador.getVidas()==0){
             ranking.setJugador(jugador.getNombre(),puntajeJugador,modoDeJuego);
@@ -339,8 +358,8 @@ public class Juego {
                 nivel=parseActual.generarNivel(modoDeJuego);
                 jugador = nivel.getJugador();
                 jugador.setVidas();
-                jugador.actualizarPuntaje(0);
                 jugador.setJuego(this);
+                jugador.actualizarPuntaje(0);
             }
         }
         this.registrarObservers();
@@ -355,6 +374,8 @@ public class Juego {
     public void superarNivel(){
         nivel.eliminarse();
         detenerJuego();
+        //para cuando 
+        jefeCreado=false;
         parseActual.setSuperoNivelAnterior(true);
         nivel=null;
         jugador=null;
@@ -457,6 +478,19 @@ public class Juego {
             nivel.agregarCalabaza(cala);
             cala.setNivel(nivel);
         }
+    }
+    public void crearKamakichi(){
+        Temporizador timerDeAparicion= new Temporizador(4);
+        timerDeAparicion.setAccionAlFinalizar(()-> {
+            Sonido.getInstancia().reproducirMusica("temaMusicalKamakichi.wav");
+            Kamakichi kamakichi=fabricaEntidades.getKamakichi(ConstantesEntidades.X_KAMAKICHI,ConstantesEntidades.Y_KAMAKICHI);
+            controladorGrafica.registrarEntidad(kamakichi);
+            kamakichi.setActivo(true);
+            nivel.agregarEnemigo(kamakichi);
+        });
+        Sonido.getInstancia().frenarMusica();
+        Sonido.getInstancia().reproducirEfectoDeSonido("risaKamakichi.wav");
+        timerDeAparicion.iniciar();
     }
     public void crearMoghera(){
         Temporizador timerDeAparicion= new Temporizador(4);

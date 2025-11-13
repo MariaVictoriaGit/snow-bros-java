@@ -91,6 +91,9 @@ public class Kamakichi extends Enemigo{
             activarDisparo=false;
         }
     }
+    public void setActivo(boolean t){
+        activarJefe=t;
+    }
     public void agregarBomba(int posXInicial,int posYInicial,int direccionDisparo){
         gestor.crearBolaDeFuego(posXInicial, posYInicial, direccionDisparo);
     }
