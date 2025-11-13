@@ -41,7 +41,6 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
-                    getObserver().actualizar();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 }
                 else if(dirAnterior==ConstantesEntidades.IZQUIERDA) {
@@ -52,7 +51,6 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
-                    getObserver().actualizar();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 }
                 break;
@@ -64,7 +62,6 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
-                    getObserver().actualizar();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.IZQUIERDA:
@@ -75,7 +72,6 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
-                    getObserver().actualizar();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.ARRIBA_IZQUIERDA:
@@ -86,7 +82,6 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
-                    getObserver().actualizar();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.ARRIBA_DERECHA:
@@ -97,7 +92,6 @@ public class DisparoJugador extends EntidadDinamica {
                         aumentos++;
                         incrementarY();
                     }
-                    getObserver().actualizar();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
         }

@@ -498,7 +498,7 @@ public class Juego {
         }
     }
     public void empujarBolaDeNieve(){
-        if(!jugador.getBolaEmpujada().getEstado()){
+        if(jugador.getBolaEmpujada()!=null && !jugador.getBolaEmpujada().getEstado()){
             int puntajeASumar = jugador.getBolaEmpujada().disparar();
             actualizarPuntaje(puntajeASumar);
         }
