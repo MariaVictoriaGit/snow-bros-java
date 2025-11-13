@@ -32,7 +32,7 @@ public class Juego {
     private Temporizador tiempoAntesAparicionCalabaza;
     protected Thread hiloColision;
     protected Thread hiloGlobal;
-    protected Boolean juegoEnEjecucion;
+    protected volatile Boolean juegoEnEjecucion;
     protected String nombreJugador;
     protected String modoDeJuego;
     private long ultimoDisparo;
@@ -292,10 +292,10 @@ public class Juego {
         hiloGlobal.start();
         hiloColision.start();
     }
-    public void detenerJuego() {
+    public void detenerJuego(){    
+        
     juegoEnEjecucion = false;
 
-    // Interrumpir hilos
     if (hiloGlobal != null && hiloGlobal.isAlive()) {
         hiloGlobal.interrupt();
     }
@@ -303,19 +303,20 @@ public class Juego {
         hiloColision.interrupt();
     }
 
-    // Esperar a que terminen
     try {
-        if (hiloGlobal != null && hiloGlobal.isAlive())
+        if (hiloGlobal != null) {
             hiloGlobal.join(); // Espera a que termine realmente
-        if (hiloColision != null && hiloColision.isAlive())
+        }
+        if (hiloColision != null) {
             hiloColision.join();
+        }
     } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
     }
-
     hiloGlobal = null;
     hiloColision = null;
 }
+
     public void reiniciarNivel(){
         if(jugador.getVidas()==0){
             ranking.setJugador(jugador.getNombre(),puntajeJugador,modoDeJuego);
@@ -370,18 +371,14 @@ public class Juego {
         iniciarHilos();
 
     }
-    
     public void superarNivel(){
-        nivel.eliminarse();
         detenerJuego();
-        //para cuando 
+        nivel.eliminarse(); 
         jefeCreado=false;
         parseActual.setSuperoNivelAnterior(true);
         nivel=null;
         jugador=null;
-        iniciarNivel();
         controladorGrafica.cambiarPantallaTransicion();
-
     }
     public void actualizarPuntaje(int puntajeASumar){
         puntajeJugador+=puntajeASumar;
