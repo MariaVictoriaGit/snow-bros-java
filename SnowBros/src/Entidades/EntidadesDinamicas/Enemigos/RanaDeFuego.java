@@ -90,11 +90,7 @@ public class RanaDeFuego extends Enemigo{
             else
                 posicionXBola=this.getPosX()-15;
             if(!bolaLanzada){
-                bola=nivel.getJuego().getFabricaEntidades().getBolaDeFuego(posicionXBola, this.posY);
-                bola.setDireccion(direccionDisparo);
-                bola.setNivel(nivel);
-                nivel.agregarBolaDeFuego(bola);
-                nivel.getJuego().registrarObserverEntidad(bola);
+                gestor.crearBolaDeFuego(posicionXBola, posY, direccionDisparo);
                 bolaLanzada=true;
             }
         }

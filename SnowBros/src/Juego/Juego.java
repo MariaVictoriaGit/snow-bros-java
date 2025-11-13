@@ -37,6 +37,7 @@ public class Juego {
     protected String modoDeJuego;
     private long ultimoDisparo;
     protected String dominio;
+    protected GestorEntidad gestor;
 
     public Juego(){
         reiniciarJugador=false;
@@ -45,6 +46,7 @@ public class Juego {
         tiempoAntesAparicionCalabaza= new Temporizador(ConstantesTiempos.TIEMPO_CALABAZA);
         juegoEnEjecucion=false;
         ultimoDisparo=0;
+        gestor= new GestorEntidad(this);
     }
     //metodos de configuracionaa
     public void setControladorGrafica(GUI miControlador) {
@@ -56,8 +58,8 @@ public class Juego {
         else if (dominio.equals("Alternativo"))
             fabricaSprites= new Alternativo();
         tiempo.iniciar();
-        fabricaEntidades = new FabricaEntidades(fabricaSprites);
-        parseActual= new ParserNivel(fabricaSprites);
+        fabricaEntidades = new FabricaEntidades(fabricaSprites,gestor);
+        parseActual= new ParserNivel(fabricaEntidades);
         iniciarNivel();
     }
     private void iniciarHilos(){
@@ -304,6 +306,7 @@ public class Juego {
                 jugador.setVidas();
                 jugador.actualizarPuntaje(0);
                 nivel= parseActual.generarNivel(modoDeJuego);
+                gestor.setNivel(nivel);
             }
         }
 
@@ -431,6 +434,13 @@ public class Juego {
         nivel.agregarBolaDeNieve(bola);
         controladorGrafica.registrarEntidad(bola);
     }
+    public void crearBolaDeFuego(int posX, int posY, int direccion) {
+        BolaDeFuego bola=fabricaEntidades.getBolaDeFuego(posX, posY);
+        bola.setNivel(nivel);
+        bola.setDireccion(direccion);
+        nivel.agregarBolaDeFuego(bola);
+        controladorGrafica.registrarEntidad(bola);
+    }
     public void shootJugador() {
         long tiempoHilo=System.currentTimeMillis();
         if(tiempoHilo-ultimoDisparo>=ConstantesTiempos.COOLDOWN_DISPARO){
@@ -473,4 +483,5 @@ public class Juego {
         double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
         return distancia <= umbralDeRango*umbralDeRango;
     }
+    
 }

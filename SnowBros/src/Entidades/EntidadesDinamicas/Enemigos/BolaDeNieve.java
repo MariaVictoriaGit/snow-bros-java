@@ -10,6 +10,7 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.ParedDestructible;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.GestorEntidad;
 import SnowBros.src.Juego.Temporizador;
 
 public class BolaDeNieve extends EntidadDinamica{
@@ -18,6 +19,7 @@ public class BolaDeNieve extends EntidadDinamica{
     private int velocidadMaxima;
     private boolean reboto;
     protected int puntajeEmpujado;
+    protected GestorEntidad gestor;
 
     public BolaDeNieve(int x, int y, Sprite sprite){
         super(x,y,sprite);
@@ -148,5 +150,8 @@ public class BolaDeNieve extends EntidadDinamica{
     }
     public void setPuntajeEmpujado(int puntaje){
         puntajeEmpujado=puntaje;
+    }
+    public void setGestor(GestorEntidad g){
+        gestor=g;
     }
 }

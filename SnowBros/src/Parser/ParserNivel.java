@@ -20,9 +20,9 @@ public class ParserNivel{
     private FabricaEntidades fabrica;
     private boolean superoNivelAnterior;
 
-    public ParserNivel(FabricaSprites fabricaSprites){
+    public ParserNivel(FabricaEntidades f){
         //que desde la llamada para crear el parser se defina el dominio de aplicacion
-        this.fabrica = new FabricaEntidades(fabricaSprites);
+        this.fabrica = f;
         superoNivelAnterior=false;
     }
     public Nivel generarNivel(String modoDeJuego){
