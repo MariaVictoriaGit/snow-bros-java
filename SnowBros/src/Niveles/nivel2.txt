@@ -41,20 +41,20 @@ Plataforma 608 80
 Plataforma 640 80
 Plataforma 672 80
 
-DemonioRojo 128 112
+DemonioRojo 128 80
 
-Plataforma 352 112
-Plataforma 384 112
-Plataforma 416 112
+Plataforma 352 80
+Plataforma 384 80
+Plataforma 416 80
 
 PlataformaQuebradiza 64 176
 PlataformaQuebradiza 96 176
 
-Plataforma 320 176
-Plataforma 352 176
-Plataforma 384 176
-Plataforma 416 176
-Plataforma 448 176
+Plataforma 320 144
+SueloResbaladizo 352 144
+SueloResbaladizo 384 144
+SueloResbaladizo 416 144
+Plataforma 448 144
 
 TrollAmarillo 352 208
 
