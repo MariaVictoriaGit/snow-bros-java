@@ -81,14 +81,14 @@ public class TrollAmarillo extends Enemigo{
         if(direccion==ConstantesEntidades.QUIETO){
             switch (dirAnterior) {
                 case ConstantesEntidades.DERECHA:
-                    estado="idleIzquierda";
+                    estado="quietoIzquierda";
                     break;
             
                 case ConstantesEntidades.IZQUIERDA:
-                    estado="idleDerecha";
+                    estado="quietoDerecha";
                     break;
                 case ConstantesEntidades.QUIETO:
-                    estado="idleDerecha";
+                    estado="quietoDerecha";
                     break;
             }
         }else{

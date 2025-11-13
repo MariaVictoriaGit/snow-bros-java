@@ -73,9 +73,9 @@ public class Calabaza extends Enemigo{
     public String generarClaveEstado(){
         String clave=null;
         if(direccion==ConstantesEntidades.IZQUIERDA)
-            clave="idleIzquierda";
+            clave="moverIzquierda";
         else
-            clave="idleDerecha";
+            clave="moverDerecha";
         return clave;
     }
     public void invocarFantasma(){

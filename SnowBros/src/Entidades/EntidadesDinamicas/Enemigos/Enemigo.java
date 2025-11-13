@@ -1,11 +1,11 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import SnowBros.src.Datos.ConstantesEntidades;
-import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.GestorEntidad;
 import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitable;
@@ -25,6 +25,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected int estado = EstadosDePatron.MOVERDERECHA;
    protected boolean activarJefe;
    public boolean jefeDerrotado;
+   protected GestorEntidad gestor;
    public Enemigo(int x, int y, Sprite sprites) {
       //la dificultad va a verse definida por lsa salud
       //de c/u y los tiempos congelado, desp cambiar
@@ -89,9 +90,9 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
             estado="congelado";
         else{
          if(direccion==ConstantesEntidades.IZQUIERDA)
-            estado="idleIzquierda";
+            estado="normalIzquierda";
         else
-            estado="idleDerecha";
+            estado="normalDerecha";
         }
         return estado;
    }
@@ -136,7 +137,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public void convertirEnBola(){ //metodo llamado al colisionar con la bola
       if(congelado){
          this.eliminar(); 
-         nivel.getJuego().crearBolaDeNieve(posX,posY,1);
+         gestor.crearBolaDeNieve(posX, posY, getPuntajeEmpujado());
       }
    }
    public void agregarPowerUp(Boolean b){
@@ -155,5 +156,8 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    }
     public void aceptar(Visitador v){
       v.visitar(this);
+   }
+   public void setGestor(GestorEntidad g){
+      gestor=g;
    }
 }

@@ -113,9 +113,9 @@ public class Jugador extends EntidadDinamica implements Visitable{
                 break;
             case ConstantesEntidades.QUIETO:
                 if (dirAnterior == ConstantesEntidades.IZQUIERDA)
-                    claveADevolver="idleIzquierda";
+                    claveADevolver="quietoIzquierda";
                 else
-                    claveADevolver="idleDerecha";
+                    claveADevolver="quietoDerecha";
                 break;
             case ConstantesEntidades.DERECHA:
                 claveADevolver= "moverDerecha";
