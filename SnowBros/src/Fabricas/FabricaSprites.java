@@ -23,8 +23,6 @@ public abstract class FabricaSprites {
     public abstract Sprite getSpritePlataformaQuebradiza();
     public abstract Sprite getSpritePared();
     public abstract Sprite getSpriteEscalera();
-    public abstract Sprite getSpriteObstaculo();
-    public abstract Sprite getSpritePowerUp();
     public abstract Sprite getSpriteBotellaAzul();
     public abstract Sprite getSpriteBotellaRoja();
     public abstract Sprite getSpriteBotellaVerde();

@@ -4,6 +4,7 @@ import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.GestorEntidad;
 import SnowBros.src.Juego.Sonido;
@@ -63,6 +64,15 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public abstract void patronDeMovimiento();
 
    public abstract int getSalud();
+
+   protected void verificarPared(Pared p){
+      if(estado==EstadosDePatron.MOVERDERECHA){
+         estado=EstadosDePatron.MOVERIZQUIERDA;
+      }
+      else{
+         estado=EstadosDePatron.MOVERDERECHA;
+      }
+   }
    
    public void recibirDaño(int daño){
       salud -= daño;

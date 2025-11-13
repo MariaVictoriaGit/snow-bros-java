@@ -84,14 +84,14 @@ public class DemonioRojo extends Enemigo{
             contadorAnimacion=0;
             switch (dirAnterior) {
                 case ConstantesEntidades.DERECHA:
-                    clave="idleDerecha";
+                    clave="quietoDerecha";
                     break;
             
                 case ConstantesEntidades.IZQUIERDA:
-                    clave="idleIzquierda";
+                    clave="quietoIzquierda";
                     break;
                 case ConstantesEntidades.QUIETO:
-                    clave="idleIzquierda";
+                    clave="quietoIzquierda";
                     break;
             }
         }else{
