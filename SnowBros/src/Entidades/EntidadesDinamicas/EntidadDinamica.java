@@ -155,13 +155,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     visitarPlataforma(e);
   }
   protected void visitarPlataforma(Plataforma e){
-    if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
-      this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
-      this.setPosY(e.getPosY() - this.getHitbox().getAlto());
-      tocandoSuelo=ConstantesEntidades.SUELO;
-      saltando=false;
-      enAire=false;
-    }
+    seguirCaminando(e);
   }
   public void visitar(BotellaAzul b) {}
   public void visitar(BotellaRoja b) {}
@@ -176,22 +170,19 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   }
   protected abstract void verificarPared(Pared p);
   public void visitar(Escalera e) {
-      if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
-            this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
-            this.setPosY(e.getPosY() - this.getHitbox().getAlto());
-            tocandoSuelo=ConstantesEntidades.SUELO;
-            saltando=false;
-            enAire=false;
-        }
+    seguirCaminando(e);
   }   
   public void visitar(SueloResbaladizo e) {
-      if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
-            this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
-            this.setPosY(e.getPosY() - this.getHitbox().getAlto());
-            tocandoSuelo=ConstantesEntidades.SUELO;
-            saltando=false;
-            enAire=false;
-        }
+    seguirCaminando(e);
+  }
+  private void seguirCaminando(Entidad e){
+    if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
+      this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
+      this.setPosY(e.getPosY() - this.getHitbox().getAlto());
+      tocandoSuelo=ConstantesEntidades.SUELO;
+      saltando=false;
+      enAire=false;
+    }
   }
   public void visitar(TrampaPinchos e) {}
   public void visitar(Jugador e) {}

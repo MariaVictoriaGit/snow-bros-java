@@ -209,7 +209,7 @@ public class Juego {
                 jugador.actualizarSalto();
                 if(!jugadorActual.getSaltando())
                     jugadorActual.verificarSuelo();
-                for (Enemigo enemigo : nivelActual.getEnemigos()) {
+                for (Enemigo enemigo : new ArrayList<>(nivelActual.getEnemigos())) {
                    enemigo.patronDeMovimiento();        
                    enemigo.actualizarSalto();
                    if(!enemigo.getSaltando())

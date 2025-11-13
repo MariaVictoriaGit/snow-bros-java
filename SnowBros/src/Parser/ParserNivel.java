@@ -12,7 +12,6 @@ import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 
 public class ParserNivel{
@@ -74,46 +73,6 @@ public class ParserNivel{
                         RanaDeFuego ranaFuego=fabrica.getRanaDeFuego(xEntidad, yEntidad);
                         ranaFuego.setNivel(nivel);
                         nivel.agregarEnemigo(ranaFuego);
-                        break;
-                    case "Calabaza":
-                        Calabaza calabaza=fabrica.getCalabaza(xEntidad, yEntidad);
-                        calabaza.setNivel(nivel);
-                        nivel.agregarEnemigo(calabaza);
-                        break;
-                    case "Fantasma":
-                        Fantasma fantasma=fabrica.getFantasma(xEntidad, yEntidad);
-                        fantasma.setNivel(nivel);
-                        nivel.agregarEnemigo(fantasma);
-                        break;
-                    case "Kamakichi":
-                        Kamakichi kamakichi=fabrica.getKamakichi(xEntidad, yEntidad);
-                        kamakichi.setNivel(nivel);
-                        nivel.agregarEnemigo(kamakichi);
-                        break;
-                    case "Moghera":
-                        Moghera moghera=fabrica.getMoghera(xEntidad, yEntidad);
-                        moghera.setNivel(nivel);
-                        nivel.agregarEnemigo(moghera);
-                        break;
-                    case "BotellaAzul":
-                        BotellaAzul botellaAzul=fabrica.getBotellaAzul(xEntidad, yEntidad);
-                        nivel.agregarPowerUp(botellaAzul);
-                        break;
-                    case "BotellaRoja":
-                        BotellaRoja botellaRoja=fabrica.getBotellaRoja(xEntidad, yEntidad);
-                        nivel.agregarPowerUp(botellaRoja);
-                        break;
-                    case "BotellaVerde":
-                        BotellaVerde botellaVerde=fabrica.getBotellaVerde(xEntidad, yEntidad);
-                        nivel.agregarPowerUp(botellaVerde);
-                        break;
-                    case "Fruta":
-                        Fruta fruta=fabrica.getFruta(xEntidad, yEntidad);
-                        nivel.agregarPowerUp(fruta);
-                        break;                
-                    case "VidaExtra":
-                        VidaExtra vidaExtra=fabrica.getVidaExtra(xEntidad, yEntidad);
-                        nivel.agregarPowerUp(vidaExtra);
                         break;
                     case "Escalera":
                         Escalera escalera=fabrica.getEscalera(xEntidad, yEntidad);
