@@ -178,8 +178,8 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   }
   public void seguirCaminando(Entidad e){
     if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
+      posY= e.getPosY() - this.getHitbox().getAlto();
       this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
-      this.setPosY(e.getPosY() - this.getHitbox().getAlto());
       tocandoSuelo=ConstantesEntidades.SUELO;
       saltando=false;
       enAire=false;

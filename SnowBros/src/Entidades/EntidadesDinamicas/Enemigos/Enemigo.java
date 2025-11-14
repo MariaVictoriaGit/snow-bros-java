@@ -76,11 +76,9 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public void recibirDaño(int daño){
       salud -= daño;
       if (salud <= 0){
-         if(activarJefe)
-            jefeDerrotado=true;
-         congelado=true;
          detener();
          congelar();
+         congelado=true;
          inicioCongelado=System.currentTimeMillis();
       }
    }
@@ -121,13 +119,16 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       return inicioCongelado;
    }
    public void congelar(){
-      Sonido.getInstancia().reproducirEfectoDeSonido("enemigoMuereBolaNieve.wav");
-      detenido=true;
-      direccion=ConstantesEntidades.QUIETO;
-      gestor.actualizarPuntaje(getPuntajeCongelado());
-      if(observer!=null)
-         observer.actualizarBolaDeNieve(activarJefe);
+      if (!congelado){
+         Sonido.getInstancia().reproducirEfectoDeSonido("enemigoMuereBolaNieve.wav");
+         direccion=ConstantesEntidades.QUIETO;
+         gestor.actualizarPuntaje(getPuntajeCongelado());
+         if(observer!=null)
+            observer.actualizarBolaDeNieve(activarJefe);
       }
+      
+   }
+      
    public void descongelar(){
       detenido=false;
       congelado=false;
