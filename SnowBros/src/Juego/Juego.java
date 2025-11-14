@@ -65,15 +65,7 @@ public class Juego {
         else if (dominio.equals("Alternativo"))
             fabricaSprites= new Alternativo();
         fabricaEntidades = new FabricaEntidades(fabricaSprites,gestor);
-        /*if("Contrarreloj".equals(modoDeJuego)){
-                tiempo = new Temporizador(ConstantesDificultad.TOPE_TIEMPO_CONTRARRELOJ);
-                tiempo.setAccionAlFinalizar(() -> {
-                modoContrarrelojVencido = true;
-                detenerJuego();
-                controladorGrafica.cambiarPantallaGameOver();
-            });
-        }*/
-        if (parserActual == null)
+        if ((parserActual == null)||(parserActual!=null && !parserActual.getSuperoNivelAnterior()))
             parserActual = new ParserNivel(fabricaEntidades);
         jefeCreado=false;
         iniciarNivel();
@@ -320,31 +312,27 @@ public class Juego {
         hiloGlobal.start();
         hiloColision.start();
     }
-    public void detenerJuego(){    
-        
-    juegoEnEjecucion = false;
-
-    if (hiloGlobal != null && hiloGlobal.isAlive()) {
-        hiloGlobal.interrupt();
-    }
-    if (hiloColision != null && hiloColision.isAlive()) {
-        hiloColision.interrupt();
-    }
-
-    try {
-        if (hiloGlobal != null) {
-            hiloGlobal.join(); // Espera a que termine realmente
+    public void detenerJuego(){           
+        juegoEnEjecucion = false;
+        if (hiloGlobal != null && hiloGlobal.isAlive()) {
+            hiloGlobal.interrupt();
         }
-        if (hiloColision != null) {
-            hiloColision.join();
+        if (hiloColision != null && hiloColision.isAlive()) {
+            hiloColision.interrupt();
         }
-    } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
+        try {
+            if (hiloGlobal != null) {
+                hiloGlobal.join();
+            }
+            if (hiloColision != null) {
+                hiloColision.join();
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        hiloGlobal = null;
+        hiloColision = null;
     }
-    hiloGlobal = null;
-    hiloColision = null;
-}
-
     public void reiniciarNivel(){
         if(jugador.getVidas()==0 || tiempo.getTiempoActual()==ConstantesDificultad.TOPE_TIEMPO_CONTRARRELOJ){
             ranking.setJugador(jugador.getNombre(),puntajeJugador,modoDeJuego);
@@ -365,7 +353,6 @@ public class Juego {
         //tiempo.setTiempoActual(0);
         //TODO terminar de implementar
     }
-     
     public void iniciarNivel(){
         if (nivel == null){
             nivel = parserActual.generarNivel(modoDeJuego); // o el nivel que correspon
@@ -401,7 +388,6 @@ public class Juego {
         tiempo.iniciar();
         juegoEnEjecucion=true;
         iniciarHilos();
-
     }
     public void superarNivel(){
         detenerJuego();
@@ -614,7 +600,7 @@ public class Juego {
     public void invencibilidad(){
         Thread hiloInv = new Thread(() -> {
             long tiempoUltimoParpadeo = 0;
-            while(jugador.getInvencibilidad()){
+            while(jugador!=null && jugador.getInvencibilidad()){
                 long tiempoHilo = System.currentTimeMillis();
                 if(tiempoHilo - tiempoUltimoParpadeo > ConstantesTiempos.TIEMPO_LAPSO_INVENCIBILIDAD){
                     controladorGrafica.setJugadorInvisibleGraficamente();
@@ -638,13 +624,4 @@ public class Juego {
         double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
         return distancia <= umbralDeRango*umbralDeRango;
     }
-    /*protected boolean cumpleCondicionModo(){
-        boolean cumple=true;
-        
-
-
-
-
-        return cumple;
-    }*/
 }

@@ -22,5 +22,4 @@ public interface Visitador {
     public void visitar(SueloResbaladizo e);
     public void visitar(TrampaPinchos e);
     public void visitar(Jugador e);
-
 }

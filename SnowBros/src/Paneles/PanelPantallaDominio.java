@@ -61,7 +61,7 @@ public class PanelPantallaDominio extends JPanel {
     }
     public void registrarOyenteBotonAlternativo(){
         botonAlternativo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e){
             miControladorGrafico.setDominio("Alternativo");
             miControladorGrafico.cambiarPantallaModo();
             }

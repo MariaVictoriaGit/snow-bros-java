@@ -33,9 +33,11 @@ public class ParserNivel{
             String linea;
             while ((linea=br.readLine())!=null){
                 linea = linea.trim();
-                if (linea.isEmpty()) continue; 
+                if (linea.isEmpty()) 
+                    continue; 
                 String[] partes = linea.split(" ");
-                if (partes.length < 3) continue; 
+                if (partes.length < 3) 
+                    continue; 
                 String tipo=partes[0];
                 int xEntidad=Integer.parseInt(partes[1]);
                 int yArchivo=Integer.parseInt(partes[2]);
@@ -60,19 +62,13 @@ public class ParserNivel{
                         nivel.agregarPlataforma(plataformaQuebradiza);
                         break;
                     case "DemonioRojo":
-                        DemonioRojo demonioRojo=fabrica.getDemonioRojo(xEntidad, yEntidad);
-                        demonioRojo.setNivel(nivel);
-                        nivel.agregarEnemigo(demonioRojo);
+                        agregarDemonioRojo(nivel, xEntidad, yEntidad);
                         break;
                     case "TrollAmarillo":
-                        TrollAmarillo trollAmarillo=fabrica.getTrollAmarillo(xEntidad, yEntidad);
-                        trollAmarillo.setNivel(nivel);
-                        nivel.agregarEnemigo(trollAmarillo);
+                        agregarTrollAmarillo(nivel, xEntidad, yEntidad);
                         break;
                     case "RanaDeFuego":
-                        RanaDeFuego ranaFuego=fabrica.getRanaDeFuego(xEntidad, yEntidad);
-                        ranaFuego.setNivel(nivel);
-                        nivel.agregarEnemigo(ranaFuego);
+                        agregarRanaDeFuego(nivel, xEntidad, yEntidad);
                         break;
                     case "Escalera":
                         Escalera escalera=fabrica.getEscalera(xEntidad, yEntidad);
@@ -117,25 +113,34 @@ public class ParserNivel{
                 int yEntidad=ConstantesVistas.PANEL_ALTO-yArchivo;                
                 switch (tipo){
                     case "DemonioRojo":
-                        DemonioRojo demonioRojo=fabrica.getDemonioRojo(xEntidad, yEntidad);
-                        demonioRojo.setNivel(nivel);
-                        nivel.agregarEnemigo(demonioRojo);
+                        agregarDemonioRojo(nivel, xEntidad, yEntidad);
                         break;
                     case "TrollAmarillo":
-                        TrollAmarillo trollAmarillo=fabrica.getTrollAmarillo(xEntidad, yEntidad);
-                        trollAmarillo.setNivel(nivel);
-                        nivel.agregarEnemigo(trollAmarillo);
+                        agregarTrollAmarillo(nivel, xEntidad, yEntidad);
                         break;
                     case "RanaDeFuego":
-                        RanaDeFuego ranaFuego=fabrica.getRanaDeFuego(xEntidad, yEntidad);
-                        ranaFuego.setNivel(nivel);
-                        nivel.agregarEnemigo(ranaFuego);
+                        agregarRanaDeFuego(nivel, xEntidad, yEntidad);
                         break;             
                     }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private void agregarDemonioRojo(Nivel nivel, int x, int y){
+        DemonioRojo demonioRojo=fabrica.getDemonioRojo(x, y);
+        demonioRojo.setNivel(nivel);
+        nivel.agregarEnemigo(demonioRojo);
+    }
+    private void agregarTrollAmarillo(Nivel nivel, int x, int y){
+        TrollAmarillo trollAmarillo=fabrica.getTrollAmarillo(x,y);
+        trollAmarillo.setNivel(nivel);
+        nivel.agregarEnemigo(trollAmarillo);
+    }
+    private void agregarRanaDeFuego(Nivel nivel, int x, int y){
+        RanaDeFuego ranaFuego=fabrica.getRanaDeFuego(x, y);
+        ranaFuego.setNivel(nivel);
+        nivel.agregarEnemigo(ranaFuego);
     }
     public String obtenerArchivoNivel(String modo) {
         String nivelACargar=null;
