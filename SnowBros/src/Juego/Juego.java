@@ -425,8 +425,10 @@ public class Juego {
             controladorGrafica.cambiarPantallaTransicion();
         }else{//TODO
             controladorGrafica.cambiarPantallaFinDelJuego();
-            tiempo.reiniciar();
-            tiempoAntesAparicionCalabaza.reiniciar();
+            tiempo.detener();
+            tiempo.resetear();
+            tiempoAntesAparicionCalabaza.detener();
+            tiempoAntesAparicionCalabaza.resetear();
             parserActual.setSuperoNivelAnterior(false);
         }
     }
