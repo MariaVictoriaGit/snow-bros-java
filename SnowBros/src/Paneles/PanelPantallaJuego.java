@@ -53,9 +53,9 @@ public class PanelPantallaJuego extends JPanel{
         labelNivel.setForeground(Color.BLACK);
         labelNivel.setHorizontalAlignment(SwingConstants.CENTER);//centra el texto horizontalmente dentro del JLabel
         labelNivel.setFont(fuente);
-        String puntaje=String.valueOf(0);
+        String puntaje="puntaje";
         labelPuntaje= new JLabel(puntaje);
-        labelPuntaje.setForeground(Color.BLACK);
+        labelPuntaje.setForeground(Color.GRAY);
         labelPuntaje.setHorizontalAlignment(SwingConstants.CENTER);
         labelPuntaje.setFont(fuente);
         labelTiempo = new JLabel();

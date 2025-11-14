@@ -91,7 +91,7 @@ public class BolaDeFuego extends EntidadDinamica{
     }
     public void eliminar(){
         nivel.eliminarBolaDeFuego(this);
-       super.eliminar();
+        super.eliminar();
     }
     public void visitar(Plataforma p){
         eliminar();
@@ -124,6 +124,18 @@ public class BolaDeFuego extends EntidadDinamica{
                 else{
                     clave="moverIzquierda";
                 }
+            case ConstantesEntidades.ARRIBA_IZQUIERDA:
+                if(spriteJefe)
+                    clave="disparo";
+                else
+                    clave="moverIzquierda";
+                break;
+            case ConstantesEntidades.ARRIBA_DERECHA:
+                if(spriteJefe)
+                    clave="bomba";
+                else
+                    clave="moverDerecha";
+                break;
         }
         return clave;
     }

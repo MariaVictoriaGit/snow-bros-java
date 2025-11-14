@@ -132,6 +132,7 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         refrescar();
     }
     public void cambiarPantallaTransicion(){
+        juegoIniciado=false;
         cambiarPantalla(panelPantallaTransicion);
         // Espera 3 segundos y luego vuelve al juego
         new java.util.Timer().schedule(

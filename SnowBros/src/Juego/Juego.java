@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 
+import SnowBros.src.Datos.ConstantesDificultad;
+//import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.Entidad;
@@ -21,6 +23,7 @@ public class Juego {
     protected Nivel nivel;
     protected int puntajeJugador;
     protected Temporizador tiempo;
+    //protected boolean modoContrarrelojVencido;
     protected boolean reiniciarJugador;
     protected Jugador jugador;
     protected Sonido sonido;
@@ -32,7 +35,7 @@ public class Juego {
     private Temporizador tiempoAntesAparicionCalabaza;
     protected Thread hiloColision;
     protected Thread hiloGlobal;
-    protected Boolean juegoEnEjecucion;
+    protected volatile Boolean juegoEnEjecucion;
     protected String nombreJugador;
     protected String modoDeJuego;
     private long ultimoDisparo;
@@ -59,7 +62,14 @@ public class Juego {
         else if (dominio.equals("Alternativo"))
             fabricaSprites= new Alternativo();
         fabricaEntidades = new FabricaEntidades(fabricaSprites,gestor);
-        tiempo.iniciar();
+        /*if("Contrarreloj".equals(modoDeJuego)){
+                tiempo = new Temporizador(ConstantesDificultad.TOPE_TIEMPO_CONTRARRELOJ);
+                tiempo.setAccionAlFinalizar(() -> {
+                modoContrarrelojVencido = true;
+                detenerJuego();
+                controladorGrafica.cambiarPantallaGameOver();
+            });
+        }*/
         if (parseActual == null)
             parseActual = new ParserNivel(fabricaEntidades);
         jefeCreado=false;
@@ -111,7 +121,7 @@ public class Juego {
                     else{
                         jugadorActual.setChocoPared(false);
                         }
-                    if(!nivel.getDisparos().isEmpty()){
+                    if(!nivelActual.getDisparos().isEmpty()){
                         for(DisparoJugador disparo : nivel.getDisparos()){
                             if(disparo.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
                                 p.aceptar(disparo);
@@ -201,7 +211,7 @@ public class Juego {
                     if(nivelActual.getCalabaza()!=null && suelo.getHitbox().getRectangle().intersects(nivel.getCalabaza().getHitbox().getRectangle())) 
                         suelo.aceptar(nivelActual.getCalabaza());
                 }
-                if (!colisionBola && !colisionSuelo) {
+                if (!colisionBola && !colisionSuelo && jugadorActual.getVelocidad() != ConstantesDificultad.EFECTO_BOTELLA_AZUL) {
                     jugadorActual.setVelocidadBase();
                 }
                 try {
@@ -243,7 +253,7 @@ public class Juego {
                         else{
                             enemigo.actualizarTiempoCongelado();
                         }
-                        if(nivelActual.getEnemigos().isEmpty()){
+                        if(nivelActual.getEnemigos().isEmpty()){// && cumpleCondicionModo()){
                             this.superarNivel();
                         }
                    }
@@ -270,7 +280,7 @@ public class Juego {
                         fantasma.patronDeMovimiento();
                     }
                 }
-                if(nivelActual.terminoElNivel()&&!jefeCreado){
+                if(nivelActual==nivel&&nivelActual.terminoElNivel()&&!jefeCreado){
                     jefeCreado=true;
                     if(parseActual.getSuperoNivelAnterior())
                         crearKamakichi(); //PARA NIVEL 2
@@ -292,10 +302,10 @@ public class Juego {
         hiloGlobal.start();
         hiloColision.start();
     }
-    public void detenerJuego() {
+    public void detenerJuego(){    
+        
     juegoEnEjecucion = false;
 
-    // Interrumpir hilos
     if (hiloGlobal != null && hiloGlobal.isAlive()) {
         hiloGlobal.interrupt();
     }
@@ -303,19 +313,20 @@ public class Juego {
         hiloColision.interrupt();
     }
 
-    // Esperar a que terminen
     try {
-        if (hiloGlobal != null && hiloGlobal.isAlive())
+        if (hiloGlobal != null) {
             hiloGlobal.join(); // Espera a que termine realmente
-        if (hiloColision != null && hiloColision.isAlive())
+        }
+        if (hiloColision != null) {
             hiloColision.join();
+        }
     } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
     }
-
     hiloGlobal = null;
     hiloColision = null;
 }
+
     public void reiniciarNivel(){
         if(jugador.getVidas()==0){
             ranking.setJugador(jugador.getNombre(),puntajeJugador,modoDeJuego);
@@ -361,6 +372,7 @@ public class Juego {
                 jugador.setJuego(this);
                 jugador.actualizarPuntaje(0);
             }
+            puntajeJugador=0;
         }
         this.registrarObservers();
         jugador.getObserver().actualizar();
@@ -370,18 +382,21 @@ public class Juego {
         iniciarHilos();
 
     }
-    
     public void superarNivel(){
-        nivel.eliminarse();
         detenerJuego();
-        //para cuando 
+        nivel.eliminarse(); 
         jefeCreado=false;
-        parseActual.setSuperoNivelAnterior(true);
-        nivel=null;
-        jugador=null;
-        iniciarNivel();
-        controladorGrafica.cambiarPantallaTransicion();
-
+        if(!parseActual.getSuperoNivelAnterior()){
+            parseActual.setSuperoNivelAnterior(true);
+            nivel=null;
+            jugador=null;
+            controladorGrafica.cambiarPantallaTransicion();
+        }else{//TODO
+            controladorGrafica.cambiarPantallaFinDelJuego();
+            tiempo.reiniciar();
+            tiempoAntesAparicionCalabaza.reiniciar();
+            parseActual.setSuperoNivelAnterior(false);
+        }
     }
     public void actualizarPuntaje(int puntajeASumar){
         puntajeJugador+=puntajeASumar;
@@ -414,6 +429,9 @@ public class Juego {
     }
     public void setDominio(String dominio){
         this.dominio=dominio;
+    }
+    public void setNivel(Nivel nivel){
+        this.nivel=nivel;
     }
     public FabricaEntidades getFabricaEntidades(){
         return fabricaEntidades;
@@ -564,5 +582,13 @@ public class Juego {
         double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
         return distancia <= umbralDeRango*umbralDeRango;
     }
-    
+    /*protected boolean cumpleCondicionModo(){
+        boolean cumple=true;
+        
+
+
+
+
+        return cumple;
+    }*/
 }

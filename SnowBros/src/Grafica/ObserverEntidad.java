@@ -92,6 +92,7 @@ public class ObserverEntidad extends JLabel implements Observer{
             }
 	    });
 	}
+<<<<<<< HEAD
 	public void borrarObserver(){
 		entidadObservada=null;
 
@@ -105,6 +106,20 @@ public class ObserverEntidad extends JLabel implements Observer{
             return;
         }
 	}
+=======
+	public void borrarObserver() {
+        entidadObservada = null;
+        SwingUtilities.invokeLater(() -> {
+            Container padre = getParent();
+            if (padre != null) {
+                padre.remove(this);
+                padre.revalidate();
+                padre.repaint();
+            }
+        });
+    }
+
+>>>>>>> c11f7476224d4a047e840d40aaf95ea824f8fd70
 	public JLabel getImagen(){
 		return imagen;
 	}
