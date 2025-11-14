@@ -372,6 +372,7 @@ public class Juego {
                 jugador.setJuego(this);
                 jugador.actualizarPuntaje(0);
             }
+            puntajeJugador=0;
         }
         this.registrarObservers();
         jugador.getObserver().actualizar();
@@ -392,6 +393,9 @@ public class Juego {
             controladorGrafica.cambiarPantallaTransicion();
         }else{//TODO
             controladorGrafica.cambiarPantallaFinDelJuego();
+            tiempo.reiniciar();
+            tiempoAntesAparicionCalabaza.reiniciar();
+            parseActual.setSuperoNivelAnterior(false);
         }
     }
     public void actualizarPuntaje(int puntajeASumar){
