@@ -12,7 +12,6 @@ import SnowBros.src.Grafica.GUI;
 
 public class PanelPantallaFinDelJuego extends JPanel {
     protected JLabel imagenFondo;
-    protected JButton botonReinicio;
     protected JButton botonSalir;
     protected JButton botonNuevaPartida;
     protected JButton botonRanking;
@@ -21,7 +20,6 @@ public class PanelPantallaFinDelJuego extends JPanel {
         this.miControladorGrafico=miControladorGrafico;
         setSize(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO);
         setLayout(null);
-        agregarBotonReinicio();
         agregarBotonSalir();
         agregarBotonNuevaPartida();
         agregarBotonRanking();
@@ -35,15 +33,6 @@ public class PanelPantallaFinDelJuego extends JPanel {
         imagenFondo.setIcon(iconoImagenEscalada);
         imagenFondo.setBounds(0,0,ConstantesVistas.VENTANA_ANCHO,ConstantesVistas.VENTANA_ALTO);
         add(imagenFondo,-1);
-    }
-    public void agregarBotonReinicio(){
-        botonReinicio = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonReinicio.jpg"));
-        botonReinicio.setIcon(iconoBoton);
-        botonReinicio.setBounds(50, 350, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
-        transparentarBoton(botonReinicio);
-        registrarOyenteBotonReinicio();
-        add(botonReinicio,0);
     }
     public void agregarBotonSalir(){
         botonSalir = new JButton();
@@ -65,7 +54,7 @@ public class PanelPantallaFinDelJuego extends JPanel {
     }
     public void agregarBotonNuevaPartida(){
         botonNuevaPartida = new JButton();
-		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonJugar.jpg"));
+		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonReinicio.jpg"));
         botonNuevaPartida.setIcon(iconoBoton);
         botonNuevaPartida.setBounds(50, 500, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
         
@@ -78,13 +67,6 @@ public class PanelPantallaFinDelJuego extends JPanel {
         registrarOyenteBotonNuevaPartida();
         add(botonNuevaPartida,0);
     }
-    public void registrarOyenteBotonReinicio(){
-        botonReinicio.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                miControladorGrafico.cambiarInicioJuego();
-            }
-        });
-    }
     public void registrarOyenteBotonSalir(){
         botonSalir.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -95,7 +77,8 @@ public class PanelPantallaFinDelJuego extends JPanel {
     private void registrarOyenteBotonNuevaPartida(){
         botonNuevaPartida.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                miControladorGrafico.cambiarPantallaDominio();
+                miControladorGrafico.cambiarInicioJuego();
+                //    TODO que se resetee el puntaje a 0
             }
         });
     }    

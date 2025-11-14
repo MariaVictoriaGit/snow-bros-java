@@ -245,7 +245,7 @@ public class Nivel implements LocalizadorJugador, InterfazEliminar{
         if(jugador!=null)
             jugador.getObserver().actualizar();
         for(Enemigo e:new ArrayList<>(this.getEnemigos()))
-            if(!e.getCongelado() && !e.getMuerto() && e!=null)
+            if(e!=null && !e.getMuerto() && !e.getCongelado())
                 e.getObserver().actualizar();
         for(BolaDeNieve b:this.getBolasDeNieve()){
             if(b!=null){
@@ -255,7 +255,7 @@ public class Nivel implements LocalizadorJugador, InterfazEliminar{
         for(PlataformaMovil p:this.getPlataformasMovil())
             p.getObserver().actualizar();
         for(BolaDeFuego b : new ArrayList<>(this.getBolasDeFuego()))
-                if(b!=null)
+                if(b!=null && b.getObserver()!=null)
                     b.getObserver().actualizar();
         if(calabaza!=null){
             calabaza.getObserver().actualizar();

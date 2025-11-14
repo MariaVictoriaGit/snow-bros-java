@@ -61,12 +61,12 @@ public class ObserverEntidad extends JLabel implements Observer{
         
     }
     protected void actualizarPosicionTamanoPlataforma(){
-		int margenVisual=4;
+		int margenVisual=2;
         int x = plataformaObservada.getPosX();
 		int y = plataformaObservada.getPosY();
 		int ancho = this.getIcon().getIconWidth();
 		int alto = this.getIcon().getIconHeight();
-		setBounds(x, y-margenVisual, ancho, alto);
+		setBounds(x, y+margenVisual, ancho, alto);
     }
     public void actualizarBolaDeNieve(boolean activo) {	
 		SwingUtilities.invokeLater(() -> {
@@ -92,13 +92,18 @@ public class ObserverEntidad extends JLabel implements Observer{
             }
 	    });
 	}
-	public void borrarObserver(){
-		entidadObservada=null;
-		Container padre= getParent();
-		getParent().remove(this);
-		padre.revalidate();
-		padre.repaint();
-	}
+	public void borrarObserver() {
+        entidadObservada = null;
+        SwingUtilities.invokeLater(() -> {
+            Container padre = getParent();
+            if (padre != null) {
+                padre.remove(this);
+                padre.revalidate();
+                padre.repaint();
+            }
+        });
+    }
+
 	public JLabel getImagen(){
 		return imagen;
 	}

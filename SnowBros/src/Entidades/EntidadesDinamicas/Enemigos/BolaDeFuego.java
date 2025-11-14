@@ -15,12 +15,15 @@ public class BolaDeFuego extends EntidadDinamica{
     private int tiempoCaida;
     private int decrementos;
     private boolean caida;
-    private boolean spriteJefe=false;
+    private boolean spriteJefeKamakichi=false;
+    private boolean spriteJefeMoghera=false;
+
     public BolaDeFuego(int posX, int posY,Sprite miSprite){
         super(posX, posY, miSprite);
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_FUEGO);
         caida=false;
         velocidad=ConstantesDificultad.VELOCIDAD_BOLADEFUEGO;
+
     }
     public Temporizador getTimer(){
         return tiempo;
@@ -42,7 +45,10 @@ public class BolaDeFuego extends EntidadDinamica{
             case ConstantesEntidades.IZQUIERDA:
                 if(!((posX-=5)<10)){
                     posX=posX-5;
-                    this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+                    if(spriteJefeMoghera)
+                        actualizarBolaMoghera();
+                    else
+                        this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                 }
                 else
                     this.eliminar();
@@ -91,7 +97,7 @@ public class BolaDeFuego extends EntidadDinamica{
     }
     public void eliminar(){
         nivel.eliminarBolaDeFuego(this);
-       super.eliminar();
+        super.eliminar();
     }
     public void visitar(Plataforma p){
         eliminar();
@@ -102,33 +108,53 @@ public class BolaDeFuego extends EntidadDinamica{
     public boolean kamakichiBomba(){
         return direccion==ConstantesEntidades.ARRIBA_DERECHA || direccion==ConstantesEntidades.ARRIBA_IZQUIERDA;
     }
+    private void actualizarBolaMoghera(){
+        this.getHitbox().actualizarHitbox(posX, posY, 67, 58);
+    }
     public String generarClaveEstado(){
         String clave=null;
         switch (direccion) {
             case ConstantesEntidades.IZQUIERDA:
-                if(spriteJefe)
-                    clave="disparo";
+                if(spriteJefeKamakichi)
+                    clave="bomba";
+                else if(spriteJefeMoghera)
+                    clave="moverIzquierdaJefe";
                 else
                     clave="moverIzquierda";
                 break;
             case ConstantesEntidades.DERECHA:
-                if(spriteJefe)
+                if(spriteJefeKamakichi)
                     clave="bomba";
                 else
                     clave="moverDerecha";
                 break;
             case ConstantesEntidades.QUIETO:
-                if(spriteJefe){
+                if(spriteJefeKamakichi){
                     clave="bomba";
                 }
                 else{
                     clave="moverIzquierda";
                 }
+            case ConstantesEntidades.ARRIBA_IZQUIERDA:
+                if(spriteJefeKamakichi)
+                    clave="bomba";
+                else
+                    clave="moverIzquierda";
+                break;
+            case ConstantesEntidades.ARRIBA_DERECHA:
+                if(spriteJefeKamakichi)
+                    clave="bomba";
+                else
+                    clave="moverDerecha";
+                break;
         }
         return clave;
     }
-    public void setSpriteJefe(boolean b){
-        spriteJefe=b;
+    public void setSpriteKamakichi(boolean b){
+        spriteJefeKamakichi=b;
+    }
+    public void setSpriteMoghera(boolean b){
+        spriteJefeMoghera=b;
     }
         
 }

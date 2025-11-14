@@ -162,6 +162,12 @@ public class Original extends FabricaSprites{
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("moverIzquierda", rutaACarpeta + "/BolaDeFuego/bolaDeFuegoIzquierda.png");
         mapeo.put("moverDerecha", rutaACarpeta + "/BolaDeFuego/bolaDeFuegoDerecha.png");
+        mapeo.put("moverIzquierdaJefe", rutaACarpeta + "/BolaDeFuego/bolaDeFuegoMogheras.png");
+        mapeo.put("bomba", rutaACarpeta + "/BolaDeFuego/bombaKamakichi.png");
+        mapeo.put("bombaExplotada", rutaACarpeta + "/BolaDeFuego/bombaExplotadaKamakichi.png");
+        mapeo.put("explosion1", rutaACarpeta + "/BolaDeFuego/explosion1.png");
+        mapeo.put("explosion2", rutaACarpeta + "/BolaDeFuego/explosion2.png");
+        mapeo.put("explosion3", rutaACarpeta + "/BolaDeFuego/explosion3.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteDisparoJugador(){

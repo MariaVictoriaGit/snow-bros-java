@@ -372,6 +372,7 @@ public class Juego {
                 jugador.setJuego(this);
                 jugador.actualizarPuntaje(0);
             }
+            puntajeJugador=0;
         }
         this.registrarObservers();
         jugador.getObserver().actualizar();
@@ -400,6 +401,9 @@ public class Juego {
             controladorGrafica.cambiarPantallaTransicion();
         }else{//TODO
             controladorGrafica.cambiarPantallaFinDelJuego();
+            tiempo.reiniciar();
+            tiempoAntesAparicionCalabaza.reiniciar();
+            parseActual.setSuperoNivelAnterior(false);
         }
     }
     public void actualizarPuntaje(int puntajeASumar){
@@ -533,11 +537,12 @@ public class Juego {
         nivel.agregarBolaDeNieve(bola);
         controladorGrafica.registrarEntidad(bola);
     }
-    public void crearBolaDeFuego(int posX, int posY, int direccion) {
+    public BolaDeFuego crearBolaDeFuego(int posX, int posY, int direccion) {
         BolaDeFuego bola=fabricaEntidades.getBolaDeFuego(posX, posY);
         bola.setDireccion(direccion);
         nivel.agregarBolaDeFuego(bola);
         controladorGrafica.registrarEntidad(bola);
+        return bola;
     }
     public void crearFantasma(int posX, int posY){
         Fantasma fantasma= fabricaEntidades.getFantasma(posX, posY);
