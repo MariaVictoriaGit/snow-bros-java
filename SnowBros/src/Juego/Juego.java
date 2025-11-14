@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 
+import SnowBros.src.Datos.ConstantesDificultad;
 //import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
@@ -210,7 +211,7 @@ public class Juego {
                     if(nivelActual.getCalabaza()!=null && suelo.getHitbox().getRectangle().intersects(nivel.getCalabaza().getHitbox().getRectangle())) 
                         suelo.aceptar(nivelActual.getCalabaza());
                 }
-                if (!colisionBola && !colisionSuelo) {
+                if (!colisionBola && !colisionSuelo && jugadorActual.getVelocidad() != ConstantesDificultad.EFECTO_BOTELLA_AZUL) {
                     jugadorActual.setVelocidadBase();
                 }
                 try {
