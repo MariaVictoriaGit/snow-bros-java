@@ -256,11 +256,11 @@ public class Juego {
                         else{
                             enemigo.actualizarTiempoCongelado();
                         }
-                   }    
-                        if(cumplirCondicionDelModo()){// && cumpleCondicionModo()){
-                            this.superarNivel();
-                        }
-                }
+                   }
+                }    
+                if(cumplirCondicionDelModo()){// && cumpleCondicionModo()){
+                    this.superarNivel();
+                }    
                 if(modoDeJuego.equals("Supervivencia") && nivelActual.getEnemigos().isEmpty() && oleadas<=3){
                     if(!parserActual.getSuperoNivelAnterior()){
                         parserActual.generarOleada(nivelActual, ConstantesNiveles.OLEADA1);
@@ -278,7 +278,7 @@ public class Juego {
                 }
                 if(!nivelActual.getDisparos().isEmpty())
                     for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
-                        disparo.mover();//TODO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                        disparo.mover();
                 if(!nivelActual.getBolasDeFuego().isEmpty())
                     for (BolaDeFuego bola:new ArrayList<>(nivel.getBolasDeFuego()))
                         bola.mover();
@@ -423,7 +423,7 @@ public class Juego {
             nivel=null;
             jugador=null;
             controladorGrafica.cambiarPantallaTransicion();
-        }else{//TODO
+        }else{
             controladorGrafica.cambiarPantallaFinDelJuego();
             tiempo.detener();
             tiempo.resetear();

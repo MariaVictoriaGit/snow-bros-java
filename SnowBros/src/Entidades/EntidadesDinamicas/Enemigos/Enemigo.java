@@ -71,7 +71,9 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
          estado=EstadosDePatron.MOVERDERECHA;
       }
    }
-   
+   public void visitar(Pared p){
+      verificarPared(p);
+   }   
    public void recibirDaño(int daño){
       salud -= daño;
       if (salud <= 0){
