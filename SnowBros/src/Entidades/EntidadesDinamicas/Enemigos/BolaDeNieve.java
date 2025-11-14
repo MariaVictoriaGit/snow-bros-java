@@ -74,9 +74,10 @@ public class BolaDeNieve extends EntidadDinamica{
             direccion=ConstantesEntidades.IZQUIERDA;
     }
     public void visitar(Enemigo e){
-        aparecerPowerUp();
-        if(estaActiva)
+        if(estaActiva){
+            aparecerPowerUp();
             e.eliminar();
+        }  
     }
     private void aparecerPowerUp(){
         Random random=new Random();

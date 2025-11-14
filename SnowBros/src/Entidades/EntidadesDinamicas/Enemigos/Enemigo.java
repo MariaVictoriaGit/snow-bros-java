@@ -15,7 +15,6 @@ import SnowBros.src.Visitor.Visitador;
 
 public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected int salud;
-   protected int tocandoSuelo;
    protected Temporizador temporizadoCongelado;
    protected Temporizador accionMovimientoEnemigo;
    protected boolean rodando;
@@ -74,7 +73,9 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
          estado=EstadosDePatron.MOVERDERECHA;
       }
    }
-   
+   public void visitar(Pared p){
+      verificarPared(p);
+   }   
    public void recibirDaño(int daño){
       salud -= daño;
       if (salud <= 0){

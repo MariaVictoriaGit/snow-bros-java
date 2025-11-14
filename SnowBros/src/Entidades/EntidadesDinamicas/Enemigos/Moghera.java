@@ -4,6 +4,7 @@ import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.Entidad;
+import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.HitBox;
 import SnowBros.src.Juego.Nivel;
@@ -26,10 +27,10 @@ public class Moghera extends Enemigo{
     posY= posicionarHitbox(posY);
     // Creamos la hitbox con el tamaño de 32x32 y la posición ajustada
     hitbox = new HitBox(posX,posY, ancho, alto);  // Centramos la hitbox horizontalmente en la entidad
-
+    tocandoSuelo=ConstantesEntidades.SUELO;
     salud = ConstantesDificultad.SALUD_MOGHERA;
     velocidad = ConstantesDificultad.VELOCIDAD_MOGHERA;
-    alturaMax = ConstantesDificultad.ALTURA_MAX_SALTO * 4;
+    alturaMax = ConstantesDificultad.ALTURA_MAX_SALTO*3;
 }
     public void mover(){
         if(!detenido)
@@ -54,12 +55,16 @@ public class Moghera extends Enemigo{
                     }
                     break;
                 case ConstantesEntidades.ARRIBA:
+                    tocandoSuelo=ConstantesEntidades.SUELO;
                     iniciarSalto();
                     break;
+                case ConstantesEntidades.ABAJO:
+                    this.setBajarPlataforma(true);
+                    break;
+                    
             } 
     }
     public void patronDeMovimiento(){
-        
         long ahora = System.currentTimeMillis();
         switch (estado) {
             case EstadosDePatron.MOVERDERECHA:
@@ -72,31 +77,38 @@ public class Moghera extends Enemigo{
                 }
                 break;
     
-        case EstadosDePatron.MOVERIZQUIERDA:
-            direccion = ConstantesEntidades.IZQUIERDA;
-            mover();
-            bolaLanzada=false;
-            estado = EstadosDePatron.ESPERAR;
-            tiempoEstado = ahora;
+            case EstadosDePatron.MOVERIZQUIERDA:
+                direccion = ConstantesEntidades.IZQUIERDA;
+                mover();
+                bolaLanzada=false;
+                estado = EstadosDePatron.ESPERAR;
+                tiempoEstado = ahora;
             break;
-        case EstadosDePatron.ESPERAR:
+            case EstadosDePatron.ESPERAR:
                 direccion=ConstantesEntidades.QUIETO;
                 mover();
-                if (ahora - tiempoEstado > 3000) { // espera 2 segundos
+                if (ahora - tiempoEstado > 2000) { // espera 2 segundos
                     mover();
-                    if (dirAnterior == ConstantesEntidades.DERECHA)
-                        estado = EstadosDePatron.MOVERDERECHA;
-                    else
-                        estado = EstadosDePatron.MOVERIZQUIERDA;
+                    estado = EstadosDePatron.MOVERABAJO;
+                    tiempoEstado=ahora;
                 }
             break;
-        case EstadosDePatron.SALTAR:
-            direccion=ConstantesEntidades.ARRIBA;
-            mover();
-            estado=EstadosDePatron.ESPERAR;
+            case EstadosDePatron.SALTAR:
+                direccion=ConstantesEntidades.ARRIBA;
+                mover();
+                estado=EstadosDePatron.ESPERAR;
             break;
-        } return;
-    }
+            case EstadosDePatron.MOVERABAJO:
+                direccion=ConstantesEntidades.ABAJO;
+                mover();
+                if(ahora-tiempoEstado>1000){
+                    this.setBajarPlataforma(false);
+                    estado=EstadosDePatron.SALTAR;
+                    tiempoEstado=ahora;
+                }
+            break;
+        } 
+        }
     public BolaDeFuego lanzarFuego(){
         BolaDeFuego bola=null;
         if(direccion==ConstantesEntidades.QUIETO){
