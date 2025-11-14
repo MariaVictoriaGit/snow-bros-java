@@ -4,7 +4,6 @@ import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Datos.EstadosDePatron;
-import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;

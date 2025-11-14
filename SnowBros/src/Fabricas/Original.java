@@ -155,7 +155,6 @@ public class Original extends FabricaSprites{
     public Sprite getSpriteBolaNieve(){
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("normalIzquierda", rutaACarpeta + "/BolaDeNieve/bolaDeNieve.png");
-        mapeo.put("derretida", rutaACarpeta + "/BolaDeNieve/bolaDeNieveDerretida.png");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteBolaFuego(){

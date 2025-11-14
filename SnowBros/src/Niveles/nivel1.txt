@@ -29,7 +29,7 @@ Jugador 416 80
 
 DemonioRojo 288 48
 
-ParedDestructible 32 110
+ParedDestructible 32 109
 
 Plataforma 0 80 
 Plataforma 32 80
@@ -70,8 +70,9 @@ Plataforma 416 144
 Plataforma 448 144
 Plataforma 480 144
 
-Pared 464 176
+Pared 464 174
 
+Plataforma 448 208
 Plataforma 480 208
 Plataforma 512 208
 Plataforma 544 208

@@ -97,10 +97,11 @@ Plataforma 640 336
 Plataforma 672 336
 Plataforma 704 336
 
-Pared 128 368
+Pared 128 366
 
-Pared 640 368
+Pared 640 366
 
+Plataforma 128 400
 Plataforma 160 400
 Plataforma 192 400
 Plataforma 224 400
@@ -116,3 +117,4 @@ Plataforma 512 400
 Plataforma 544 400
 Plataforma 576 400
 Plataforma 608 400
+Plataforma 640 400
