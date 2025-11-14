@@ -103,6 +103,40 @@ public class ParserNivel{
         }
         return nivel;
     }
+    public void generarOleada(Nivel nivel, String archivo){
+        try (BufferedReader br=new BufferedReader(new FileReader(archivo))){
+            String linea;
+            while ((linea=br.readLine())!=null){
+                linea = linea.trim();
+                if (linea.isEmpty()) continue; 
+                String[] partes = linea.split(" ");
+                if (partes.length < 3) continue; 
+                String tipo=partes[0];
+                int xEntidad=Integer.parseInt(partes[1]);
+                int yArchivo=Integer.parseInt(partes[2]);
+                int yEntidad=ConstantesVistas.PANEL_ALTO-yArchivo;                
+                switch (tipo){
+                    case "DemonioRojo":
+                        DemonioRojo demonioRojo=fabrica.getDemonioRojo(xEntidad, yEntidad);
+                        demonioRojo.setNivel(nivel);
+                        nivel.agregarEnemigo(demonioRojo);
+                        break;
+                    case "TrollAmarillo":
+                        TrollAmarillo trollAmarillo=fabrica.getTrollAmarillo(xEntidad, yEntidad);
+                        trollAmarillo.setNivel(nivel);
+                        nivel.agregarEnemigo(trollAmarillo);
+                        break;
+                    case "RanaDeFuego":
+                        RanaDeFuego ranaFuego=fabrica.getRanaDeFuego(xEntidad, yEntidad);
+                        ranaFuego.setNivel(nivel);
+                        nivel.agregarEnemigo(ranaFuego);
+                        break;             
+                    }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public String obtenerArchivoNivel(String modo) {
         String nivelACargar=null;
         if(modo.equals("Clasico"))

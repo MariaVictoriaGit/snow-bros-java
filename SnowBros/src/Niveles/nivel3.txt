@@ -113,6 +113,8 @@ TrampaPinchos 36 333
 
 PlataformaMovil 384 368
 PlataformaMovil 416 368
+
 DemonioRojo 416 400
+
 PlataformaMovil 448 368
 PlataformaMovil 480 368

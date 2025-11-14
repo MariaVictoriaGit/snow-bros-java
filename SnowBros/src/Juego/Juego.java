@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import SnowBros.src.Datos.ConstantesDificultad;
 //import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
+import SnowBros.src.Datos.ConstantesNiveles;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -31,17 +32,18 @@ public class Juego {
     protected GUI controladorGrafica; 
     protected FabricaSprites fabricaSprites;
     protected FabricaEntidades fabricaEntidades;
-    protected ParserNivel parseActual;
+    protected ParserNivel parserActual;
     private Temporizador tiempoAntesAparicionCalabaza;
     protected Thread hiloColision;
     protected Thread hiloGlobal;
-    protected volatile Boolean juegoEnEjecucion;
+    protected volatile boolean juegoEnEjecucion;
     protected String nombreJugador;
     protected String modoDeJuego;
     private long ultimoDisparo;
     protected String dominio;
     protected GestorEntidad gestor;
     protected boolean jefeCreado;
+    private int oleadas;
 
     public Juego(){
         reiniciarJugador=false;
@@ -50,6 +52,7 @@ public class Juego {
         tiempoAntesAparicionCalabaza= new Temporizador(ConstantesTiempos.TIEMPO_CALABAZA);
         juegoEnEjecucion=false;
         ultimoDisparo=0;
+        oleadas=0;
         gestor= new GestorEntidad(this);
     }
     //metodos de configuracionaa
@@ -70,8 +73,8 @@ public class Juego {
                 controladorGrafica.cambiarPantallaGameOver();
             });
         }*/
-        if (parseActual == null)
-            parseActual = new ParserNivel(fabricaEntidades);
+        if (parserActual == null)
+            parserActual = new ParserNivel(fabricaEntidades);
         jefeCreado=false;
         iniciarNivel();
     }
@@ -253,10 +256,25 @@ public class Juego {
                         else{
                             enemigo.actualizarTiempoCongelado();
                         }
-                        if(nivelActual.getEnemigos().isEmpty()){// && cumpleCondicionModo()){
+                   }    
+                        if(cumplirCondicionDelModo()){// && cumpleCondicionModo()){
                             this.superarNivel();
                         }
-                   }
+                }
+                if(modoDeJuego.equals("Supervivencia") && nivelActual.getEnemigos().isEmpty() && oleadas<=3){
+                    if(!parserActual.getSuperoNivelAnterior()){
+                        parserActual.generarOleada(nivelActual, ConstantesNiveles.OLEADA1);
+                        registrarObserversEntidades(nivelActual.getEnemigos());
+                        oleadas++;
+                    }
+                    else{
+                        parserActual.generarOleada(nivelActual, ConstantesNiveles.OLEADA2);
+                        registrarObserversEntidades(nivelActual.getEnemigos());
+                        oleadas++;
+                    }
+                }
+                if(modoDeJuego.equals("Contrarreloj") && tiempo.getTiempoActual()==ConstantesDificultad.TOPE_TIEMPO_CONTRARRELOJ){
+                    reiniciarNivel();
                 }
                 if(!nivelActual.getDisparos().isEmpty())
                     for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
@@ -280,9 +298,9 @@ public class Juego {
                         fantasma.patronDeMovimiento();
                     }
                 }
-                if(nivelActual==nivel&&nivelActual.terminoElNivel()&&!jefeCreado){
+                if(nivelActual==nivel&&nivelActual.terminoElNivel()&&!jefeCreado&&modoDeJuego.equals("Clasico")){
                     jefeCreado=true;
-                    if(parseActual.getSuperoNivelAnterior())
+                    if(parserActual.getSuperoNivelAnterior())
                         crearKamakichi(); //PARA NIVEL 2
                     else
                         crearMoghera(); //PARA NIVEL 1
@@ -328,14 +346,16 @@ public class Juego {
 }
 
     public void reiniciarNivel(){
-        if(jugador.getVidas()==0){
+        if(jugador.getVidas()==0 || tiempo.getTiempoActual()==ConstantesDificultad.TOPE_TIEMPO_CONTRARRELOJ){
             ranking.setJugador(jugador.getNombre(),puntajeJugador,modoDeJuego);
             detenerJuego();
             nivel=null;
             jugador=null;
             puntajeJugador=0;
-            tiempo.reiniciar();
-            tiempoAntesAparicionCalabaza.reiniciar();
+            tiempo.detener();
+            tiempo.resetear();
+            tiempoAntesAparicionCalabaza.detener();
+            tiempoAntesAparicionCalabaza.resetear();
             controladorGrafica.cambiarPantallaGameOver(); // gameOver
         }
         else 
@@ -348,7 +368,7 @@ public class Juego {
      
     public void iniciarNivel(){
         if (nivel == null){
-            nivel = parseActual.generarNivel(modoDeJuego); // o el nivel que correspon
+            nivel = parserActual.generarNivel(modoDeJuego); // o el nivel que correspon
             gestor.setNivel(nivel);
             //nivel.setNivel(nivel.getNivelActual()+1);
         }
@@ -361,12 +381,12 @@ public class Juego {
             if(jugador.getVidas()==0)
                 reiniciarJugador=false;
             if(reiniciarJugador){
-                nivel=parseActual.generarNivel(modoDeJuego);
+                nivel=parserActual.generarNivel(modoDeJuego);
                 jugador = nivel.getJugador();
                 jugador.setJuego(this);
             }
             else{
-                nivel=parseActual.generarNivel(modoDeJuego);
+                nivel=parserActual.generarNivel(modoDeJuego);
                 jugador = nivel.getJugador();
                 jugador.setVidas();
                 jugador.setJuego(this);
@@ -394,8 +414,12 @@ public class Juego {
         tiempo.detener();
         nivel.eliminarse(); 
         jefeCreado=false;
-        if(!parseActual.getSuperoNivelAnterior()){
-            parseActual.setSuperoNivelAnterior(true);
+        if(modoDeJuego.equals("Supervivencia")){
+            puntajeJugador=0;
+            oleadas=0;
+        }
+        if(!parserActual.getSuperoNivelAnterior()){
+            parserActual.setSuperoNivelAnterior(true);
             nivel=null;
             jugador=null;
             controladorGrafica.cambiarPantallaTransicion();
@@ -403,8 +427,29 @@ public class Juego {
             controladorGrafica.cambiarPantallaFinDelJuego();
             tiempo.reiniciar();
             tiempoAntesAparicionCalabaza.reiniciar();
-            parseActual.setSuperoNivelAnterior(false);
+            parserActual.setSuperoNivelAnterior(false);
         }
+    }
+    public boolean cumplirCondicionDelModo(){
+        boolean condicion=false;
+        switch (modoDeJuego) {
+            case "Clasico":
+                if(nivel!=null){
+                    condicion = nivel.getEnemigos().isEmpty();
+                }
+                break;
+            case "Supervivencia":
+                if(nivel!=null){
+                    condicion = puntajeJugador>=ConstantesDificultad.CONDICION_SUPERVIVENCIA;
+                }
+                break;
+            case "Contrarreloj":
+                if(nivel!=null){
+                    condicion = nivel.getEnemigos().isEmpty();
+                }
+                break;
+        }
+        return condicion;
     }
     public void actualizarPuntaje(int puntajeASumar){
         puntajeJugador+=puntajeASumar;
