@@ -86,7 +86,7 @@ public class Alternativo extends FabricaSprites{
     }
     public Sprite getSpriteKamakichi(){
         HashMap<String, String> mapeo= new HashMap<>();
-        mapeo.put("normal", rutaACarpeta + "/Kamakichi/kamakichiIquierdaAlternativo.png");
+        mapeo.put("normal", rutaACarpeta + "/Kamakichi/kamakichiIzquierdaAlternativo.png");
         mapeo.put("idleDerecha", rutaACarpeta + "/Kamakichi/kamakichiDerechaAlternativo.png");
         mapeo.put("disparo", rutaACarpeta + "/Kamakichi/kamakichiDisparandoAlternativo.png");
         mapeo.put("congelado", rutaACarpeta + "/Kamakichi/kamakichiCongeladoAlternativo.png");
@@ -155,7 +155,6 @@ public class Alternativo extends FabricaSprites{
     public Sprite getSpriteBolaNieve(){
         HashMap<String, String> mapeo= new HashMap<>();
         mapeo.put("normalIzquierda", rutaACarpeta + "/BolaDeNieve/bolaDeNieveAlternativo.gif");
-        mapeo.put("derretida", rutaACarpeta + "/BolaDeNieve/bolaDeNieveAlternativo.gif");
         return new Sprite(mapeo);
     }
     public Sprite getSpriteBolaFuego(){

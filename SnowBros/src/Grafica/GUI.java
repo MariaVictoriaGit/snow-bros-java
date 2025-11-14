@@ -134,18 +134,14 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public void cambiarPantallaTransicion(){
         juegoIniciado=false;
         cambiarPantalla(panelPantallaTransicion);
-        // Espera 3 segundos y luego vuelve al juego
         new java.util.Timer().schedule(
             new java.util.TimerTask() {
-                 @Override
                 public void run() {
-                // Esto se ejecuta después del delay
                     cambiarInicioJuego();
-                    cambiarPantalla(panelPantallaJuego);   // vuelve al panel del juego
+                    cambiarPantalla(panelPantallaJuego);  
                 }
-            },
-        3000 // 3 segundos
-    );
+            },3000//3s
+        );
 
     }
     public void cambiarPantallaGameOver(){

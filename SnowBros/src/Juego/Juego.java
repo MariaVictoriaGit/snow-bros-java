@@ -122,7 +122,7 @@ public class Juego {
                         jugadorActual.setChocoPared(false);
                         }
                     if(!nivelActual.getDisparos().isEmpty()){
-                        for(DisparoJugador disparo : nivel.getDisparos()){
+                        for(DisparoJugador disparo : new ArrayList<>(nivel.getDisparos())){
                             if(disparo.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
                                 p.aceptar(disparo);
                             }
@@ -144,7 +144,7 @@ public class Juego {
                         }
                     }
                 }
-                for(Plataforma plataforma: nivelActual.getPlataformas()){
+                for(Plataforma plataforma: new ArrayList<>(nivelActual.getPlataformas())){
                     if (jugadorActual.getHitbox().getLeftHitBox().intersects(plataforma.getHitbox().getRectangle())){
                         jugadorActual.chocaLadoPlataforma(true);
                     } 
@@ -160,7 +160,6 @@ public class Juego {
                     if(!nivelActual.getBolasDeFuego().isEmpty()){
                         for (BolaDeFuego bomba: new ArrayList<>(nivelActual.getBolasDeFuego()))
                             if (bomba!=null && bomba.kamakichiBomba() && bomba.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
-                            //TODO tiro excepcion por eso chequa null
                                 plataforma.aceptar(bomba);
                     }
                 }
@@ -170,7 +169,7 @@ public class Juego {
                         movil.aceptar(jugadorActual);
                 }
                 if(!nivelActual.getBolasDeFuego().isEmpty())
-                    for(BolaDeFuego bola: nivelActual.getBolasDeFuego())
+                    for(BolaDeFuego bola: new ArrayList<>(nivelActual.getBolasDeFuego()))
                         if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) 
                             jugadorActual.aceptar(bola);
 
@@ -208,7 +207,7 @@ public class Juego {
                         if(suelo.getHitbox().getRectangle().intersects(bola.getHitbox().getRectangle())) 
                             suelo.aceptar(bola);
                     }
-                    if(nivelActual.getCalabaza()!=null && suelo.getHitbox().getRectangle().intersects(nivel.getCalabaza().getHitbox().getRectangle())) 
+                    if(nivelActual.getCalabaza()!=null && suelo.getHitbox().getRectangle().intersects(nivelActual.getCalabaza().getHitbox().getRectangle())) 
                         suelo.aceptar(nivelActual.getCalabaza());
                 }
                 if (!colisionBola && !colisionSuelo && jugadorActual.getVelocidad() != ConstantesDificultad.EFECTO_BOTELLA_AZUL) {
@@ -229,7 +228,8 @@ public class Juego {
                 //variables locales creadas para que cuando el juego termine en mitad de ejecucion y nivel cambie a null, no siga usando el nivel nulo
                 Nivel nivelActual=nivel;
                 Jugador jugadorActual=jugador;
-                if(nivel==null||jugador==null)  break;
+                if(nivel==null||jugador==null)  
+                    break;
                 long inicio = System.currentTimeMillis();
                 controladorGrafica.moverJugadorSegunInput();
                 jugador.actualizarSalto();
