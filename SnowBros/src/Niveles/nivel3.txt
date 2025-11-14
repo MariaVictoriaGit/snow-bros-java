@@ -49,8 +49,6 @@ Plataforma 608 80
 Plataforma 640 80
 Plataforma 672 80
 
-Pared 256 80
-
 Plataforma 256 144
 Plataforma 288 144
 Plataforma 320 144

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 
+//import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.Entidad;
@@ -21,6 +22,7 @@ public class Juego {
     protected Nivel nivel;
     protected int puntajeJugador;
     protected Temporizador tiempo;
+    //protected boolean modoContrarrelojVencido;
     protected boolean reiniciarJugador;
     protected Jugador jugador;
     protected Sonido sonido;
@@ -59,7 +61,14 @@ public class Juego {
         else if (dominio.equals("Alternativo"))
             fabricaSprites= new Alternativo();
         fabricaEntidades = new FabricaEntidades(fabricaSprites,gestor);
-        tiempo.iniciar();
+        /*if("Contrarreloj".equals(modoDeJuego)){
+                tiempo = new Temporizador(ConstantesDificultad.TOPE_TIEMPO_CONTRARRELOJ);
+                tiempo.setAccionAlFinalizar(() -> {
+                modoContrarrelojVencido = true;
+                detenerJuego();
+                controladorGrafica.cambiarPantallaGameOver();
+            });
+        }*/
         if (parseActual == null)
             parseActual = new ParserNivel(fabricaEntidades);
         jefeCreado=false;
@@ -243,7 +252,7 @@ public class Juego {
                         else{
                             enemigo.actualizarTiempoCongelado();
                         }
-                        if(nivelActual.getEnemigos().isEmpty()){
+                        if(nivelActual.getEnemigos().isEmpty()){// && cumpleCondicionModo()){
                             this.superarNivel();
                         }
                    }
@@ -375,10 +384,14 @@ public class Juego {
         detenerJuego();
         nivel.eliminarse(); 
         jefeCreado=false;
-        parseActual.setSuperoNivelAnterior(true);
-        nivel=null;
-        jugador=null;
-        controladorGrafica.cambiarPantallaTransicion();
+        if(!parseActual.getSuperoNivelAnterior()){
+            parseActual.setSuperoNivelAnterior(true);
+            nivel=null;
+            jugador=null;
+            controladorGrafica.cambiarPantallaTransicion();
+        }else{//TODO
+            controladorGrafica.cambiarPantallaFinDelJuego();
+        }
     }
     public void actualizarPuntaje(int puntajeASumar){
         puntajeJugador+=puntajeASumar;
@@ -564,5 +577,13 @@ public class Juego {
         double distancia = (distanciaEnX*distanciaEnX) + (distanciaEnY*distanciaEnY);
         return distancia <= umbralDeRango*umbralDeRango;
     }
-    
+    /*protected boolean cumpleCondicionModo(){
+        boolean cumple=true;
+        
+
+
+
+
+        return cumple;
+    }*/
 }
