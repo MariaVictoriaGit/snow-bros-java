@@ -66,12 +66,17 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public abstract int getSalud();
 
    protected void verificarPared(Pared p){
-      if(estado==EstadosDePatron.MOVERDERECHA){
-         estado=EstadosDePatron.MOVERIZQUIERDA;
+      Rectangle hitPared = p.getHitbox().getRectangle();
+      Rectangle hb = this.hitbox.getRectangle();
+      if(direccion==ConstantesEntidades.DERECHA){
+         this.posX = hitPared.x - hb.width;
+         direccion=ConstantesEntidades.IZQUIERDA; 
       }
       else{
-         estado=EstadosDePatron.MOVERDERECHA;
+         this.posX = hitPared.x + hitPared.width;
+         direccion=ConstantesEntidades.DERECHA;
       }
+      this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
    }
    public void recibirDaño(int daño){
       salud -= daño;
@@ -158,8 +163,14 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    }
    public void visitar(Pared p){
       Rectangle hitBoxPared= p.getHitbox().getRectangle();
-      if(this.hitbox.getRightHitBox().intersects(hitBoxPared))
-         verificarPared(p);
+      if(direccion==ConstantesEntidades.DERECHA){
+         if(this.hitbox.getRightHitBox().intersects(hitBoxPared))
+            verificarPared(p);
+      }
+      else{
+         if(this.hitbox.getLeftHitBox().intersects(hitBoxPared))
+            verificarPared(p);
+      }
    }
    public void aceptar(Visitador v){
       v.visitar(this);
