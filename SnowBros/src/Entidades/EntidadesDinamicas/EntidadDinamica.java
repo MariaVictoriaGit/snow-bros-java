@@ -22,6 +22,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   protected int velocidadY;
   protected boolean saltando;
   protected boolean enAire;
+  private boolean bajandoPlataforma;
   private int alturaSalto;
   protected int alturaMax;
   protected int tocandoSuelo;
@@ -39,6 +40,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     ultimoSalto=0;
     enAire=false;
     saltando=false;
+    bajandoPlataforma=false;
   }
   public int getDireccion(){
     return direccion;
@@ -58,6 +60,9 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   public void setSaltando(boolean salto){
     saltando=salto;
   } 
+  public void setBajarPlataforma(boolean b){
+    bajandoPlataforma=b;
+  }
   public abstract void mover();
   public void actualizar(int direccion, int tocandoSuelo){
     this.dirAnterior=this.direccion;
@@ -96,7 +101,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     boolean enSuelo=false;
     for(Plataforma p:this.miNivel.getPlataformas()){
       if(miNivel.getJugador().getJuego().estaCerca(this,p,40)){
-        if(hitbox.getBottomHitBox().intersects(p.getHitbox().getTopHitBox())){
+        if(hitbox.getBottomHitBox().intersects(p.getHitbox().getTopHitBox()) && !bajandoPlataforma){
           enSuelo=true;
         }
       }
@@ -117,7 +122,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
       posY+=velocidadY;
       this.getHitbox().actualizarHitbox(posX,posicionarHitbox(posY),ancho,alto);
       for(Plataforma p:miNivel.getPlataformas())
-        if(miNivel.getJugador().getJuego().estaCerca(this,p,40))
+        if(miNivel.getJugador().getJuego().estaCerca(this,p,40) && !bajandoPlataforma)
           p.aceptar(this);
     }
   }
