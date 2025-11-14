@@ -33,7 +33,7 @@ public class Temporizador {
                 incrementar();
             }
             enMarcha=false;
-            if(accionAlFinalizar != null){
+            if(accionAlFinalizar != null && !hilo.isInterrupted()){
                 accionAlFinalizar.run();
             }
         });
