@@ -100,7 +100,15 @@ public class Kamakichi extends Enemigo{
         bola.setSpriteKamakichi(true);
     }
     public void convertirEnBola(){
-        congelado=true;
+       congelado=true;
+       gestor.actualizarPuntaje(puntajeEmpujado);
+
+    }
+    public void eliminar(){
+        super.eliminar();
+        /*Hablamos con Stefano y decidimos que los jefes no debian hacerse bola, 
+        asi que para seguir el enunciado, dan el puntaje empujado al morir */
+        gestor.actualizarPuntaje(puntajeEmpujado);
     }
     public void visitar(SueloResbaladizo o){
         return;   // ignora todos los obstaculos

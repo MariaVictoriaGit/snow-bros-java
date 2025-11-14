@@ -44,6 +44,7 @@ public class Juego {
     protected GestorEntidad gestor;
     protected boolean jefeCreado;
     private int oleadas;
+    private boolean habilitarCondicionClasico;
 
     public Juego(){
         reiniciarJugador=false;
@@ -76,6 +77,7 @@ public class Juego {
         if (parserActual == null)
             parserActual = new ParserNivel(fabricaEntidades);
         jefeCreado=false;
+        habilitarCondicionClasico=false;
         iniciarNivel();
     }
     private void iniciarHilos(){
@@ -352,6 +354,7 @@ public class Juego {
             nivel=null;
             jugador=null;
             puntajeJugador=0;
+            habilitarCondicionClasico=false;
             tiempo.detener();
             tiempo.resetear();
             tiempoAntesAparicionCalabaza.detener();
@@ -410,6 +413,7 @@ public class Juego {
         tiempo.detener();
         nivel.eliminarse(); 
         jefeCreado=false;
+        habilitarCondicionClasico=false;
         if(modoDeJuego.equals("Supervivencia")){
             puntajeJugador=0;
             oleadas=0;
@@ -433,7 +437,7 @@ public class Juego {
         switch (modoDeJuego) {
             case "Clasico":
                 if(nivel!=null){
-                    condicion = nivel.getEnemigos().isEmpty();
+                    condicion = habilitarCondicionClasico && nivel.getEnemigos().isEmpty();
                 }
                 break;
             case "Supervivencia":
@@ -556,6 +560,7 @@ public class Juego {
             controladorGrafica.registrarEntidad(kamakichi);
             kamakichi.setActivo(true);
             nivel.agregarEnemigo(kamakichi);
+            habilitarCondicionClasico=true;
         });
         Sonido.getInstancia().frenarMusica();
         Sonido.getInstancia().reproducirEfectoDeSonido("risaKamakichi.wav");
@@ -569,6 +574,7 @@ public class Juego {
             controladorGrafica.registrarEntidad(moghera);
             moghera.setActivo(true);
             nivel.agregarEnemigo(moghera);
+            habilitarCondicionClasico=true;
         });
         Sonido.getInstancia().frenarMusica();
         Sonido.getInstancia().reproducirEfectoDeSonido("risaMoghera.wav");
