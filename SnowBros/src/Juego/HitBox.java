@@ -13,31 +13,26 @@ public class HitBox {
         hitbox=new Rectangle(x-(ancho/2),y-(alto/2),ancho,alto);
     }
     public void actualizarHitbox(int x, int y, int ancho, int alto){
-        this.alto = alto;
-        this.ancho = ancho;
-        hitbox.setBounds(x, y, this.ancho, this.alto);
+        this.alto=alto;
+        this.ancho=ancho;
+        hitbox.setBounds(x - (ancho/2), y - (alto/2), this.ancho, this.alto);
     }
-
     public Rectangle getRectangle(){
         return hitbox;
     }
     
-   public Rectangle getTopHitBox(){
-        return new Rectangle(hitbox.x, hitbox.y - margen, hitbox.width, margen);
+    public Rectangle getTopHitBox(){
+        return new Rectangle(hitbox.x, hitbox.y-margen, hitbox.width, margen);
     }
-
     public Rectangle getBottomHitBox(){
-        return new Rectangle(hitbox.x, hitbox.y + hitbox.height, hitbox.width, margen);
+        return new Rectangle(hitbox.x, hitbox.y+hitbox.height, hitbox.width, margen);
     }
-
     public Rectangle getLeftHitBox(){
-        return new Rectangle(hitbox.x, hitbox.y, margen, hitbox.height);
+        return new Rectangle(hitbox.x-margen, hitbox.y+2, margen, hitbox.height-15);
     }
-
     public Rectangle getRightHitBox(){
-        return new Rectangle(hitbox.x + hitbox.width - margen, hitbox.y, margen, hitbox.height);
+        return new Rectangle(hitbox.x+hitbox.width, hitbox.y+2, margen, hitbox.height-15);
     }
-
     public int getX(){
         return hitbox.x;
     }
