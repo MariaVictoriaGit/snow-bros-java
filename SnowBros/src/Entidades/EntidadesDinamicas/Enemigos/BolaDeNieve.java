@@ -46,7 +46,7 @@ public class BolaDeNieve extends EntidadDinamica{
                 case ConstantesEntidades.DERECHA:
                     posX=posX+velocidadMaxima;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
-                    if(!reboto && posX>ConstantesVistas.PANEL_ANCHO-20){
+                    if(!reboto && posX>ConstantesVistas.PANEL_JUEGO_ANCHO-20){
                             direccion=ConstantesEntidades.IZQUIERDA;
                             reboto=true;
                     }
@@ -103,7 +103,6 @@ public class BolaDeNieve extends EntidadDinamica{
     }
     public void visitar(ParedDestructible p){
         p.destruirse();
-        this.eliminar();
     }
     public void eliminar(){
         if(observer!=null){
