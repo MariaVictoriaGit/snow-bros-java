@@ -1,5 +1,6 @@
 package SnowBros.src.Juego;
 
+import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.BolaDeFuego;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 import SnowBros.src.Fabricas.FabricaEntidades;
 
@@ -24,8 +25,9 @@ public class GestorEntidad {
     public void crearBolaDeNieve(int posX, int posY, int puntaje){
         juego.crearBolaDeNieve(posX, posY, puntaje);
     }
-    public void crearBolaDeFuego(int posX, int posY, int direccion){
-        juego.crearBolaDeFuego(posX, posY, direccion);
+    public BolaDeFuego crearBolaDeFuego(int posX, int posY, int direccion){
+        BolaDeFuego bola=juego.crearBolaDeFuego(posX, posY, direccion);
+        return bola;
     }
     public void crearFantasma(int posX, int posY){
         juego.crearFantasma(posX, posY);

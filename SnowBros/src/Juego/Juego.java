@@ -525,11 +525,12 @@ public class Juego {
         nivel.agregarBolaDeNieve(bola);
         controladorGrafica.registrarEntidad(bola);
     }
-    public void crearBolaDeFuego(int posX, int posY, int direccion) {
+    public BolaDeFuego crearBolaDeFuego(int posX, int posY, int direccion) {
         BolaDeFuego bola=fabricaEntidades.getBolaDeFuego(posX, posY);
         bola.setDireccion(direccion);
         nivel.agregarBolaDeFuego(bola);
         controladorGrafica.registrarEntidad(bola);
+        return bola;
     }
     public void crearFantasma(int posX, int posY){
         Fantasma fantasma= fabricaEntidades.getFantasma(posX, posY);

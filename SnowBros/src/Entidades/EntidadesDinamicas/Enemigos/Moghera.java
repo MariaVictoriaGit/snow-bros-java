@@ -92,7 +92,8 @@ public class Moghera extends Enemigo{
         if(direccion==ConstantesEntidades.QUIETO){
             int posicionXBola= posX+15;
             if(!bolaLanzada){
-                gestor.crearBolaDeFuego(posicionXBola, posY, ConstantesEntidades.IZQUIERDA);
+                bola=gestor.crearBolaDeFuego(posicionXBola, posY, ConstantesEntidades.IZQUIERDA);
+                bola.setSpriteMoghera(true);
                 bolaLanzada=true;
             }
 
