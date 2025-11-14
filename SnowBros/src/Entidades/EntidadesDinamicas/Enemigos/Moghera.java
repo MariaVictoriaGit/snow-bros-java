@@ -72,7 +72,7 @@ public class Moghera extends Enemigo{
                 mover();
                 bolaLanzada=false;
                 if (posX > ConstantesVistas.PANEL_JUEGO_ANCHO - 100) {
-                    estado = EstadosDePatron.ESPERAR;
+                    estado = EstadosDePatron.SALTAR;
                     tiempoEstado = ahora;
                 }
                 break;
@@ -81,15 +81,18 @@ public class Moghera extends Enemigo{
                 direccion = ConstantesEntidades.IZQUIERDA;
                 mover();
                 bolaLanzada=false;
-                estado = EstadosDePatron.ESPERAR;
                 tiempoEstado = ahora;
-            break;
+                estado = EstadosDePatron.MOVERABAJO;
+                break;
             case EstadosDePatron.ESPERAR:
                 direccion=ConstantesEntidades.QUIETO;
                 mover();
                 if (ahora - tiempoEstado > 2000) { // espera 2 segundos
                     mover();
-                    estado = EstadosDePatron.MOVERABAJO;
+                    if(dirAnterior==ConstantesEntidades.IZQUIERDA)
+                        estado=EstadosDePatron.MOVERDERECHA;
+                    else
+                        estado = EstadosDePatron.MOVERIZQUIERDA;
                     tiempoEstado=ahora;
                 }
             break;
@@ -103,8 +106,8 @@ public class Moghera extends Enemigo{
                 mover();
                 if(ahora-tiempoEstado>1000){
                     this.setBajarPlataforma(false);
-                    estado=EstadosDePatron.SALTAR;
                     tiempoEstado=ahora;
+                    estado=EstadosDePatron.ESPERAR;
                 }
             break;
         } 
