@@ -14,6 +14,7 @@ import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Visitor.Visitador;
 
+
 public abstract class EntidadDinamica extends Entidad implements Visitador{
   protected int direccion;
   protected int dirAnterior;
@@ -114,7 +115,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     if(tocandoSuelo==ConstantesEntidades.AIRE){
       velocidadY=ConstantesDificultad.VELOCIDAD_ENTIDAD_DINAMICA_Y;
       posY+=velocidadY;
-      this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
+      this.getHitbox().actualizarHitbox(posX,posicionarHitbox(posY),ancho,alto);
       for(Plataforma p:miNivel.getPlataformas())
         if(miNivel.getJugador().getJuego().estaCerca(this,p,40))
           p.aceptar(this);
@@ -175,7 +176,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   public void visitar(SueloResbaladizo e) {
     seguirCaminando(e);
   }
-  private void seguirCaminando(Entidad e){
+  public void seguirCaminando(Entidad e){
     if(this.getHitbox().getBottomHitBox().intersects(e.getHitbox().getRectangle())){
       this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
       this.setPosY(e.getPosY() - this.getHitbox().getAlto());
@@ -193,5 +194,8 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   public void setNivel(Nivel n){
     super.setNivel(n);
     miNivel=n;
+  }
+  public int posicionarHitbox(int y){
+    return y;
   }
 }
