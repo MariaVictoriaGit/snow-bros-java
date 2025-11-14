@@ -238,12 +238,16 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         ventana.repaint();
     }
     public void setJugadorVisibleGraficamente(){
-        miJuego.getJugador().getObserver().setVisible(true);
-        panelPantallaJuego.repaint();
+        if(miJuego.getJugador()!=null){
+            miJuego.getJugador().getObserver().setVisible(true);
+            panelPantallaJuego.repaint();
+        }
     }
     public void setJugadorInvisibleGraficamente(){
-        miJuego.getJugador().getObserver().setVisible(false);
-        panelPantallaJuego.repaint();
+        if(miJuego.getJugador()!=null){
+            miJuego.getJugador().getObserver().setVisible(false);
+            panelPantallaJuego.repaint();
+        }
     }
     public Juego getJuego() {
         return miJuego;

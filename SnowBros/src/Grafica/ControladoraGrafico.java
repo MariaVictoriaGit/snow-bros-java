@@ -11,5 +11,4 @@ interface ControladorGrafico {
     public void registrarEntidad(Jugador j);
     public void setModoJuego(String modo);
     public void setDominio(String dominio);
-    //TODO public Observer registrarSprite(Entidad e);
 }

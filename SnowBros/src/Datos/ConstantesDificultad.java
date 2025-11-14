@@ -30,8 +30,8 @@ public class ConstantesDificultad {
     public static final int VELOCIDAD_JUGADOR=5;
     public static final int VELOCIDAD_SALTO=4;
     public static final int EFECTO_BOTELLA_AZUL=10;
-    public static final int TOPE_TIEMPO_CONTRARRELOJ=120;
-    public static final int CONDICION_SUPERVIVENCIA=3000;
+    public static final int TOPE_TIEMPO_CONTRARRELOJ=40;
+    public static final int CONDICION_SUPERVIVENCIA=5000;
     public static final int VIDAS_INICIO=3;
     public static final int DANO_A_ENEMIGO=1;
 }

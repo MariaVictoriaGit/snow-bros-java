@@ -78,7 +78,6 @@ public class PanelPantallaFinDelJuego extends JPanel {
         botonNuevaPartida.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 miControladorGrafico.cambiarInicioJuego();
-                //    TODO que se resetee el puntaje a 0
             }
         });
     }    
