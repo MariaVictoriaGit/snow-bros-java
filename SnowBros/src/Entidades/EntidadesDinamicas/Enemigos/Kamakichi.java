@@ -4,6 +4,8 @@ import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Datos.EstadosDePatron;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Obstaculo;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.SueloResbaladizo;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -38,7 +40,7 @@ public class Kamakichi extends Enemigo{
         }
     }
     public void verificarSuelo(){
-        return;
+        return; // ignora las plataformas
     }
      public void patronDeMovimiento(){
         long ahora = System.currentTimeMillis();
@@ -99,6 +101,9 @@ public class Kamakichi extends Enemigo{
     }
     public void convertirEnBola(){
         congelado=true;
+    }
+    public void visitar(SueloResbaladizo o){
+        return;   // ignora todos los obstaculos
     }
     public void aceptar(Visitador v){
         v.visitar(this);
