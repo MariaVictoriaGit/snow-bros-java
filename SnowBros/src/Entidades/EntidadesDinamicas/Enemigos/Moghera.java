@@ -4,7 +4,6 @@ import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.Entidad;
-import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.HitBox;
 import SnowBros.src.Juego.Nivel;
@@ -128,6 +127,14 @@ public class Moghera extends Enemigo{
 
     public void convertirEnBola(){
        congelado=true;
+       gestor.actualizarPuntaje(puntajeEmpujado);
+
+    }
+    public void eliminar(){
+        super.eliminar();
+        /*Hablamos con Stefano y decidimos que los jefes no debian hacerse bola, 
+        asi que para seguir el enunciado, dan el puntaje empujado al morir */
+        gestor.actualizarPuntaje(puntajeEmpujado);
     }
     public void aceptar(Visitador v){
         v.visitar(this);
