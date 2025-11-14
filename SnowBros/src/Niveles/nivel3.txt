@@ -67,7 +67,6 @@ Plataforma 512 176
 Plataforma 544 176
 Plataforma 576 176
 Plataforma 608 176
-Plataforma 604 176
 
 RanaDeFuego 544 208
 
