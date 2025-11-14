@@ -256,10 +256,10 @@ public class Juego {
                         else{
                             enemigo.actualizarTiempoCongelado();
                         }
-                   }    
-                        if(cumplirCondicionDelModo()){// && cumpleCondicionModo()){
-                            this.superarNivel();
-                        }
+                   } 
+                }   
+                if(cumplirCondicionDelModo()){// && cumpleCondicionModo()){
+                    this.superarNivel();
                 }
                 if(modoDeJuego.equals("Supervivencia") && nivelActual.getEnemigos().isEmpty() && oleadas<=3){
                     if(!parserActual.getSuperoNivelAnterior()){
