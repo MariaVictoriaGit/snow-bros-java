@@ -12,11 +12,14 @@ public class Kamakichi extends Enemigo{
     protected static final int puntajeCongelado = 1000;
     protected static final int puntajeEmpujado = 5000;
     protected boolean activarDisparo;
+    protected boolean patronDisparo;
+
     public Kamakichi(int x, int y, Sprite sprite){
         super(x, y, sprite);  
         salud=ConstantesDificultad.SALUD_KAMAKICHI;
         velocidad=ConstantesDificultad.VELOCIDAD_KAMAKICHI;
         estado=EstadosDePatron.MOVERARRIBA;
+        patronDisparo=true;
     }
     public void mover(){
         switch (direccion) {
@@ -77,17 +80,18 @@ public class Kamakichi extends Enemigo{
             }
     }
     public void dispararBomba(){
-        boolean patronDisparo=true;
         if(activarDisparo){
             agregarBomba(posX+30, posY, ConstantesEntidades.DERECHA);
             agregarBomba(posX-30, posY, ConstantesEntidades.IZQUIERDA);
             if(patronDisparo){
                 agregarBomba(posX+20, posY-15, ConstantesEntidades.ARRIBA_DERECHA);
                 agregarBomba(posX-20, posY-15, ConstantesEntidades.ARRIBA_IZQUIERDA);
+                patronDisparo=false;
             }
             else{
                 agregarBomba(posX+20, posY-25, ConstantesEntidades.ARRIBA_IZQUIERDA);
                 agregarBomba(posX-20, posY-25, ConstantesEntidades.ARRIBA_DERECHA);
+                patronDisparo=true;
             }
             activarDisparo=false;
         }
