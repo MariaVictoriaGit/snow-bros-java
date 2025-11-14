@@ -16,7 +16,7 @@ public class ConstantesDificultad {
     public static final int VELOCIDAD_DEMONIO_ROJO=1;
     public static final int VELOCIDAD_TROLL_AMARILLO=2;
     public static final int VELOCIDAD_RANA_DE_FUEGO=1;
-    public static final int VELOCIDAD_MOGHERA=8;
+    public static final int VELOCIDAD_MOGHERA=1;
     public static final int VELOCIDAD_KAMAKICHI=8;
     public static final int VELOCIDAD_CALABAZA=1;
     public static final int VELOCIDAD_FANTASMA=1;

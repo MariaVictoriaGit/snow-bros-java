@@ -80,7 +80,7 @@ public class TrollAmarillo extends Enemigo{
             case EstadosDePatron.MOVERABAJO:
                 direccion=ConstantesEntidades.ABAJO;
                 mover();
-                if(ahora-tiempoEstado>1000){
+                if(ahora-tiempoEstado>500){
                     this.setBajarPlataforma(false);
                     tiempoEstado=ahora;
                     estado=obtenerPatron();
