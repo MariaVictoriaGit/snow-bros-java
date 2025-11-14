@@ -127,7 +127,7 @@ public class Juego {
                         jugadorActual.setChocoPared(false);
                         }
                     if(!nivelActual.getDisparos().isEmpty()){
-                        for(DisparoJugador disparo : new ArrayList<>(nivel.getDisparos())){
+                        for(DisparoJugador disparo : new ArrayList<>(nivelActual.getDisparos())){
                             if(disparo.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
                                 p.aceptar(disparo);
                             }
@@ -282,7 +282,7 @@ public class Juego {
                     for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
                         disparo.mover();
                 if(!nivelActual.getBolasDeFuego().isEmpty())
-                    for (BolaDeFuego bola:new ArrayList<>(nivel.getBolasDeFuego()))
+                    for (BolaDeFuego bola:new ArrayList<>(nivelActual.getBolasDeFuego()))
                         bola.mover();
 
                 for(BolaDeNieve bolaDeNieve:nivelActual.getBolasDeNieve()){
@@ -363,10 +363,6 @@ public class Juego {
         }
         else 
             controladorGrafica.cambiarInicioJuego();
-        //reiniciarJugador=true;
-        //puntajeJugador=0;
-        //tiempo.setTiempoActual(0);
-        //TODO terminar de implementar
     }
      
     public void iniciarNivel(){
@@ -522,7 +518,7 @@ public class Juego {
     public void crearPowerUp(PowerUp p){
             p.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(p));
             nivel.agregarPowerUp(p);   
-            p.getTiempoDeVida().iniciar(); //TODO cuando este implementada la muerte del enemigo considerar moverlo ahi
+            p.getTiempoDeVida().iniciar(); 
     }
     public void actualizarVidas(){
         controladorGrafica.getPantalla().actualizarLabelsVidas(jugador);
@@ -620,7 +616,7 @@ public class Juego {
     public void invencibilidad(){
         Thread hiloInv = new Thread(() -> {
             long tiempoUltimoParpadeo = 0;
-            while(jugador.getInvencibilidad()){
+            while(jugador!=null&&jugador.getInvencibilidad()){
                 long tiempoHilo = System.currentTimeMillis();
                 if(tiempoHilo - tiempoUltimoParpadeo > ConstantesTiempos.TIEMPO_LAPSO_INVENCIBILIDAD){
                     controladorGrafica.setJugadorInvisibleGraficamente();
