@@ -76,6 +76,8 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public void recibirDaño(int daño){
       salud -= daño;
       if (salud <= 0){
+         if(activarJefe)
+            jefeDerrotado=true;
          detener();
          congelar();
          congelado=true;
