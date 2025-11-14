@@ -30,6 +30,7 @@ public class Jugador extends EntidadDinamica implements Visitable{
     protected BolaDeNieve bolaEmpujada;
     protected boolean chocoParedIzq=false;
     protected boolean chocoParedDer=false;
+    private int contadorAnimacion;
     
     public Jugador(int x,int y, Sprite mISprite){//no se usa observerJugador y en entidadDinamica se le asigna un observer a cada uno
         super(x,y,mISprite);
@@ -40,6 +41,8 @@ public class Jugador extends EntidadDinamica implements Visitable{
         posYoriginal = y;
         invencible=false;
         bolaEmpujada=null;
+        contadorAnimacion=0;
+
     }
     public void mover(){}
     public void mover(int direccionAMover){
@@ -107,26 +110,46 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public String generarClaveEstado(){
         String claveADevolver=null;
-        switch(direccion){
-            case ConstantesEntidades.IZQUIERDA:
-                claveADevolver="moverIzquierda";
-                break;
-            case ConstantesEntidades.QUIETO:
-                if (dirAnterior == ConstantesEntidades.IZQUIERDA)
-                    claveADevolver="quietoIzquierda";
+        if(direccion==ConstantesEntidades.QUIETO){
+            if (dirAnterior == ConstantesEntidades.IZQUIERDA)
+            claveADevolver="quietoIzquierda";
                 else
-                    claveADevolver="quietoDerecha";
-                break;
-            case ConstantesEntidades.DERECHA:
-                claveADevolver= "moverDerecha";
-                break;
-            case ConstantesEntidades.ARRIBA:
-                if(dirAnterior==ConstantesEntidades.IZQUIERDA)
+            claveADevolver="quietoDerecha";
+        }
+        else if(direccion==ConstantesEntidades.ARRIBA){
+            if(dirAnterior==ConstantesEntidades.IZQUIERDA)
                     claveADevolver="saltandoIzquierda";
                 else
                     claveADevolver="saltandoDerecha";
+                }
+        else{
+            if(contadorAnimacion==3){
+                contadorAnimacion=0;
+            }
+            contadorAnimacion++;
+            switch (contadorAnimacion) {
+                case 1:
+                if(direccion==ConstantesEntidades.IZQUIERDA)
+                    claveADevolver="moverIzquierda1";
+                else
+                    claveADevolver="moverDerecha1";
                 break;
-        }
+                
+                case 2:
+                if(direccion==ConstantesEntidades.IZQUIERDA)
+                    claveADevolver="moverIzquierda2";
+                else
+                    claveADevolver="moverDerecha2";
+                break;
+                case 3:
+                if(direccion==ConstantesEntidades.IZQUIERDA)
+                    claveADevolver="moverIzquierda3";
+                else
+                    claveADevolver="moverDerecha3";
+                break;
+            }
+            }
+        
         return claveADevolver;
     }
     public int getVidas(){
