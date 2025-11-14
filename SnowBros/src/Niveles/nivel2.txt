@@ -1,8 +1,8 @@
 Plataforma 800 16
 Plataforma 768 16
-Plataforma 736 16
-Plataforma 704 16
-Plataforma 672 16
+SueloResbaladizo 736 16
+SueloResbaladizo 704 16
+SueloResbaladizo 672 16
 Plataforma 640 16
 Plataforma 608 16
 Plataforma 576 16
@@ -51,9 +51,9 @@ PlataformaQuebradiza 64 176
 PlataformaQuebradiza 96 176
 
 Plataforma 320 144
-SueloResbaladizo 352 144
-SueloResbaladizo 384 144
-SueloResbaladizo 416 144
+Plataforma 352 144
+Plataforma 384 144
+Plataforma 416 144
 Plataforma 448 144
 
 TrollAmarillo 352 208

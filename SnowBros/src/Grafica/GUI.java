@@ -192,6 +192,9 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
     public void setModoJuego(String modo) {
         modoDeJuego=modo;
         miJuego.setModoDeJuego(modo);
+        setNombre(modo);
+    }
+    public void setNombre(String modo){
         String nombre=null;
         while(nombre==null || nombre.trim().isEmpty()){
             nombre = javax.swing.JOptionPane.showInputDialog(ventana,"Ingresa tu nombre para el ranking:","Registro de Jugador",javax.swing.JOptionPane.PLAIN_MESSAGE);
