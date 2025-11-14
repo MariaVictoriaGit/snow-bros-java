@@ -377,12 +377,20 @@ public class Juego {
         jugador.getObserver().actualizar();
         tiempoAntesAparicionCalabaza.setAccionAlFinalizar(()->crearCalabaza());
         tiempoAntesAparicionCalabaza.iniciar();
+        tiempo.iniciar();
         juegoEnEjecucion=true;
         iniciarHilos();
 
     }
     public void superarNivel(){
         detenerJuego();
+        if(nivel.getCalabaza()!=null){
+            nivel.getCalabaza().detenerTemporizadorDeFantasma();
+        }
+        tiempoAntesAparicionCalabaza.resetear();
+        tiempoAntesAparicionCalabaza.detener();
+        tiempo.resetear();
+        tiempo.detener();
         nivel.eliminarse(); 
         jefeCreado=false;
         if(!parseActual.getSuperoNivelAnterior()){

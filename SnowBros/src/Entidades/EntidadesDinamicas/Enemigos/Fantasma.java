@@ -1,5 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 import SnowBros.src.Datos.ConstantesDificultad;
+import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -13,9 +14,14 @@ public class Fantasma extends Enemigo{
     }
     public void mover(){
         if(!detenido){
-            if(xJugador> posX)
+            if(xJugador> posX){
                 posX+= velocidad;
-                else posX-=velocidad;
+                direccion=ConstantesEntidades.DERECHA;
+            }
+            else {
+                posX-=velocidad;
+                direccion=ConstantesEntidades.IZQUIERDA;
+            }
             if(yJugador > posY)
                 posY+= velocidad;
                 else posY-=velocidad;
