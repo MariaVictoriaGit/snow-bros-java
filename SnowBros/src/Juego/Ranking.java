@@ -13,12 +13,14 @@ public class Ranking{
         topContrarreloj=new LinkedHashMap<String, Integer>();
     }
     public void setJugador(String nombre, int puntajeJugador, String modoDeJuego){//para agregar al respectivo modo
-        if (modoDeJuego.equals("Clasico"))
-            actualizarRanking(topClasico, nombre, puntajeJugador);
-        else if (modoDeJuego.equals("Supervivencia")) 
-                actualizarRanking(topSupervivencia, nombre, puntajeJugador);
-            else if (modoDeJuego.equals("Contrarreloj")) 
-                actualizarRanking(topContrarreloj, nombre, puntajeJugador);
+        if(nombre!=null && !nombre.equals("null")){
+            if (modoDeJuego.equals("Clasico"))
+                actualizarRanking(topClasico, nombre, puntajeJugador);
+            else if (modoDeJuego.equals("Supervivencia")) 
+                    actualizarRanking(topSupervivencia, nombre, puntajeJugador);
+                else if (modoDeJuego.equals("Contrarreloj")) 
+                    actualizarRanking(topContrarreloj, nombre, puntajeJugador);
+        }
     }
  private void actualizarRanking(LinkedHashMap<String, Integer> mapa, String nombre, int puntaje) {
         if (mapa.containsKey(nombre))
