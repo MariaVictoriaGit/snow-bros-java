@@ -44,6 +44,7 @@ public class Juego {
     protected GestorEntidad gestor;
     protected boolean jefeCreado;
     private int oleadas;
+    private boolean habilitarCondicionClasico;
 
     public Juego(){
         reiniciarJugador=false;
@@ -76,6 +77,7 @@ public class Juego {
         if (parserActual == null)
             parserActual = new ParserNivel(fabricaEntidades);
         jefeCreado=false;
+        habilitarCondicionClasico=false;
         iniciarNivel();
     }
     private void iniciarHilos(){
@@ -125,7 +127,7 @@ public class Juego {
                         jugadorActual.setChocoPared(false);
                         }
                     if(!nivelActual.getDisparos().isEmpty()){
-                        for(DisparoJugador disparo : new ArrayList<>(nivel.getDisparos())){
+                        for(DisparoJugador disparo : new ArrayList<>(nivelActual.getDisparos())){
                             if(disparo.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
                                 p.aceptar(disparo);
                             }
@@ -280,7 +282,7 @@ public class Juego {
                     for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
                         disparo.mover();
                 if(!nivelActual.getBolasDeFuego().isEmpty())
-                    for (BolaDeFuego bola:new ArrayList<>(nivel.getBolasDeFuego()))
+                    for (BolaDeFuego bola:new ArrayList<>(nivelActual.getBolasDeFuego()))
                         bola.mover();
 
                 for(BolaDeNieve bolaDeNieve:nivelActual.getBolasDeNieve()){
@@ -352,6 +354,7 @@ public class Juego {
             nivel=null;
             jugador=null;
             puntajeJugador=0;
+            habilitarCondicionClasico=false;
             tiempo.detener();
             tiempo.resetear();
             tiempoAntesAparicionCalabaza.detener();
@@ -360,10 +363,6 @@ public class Juego {
         }
         else 
             controladorGrafica.cambiarInicioJuego();
-        //reiniciarJugador=true;
-        //puntajeJugador=0;
-        //tiempo.setTiempoActual(0);
-        //TODO terminar de implementar
     }
      
     public void iniciarNivel(){
@@ -414,6 +413,7 @@ public class Juego {
         tiempo.detener();
         nivel.eliminarse(); 
         jefeCreado=false;
+        habilitarCondicionClasico=false;
         if(modoDeJuego.equals("Supervivencia")){
             puntajeJugador=0;
             oleadas=0;
@@ -437,7 +437,7 @@ public class Juego {
         switch (modoDeJuego) {
             case "Clasico":
                 if(nivel!=null){
-                    condicion = nivel.getEnemigos().isEmpty();
+                    condicion = habilitarCondicionClasico && nivel.getEnemigos().isEmpty();
                 }
                 break;
             case "Supervivencia":
@@ -518,7 +518,7 @@ public class Juego {
     public void crearPowerUp(PowerUp p){
             p.setLabel(controladorGrafica.getPantalla().incorporarEntidadEstatica(p));
             nivel.agregarPowerUp(p);   
-            p.getTiempoDeVida().iniciar(); //TODO cuando este implementada la muerte del enemigo considerar moverlo ahi
+            p.getTiempoDeVida().iniciar(); 
     }
     public void actualizarVidas(){
         controladorGrafica.getPantalla().actualizarLabelsVidas(jugador);
@@ -560,6 +560,7 @@ public class Juego {
             controladorGrafica.registrarEntidad(kamakichi);
             kamakichi.setActivo(true);
             nivel.agregarEnemigo(kamakichi);
+            habilitarCondicionClasico=true;
         });
         Sonido.getInstancia().frenarMusica();
         Sonido.getInstancia().reproducirEfectoDeSonido("risaKamakichi.wav");
@@ -573,6 +574,7 @@ public class Juego {
             controladorGrafica.registrarEntidad(moghera);
             moghera.setActivo(true);
             nivel.agregarEnemigo(moghera);
+            habilitarCondicionClasico=true;
         });
         Sonido.getInstancia().frenarMusica();
         Sonido.getInstancia().reproducirEfectoDeSonido("risaMoghera.wav");
@@ -614,7 +616,7 @@ public class Juego {
     public void invencibilidad(){
         Thread hiloInv = new Thread(() -> {
             long tiempoUltimoParpadeo = 0;
-            while(jugador.getInvencibilidad()){
+            while(jugador!=null&&jugador.getInvencibilidad()){
                 long tiempoHilo = System.currentTimeMillis();
                 if(tiempoHilo - tiempoUltimoParpadeo > ConstantesTiempos.TIEMPO_LAPSO_INVENCIBILIDAD){
                     controladorGrafica.setJugadorInvisibleGraficamente();
