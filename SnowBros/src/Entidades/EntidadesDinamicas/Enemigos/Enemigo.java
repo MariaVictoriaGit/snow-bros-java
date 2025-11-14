@@ -66,17 +66,15 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public abstract int getSalud();
 
    protected void verificarPared(Pared p){
-      Rectangle hitPared = p.getHitbox().getRectangle();
-      Rectangle hb = this.hitbox.getRectangle();
-      if(direccion==ConstantesEntidades.DERECHA){
-         this.posX = hitPared.x - hb.width;
-         direccion=ConstantesEntidades.IZQUIERDA; 
-      }
-      else{
-         this.posX = hitPared.x + hitPared.width;
-         direccion=ConstantesEntidades.DERECHA;
-      }
-      this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
+      Rectangle hitBoxPared= p.getHitbox().getRectangle();
+       if (direccion==ConstantesEntidades.DERECHA&&this.getHitbox().getRightHitBox().intersects(hitBoxPared)) {
+            this.setPosX(posX - 3);
+            direccion=ConstantesEntidades.IZQUIERDA;
+        } else if (direccion==ConstantesEntidades.IZQUIERDA&&this.getHitbox().getLeftHitBox().intersects(hitBoxPared)) {
+            setPosX(posX+3);
+            direccion=ConstantesEntidades.DERECHA;
+         }
+         this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
    }
    public void recibirDaño(int daño){
       salud -= daño;
@@ -162,15 +160,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       }
    }
    public void visitar(Pared p){
-      Rectangle hitBoxPared= p.getHitbox().getRectangle();
-      if(direccion==ConstantesEntidades.DERECHA){
-         if(this.hitbox.getRightHitBox().intersects(hitBoxPared))
-            verificarPared(p);
-      }
-      else{
-         if(this.hitbox.getLeftHitBox().intersects(hitBoxPared))
-            verificarPared(p);
-      }
+      verificarPared(p);
    }
    public void aceptar(Visitador v){
       v.visitar(this);
