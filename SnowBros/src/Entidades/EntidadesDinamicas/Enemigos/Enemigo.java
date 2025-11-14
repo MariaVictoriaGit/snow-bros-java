@@ -1,5 +1,7 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import java.awt.Rectangle;
+
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -156,7 +158,12 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
          super.eliminar();
       }
    }
-    public void aceptar(Visitador v){
+   public void visitar(Pared p){
+      Rectangle hitBoxPared= p.getHitbox().getRectangle();
+      if(this.hitbox.getRightHitBox().intersects(hitBoxPared))
+         verificarPared(p);
+   }
+   public void aceptar(Visitador v){
       v.visitar(this);
    }
    public void setGestor(GestorEntidad g){
