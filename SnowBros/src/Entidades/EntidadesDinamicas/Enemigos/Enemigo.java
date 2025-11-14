@@ -1,5 +1,7 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
+import java.awt.Rectangle;
+
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -64,16 +66,16 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public abstract int getSalud();
 
    protected void verificarPared(Pared p){
-      if(estado==EstadosDePatron.MOVERDERECHA){
-         estado=EstadosDePatron.MOVERIZQUIERDA;
-      }
-      else{
-         estado=EstadosDePatron.MOVERDERECHA;
-      }
+      Rectangle hitBoxPared= p.getHitbox().getRectangle();
+       if (direccion==ConstantesEntidades.DERECHA&&this.getHitbox().getRightHitBox().intersects(hitBoxPared)) {
+            this.setPosX(posX - 3);
+            direccion=ConstantesEntidades.IZQUIERDA;
+        } else if (direccion==ConstantesEntidades.IZQUIERDA&&this.getHitbox().getLeftHitBox().intersects(hitBoxPared)) {
+            setPosX(posX+3);
+            direccion=ConstantesEntidades.DERECHA;
+         }
+         this.hitbox.actualizarHitbox(posX, posY, ancho, alto);
    }
-   public void visitar(Pared p){
-      verificarPared(p);
-   }   
    public void recibirDaño(int daño){
       salud -= daño;
       if (salud <= 0){
@@ -157,7 +159,10 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
          super.eliminar();
       }
    }
-    public void aceptar(Visitador v){
+   public void visitar(Pared p){
+      verificarPared(p);
+   }
+   public void aceptar(Visitador v){
       v.visitar(this);
    }
    public void setGestor(GestorEntidad g){

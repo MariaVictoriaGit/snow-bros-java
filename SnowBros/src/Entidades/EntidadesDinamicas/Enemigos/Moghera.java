@@ -15,6 +15,7 @@ public class Moghera extends Enemigo{
     private int altoJefe;
     protected boolean congelado;
     private boolean bolaLanzada;
+    private int recorrido;
 
     public Moghera(int x, int y, Sprite sprite){
     super(x, y, sprite);
@@ -30,28 +31,26 @@ public class Moghera extends Enemigo{
     salud = ConstantesDificultad.SALUD_MOGHERA;
     velocidad = ConstantesDificultad.VELOCIDAD_MOGHERA;
     alturaMax = ConstantesDificultad.ALTURA_MAX_SALTO*3;
+    recorrido=0;
+    estado=EstadosDePatron.ESPERAR;
 }
     public void mover(){
-        if(!detenido)
-            switch (direccion) {
+        if(!detenido){
+            switch (direccion){
                 case ConstantesEntidades.QUIETO:
                     lanzarFuego(); 
-                    if (dirAnterior == ConstantesEntidades.DERECHA)
-                        direccion = ConstantesEntidades.IZQUIERDA;
-                    else
-                        direccion = ConstantesEntidades.DERECHA;
                     break;
                 case ConstantesEntidades.IZQUIERDA:
                     dirAnterior=ConstantesEntidades.IZQUIERDA;
-                    posX-=1;
+                    recorrido+=ConstantesDificultad.VELOCIDAD_MOGHERA;
+                    posX-=ConstantesDificultad.VELOCIDAD_MOGHERA;
                     this.getHitbox().actualizarHitbox(this.posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.DERECHA:
                     dirAnterior=ConstantesEntidades.DERECHA;
-                    if(posX+velocidad<ConstantesVistas.PANEL_JUEGO_ANCHO){
-                        posX+=1;
-                        this.getHitbox().actualizarHitbox(this.posX, posY, ancho, alto);
-                    }
+                    recorrido+=ConstantesDificultad.VELOCIDAD_MOGHERA;
+                    posX+=ConstantesDificultad.VELOCIDAD_MOGHERA;
+                    this.getHitbox().actualizarHitbox(this.posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.ARRIBA:
                     tocandoSuelo=ConstantesEntidades.SUELO;
@@ -59,36 +58,45 @@ public class Moghera extends Enemigo{
                     break;
                 case ConstantesEntidades.ABAJO:
                     this.setBajarPlataforma(true);
-                    break;
-                    
+                    break;  
             } 
+        }
     }
     public void patronDeMovimiento(){
         long ahora = System.currentTimeMillis();
         switch (estado) {
             case EstadosDePatron.MOVERDERECHA:
                 direccion = ConstantesEntidades.DERECHA;
-                mover();
                 bolaLanzada=false;
-                if (posX > ConstantesVistas.PANEL_JUEGO_ANCHO - 100) {
-                    estado = EstadosDePatron.ESPERAR;
+                if(recorrido>40){
+                    estado = EstadosDePatron.SALTAR;
                     tiempoEstado = ahora;
+                    recorrido=0;
                 }
+                else
+                    mover();
                 break;
     
             case EstadosDePatron.MOVERIZQUIERDA:
                 direccion = ConstantesEntidades.IZQUIERDA;
-                mover();
                 bolaLanzada=false;
-                estado = EstadosDePatron.ESPERAR;
-                tiempoEstado = ahora;
-            break;
+                if(recorrido>40){
+                    recorrido=0;
+                    tiempoEstado = ahora;
+                    estado = EstadosDePatron.MOVERABAJO;
+                }
+                else
+                    mover();
+                break;
             case EstadosDePatron.ESPERAR:
                 direccion=ConstantesEntidades.QUIETO;
                 mover();
                 if (ahora - tiempoEstado > 2000) { // espera 2 segundos
                     mover();
-                    estado = EstadosDePatron.MOVERABAJO;
+                    if(dirAnterior==ConstantesEntidades.IZQUIERDA)
+                        estado=EstadosDePatron.MOVERDERECHA;
+                    else
+                        estado = EstadosDePatron.MOVERIZQUIERDA;
                     tiempoEstado=ahora;
                 }
             break;
@@ -100,10 +108,10 @@ public class Moghera extends Enemigo{
             case EstadosDePatron.MOVERABAJO:
                 direccion=ConstantesEntidades.ABAJO;
                 mover();
-                if(ahora-tiempoEstado>1000){
+                if(ahora-tiempoEstado>600){
                     this.setBajarPlataforma(false);
-                    estado=EstadosDePatron.SALTAR;
                     tiempoEstado=ahora;
+                    estado=EstadosDePatron.ESPERAR;
                 }
             break;
         } 
@@ -127,6 +135,14 @@ public class Moghera extends Enemigo{
 
     public void convertirEnBola(){
        congelado=true;
+       gestor.actualizarPuntaje(puntajeEmpujado);
+
+    }
+    public void eliminar(){
+        super.eliminar();
+        /*Hablamos con Stefano y decidimos que los jefes no debian hacerse bola, 
+        asi que para seguir el enunciado, dan el puntaje empujado al morir */
+        gestor.actualizarPuntaje(puntajeEmpujado);
     }
     public void aceptar(Visitador v){
         v.visitar(this);
