@@ -39,15 +39,13 @@ public class Sonido {
         if(clip == null){
             clip = cargarSonido(s);
             mapeo.put(s,clip);
-            clip.setFramePosition(0);
-            clip.start();
         }
         else{
             clip.stop();
             clip.flush();
-            clip.setFramePosition(0);
-            clip.start();
         }
+        clip.setFramePosition(0);
+        clip.start();
     }
     private Clip cargarSonido(String r){
         try {

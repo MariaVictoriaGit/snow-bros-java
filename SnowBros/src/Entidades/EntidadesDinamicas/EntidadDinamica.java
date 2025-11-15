@@ -14,7 +14,6 @@ import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Juego.Sonido;
 import SnowBros.src.Visitor.Visitador;
 
-
 public abstract class EntidadDinamica extends Entidad implements Visitador{
   protected int direccion;
   protected int dirAnterior;
@@ -28,7 +27,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   protected int tocandoSuelo;
   protected int velocidadSalto;
   protected long ultimoSalto;
-  protected ObserverEntidad observer;//ObserverEntidad
+  protected ObserverEntidad observer;
   private Nivel miNivel;
   public EntidadDinamica(int posX, int posY, Sprite mSprite){
     super(posX, posY, mSprite);
@@ -42,17 +41,8 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     saltando=false;
     bajandoPlataforma=false;
   }
-  public int getDireccion(){
-    return direccion;
-  }
-  public int getDirAnterior(){
-    return dirAnterior;
-  }
   public boolean getSaltando(){
     return saltando;
-  }
-  public boolean getEnAire(){
-    return enAire;
   }
   public void setDireccion(int direccion){
     this.direccion=direccion;
@@ -64,11 +54,6 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
     bajandoPlataforma=b;
   }
   public abstract void mover();
-  public void actualizar(int direccion, int tocandoSuelo){
-    this.dirAnterior=this.direccion;
-    this.setTocandoSuelo(tocandoSuelo);
-    this.direccion=direccion;
-  }
   public void setTocandoSuelo(int estado){
     tocandoSuelo=estado;
   }
@@ -93,10 +78,6 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
   public ObserverEntidad getObserver(){
     return observer;
   }
-  public void notificarObserver(){
-    if(observer==null) return;
-    observer.actualizar();
-  }
   public void verificarSuelo(){
     boolean enSuelo=false;
     for(Plataforma p:this.miNivel.getPlataformas()){
@@ -115,7 +96,6 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
       actualizarCaida();
     }
   }
-  //protected abstract void verificarPared(Pared p);
   private void actualizarCaida(){
     if(tocandoSuelo==ConstantesEntidades.AIRE){
       velocidadY=ConstantesDificultad.VELOCIDAD_ENTIDAD_DINAMICA_Y;

@@ -95,17 +95,17 @@ public class TrollAmarillo extends Enemigo{
             estado=EstadosDePatron.MOVERDERECHA;
         }
         else if(probabilidad<40){
-            estado=EstadosDePatron.MOVERABAJO;
-        }
-        else if(probabilidad<60){
-            estado=EstadosDePatron.MOVERIZQUIERDA;
-        }
-        else if(probabilidad<80){
-            estado=EstadosDePatron.ESPERAR;
-        }
-        else{
-            estado=EstadosDePatron.SALTAR;
-        }
+                estado=EstadosDePatron.MOVERABAJO;
+            }
+            else if(probabilidad<60){
+                estado=EstadosDePatron.MOVERIZQUIERDA;
+            }
+                else if(probabilidad<80){
+                    estado=EstadosDePatron.ESPERAR;
+                }
+                    else{
+                        estado=EstadosDePatron.SALTAR;
+                    }
         return estado;
     }
     public String generarClaveEstado(){
@@ -115,7 +115,6 @@ public class TrollAmarillo extends Enemigo{
                 case ConstantesEntidades.DERECHA:
                     estado="quietoIzquierda";
                     break;
-            
                 case ConstantesEntidades.IZQUIERDA:
                     estado="quietoDerecha";
                     break;

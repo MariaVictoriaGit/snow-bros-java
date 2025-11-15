@@ -12,7 +12,8 @@ public class Ranking{
         topSupervivencia=new LinkedHashMap<String, Integer>();  
         topContrarreloj=new LinkedHashMap<String, Integer>();
     }
-    public void setJugador(String nombre, int puntajeJugador, String modoDeJuego){//para agregar al respectivo modo
+    public void setJugador(String nombre, int puntajeJugador, String modoDeJuego){
+        //para agregar al respectivo modo
         if(nombre!=null && !nombre.equals("null")){
             if (modoDeJuego.equals("Clasico"))
                 actualizarRanking(topClasico, nombre, puntajeJugador);
@@ -22,11 +23,8 @@ public class Ranking{
                     actualizarRanking(topContrarreloj, nombre, puntajeJugador);
         }
     }
- private void actualizarRanking(LinkedHashMap<String, Integer> mapa, String nombre, int puntaje) {
-        if (mapa.containsKey(nombre))
-            mapa.put(nombre, puntaje);
-        else
-            mapa.put(nombre, puntaje);
+    private void actualizarRanking(LinkedHashMap<String, Integer> mapa, String nombre, int puntaje) {
+        mapa.put(nombre, puntaje);
         ordenar(mapa);
     }
     public LinkedHashMap<String, Integer> getTopClasico(){

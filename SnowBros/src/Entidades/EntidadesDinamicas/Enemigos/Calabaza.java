@@ -8,6 +8,7 @@ public class Calabaza extends Enemigo{
     protected Temporizador tiempoCreacionFantasmas;
     private long tiempoEstado = 0;
     private int estado = EstadosDePatron.MOVERIZQUIERDA;
+    
     public Calabaza(int x, int y, Sprite sprite){
         super(x, y, sprite);
         velocidad=ConstantesDificultad.VELOCIDAD_CALABAZA;
@@ -55,22 +56,22 @@ public class Calabaza extends Enemigo{
                     tiempoEstado = ahora;
                 }
                 break;
-        case EstadosDePatron.MOVERIZQUIERDA:
-            direccion = ConstantesEntidades.IZQUIERDA;
-            mover();
-            if (posX < 100) {
-                estado = EstadosDePatron.ESPERAR;
-                tiempoEstado = ahora;
-            }
-            break; 
-        case EstadosDePatron.ESPERAR:
-                direccion=ConstantesEntidades.QUIETO;
-                if (ahora - tiempoEstado > 1000)
-                    if (dirAnterior == ConstantesEntidades.DERECHA)
-                        estado = EstadosDePatron.MOVERIZQUIERDA;
-                    else
-                        estado = EstadosDePatron.MOVERDERECHA;
-            break;
+            case EstadosDePatron.MOVERIZQUIERDA:
+                direccion = ConstantesEntidades.IZQUIERDA;
+                mover();
+                if (posX < 100) {
+                    estado = EstadosDePatron.ESPERAR;
+                    tiempoEstado = ahora;
+                }
+                break; 
+            case EstadosDePatron.ESPERAR:
+                    direccion=ConstantesEntidades.QUIETO;
+                    if (ahora - tiempoEstado > 1000)
+                        if (dirAnterior == ConstantesEntidades.DERECHA)
+                            estado = EstadosDePatron.MOVERIZQUIERDA;
+                        else
+                            estado = EstadosDePatron.MOVERDERECHA;
+                break;
         }
     }
     public String generarClaveEstado(){
@@ -99,7 +100,7 @@ public class Calabaza extends Enemigo{
     public int getPuntajeCongelado() {//redefinido pq son indestructibles
         return 0;
     }
-    public int getPuntajeEmpujado() {//redefinido pq son indestructibles
+    public int getPuntajeEmpujado() {
         return 0;
     }
     public int getSalud(){

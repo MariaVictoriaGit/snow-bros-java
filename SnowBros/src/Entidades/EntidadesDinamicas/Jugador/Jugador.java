@@ -138,9 +138,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public int getTiempo(){
         return miJuego.getTiempoActual();
     }
-    public int getDireccion(){
-        return direccion;
-    }
     public String getNombre(){
         return nombre;
     }
@@ -328,10 +325,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public void visitar(TrampaPinchos t){
         perderVida();    
-    }
-    public void visitar(Jugador j){
-        //Que hacemos aca? 
-        //      Buena pregunta
     }
     public void aceptar(Visitador v){
         v.visitar(this);

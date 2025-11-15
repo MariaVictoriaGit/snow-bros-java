@@ -1,7 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
-import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.Entidad;
 import SnowBros.src.Grafica.Sprite;
@@ -18,22 +17,19 @@ public class Moghera extends Enemigo{
     private int recorrido;
 
     public Moghera(int x, int y, Sprite sprite){
-    super(x, y, sprite);
-    ancho = 32;      // Ancho de la hitbox
-    alto = 32;       // Alto de la hitbox  // Ancho real de la entidad
-    altoJefe = 79;    // Alto real de la entidad
-    // Ajustamos la posición Y para que la hitbox esté alineada con la parte inferior de la entidad
-    // Alineamos la hitbox a la parte inferior de la entidad
-    posY= posicionarHitbox(posY);
-    // Creamos la hitbox con el tamaño de 32x32 y la posición ajustada
-    hitbox = new HitBox(posX,posY, ancho, alto);  // Centramos la hitbox horizontalmente en la entidad
-    tocandoSuelo=ConstantesEntidades.SUELO;
-    salud = ConstantesDificultad.SALUD_MOGHERA;
-    velocidad = ConstantesDificultad.VELOCIDAD_MOGHERA;
-    alturaMax = ConstantesDificultad.ALTURA_MAX_SALTO*3;
-    recorrido=0;
-    estado=EstadosDePatron.ESPERAR;
-}
+        super(x, y, sprite);
+        ancho = 32;      
+        alto = 32;       
+        altoJefe = 79;    
+        posY= posicionarHitbox(posY);
+        hitbox = new HitBox(posX,posY, ancho, alto);
+        tocandoSuelo=ConstantesEntidades.SUELO;
+        salud = ConstantesDificultad.SALUD_MOGHERA;
+        velocidad = ConstantesDificultad.VELOCIDAD_MOGHERA;
+        alturaMax = ConstantesDificultad.ALTURA_MAX_SALTO*3;
+        recorrido=0;
+        estado=EstadosDePatron.ESPERAR;
+    }
     public void mover(){
         if(!detenido){
             switch (direccion){
@@ -76,7 +72,6 @@ public class Moghera extends Enemigo{
                 else
                     mover();
                 break;
-    
             case EstadosDePatron.MOVERIZQUIERDA:
                 direccion = ConstantesEntidades.IZQUIERDA;
                 bolaLanzada=false;
@@ -91,7 +86,7 @@ public class Moghera extends Enemigo{
             case EstadosDePatron.ESPERAR:
                 direccion=ConstantesEntidades.QUIETO;
                 mover();
-                if (ahora - tiempoEstado > 2000) { // espera 2 segundos
+                if (ahora - tiempoEstado > 2000) {
                     mover();
                     if(dirAnterior==ConstantesEntidades.IZQUIERDA)
                         estado=EstadosDePatron.MOVERDERECHA;
@@ -99,12 +94,12 @@ public class Moghera extends Enemigo{
                         estado = EstadosDePatron.MOVERIZQUIERDA;
                     tiempoEstado=ahora;
                 }
-            break;
+                break;
             case EstadosDePatron.SALTAR:
                 direccion=ConstantesEntidades.ARRIBA;
                 mover();
                 estado=EstadosDePatron.ESPERAR;
-            break;
+                break;
             case EstadosDePatron.MOVERABAJO:
                 direccion=ConstantesEntidades.ABAJO;
                 mover();
@@ -113,9 +108,9 @@ public class Moghera extends Enemigo{
                     tiempoEstado=ahora;
                     estado=EstadosDePatron.ESPERAR;
                 }
-            break;
+                break;
         } 
-        }
+    }
     public BolaDeFuego lanzarFuego(){
         BolaDeFuego bola=null;
         if(direccion==ConstantesEntidades.QUIETO){
@@ -125,18 +120,15 @@ public class Moghera extends Enemigo{
                 bola.setSpriteMoghera(true);
                 bolaLanzada=true;
             }
-
         }
         return bola;
     }
     public void setActivo(boolean t){
         activarJefe=t;
     }
-
     public void convertirEnBola(){
        congelado=true;
        gestor.actualizarPuntaje(puntajeEmpujado);
-
     }
     public void eliminar(){
         super.eliminar();
@@ -153,31 +145,28 @@ public class Moghera extends Enemigo{
             case ConstantesEntidades.IZQUIERDA:
                 if(congelado){
                     clave="congeladoIzquierda";
-                    hitbox.actualizarHitbox(posX,posY,32,32);
                 }else{
                     clave="quietoIzquierda";
-                    hitbox.actualizarHitbox(posX, posY, 32, 32);
                 }
+                hitbox.actualizarHitbox(posX, posY, 32, 32);
                 break;
             case ConstantesEntidades.DERECHA:
                 if(congelado){
                     clave="congeladoDerecha";
-                    hitbox.actualizarHitbox(posX, posY, 32, 32);
                 }
                 else{
                     clave="quietoDerecha";
-                    hitbox.actualizarHitbox(posX, posY, 32, 32);
                 }
+                hitbox.actualizarHitbox(posX, posY, 32, 32);
                 break;
             case ConstantesEntidades.QUIETO:
                 if(congelado){
                     clave="congeladoDerecha";
-                    hitbox.actualizarHitbox(posX,posY, 32, 32);
                 }
                 else{
                     clave="quietoDerecha";
-                    hitbox.actualizarHitbox(posX, posY, 32, 32);
                 }
+                hitbox.actualizarHitbox(posX, posY, 32, 32);
         }
         return clave;
     }
@@ -197,11 +186,10 @@ public class Moghera extends Enemigo{
     public int posicionarHitbox(int y){
         return (y+altoJefe-alto);
     }
-    @Override
     public void seguirCaminando(Entidad e){
-    if(this.getHitbox().getRectangle().intersects(e.getHitbox().getTopHitBox())){
-        this.hitbox.actualizarHitbox(posX, posicionarHitbox(posY)-32, ancho, alto);
-        this.setPosY(e.getPosY()-altoJefe);
-    }
+        if(this.getHitbox().getRectangle().intersects(e.getHitbox().getTopHitBox())){
+            this.hitbox.actualizarHitbox(posX, posicionarHitbox(posY)-32, ancho, alto);
+            this.setPosY(e.getPosY()-altoJefe);
+        }
     }
 }

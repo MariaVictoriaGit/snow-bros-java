@@ -31,17 +31,17 @@ public class Kamakichi extends Enemigo{
                 this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 break;
             case ConstantesEntidades.QUIETO:
-                    if (dirAnterior == ConstantesEntidades.DERECHA)
-                        direccion = ConstantesEntidades.IZQUIERDA;
-                    else
-                        direccion = ConstantesEntidades.DERECHA;
+                if (dirAnterior == ConstantesEntidades.DERECHA)
+                    direccion = ConstantesEntidades.IZQUIERDA;
+                else
+                    direccion = ConstantesEntidades.DERECHA;
                 break;
         }
     }
     public void verificarSuelo(){
         return; // ignora las plataformas
     }
-     public void patronDeMovimiento(){
+    public void patronDeMovimiento(){
         long ahora = System.currentTimeMillis();
         if(estado==EstadosDePatron.MOVERARRIBA){
             direccion=ConstantesEntidades.ARRIBA;
@@ -52,12 +52,12 @@ public class Kamakichi extends Enemigo{
             }
         }
         else if(estado==EstadosDePatron.MOVERABAJO){
-            direccion=ConstantesEntidades.ABAJO;
-            mover();
-            if(posY>ConstantesVistas.PANEL_ALTO-100){
-                estado=EstadosDePatron.ESPERAR;
-                tiempoEstado=ahora;
-            }
+                direccion=ConstantesEntidades.ABAJO;
+                mover();
+                if(posY>ConstantesVistas.PANEL_ALTO-100){
+                    estado=EstadosDePatron.ESPERAR;
+                    tiempoEstado=ahora;
+                }
             }
             else{
                 direccion=ConstantesEntidades.QUIETO;
@@ -102,7 +102,6 @@ public class Kamakichi extends Enemigo{
     public void convertirEnBola(){
        congelado=true;
        gestor.actualizarPuntaje(puntajeEmpujado);
-
     }
     public void eliminar(){
         super.eliminar();

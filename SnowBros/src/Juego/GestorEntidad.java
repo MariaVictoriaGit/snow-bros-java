@@ -5,7 +5,6 @@ import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.PowerUp;
 import SnowBros.src.Fabricas.FabricaEntidades;
 
 public class GestorEntidad {
-
     private Juego juego;
     private Nivel nivel;
 

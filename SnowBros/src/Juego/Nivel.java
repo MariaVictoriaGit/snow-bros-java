@@ -17,8 +17,6 @@ import SnowBros.src.Grafica.Sprite;
 
 public class Nivel implements LocalizadorJugador, InterfazEliminar{
     protected Sprite sprite;
-    //protected String nombreNivel;
-    /*podriamos cambiar el nombre de nivel en lugar de numero, como un nombre para identificarlos desde ConstantesNiveles*/
     protected Jugador jugador;
     protected Silueta silueta;
     protected int numeroNivel;
@@ -49,11 +47,9 @@ public class Nivel implements LocalizadorJugador, InterfazEliminar{
         listaFantasmas = new LinkedList<>();
         listaResbaladizos= new LinkedList<>();
     }
-    //metodos setters
     public void setNivel(int nivel){
         numeroNivel=nivel;
     }
-    //metodos getters
     public LinkedList<Enemigo> getEnemigos(){
         return listaEnemigos;
     }
@@ -90,8 +86,6 @@ public class Nivel implements LocalizadorJugador, InterfazEliminar{
     public LinkedList<SueloResbaladizo> getResbaladizos(){
         return listaResbaladizos;
     } 
-
-    //metodos de eliminar
     public void eliminarPlataforma(Plataforma p){
         listaPlataformas.remove(p);
     }
@@ -136,7 +130,6 @@ public class Nivel implements LocalizadorJugador, InterfazEliminar{
     }
     public void eliminarFantasma(Fantasma f){
         listaFantasmas.remove(f);
-        
     }
     public void eliminarCalabaza(){
         calabaza=null;
@@ -147,7 +140,6 @@ public class Nivel implements LocalizadorJugador, InterfazEliminar{
     public void eliminarResbaladizo(SueloResbaladizo s) {
         listaResbaladizos.remove(s);
     }
-    // métodos que agregan
     public void agregarJugador(Jugador j){
         jugador=j;
         j.setNivel(this);

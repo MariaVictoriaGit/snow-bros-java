@@ -19,7 +19,6 @@ public class ParserNivel{
     private boolean superoNivelAnterior;
 
     public ParserNivel(FabricaEntidades f){
-        //que desde la llamada para crear el parser se defina el dominio de aplicacion
         this.fabrica = f;
         superoNivelAnterior=false;
     }

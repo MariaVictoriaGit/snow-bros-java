@@ -56,7 +56,6 @@ public class RanaDeFuego extends Enemigo{
                     tiempoEstado = ahora;
                 }
                 break;
-    
         case EstadosDePatron.MOVERIZQUIERDA:
             direccion = ConstantesEntidades.IZQUIERDA;
             mover();
