@@ -137,7 +137,7 @@ public class Juego {
                     }
                 }
                 for(Plataforma plataforma: new ArrayList<>(nivelActual.getPlataformas())){
-                    if (jugadorActual.getHitbox().getLeftHitBox().intersects(plataforma.getHitbox().getRectangle())){
+                    if (plataforma!=null && jugadorActual.getHitbox().getLeftHitBox().intersects(plataforma.getHitbox().getRectangle())){
                         jugadorActual.chocaLadoPlataforma(true);
                     } 
                     if (jugadorActual.getHitbox().getRightHitBox().intersects(plataforma.getHitbox().getRectangle())){

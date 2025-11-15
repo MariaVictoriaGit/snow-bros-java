@@ -30,7 +30,7 @@ public class PanelPantallaTransicion extends JPanel {
     }
     private void agregarImagenFondo() {
         imagenFondo = new JLabel();
-        ImageIcon icono = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Pantallas/PantallaNegra.jpg"));
+        ImageIcon icono = new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Pantallas/PantallaNextLevel.png"));
         Image imagenEscalada = icono.getImage().getScaledInstance(ConstantesVistas.VENTANA_ANCHO, ConstantesVistas.VENTANA_ALTO, Image.SCALE_SMOOTH);
         Icon iconoEscalado = new ImageIcon(imagenEscalada);
         imagenFondo.setIcon(iconoEscalado);
