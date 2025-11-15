@@ -3,6 +3,7 @@ package SnowBros.src.Datos;
 public class ConstantesTiempos{
     //tiempo antes de que aparezca la calabaza
     public static final int TIEMPO_CALABAZA=60;
+    public static final int TIEMPO_JEFE=10;
     //tiempo de vida entidad
     public static final int TIEMPO_BOLA_DE_FUEGO=10;//10s
     public static final int TIEMPO_BOLA_DE_NIEVE=10;
