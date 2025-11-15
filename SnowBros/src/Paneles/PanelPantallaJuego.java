@@ -9,7 +9,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.List;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -46,7 +45,7 @@ public class PanelPantallaJuego extends JPanel{
         panelInformacion= new JPanel();
         panelInformacion.setOpaque(true); //true lo deja en blanco
         panelInformacion.setLayout(new GridLayout(1, 4, 20,0)); 
-		panelInformacion.setBounds(0, 0, ConstantesVistas.PANEL_ANCHO, 42);//40         //Defino manualmente el tamaño y pos del panel info
+		panelInformacion.setBounds(0, 0, ConstantesVistas.PANEL_ANCHO, 42);//defino manualmente el tamaño y pos del panel info
         Font fuente = new Font("Arial", Font.BOLD, 16);
         String stringModo=miControladorGrafico.getJuego().getModoDeJuego();
         labelNivel= new JLabel(stringModo);

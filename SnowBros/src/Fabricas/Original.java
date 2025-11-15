@@ -18,8 +18,12 @@ public class Original extends FabricaSprites{
         HashMap<String, String> mapeo = new HashMap<String,String>();
         mapeo.put("quietoIzquierda", rutaACarpeta+ "/Jugador/nickIzquierda.png");
         mapeo.put("quietoDerecha", rutaACarpeta+ "/Jugador/nickDerecha.png");
-        mapeo.put("moverIzquierda", rutaACarpeta+ "/Jugador/nickAvanzarIzquierda.png");
-        mapeo.put("moverDerecha", rutaACarpeta+ "/Jugador/nickAvanzarDerecha.png");
+        mapeo.put("moverIzquierda1", rutaACarpeta+ "/Jugador/nickAvanzarIzquierda1.png");
+        mapeo.put("moverIzquierda2", rutaACarpeta+ "/Jugador/nickAvanzarIzquierda.png");
+        mapeo.put("moverIzquierda3", rutaACarpeta+ "/Jugador/nickAvanzarIzquierda3.png");
+        mapeo.put("moverDerecha1", rutaACarpeta+ "/Jugador/nickAvanzarDerecha1.png");
+        mapeo.put("moverDerecha2", rutaACarpeta+ "/Jugador/nickAvanzarDerecha.png");
+        mapeo.put("moverDerecha3", rutaACarpeta+ "/Jugador/nickAvanzarDerecha3.png");
         mapeo.put("saltandoDerecha", rutaACarpeta+ "/Jugador/JugadorSaltandoDerecha.png");
         mapeo.put("saltandoIzquierda", rutaACarpeta+ "/Jugador/JugadorSaltandoIzquierda.png");
         return new Sprite(mapeo);

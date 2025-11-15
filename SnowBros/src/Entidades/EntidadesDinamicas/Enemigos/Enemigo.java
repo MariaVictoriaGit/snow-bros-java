@@ -1,7 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
 
 import java.awt.Rectangle;
-
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
@@ -25,7 +24,7 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    protected long inicioCongelado=0;
    protected int estado = EstadosDePatron.MOVERDERECHA;
    protected boolean activarJefe;
-   public boolean jefeDerrotado;
+   protected boolean jefeDerrotado;
    protected GestorEntidad gestor;
    public Enemigo(int x, int y, Sprite sprites) {
       //la dificultad va a verse definida por lsa salud
@@ -47,24 +46,8 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
    public void avanzar(){
       detenido=false;
    }
-      /*
-      if (muerto || congelado) return;
-         if (direccion==ConstantesEntidades.DERECHA) {
-               posX+=velocidad;
-               if (posX>=ConstantesEntidades.DERECHA){
-                  direccion=ConstantesEntidades.IZQUIERDA;
-               }
-         } else {
-               posX-=velocidad;
-               if (posX<=ConstantesEntidades.IZQUIERDA){
-                  direccion=ConstantesEntidades.DERECHA;
-               }
-         }*/
-   
    public abstract void patronDeMovimiento();
-
    public abstract int getSalud();
-
    protected void verificarPared(Pared p){
       Rectangle hitBoxPared= p.getHitbox().getRectangle();
        if (direccion==ConstantesEntidades.DERECHA&&this.getHitbox().getRightHitBox().intersects(hitBoxPared)) {
@@ -88,16 +71,16 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
       }
    }
    public String generarClaveEstado(){
-        String estado=null;
-        if(congelado )
-            estado="congelado";
-        else{
+      String estado=null;
+      if(congelado )
+         estado="congelado";
+      else{
          if(direccion==ConstantesEntidades.IZQUIERDA)
             estado="normalIzquierda";
-        else
+         else
             estado="normalDerecha";
-        }
-        return estado;
+      }
+      return estado;
    }
    public void actualizarTiempoCongelado(){
       long tiempoADescongelar=5000;
@@ -130,10 +113,8 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
          gestor.actualizarPuntaje(getPuntajeCongelado());
          if(observer!=null)
             observer.actualizarBolaDeNieve(activarJefe);
-      }
-      
-   }
-      
+      }  
+   }  
    public void descongelar(){
       detenido=false;
       congelado=false;
@@ -146,13 +127,8 @@ public abstract class Enemigo extends EntidadDinamica implements Visitable {
          gestor.crearBolaDeNieve(posX, posY, getPuntajeEmpujado());
       }
    }
-   public void agregarPowerUp(Boolean b){
-
-      //nivel.agregarPowerUp(b,posX,posY);
-   }
    public abstract int getPuntajeCongelado();
-   public abstract int getPuntajeEmpujado();
-   
+   public abstract int getPuntajeEmpujado();   
    public void eliminar(){
       if(observer!=null){
          nivel.eliminarEnemigo(this);

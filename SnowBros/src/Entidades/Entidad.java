@@ -17,10 +17,9 @@ public abstract class Entidad {
         this.posX=posX;
         this.posY=posY;
         sprite=mISprite;
-        alto=32;  //valores momentaneos
+        alto=32;  
         ancho=32;
         hitbox=new HitBox(posX,posY,ancho,alto);
-        // alto=sprite.getAltura();
     }
     public void setPosX(int x){
         this.posX = x;

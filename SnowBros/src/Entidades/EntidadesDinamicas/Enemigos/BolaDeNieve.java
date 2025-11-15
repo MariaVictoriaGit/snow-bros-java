@@ -47,8 +47,8 @@ public class BolaDeNieve extends EntidadDinamica{
                     posX=posX+velocidadMaxima;
                     this.getHitbox().actualizarHitbox(posX,posY,ancho,alto);
                     if(!reboto && posX>ConstantesVistas.PANEL_JUEGO_ANCHO-20){
-                            direccion=ConstantesEntidades.IZQUIERDA;
-                            reboto=true;
+                        direccion=ConstantesEntidades.IZQUIERDA;
+                        reboto=true;
                     }
                     break;
                 case ConstantesEntidades.IZQUIERDA:
@@ -82,26 +82,23 @@ public class BolaDeNieve extends EntidadDinamica{
     private void aparecerPowerUp(){
         Random random=new Random();
         int probabilidad= random.nextInt(100);
+        PowerUp p;
         if(probabilidad<50){
-            PowerUp p= gestor.getFabrica().getFruta(posX,posY);
-            gestor.agregarPowerUp(p);
+            p= gestor.getFabrica().getFruta(posX,posY);
         }
         else if(probabilidad<65){
-            PowerUp p= gestor.getFabrica().getBotellaAzul(posX,posY);
-            gestor.agregarPowerUp(p);
+            p= gestor.getFabrica().getBotellaAzul(posX,posY);
         }
         else if(probabilidad<80){
-            PowerUp p= gestor.getFabrica().getBotellaRoja(posX,posY);
-            gestor.agregarPowerUp(p);
+            p= gestor.getFabrica().getBotellaRoja(posX,posY);
         }
         else if(probabilidad<95){
-            PowerUp p= gestor.getFabrica().getBotellaVerde(posX,posY);
-            gestor.agregarPowerUp(p);
+            p= gestor.getFabrica().getBotellaVerde(posX,posY);
         }
         else{
-            PowerUp p= gestor.getFabrica().getVidaExtra(posX,posY);
-            gestor.agregarPowerUp(p);
-        }
+            p= gestor.getFabrica().getVidaExtra(posX,posY);
+        }            
+        gestor.agregarPowerUp(p);
     }
     public void visitar(ParedDestructible p){
         p.destruirse();

@@ -25,7 +25,6 @@ public class Fantasma extends Enemigo{
             if(yJugador > posY)
                 posY+= velocidad;
                 else posY-=velocidad;
-            // Aquí podrías actualizar la hitbox o hacer otros cálculos si es necesario
             this.getHitbox().actualizarHitbox(posX, posY, ancho, alto);
         }
     }
@@ -40,7 +39,7 @@ public class Fantasma extends Enemigo{
         return salud; // es inmortal, no tiene salud
     }
     public int getPuntajeCongelado() {
-        return 0;//indestructible
+        return 0;
     }
     public int getPuntajeEmpujado() {
         return 0;//indestructible
