@@ -161,7 +161,7 @@ public class Juego {
                 }
                 if(!nivelActual.getBolasDeFuego().isEmpty())
                     for(BolaDeFuego bola: new ArrayList<>(nivelActual.getBolasDeFuego()))
-                        if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) 
+                        if (bola!=null && bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) 
                             jugadorActual.aceptar(bola);
                 boolean colisionBola = false;
                 boolean colisionSuelo = false;
