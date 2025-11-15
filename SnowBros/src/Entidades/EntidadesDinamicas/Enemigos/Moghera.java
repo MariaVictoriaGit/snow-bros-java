@@ -127,8 +127,10 @@ public class Moghera extends Enemigo{
         activarJefe=t;
     }
     public void convertirEnBola(){
-       congelado=true;
-       gestor.actualizarPuntaje(puntajeEmpujado);
+       if(!congelado){
+            gestor.actualizarPuntaje(puntajeEmpujado);
+            congelado=true;
+        }
     }
     public void eliminar(){
         super.eliminar();
