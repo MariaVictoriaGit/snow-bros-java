@@ -6,8 +6,6 @@ import SnowBros.src.Visitor.Visitador;
 
 public class PlataformaQuebradiza extends Plataforma {
     private static final int puntaje = 300;
-    protected JLabel label;
-    protected boolean horizontal;
     protected Temporizador tiempoAntesDeRomperse;
     protected boolean eliminado;
     protected boolean usada;
@@ -23,12 +21,8 @@ public class PlataformaQuebradiza extends Plataforma {
         if(!eliminado){
             nivel.eliminarPlataforma(this);
             borrarLabel();
-           // nivel.getJuego().eliminarPlataformaQuebradiza(this);
             eliminado=true;
         }
-    }
-    public JLabel getLabel(){
-        return label;
     }
     public int getPuntaje(){
         return puntaje;

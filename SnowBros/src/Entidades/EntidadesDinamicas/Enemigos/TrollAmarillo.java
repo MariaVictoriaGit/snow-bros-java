@@ -45,6 +45,9 @@ public class TrollAmarillo extends Enemigo{
                     if(posY<ConstantesVistas.PANEL_ALTO-100){
                         setBajarPlataforma(true);
                     }
+                    else{
+                        setBajarPlataforma(false);
+                    }
                     break;
             }  
     }
