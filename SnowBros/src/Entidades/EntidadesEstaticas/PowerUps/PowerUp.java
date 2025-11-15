@@ -11,17 +11,16 @@ public abstract class PowerUp extends EntidadEstatica {
     protected Temporizador tiempoDeVida;
     protected Temporizador tiempoDeEfecto;
     public PowerUp(int x, int y, Sprite sprite){
-        super(x,y-6,sprite); // 4 es margen visual
+        super(x,y-6,sprite);
         activo=false;
         tiempoDeVida=new Temporizador(ConstantesTiempos.TIEMPO_VIDA_POWER_UP);
         tiempoDeEfecto=new Temporizador(ConstantesTiempos.TIEMPO_EFECTO_POWER_UP);
-        hitbox.actualizarHitbox(x,y,ancho*2,alto*2); // quite un ajuste +12 en y, testear que ande bien
+        hitbox.actualizarHitbox(x,y,ancho*2,alto*2);
         tiempoDeVida.setAccionAlFinalizar(()->eliminar());
     }
     public void eliminar(){
         nivel.eliminarPowerUp(this);
         borrarLabel();
-        //nivel.getJuego().eliminarPowerUp(this);
     }
     public int getPuntaje(){
         return puntaje;

@@ -161,9 +161,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
     public int getTiempo(){
         return miJuego.getTiempoActual();
     }
-    public int getDireccion(){
-        return direccion;
-    }
     public String getNombre(){
         return nombre;
     }
@@ -240,35 +237,41 @@ public class Jugador extends EntidadDinamica implements Visitable{
         vidas=vidaDeInicio;
     }
     private void efectoBotellaAzul(BotellaAzul b){
-        if(velocidad==ConstantesDificultad.EFECTO_BOTELLA_AZUL)
-            return;
-        this.velocidad=ConstantesDificultad.EFECTO_BOTELLA_AZUL;
-        b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
-            this.velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
-            b.getTiempoDeEfecto().resetear();
-        } );
-        b.getTiempoDeEfecto().iniciar();
+        if(miJuego.getNivelActual()!=null){
+            if(velocidad==ConstantesDificultad.EFECTO_BOTELLA_AZUL)
+                return;
+            this.velocidad=ConstantesDificultad.EFECTO_BOTELLA_AZUL;
+            b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
+                this.velocidad=ConstantesDificultad.VELOCIDAD_JUGADOR;
+                b.getTiempoDeEfecto().resetear();
+            } );
+            b.getTiempoDeEfecto().iniciar();
+        }
     }
     private void efectoBotellaRoja(BotellaRoja b){
-        if(disparoAumentado)    
-            return;
-        this.disparoAumentado=true; 
-        b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
-            this.disparoAumentado=false;
-            b.getTiempoDeEfecto().resetear();
-        });
-        b.getTiempoDeEfecto().iniciar();
+        if(miJuego.getNivelActual()!=null){
+            if(disparoAumentado)    
+                return;
+            this.disparoAumentado=true; 
+            b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
+                this.disparoAumentado=false;
+                b.getTiempoDeEfecto().resetear();
+            });
+            b.getTiempoDeEfecto().iniciar();
+        }
     }
     public boolean getDisparoAumentado(){
         return disparoAumentado;
     }
     private void efectoBotellaVerde(BotellaVerde b){
-        miJuego.getNivelActual().efectoBotellaVerde(true);
-        b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
-            miJuego.getNivelActual().efectoBotellaVerde(false);
-            b.getTiempoDeEfecto().resetear();
-        });
-        b.getTiempoDeEfecto().iniciar(); 
+        if(miJuego.getNivelActual()!=null){
+            miJuego.getNivelActual().efectoBotellaVerde(true);
+            b.getTiempoDeEfecto().setAccionAlFinalizar(() -> {
+                miJuego.getNivelActual().efectoBotellaVerde(false);
+                b.getTiempoDeEfecto().resetear();
+            });
+            b.getTiempoDeEfecto().iniciar(); 
+        }
     }
     protected void verificarPared(Pared p){
         Rectangle paredRectangle=p.getHitbox().getRectangle();
@@ -351,10 +354,6 @@ public class Jugador extends EntidadDinamica implements Visitable{
     }
     public void visitar(TrampaPinchos t){
         perderVida();    
-    }
-    public void visitar(Jugador j){
-        //Que hacemos aca? 
-        //      Buena pregunta
     }
     public void aceptar(Visitador v){
         v.visitar(this);

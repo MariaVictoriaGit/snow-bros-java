@@ -123,9 +123,6 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         if(empujando)
             miJuego.empujarBolaDeNieve();
     }
-    public JFrame getVentana() {
-        return ventana;
-    }   
     private void cambiarPantalla(JPanel panel) {
         ventana.setContentPane(panel);
         ventana.requestFocusInWindow();
@@ -208,9 +205,6 @@ public class GUI implements ControladorGrafico, ControladorDeVista {
         }
         miJuego.setNombreJugador(nombre);
         miJuego.getRanking().setJugador(nombre, 0, modo);
-    }
-    public void reiniciarNivel(){
-        miJuego.reiniciarNivel();
     }
     public void registrarEntidad(EntidadDinamica entidad){
         panelPantallaJuego.incorporarEntidad(entidad);

@@ -1,5 +1,4 @@
 package SnowBros.src.Entidades.EntidadesEstaticas.Plataformas;
-import javax.swing.JLabel;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitador;

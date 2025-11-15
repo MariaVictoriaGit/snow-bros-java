@@ -1,9 +1,9 @@
 package SnowBros.src.Juego;
+
 import java.awt.Rectangle;
 import SnowBros.src.Datos.ConstantesEntidades;
 
 public class HitBox {
-    private static final int margen=ConstantesEntidades.MARGEN_HIT_BOX;
     private Rectangle hitbox;
     private int ancho;
     private int alto;
@@ -20,18 +20,17 @@ public class HitBox {
     public Rectangle getRectangle(){
         return hitbox;
     }
-    
     public Rectangle getTopHitBox(){
-        return new Rectangle(hitbox.x, hitbox.y-margen, hitbox.width, margen);
+        return new Rectangle(hitbox.x, hitbox.y-ConstantesEntidades.MARGEN_HIT_BOX, hitbox.width, ConstantesEntidades.MARGEN_HIT_BOX);
     }
     public Rectangle getBottomHitBox(){
-        return new Rectangle(hitbox.x, hitbox.y+hitbox.height, hitbox.width, margen);
+        return new Rectangle(hitbox.x, hitbox.y+hitbox.height, hitbox.width, ConstantesEntidades.MARGEN_HIT_BOX);
     }
     public Rectangle getLeftHitBox(){
-        return new Rectangle(hitbox.x-margen, hitbox.y+2, margen, hitbox.height-15);
+        return new Rectangle(hitbox.x-ConstantesEntidades.MARGEN_HIT_BOX, hitbox.y+2, ConstantesEntidades.MARGEN_HIT_BOX, hitbox.height-15);
     }
     public Rectangle getRightHitBox(){
-        return new Rectangle(hitbox.x+hitbox.width, hitbox.y+2, margen, hitbox.height-15);
+        return new Rectangle(hitbox.x+hitbox.width, hitbox.y+2, ConstantesEntidades.MARGEN_HIT_BOX, hitbox.height-15);
     }
     public int getX(){
         return hitbox.x;

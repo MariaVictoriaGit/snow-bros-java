@@ -57,12 +57,10 @@ public class PanelPantallaFinDelJuego extends JPanel {
 		ImageIcon iconoBoton= new ImageIcon(this.getClass().getResource("/SnowBros/src/Imagenes/Botones/botonReinicio.jpg"));
         botonNuevaPartida.setIcon(iconoBoton);
         botonNuevaPartida.setBounds(50, 500, iconoBoton.getIconWidth(), iconoBoton.getIconHeight());
-        
         botonNuevaPartida.setBorderPainted(false);
         botonNuevaPartida.setContentAreaFilled(false);
         botonNuevaPartida.setFocusPainted(false);
         botonNuevaPartida.setOpaque(false);
-        
         transparentarBoton(botonSalir);
         registrarOyenteBotonNuevaPartida();
         add(botonNuevaPartida,0);

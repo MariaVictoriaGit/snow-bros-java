@@ -1,11 +1,10 @@
 package SnowBros.src.Juego;
+
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
-
 import SnowBros.src.Datos.ConstantesDificultad;
-//import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesNiveles;
 import SnowBros.src.Datos.ConstantesTiempos;
@@ -24,10 +23,8 @@ public class Juego {
     protected Nivel nivel;
     protected int puntajeJugador;
     protected Temporizador tiempo;
-    //protected boolean modoContrarrelojVencido;
     protected boolean reiniciarJugador;
     protected Jugador jugador;
-    protected Sonido sonido;
     protected Ranking ranking;
     protected GUI controladorGrafica; 
     protected FabricaSprites fabricaSprites;
@@ -56,7 +53,6 @@ public class Juego {
         oleadas=0;
         gestor= new GestorEntidad(this);
     }
-    //metodos de configuracionaa
     public void setControladorGrafica(GUI miControlador) {
         controladorGrafica=miControlador;
     }
@@ -75,7 +71,6 @@ public class Juego {
     private void iniciarHilos(){
         hiloColision = new Thread(() -> {
             while(juegoEnEjecucion&&nivel!=null){
-                //variables locales creadas para que cuando el juego termine en mitad de ejecucion y nivel cambie a null, no siga usando el nivel nulo
                 Jugador jugadorActual=jugador;
                 Nivel nivelActual=nivel;
                 if(nivel==null||jugador==null)
@@ -114,7 +109,7 @@ public class Juego {
                 for(Pared p: new ArrayList<>(nivelActual.getParedes())){
                     if(jugadorActual.getHitbox().getRectangle().intersects(p.getHitbox().getRectangle())){
                             p.aceptar(jugadorActual);
-                            }
+                    }
                     else{
                         jugadorActual.setChocoPared(false);
                         }
@@ -134,7 +129,7 @@ public class Juego {
                         entidad.aceptar(jugadorActual);
                     if(nivelActual.getCalabaza()!=null && nivelActual.getCalabaza().getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())){
                             entidad.aceptar(nivelActual.getCalabaza());
-                        }
+                    }
                     for(Enemigo e:nivelActual.getEnemigos()){
                         if(e.getHitbox().getRectangle().intersects(entidad.getHitbox().getRectangle())){
                             entidad.aceptar(e);
@@ -148,7 +143,6 @@ public class Juego {
                     if (jugadorActual.getHitbox().getRightHitBox().intersects(plataforma.getHitbox().getRectangle())){
                         jugadorActual.chocaLadoPlataforma(false);
                     }
-
                     if(!nivelActual.getDisparos().isEmpty()){
                         for (DisparoJugador disparo: new ArrayList<>(nivelActual.getDisparos()))
                             if (disparo.getHitbox().getRectangle().intersects(plataforma.getHitbox().getRectangle())) 
@@ -167,9 +161,8 @@ public class Juego {
                 }
                 if(!nivelActual.getBolasDeFuego().isEmpty())
                     for(BolaDeFuego bola: new ArrayList<>(nivelActual.getBolasDeFuego()))
-                        if (bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) 
+                        if (bola!=null && bola.getHitbox().getRectangle().intersects(jugadorActual.getHitbox().getRectangle())) 
                             jugadorActual.aceptar(bola);
-
                 boolean colisionBola = false;
                 boolean colisionSuelo = false;
                 for (BolaDeNieve bola : nivelActual.getBolasDeNieve()) {
@@ -222,7 +215,6 @@ public class Juego {
             final int FPS = 60;
             final long frameTime = 1000 / FPS;
             while (juegoEnEjecucion&&nivel!=null) {
-                //variables locales creadas para que cuando el juego termine en mitad de ejecucion y nivel cambie a null, no siga usando el nivel nulo
                 Nivel nivelActual=nivel;
                 Jugador jugadorActual=jugador;
                 if(nivel==null||jugador==null)  
@@ -252,7 +244,7 @@ public class Juego {
                         }
                    }
                 }    
-                if(cumplirCondicionDelModo()){// && cumpleCondicionModo()){
+                if(cumplirCondicionDelModo()){
                     this.superarNivel();
                 }    
                 if(modoDeJuego.equals("Supervivencia") && nivelActual.getEnemigos().isEmpty() && oleadas<=3){
@@ -276,7 +268,6 @@ public class Juego {
                 if(!nivelActual.getBolasDeFuego().isEmpty())
                     for (BolaDeFuego bola:new ArrayList<>(nivelActual.getBolasDeFuego()))
                         bola.mover();
-
                 for(BolaDeNieve bolaDeNieve:nivelActual.getBolasDeNieve()){
                     bolaDeNieve.verificarSuelo();
                     bolaDeNieve.mover();
@@ -342,6 +333,7 @@ public class Juego {
             nivel=null;
             jugador=null;
             puntajeJugador=0;
+            oleadas=0;
             habilitarCondicionClasico=false;
             tiempo.detener();
             tiempo.resetear();
@@ -356,7 +348,6 @@ public class Juego {
         if (nivel == null){
             nivel = parserActual.generarNivel(modoDeJuego); // o el nivel que correspon
             gestor.setNivel(nivel);
-            //nivel.setNivel(nivel.getNivelActual()+1);
         }
         if(jugador==null){
             jugador = nivel.getJugador();

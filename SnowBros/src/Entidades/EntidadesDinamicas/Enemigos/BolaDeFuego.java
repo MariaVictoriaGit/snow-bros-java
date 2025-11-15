@@ -23,7 +23,6 @@ public class BolaDeFuego extends EntidadDinamica{
         tiempo=new Temporizador(ConstantesTiempos.TIEMPO_BOLA_DE_FUEGO);
         caida=false;
         velocidad=ConstantesDificultad.VELOCIDAD_BOLADEFUEGO;
-
     }
     public Temporizador getTimer(){
         return tiempo;

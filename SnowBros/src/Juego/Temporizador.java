@@ -64,18 +64,9 @@ public class Temporizador {
     public boolean llegoAlTope(){
         return tiempoActual==tope;
     }
-    public boolean estaCorriendo(){
-        return enMarcha;
-    }
-    public int getTope(){
-        return tope;
-    }
     public int getTiempoActual(){
         return tiempoActual;
     }
-    /*public void setTiempoActual(int tiempo){
-        tiempoActual=tiempo;
-    }*/
     public String getStringDeTiempo(){
         int minutos=tiempoActual/60;
         int segundos=tiempoActual%60;
