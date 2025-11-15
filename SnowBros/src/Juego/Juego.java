@@ -31,6 +31,7 @@ public class Juego {
     protected FabricaEntidades fabricaEntidades;
     protected ParserNivel parserActual;
     private Temporizador tiempoAntesAparicionCalabaza;
+    private Temporizador tiempoAntesAparicionJefeContrarreloj;
     protected Thread hiloColision;
     protected Thread hiloGlobal;
     protected volatile boolean juegoEnEjecucion;
@@ -48,6 +49,7 @@ public class Juego {
         ranking=new Ranking();
         tiempo= new Temporizador(); 
         tiempoAntesAparicionCalabaza= new Temporizador(ConstantesTiempos.TIEMPO_CALABAZA);
+        tiempoAntesAparicionJefeContrarreloj= new Temporizador(ConstantesTiempos.TIEMPO_JEFE);
         juegoEnEjecucion=false;
         ultimoDisparo=0;
         oleadas=0;
@@ -252,11 +254,17 @@ public class Juego {
                         parserActual.generarOleada(nivelActual, ConstantesNiveles.OLEADA1);
                         registrarObserversEntidades(nivelActual.getEnemigos());
                         oleadas++;
+                        if(oleadas==2){
+                            crearMoghera();
+                        }
                     }
                     else{
                         parserActual.generarOleada(nivelActual, ConstantesNiveles.OLEADA2);
                         registrarObserversEntidades(nivelActual.getEnemigos());
                         oleadas++;
+                        if(oleadas==2){
+                            crearKamakichi();
+                        }
                     }
                 }
                 if(modoDeJuego.equals("Contrarreloj") && tiempo.getTiempoActual()==ConstantesDificultad.TOPE_TIEMPO_CONTRARRELOJ){
@@ -339,6 +347,8 @@ public class Juego {
             tiempo.resetear();
             tiempoAntesAparicionCalabaza.detener();
             tiempoAntesAparicionCalabaza.resetear();
+            tiempoAntesAparicionJefeContrarreloj.detener();
+            tiempoAntesAparicionJefeContrarreloj.resetear();
             controladorGrafica.cambiarPantallaGameOver(); // gameOver
         }
         else 
@@ -376,6 +386,19 @@ public class Juego {
         tiempoAntesAparicionCalabaza.setAccionAlFinalizar(()->crearCalabaza());
         tiempoAntesAparicionCalabaza.iniciar();
         tiempo.iniciar();
+        if(modoDeJuego.equals("Contrarreloj")){
+            if(parserActual.getSuperoNivelAnterior()){
+                tiempoAntesAparicionJefeContrarreloj.setAccionAlFinalizar(()-> {
+                    crearMoghera();
+                });
+            }
+            else{
+                tiempoAntesAparicionJefeContrarreloj.setAccionAlFinalizar(()->{
+                    crearKamakichi();
+                });
+            }
+            tiempoAntesAparicionJefeContrarreloj.iniciar();
+        }
         juegoEnEjecucion=true;
         iniciarHilos();
     }
@@ -384,10 +407,12 @@ public class Juego {
         if(nivel.getCalabaza()!=null){
             nivel.getCalabaza().detenerTemporizadorDeFantasma();
         }
-        tiempoAntesAparicionCalabaza.resetear();
-        tiempoAntesAparicionCalabaza.detener();
-        tiempo.resetear();
         tiempo.detener();
+        tiempo.resetear();
+        tiempoAntesAparicionCalabaza.detener();
+        tiempoAntesAparicionCalabaza.resetear();
+        tiempoAntesAparicionJefeContrarreloj.detener();
+        tiempoAntesAparicionJefeContrarreloj.resetear();
         nivel.eliminarse(); 
         jefeCreado=false;
         habilitarCondicionClasico=false;
@@ -406,6 +431,8 @@ public class Juego {
             tiempo.resetear();
             tiempoAntesAparicionCalabaza.detener();
             tiempoAntesAparicionCalabaza.resetear();
+            tiempoAntesAparicionJefeContrarreloj.detener();
+            tiempoAntesAparicionJefeContrarreloj.resetear();
             parserActual.setSuperoNivelAnterior(false);
         }
     }
