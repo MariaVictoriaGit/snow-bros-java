@@ -1,4 +1,6 @@
 package SnowBros.src.Entidades.EntidadesDinamicas;
+import java.util.ArrayList;
+
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesVistas;
@@ -101,7 +103,7 @@ public abstract class EntidadDinamica extends Entidad implements Visitador{
       velocidadY=ConstantesDificultad.VELOCIDAD_ENTIDAD_DINAMICA_Y;
       posY+=velocidadY;
       this.getHitbox().actualizarHitbox(posX,posicionarHitbox(posY),ancho,alto);
-      for(Plataforma p:miNivel.getPlataformas())
+      for(Plataforma p:new ArrayList<>(miNivel.getPlataformas()))
         if(miNivel.getJugador().getJuego().estaCerca(this,p,40) && !bajandoPlataforma)
           p.aceptar(this);
     }
