@@ -4,6 +4,7 @@ import SnowBros.src.Datos.ConstantesEntidades;
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesDinamicas.EntidadDinamica;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.Enemigo;
+import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.Pared;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.Plataforma;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.Temporizador;
@@ -15,103 +16,92 @@ public class DisparoJugador extends EntidadDinamica {
     protected int tiempoCaida;
     protected int aumentos;
     protected boolean efectoBotella;
-    
     public DisparoJugador(int x, int y, Sprite sprite){
         super(x,y,sprite);
         ancho= ancho/2;
         alto= alto/2;
         hitbox.actualizarHitbox(x, y, ancho, alto);
-        //ajustar posicion inicial del disparo segun direccion del jugador
-        //ajustar pos inicial para que no salga desde el pj
-        //direccion= jugador.getDireccion();--->que tan necesaria es la direcion;
-        velocidad=ConstantesDificultad.VELOCIDAD_DISPARO; // a definir
-        potenciaDisparo=ConstantesDificultad.POTENCIA_DISPARO_NORMAL; //a definir
+        velocidad=ConstantesDificultad.VELOCIDAD_DISPARO;
+        potenciaDisparo=ConstantesDificultad.POTENCIA_DISPARO_NORMAL;
         tiempoEfecto=new Temporizador(ConstantesTiempos.TIEMPO_DISPARO_JUGADOR);
     }
     public void setDireccion(int direccion, int dirAnt){
         this.direccion = direccion;
-        if(dirAnt!=ConstantesEntidades.QUIETO && dirAnt!=ConstantesEntidades.ARRIBA_DERECHA && dirAnt!=ConstantesEntidades.ARRIBA_IZQUIERDA){
+        if(dirAnt!=ConstantesEntidades.QUIETO && dirAnt!=ConstantesEntidades.ARRIBA_DERECHA && dirAnt!=ConstantesEntidades.ARRIBA_IZQUIERDA)
             this.dirAnterior = dirAnt;
-        }
     }
     public void mover(){
         switch (direccion) {
             case ConstantesEntidades.QUIETO:
                 if(dirAnterior==ConstantesEntidades.DERECHA){
-                    posX += 4;
+                    posX += 8;
                     caida();
-                    if(tiempoCaida==800){
+                    if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;
                         aumentos++;
-                        incremetarY();
+                        incrementarY();
                     }
-                    getObserver().actualizar(dirAnterior, getTocandoSuelo());
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                 }
-                else {
-                    posX -= 4;
+                else if(dirAnterior==ConstantesEntidades.IZQUIERDA) {
+                    posX -= 8;
                     caida();
-                    if(tiempoCaida==800){
+                    if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;
                         aumentos++;
-                        incremetarY();
+                        incrementarY();
                     }
-                    getObserver().actualizar(dirAnterior, getTocandoSuelo());
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
-                }
-                break;
+                    }
+                    break;
                 case ConstantesEntidades.DERECHA:
-                    posX += 4;
+                    posX += 8;
                     caida();
-                    if(tiempoCaida==800){
+                    if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;
                         aumentos++;
-                        incremetarY();
+                        incrementarY();
                     }
-                    getObserver().actualizar(direccion, getTocandoSuelo());
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.IZQUIERDA:
-                    posX -= 4;
-                    caida();
-                    if(tiempoCaida==800){
+                    posX -= 8;
+                    if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;
                         aumentos++;
-                        incremetarY();
+                        incrementarY();
                     }
-                    getObserver().actualizar(direccion, getTocandoSuelo());
+                    caida();
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.ARRIBA_IZQUIERDA:
-                    posX -= 4;
+                    posX -= 8;
                     caida();
-                    if(tiempoCaida==800){
+                    if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;
                         aumentos++;
-                        incremetarY();
+                        incrementarY();
                     }
-                    getObserver().actualizar(direccion, getTocandoSuelo());
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
                 case ConstantesEntidades.ARRIBA_DERECHA:
-                    posX += 4;
+                    posX += 8;
                     caida();
-                    if(tiempoCaida==800){
+                    if(tiempoCaida==ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
                         posY += 2;
                         aumentos++;
-                        incremetarY();
+                        incrementarY();
                     }
-                    getObserver().actualizar(direccion, getTocandoSuelo());
                     getHitbox().actualizarHitbox(posX, posY, ancho, alto);
                     break;
         }
     }
     private void caida(){
-        if(tiempoCaida<800){
+        if(tiempoCaida<ConstantesTiempos.TIEMPO_CAIDA_DISPARO){
             tiempoCaida+=100;
         }
     }
-    public void incremetarY(){
+    public void incrementarY(){
         if(aumentos>=3){
             posY += 6;
         }
@@ -121,74 +111,72 @@ public class DisparoJugador extends EntidadDinamica {
         switch (direccion) {
             case ConstantesEntidades.QUIETO:
                 if(efectoBotella){
-                    if(dirAnterior==ConstantesEntidades.DERECHA){
-                        estado="aumentadoDerecha1";
-                    }
-                    else{
-                        estado="aumentadoIzquierda1";
-                    }
+                    if(dirAnterior==ConstantesEntidades.DERECHA)
+                        estado="aumentadoDerecha";
+                    else if(dirAnterior==ConstantesEntidades.IZQUIERDA)
+                        estado="aumentadoIzquierda";
                 }
                 else{
-                    if(dirAnterior==ConstantesEntidades.DERECHA){
-                        estado="idleDerecha";
-                    }
-                    else{
-                        estado="idleIzquierda";
-                    }
+                    if(dirAnterior==ConstantesEntidades.DERECHA)
+                        estado="normalDerecha";
+                    else if(dirAnterior==ConstantesEntidades.IZQUIERDA)
+                        estado="normalIzquierda";
                 }
+                break;
             case ConstantesEntidades.DERECHA:
-                if(efectoBotella){
-                    estado="aumentadoDerecha1";
-                }
-                else{
-                    estado="idleDerecha";
-                }
+                if(efectoBotella)
+                    estado="aumentadoDerecha";
+                else
+                    estado="normalDerecha";
                 break;
             case ConstantesEntidades.IZQUIERDA:
-                if(efectoBotella){
-                    estado="aumentadoIzquierda1";
-                }
-                else{
-                    estado="idleIzquierda";
-                }
+                if(efectoBotella)
+                    estado="aumentadoIzquierda";
+                else
+                    estado="normalIzquierda";
                 break;
             case ConstantesEntidades.ARRIBA_DERECHA:
-                if(efectoBotella){
-                    estado="aumentadoDerecha1";
-                }
-                else{
-                    estado="idleDerecha";
-                }
+                if(efectoBotella)
+                    estado="aumentadoDerecha";
+                else
+                    estado="normalDerecha";
                 break;
             case ConstantesEntidades.ARRIBA_IZQUIERDA:
-                if(efectoBotella){
-                    estado="aumentadoIzquierda1";
-                }
-                else{
-                    estado="idleIzquierda";
-                }
+                if(efectoBotella)
+                    estado="aumentadoIzquierda";
+                else
+                    estado="normalIzquierda";
                 break;
         }
         return estado;
     }
     public void setPotenciaAumentada(boolean efectoActivo){
         efectoBotella=efectoActivo;
-        if(efectoActivo){
+        if(efectoActivo)
             potenciaDisparo=ConstantesDificultad.POTENCIA_DISPARO_AUMENTADA;
-        }
-        else{
+        else
             potenciaDisparo=ConstantesDificultad.POTENCIA_DISPARO_NORMAL;
-        }
+    }
+    public int getDaño(){
+        int dañoADevolver=0;
+        if(efectoBotella)
+            dañoADevolver=ConstantesDificultad.POTENCIA_DISPARO_AUMENTADA;
+        else
+            dañoADevolver=ConstantesDificultad.POTENCIA_DISPARO_NORMAL;
+        return dañoADevolver;
     }
     public void visitar(Enemigo e) {
-        e.recibirDaño(1);
+        this.eliminar();
+        e.recibirDaño(getDaño());
     }
     public void visitar(Plataforma p){
         eliminar();
     }
+    protected void verificarPared(Pared p){
+        eliminar();
+    }
     public void eliminar(){
         nivel.eliminarDisparo(this);
-        nivel.getJuego().eliminarEntidadGraficamente(this);
+        super.eliminar();
     }
-    
 }

@@ -1,9 +1,5 @@
 package SnowBros.src.Entidades.EntidadesDinamicas.Enemigos;
-
-import SnowBros.src.Datos.ConstantesDificultad;
-import SnowBros.src.Datos.ConstantesEntidades;
-import SnowBros.src.Datos.ConstantesVistas;
-import SnowBros.src.Datos.EstadosDePatron;
+import SnowBros.src.Datos.*;
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -13,7 +9,6 @@ public class DemonioRojo extends Enemigo{
     protected int contadorAnimacion=0;
     private long tiempoEstado = 0;
     private int estado = EstadosDePatron.MOVERIZQUIERDA;
-
     public DemonioRojo(int posX, int posY, Sprite miSprite){
         super(posX, posY, miSprite);
         salud=ConstantesDificultad.SALUD_DEMONIO_ROJO;
@@ -23,12 +18,10 @@ public class DemonioRojo extends Enemigo{
         if(!detenido)
             switch (direccion) {
                 case ConstantesEntidades.QUIETO:
-                    if (dirAnterior == ConstantesEntidades.DERECHA){
+                    if (dirAnterior == ConstantesEntidades.DERECHA)
                         direccion = ConstantesEntidades.IZQUIERDA;
-                    }
-                    else{
+                    else
                         direccion = ConstantesEntidades.DERECHA;
-                    }
                     break;
                 case ConstantesEntidades.IZQUIERDA:
                     dirAnterior=ConstantesEntidades.IZQUIERDA;
@@ -76,7 +69,6 @@ public class DemonioRojo extends Enemigo{
             break;
         }
     }
-    
     public int getPuntajeCongelado() {
         return puntajeCongelado;
     }
@@ -91,11 +83,14 @@ public class DemonioRojo extends Enemigo{
             contadorAnimacion=0;
             switch (dirAnterior) {
                 case ConstantesEntidades.DERECHA:
-                    clave="idleDerecha";
+                    clave="quietoDerecha";
                     break;
             
                 case ConstantesEntidades.IZQUIERDA:
-                    clave="idleIzquierda";
+                    clave="quietoIzquierda";
+                    break;
+                case ConstantesEntidades.QUIETO:
+                    clave="quietoIzquierda";
                     break;
             }
         }else{
@@ -124,9 +119,11 @@ public class DemonioRojo extends Enemigo{
         }
         return clave;
     }
-    @Override
+    public int getSalud(){
+        salud= ConstantesDificultad.SALUD_DEMONIO_ROJO;
+        return salud;
+    }
     public void aceptar(Visitador visitador) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'aceptar'");
+        visitador.visitar(this);
     }
 }

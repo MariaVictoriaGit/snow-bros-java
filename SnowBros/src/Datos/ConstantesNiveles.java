@@ -1,10 +1,9 @@
 package SnowBros.src.Datos;
 
 public class ConstantesNiveles {
-    public static final String CLASICO1="SnowBros/src/Niveles/clasico 1.txt";
-    public static final String CLASICO2="SnowBros/src/Niveles/clasico 2.txt";
-    public static final String SUPERVIVENCIA1="SnowBros/src/Niveles/supervivencia 1.txt";
-    public static final String SUPERVIVENCIA2="SnowBros/src/Niveles/supervivencia 2.txt";
-    public static final String CONTRARRELOJ1="SnowBros/src/Niveles/contrarreloj 1.txt";
-    public static final String CONTRARRELOJ2="SnowBros/src/Niveles/contrarreloj 2.txt";
+    public static final String NIVEL1="SnowBros/src/Niveles/nivel1.txt";
+    public static final String NIVEL2="SnowBros/src/Niveles/nivel2.txt";
+    public static final String NIVEL3="SnowBros/src/Niveles/nivel3.txt";
+    public static final String OLEADA1="SnowBros/src/Niveles/oleada1.txt";
+    public static final String OLEADA2="SnowBros/src/Niveles/oleada2.txt";
 }

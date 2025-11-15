@@ -1,6 +1,5 @@
 package SnowBros.src.Entidades.EntidadesEstaticas.PowerUps;
 import javax.swing.JLabel;
-
 import SnowBros.src.Datos.ConstantesTiempos;
 import SnowBros.src.Entidades.EntidadesEstaticas.EntidadEstatica;
 import SnowBros.src.Grafica.Sprite;
@@ -11,27 +10,26 @@ public abstract class PowerUp extends EntidadEstatica {
     protected boolean activo;
     protected Temporizador tiempoDeVida;
     protected Temporizador tiempoDeEfecto;
-    protected JLabel label;
-
     public PowerUp(int x, int y, Sprite sprite){
-        super(x,y,sprite);
+        super(x,y-6,sprite);
         activo=false;
         tiempoDeVida=new Temporizador(ConstantesTiempos.TIEMPO_VIDA_POWER_UP);
         tiempoDeEfecto=new Temporizador(ConstantesTiempos.TIEMPO_EFECTO_POWER_UP);
-        hitbox.actualizarHitbox(x,y+12,ancho*2,alto*2);
+        hitbox.actualizarHitbox(x,y,ancho*2,alto*2);
         tiempoDeVida.setAccionAlFinalizar(()->eliminar());
     }
     public void eliminar(){
-        nivel.getJuego().eliminarPowerUp(this);
+        nivel.eliminarPowerUp(this);
+        borrarLabel();
     }
     public int getPuntaje(){
         return puntaje;
     }
     public JLabel getLabel(){
-        return label;
+        return miLabel;
     }
     public void setLabel(JLabel l){
-        label= l;
+        miLabel= l;
     }
     public Temporizador getTiempoDeVida(){
         return tiempoDeVida;

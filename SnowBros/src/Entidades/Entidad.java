@@ -2,10 +2,11 @@ package SnowBros.src.Entidades;
 
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Juego.HitBox;
+import SnowBros.src.Juego.InterfazEliminar;
 import SnowBros.src.Juego.Nivel;
 
 public abstract class Entidad {
-    protected Nivel nivel;
+    protected InterfazEliminar nivel;
     protected Sprite sprite;
     protected int posX;
     protected int posY;
@@ -16,11 +17,9 @@ public abstract class Entidad {
         this.posX=posX;
         this.posY=posY;
         sprite=mISprite;
-        alto=32;  //valores momentaneos
+        alto=32;  
         ancho=32;
         hitbox=new HitBox(posX,posY,ancho,alto);
-       // alto=sprite.getAltura();
-
     }
     public void setPosX(int x){
         this.posX = x;

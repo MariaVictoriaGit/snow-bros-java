@@ -16,7 +16,6 @@ public class PanelPantallaModo extends JPanel{
     protected JButton botonSupervivencia;
     protected JButton botonContrarreloj;
     protected GUI miControladorGrafico;
-
     public PanelPantallaModo(GUI miControladorGrafico){
         this.miControladorGrafico=miControladorGrafico;
         setSize(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO);
@@ -65,28 +64,24 @@ public class PanelPantallaModo extends JPanel{
     public void registrarOyenteBotonClasico(){
         botonClasico.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-                miControladorGrafico.cambiarModoJuego("Clasico");
-                comenzarJuego();
+                miControladorGrafico.setModoJuego("Clasico");
+                miControladorGrafico.cambiarInicioJuego();        
 			}
 		});
     }
     public void registrarOyenteBotonContrarreloj(){
         botonContrarreloj.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-                miControladorGrafico.cambiarModoJuego("Contrarreloj");
-                comenzarJuego();
+                miControladorGrafico.setModoJuego("Contrarreloj");
+                miControladorGrafico.cambiarInicioJuego();        
 		}
 		});
-    }
-    private void comenzarJuego(){
-        miControladorGrafico.accionarInicioJuego();
-        miControladorGrafico.mostrarPantallaJuego();        
     }
     public void registrarOyenteBotonSupervivencia(){
         botonSupervivencia.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-                miControladorGrafico.cambiarModoJuego("Supervivencia");
-                comenzarJuego();
+                miControladorGrafico.setModoJuego("Supervivencia");
+                miControladorGrafico.cambiarInicioJuego();        
 			}
 		});
     }

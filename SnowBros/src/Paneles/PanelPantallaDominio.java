@@ -16,7 +16,6 @@ public class PanelPantallaDominio extends JPanel {
     protected JButton botonOriginal;
     protected JButton botonAlternativo;
     protected GUI miControladorGrafico;
-
     public PanelPantallaDominio(GUI miControladorGrafico){
         this.miControladorGrafico=miControladorGrafico;
         setSize(ConstantesVistas.PANEL_ANCHO,ConstantesVistas.PANEL_ALTO);
@@ -55,17 +54,16 @@ public class PanelPantallaDominio extends JPanel {
     public void registrarOyenteBotonOriginal(){        
         botonOriginal.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e){
-            //agregar el modo especifico con algun metodo 
-            miControladorGrafico.accionarPantallaModoJuego();
-            miControladorGrafico.mostrarPantallaModo();
+            miControladorGrafico.setDominio("Original");
+            miControladorGrafico.cambiarPantallaModo();
         }
         });
     }
     public void registrarOyenteBotonAlternativo(){
         botonAlternativo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-            miControladorGrafico.accionarPantallaModoJuego();
-            miControladorGrafico.mostrarPantallaModo();
+        public void actionPerformed(ActionEvent e){
+            miControladorGrafico.setDominio("Alternativo");
+            miControladorGrafico.cambiarPantallaModo();
             }
         });
     }

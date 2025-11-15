@@ -1,5 +1,4 @@
 package SnowBros.src.Fabricas;
-
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.DisparoJugador;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
@@ -7,20 +6,26 @@ import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Grafica.Sprite;
+import SnowBros.src.Juego.GestorEntidad;
 import SnowBros.src.Juego.Silueta;
 
 public class FabricaEntidades {
     private FabricaSprites fabrica;
+    private GestorEntidad gestor;
     
-    public FabricaEntidades(FabricaSprites fabricaSprite){
+    public FabricaEntidades(FabricaSprites fabricaSprite, GestorEntidad g){
         fabrica=fabricaSprite;
+        gestor=g;
+    }
+    private void asignarGestor(Enemigo e){
+        e.setGestor(gestor);
+
     }
     public Silueta getSilueta(){
         Sprite spriteSilueta= fabrica.get_silueta();
         Silueta silueta=new Silueta(spriteSilueta);
         return silueta;
-    }
-    // getters entidades
+    }// getters entidades
     public Jugador getJugador(int x, int y){
         Sprite spritesJugador=fabrica.getSpriteJugador();
         Jugador jugador= new Jugador(x,y,spritesJugador);
@@ -34,39 +39,45 @@ public class FabricaEntidades {
     public DemonioRojo getDemonioRojo(int x, int y){
         Sprite spritesDemonioRojo=fabrica.getSpriteDemonioRojo();
         DemonioRojo demonio= new DemonioRojo(x,y,spritesDemonioRojo);
+        asignarGestor(demonio);
         return demonio;
     }
     public TrollAmarillo getTrollAmarillo(int x, int y){
         Sprite spritesTrollAmarillo=fabrica.getSpriteTrollAmarillo();
         TrollAmarillo troll= new TrollAmarillo(x,y,spritesTrollAmarillo);
+        asignarGestor(troll);
         return troll;
     }
     public RanaDeFuego getRanaDeFuego(int x, int y){
         Sprite RanaDeFuego= fabrica.getSpriteRanaDeFuego();
         RanaDeFuego rana= new RanaDeFuego(x, y, RanaDeFuego);
+        asignarGestor(rana);
         return rana;
     }
     public Calabaza getCalabaza(int x, int y){
         Sprite spriteCalabaza= fabrica.getSpriteCalabaza();
         Calabaza calabaza= new Calabaza(x, y, spriteCalabaza);
+        asignarGestor(calabaza);
         return calabaza;
     }
     public Fantasma getFantasma(int x, int y){
         Sprite spriteFantasma= fabrica.getSpriteFantasma();
         Fantasma fantasma= new Fantasma(x, y, spriteFantasma);
+        asignarGestor(fantasma);
         return fantasma;
     }
     public Kamakichi getKamakichi(int x, int y){
         Sprite spriteKamakichi= fabrica.getSpriteKamakichi();
         Kamakichi kamakichi= new Kamakichi(x, y, spriteKamakichi);
+        asignarGestor(kamakichi);
         return kamakichi;
     }
     public Moghera getMoghera(int x, int y){
         Sprite spriteMoghera= fabrica.getSpriteMoghera();
         Moghera moghera=new Moghera(x, y, spriteMoghera);
+        asignarGestor(moghera);
         return moghera;
-    }
-    // getters powerups
+    }// getters powerups
     public BotellaAzul getBotellaAzul(int x, int y){
         Sprite botellaAzul= fabrica.getSpriteBotellaAzul();
         BotellaAzul azul= new BotellaAzul(x, y, botellaAzul);
@@ -136,6 +147,7 @@ public class FabricaEntidades {
     public BolaDeNieve getBolaDeNieve(int x, int y){
         Sprite spriteBolaDeNieve=fabrica.getSpriteBolaNieve();
         BolaDeNieve bola= new BolaDeNieve(x, y, spriteBolaDeNieve);
+        bola.setGestor(gestor);
         return bola;
     }
     public BolaDeFuego getBolaDeFuego(int x, int y){

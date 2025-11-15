@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import SnowBros.src.Fabricas.FabricaEntidades;
-import SnowBros.src.Fabricas.FabricaSprites;
 import SnowBros.src.Juego.Nivel;
 import SnowBros.src.Juego.Silueta;
 import SnowBros.src.Juego.Sonido;
@@ -13,182 +12,84 @@ import SnowBros.src.Datos.ConstantesVistas;
 import SnowBros.src.Entidades.EntidadesDinamicas.Enemigos.*;
 import SnowBros.src.Entidades.EntidadesDinamicas.Jugador.Jugador;
 import SnowBros.src.Entidades.EntidadesEstaticas.Plataformas.*;
-import SnowBros.src.Entidades.EntidadesEstaticas.PowerUps.*;
 import SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos.*;
 
 public class ParserNivel{
     private FabricaEntidades fabrica;
+    private boolean superoNivelAnterior;
 
-    public ParserNivel(FabricaSprites fabricaSprites){
-        //que desde la llamada para crear el parser se defina el dominio de aplicacion
-        this.fabrica = new FabricaEntidades(fabricaSprites);
+    public ParserNivel(FabricaEntidades f){
+        this.fabrica = f;
+        superoNivelAnterior=false;
     }
-    public Nivel generarNivel(int modo){
-        return cargarNivel(obtenerArchivoNivel(modo), modo);
+    public Nivel generarNivel(String modoDeJuego){
+        return cargarNivel(obtenerArchivoNivel(modoDeJuego));
     }
-    private Nivel cargarNivel(String archivo, int modo){
+    private Nivel cargarNivel(String archivo){
         Silueta silueta= fabrica.getSilueta();
-        Nivel nivel = new Nivel(silueta,1);//TODO seleccion de nivel
+        Nivel nivel = new Nivel(silueta);
         try (BufferedReader br=new BufferedReader(new FileReader(archivo))){
             String linea;
             while ((linea=br.readLine())!=null){
-                String[] partes=linea.split("\\s+"); // divide por espacios
+                linea = linea.trim();
+                if (linea.isEmpty()) 
+                    continue; 
+                String[] partes = linea.split(" ");
+                if (partes.length < 3) 
+                    continue; 
                 String tipo=partes[0];
+                int xEntidad=Integer.parseInt(partes[1]);
+                int yArchivo=Integer.parseInt(partes[2]);
+                int yEntidad=ConstantesVistas.PANEL_ALTO-yArchivo;                
                 switch (tipo){
                     case "Jugador":
-                        int xJugador=Integer.parseInt(partes[1]);
-                        int yArchivo=Integer.parseInt(partes[2]);
-                        int yJugador=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
-                        Jugador jugador=fabrica.getJugador(xJugador, yJugador);
+                        Jugador jugador=fabrica.getJugador(xEntidad, yEntidad);
                         jugador.setNivel(nivel);
                         nivel.agregarJugador(jugador);
                         break;
                     case "Plataforma":
-                        int xPlataforma=Integer.parseInt(partes[1]);
-                        int yPlataforma=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2]);
-                        Plataforma plataforma = fabrica.getPlataforma(xPlataforma, yPlataforma);
+                        Plataforma plataforma = fabrica.getPlataforma(xEntidad, yEntidad);
                         nivel.agregarPlataforma(plataforma);
                         break;
                     case "PlataformaMovil":
-                        int xPlataformaMovil=Integer.parseInt(partes[1]);
-                        int yPlataformaMovil=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2]);
-                        PlataformaMovil plataformaMovil = fabrica.getPlataformaMovil(xPlataformaMovil, yPlataformaMovil);
+                        PlataformaMovil plataformaMovil = fabrica.getPlataformaMovil(xEntidad, yEntidad);
                         plataformaMovil.setNivel(nivel);
                         nivel.agregarPlataformaMovil(plataformaMovil);
                         break;
                     case "PlataformaQuebradiza":
-                        int xPlataformaQuebradiza=Integer.parseInt(partes[1]);
-                        int yPlataformaQuebradiza=ConstantesVistas.PANEL_ALTO-Integer.parseInt(partes[2]);
-                        PlataformaQuebradiza plataformaQuebradiza= fabrica.getPlataformaQuebradiza(xPlataformaQuebradiza, yPlataformaQuebradiza);
+                        PlataformaQuebradiza plataformaQuebradiza= fabrica.getPlataformaQuebradiza(xEntidad, yEntidad);
                         nivel.agregarPlataforma(plataformaQuebradiza);
                         break;
                     case "DemonioRojo":
-                        int xDemRojo=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yDemRojo=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
-                        DemonioRojo demonioRojo=fabrica.getDemonioRojo(xDemRojo, yDemRojo);
-                        demonioRojo.setNivel(nivel);
-                        nivel.agregarEnemigo(demonioRojo);
+                        agregarDemonioRojo(nivel, xEntidad, yEntidad);
                         break;
                     case "TrollAmarillo":
-                        int xTrollAmarillo=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yTrollAmarillo=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
-                        TrollAmarillo trollAmarillo=fabrica.getTrollAmarillo(xTrollAmarillo, yTrollAmarillo);
-                        trollAmarillo.setNivel(nivel);
-                        nivel.agregarEnemigo(trollAmarillo);
+                        agregarTrollAmarillo(nivel, xEntidad, yEntidad);
                         break;
                     case "RanaDeFuego":
-                        int xRanaFuego=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yRanafuego=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
-                        RanaDeFuego ranaFuego=fabrica.getRanaDeFuego(xRanaFuego, yRanafuego);
-                        ranaFuego.setNivel(nivel);
-                        nivel.agregarEnemigo(ranaFuego);
-                        break;
-                    case "Calabaza":
-                        int xCalabaza=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yCalabaza=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
-                        Calabaza calabaza=fabrica.getCalabaza(xCalabaza, yCalabaza);
-                        calabaza.setNivel(nivel);
-                        nivel.agregarEnemigo(calabaza);
-                        break;
-                    case "Fantasma":
-                        int xFantasma=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yFantasma=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
-                        Fantasma fantasma=fabrica.getFantasma(xFantasma, yFantasma);
-                        fantasma.setNivel(nivel);
-                        nivel.agregarEnemigo(fantasma);
-                        break;
-                    case "Kamakichi":
-                        int xKamakichi=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yKamakichi=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
-                        Kamakichi kamakichi=fabrica.getKamakichi(xKamakichi, yKamakichi);
-                        kamakichi.setNivel(nivel);
-                        nivel.agregarEnemigo(kamakichi);
-                        break;
-                    case "Moghera":
-                        int xMoghera=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yMoghera=ConstantesVistas.PANEL_ALTO-yArchivo-ConstantesVistas.PADDING;
-                        Moghera moghera=fabrica.getMoghera(xMoghera, yMoghera);
-                        moghera.setNivel(nivel);
-                        nivel.agregarEnemigo(moghera);
-                        break;
-                    case "BotellaAzul":
-                        int xBotellaAzul=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yBotellaAzul=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
-                        BotellaAzul botellaAzul=fabrica.getBotellaAzul(xBotellaAzul, yBotellaAzul);
-                        nivel.agregarPowerUp(botellaAzul);
-                        break;
-                    case "BotellaRoja":
-                        int xBotellaRoja=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yBotellaRoja=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
-                        BotellaRoja botellaRoja=fabrica.getBotellaRoja(xBotellaRoja, yBotellaRoja);
-                        nivel.agregarPowerUp(botellaRoja);
-                        break;
-                    case "BotellaVerde":
-                        int xBotellaVerde=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yBotellaVerde=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
-                        BotellaVerde botellaVerde=fabrica.getBotellaVerde(xBotellaVerde, yBotellaVerde);
-                        nivel.agregarPowerUp(botellaVerde);
-                        break;
-                    case "Fruta":
-                        int xFruta=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yFruta=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
-                        Fruta fruta=fabrica.getFruta(xFruta, yFruta);
-                        nivel.agregarPowerUp(fruta);
-                        break;                
-                    case "VidaExtra":
-                        int xVidaExtra=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yVidaExtra=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
-                        VidaExtra vidaExtra=fabrica.getVidaExtra(xVidaExtra, yVidaExtra);
-                        nivel.agregarPowerUp(vidaExtra);
+                        agregarRanaDeFuego(nivel, xEntidad, yEntidad);
                         break;
                     case "Escalera":
-                        int xEscalera=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yEscalera=ConstantesVistas.PANEL_ALTO-yArchivo;
-                        Escalera escalera=fabrica.getEscalera(xEscalera, yEscalera);
+                        Escalera escalera=fabrica.getEscalera(xEntidad, yEntidad);
                         nivel.agregarObstaculo(escalera);
                         break;
                     case "TrampaPinchos":
-                        int xTrampaPinchos=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yTrampaPinchos=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
-                        TrampaPinchos trampaPinchos=fabrica.getTrampaPinchos(xTrampaPinchos, yTrampaPinchos);
+                        TrampaPinchos trampaPinchos=fabrica.getTrampaPinchos(xEntidad, yEntidad);
                         nivel.agregarObstaculo(trampaPinchos);
                         break;                
                     case "Pared":
-                        int xPared=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yPared=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2+13;
-                        Pared pared=fabrica.getPared(xPared, yPared);
+                        Pared pared=fabrica.getPared(xEntidad, yEntidad);
                         nivel.agregarObstaculo(pared);
                         nivel.agregarPared(pared);
                         break;
                     case "ParedDestructible":
-                        int xParedDestructible=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int yParedDestructible=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
-                        ParedDestructible paredDestructible=fabrica.getParedDestructible(xParedDestructible, yParedDestructible);
+                        ParedDestructible paredDestructible=fabrica.getParedDestructible(xEntidad, yEntidad);
                         nivel.agregarObstaculo(paredDestructible);
                         nivel.agregarPared(paredDestructible);
                         break;
                     case "SueloResbaladizo":
-                        int xSueloResbaladizo=Integer.parseInt(partes[1]);
-                        yArchivo=Integer.parseInt(partes[2]);
-                        int ySueloResbaladizo=ConstantesVistas.PANEL_ALTO-yArchivo+ConstantesVistas.PADDING/2;
-                        SueloResbaladizo sueloResbaladizo=fabrica.getSueloResbaladizo(xSueloResbaladizo, ySueloResbaladizo);
-                        nivel.agregarObstaculo(sueloResbaladizo);
+                        SueloResbaladizo sueloResbaladizo=fabrica.getSueloResbaladizo(xEntidad, yEntidad);
+                        nivel.agregarResbaladizo(sueloResbaladizo);
                         break;                
                     }
             }
@@ -197,36 +98,81 @@ public class ParserNivel{
         }
         return nivel;
     }
-    public String obtenerArchivoNivel(int modo) {
-        String nivelACargar=null;
-        switch (modo) {
-            case 1:
-                Sonido.getInstancia().reproducirMusica("temaMusicalNivel1.wav");
-                nivelACargar = ConstantesNiveles.CLASICO1;
-                break;
-            case 2:
-                Sonido.getInstancia().reproducirMusica("temaMusicalNivel2.wav");
-                nivelACargar = ConstantesNiveles.CLASICO2;
-                break;
-            case 3:
-                Sonido.getInstancia().reproducirMusica("temaMusicalNivel3.wav");
-                nivelACargar = ConstantesNiveles.SUPERVIVENCIA1;
-                break;
-            case 4:
-                Sonido.getInstancia().reproducirMusica("temaMusicalNivel4.wav");
-                nivelACargar = ConstantesNiveles.SUPERVIVENCIA2;
-                break;
-            case 5:
-                Sonido.getInstancia().reproducirMusica("temaMusicalNivel5.wav");
-                nivelACargar = ConstantesNiveles.CONTRARRELOJ1;
-                break;
-            case 6:
-                Sonido.getInstancia().reproducirMusica("temaMusicalNivel6.wav");
-                nivelACargar = ConstantesNiveles.CONTRARRELOJ2;
-                break;
+    public void generarOleada(Nivel nivel, String archivo){
+        try (BufferedReader br=new BufferedReader(new FileReader(archivo))){
+            String linea;
+            while ((linea=br.readLine())!=null){
+                linea = linea.trim();
+                if (linea.isEmpty()) continue; 
+                String[] partes = linea.split(" ");
+                if (partes.length < 3) continue; 
+                String tipo=partes[0];
+                int xEntidad=Integer.parseInt(partes[1]);
+                int yArchivo=Integer.parseInt(partes[2]);
+                int yEntidad=ConstantesVistas.PANEL_ALTO-yArchivo;                
+                switch (tipo){
+                    case "DemonioRojo":
+                        agregarDemonioRojo(nivel, xEntidad, yEntidad);
+                        break;
+                    case "TrollAmarillo":
+                        agregarTrollAmarillo(nivel, xEntidad, yEntidad);
+                        break;
+                    case "RanaDeFuego":
+                        agregarRanaDeFuego(nivel, xEntidad, yEntidad);
+                        break;             
+                    }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+    private void agregarDemonioRojo(Nivel nivel, int x, int y){
+        DemonioRojo demonioRojo=fabrica.getDemonioRojo(x, y);
+        demonioRojo.setNivel(nivel);
+        nivel.agregarEnemigo(demonioRojo);
+    }
+    private void agregarTrollAmarillo(Nivel nivel, int x, int y){
+        TrollAmarillo trollAmarillo=fabrica.getTrollAmarillo(x,y);
+        trollAmarillo.setNivel(nivel);
+        nivel.agregarEnemigo(trollAmarillo);
+    }
+    private void agregarRanaDeFuego(Nivel nivel, int x, int y){
+        RanaDeFuego ranaFuego=fabrica.getRanaDeFuego(x, y);
+        ranaFuego.setNivel(nivel);
+        nivel.agregarEnemigo(ranaFuego);
+    }
+    public String obtenerArchivoNivel(String modo) {
+        String nivelACargar=null;
+        if(modo.equals("Clasico"))
+            if(!superoNivelAnterior){
+                Sonido.getInstancia().reproducirMusica("temaMusicalNivel1.wav");
+                nivelACargar = ConstantesNiveles.NIVEL1;
+            }else{
+                Sonido.getInstancia().reproducirMusica("temaMusicalNivel2.wav");
+                nivelACargar = ConstantesNiveles.NIVEL2;
+            }
+        else if(modo.equals("Supervivencia"))
+            if(!superoNivelAnterior){
+                Sonido.getInstancia().reproducirMusica("temaMusicalNivel3.wav");
+                nivelACargar = ConstantesNiveles.NIVEL2;
+            }else{
+                Sonido.getInstancia().reproducirMusica("temaMusicalNivel4.wav");
+                nivelACargar = ConstantesNiveles.NIVEL3;
+            }
+        else if(modo.equals("Contrarreloj"))
+            if(!superoNivelAnterior){
+                Sonido.getInstancia().reproducirMusica("temaMusicalNivel5.wav");
+                nivelACargar = ConstantesNiveles.NIVEL3;
+            }else{
+                Sonido.getInstancia().reproducirMusica("temaMusicalNivel6.wav");
+                nivelACargar = ConstantesNiveles.NIVEL1;
+            }
         return nivelACargar;
        }
-    //TODO metodos que segun el nombre del archivo condicione el modo de juego
-    //TODO original y alternativo
+    public void setSuperoNivelAnterior(boolean b){
+        superoNivelAnterior=b;
+    }
+    public boolean getSuperoNivelAnterior(){
+        return superoNivelAnterior;
+    }
 }

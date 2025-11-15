@@ -1,5 +1,4 @@
 package SnowBros.src.Entidades.EntidadesEstaticas.Obstaculos;
-
 import SnowBros.src.Grafica.Sprite;
 import SnowBros.src.Visitor.Visitador;
 
@@ -9,10 +8,15 @@ public class ParedDestructible extends Pared{
         super(x,y,sprite);
     }
     public void destruirse(){
-        eliminar();
+        super.eliminar();
+        eliminarPared();
     }
     public void aceptar(Visitador v){
         v.visitar(this);
+    }
+    public void eliminarPared(){
+        nivel.eliminarPared(this);
+        borrarLabel();
     }
     public int getPuntaje() {
         return puntaje;

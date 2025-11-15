@@ -1,10 +1,8 @@
 package SnowBros.src.Entidades.EntidadesEstaticas.Plataformas;
-
 import SnowBros.src.Datos.ConstantesDificultad;
 import SnowBros.src.Datos.EstadosDePatron;
 import SnowBros.src.Grafica.ObserverPlataformaMovil;
 import SnowBros.src.Grafica.Sprite;
-import SnowBros.src.Juego.Temporizador;
 import SnowBros.src.Visitor.Visitador;
 
 public class PlataformaMovil extends Plataforma{
