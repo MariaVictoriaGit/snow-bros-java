@@ -342,6 +342,7 @@ public class Juego {
             nivel=null;
             jugador=null;
             puntajeJugador=0;
+            oleadas=0;
             habilitarCondicionClasico=false;
             tiempo.detener();
             tiempo.resetear();

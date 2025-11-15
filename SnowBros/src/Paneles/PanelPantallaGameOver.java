@@ -13,9 +13,7 @@ import SnowBros.src.Grafica.GUI;
 
 public class PanelPantallaGameOver extends JPanel {
     protected JLabel imagenFondo;
-    protected JButton botonReintentar;
     protected JButton botonSalir;
-    protected JButton botonNuevaPartida;
     protected JButton botonRanking;
     protected GUI miControladorGrafico;
     public PanelPantallaGameOver(GUI miControladorGrafico) {
