@@ -49,7 +49,7 @@ public class Sonido {
     }
     private Clip cargarSonido(String r){
         try {
-            File file = new File("SnowBros/src/Sonidos/" + r);
+            File file = new File("snow-bros-java/SnowBros/src/Sonidos/" + r);
             AudioInputStream audio = AudioSystem.getAudioInputStream(file);
             Clip clip = AudioSystem.getClip();  
             clip.open(audio);
